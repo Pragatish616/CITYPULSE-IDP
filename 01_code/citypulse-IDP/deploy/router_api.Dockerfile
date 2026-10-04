@@ -7,7 +7,8 @@ WORKDIR /src
 COPY packages ./packages
 COPY services/router_api ./services/router_api
 WORKDIR /src/services/router_api
-RUN dart pub get && dart compile exe bin/server.dart -o /out/router_api
+# dart compile does not create the output folder.
+RUN mkdir -p /out && dart pub get && dart compile exe bin/server.dart -o /out/router_api
 
 FROM debian:stable-slim
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \

@@ -45,14 +45,19 @@ WORKDIR /src
 COPY packages ./packages
 COPY services/router_api ./services/router_api
 WORKDIR /src/services/router_api
-RUN dart pub get && dart compile exe bin/server.dart -o /out/router_api
+# dart compile does not create the output folder.
+RUN mkdir -p /out && dart pub get && dart compile exe bin/server.dart -o /out/router_api
 
 # ---- 3. runtime -------------------------------------------------------------------------------------------
-FROM python:3.12-slim
+# Same Debian line as the dart:stable build stage, so the compiled router finds the C library it was linked against
+# (python:3.12-slim can sit on a different Debian release). Python comes from Debian, in a virtual environment.
+FROM debian:stable-slim
 ARG PACK_DATE=2026-10-02
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates bash \
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates bash python3 python3-venv \
     && rm -rf /var/lib/apt/lists/* \
+    && python3 -m venv /opt/venv \
     && useradd --system --uid 10001 --create-home app
+ENV PATH=/opt/venv/bin:$PATH
 COPY --from=caddy:2 /usr/bin/caddy /usr/local/bin/caddy
 
 # Report server (FastAPI). Test-only packages are left out of the install.
