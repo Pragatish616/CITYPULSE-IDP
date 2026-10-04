@@ -9,22 +9,28 @@
 #
 # STATUS: UNTESTED AS AN IMAGE. The authoring machine has no Docker. What was tested instead is every part on its
 # own: the router executable, the report server and the web build run together behind a stand-in proxy (see
-# docs/DEPLOY.md). Expect small fixes on the first build, most likely in the web stage (the Flutter image tag).
+# docs/DEPLOY.md). Expect small fixes on the first builds (Render's first real builds, 4 Oct 2026, found two; see KNOWN_FLAWS F-35).
 #
 # Build arguments:
-#   FLUTTER_IMAGE  image with Flutter. The app was built and tested with Flutter 3.47.2 / Dart 3.13.2;
-#                  `stable` follows whatever is current, so pin a tag that exists once you have checked.
-#   DART_IMAGE     image with Dart (>= 3.13).
-#   PACK_DATE      folder under data/packs/ named by `pack:` in config/cities.yaml (default Chennai pack).
-ARG FLUTTER_IMAGE=ghcr.io/cirruslabs/flutter:stable
+#   FLUTTER_VERSION  the Flutter release to install in the web stage. The app needs Dart >= 3.13.2 and was built and
+#                    tested with Flutter 3.47.2. (The cirruslabs `stable` image shipped Dart 3.12.0 and failed pub get.)
+#   DART_IMAGE       image with Dart (>= 3.13) for the router.
+#   PACK_DATE        folder under data/packs/ named by `pack:` in config/cities.yaml (default Chennai pack).
 ARG DART_IMAGE=dart:stable
 
 # ---- 1. web app -------------------------------------------------------------------------------------------
-FROM ${FLUTTER_IMAGE} AS web
+# Flutter is installed from its Git tag so the version is exactly the one named, not whatever an image tag points to.
+FROM debian:stable-slim AS web
+ARG FLUTTER_VERSION=3.47.2
 ARG PACK_DATE=2026-10-02
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends python3 python3-yaml python-is-python3 \
+    && apt-get install -y --no-install-recommends git curl unzip xz-utils zip ca-certificates libglu1-mesa \
+        python3 python3-yaml python-is-python3 \
     && rm -rf /var/lib/apt/lists/*
+RUN git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git /opt/flutter
+ENV PATH=/opt/flutter/bin:$PATH
+# Downloads the Dart SDK and the web engine now, so the build step below only compiles.
+RUN flutter --version && flutter precache --web
 WORKDIR /src
 COPY packages ./packages
 COPY app ./app

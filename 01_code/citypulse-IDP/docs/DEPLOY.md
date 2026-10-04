@@ -72,8 +72,9 @@ change `deploy/single/Dockerfile` and run `python scripts/make_root_dockerfile.p
 the image copies is not tracked in Git (a fresh clone could not build it).
 
 Things to know before the first build:
-- The web stage uses `ghcr.io/cirruslabs/flutter:stable`. This project was built with Flutter 3.47.2 and Dart 3.13.2. `stable` may be
-  newer; pin a tag you have checked (`--build-arg FLUTTER_IMAGE=...`). The tag has not been checked.
+- The web stage installs Flutter 3.47.2 from its Git tag (`--build-arg FLUTTER_VERSION=...` to change it). The app needs Dart 3.13.2 or newer.
+  The `cirruslabs/flutter:stable` image was tried first and shipped Dart 3.12.0, so `flutter pub get` failed. The tag was checked against the
+  upstream repository and matches the Flutter used for all local tests.
 - Reports are held in memory. A restart, a redeploy, or a free host going to sleep loses them. Persistence needs the database settings
   in `server/README.md`, which means a Supabase account that you create.
 - Set `ADMIN_TOKEN` in the host's environment settings, not in the image. Without it the event state cannot be changed.
