@@ -184,7 +184,14 @@ class TestDeterminismEndToEnd:
     def test_determinism_two_runs_byte_identical(self, tmp_path):
         """The T3.2 acceptance criterion, verbatim: 'two runs with the same seed produce
         identical output.' This actually invokes the real corpus, real graph, and real
-        AOT-compiled CLI twice and byte-compares -- not asserted in prose."""
+        AOT-compiled CLI twice and byte-compares -- not asserted in prose.
+
+        Needs the large Chennai graph (not in git; `scripts/t1_3_build_graph_and_prior.py`), so it
+        is skipped on a machine that has not built it."""
+        import pytest
+
+        if not (t32.GRAPH_DIR / "chennai_graph_cli.json").exists():
+            pytest.skip("Chennai graph not built (data/graph is not in git)")
         t32.ensure_cli_compiled()
         user_classes_cfg = t32.load_hazard_classes()["user_classes"]
         z = user_classes_cfg[t32.USER_CLASS]["z"]
@@ -293,6 +300,10 @@ class TestReverseTwinAttachment:
         2 of those twins carried evidence. Reproduce that, then show the fix closes it."""
         import json
 
+        import pytest
+
+        if not (t32.GRAPH_DIR / "chennai_graph_cli.json").exists():
+            pytest.skip("Chennai graph not built (data/graph is not in git)")
         with open(t32.GRAPH_DIR / "chennai_graph_cli.json", encoding="utf-8") as f:
             twins = t32.build_reverse_twin_index(json.load(f)["edges"])
         old = t32.load_corpus()

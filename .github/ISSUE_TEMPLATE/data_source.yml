@@ -1,0 +1,35 @@
+name: Data source (passability / flood evidence)
+description: Propose independent, time-stamped, street-level evidence of road passability
+labels: [data]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The scarce resource in this project is data, not modelling. Thank you.
+  - type: input
+    id: source
+    attributes:
+      label: Source and link
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What it measures
+      description: For example subway boom-barrier states, water-level sensors, official closure posts, probe-vehicle traces, field logs.
+    validations:
+      required: true
+  - type: input
+    id: timestamps
+    attributes:
+      label: Does every record carry its own timestamp?
+  - type: input
+    id: licence
+    attributes:
+      label: Licence or terms of use
+      description: Public domain, ODbL, permission granted, unknown. Please do not suggest Google Maps Platform data.
+  - type: input
+    id: access
+    attributes:
+      label: Access
+      description: Public API, file download, needs an agreement, needs a person.

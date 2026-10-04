@@ -1,153 +1,72 @@
-> **Note (2 October 2026):** several claims in this README are outdated: the badges, "verified rationale", "entirely on-device", "ALT" and "250+ tests" (about 290). See `../../CLAUDE.md` and `../../00_START_HERE/KNOWN_FLAWS.md`.
+# CityPulse AI: the codebase
 
-# CityPulse AI
+The code behind CityPulse AI. For the project overview, results and status start at the
+[repository README](../../README.md); this page is the map of the code.
 
-**Hazard-aware navigation for Chennai that keeps routing — and keeps explaining itself — after the network dies.**
+> Research prototype. It never says a road is safe or passable, and nothing here has run on a phone.
+> The rules for working in this code are in [`../../CLAUDE.md`](../../CLAUDE.md) (the wording table in section 6
+> overrides any older claim, including in `CLAUDE.md` in this folder).
 
-[![Dart](https://img.shields.io/badge/Dart-3.13-0175C2?logo=dart)](packages/)
-[![Flutter](https://img.shields.io/badge/Flutter-Android-02569B?logo=flutter)](app/)
-[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python)](server/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-async-009688?logo=fastapi)](server/)
-[![Tests](https://img.shields.io/badge/tests-250%2B%20passing-brightgreen)](#status)
-[![Budget](https://img.shields.io/badge/infra%20cost-%E2%82%B90%2Fmonth-informational)](docs/APIS_AND_COSTS.md)
+## Components
 
-Every monsoon, Chennai floods in roughly the same places — Velachery, Pallikaranai, the Mudichur
-corridor — and every year the apps people actually use route them straight into it, or go dark
-the moment a tower drops. CityPulse fuses live signals (rainfall, reservoir levels, citizen
-reports) with a static hazard prior built from real GCC flood data onto the OSM road graph,
-computes routes that trade travel time against *probability-weighted* hazard exposure, and
-explains every routing decision in plain language — **entirely on-device, with zero network
-connectivity.** Confidence in every hazard signal decays with age, and the app tells you when it
-doesn't know something instead of quietly guessing.
-
-> **Route, confidence state, and a verified natural-language rationale — produced on-device
-> when the network is gone.**
-
----
-
-## Why this is hard (and why most routing apps don't bother)
-
-- No source gives you live street-level flood depth for Chennai — not Google, not the
-  Corporation, nobody. So the system doesn't pretend to. It maintains a bounded, validated
-  watchlist of ~150–200 chronic waterlogging points instead of a fake city-wide sensor claim.
-- An unverified crowd report of a flood should make a route *more* cautious, not less — most
-  naive hazard-routing designs get this backwards (low confidence → treated as "probably fine").
-  CityPulse's cost model is pessimistic under uncertainty by construction, tunable per user
-  class (commuter vs. ambulance vs. pedestrian).
-- An LLM that writes route explanations is one hallucinated street name away from being
-  actively dangerous. Every explanation here is generated from a structured decision trace and
-  passes a symbolic verifier before it's ever shown — if it fails, the app silently serves a
-  template instead of ever displaying an unverified claim.
-- It has to work with the phone in aeroplane mode. Not "degrade gracefully" — actually compute
-  the same route, the same way, offline.
-
-## What's built and running
-
-| Layer | What it does | Status |
+| Path | Language | What it is |
 |---|---|---|
-| **`pulse_router`** (Dart) | CSR road graph, bidirectional Dijkstra + ALT landmarks, hazard-aware edge costing, structured decision traces | ✅ 80 tests |
-| **`pulse_belief`** (Dart) | Log-odds hazard fusion, per-class temporal decay, pessimistic-under-uncertainty plug-in | ✅ 26 tests |
-| **`pulse_explain`** (Dart) | Template explanation renderer + a 6-rule symbolic verifier (no hallucinated facts, no absolute-safety claims, ever) | ✅ 75 tests |
-| **`app/`** (Flutter, Android) | Offline routing shell — loads the real Chennai graph, computes routes in-process (no server round-trip), confidence-banded UI, local SQLite hazard cache with spatial indexing | ✅ 23 tests |
-| **`server/`** (FastAPI) | Hazard ingest API, live rainfall + flood-alert workers, spatial storage layer | ✅ 33 tests |
-| **`scripts/`** | Real Chennai road graph (193k nodes / 471k edges), a 6,000+ event historical flood corpus, and a deterministic replay/evaluation harness | ✅ 15 tests |
+| [`packages/pulse_router/`](packages/pulse_router) | Dart | Map pack reader, bidirectional Dijkstra, hazard-aware edge cost, travel profiles, decision trace, place search, region configuration, route advisor |
+| [`packages/pulse_belief/`](packages/pulse_belief) | Dart | Flood belief: log-odds fusion, source weights, decay, Beta-posterior cautious index |
+| [`packages/pulse_explain/`](packages/pulse_explain) | Dart | Template explanation and the symbolic verifier |
+| [`services/router_api/`](services/router_api) | Dart | HTTP service for routes, search, hazard overlay and event state; serves Chennai and Tamil Nadu together |
+| [`app/`](app) | Flutter | Android and web client |
+| [`server/`](server) | Python (FastAPI) | Citizen-report ingest and the source adapters |
+| [`scripts/`](scripts) | Python | Pack builders, replay engine, Study 1 and Study 2, tests |
+| [`config/`](config) | YAML | `cities.yaml` (regions) and `hazard_classes.yaml` (reliabilities, traveller classes, travel profiles) |
+| [`data/`](data) | | Pinned snapshots, map packs, results; provenance in [`data/MANIFEST.md`](data/MANIFEST.md) |
+| [`docs/`](docs) | Markdown | Decision records, contracts, architecture, deployment |
+| [`deploy/`](deploy) | | Caddy and Docker files (untested: no Docker on the authoring machine) |
 
-One router implementation, two consumers: the Flutter app and the Python evaluation harness both
-run the exact same Dart routing code — never a re-implementation that can silently drift.
-
-## How it works
-
-```
-                     ┌─────────────────────────────────────┐
-                     │   OSM (Chennai) + GCC flood data     │
-                     └──────────────────┬────────────────────┘
-                                        │  offline, one-time build
-                                        ▼
-                     ┌─────────────────────────────────────┐
-                     │  Road graph + static hazard prior    │
-                     └───────┬───────────────────┬───────────┘
-                             │                   │
-                 ships to device        Python evaluation harness
-                             │                   │
-                             ▼                   ▼
-        ┌─────────────────────────────┐   ┌─────────────────────┐
-        │   Flutter client (Android)  │   │  Replay / studies    │
-        │  • pulse_router (in-process)│   │  (same router code,  │
-        │  • local hazard cache       │   │   AOT-compiled CLI)  │
-        │  • confidence-banded UI     │   └─────────────────────┘
-        │  • works with zero network  │
-        └───────────────┬─────────────┘
-                        │ syncs when online
-                        ▼
-        ┌─────────────────────────────┐
-        │   FastAPI server            │
-        │  • live rainfall / alerts   │
-        │  • hazard ingest + storage  │
-        └─────────────────────────────┘
-```
-
-## Getting started
+## Run the tests
 
 ```bash
-git clone <this-repo>
-cd citypulse-IDP
+(cd packages/pulse_belief  && dart pub get && dart test)
+(cd packages/pulse_router  && dart pub get && dart test)
+(cd packages/pulse_explain && dart pub get && dart test)
+(cd services/router_api    && dart pub get && dart test)
+(cd app && bash scripts/sync_data_assets.sh && flutter pub get && flutter test)
 
-# Dart packages (routing core, belief model, explanation engine)
-cd packages/pulse_router  && dart pub get && dart test && cd ../..
-cd packages/pulse_belief  && dart pub get && dart test && cd ../..
-cd packages/pulse_explain && dart pub get && dart test && cd ../..
-
-# Flutter app (Android)
-cd app && flutter pub get && flutter test && cd ..
-
-# FastAPI server
-cd server && pip install -r requirements.txt && pytest -q && cd ..
+python -m venv .venv && . .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r scripts/requirements.txt -r server/requirements.txt
+pytest scripts/tests server
 ```
 
-The server runs fully in-memory out of the box — no database or API keys required to develop
-against it. See [`server/README.md`](server/README.md) for wiring up real Supabase/Upstash/
-TomTom/OpenAQ credentials when you're ready to go live, and [`.env.example`](.env.example) for
-what each one unlocks.
+Tests that need large files outside git (the Chennai graph, the compiled router) skip themselves.
 
-## Project layout
+## Run it
 
-```
-packages/pulse_router    routing core — the single implementation the app and the evaluation harness both run
-packages/pulse_belief    hazard belief fusion — log-odds decay, pessimistic plug-in
-packages/pulse_explain   explanation templates + the symbolic verifier
-app/                     Flutter client (Android)
-server/                  FastAPI ingest + live-data server
-scripts/                 graph build, hazard corpus, evaluation/replay harness
-data/                    the Chennai graph, hazard corpus, and every experiment's results (dated, reproducible)
-config/hazard_classes.yaml   per-hazard-class decay/severity/threshold config — the knobs every study varies
-docs/                    architecture, ADRs, data contracts, the full build plan
-research/                the source material this system is built from — real Chennai flood data and prior art
-paper/                   evaluation write-up outline (this project is also producing a defensible evaluation, not just a demo)
+```bash
+# API: Chennai detail inside the Tamil Nadu main-road map
+cd services/router_api && dart pub get
+CITY=tamil_nadu PORT=8080 dart run bin/server.dart       # CITY=chennai for Chennai alone
+
+# Web app against that API
+cd ../../app && bash scripts/sync_data_assets.sh && flutter pub get
+flutter run -d chrome --dart-define=CITY=tamil_nadu --dart-define=ROUTER_API_URL=http://localhost:8080
 ```
 
-`docs/IMPLEMENTATION_PLAN.md` is the single source of truth for what's built, what's next, and
-why it's sequenced the way it is. `docs/DECISIONS.md` records every non-obvious design call and
-the reasoning behind it — read it before assuming something should be built differently.
+Environment variables, deployment and the reverse-proxy set-up are in [`docs/DEPLOY.md`](docs/DEPLOY.md).
 
-## Non-negotiables
+## Build data
 
-These aren't style preferences — they're the constraints that keep this shippable and legal:
+| To | Run |
+|---|---|
+| Rebuild the Chennai pack | `python scripts/build_packs.py` (needs the graph build, see `data/MANIFEST.md`) |
+| Add a routing-only city | `python scripts/city_pipeline.py fetch --city <id>` then `pack --city <id> --date <yyyy-mm-dd>` |
+| Build a state-sized region | `python scripts/region_pack.py --city <id> --levels backbone --date <yyyy-mm-dd>` (needs `pyosmium` and a Geofabrik extract) |
+| Run the studies | `python scripts/t3_2_replay_engine.py`, `study1_route_quality.py`, `study2_calibration.py` (pinned seed 20260918, results to `data/results/<date>-<name>/`) |
 
-- **₹0 infrastructure budget.** Every service is free-tier, no credit card. See
-  [`docs/APIS_AND_COSTS.md`](docs/APIS_AND_COSTS.md).
-- **Never Google Maps Platform data.** Its terms forbid the offline caching this product is
-  built around, and mixing it with OSM poisons the whole map dataset's license.
-  Self-hosted PMTiles only, never `tile.openstreetmap.org` directly.
-- **No passive location tracking.** Explicit consent only, per India's DPDP Act 2023.
-- **The LLM never invents a fact or draws a route.** Every number and street name in an
-  explanation comes from the router's own decision trace and is verified before display, every
-  time, with no exceptions.
+Details: [`docs/ADDING_A_CITY.md`](docs/ADDING_A_CITY.md).
 
-## Team
+## Where to read next
 
-Pragatish N · Ravi · Jyotish — VIT Chennai.
-
-## License
-
-Not yet finalized — do not treat this repository as licensed for reuse until a `LICENSE` file
-is added.
+- Why things are the way they are: [`docs/DECISIONS.md`](docs/DECISIONS.md)
+- Schemas that components share: [`docs/CONTRACTS.md`](docs/CONTRACTS.md)
+- Known flaws: [`../../00_START_HERE/KNOWN_FLAWS.md`](../../00_START_HERE/KNOWN_FLAWS.md)
+- The build plan: [`../../PLAN.md`](../../PLAN.md)

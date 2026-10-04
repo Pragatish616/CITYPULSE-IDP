@@ -1,0 +1,20 @@
+name: Feature request
+description: Suggest a capability or a plan task
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: The need
+      description: What problem does this solve, and for whom? Link the PLAN.md task if there is one.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed approach
+  - type: textarea
+    id: evidence
+    attributes:
+      label: How would we know it works?
+      description: This is a measurement project. Say what result would show the change helps, and what would show it does not.
