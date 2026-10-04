@@ -73,3 +73,5 @@ Status words used below:
 3. An ethics (IEC) application before any human study.
 4. Free-tier accounts (Supabase, Upstash, Groq, TomTom, OpenAQ). The code runs without them.
 5. Author details for the paper: departments, surnames, e-mails.
+
+**Web demo (4 October 2026).** The web app, router API and report server run as one container on a free Render instance at <https://citypulse-idp.onrender.com>. `scripts/smoke_deploy.py` passes 11 read-only checks against it. Reports are in memory, the host sleeps when idle, and nothing has run on a phone, so the readiness levels above do not change.

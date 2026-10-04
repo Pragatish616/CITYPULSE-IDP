@@ -16,6 +16,7 @@ and adds a small on-device advisor that says how much to trust what it found.
 ![Budget](https://img.shields.io/badge/infrastructure-%E2%82%B90-lightgrey)
 [![License: MIT](https://img.shields.io/badge/code%20licence-MIT-green.svg)](LICENSE)
 
+[Live demo](#live-demo) ·
 [Overview](#overview) ·
 [What it does](#what-it-does) ·
 [Architecture](#architecture) ·
@@ -32,6 +33,27 @@ and adds a small on-device advisor that says how much to trust what it found.
 > safe or passable, and nothing here is a substitute for your own judgement or for official warnings.
 > Flood data exists for **Chennai only**, built from 2015 records. There is no live sensor feed yet.
 > The app has not been run on a phone.
+
+---
+
+## Live demo
+
+**Web demo, running for now: <https://citypulse-idp.onrender.com>**
+
+Search two places in Chennai (try *Adyar* and *T. Nagar*), pick a travel mode and get a route with the advisor's verdict, or use
+*Report water here* to send a test report. It is the same web app and router that this repository builds.
+
+What to know before you try it:
+
+- **Temporary.** It runs on a free host and may be slow, restarted or taken down without notice.
+- **It sleeps.** After about 15 minutes without visitors the first page load can take 30 to 60 seconds.
+- **Reports are not kept.** The report server holds them in memory, so a restart erases them. Please do not report real flooding here.
+- **Not live flood data.** The flood layer is the 2015 Greater Chennai Corporation hazard map, applied as if an event were under way.
+  There is no sensor feed. See the box above: it estimates risk from limited data and never says a road is safe or passable.
+- **Phones.** The page is laid out for phone-sized screens (checked in a browser emulator, not on a real phone). The Android app itself has not been run on a device.
+
+How it is built and checked: [`docs/DEPLOY.md`](01_code/citypulse-IDP/docs/DEPLOY.md) (one container; the `Dockerfile` at the top of this repository is
+generated from it). `python 01_code/citypulse-IDP/scripts/smoke_deploy.py https://citypulse-idp.onrender.com` runs 11 read-only checks against the demo.
 
 ---
 
@@ -196,6 +218,7 @@ The full plan is [`PLAN.md`](PLAN.md); the gated next steps are in
 - [x] Beta-posterior pessimistic index, four travel modes, honest explanations
 - [x] City-agnostic pack pipeline; Tamil Nadu main-road region
 - [x] On-device route advisor; Chennai + Tamil Nadu in one app
+- [x] Web demo on a free Render instance (4 October 2026); the container image is built by the host, not yet tested locally
 - [ ] Run the app on a real Android phone and measure latency and memory
 - [ ] Independent, time-stamped passability data (the 15 October 2026 gate)
 - [ ] Pack format v2 (32-bit name index), then detailed district packs

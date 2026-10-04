@@ -14,7 +14,7 @@ first; its "re-check before launch" list applies.
 | `POST /api/rewrite` | Tested with a mocked Groq (19 router_api tests) and against the keyless server (503). Never run against live Groq. |
 | Ingest storage | In memory. Reports vanish on restart. Needs the database settings in `server/README.md` before anything beyond a demo. |
 | Compression, caching headers | In the Caddyfile, untested. |
-| One-container image (`deploy/single/`) | **Untested as an image** (no Docker here). Tested instead, on 4 Oct: the router started from a folder laid out like the image's `/app` (health, Adyar and T. Nagar search); the router, report server and web build behind a stand-in proxy, passing `scripts/smoke_deploy.py` (12 checks, including one test report). Real Caddy, the Flutter web stage and the image build were not run. |
+| One-container image (`deploy/single/`) | **Deployed on Render (free instance), 4 October 2026: <https://citypulse-idp.onrender.com>.** It took six real builds to get there (see KNOWN_FLAWS F-35). `scripts/smoke_deploy.py` passes 11 read-only checks against the live URL; the 12th (posting a test report) was not run there. Still not built on a local Docker, and not checked after the host's idle sleep and wake-up. |
 | Memory | Measured on Windows (working set, not Linux RSS): router 83 MB at start, 170 MB after 30 walking routes; report server 50 MB. Caddy not measured. Expect roughly 250 to 300 MB in total. |
 
 ## Steps
