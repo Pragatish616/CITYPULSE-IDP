@@ -60,3 +60,12 @@ Otherwise the result is reported as: no evidence of added value. No further tuni
 - ERA5 under-reads extreme local rain; district points are seats, not centroids.
 - A district named in a state-wide event gets a positive for every listed day.
 - Some districts changed boundaries or names (new districts) between 1990 and 2023; names are matched as written.
+
+## Addendum A (4 October 2026): geocoding coverage, written before any rainfall was joined to labels and before any model run
+
+The first geocoding pass (levels 1 and 2 of `nw_geocode.py`) resolved 551 of 948 district names, 395 left unresolved, mostly because
+the IFI lists districts under pre-split states (for example Adilabad under Andhra Pradesh), misspells names (for example
+"Kanniyakumariumari"), or the service spells them differently. To keep nationwide coverage honest, two documented levels were added
+for the unresolved only: (3) the district's state or a state it was split from, with exact name or second-level-region match; (4) the name
+with its last 1 to 4 letters removed, accepted only at 80% or more similarity and inside the state or a split-from state. Nothing else in this
+document changes. The result file reports the number of districts resolved at each level and the share of events lost to unresolved districts.

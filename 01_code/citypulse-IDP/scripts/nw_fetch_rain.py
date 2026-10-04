@@ -27,19 +27,45 @@ def slug(did: str) -> str:
 
 def fetch(lat: float, lon: float) -> dict:
     wait = 30
+    drops = 0
     while True:
-        r = requests.get(
-            URL,
-            params={"latitude": lat, "longitude": lon, "start_date": "1990-01-01", "end_date": "2023-12-31",
-                    "daily": "precipitation_sum", "timezone": "Asia/Kolkata"},
-            timeout=120,
-        )
+        try:
+            r = requests.get(
+                URL,
+                params={"latitude": lat, "longitude": lon, "start_date": "1990-01-01", "end_date": "2023-12-31",
+                        "daily": "precipitation_sum", "timezone": "Asia/Kolkata"},
+                timeout=120,
+            )
+        except requests.RequestException as e:  # dropped connection: wait and retry, but not forever
+            drops += 1
+            if drops > 8:
+                raise
+            print(f"  {type(e).__name__}; retry {drops}", file=sys.stderr)
+            time.sleep(5 * drops)
+            continue
         if r.status_code == 200:
-            return r.json()
+            try:
+                return r.json()
+            except ValueError:  # an empty or truncated body: treat like a dropped connection
+                drops += 1
+                if drops > 8:
+                    raise
+                print(f"  unreadable answer; retry {drops}", file=sys.stderr)
+                time.sleep(5 * drops)
+                continue
         if r.status_code == 429:
-            print(f"  rate limited ({r.text[:100]}); waiting {wait}s", file=sys.stderr)
-            time.sleep(wait)
-            wait = min(wait * 2, 900)
+            reason = r.text.lower()
+            if "daily" in reason:
+                # Resumable: stop cleanly and let the user (or a scheduler) run it again after the daily reset.
+                print("daily request limit reached; run again later (finished districts are kept)", file=sys.stderr)
+                raise SystemExit(3)
+            if "hourly" in reason:
+                to_next_hour = 3600 - (time.time() % 3600) + 60
+                print(f"  hourly limit; waiting {to_next_hour:.0f}s", file=sys.stderr)
+                time.sleep(to_next_hour)
+            else:  # minutely
+                print(f"  minutely limit; waiting 65s", file=sys.stderr)
+                time.sleep(65)
             continue
         raise RuntimeError(f"unexpected answer {r.status_code}: {r.text[:200]}")
 

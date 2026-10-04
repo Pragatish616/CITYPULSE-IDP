@@ -5,7 +5,14 @@ region (state) matches the district's state, and choose by this fixed rule:
   1. feature codes starting PPLA (administrative seats) before PPL (other populated places);
   2. a result whose second-level region (district) equals the name before one that does not;
   3. the largest population.
-If nothing matches the state, one more query "<name> district" is tried. Districts still unmatched are
+If nothing matches the state, one more query "<name> district" is tried.
+AMENDMENT 2026-10-04, made after the first pass resolved only 551 of 948 districts and BEFORE any rainfall was joined to
+labels or any model was run (see the addendum in PREREGISTRATION.md). Two further levels, tried in order only for districts
+the first two levels left unresolved:
+  3. the district's state or a state it was split from (Andhra Pradesh/Telangana, Madhya Pradesh/Chhattisgarh,
+     Bihar/Jharkhand, Uttar Pradesh/Uttarakhand, Jammu and Kashmir/Ladakh), with an exact name or second-level region match;
+  4. the name with its last 1 to 4 letters removed (the IFI has spellings like "Kanniyakumariumari"), accepted only if the
+     result's name is at least 80% similar to the district name and lies in the state or a split-from state. Districts still unmatched are
 recorded as unresolved, not guessed. Two names in one state that land on the same point (within 0.01 degrees)
 are treated as spellings of one district.
 
@@ -20,6 +27,7 @@ import json
 import re
 import sys
 import time
+from difflib import SequenceMatcher
 from pathlib import Path
 
 import requests
@@ -42,13 +50,48 @@ def norm(s: str) -> str:
     return re.sub(r"[^a-z]", "", s.lower())
 
 
+SPLIT_FROM = {
+    "andhrapradesh": {"telangana"}, "telangana": {"andhrapradesh"},
+    "madhyapradesh": {"chhattisgarh"}, "chhattisgarh": {"madhyapradesh"},
+    "bihar": {"jharkhand"}, "jharkhand": {"bihar"},
+    "uttarpradesh": {"uttarakhand"}, "uttarakhand": {"uttarpradesh"},
+    "jammuandkashmir": {"ladakh"}, "ladakh": {"jammuandkashmir"},
+}
+
+
+def allowed_states(state: str) -> set[str]:
+    k = norm_state(state)
+    return {k} | SPLIT_FROM.get(k, set())
+
+
+def choose_relaxed(results: list[dict], name: str, state: str) -> dict | None:
+    ok = [r for r in results if norm_state(r.get("admin1", "") or "") in allowed_states(state)
+          and (norm(r.get("name", "") or "") == norm(name) or norm(r.get("admin2", "") or "") == norm(name))]
+    if not ok:
+        return None
+    return sorted(ok, key=lambda r: (0 if (r.get("feature_code") or "").startswith("PPLA") else 1, -(r.get("population") or 0)))[0]
+
+
+def choose_trimmed(results: list[dict], name: str, state: str) -> dict | None:
+    ok = [r for r in results if norm_state(r.get("admin1", "") or "") in allowed_states(state)
+          and SequenceMatcher(None, norm(name), norm(r.get("name", "") or "")).ratio() >= 0.80]
+    if not ok:
+        return None
+    return sorted(ok, key=lambda r: (0 if (r.get("feature_code") or "").startswith("PPLA") else 1, -(r.get("population") or 0)))[0]
+
+
 def query(name: str, tries: int = 6) -> list[dict]:
+    last = "no answer"
     for attempt in range(tries):
-        r = requests.get(URL, params={"name": name, "count": 20, "language": "en", "countryCode": "IN"}, timeout=60)
-        if r.status_code == 200:
-            return r.json().get("results", []) or []
+        try:
+            r = requests.get(URL, params={"name": name, "count": 20, "language": "en", "countryCode": "IN"}, timeout=60)
+            if r.status_code == 200:
+                return r.json().get("results", []) or []
+            last = f"{r.status_code} {r.text[:120]}"
+        except requests.RequestException as e:  # dropped connection: wait and try again
+            last = type(e).__name__
         time.sleep(min(60, 2**attempt * 2))
-    raise RuntimeError(f"geocoding failed for {name!r}: {r.status_code} {r.text[:120]}")
+    raise RuntimeError(f"geocoding failed for {name!r}: {last}")
 
 
 def choose(results: list[dict], name: str, state: str) -> dict | None:
@@ -80,11 +123,30 @@ def main() -> int:
                 res["by_name_district"] = query(f"{name} district")
             cache.write_text(json.dumps(res, ensure_ascii=False), encoding="utf-8")
             time.sleep(0.15)
-        pick = choose(res["by_name"], name, state) or choose(res.get("by_name_district", []), name, state)
+        level = 1
+        pick = choose(res["by_name"], name, state)
+        if pick is None:
+            level, pick = 2, choose(res.get("by_name_district", []), name, state)
+        if pick is None:
+            level, pick = 3, choose_relaxed(res["by_name"] + res.get("by_name_district", []), name, state)
+        if pick is None and len(norm(name)) >= 8:
+            if "by_trim" not in res:
+                res["by_trim"] = {}
+                for k in (1, 2, 3, 4):
+                    if len(norm(name)) - k >= 6:
+                        res["by_trim"][str(k)] = query(name[:-k])
+                        time.sleep(0.15)
+                cache.write_text(json.dumps(res, ensure_ascii=False), encoding="utf-8")
+            for k in ("1", "2", "3", "4"):
+                pick = choose_trimmed(res["by_trim"].get(k, []), name, state)
+                if pick is not None:
+                    level = 4
+                    break
         if pick is None:
             unresolved.append(did)
             continue
         chosen[did] = {k: pick.get(k) for k in ("name", "latitude", "longitude", "elevation", "feature_code", "admin1", "admin2", "population")}
+        chosen[did]["level"] = level
         if (i + 1) % 100 == 0:
             print(f"{i + 1}/{len(dist)}", file=sys.stderr)
     # merge spellings: same state and the same point
