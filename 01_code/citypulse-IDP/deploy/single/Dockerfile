@@ -79,6 +79,8 @@ COPY server/requirements.txt /tmp/requirements.txt
 RUN grep -vE '^(pytest|respx|ruff|black)' /tmp/requirements.txt > /tmp/run.txt \
     && pip install --no-cache-dir -r /tmp/run.txt
 COPY server/app /srv/server/app
+# The report server reads config/hazard_classes.yaml relative to its own folder (/srv is its "repository root").
+COPY config/hazard_classes.yaml /srv/config/hazard_classes.yaml
 
 # Router API. Laid out like the repository so config/cities.yaml's relative paths (pack, places) resolve:
 # /app is the "repository root" and CITIES_CONFIG points into it.
