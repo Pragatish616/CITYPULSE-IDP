@@ -1,0 +1,8 @@
+{
+  "district_event_pairs": 17787,
+  "districts": 948,
+  "events_in_period": 5778,
+  "events_without_date_or_districts": 80,
+  "mentions_dropped_ambiguous_or_unknown_in_multi_state_events": 43,
+  "states": 37
+}
