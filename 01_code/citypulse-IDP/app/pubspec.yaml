@@ -63,7 +63,7 @@ dependencies:
   # Persists "has this app version's ADR-011 disclaimer been acknowledged" --
   # the only piece of local state this shell needs. Free, no key, no network.
   shared_preferences: ^2.5.5
-  sqlite3_flutter_libs: ^0.5.34
+  sqlite3_flutter_libs: ^0.6.0+eol
 
   # Parses config/hazard_classes.yaml (bundled as an asset, not hand-copied)
   # so the Tier 0 renderer's display nouns have one source of truth
