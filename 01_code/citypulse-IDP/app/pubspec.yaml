@@ -16,7 +16,7 @@ dependencies:
   # In-process router/belief/explanation packages -- path dependencies so the
   # app runs the *same code* the Python evaluation harness's CLI wraps, never
   # a second implementation (CLAUDE.md §5, ADR-001).
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^2.0.0
 
   # T5.2 local hazard cache (docs/IMPLEMENTATION_PLAN.md, ADR-008, ADR-010):
   # Drift over SQLite with the built-in R*Tree module for the append-only
