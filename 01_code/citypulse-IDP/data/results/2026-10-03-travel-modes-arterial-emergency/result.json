@@ -1,0 +1,91 @@
+{
+  "task": "ADR-019 travel modes on the Chennai pack",
+  "seed": 20261003,
+  "pairs_sampled": 300,
+  "pair_sampling": "two uniformly random graph nodes per pair; pairs with no car route are skipped",
+  "pack": "../../data/packs/2026-10-02",
+  "replay_clock": "2026-10-03T06:00:00.000Z",
+  "caveat": "Placeholder travel profiles (config/hazard_classes.yaml); model output, not measured travel. No reports loaded: only the static GCC prior.",
+  "results_by_event_state": {
+    "dry": {
+      "pairs_with_a_car_route": 296,
+      "seconds_total_all_modes": 341.628,
+      "by_mode": {
+        "commuter": {
+          "routes_found": 296,
+          "median_distance_km": 25.214591666666674,
+          "median_duration_min": 31.93298333333333,
+          "median_speed_kmh": 46.764292363165836,
+          "routes_with_hazard_detour": 0
+        },
+        "pedestrian": {
+          "routes_found": 296,
+          "median_distance_km": 23.201383333333336,
+          "median_duration_min": 287.3434537037037,
+          "median_speed_kmh": 4.87175041517132,
+          "route_differs_from_car": 296,
+          "share_differs_from_car": 1.0,
+          "routes_with_hazard_detour": 0
+        },
+        "cyclist": {
+          "routes_found": 296,
+          "median_distance_km": 25.212562500000022,
+          "median_duration_min": 109.39062222222223,
+          "median_speed_kmh": 14.002179482105245,
+          "route_differs_from_car": 296,
+          "share_differs_from_car": 1.0,
+          "routes_with_hazard_detour": 0
+        },
+        "emergency": {
+          "routes_found": 296,
+          "median_distance_km": 25.252329166666662,
+          "median_duration_min": 24.694980355152094,
+          "median_speed_kmh": 62.84434406568889,
+          "route_differs_from_car": 112,
+          "share_differs_from_car": 0.3783783783783784,
+          "routes_with_hazard_detour": 0
+        }
+      }
+    },
+    "active": {
+      "pairs_with_a_car_route": 296,
+      "seconds_total_all_modes": 285.719,
+      "by_mode": {
+        "commuter": {
+          "routes_found": 296,
+          "median_distance_km": 25.214591666666674,
+          "median_duration_min": 31.997045113753362,
+          "median_speed_kmh": 46.75061827514012,
+          "routes_with_hazard_detour": 1
+        },
+        "pedestrian": {
+          "routes_found": 296,
+          "median_distance_km": 23.353830555555557,
+          "median_duration_min": 290.84722731481475,
+          "median_speed_kmh": 4.859017379407763,
+          "route_differs_from_car": 296,
+          "share_differs_from_car": 1.0,
+          "routes_with_hazard_detour": 75
+        },
+        "cyclist": {
+          "routes_found": 296,
+          "median_distance_km": 25.372759722222224,
+          "median_duration_min": 109.39062222222223,
+          "median_speed_kmh": 13.953270314182424,
+          "route_differs_from_car": 296,
+          "share_differs_from_car": 1.0,
+          "routes_with_hazard_detour": 76
+        },
+        "emergency": {
+          "routes_found": 296,
+          "median_distance_km": 25.252329166666662,
+          "median_duration_min": 24.761305183946494,
+          "median_speed_kmh": 62.03009573219976,
+          "route_differs_from_car": 122,
+          "share_differs_from_car": 0.41216216216216217,
+          "routes_with_hazard_detour": 29
+        }
+      }
+    }
+  }
+}

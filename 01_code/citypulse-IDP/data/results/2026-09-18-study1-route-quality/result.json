@@ -1,0 +1,447 @@
+{
+  "task": "T3.3 Study 1 -- route quality",
+  "seed": 20260918,
+  "user_class": "commuter",
+  "replay_clock": "2015-12-02T00:00:00Z",
+  "scale_decision": {
+    "measured_seconds_per_cli_call": 3.07,
+    "source_of_measurement": "Two independent measurements, both used: (1) data/results/2026-09-17-t32-replay-engine/result.json -- 50 OD pairs, single config, 138.1s (run A) = 2.76s/call; (2) this task's own pre-run smoke test -- 3 OD pairs x 6 configs = 18 calls, 55.2s = 3.07s/call, used as the more conservative figure below. This CLI invocation cost is dominated by per-process graph load (471,240 edges) + ALT-landmark rebuild, not by the search itself (expected 10-40ms per CLAUDE.md); the CLI has no batch/warm-process mode, a real harness-level inefficiency out of this task's scope to fix (packages/pulse_router is off-limits per this task's constraints).",
+    "n_main_requested_by_docs_EVALUATION_md": 1000,
+    "n_main_used": 100,
+    "n_sweep_grid_points": 15,
+    "n_sweep_per_point": 25,
+    "estimated_total_cli_calls": 975,
+    "estimated_total_seconds": 2993.25,
+    "honest_scale_statement": "N=1000 (docs/EVALUATION.md's target) x 6 configs x a multi-point Pareto sweep would cost several hours of pure CLI subprocess time at this measured per-call cost, with no batching mechanism available. Scaled down to N_main=100 per main config and N_sweep=25 per Pareto grid point (5x3=15 points), stated here explicitly rather than silently under-running, per this task's instruction."
+  },
+  "timing": {
+    "main_configs_seconds": 985.2660000000033,
+    "pareto_sweep_seconds": 702.4839999999967,
+    "total_seconds": 1688.3910000000033
+  },
+  "od_sampling_stats": {
+    "requested": 100,
+    "sampled": 100,
+    "attempts": 100,
+    "dead_end_source_draws": 0
+  },
+  "config_realisations": {
+    "C0": {
+      "realisation": "empty hazards document -- exact",
+      "z": 0.0,
+      "lambda": 0.3
+    },
+    "C1": {
+      "realisation": "synthetic depth_mm/epsilon injection",
+      "threshold": 0.5,
+      "edges_scored": 14534,
+      "edges_hard_blocked": 364,
+      "p_mean_distribution_percentiles": {
+        "p50": 0.2712677579252597,
+        "p90": 0.44999274713751,
+        "p99": 0.6955844026980441
+      },
+      "z": 0.0,
+      "lambda": 0.0
+    },
+    "C2": {
+      "realisation": "all classes' T_c_seconds overridden to shared constant",
+      "shared_tc_seconds": 7300.0,
+      "z": 0.0,
+      "lambda": 0.3
+    },
+    "C3": {
+      "realisation": "hazard_classes.yaml as-is (identical to T3.2)",
+      "z": 0.0,
+      "lambda": 0.3
+    },
+    "C4": {
+      "realisation": "harness pre-filter by TTL + large decay_tau",
+      "ttl_seconds": 21600.0,
+      "observations_kept": 6008,
+      "observations_dropped": 0,
+      "z": 0.0,
+      "lambda": 0.3
+    },
+    "Cinf": {
+      "realisation": "windowing skipped entirely (oracle)",
+      "degenerates_to_c3_in_this_snapshot": true,
+      "z": 0.0,
+      "lambda": 0.3
+    }
+  },
+  "results_by_config": {
+    "C0": {
+      "config": "C0",
+      "n_traces": 100,
+      "n_errors": 0,
+      "detour_ratio_percentiles": {
+        "p50": 1.0,
+        "p75": 1.0,
+        "p90": 1.0,
+        "p95": 1.0,
+        "p99": 1.0,
+        "p100": 1.0
+      },
+      "detour_ratio_mean": 1.0,
+      "worst_edge_p_percentiles": {
+        "p50": 0.0,
+        "p90": 0.0,
+        "p99": 0.0
+      },
+      "worst_edge_p_mean": 0.0,
+      "hazard_time_penalty_seconds_mean": 0.0,
+      "hard_block_trigger_rate": "not_applicable_depth_mm_null_in_corpus",
+      "false_avoidance_cost": "not_computable: zero negative-polarity observations exist in this corpus (data/corpus/2026-09-17/observations.ndjson: Counter({1: 6132}), no -1 records) -- no confirmed-absent ground truth available"
+    },
+    "C1": {
+      "config": "C1",
+      "n_traces": 100,
+      "n_errors": 0,
+      "detour_ratio_percentiles": {
+        "p50": 1.0,
+        "p75": 1.0066661939875212,
+        "p90": 1.0621311369635207,
+        "p95": 1.0875707650934552,
+        "p99": 1.171069768573723,
+        "p100": 1.1803713527851458
+      },
+      "detour_ratio_mean": 1.015313799549637,
+      "worst_edge_p_percentiles": {
+        "p50": 0.18260164243220756,
+        "p90": 0.41641803558966495,
+        "p99": 0.4674547557919248
+      },
+      "worst_edge_p_mean": 0.19263744420168308,
+      "hazard_time_penalty_seconds_mean": 0.0,
+      "hard_block_trigger_rate": 0.3,
+      "false_avoidance_cost": "not_computable: zero negative-polarity observations exist in this corpus (data/corpus/2026-09-17/observations.ndjson: Counter({1: 6132}), no -1 records) -- no confirmed-absent ground truth available"
+    },
+    "C2": {
+      "config": "C2",
+      "n_traces": 100,
+      "n_errors": 0,
+      "detour_ratio_percentiles": {
+        "p50": 1.0013124279361247,
+        "p75": 1.0044793002036045,
+        "p90": 1.0083401001659344,
+        "p95": 1.009815033193571,
+        "p99": 1.0122851631395,
+        "p100": 1.0176834659593281
+      },
+      "detour_ratio_mean": 1.0027388163425117,
+      "worst_edge_p_percentiles": {
+        "p50": 0.2123589184588608,
+        "p90": 0.6569471091746986,
+        "p99": 0.8388030091844749
+      },
+      "worst_edge_p_mean": 0.28373776703668907,
+      "hazard_time_penalty_seconds_mean": 5.37,
+      "hard_block_trigger_rate": "not_applicable_depth_mm_null_in_corpus",
+      "false_avoidance_cost": "not_computable: zero negative-polarity observations exist in this corpus (data/corpus/2026-09-17/observations.ndjson: Counter({1: 6132}), no -1 records) -- no confirmed-absent ground truth available"
+    },
+    "C3": {
+      "config": "C3",
+      "n_traces": 100,
+      "n_errors": 0,
+      "detour_ratio_percentiles": {
+        "p50": 1.0013124279361247,
+        "p75": 1.0044793002036045,
+        "p90": 1.0083401001659344,
+        "p95": 1.009815033193571,
+        "p99": 1.0122851631395,
+        "p100": 1.0176834659593281
+      },
+      "detour_ratio_mean": 1.0027388163425117,
+      "worst_edge_p_percentiles": {
+        "p50": 0.2123589184588608,
+        "p90": 0.6569471091746986,
+        "p99": 0.8388030091844749
+      },
+      "worst_edge_p_mean": 0.28373776703668907,
+      "hazard_time_penalty_seconds_mean": 5.37,
+      "hard_block_trigger_rate": "not_applicable_depth_mm_null_in_corpus",
+      "false_avoidance_cost": "not_computable: zero negative-polarity observations exist in this corpus (data/corpus/2026-09-17/observations.ndjson: Counter({1: 6132}), no -1 records) -- no confirmed-absent ground truth available"
+    },
+    "C4": {
+      "config": "C4",
+      "n_traces": 100,
+      "n_errors": 0,
+      "detour_ratio_percentiles": {
+        "p50": 1.0013124279361247,
+        "p75": 1.0044793002036045,
+        "p90": 1.0083401001659344,
+        "p95": 1.009815033193571,
+        "p99": 1.0122851631395,
+        "p100": 1.0176834659593281
+      },
+      "detour_ratio_mean": 1.0027388163425117,
+      "worst_edge_p_percentiles": {
+        "p50": 0.2123589184588608,
+        "p90": 0.6569471091746986,
+        "p99": 0.8388030091844749
+      },
+      "worst_edge_p_mean": 0.28373776703668907,
+      "hazard_time_penalty_seconds_mean": 5.37,
+      "hard_block_trigger_rate": "not_applicable_depth_mm_null_in_corpus",
+      "false_avoidance_cost": "not_computable: zero negative-polarity observations exist in this corpus (data/corpus/2026-09-17/observations.ndjson: Counter({1: 6132}), no -1 records) -- no confirmed-absent ground truth available"
+    },
+    "Cinf": {
+      "config": "Cinf",
+      "n_traces": 100,
+      "n_errors": 0,
+      "detour_ratio_percentiles": {
+        "p50": 1.0013124279361247,
+        "p75": 1.0044793002036045,
+        "p90": 1.0083401001659344,
+        "p95": 1.009815033193571,
+        "p99": 1.0122851631395,
+        "p100": 1.0176834659593281
+      },
+      "detour_ratio_mean": 1.0027388163425117,
+      "worst_edge_p_percentiles": {
+        "p50": 0.2123589184588608,
+        "p90": 0.6569471091746986,
+        "p99": 0.8388030091844749
+      },
+      "worst_edge_p_mean": 0.28373776703668907,
+      "hazard_time_penalty_seconds_mean": 5.37,
+      "hard_block_trigger_rate": "not_applicable_depth_mm_null_in_corpus",
+      "false_avoidance_cost": "not_computable: zero negative-polarity observations exist in this corpus (data/corpus/2026-09-17/observations.ndjson: Counter({1: 6132}), no -1 records) -- no confirmed-absent ground truth available"
+    }
+  },
+  "exposure_reduction_efficiency_vs_c0": {
+    "C1": {
+      "n_pairs_with_positive_extra_time": 30,
+      "n_pairs_total": 100,
+      "risk_avoided_per_extra_second_percentiles": {
+        "p10": -0.04029892611002261,
+        "p50": -0.003992637862863444,
+        "p90": -0.0014010485845978027
+      },
+      "risk_avoided_per_extra_second_mean": -0.02404625736371636,
+      "note": "proxy metric: worst_edge_p delta / extra chosen-route seconds vs C0, paired by OD-pair index -- not a full route risk integral (unavailable from DecisionTrace's schema, docs/CONTRACTS.md section 3, which carries only the single worst edge per route, not a per-edge p breakdown for the whole chosen path)"
+    },
+    "C2": {
+      "n_pairs_with_positive_extra_time": 67,
+      "n_pairs_total": 100,
+      "risk_avoided_per_extra_second_percentiles": {
+        "p10": -0.1746631232906433,
+        "p50": -0.04807963407420581,
+        "p90": -0.02397853327821691
+      },
+      "risk_avoided_per_extra_second_mean": -0.07645682905946216,
+      "note": "proxy metric: worst_edge_p delta / extra chosen-route seconds vs C0, paired by OD-pair index -- not a full route risk integral (unavailable from DecisionTrace's schema, docs/CONTRACTS.md section 3, which carries only the single worst edge per route, not a per-edge p breakdown for the whole chosen path)"
+    },
+    "C3": {
+      "n_pairs_with_positive_extra_time": 67,
+      "n_pairs_total": 100,
+      "risk_avoided_per_extra_second_percentiles": {
+        "p10": -0.1746631232906433,
+        "p50": -0.04807963407420581,
+        "p90": -0.02397853327821691
+      },
+      "risk_avoided_per_extra_second_mean": -0.07645682905946216,
+      "note": "proxy metric: worst_edge_p delta / extra chosen-route seconds vs C0, paired by OD-pair index -- not a full route risk integral (unavailable from DecisionTrace's schema, docs/CONTRACTS.md section 3, which carries only the single worst edge per route, not a per-edge p breakdown for the whole chosen path)"
+    },
+    "C4": {
+      "n_pairs_with_positive_extra_time": 67,
+      "n_pairs_total": 100,
+      "risk_avoided_per_extra_second_percentiles": {
+        "p10": -0.1746631232906433,
+        "p50": -0.04807963407420581,
+        "p90": -0.02397853327821691
+      },
+      "risk_avoided_per_extra_second_mean": -0.07645682905946216,
+      "note": "proxy metric: worst_edge_p delta / extra chosen-route seconds vs C0, paired by OD-pair index -- not a full route risk integral (unavailable from DecisionTrace's schema, docs/CONTRACTS.md section 3, which carries only the single worst edge per route, not a per-edge p breakdown for the whole chosen path)"
+    },
+    "Cinf": {
+      "n_pairs_with_positive_extra_time": 67,
+      "n_pairs_total": 100,
+      "risk_avoided_per_extra_second_percentiles": {
+        "p10": -0.1746631232906433,
+        "p50": -0.04807963407420581,
+        "p90": -0.02397853327821691
+      },
+      "risk_avoided_per_extra_second_mean": -0.07645682905946216,
+      "note": "proxy metric: worst_edge_p delta / extra chosen-route seconds vs C0, paired by OD-pair index -- not a full route risk integral (unavailable from DecisionTrace's schema, docs/CONTRACTS.md section 3, which carries only the single worst edge per route, not a per-edge p breakdown for the whole chosen path)"
+    }
+  },
+  "pareto_frontier_c3": {
+    "z_grid": [
+      0.0,
+      0.5,
+      1.0,
+      1.28,
+      2.0
+    ],
+    "lambda_grid": [
+      0.3,
+      0.6,
+      1.0
+    ],
+    "n_per_point": 25,
+    "high_risk_threshold": 0.5,
+    "points": [
+      {
+        "z": 0.0,
+        "lambda": 0.3,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.003584229390681,
+        "p90_detour_ratio": 1.009163779301992,
+        "high_risk_exposure_rate": 0.36
+      },
+      {
+        "z": 0.0,
+        "lambda": 0.6,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.007168458781362,
+        "p90_detour_ratio": 1.0184618490133401,
+        "high_risk_exposure_rate": 0.32
+      },
+      {
+        "z": 0.0,
+        "lambda": 1.0,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.011111111111111,
+        "p90_detour_ratio": 1.0287151816456075,
+        "high_risk_exposure_rate": 0.32
+      },
+      {
+        "z": 0.5,
+        "lambda": 0.3,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.0061412487205732,
+        "p90_detour_ratio": 1.0154913716745229,
+        "high_risk_exposure_rate": 0.6
+      },
+      {
+        "z": 0.5,
+        "lambda": 0.6,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.0113500597371565,
+        "p90_detour_ratio": 1.0298229868677033,
+        "high_risk_exposure_rate": 0.6
+      },
+      {
+        "z": 0.5,
+        "lambda": 1.0,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.0173237753882916,
+        "p90_detour_ratio": 1.0420919961258006,
+        "high_risk_exposure_rate": 0.56
+      },
+      {
+        "z": 1.0,
+        "lambda": 0.3,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.0089485458612975,
+        "p90_detour_ratio": 1.0220410652209715,
+        "high_risk_exposure_rate": 0.68
+      },
+      {
+        "z": 1.0,
+        "lambda": 0.6,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.0149342891278375,
+        "p90_detour_ratio": 1.0368743588504155,
+        "high_risk_exposure_rate": 0.68
+      },
+      {
+        "z": 1.0,
+        "lambda": 1.0,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.0221027479091995,
+        "p90_detour_ratio": 1.0521387765478447,
+        "high_risk_exposure_rate": 0.68
+      },
+      {
+        "z": 1.28,
+        "lambda": 0.3,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.0096618357487923,
+        "p90_detour_ratio": 1.025069992477756,
+        "high_risk_exposure_rate": 0.72
+      },
+      {
+        "z": 1.28,
+        "lambda": 0.6,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.016726403823178,
+        "p90_detour_ratio": 1.0398039984460234,
+        "high_risk_exposure_rate": 0.72
+      },
+      {
+        "z": 1.28,
+        "lambda": 1.0,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.025089605734767,
+        "p90_detour_ratio": 1.057362356807418,
+        "high_risk_exposure_rate": 0.68
+      },
+      {
+        "z": 2.0,
+        "lambda": 0.3,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.01194743130227,
+        "p90_detour_ratio": 1.029918946707794,
+        "high_risk_exposure_rate": 0.72
+      },
+      {
+        "z": 2.0,
+        "lambda": 0.6,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.0223713646532437,
+        "p90_detour_ratio": 1.0474542892795313,
+        "high_risk_exposure_rate": 0.72
+      },
+      {
+        "z": 2.0,
+        "lambda": 1.0,
+        "n": 25,
+        "n_errors": 0,
+        "median_detour_ratio": 1.029642545771578,
+        "p90_detour_ratio": 1.0720024729226856,
+        "high_risk_exposure_rate": 0.64
+      }
+    ]
+  },
+  "event_split": {
+    "method": "split_by_event_and_monsoon_episode",
+    "n_events_available": 1,
+    "event_ids": [
+      "chennai_2015_flood_2015-12-02_proxy"
+    ],
+    "folds": [
+      {
+        "fold": 0,
+        "event_ids": [
+          "chennai_2015_flood_2015-12-02_proxy"
+        ],
+        "n_records": 100
+      }
+    ],
+    "honest_limitation": "T3.1's corpus (data/corpus/2026-09-17/) carries exactly one degenerate proxy timestamp for all 6,132 observations (2015-12-02T00:00:00Z, MANIFEST.md limitation 1) -- there is no second event or monsoon episode to hold out. This is a genuine single-fold application of a correctly-implemented general split, not a random split and not a fabricated multi-event split. A true train/held-out-event evaluation is not currently possible with this corpus."
+  },
+  "corpus_limitations_carried_forward_from_t3_2": [
+    "depth_mm is null for every edge -- the literal chance-constraint hard-removal never fires for C0/C2/C3/C4/C-infinity; 'impassable-edge-hit rate' is reported as not_applicable for those configs, and C1's synthetic hard-block rate is reported separately and distinctly labelled.",
+    "false-avoidance cost is not computable: zero negative-polarity observations exist in this corpus (all 6,132 records carry polarity=1).",
+    "single proxy timestamp (2015-12-02T00:00:00Z) for every observation -- oracle (C-infinity) degenerates to C3 in this snapshot; see config_realisations.Cinf.",
+    "event/monsoon-episode split is a documented single-fold no-op -- see event_split."
+  ],
+  "reproduce_with": "python scripts/study1_route_quality.py"
+}

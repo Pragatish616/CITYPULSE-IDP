@@ -1,0 +1,105 @@
+# Cities the pipeline and the apps know about (ADR-018).
+#
+# One entry per city. The pipeline (`scripts/city_pipeline.py`) reads `bbox` to fetch roads and writes a
+# pack; the router service and the apps read `centre`, the names and the texts. Adding a city is a
+# new entry here plus a data build; see docs/ADDING_A_CITY.md. Nothing in the routing or belief code
+# is city-specific.
+#
+# Rules for an entry:
+#   * `hazard_layer: true` only if a real flood-hazard source was loaded into the pack's prior and its
+#     licence was read. With `false` the pack carries the flat default prior, the app says so, and
+#     routes use road speeds and citizen reports only.
+#   * `local_contact` is a real number you have checked. Leave it out rather than guess; the national
+#     emergency number (112) is always shown.
+#   * Tamil texts are drafts until a native speaker has reviewed them (same status as app strings).
+
+default_city: chennai
+
+cities:
+  chennai:
+    name: { en: Chennai, ta: சென்னை }
+    centre: { lat: 13.0418, lon: 80.2341 }
+    # Same box the 2026-09-14 snapshot was fetched with (scripts/fetch_chennai_drivable_ways.py).
+    bbox: { min_lat: 12.75, max_lat: 13.25, min_lon: 79.95, max_lon: 80.35 }
+    pack: data/packs/2026-10-02
+    # Optional: a hotspot-candidates file for the map's watchlist layer. Cities without one get an empty layer.
+    watchlist: data/watchlist/2026-09-14/watchlist_candidates.json
+    hazard_layer: true
+    local_contact:
+      en: 'Greater Chennai Corporation control room: 1913'
+      ta: 'சென்னை மாநகராட்சி கட்டுப்பாட்டு அறை: 1913'
+    hazard_note:
+      en: >-
+        Areas the 2015 Greater Chennai Corporation hazard zones mark as flood
+        prone, plus citizen reports. Not live water levels.
+      ta: >-
+        2015 சென்னை மாநகராட்சி வெள்ள அபாய மண்டலங்களும் பொதுமக்களின்
+        புகார்களும். நேரடி நீர்மட்டம் அல்ல.
+    about_data:
+      en: >-
+        The base layer is the Greater Chennai Corporation flood-hazard zones
+        from 2015 (OpenCity), matched to OpenStreetMap roads. Citizen reports
+        are added on top and fade with time. There is no live sensor feed yet,
+        so most roads have no recent information.
+      ta: >-
+        அடிப்படை அடுக்கு 2015 சென்னை மாநகராட்சி வெள்ள அபாய மண்டலங்கள்
+        (OpenCity), OpenStreetMap சாலைகளுடன் பொருத்தப்பட்டது. பொதுமக்களின்
+        புகார்கள் அதன் மேல் சேர்க்கப்பட்டு காலப்போக்கில் மங்கும். நேரடி
+        உணரி தரவு இன்னும் இல்லை, எனவே பெரும்பாலான சாலைகளுக்குச் சமீபத்திய
+        தகவல் இல்லை.
+    data_credit:
+      en: >-
+        Flood-prone areas and 2015 reports: Greater Chennai Corporation data
+        published on OpenCity (public domain). Citizen reports come from users of
+        this app.
+      ta: >-
+        வெள்ள அபாயப் பகுதிகள் மற்றும் 2015 அறிக்கைகள்: OpenCity-இல் வெளியிடப்பட்ட
+        பெருநகர சென்னை மாநகராட்சித் தரவு (பொது உரிமை). குடிமக்கள் அறிக்கைகள் இந்தச்
+        செயலியின் பயனர்களிடமிருந்து வருகின்றன.
+
+  # Phase 1 of mapping India (ADR-020): Tamil Nadu's main roads (motorway to secondary), for routing
+  # between towns and cities. A rectangle, so it also holds some roads in neighbouring states. No
+  # flood-hazard layer; local detail comes from regional packs later. The pack folder is written by
+  # scripts/region_pack.py.
+  tamil_nadu:
+    name: { en: Tamil Nadu (main roads), ta: தமிழ்நாடு (முக்கிய சாலைகள்) }
+    centre: { lat: 10.85, lon: 78.70 }
+    bbox: { min_lat: 8.0, max_lat: 13.6, min_lon: 76.2, max_lon: 80.4 }
+    pack: data/packs/tamil_nadu-backbone-2026-10-03
+    # Main roads only: a village can be many kilometres from the nearest one, and the app says how far.
+    max_snap_metres: 15000
+    initial_zoom: 7.2
+    hazard_layer: false
+    # Inside Chennai the detailed Chennai pack and its flood layer are used (and the AI advice shown);
+    # anywhere else, and any route that leaves Chennai, uses this region's main-road pack: the best
+    # route, with no flood layer and no advice (ADR-022).
+    detail_regions: [chennai]
+    hazard_note:
+      en: >-
+        Flood-hazard data covers Chennai only. Elsewhere in Tamil Nadu the map
+        shows main roads and citizen reports only.
+      ta: >-
+        வெள்ள அபாயத் தரவு சென்னைக்கு மட்டுமே உள்ளது. தமிழ்நாட்டின் மற்ற
+        பகுதிகளில் வரைபடம் முக்கிய சாலைகளையும் பொதுமக்களின் புகார்களையும்
+        மட்டுமே காட்டும்.
+    about_data:
+      en: >-
+        In Chennai the base layer is the Greater Chennai Corporation flood-hazard
+        zones from 2015 (OpenCity), matched to OpenStreetMap roads, with citizen
+        reports on top. Outside Chennai there is no flood data: routes use main
+        roads from OpenStreetMap and road speeds only.
+      ta: >-
+        சென்னையில் அடிப்படை அடுக்கு 2015 சென்னை மாநகராட்சி வெள்ள அபாய
+        மண்டலங்கள் (OpenCity), OpenStreetMap சாலைகளுடன் பொருத்தப்பட்டது; அதன்
+        மேல் பொதுமக்களின் புகார்கள். சென்னைக்கு வெளியே வெள்ளத் தரவு இல்லை:
+        வழிகள் OpenStreetMap முக்கிய சாலைகளையும் சாலை வேகங்களையும் மட்டுமே
+        பயன்படுத்துகின்றன.
+    data_credit:
+      en: >-
+        Chennai flood-prone areas and 2015 reports: Greater Chennai Corporation
+        data published on OpenCity (public domain). Citizen reports come from
+        users of this app.
+      ta: >-
+        சென்னை வெள்ள அபாயப் பகுதிகள் மற்றும் 2015 அறிக்கைகள்: OpenCity-இல்
+        வெளியிடப்பட்ட பெருநகர சென்னை மாநகராட்சித் தரவு (பொது உரிமை). குடிமக்கள்
+        அறிக்கைகள் இந்தச் செயலியின் பயனர்களிடமிருந்து வருகின்றன.

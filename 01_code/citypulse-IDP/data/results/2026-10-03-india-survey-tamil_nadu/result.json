@@ -1,0 +1,215 @@
+{
+  "task": "ADR-020 phase-1 survey: tamil_nadu",
+  "pbf": "southern-zone-260911.osm.pbf",
+  "pbf_bytes": 557263963,
+  "region_box_min_lat_max_lat_min_lon_max_lon": [
+    8.0,
+    13.6,
+    76.2,
+    80.4
+  ],
+  "calibration_chennai": {
+    "box": [
+      12.75,
+      13.25,
+      79.95,
+      80.35
+    ],
+    "raw_directed_segments": 981265,
+    "pack_edges": 471240,
+    "edges_per_directed_segment": 0.4802,
+    "pack_bytes_per_edge": 32.9
+  },
+  "levels": {
+    "backbone (motorway to secondary)": {
+      "ways": 76802,
+      "segments": 1510424,
+      "directed_segments": 2703285,
+      "km": 73375.2,
+      "estimated_pack_edges": 1298218,
+      "estimated_pack_mb": 42.7,
+      "relative_to_chennai_pack": 2.75
+    },
+    "plus tertiary": {
+      "ways": 148233,
+      "segments": 3733283,
+      "directed_segments": 7081644,
+      "km": 167982.9,
+      "estimated_pack_edges": 3400869,
+      "estimated_pack_mb": 111.9,
+      "relative_to_chennai_pack": 7.22
+    },
+    "plus unclassified": {
+      "ways": 459330,
+      "segments": 8075931,
+      "directed_segments": 15755395,
+      "km": 335047.6,
+      "estimated_pack_edges": 7566327,
+      "estimated_pack_mb": 248.9,
+      "relative_to_chennai_pack": 16.06
+    },
+    "everything (plus residential)": {
+      "ways": 1512450,
+      "segments": 13769487,
+      "directed_segments": 27112271,
+      "km": 522086.9,
+      "estimated_pack_edges": 13020322,
+      "estimated_pack_mb": 428.3,
+      "relative_to_chennai_pack": 27.63
+    }
+  },
+  "by_class_region": {
+    "motorway": {
+      "ways": 1407,
+      "segments": 6830,
+      "directed_segments": 6843,
+      "km": 791.2
+    },
+    "motorway_link": {
+      "ways": 448,
+      "segments": 2958,
+      "directed_segments": 2994,
+      "km": 90.2
+    },
+    "trunk": {
+      "ways": 20286,
+      "segments": 226216,
+      "directed_segments": 317274,
+      "km": 15268.8
+    },
+    "trunk_link": {
+      "ways": 3603,
+      "segments": 12754,
+      "directed_segments": 14745,
+      "km": 449.8
+    },
+    "primary": {
+      "ways": 20130,
+      "segments": 437801,
+      "directed_segments": 765580,
+      "km": 22395.2
+    },
+    "primary_link": {
+      "ways": 2390,
+      "segments": 8070,
+      "directed_segments": 9960,
+      "km": 143.4
+    },
+    "secondary": {
+      "ways": 27776,
+      "segments": 811616,
+      "directed_segments": 1579245,
+      "km": 34103.4
+    },
+    "secondary_link": {
+      "ways": 762,
+      "segments": 4179,
+      "directed_segments": 6644,
+      "km": 133.2
+    },
+    "tertiary": {
+      "ways": 70372,
+      "segments": 2209159,
+      "directed_segments": 4351839,
+      "km": 94147.2
+    },
+    "tertiary_link": {
+      "ways": 1059,
+      "segments": 13700,
+      "directed_segments": 26520,
+      "km": 460.5
+    },
+    "unclassified": {
+      "ways": 311097,
+      "segments": 4342648,
+      "directed_segments": 8673751,
+      "km": 167064.8
+    },
+    "residential": {
+      "ways": 1053120,
+      "segments": 5693556,
+      "directed_segments": 11356876,
+      "km": 187039.3
+    }
+  },
+  "by_class_chennai": {
+    "motorway": {
+      "ways": 438,
+      "segments": 1922,
+      "directed_segments": 1923,
+      "km": 113.7
+    },
+    "motorway_link": {
+      "ways": 133,
+      "segments": 514,
+      "directed_segments": 525,
+      "km": 11.8
+    },
+    "trunk": {
+      "ways": 539,
+      "segments": 3728,
+      "directed_segments": 3730,
+      "km": 262.9
+    },
+    "trunk_link": {
+      "ways": 247,
+      "segments": 1161,
+      "directed_segments": 1297,
+      "km": 33.6
+    },
+    "primary": {
+      "ways": 2442,
+      "segments": 25519,
+      "directed_segments": 28235,
+      "km": 1147.8
+    },
+    "primary_link": {
+      "ways": 611,
+      "segments": 2224,
+      "directed_segments": 2565,
+      "km": 33.2
+    },
+    "secondary": {
+      "ways": 1954,
+      "segments": 14466,
+      "directed_segments": 21516,
+      "km": 511.8
+    },
+    "secondary_link": {
+      "ways": 107,
+      "segments": 336,
+      "directed_segments": 393,
+      "km": 5.1
+    },
+    "tertiary": {
+      "ways": 3627,
+      "segments": 47057,
+      "directed_segments": 85582,
+      "km": 1750.1
+    },
+    "tertiary_link": {
+      "ways": 76,
+      "segments": 266,
+      "directed_segments": 409,
+      "km": 5.4
+    },
+    "unclassified": {
+      "ways": 2168,
+      "segments": 21671,
+      "directed_segments": 43059,
+      "km": 877.0
+    },
+    "residential": {
+      "ways": 100314,
+      "segments": 399335,
+      "directed_segments": 792031,
+      "km": 13637.8
+    }
+  },
+  "seconds": 158.0,
+  "caveats": [
+    "the box is a rectangle and also holds roads in neighbouring states",
+    "edges-per-segment and bytes-per-edge are measured on Chennai only",
+    "estimates, not a build; no graph was constructed"
+  ]
+}

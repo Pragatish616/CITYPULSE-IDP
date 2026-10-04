@@ -1,0 +1,9 @@
+# Fixture for packages/pulse_router/test/city_pack_test.dart. SYNTHETIC city, not a real place.
+default_city: testville
+cities:
+  testville:
+    name: { en: Testville, ta: டெஸ்ட்வில் }
+    centre: { lat: 20.010, lon: 78.010 }
+    bbox: { min_lat: 19.99, max_lat: 20.03, min_lon: 77.99, max_lon: 78.03 }
+    pack: packages/pulse_router/test/fixtures/testville
+    hazard_layer: false

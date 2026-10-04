@@ -1,0 +1,1127 @@
+{
+  "task": "T3.4 Study 2 -- confidence calibration",
+  "seed": 20260918,
+  "corpus_t0": "2015-12-02T00:00:00Z",
+  "age_buckets_hours_simulated": [
+    0,
+    1,
+    6,
+    24,
+    72,
+    168
+  ],
+  "timing": {
+    "scoring_seconds": 23.625,
+    "figures_seconds": 8.78099999999904,
+    "total_seconds": 32.40599999999904
+  },
+  "ground_truth_label_method": "y_edge=1 iff the edge has >=1 official_feed observation; predictor input excludes official_feed entirely (crowd observations + static prior only) -- a source-class holdout, not true confirmed-absence ground truth. See this file's module docstring for the full honesty caveat; this is the single most important limitation of Study 2 as run against this corpus.",
+  "pool_stats": {
+    "edges_with_official_confirmation": 226,
+    "edges_crowd_only": 9110,
+    "edges_no_report_sampled": 5000,
+    "edges_no_report_available": 460253
+  },
+  "n_crowd_pool_edges": 9336,
+  "n_crowd_pool_rows_all_age_buckets": 56016,
+  "n_no_report_pool_edges": 5000,
+  "baselines": [
+    "c3_ours",
+    "c2_single_decay",
+    "c4_fixed_ttl",
+    "beta_reputation_with_forgetting",
+    "prior_only"
+  ],
+  "beta_reputation_baseline_source": "J\u00f8sang, A. and Ismail, R., 'The Beta Reputation System', 15th Bled Electronic Commerce Conference, 2002. [UNVERIFIED DETAIL] per CLAUDE.md section 7's citation discipline -- the primary paper PDF was not opened for this task; the standard documented formulation (Beta(r+1,s+1) posterior mean over forgetting-discounted, reliability- and kernel-weighted positive/negative evidence counts) was reconstructed and implemented directly in study_common.beta_reputation_p, verified only against hand-computed toy cases (scripts/tests/test_study_common.py), not against a reference implementation of the paper itself. Do not cite as a verified reproduction without opening the primary source first.",
+  "metrics_overall_all_edges": {
+    "n": 61016,
+    "n_positive": 1356,
+    "n_negative": 59660,
+    "c3_ours": {
+      "brier": 0.03860933499578504,
+      "murphy_reliability": 0.016351899781621895,
+      "murphy_resolution": 5.1804503698785624e-05,
+      "murphy_uncertainty": 0.02172978712515619,
+      "decomposition_check": 0.0380298824030793,
+      "adaptive_ece": 0.09773006018343587,
+      "log_loss": 0.1792145853208241,
+      "auroc_discrimination_only": 0.572707220216428,
+      "brier_skill_vs_climatology": -0.7767930616811103,
+      "brier_skill_vs_prior_only": -0.14746158409513144
+    },
+    "c2_single_decay": {
+      "brier": 0.03862819059134471,
+      "murphy_reliability": 0.01635526833841737,
+      "murphy_resolution": 5.215312836962835e-05,
+      "murphy_uncertainty": 0.02172978712515619,
+      "decomposition_check": 0.038032902335203934,
+      "adaptive_ece": 0.09781538369191212,
+      "log_loss": 0.17929271890004045,
+      "auroc_discrimination_only": 0.5727059902871434,
+      "brier_skill_vs_climatology": -0.7776607920206238,
+      "brier_skill_vs_prior_only": -0.14802196856050287
+    },
+    "c4_fixed_ttl": {
+      "brier": 0.04309108164478089,
+      "murphy_reliability": 0.02096096586979454,
+      "murphy_resolution": 3.830774595373148e-05,
+      "murphy_uncertainty": 0.02172978712515619,
+      "decomposition_check": 0.042652445248997,
+      "adaptive_ece": 0.11534160467175726,
+      "log_loss": 0.19645642109154907,
+      "auroc_discrimination_only": 0.5687760139314523,
+      "brier_skill_vs_climatology": -0.98304205175094,
+      "brier_skill_vs_prior_only": -0.2806581830505719
+    },
+    "beta_reputation_with_forgetting": {
+      "brier": 0.2954213561360773,
+      "murphy_reliability": 0.2729847673881275,
+      "murphy_resolution": 8.351333372494792e-07,
+      "murphy_uncertainty": 0.02172978712515619,
+      "decomposition_check": 0.2947137193799464,
+      "adaptive_ece": 0.521159959745464,
+      "log_loss": 0.7852919096586591,
+      "auroc_discrimination_only": 0.5346047341028859,
+      "brier_skill_vs_climatology": -12.595225504720807,
+      "brier_skill_vs_prior_only": -7.779862624529587
+    },
+    "prior_only": {
+      "brier": 0.03364760575076829,
+      "murphy_reliability": 0.01145833894351788,
+      "murphy_resolution": 7.395141203714752e-05,
+      "murphy_uncertainty": 0.02172978712515619,
+      "decomposition_check": 0.03311417465663692,
+      "adaptive_ece": 0.07510363648299694,
+      "log_loss": 0.15844345396084655,
+      "auroc_discrimination_only": 0.5915209787616553,
+      "brier_skill_vs_climatology": -0.5484553786454287,
+      "brier_skill_vs_prior_only": 0.0
+    },
+    "p_tilde_sanity_check_not_expected_to_calibrate": {
+      "brier": 0.39380945070232437,
+      "mean_p_tilde": 0.5840353101011028,
+      "mean_p_mean_c3": 0.11995373921844307,
+      "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+    }
+  },
+  "metrics_crowd_pool_only": {
+    "n": 56016,
+    "n_positive": 1356,
+    "n_negative": 54660,
+    "c3_ours": {
+      "brier": 0.04150662294324522,
+      "murphy_reliability": 0.01730343330007787,
+      "murphy_resolution": 4.496185850164644e-05,
+      "murphy_uncertainty": 0.023621372593507987,
+      "decomposition_check": 0.04087984403508421,
+      "adaptive_ece": 0.10212604686766318,
+      "log_loss": 0.19055899817879396,
+      "auroc_discrimination_only": 0.5455016840495334,
+      "brier_skill_vs_climatology": -0.7571638895638413,
+      "brier_skill_vs_prior_only": -0.14970397607315888
+    },
+    "c2_single_decay": {
+      "brier": 0.041527161593250025,
+      "murphy_reliability": 0.01730717728025239,
+      "murphy_resolution": 4.511250174766569e-05,
+      "murphy_uncertainty": 0.023621372593507987,
+      "decomposition_check": 0.040883437372012714,
+      "adaptive_ece": 0.10221898637054071,
+      "log_loss": 0.1906441059778061,
+      "auroc_discrimination_only": 0.5454883069055475,
+      "brier_skill_vs_climatology": -0.7580333839136513,
+      "brier_skill_vs_prior_only": -0.15027288209102463
+    },
+    "c4_fixed_ttl": {
+      "brier": 0.04638841124542907,
+      "murphy_reliability": 0.022321204784759335,
+      "murphy_resolution": 3.0613088013789724e-05,
+      "murphy_uncertainty": 0.023621372593507987,
+      "decomposition_check": 0.04591196429025353,
+      "adaptive_ece": 0.12130960153953227,
+      "log_loss": 0.20933984385478926,
+      "auroc_discrimination_only": 0.5397071680444517,
+      "brier_skill_vs_climatology": -0.9638321635118823,
+      "brier_skill_vs_prior_only": -0.2849260448269264
+    },
+    "beta_reputation_with_forgetting": {
+      "brier": 0.29947567598541297,
+      "murphy_reliability": 0.2750364030185893,
+      "murphy_resolution": 3.350603845310332e-07,
+      "murphy_uncertainty": 0.023621372593507987,
+      "decomposition_check": 0.2986574405517127,
+      "adaptive_ece": 0.5230487022248864,
+      "log_loss": 0.7935167676546211,
+      "auroc_discrimination_only": 0.49324716644701977,
+      "brier_skill_vs_climatology": -11.67816570776754,
+      "brier_skill_vs_prior_only": -7.29526352670084
+    },
+    "prior_only": {
+      "brier": 0.03610200869706659,
+      "murphy_reliability": 0.0119758877754096,
+      "murphy_resolution": 7.629232128828913e-05,
+      "murphy_uncertainty": 0.023621372593507987,
+      "decomposition_check": 0.035520968047629296,
+      "adaptive_ece": 0.07821370430590115,
+      "log_loss": 0.16793383124326855,
+      "auroc_discrimination_only": 0.5689515071447305,
+      "brier_skill_vs_climatology": -0.5283620185132143,
+      "brier_skill_vs_prior_only": 0.0
+    },
+    "p_tilde_sanity_check_not_expected_to_calibrate": {
+      "brier": 0.4284119760557525,
+      "mean_p_tilde": 0.6318390061824369,
+      "mean_p_mean_c3": 0.12633341619071375,
+      "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+    }
+  },
+  "metrics_by_report_age_bucket": {
+    "0": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.056674814009224556,
+        "murphy_reliability": 0.03270925556671591,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.05625919271357668,
+        "adaptive_ece": 0.16513921993541222,
+        "log_loss": 0.2507458571798812,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.3993023176308075,
+        "brier_skill_vs_prior_only": -0.5698520956211937
+      },
+      "c2_single_decay": {
+        "brier": 0.056674814009224556,
+        "murphy_reliability": 0.03270925556671591,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.05625919271357668,
+        "adaptive_ece": 0.16513921993541222,
+        "log_loss": 0.2507458571798812,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.3993023176308075,
+        "brier_skill_vs_prior_only": -0.5698520956211937
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.056674814009224556,
+        "murphy_reliability": 0.03270925556671591,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.05625919271357668,
+        "adaptive_ece": 0.16513921993541222,
+        "log_loss": 0.2507458571798812,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.3993023176308075,
+        "brier_skill_vs_prior_only": -0.5698520956211937
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.36535261875956115,
+        "murphy_reliability": 0.34155202968727283,
+        "murphy_resolution": 9.249172868240246e-06,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.36516415310791256,
+        "adaptive_ece": 0.5841895752645282,
+        "log_loss": 0.9281791271242713,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -14.467035935920732,
+        "brier_skill_vs_prior_only": -9.12000805343685
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.5718890436169107,
+        "mean_p_tilde": 0.7594174419759532,
+        "mean_p_mean_c3": 0.18934658925846273,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "1": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.047240889143654,
+        "murphy_reliability": 0.023078245693836267,
+        "murphy_resolution": 9.378920143476842e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.04660582908590949,
+        "adaptive_ece": 0.1328641288390729,
+        "log_loss": 0.21724074925824524,
+        "auroc_discrimination_only": 0.5585246204210097,
+        "brier_skill_vs_climatology": -0.9999214252535653,
+        "brier_skill_vs_prior_only": -0.30853907714814977
+      },
+      "c2_single_decay": {
+        "brier": 0.047333179635698046,
+        "murphy_reliability": 0.02311796048342456,
+        "murphy_resolution": 9.836653298475213e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.046640966543947796,
+        "adaptive_ece": 0.13322012216700685,
+        "log_loss": 0.21759520974092156,
+        "auroc_discrimination_only": 0.558539677297145,
+        "brier_skill_vs_climatology": -1.0038285010036598,
+        "brier_skill_vs_prior_only": -0.31109545822983575
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.05667481391689613,
+        "murphy_reliability": 0.03270925547453099,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.056259192621391764,
+        "adaptive_ece": 0.16513921965188447,
+        "log_loss": 0.25074585687408096,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.399302313722126,
+        "brier_skill_vs_prior_only": -0.5698520930637618
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.355318891571874,
+        "murphy_reliability": 0.33141582029841177,
+        "murphy_resolution": 7.951729007220524e-07,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.355036397719019,
+        "adaptive_ece": 0.5755834976989663,
+        "log_loss": 0.9071150651732456,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -14.042262686696224,
+        "brier_skill_vs_prior_only": -8.842080936641755
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.5156143050959598,
+        "mean_p_tilde": 0.7174692580069425,
+        "mean_p_mean_c3": 0.15707149816212346,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "6": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.03681792261724607,
+        "murphy_reliability": 0.012731599941268164,
+        "murphy_resolution": 7.881400116814877e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.036274158533608006,
+        "adaptive_ece": 0.08231238126401569,
+        "log_loss": 0.17156545302934376,
+        "auroc_discrimination_only": 0.5671186967545147,
+        "brier_skill_vs_climatology": -0.5586699067337422,
+        "brier_skill_vs_prior_only": -0.019830307121876167
+      },
+      "c2_single_decay": {
+        "brier": 0.0368488486959245,
+        "murphy_reliability": 0.012730379755053563,
+        "murphy_resolution": 7.734805834066736e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.036274404290220885,
+        "adaptive_ece": 0.08251391779798375,
+        "log_loss": 0.1717215614640694,
+        "auroc_discrimination_only": 0.5670400124340654,
+        "brier_skill_vs_climatology": -0.5599791481233358,
+        "brier_skill_vs_prior_only": -0.020686937536486427
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.056674813455253985,
+        "murphy_reliability": 0.032709255013606345,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.05625919216046712,
+        "adaptive_ece": 0.1651392182342458,
+        "log_loss": 0.2507458553450809,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.399302294178717,
+        "brier_skill_vs_prior_only": -0.5698520802766023
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.3156042629166187,
+        "murphy_reliability": 0.2918291514610708,
+        "murphy_resolution": 3.4826385123521376e-08,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.3154504892281937,
+        "adaptive_ece": 0.5401648013931768,
+        "log_loss": 0.8252044377672022,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -12.360962055327734,
+        "brier_skill_vs_prior_only": -7.742013929608923
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.38363851130871485,
+        "mean_p_tilde": 0.5947738763299224,
+        "mean_p_mean_c3": 0.10651975058706627,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "24": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.036102094495213476,
+        "murphy_reliability": 0.011975973702176122,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.03552105397439582,
+        "adaptive_ece": 0.07865077842721006,
+        "log_loss": 0.16793426711882656,
+        "auroc_discrimination_only": 0.5685481285760081,
+        "brier_skill_vs_climatology": -0.5283656507385031,
+        "brier_skill_vs_prior_only": -2.3765477317194694e-06
+      },
+      "c2_single_decay": {
+        "brier": 0.03610210982451982,
+        "murphy_reliability": 0.011975989054458652,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.03552106932667835,
+        "adaptive_ece": 0.07865086172377353,
+        "log_loss": 0.1679343449954788,
+        "auroc_discrimination_only": 0.5685481285760081,
+        "brier_skill_vs_climatology": -0.5283662996976728,
+        "brier_skill_vs_prior_only": -2.8011586299392377e-06
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.26051065382456146,
+        "murphy_reliability": 0.23687501473601955,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.2604963873295275,
+        "adaptive_ece": 0.486698073487064,
+        "log_loss": 0.7141723570620221,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -10.028599324332205,
+        "brier_skill_vs_prior_only": -6.215960087166252
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.3664447875573514,
+        "mean_p_tilde": 0.5731264411321193,
+        "mean_p_mean_c3": 0.10168795288009473,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "72": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409606,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.0786503122138158,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5685068435930564,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "c2_single_decay": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409609,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.0786503122138158,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5685058721816928,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.2500676261019091,
+        "murphy_reliability": 0.22644619621626755,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.25006756880977554,
+        "adaptive_ece": 0.47586363195380627,
+        "log_loss": 0.6932824327648359,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -9.586498524249043,
+        "brier_skill_vs_prior_only": -5.92669563625217
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.36644260437778897,
+        "mean_p_tilde": 0.5731235098248424,
+        "mean_p_mean_c3": 0.10168735312826767,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "168": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "c2_single_decay": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.25000000273795336,
+        "murphy_reliability": 0.22637863014213555,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.25000000273564355,
+        "adaptive_ece": 0.47579263355177703,
+        "log_loss": 0.6931471860358254,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -9.5836357200793,
+        "brier_skill_vs_prior_only": -5.924822517099074
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.3664426043777889,
+        "mean_p_tilde": 0.5731235098248423,
+        "mean_p_mean_c3": 0.10168735312826764,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    }
+  },
+  "metrics_by_hazard_class": {
+    "flood": {
+      "n": 56016,
+      "n_positive": 1356,
+      "n_negative": 54660,
+      "c3_ours": {
+        "brier": 0.04150662294324522,
+        "murphy_reliability": 0.01730343330007787,
+        "murphy_resolution": 4.496185850164644e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.04087984403508421,
+        "adaptive_ece": 0.10212604686766318,
+        "log_loss": 0.19055899817879396,
+        "auroc_discrimination_only": 0.5455016840495334,
+        "brier_skill_vs_climatology": -0.7571638895638413,
+        "brier_skill_vs_prior_only": -0.14970397607315888
+      },
+      "c2_single_decay": {
+        "brier": 0.041527161593250025,
+        "murphy_reliability": 0.01730717728025239,
+        "murphy_resolution": 4.511250174766569e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.040883437372012714,
+        "adaptive_ece": 0.10221898637054071,
+        "log_loss": 0.1906441059778061,
+        "auroc_discrimination_only": 0.5454883069055475,
+        "brier_skill_vs_climatology": -0.7580333839136513,
+        "brier_skill_vs_prior_only": -0.15027288209102463
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.04638841124542907,
+        "murphy_reliability": 0.022321204784759335,
+        "murphy_resolution": 3.0613088013789724e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.04591196429025353,
+        "adaptive_ece": 0.12130960153953227,
+        "log_loss": 0.20933984385478926,
+        "auroc_discrimination_only": 0.5397071680444517,
+        "brier_skill_vs_climatology": -0.9638321635118823,
+        "brier_skill_vs_prior_only": -0.2849260448269264
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.29947567598541297,
+        "murphy_reliability": 0.2750364030185893,
+        "murphy_resolution": 3.350603845310332e-07,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.2986574405517127,
+        "adaptive_ece": 0.5230487022248864,
+        "log_loss": 0.7935167676546211,
+        "auroc_discrimination_only": 0.49324716644701977,
+        "brier_skill_vs_climatology": -11.67816570776754,
+        "brier_skill_vs_prior_only": -7.29526352670084
+      },
+      "prior_only": {
+        "brier": 0.03610200869706659,
+        "murphy_reliability": 0.0119758877754096,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.035520968047629296,
+        "adaptive_ece": 0.07821370430590115,
+        "log_loss": 0.16793383124326855,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132143,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4284119760557525,
+        "mean_p_tilde": 0.6318390061824369,
+        "mean_p_mean_c3": 0.12633341619071375,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    }
+  },
+  "hazard_class_stratification_confound": "Corpus-driven confound found while running this study, flagged rather than papered over (CLAUDE.md section 8.4): every crowd_sourced_flooding_2015.kml observation is hazard_class='flood' (5,052/5,052) and every gcc_stagnation_2015.kml (waterlogging) observation is source_class='official_feed' (753/753) -- verified against data/corpus/2026-09-17/observations.ndjson. Because this study's ground-truth label is a source-class holdout (crowd predicts official_feed confirmation, see this file's module docstring), the crowd-only predictor pool contains *zero* waterlogging edges by construction -- 'stratified by hazard_class' degenerates to a single ('flood') stratum for this specific ground-truth design, not from a shortage of waterlogging data in the corpus overall (753 waterlogging records exist, all in the label side of the split, none in the predictor side). This is a real limitation of the source-holdout proxy itself, distinct from the already-flagged single-timestamp and all-positive-polarity limitations, and is being written into docs/DECISIONS.md.",
+  "metrics_by_age_bucket_and_hazard_class": {
+    "flood__age_0h": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.056674814009224556,
+        "murphy_reliability": 0.03270925556671591,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.05625919271357668,
+        "adaptive_ece": 0.16513921993541222,
+        "log_loss": 0.2507458571798812,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.3993023176308075,
+        "brier_skill_vs_prior_only": -0.5698520956211937
+      },
+      "c2_single_decay": {
+        "brier": 0.056674814009224556,
+        "murphy_reliability": 0.03270925556671591,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.05625919271357668,
+        "adaptive_ece": 0.16513921993541222,
+        "log_loss": 0.2507458571798812,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.3993023176308075,
+        "brier_skill_vs_prior_only": -0.5698520956211937
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.056674814009224556,
+        "murphy_reliability": 0.03270925556671591,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.05625919271357668,
+        "adaptive_ece": 0.16513921993541222,
+        "log_loss": 0.2507458571798812,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.3993023176308075,
+        "brier_skill_vs_prior_only": -0.5698520956211937
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.36535261875956115,
+        "murphy_reliability": 0.34155202968727283,
+        "murphy_resolution": 9.249172868240246e-06,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.36516415310791256,
+        "adaptive_ece": 0.5841895752645282,
+        "log_loss": 0.9281791271242713,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -14.467035935920732,
+        "brier_skill_vs_prior_only": -9.12000805343685
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.5718890436169107,
+        "mean_p_tilde": 0.7594174419759532,
+        "mean_p_mean_c3": 0.18934658925846273,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_1h": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.047240889143654,
+        "murphy_reliability": 0.023078245693836267,
+        "murphy_resolution": 9.378920143476842e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.04660582908590949,
+        "adaptive_ece": 0.1328641288390729,
+        "log_loss": 0.21724074925824524,
+        "auroc_discrimination_only": 0.5585246204210097,
+        "brier_skill_vs_climatology": -0.9999214252535653,
+        "brier_skill_vs_prior_only": -0.30853907714814977
+      },
+      "c2_single_decay": {
+        "brier": 0.047333179635698046,
+        "murphy_reliability": 0.02311796048342456,
+        "murphy_resolution": 9.836653298475213e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.046640966543947796,
+        "adaptive_ece": 0.13322012216700685,
+        "log_loss": 0.21759520974092156,
+        "auroc_discrimination_only": 0.558539677297145,
+        "brier_skill_vs_climatology": -1.0038285010036598,
+        "brier_skill_vs_prior_only": -0.31109545822983575
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.05667481391689613,
+        "murphy_reliability": 0.03270925547453099,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.056259192621391764,
+        "adaptive_ece": 0.16513921965188447,
+        "log_loss": 0.25074585687408096,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.399302313722126,
+        "brier_skill_vs_prior_only": -0.5698520930637618
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.355318891571874,
+        "murphy_reliability": 0.33141582029841177,
+        "murphy_resolution": 7.951729007220524e-07,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.355036397719019,
+        "adaptive_ece": 0.5755834976989663,
+        "log_loss": 0.9071150651732456,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -14.042262686696224,
+        "brier_skill_vs_prior_only": -8.842080936641755
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.5156143050959598,
+        "mean_p_tilde": 0.7174692580069425,
+        "mean_p_mean_c3": 0.15707149816212346,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_6h": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.03681792261724607,
+        "murphy_reliability": 0.012731599941268164,
+        "murphy_resolution": 7.881400116814877e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.036274158533608006,
+        "adaptive_ece": 0.08231238126401569,
+        "log_loss": 0.17156545302934376,
+        "auroc_discrimination_only": 0.5671186967545147,
+        "brier_skill_vs_climatology": -0.5586699067337422,
+        "brier_skill_vs_prior_only": -0.019830307121876167
+      },
+      "c2_single_decay": {
+        "brier": 0.0368488486959245,
+        "murphy_reliability": 0.012730379755053563,
+        "murphy_resolution": 7.734805834066736e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.036274404290220885,
+        "adaptive_ece": 0.08251391779798375,
+        "log_loss": 0.1717215614640694,
+        "auroc_discrimination_only": 0.5670400124340654,
+        "brier_skill_vs_climatology": -0.5599791481233358,
+        "brier_skill_vs_prior_only": -0.020686937536486427
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.056674813455253985,
+        "murphy_reliability": 0.032709255013606345,
+        "murphy_resolution": 7.143544664721689e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.05625919216046712,
+        "adaptive_ece": 0.1651392182342458,
+        "log_loss": 0.2507458553450809,
+        "auroc_discrimination_only": 0.5569732764733882,
+        "brier_skill_vs_climatology": -1.399302294178717,
+        "brier_skill_vs_prior_only": -0.5698520802766023
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.3156042629166187,
+        "murphy_reliability": 0.2918291514610708,
+        "murphy_resolution": 3.4826385123521376e-08,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.3154504892281937,
+        "adaptive_ece": 0.5401648013931768,
+        "log_loss": 0.8252044377672022,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -12.360962055327734,
+        "brier_skill_vs_prior_only": -7.742013929608923
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.38363851130871485,
+        "mean_p_tilde": 0.5947738763299224,
+        "mean_p_mean_c3": 0.10651975058706627,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_24h": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.036102094495213476,
+        "murphy_reliability": 0.011975973702176122,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.03552105397439582,
+        "adaptive_ece": 0.07865077842721006,
+        "log_loss": 0.16793426711882656,
+        "auroc_discrimination_only": 0.5685481285760081,
+        "brier_skill_vs_climatology": -0.5283656507385031,
+        "brier_skill_vs_prior_only": -2.3765477317194694e-06
+      },
+      "c2_single_decay": {
+        "brier": 0.03610210982451982,
+        "murphy_reliability": 0.011975989054458652,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.03552106932667835,
+        "adaptive_ece": 0.07865086172377353,
+        "log_loss": 0.1679343449954788,
+        "auroc_discrimination_only": 0.5685481285760081,
+        "brier_skill_vs_climatology": -0.5283662996976728,
+        "brier_skill_vs_prior_only": -2.8011586299392377e-06
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.26051065382456146,
+        "murphy_reliability": 0.23687501473601955,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.2604963873295275,
+        "adaptive_ece": 0.486698073487064,
+        "log_loss": 0.7141723570620221,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -10.028599324332205,
+        "brier_skill_vs_prior_only": -6.215960087166252
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.3664447875573514,
+        "mean_p_tilde": 0.5731264411321193,
+        "mean_p_mean_c3": 0.10168795288009473,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_72h": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409606,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.0786503122138158,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5685068435930564,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "c2_single_decay": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409609,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.0786503122138158,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5685058721816928,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.2500676261019091,
+        "murphy_reliability": 0.22644619621626755,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.25006756880977554,
+        "adaptive_ece": 0.47586363195380627,
+        "log_loss": 0.6932824327648359,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -9.586498524249043,
+        "brier_skill_vs_prior_only": -5.92669563625217
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.36644260437778897,
+        "mean_p_tilde": 0.5731235098248424,
+        "mean_p_mean_c3": 0.10168735312826767,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_168h": {
+      "n": 9336,
+      "n_positive": 226,
+      "n_negative": 9110,
+      "c3_ours": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "c2_single_decay": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.25000000273795336,
+        "murphy_reliability": 0.22637863014213555,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.25000000273564355,
+        "adaptive_ece": 0.47579263355177703,
+        "log_loss": 0.6931471860358254,
+        "auroc_discrimination_only": 0.5112207726605986,
+        "brier_skill_vs_climatology": -9.5836357200793,
+        "brier_skill_vs_prior_only": -5.924822517099074
+      },
+      "prior_only": {
+        "brier": 0.0361020086970666,
+        "murphy_reliability": 0.011975887775409604,
+        "murphy_resolution": 7.629232128828913e-05,
+        "murphy_uncertainty": 0.023621372593507987,
+        "decomposition_check": 0.0355209680476293,
+        "adaptive_ece": 0.07822186319924851,
+        "log_loss": 0.16793383124326447,
+        "auroc_discrimination_only": 0.5689515071447305,
+        "brier_skill_vs_climatology": -0.5283620185132147,
+        "brier_skill_vs_prior_only": 0.0
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.3664426043777889,
+        "mean_p_tilde": 0.5731235098248423,
+        "mean_p_mean_c3": 0.10168735312826764,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    }
+  },
+  "auroc_reported_separately_from_calibration": "Every metrics table above reports auroc_discrimination_only as a distinct field from brier/adaptive_ece/log_loss, per this task's explicit instruction not to conflate discrimination and calibration.",
+  "event_split": {
+    "method": "split_by_event_and_monsoon_episode",
+    "n_events_available": 1,
+    "event_ids": [
+      "chennai_2015_flood_2015-12-02_proxy"
+    ],
+    "folds": [
+      {
+        "fold": 0,
+        "event_ids": [
+          "chennai_2015_flood_2015-12-02_proxy"
+        ],
+        "n_records": 61016
+      }
+    ],
+    "honest_limitation": "Identical limitation to Study 1 (study1_route_quality.py's event_split field): T3.1's corpus is one event with one proxy timestamp -- no second event/monsoon episode exists to hold out. A genuine multi-event split is not currently possible; not fabricated here."
+  },
+  "reproduce_with": "python scripts/study2_calibration.py"
+}

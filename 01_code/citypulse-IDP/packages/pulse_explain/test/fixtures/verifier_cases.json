@@ -1,0 +1,1890 @@
+[
+ {
+  "text": "Route A is safe.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v000"
+ },
+ {
+  "text": "Route A is safe to drive.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v001"
+ },
+ {
+  "text": "This route is completely safe.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v002"
+ },
+ {
+  "text": "Route B is a safe option.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v003"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is safe.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v004"
+ },
+ {
+  "text": "You can safely take Route A.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v005"
+ },
+ {
+  "text": "Safe to travel on Route A.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v006"
+ },
+ {
+  "text": "Route A is the safest choice.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v007"
+ },
+ {
+  "text": "Route A looks safe.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v008"
+ },
+ {
+  "text": "Route A is a safe route for your trip.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v009"
+ },
+ {
+  "text": "Route A is totally safe and quick.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v010"
+ },
+ {
+  "text": "It is perfectly safe to continue on Route A.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v011"
+ },
+ {
+  "text": "Route A should be fine.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v012"
+ },
+ {
+  "text": "Route A is guaranteed safe.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v013"
+ },
+ {
+  "text": "Nothing to worry about on Route A.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v014"
+ },
+ {
+  "text": "All clear on Route A.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v015"
+ },
+ {
+  "text": "Route A has no issues.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v016"
+ },
+ {
+  "text": "There is no problem on Route A.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v017"
+ },
+ {
+  "text": "You are good to go on Route A.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v018"
+ },
+ {
+  "text": "Route A is the safer option, so take it.",
+  "expect": "reject",
+  "category": "safety_direct",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v019"
+ },
+ {
+  "text": "The bridge is dry now, go ahead on Route B.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v020"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is dry.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v021"
+ },
+ {
+  "text": "The road is clear.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v022"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is open.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v023"
+ },
+ {
+  "text": "There is no water on Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v024"
+ },
+ {
+  "text": "No flooding on Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v025"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is no longer flooded.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v026"
+ },
+ {
+  "text": "The flooding on Kotturpuram Bridge approach has cleared.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v027"
+ },
+ {
+  "text": "The water has receded on Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v028"
+ },
+ {
+  "text": "The water on Kotturpuram Bridge approach has drained away.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v029"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is free of flooding.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v030"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is clear of water.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v031"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is not flooded.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v032"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is not waterlogged any more.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v033"
+ },
+ {
+  "text": "The underpass is open again.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v034"
+ },
+ {
+  "text": "The road has dried out.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v035"
+ },
+ {
+  "text": "Roads ahead are dry.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v036"
+ },
+ {
+  "text": "Water level at Kotturpuram Bridge approach is back to normal.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v037"
+ },
+ {
+  "text": "Kotturpuram Bridge approach looks fine now.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v038"
+ },
+ {
+  "text": "The flood at Kotturpuram Bridge approach is over.",
+  "expect": "reject",
+  "category": "dry_clear_open",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v039"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is passable.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v040"
+ },
+ {
+  "text": "You can pass Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v041"
+ },
+ {
+  "text": "You can drive through Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v042"
+ },
+ {
+  "text": "Cars can cross Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v043"
+ },
+ {
+  "text": "It is fine to take Route B.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v044"
+ },
+ {
+  "text": "Route B is okay to use.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v045"
+ },
+ {
+  "text": "Go ahead and take Route B.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v046"
+ },
+ {
+  "text": "You should be able to get through.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v047"
+ },
+ {
+  "text": "Traffic is moving normally on Route B.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v048"
+ },
+ {
+  "text": "You may proceed through Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v049"
+ },
+ {
+  "text": "It is OK to cross Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v050"
+ },
+ {
+  "text": "Vehicles can use Route B without trouble.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v051"
+ },
+ {
+  "text": "Route B can be taken now.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v052"
+ },
+ {
+  "text": "Feel free to take Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v053"
+ },
+ {
+  "text": "Take Route B, it works.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v054"
+ },
+ {
+  "text": "Kotturpuram Bridge approach can be crossed.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v055"
+ },
+ {
+  "text": "You can ride through Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v056"
+ },
+ {
+  "text": "Buses are running on Route B.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v057"
+ },
+ {
+  "text": "Two-wheelers can pass Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v058"
+ },
+ {
+  "text": "Route B is usable.",
+  "expect": "reject",
+  "category": "passability",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v059"
+ },
+ {
+  "text": "There is no risk on Route A.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v060"
+ },
+ {
+  "text": "Route A has no hazards.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v061"
+ },
+ {
+  "text": "No need to worry about flooding.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v062"
+ },
+ {
+  "text": "Route A is hazard-free.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v063"
+ },
+ {
+  "text": "Route A is risk-free.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v064"
+ },
+ {
+  "text": "Route A is unaffected by flooding.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v065"
+ },
+ {
+  "text": "There is no hazard reported on Route A.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v066"
+ },
+ {
+  "text": "No flood has been reported on Route A.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v067"
+ },
+ {
+  "text": "Route A will not flood.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v068"
+ },
+ {
+  "text": "Flooding is unlikely to affect Route A at all.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v069"
+ },
+ {
+  "text": "You will not face any water on Route A.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v070"
+ },
+ {
+  "text": "Route A is not at risk.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v071"
+ },
+ {
+  "text": "Relax, nothing is wrong on Route A.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v072"
+ },
+ {
+  "text": "Route A is not unsafe.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v073"
+ },
+ {
+  "text": "The road is not blocked.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v074"
+ },
+ {
+  "text": "Route A is free from hazards.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v075"
+ },
+ {
+  "text": "Zero risk of flooding on Route A.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v076"
+ },
+ {
+  "text": "Route A won't have any water.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v077"
+ },
+ {
+  "text": "There is nothing dangerous on Route A.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v078"
+ },
+ {
+  "text": "No danger on Route A.",
+  "expect": "reject",
+  "category": "no_risk",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v079"
+ },
+ {
+  "text": "Route A is 2 minutes faster than Route B.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v080"
+ },
+ {
+  "text": "Route B is 2 minutes slower than Route A.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v081"
+ },
+ {
+  "text": "Route A is faster.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v082"
+ },
+ {
+  "text": "Route B is slower than Route A.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v083"
+ },
+ {
+  "text": "Route A is quicker than Route B.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v084"
+ },
+ {
+  "text": "Route A saves 2 minutes compared with Route B.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v085"
+ },
+ {
+  "text": "Route A is shorter than Route B.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v086"
+ },
+ {
+  "text": "Route B takes longer than Route A.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v087"
+ },
+ {
+  "text": "Route A is the faster route.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v088"
+ },
+ {
+  "text": "Route A beats Route B on time.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v089"
+ },
+ {
+  "text": "Route B is 2 minutes slower.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v090"
+ },
+ {
+  "text": "Route A is 2 minutes quicker than Route B.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v091"
+ },
+ {
+  "text": "Route A gets you there sooner than Route B.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v092"
+ },
+ {
+  "text": "Route B is the slower option.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v093"
+ },
+ {
+  "text": "Route A is much faster than Route B.",
+  "expect": "reject",
+  "category": "reversed_comparison",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v094"
+ },
+ {
+  "text": "Route B avoids flooding on Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "wrong_route_avoidance",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v095"
+ },
+ {
+  "text": "Route B avoids Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "wrong_route_avoidance",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v096"
+ },
+ {
+  "text": "Route B steers clear of Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "wrong_route_avoidance",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v097"
+ },
+ {
+  "text": "Route B bypasses the flooding on Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "wrong_route_avoidance",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v098"
+ },
+ {
+  "text": "Route B skips the flooded stretch on Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "wrong_route_avoidance",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v099"
+ },
+ {
+  "text": "Route B avoids the flooding reported on Kotturpuram Bridge approach, 3 minutes ago.",
+  "expect": "reject",
+  "category": "wrong_route_avoidance",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v100"
+ },
+ {
+  "text": "Route B avoids the hazard.",
+  "expect": "reject",
+  "category": "wrong_route_avoidance",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v101"
+ },
+ {
+  "text": "Route B stays away from Kotturpuram Bridge approach.",
+  "expect": "reject",
+  "category": "wrong_route_avoidance",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v102"
+ },
+ {
+  "text": "Route A is 19 minutes slower than Route B.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v103"
+ },
+ {
+  "text": "Route A is 8 minutes slower than Route B.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v104"
+ },
+ {
+  "text": "Route A is 8.4 minutes slower than Route B.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v105"
+ },
+ {
+  "text": "It avoids flooding reported on Kotturpuram Bridge approach, 19 minutes ago.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v106"
+ },
+ {
+  "text": "It avoids flooding reported on Kotturpuram Bridge approach, 79 minutes ago.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v107"
+ },
+ {
+  "text": "It avoids flooding reported on Kotturpuram Bridge approach, 8 minutes ago.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v108"
+ },
+ {
+  "text": "Route A takes 8.4 minutes.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v109"
+ },
+ {
+  "text": "Route A is 19 km long.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v110"
+ },
+ {
+  "text": "Route A is 31 minutes long.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v111"
+ },
+ {
+  "text": "There is a 2% hazard probability on Route A.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v112"
+ },
+ {
+  "text": "Route A takes about 31 minutes.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v113"
+ },
+ {
+  "text": "The report on Kotturpuram Bridge approach is 2 hours old.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v114"
+ },
+ {
+  "text": "Route A is 2 km longer than Route B.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v115"
+ },
+ {
+  "text": "Route A takes 1147 minutes.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v116"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is 79 metres long.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v117"
+ },
+ {
+  "text": "Route A takes about 19 minutes.",
+  "expect": "reject",
+  "category": "numeral_binding",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v118"
+ },
+ {
+  "text": "It avoids flooding reported on Anna Salai, 3 minutes ago.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v119"
+ },
+ {
+  "text": "Route A avoids a landslide.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v120"
+ },
+ {
+  "text": "The Adyar river is at 94 percent.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v121"
+ },
+ {
+  "text": "Route A passes Velachery, which is dry.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v122"
+ },
+ {
+  "text": "It avoids debris on the road.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v123"
+ },
+ {
+  "text": "It avoids an accident on Mount Road.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v124"
+ },
+ {
+  "text": "Route A avoids extreme heat.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v125"
+ },
+ {
+  "text": "Route A is faster because of the new flyover.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v126"
+ },
+ {
+  "text": "It avoids flooding at Guindy.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v127"
+ },
+ {
+  "text": "Route A avoids poor air quality.",
+  "expect": "reject",
+  "category": "invented_fact",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v128"
+ },
+ {
+  "text": "Route A is safe, but use your own judgement.",
+  "expect": "reject",
+  "category": "hedged_safety",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v129"
+ },
+ {
+  "text": "Route A is probably safe; the data is limited.",
+  "expect": "reject",
+  "category": "hedged_safety",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v130"
+ },
+ {
+  "text": "Kotturpuram Bridge approach should be fine, though data may be limited.",
+  "expect": "reject",
+  "category": "hedged_safety",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v131"
+ },
+ {
+  "text": "Route A is dry as far as we know, but this is uncertain.",
+  "expect": "reject",
+  "category": "hedged_safety",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v132"
+ },
+ {
+  "text": "You can likely go ahead on Route B, but use your own judgement.",
+  "expect": "reject",
+  "category": "hedged_safety",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v133"
+ },
+ {
+  "text": "Route A is safe.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v134"
+ },
+ {
+  "text": "Route A is dry.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v135"
+ },
+ {
+  "text": "Route A is clear.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v136"
+ },
+ {
+  "text": "Route A is open.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v137"
+ },
+ {
+  "text": "Route A is passable.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v138"
+ },
+ {
+  "text": "Route A is fine to use.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v139"
+ },
+ {
+  "text": "Route A is okay to drive.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v140"
+ },
+ {
+  "text": "Route A has no water.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v141"
+ },
+ {
+  "text": "Route A is not flooded.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v142"
+ },
+ {
+  "text": "Route A is free of flooding.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v143"
+ },
+ {
+  "text": "Route B is safe.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v144"
+ },
+ {
+  "text": "Route B is dry.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v145"
+ },
+ {
+  "text": "Route B is clear.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v146"
+ },
+ {
+  "text": "Route B is open.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v147"
+ },
+ {
+  "text": "Route B is passable.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v148"
+ },
+ {
+  "text": "Route B is fine to use.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v149"
+ },
+ {
+  "text": "Route B is okay to drive.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v150"
+ },
+ {
+  "text": "Route B has no water.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v151"
+ },
+ {
+  "text": "Route B is not flooded.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v152"
+ },
+ {
+  "text": "Route B is free of flooding.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v153"
+ },
+ {
+  "text": "This route is safe.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v154"
+ },
+ {
+  "text": "This route is dry.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v155"
+ },
+ {
+  "text": "This route is clear.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v156"
+ },
+ {
+  "text": "This route is open.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v157"
+ },
+ {
+  "text": "This route is passable.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v158"
+ },
+ {
+  "text": "This route is fine to use.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v159"
+ },
+ {
+  "text": "This route is okay to drive.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v160"
+ },
+ {
+  "text": "This route has no water.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v161"
+ },
+ {
+  "text": "This route is not flooded.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v162"
+ },
+ {
+  "text": "This route is free of flooding.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v163"
+ },
+ {
+  "text": "The road ahead is safe.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v164"
+ },
+ {
+  "text": "The road ahead is dry.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v165"
+ },
+ {
+  "text": "The road ahead is clear.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v166"
+ },
+ {
+  "text": "The road ahead is open.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v167"
+ },
+ {
+  "text": "The road ahead is passable.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v168"
+ },
+ {
+  "text": "The road ahead is fine to use.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v169"
+ },
+ {
+  "text": "The road ahead is okay to drive.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v170"
+ },
+ {
+  "text": "The road ahead has no water.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v171"
+ },
+ {
+  "text": "The road ahead is not flooded.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v172"
+ },
+ {
+  "text": "The road ahead is free of flooding.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v173"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is safe.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v174"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is dry.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v175"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is clear.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v176"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is open.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v177"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is passable.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v178"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is fine to use.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v179"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is okay to drive.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v180"
+ },
+ {
+  "text": "Kotturpuram Bridge approach has no water.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v181"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is not flooded.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v182"
+ },
+ {
+  "text": "Kotturpuram Bridge approach is free of flooding.",
+  "expect": "reject",
+  "category": "template_safety",
+  "lang": "en",
+  "origin": "template",
+  "id": "v183"
+ },
+ {
+  "text": "இந்த வழி பாதுகாப்பானது.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v184"
+ },
+ {
+  "text": "பாதை பாதுகாப்பாக உள்ளது.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v185"
+ },
+ {
+  "text": "பாலம் வறண்டு இருக்கிறது, தாராளமாகச் செல்லலாம்.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v186"
+ },
+ {
+  "text": "பாலம் அருகே தண்ணீர் இல்லை.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v187"
+ },
+ {
+  "text": "வெள்ளம் இல்லை, செல்லலாம்.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v188"
+ },
+ {
+  "text": "இந்த சாலையில் கடக்கலாம்.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v189"
+ },
+ {
+  "text": "பிரச்சனை இல்லை, தொடரலாம்.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v190"
+ },
+ {
+  "text": "வழி திறந்திருக்கிறது.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v191"
+ },
+ {
+  "text": "சாலை தெளிவாக உள்ளது.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v192"
+ },
+ {
+  "text": "எந்த ஆபத்தும் இல்லை.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v193"
+ },
+ {
+  "text": "வழி வெள்ளமின்றி உள்ளது.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v194"
+ },
+ {
+  "text": "Route B-யில் செல்லலாம்.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v195"
+ },
+ {
+  "text": "இது பாதுகாப்பான பாதை.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v196"
+ },
+ {
+  "text": "நீர் வடிந்துவிட்டது.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v197"
+ },
+ {
+  "text": "பாலத்தில் வாகனங்கள் செல்லலாம்.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v198"
+ },
+ {
+  "text": "ஆபத்து இல்லாத வழி.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v199"
+ },
+ {
+  "text": "முழுமையாக பாதுகாப்பு.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v200"
+ },
+ {
+  "text": "தாராளமாக போகலாம்.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v201"
+ },
+ {
+  "text": "சாலை காய்ந்துவிட்டது.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v202"
+ },
+ {
+  "text": "Route A பாதுகாப்பான வழி.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v203"
+ },
+ {
+  "text": "Route B-யில் எந்த தடையும் இல்லை.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v204"
+ },
+ {
+  "text": "கவலைப்பட வேண்டாம், வழி சரியாக உள்ளது.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v205"
+ },
+ {
+  "text": "வெள்ளம் வடிந்துவிட்டது, போகலாம்.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v206"
+ },
+ {
+  "text": "இந்த பாலம் இப்போது திறந்துள்ளது.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v207"
+ },
+ {
+  "text": "தண்ணீர் தேங்கவில்லை.",
+  "expect": "reject",
+  "category": "tamil_safety",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v208"
+ },
+ {
+  "text": "Route A is 2 minutes slower than Route B.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v209"
+ },
+ {
+  "text": "It avoids flooding reported on Kotturpuram Bridge approach, 3 minutes ago.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v210"
+ },
+ {
+  "text": "Route A is 2 minutes slower than Route B. It avoids flooding reported on Kotturpuram Bridge approach, 3 minutes ago.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v211"
+ },
+ {
+  "text": "Hazard confidence for this route is moderate.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v212"
+ },
+ {
+  "text": "Route A takes about 17 minutes.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v213"
+ },
+ {
+  "text": "Route A is 8.4 km long.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v214"
+ },
+ {
+  "text": "Route A covers 8.4 km.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v215"
+ },
+ {
+  "text": "Route A is the route shown.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v216"
+ },
+ {
+  "text": "The hazard report on Kotturpuram Bridge approach is 3 minutes old.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v217"
+ },
+ {
+  "text": "A flooding report on Kotturpuram Bridge approach is 3 minutes old.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v218"
+ },
+ {
+  "text": "Route B would be 2 minutes quicker.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v219"
+ },
+ {
+  "text": "Route B is the quicker route, but it was set aside.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v220"
+ },
+ {
+  "text": "Route B was set aside because of flooding reported on Kotturpuram Bridge approach.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v221"
+ },
+ {
+  "text": "Route A avoids Kotturpuram Bridge approach.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v222"
+ },
+ {
+  "text": "Use your own judgement.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v223"
+ },
+ {
+  "text": "It avoids a stretch of Kotturpuram Bridge approach where flooding was reported 3 minutes ago.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v224"
+ },
+ {
+  "text": "Route A is 2 minutes slower than Route B. It avoids a stretch of Kotturpuram Bridge approach where flooding was reported 3 minutes ago.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v225"
+ },
+ {
+  "text": "Route A is 2 minutes longer than Route B.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v226"
+ },
+ {
+  "text": "Route A has a 31% hazard probability at its worst point.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v227"
+ },
+ {
+  "text": "Route B crosses Kotturpuram Bridge approach, where flooding was reported 3 minutes ago.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v228"
+ },
+ {
+  "text": "Hazard data may be limited, so use your own judgement.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v229"
+ },
+ {
+  "text": "Route A is shown. Hazard data may be limited, so use your own judgement.",
+  "expect": "accept",
+  "category": "honest_en",
+  "lang": "en",
+  "origin": "hand",
+  "id": "v230"
+ },
+ {
+  "text": "இந்த வழி 2 நிமிடம் மெதுவாக உள்ளது.",
+  "expect": "accept",
+  "category": "honest_ta",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v231"
+ },
+ {
+  "text": "உங்கள் சொந்த முடிவை பயன்படுத்தவும்.",
+  "expect": "accept",
+  "category": "honest_ta",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v232"
+ },
+ {
+  "text": "தரவு குறைவாக உள்ளது.",
+  "expect": "accept",
+  "category": "honest_ta",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v233"
+ },
+ {
+  "text": "Route A சுமார் 17 நிமிடம் ஆகும்.",
+  "expect": "accept",
+  "category": "honest_ta",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v234"
+ },
+ {
+  "text": "இந்த வழியில் சமீபத்திய தகவல் குறைவு.",
+  "expect": "accept",
+  "category": "honest_ta",
+  "lang": "ta",
+  "origin": "hand",
+  "id": "v235"
+ }
+]

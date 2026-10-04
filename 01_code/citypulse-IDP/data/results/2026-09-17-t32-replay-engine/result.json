@@ -1,0 +1,49 @@
+{
+  "task": "T3.2 deterministic replay engine (smoke scale)",
+  "seed": 20260917,
+  "n_od_pairs_requested": 50,
+  "n_od_pairs_sampled": 50,
+  "user_class": "commuter",
+  "z": 0.0,
+  "lambda": 0.3,
+  "replay_clock": "2015-12-02T00:00:00Z",
+  "determinism_check": {
+    "pass": true,
+    "byte_identical_trace_lists": true,
+    "sha256_run_a": "6353cf0c3722371ca200fb48bcfc2e170e0482e35323a4c3b802a541a6dbc44b",
+    "sha256_run_b": "6353cf0c3722371ca200fb48bcfc2e170e0482e35323a4c3b802a541a6dbc44b",
+    "n_traces_run_a": 50,
+    "n_traces_run_b": 50,
+    "n_cli_errors_run_a": 0,
+    "n_cli_errors_run_b": 0
+  },
+  "timing": {
+    "run_a_seconds": 138.134576,
+    "run_b_seconds": 133.979773
+  },
+  "hazard_config_stats": {
+    "edges_with_real_observations": 5775,
+    "edges_multi_hazard_class_conflict": 124,
+    "observations_dropped_minority_class": 124,
+    "edges_prior_only_added": 8759,
+    "prior_only_threshold_prior_p": 0.25,
+    "total_edges_with_hazard_config": 14534,
+    "total_edges_in_graph": 471240,
+    "note_depth_mm": "depth_mm is null for every edge in this corpus (T3.1 MANIFEST.md limitation 2 -- no source KML carries measured depth). packages/pulse_router/lib/src/edge_cost.dart only evaluates the hard chance constraint when depthMm is non-null, so it never fires in this replay -- edges are only ever cost-penalised via p-tilde, never removed outright. This is a real corpus limitation, not a harness bug; flagged per CLAUDE.md section 8.4 rather than silently working around it."
+  },
+  "od_sampling_stats": {
+    "requested": 50,
+    "sampled": 50,
+    "attempts": 50,
+    "dead_end_source_draws": 0
+  },
+  "cli_errors_run_a": [],
+  "deferred_to_study_1_2": [
+    "N=1000 OD pairs (Study 1 scale) -- this smoke run uses N=50 only.",
+    "Configurations C0-C4 and the oracle C-infinity -- this run uses one fixed config (commuter, z=0.0, lambda=0.3) only; no sweep.",
+    "Route-quality metrics (impassable-edge-hit rate, detour ratio distribution, exposure-reduction efficiency, false-avoidance cost) -- not computed here.",
+    "Calibration metrics (Brier/Murphy decomposition, stratified reliability diagrams, adaptive ECE, AUROC) and the Fixed-TTL / hand-tuned-exponential / Josang-Ismail-with-forgetting baselines -- not computed here.",
+    "Event/monsoon-episode-based splitting -- not applicable yet: this corpus is a single event (2015 Chennai floods) with a single proxy timestamp, so there is no monsoon-episode axis to split on until a second event's data exists."
+  ],
+  "reproduce_with": "python scripts/t3_2_replay_engine.py"
+}

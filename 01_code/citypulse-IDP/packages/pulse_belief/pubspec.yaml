@@ -1,0 +1,16 @@
+name: pulse_belief
+description: >
+  Pure hazard-belief fusion for CityPulse AI — log-odds accumulation with a spatial
+  kernel and per-hazard-class exponential decay, plus the pessimistic upper-confidence-bound
+  plug-in used for routing (ADR-002). No I/O; every function is a pure function of its
+  arguments so it is fully unit-testable and shares identically between the Flutter client
+  and the Dart AOT evaluation CLI (see docs/DECISIONS.md ADR-001).
+version: 0.1.0
+publish_to: "none"
+
+environment:
+  sdk: ">=3.13.0 <4.0.0"
+
+dev_dependencies:
+  test: ^1.25.0
+  very_good_analysis: ^7.0.0

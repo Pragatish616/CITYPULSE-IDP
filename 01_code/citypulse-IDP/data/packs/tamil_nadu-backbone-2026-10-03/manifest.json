@@ -1,0 +1,88 @@
+{
+  "pack": "citypulse-map-pack",
+  "format_version": 1,
+  "built": "2026-10-03",
+  "script": "scripts/region_pack.py",
+  "city": {
+    "id": "tamil_nadu",
+    "bbox": {
+      "min_lat": 8.0,
+      "max_lat": 13.6,
+      "min_lon": 76.2,
+      "max_lon": 80.4
+    },
+    "centre": {
+      "lat": 10.85,
+      "lon": 78.7
+    },
+    "hazard_layer": false,
+    "levels": "backbone",
+    "road_classes": [
+      "motorway",
+      "motorway_link",
+      "trunk",
+      "trunk_link",
+      "primary",
+      "primary_link",
+      "secondary",
+      "secondary_link"
+    ]
+  },
+  "source_pbf": "southern-zone-260911.osm.pbf",
+  "source_pbf_bytes": 557263963,
+  "cities_config_sha256": "0d177e1fdaacadc8c1574f2dc9df89104feee2148e41a43b7e75cde4cfb450cc",
+  "counts": {
+    "nodes": 143227,
+    "edges": 257249,
+    "named_edges": 207995,
+    "distinct_names": 8438
+  },
+  "prior_scale": 1000,
+  "prior_note": "Flat default prior on every edge (p=0.02). No flood-hazard source is loaded.",
+  "highway_codes": [
+    "unknown",
+    "motorway",
+    "motorway_link",
+    "trunk",
+    "trunk_link",
+    "primary",
+    "primary_link",
+    "secondary",
+    "secondary_link",
+    "tertiary",
+    "tertiary_link",
+    "unclassified",
+    "residential"
+  ],
+  "licence_note": "OSM-derived (ODbL) graph and names. See data/MANIFEST.md.",
+  "seconds": {
+    "read_pbf": 59.0,
+    "build_arrays": 3.2
+  },
+  "files": {
+    "graph.bin": {
+      "bytes": 5144996,
+      "sha256": "ff982703d27e9bf4152c3f7e7eb080e96792c8a0cac47045e879c710394f4801"
+    },
+    "nodes.bin": {
+      "bytes": 2291648,
+      "sha256": "1d7b8b6fc668250b99e86089c67d7f3eb072f3a87dee3928654483806d0ba181"
+    },
+    "meta.bin": {
+      "bytes": 1555619,
+      "sha256": "560aacb2beb855ee6cd512f5af7932b4d1d4374a98f9dfe4e2cd9c02f616af1a"
+    }
+  },
+  "places": {
+    "count": 25144,
+    "by_kind": {
+      "city": 39,
+      "town": 571,
+      "village": 23013,
+      "suburb": 1521
+    },
+    "bytes": 1322284,
+    "sha256": "586d314324fc031810726450c4874cb68bd12a238d4788963817e3f01aabfb4e",
+    "seconds": 5.2
+  }
+}

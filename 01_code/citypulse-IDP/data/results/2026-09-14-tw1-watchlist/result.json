@@ -1,0 +1,47 @@
+{
+  "task": "T-W1 -- watchlist build (automatable portion only, see this script's top comment)",
+  "generated": "2026-09-14",
+  "source_kml": "data\\watchlist_raw\\chennai_flood_hazard_zones.kml",
+  "source_ways": "data\\osm\\chennai_overpass_drivable.json",
+  "total_zones_in_kml": 7453,
+  "high_risk_zones_used": 1504,
+  "cluster_radius_m": 300.0,
+  "cluster_radius_choice_is_unvalidated": true,
+  "cluster_count_by_radius_m": {
+    "150": 683,
+    "250": 466,
+    "300": 402,
+    "400": 321,
+    "500": 260,
+    "750": 171,
+    "1000": 118
+  },
+  "candidate_count": 402,
+  "snapped_to_osm_edge": 402,
+  "unsnapped": 0,
+  "snap_distance_m_low_confidence_gt_300m": 18,
+  "snap_distance_m_stats": {
+    "min": 0.0,
+    "median": 21.4,
+    "p90": 180.1,
+    "max": 986.7
+  },
+  "michaung_2023_cross_checked": 65,
+  "basin_heuristic_counts": {
+    "Adyar": 113,
+    "Kovalam": 9,
+    "Cooum": 231,
+    "Kosasthalaiyar": 49
+  },
+  "target_range": "150-200 per docs/IMPLEMENTATION_PLAN.md T-W1",
+  "target_range_note": "402 candidates is roughly 2.3x the 150-200 target -- these are pre-review candidates (resident_signoff: false throughout, not final points), and the resident map review is expected to prune this substantially, not just rubber-stamp it.",
+  "not_done_still_pending": [
+    "cluster-radius validation -- candidate_count is genuinely sensitive to this choice (see cluster_count_by_radius_m); 300m is a documented default, not a validated one",
+    "way_id / street_name are resolved against a LIVE, unpinned Overpass snapshot (scripts/fetch_chennai_drivable_ways.py) -- provisional, and will likely need re-resolution once T1.3's real graph build exists against the pinned Geofabrik extract",
+    "basin label verified against a real GIS shapefile -- currently a coarse latitude-band heuristic (basin_label_confidence: heuristic_unverified) that is KNOWN to be directionally wrong for some points, not just imprecise: it has no longitude term, so an inland point at a low-enough latitude can be mislabelled 'Kovalam' (a coastal basin) purely for being far south, regardless of actual distance from the coast",
+    "each point named as a resident would say it (resident_name is null throughout -- this needs a person who knows the city, not an LLM guess)",
+    "the resident map-review acceptance test itself -- book it with a named person and a date, per docs/IMPLEMENTATION_PLAN.md T-W1",
+    "cross-check against the actual 2015 stagnation corpus (not located on this machine as a separate structured dataset -- only the Michaung 2023 press leads and the single 2026 GCC hazard-zone KML were available; see this script's top comment)",
+    "GCC/OpenCity source coverage gap, verified: the KML's longitude range bottoms out at 80.1285, east of the Mudichur/Varadharajapuram/Old Perungalathur corridor lead (80.1180) -- only 2 zones (0 High/Very High) fall within 10 km of that lead, versus 1,189-3,869 for the other four Michaung leads. Almost certainly a Greater Chennai Corporation boundary artifact (Mudichur/Perungalathur sit in Tambaram Corporation). No candidate in this file is near this lead, at any cluster radius -- this is a missing primary source, not a tuning problem. See docs/DECISIONS.md."
+  ]
+}

@@ -1,0 +1,25 @@
+# Local, generated or machine-specific (the per-folder .gitignore files add more).
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.dart_tool/
+build/
+node_modules/
+.env
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Machine paths (Android SDK / Flutter SDK locations)
+**/android/local.properties
+
+# Superseded files kept locally by the "do not delete, move" rule (CLAUDE.md section 2)
+01_code/citypulse-IDP/_to_delete/
+
+# Large raw extracts and generated intermediates: rebuild with the scripts (see docs/ADDING_A_CITY.md)
+*.osm.pbf
+*.pbf
+*.gguf
+01_code/citypulse-IDP/data/osm/
+01_code/citypulse-IDP/data/_web_same_origin/

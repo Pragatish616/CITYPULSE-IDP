@@ -1,0 +1,77 @@
+{
+  "task": "T3.1 -- Replay corpus from OpenCity C13 2015 Chennai flood data",
+  "generated": "2026-09-17",
+  "source_dataset_page": "https://data.opencity.in/dataset/chennai-floods-2015-data",
+  "sources_used": [
+    "gcc_stagnation_2015.kml",
+    "gcc_flood_hotspots_2015.kml",
+    "crowd_sourced_flooding_2015.kml"
+  ],
+  "sources_downloaded_not_used": [
+    "nrsc_inundation_zone_2015.kml (polygon validation layer, see MANIFEST.md)"
+  ],
+  "observation_count": 6132,
+  "target": ">=200 per docs/IMPLEMENTATION_PLAN.md T3.1",
+  "target_met": true,
+  "counts_by_hazard_class": {
+    "waterlogging": 753,
+    "flood": 5379
+  },
+  "counts_by_source_class": {
+    "official_feed": 1080,
+    "crowd": 5052
+  },
+  "observed_at_convention": {
+    "value": "2015-12-02T00:00:00Z",
+    "type": "corpus-wide proxy, NOT per-point",
+    "confidence": "UNVERIFIED at per-observation granularity; well-sourced at the event level (see MANIFEST.md sources)"
+  },
+  "snap": {
+    "candidates": 6132,
+    "snapped": 6132,
+    "unsnapped": 0,
+    "low_confidence_far_snap_gt_300m": 29,
+    "snap_distance_m_stats": {
+      "min": 0.0,
+      "median": 2.9,
+      "p90": 23.6,
+      "max": 764.9
+    }
+  },
+  "kml_survival": {
+    "stagnation": {
+      "n_placemarks": 753,
+      "n_dropped_bad_or_out_of_bbox": 0,
+      "survived": 753
+    },
+    "hotspots": {
+      "n_placemarks": 327,
+      "n_dropped_bad_or_out_of_bbox": 0,
+      "survived": 327
+    },
+    "crowd": {
+      "n_placemarks": 7894,
+      "n_is_flooded_0_excluded": 10,
+      "n_dropped_bad_or_out_of_bbox": 26,
+      "n_deduped_by_osm_id": 2806,
+      "survived": 5052
+    }
+  },
+  "output_files": {
+    "observations": "data\\corpus\\2026-09-17\\observations.ndjson",
+    "edge_snap_index": "data\\corpus\\2026-09-17\\edge_snap_index.json",
+    "manifest": "data\\corpus\\2026-09-17\\MANIFEST.md"
+  },
+  "spatial_validation": {
+    "plot": "data/results/2026-09-17-t31-corpus/spatial_check.png",
+    "generated_by": "scripts/t31_plot_check.py (throwaway QA aid, pure stdlib PNG writer, not wired into the build pipeline)",
+    "result": "Visually inspected: 6132 points form a single coherent cluster in the shape of the Chennai metro road network (NE-SW elongated band following the coastline), no points at (0,0)/null-island, no scatter outside the expected footprint, waterlogging (official_feed, GCC) points concentrated more centrally than flood (crowd) points which spread further into suburbs -- consistent with GCC administrative coverage vs. crowd-sourced reach. No coordinate-system or axis-order bug detected."
+  },
+  "not_done_still_pending": [
+    "per-point observed_at precision -- source KMLs carry no date field at all; the whole corpus is stamped with one documented proxy date (2015-12-02T00:00:00Z), not a real per-event timestamp distribution",
+    "NRSC 2015 inundation-zone polygons (data/corpus_raw/nrsc_inundation_zone_2015.kml) -- downloaded, not normalised into observations (polygon validation layer, not point-event data; see build script's top comment)",
+    "way_id is not cross-linked into edge_snap_index.json -- T1.3's graph output does not carry it; only the crowd KML's own osm_id (in `raw`) survives",
+    "C12's separate 'Inundation Points with Depth' resource was not fetched in this task -- it is the correct source for real depth_mm intensity values, which this corpus does not have for any observation",
+    "resident/domain-expert review of the corpus (analogous to T-W1's resident map review) has not happened -- this is raw normalised OpenCity data, not validated ground truth"
+  ]
+}

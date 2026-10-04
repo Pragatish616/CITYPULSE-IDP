@@ -1,0 +1,50 @@
+{
+  "pack": "citypulse-map-pack",
+  "format_version": 1,
+  "built": "2026-10-02",
+  "built_utc": "2026-10-02T15:58:13Z",
+  "script": "scripts/build_packs.py",
+  "source_snapshot": "data/graph/2026-09-14",
+  "source_sha256": {
+    "chennai_graph_cli.json": "d9b80316e9a398dd65f83c43804ef98a125f322815993a16d2a0a8f42bb7dbbf",
+    "chennai_prior_ell0.json": "59df8419c81d20f7e9c9aacd343ef6baab6f94415bdfa028989f3189adc02904"
+  },
+  "counts": {
+    "nodes": 193191,
+    "edges": 471240,
+    "named_edges": 105442,
+    "distinct_names": 7808,
+    "unknown_highway_values": {}
+  },
+  "prior_scale": 1000,
+  "highway_codes": [
+    "unknown",
+    "motorway",
+    "motorway_link",
+    "trunk",
+    "trunk_link",
+    "primary",
+    "primary_link",
+    "secondary",
+    "secondary_link",
+    "tertiary",
+    "tertiary_link",
+    "unclassified",
+    "residential"
+  ],
+  "licence_note": "OSM-derived (ODbL) graph and names; GCC hazard-zone prior (OpenCity, stated public domain, not independently verified). See data/MANIFEST.md.",
+  "files": {
+    "graph.bin": {
+      "bytes": 9424816,
+      "sha256": "033bc8187c98cc77b0a3e1af8f4206105e6325bc4ca425bea7f87a0648573fb9"
+    },
+    "nodes.bin": {
+      "bytes": 3091072,
+      "sha256": "ffba700bb37688519aa8d1b809df8d0a380488fd48052190142c36b6b7718050"
+    },
+    "meta.bin": {
+      "bytes": 2549659,
+      "sha256": "ec7de1a0bac61d0ee7094cacb914cea6b5c17c7b014030ae69e2dbd2f46aa1e4"
+    }
+  }
+}

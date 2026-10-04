@@ -1,0 +1,29 @@
+# Dependencies for scripts/ only -- the de-risking spikes and data-build scripts, not the
+# FastAPI server (see ../server/requirements.txt for that). Kept separate so the server's
+# production dependency list doesn't carry data-wrangling-only libraries.
+#
+# Added 2026-09-14 (independent review): ijson and requests were already imported by
+# scripts/t0_2_graph_timing.py and are now also used by scripts/tw1_build_watchlist.py and
+# scripts/fetch_chennai_drivable_ways.py, but were declared nowhere -- they only ran because
+# they happened to already be installed in this machine's .venv. A teammate following the
+# committed setup could not have run any of these scripts.
+requests>=2.32
+ijson>=3.5
+
+# Added 2026-09-17 (T3.2): pyyaml is used by scripts/t31_build_replay_corpus.py and
+# scripts/t3_2_replay_engine.py (config/hazard_classes.yaml) but, like ijson/requests above,
+# was undeclared -- same gap, same fix. pytest runs scripts/tests/.
+pyyaml>=6.0
+pytest>=8.0
+
+# Added 2026-09-18 (T3.3/T3.4, Study 1 & 2): matplotlib is used by scripts/study1_route_quality.py
+# and scripts/study2_calibration.py to emit figures 3/3b/4/4b -- same undeclared-dependency gap
+# as above (it happened to already be present in this machine's .venv; a fresh setup would not
+# have it). numpy is matplotlib's own dependency, not imported directly by these scripts, but
+# pinned here too since a fresh `pip install matplotlib` would already pull it in regardless.
+matplotlib>=3.11
+numpy>=2.5
+
+# Added 2026-10-02 (M1.11): study_common's Beta replica takes the Phi(z) upper quantile with SciPy
+# (the Dart code has its own inverse incomplete beta; agreement is tested in scripts/tests).
+scipy>=1.13

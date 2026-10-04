@@ -1,0 +1,14 @@
+.venv
+.dart_tool
+**/.dart_tool
+**/build
+app/build
+data/osm
+data/graph
+data/corpus
+data/corpus_raw
+data/watchlist_raw
+data/results
+data/bin
+deploy/web
+.git

@@ -1,0 +1,38 @@
+{
+  "task": "T1.3 -- Chennai graph build + static hazard prior ell_0(e) (partial, see this script's top comment)",
+  "generated": "2026-09-14",
+  "node_count": 193191,
+  "edge_count": 471240,
+  "junction_node_count": 193191,
+  "flood_hazard_zones_used": 7453,
+  "edges_with_nearby_zone_evidence": 193385,
+  "edges_with_no_nearby_zone_evidence": 277855,
+  "prior_p_by_category_used": {
+    "Very Low": 0.02,
+    "Low": 0.05,
+    "Moderate": 0.12,
+    "High": 0.25,
+    "Very High": 0.45
+  },
+  "free_flow_speed_kmh_by_highway_class": {
+    "motorway": 70.0,
+    "motorway_link": 40.0,
+    "trunk": 60.0,
+    "trunk_link": 35.0,
+    "primary": 50.0,
+    "primary_link": 30.0,
+    "secondary": 40.0,
+    "secondary_link": 25.0,
+    "tertiary": 30.0,
+    "tertiary_link": 20.0,
+    "unclassified": 25.0,
+    "residential": 20.0
+  },
+  "not_done_still_pending": [
+    "inundation depth points (T1.3's second named source) -- not located on this machine as a separate structured dataset from the CATEGORY-only hazard-zone KML; see this script's top comment",
+    "elevation/HAND (T1.3's third named source) -- no concretely sourced dataset or API found in docs/APIS_AND_COSTS.md or research/raw/ before writing this script; not fabricated as a placeholder",
+    "the packed binary array format for the Flutter client -- no such format is specified anywhere in this repo yet; this script ships the existing CLI JSON format instead of inventing an unreviewed new wire format ahead of the client that would consume it (Phase 5)",
+    "category_to_probability and free_flow_speed_kmh_by_highway_class are planning defaults, not calibrated data -- same status as config/hazard_classes.yaml's own T_c 'PLACEHOLDER' values. T3.4 is where calibration against real Chennai data happens.",
+    "the choropleth acceptance test itself: 'a choropleth of sigma(ell_0) over Chennai that a local human recognises as plausible' -- a renderable choropleth is produced alongside this manifest, but a human who knows Chennai has not yet looked at it"
+  ]
+}

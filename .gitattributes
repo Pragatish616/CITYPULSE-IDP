@@ -1,0 +1,10 @@
+* text=auto
+# Map packs and other binaries must never get line-ending conversion.
+*.bin binary
+*.png binary
+*.jpg binary
+*.pdf binary
+*.ttf binary
+*.otf binary
+*.wasm binary
+*.mjs text eol=lf

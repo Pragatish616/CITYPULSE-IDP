@@ -1,0 +1,758 @@
+# Architecture Decision Records
+
+Each ADR states the decision, why, what was rejected, and what would make us reconsider.
+Evidence lives in `research/raw/`.
+
+---
+
+## ADR-001 — We write our own routing engine
+
+**Decision.** Implement the router ourselves: OSM → CSR adjacency array → bidirectional
+A* with ALT landmark potentials over a mutable per-edge hazard array. One implementation, in
+Dart, in `packages/pulse_router`, used by both the Flutter client and (via its AOT CLI) the
+Python evaluation harness.
+
+**Why.** Chennai's drivable graph is ~10⁵ nodes. Bidirectional Dijkstra at that size is
+10–40 ms. CH/CRP exist for 10⁷–10⁸ node graphs; building them here is complexity theatre.
+More importantly, our cost function needs a *per-request, per-user-class* pessimism
+parameter `z` and a live hazard posterior — no off-the-shelf engine exposes that cleanly.
+
+**Rejected.**
+- **OSRM** — no per-request cost model; `osrm-customize` takes ~10 min with a ~20 min
+  achievable traffic cadence and no partial recustomization (issue #5503). A product pitched
+  on 2-minute-old flood reports cannot sit on it.
+- **GraphHopper on-device** — Android offline support is explicitly unmaintained by its own
+  maintainer (issue #1940). Server-side GraphHopper `custom_model` is viable but forces a
+  second, divergent routing path.
+- **Valhalla on-device** — genuinely the best off-the-shelf fit (tiled graph, query-time
+  costing), but **there is no Flutter binding** (valhalla-mobile #40); a custom FFI wrapper
+  is an unbounded week-1 risk for a 7-week project.
+
+**Reconsider if.** The Chennai graph turns out to be far larger than estimated, or turn-by-turn
+voice narration becomes a requirement (Valhalla returns as a stretch goal for narration only).
+
+---
+
+## ADR-002 — Confidence is a Bayesian posterior with a pessimistic plug-in, not a decay multiplier
+
+**Decision.** Fuse reports in log-odds over a static terrain prior with per-hazard-class
+exponential decay, then route on the **upper confidence bound**
+`p̃ = min{1, p̄ + z·√(p̄(1−p̄)/(n_eff+1))}`. **The `min{1, …}` clamp is load-bearing, not
+decoration — see the note below.**
+
+**Why.** The pitch's `w = τ·(1 + λ·R·C)` has the confidence term the wrong way round: as
+confidence falls, the penalty falls to zero, so an unverified flood report makes the router
+treat the road as clear. That is risk-seeking under ambiguity — the opposite of what an
+ambulance needs. With a UCB plug-in, thinner evidence *raises* caution, which is both
+correct and directly explainable ("one unverified report, so we routed around it").
+
+**Also fixed.** The brief's worked example is backwards: urban flooding persists for hours,
+debris clears in minutes. A single global decay constant will route EMS into standing water.
+`T_c` must be per hazard class.
+
+**Stretch.** Replace the exponential with a **Bayesian persistence filter** (Rosen et al.,
+ICRA 2016) under a **Weibull** survival prior fitted per hazard class, including
+"traversal-silence" as calibrated evidence of absence. The pitched exponential is the exact
+observation-free marginal of that model — so the offline fallback becomes a derivation
+rather than a hack. That framing is the project's best rhetorical asset; take it if week 5
+has room.
+
+**Verified 2026-09-12 (review pass) — the clamp must be stated identically everywhere.**
+`docs/GLOSSARY.md`, `research/SYNTHESIS.md` and this ADR previously stated the formula
+*without* `min{1,…}`. Concretely, for the `emergency` class (`z = 2.0`,
+`config/hazard_classes.yaml`) with a single fresh weak report (`p̄ ≈ 0.7`, `n_eff ≈ 0.5`):
+`p̄ + z·√(p̄(1−p̄)/(n_eff+1)) ≈ 1.45` — over 1, a nonsensical "probability," and this is the
+*normal* operating point for the class the pessimism argument is built around, not a corner
+case. An implementer working from this ADR or the glossary alone (as
+`docs/IMPLEMENTATION_PLAN.md`'s "read first" list directs) would ship an unclamped value,
+which then corrupts `EdgeBelief.p_pessimistic`'s probability semantics and Study 2's Brier
+score (only defined on `[0,1]`) — the paper's own headline calibration metric. **All
+restatements of this formula must include the clamp; treat `CLAUDE.md` §6 as canonical and
+the others as pointers to it, not independent restatements, to stop this drifting again.**
+
+---
+
+## ADR-003 — Slowdown and harm stay as separate cost terms
+
+**Decision.** `w_λ(e,t) = τ₀·[1 + p̃·(δ−1)] + λ·p̃·s·τ₀`, with a hard chance constraint
+`Pr[depth > h_max] ≤ ε` implemented as **edge removal**, not a large finite weight.
+
+**Why.** A flooded road slows you down *and* might harm you; these are physically different
+and collapsing them makes `λ` uninterpretable. `δ` comes from Pregnolato et al. (2017)'s
+measured depth–disruption function (R² = 0.95) — real physics rather than an invented
+multiplier. Keeping everything in seconds keeps `λ` explainable to the NLG layer. Large
+finite weights let the search "buy" an impassable road when the alternative is long enough.
+
+**Required invariant — verify before T2.1 is written (added 2026-09-12, review pass).**
+CLAUDE.md §6's ALT-admissibility result needs `w_λ(e,t) ≥ τ₀(e,t)` on every edge, which needs
+`δ(e,t) ≥ 1` always. Pregnolato's fitted `v_safe(h)` has intercept `v_safe(0) ≈ 87 km/h`, so
+`δ = v_free(e)/v_safe(h) ≥ 1` **only if `v_free(e) ≤ v_safe(0)`** — and that does not hold
+automatically. A perfectly ordinary Chennai arterial at `v_free(e) ≈ 30 km/h` gives
+`δ ≈ 0.35` at zero depth: the hazard-adjusted cost drops *below* free-flow, the exact opposite
+of the intended direction, and a silent breach of the admissibility guarantee on the majority
+of Chennai's actual road classes (arterial and residential, not highway). **Implementation
+must enforce `δ(e,t) = max(1, v_free(e)/v_safe(h(e,t)))` as a defensive clamp**, and T2.1's
+test suite must include a case at a sub-87 km/h edge asserting `w_λ ≥ τ₀`. This is a
+correctness requirement, not an optimization — do not defer it past T2.1.
+
+---
+
+## ADR-004 — Two-tier explanation: deterministic template always, SLM as a verified rewriter
+
+**Decision.**
+- **Tier 0** — a deterministic template renderer over the router's structured decision trace.
+  Runs always, costs <1 ms, is 100% faithful, and is the permanent fallback.
+- **Tier 1** — an on-device small language model acting **only as a rewriter**, never as a
+  fact source, whose output must pass a symbolic verifier (every numeral and named entity
+  must appear in the fact set) or be silently discarded in favour of Tier 0.
+
+**Why.** Every content word in *"Route A is 4 minutes slower; it avoids a flooded underpass
+reported 3 minutes ago"* is already a field in the router's output. This is surface
+realisation over a closed domain. On the target hardware the SLM needs ~5.5 s and 0.5–1.7 GB
+to say what a Dart function says in under a millisecond, for free, with perfect fidelity.
+Small models hallucinate 5.7–7.4% even on grounded summarisation (Vectara HHEM), and
+quantization adds up to 4.4% explanation-quality loss that LLM-as-judge fails to detect.
+
+**The payoff.** The **verification pass rate becomes the paper's headline metric** — a more
+publishable contribution than "we ran a quantized model on a phone."
+
+**Model + runtime.** Gemma 3 270M IT, INT4-QAT, LoRA-tuned, via LiteRT-LM through
+`flutter_gemma` (~250 MB resident, survives Android backgrounding; ~0.75% battery per 25
+generations). Secondary arm for the capability comparison: Gemma 4 E2B (Apache 2.0).
+Licence-clean baseline: Qwen3 0.6B on llama.cpp with GBNF constrained decoding.
+Avoid MediaPipe (maintenance-only), MLC-LLM (1.1–1.8 tok/s decode, 4.2 GB), ExecuTorch and
+NPU delegation (no time; flagship-only).
+
+---
+
+## ADR-005 — Offline-first, not offline-fallback
+
+**Decision.** The client **always** computes the route locally from cached tiles, graph and
+hazard state. The cloud is a deadline-bounded enrichment channel (~1.2 s budget), never a
+dependency.
+
+**Why.** The pitch's "fallback the millisecond a connection drop is detected" is not
+implementable: no such signal exists for captive portals, stalled cellular or slow servers;
+`connectivity_plus` reports interface state, not reachability. Offline-first is both
+buildable and a *stronger* claim than a fast fallback.
+
+**Consequences.** Storage budget ≈ 350–420 MB with the model, 100–170 MB without (**routing
+graph, CSR + ALT** ~15–22 MB — this is our own data structure, not a Valhalla tile format;
+see `docs/ARCHITECTURE.md`'s storage table — PMTiles z0–14 ~35–50 MB, Gemma 3 270M Q4_K_M
+~250 MB per a third-party GGUF conversion [unverified against Google's own release — see
+`research/SYNTHESIS.md` §9], hazard cache ~3 MB live / ~14 MB weekly, app binary ~40–70 MB).
+All Tamil Nadu ≈ 750 MB–1 GB. **The model is the biggest line item, so ship template NLG as
+the baseline and make the SLM an optional download.** Redis cannot expire individual geo-set
+members — the decay sweeper needs a parallel ZSET.
+
+---
+
+## ADR-006 — Haven Mode is rescoped to explicit saved places
+
+**Decision.** Drop passive inference of home/work/family locations. Users type in the places
+they care about. Keep the risk scoring, comparison and plain-language precaution alert.
+
+**Why.** Two independent reasons, either sufficient. (1) **It is not novel** — TN-ALERT (Tamil
+Nadu government / RIMES, 500 k+ installs, Tamil-language, updated Oct 2025) already pushes
+flood risk alerts for five saved locations, and Google Personal Safety plus Maps home/work
+inference covers the rest. (2) **Passive inference is the highest-risk, lowest-value part of
+the system** under the DPDP Act 2023 and its 2025 Rules, and it is the hardest thing to get
+past an ethics committee. Continuous background GPS also costs ~25–40% battery per 12 h and
+cannot restart from `BOOT_COMPLETED` on Android 15+.
+
+**Also:** the deck's phrase "encrypted routing usage" describes the wrong property.
+The claim is "on-device, never transmitted." Say that instead.
+
+---
+
+## ADR-007 — No precise coordinates leave the device
+
+**Decision.** Cloud LLM calls receive the router's structured decision trace with place
+names and relative geometry, never raw coordinates or a user identifier. Hazard reports sync
+with coarsened location where the hazard's own location does not require precision.
+
+**Why.** Free LLM tiers either explicitly train on submitted content (Gemini) or have terms
+that cannot be verified either way. Under the DPDP Act, live location is personal data. This
+also makes the ethics application dramatically simpler.
+
+---
+
+## ADR-008 — Hazard reports are an append-only log (a G-Set CRDT)
+
+**Decision.** Reports are immutable observations with client-generated UUIDv7 ids and
+hybrid-logical-clock stamps, written to a local outbox and replayed on reconnect with
+`ON CONFLICT DO NOTHING`. LWW-Register only for mutable user preferences.
+
+**Why.** Conflicts become impossible by construction — an observation is a fact about a time
+and place, not mutable state. This removes the entire class of merge problems the deck's
+"reconcile local edge decisions" language implies, and it is trivially idempotent under
+replay.
+
+---
+
+## ADR-009 — v0 is a bounded watchlist, not city-wide sensing
+
+**Decision.** The prototype maintains risk state for ~150–200 chronic waterlogging points
+resolved to specific OSM edges, rather than attempting to know the flood state of the whole
+road network. Full spec: `docs/CHENNAI_PROTOTYPE_SPEC.md`.
+
+**Why.** No source provides live street-level inundation for Chennai (`research/raw/C`), and
+the crowd that would provide it is empty precisely on flood day — the council identified this
+as the project's fatal risk (`docs/COUNCIL_VERDICT.md`). Chennai floods in the same places each
+year, so a bounded watchlist converts an unbounded sensing problem into a monitoring problem
+that tens of reporters can cover instead of tens of thousands. It also makes the static prior
+load-bearing rather than decorative.
+
+**Consequences.**
+- `HazardObservation` gains `watchlist_point_id`; watchlist points carry a basin/corridor link
+  and an upstream reservoir, so one reservoir signal escalates a whole corridor at once.
+- The replay corpus (T3.1) becomes a curated point list plus per-point event history, not a
+  general event scrape.
+- The system must render "no data for this corridor" as a distinct state — with a bounded
+  watchlist, the boundary is visible to users and pretending otherwise is dishonest.
+- The "designed for every city" claim is retired. The method ports; the system is Chennai's.
+
+**Reconsider if.** The watchlist cannot be assembled to ≥100 validated points from open data,
+which would mean the chronic-point premise is wrong and city-wide sensing is the only option —
+in which case the honest move is to narrow to a research contribution and drop the product claim.
+
+**Verified 2026-09-14 (T-W1's automatable pipeline, `scripts/tw1_build_watchlist.py`) — the
+overall premise holds (402 candidate points from the primary GCC/OpenCity source alone, well
+past the 100-point reconsideration threshold), but the primary source has a real, structural
+coverage gap the pitch's candidate seed list did not anticipate.** The Mudichur /
+Varadharajapuram / Old Perungalathur / Bharathy Nagar corridor —
+`docs/CHENNAI_PROTOTYPE_SPEC.md` §4's own named example of "exactly the basin escalation
+mechanism example needed" (three lakes overflowing into one corridor, Michaung 2023) — has only
+2 zones (0 High/Very High) in the whole 7,453-zone GCC hazard-zone KML within 10 km of it,
+against 1,189–3,869 for each of the other four Michaung press leads. Confirmed independently
+(not just taken from the script's own report): the KML's own longitude range bottoms out at
+80.1285°, east of the corridor's coordinates. This is almost certainly a Greater Chennai
+Corporation administrative-boundary artifact — Mudichur and Perungalathur sit in Tambaram
+Corporation, a separate civic body, not a data quality problem with the GCC source itself.
+**Consequence:** no watchlist candidate near this specific corridor can be produced from this
+source, at any clustering radius — this is a missing input, not a tuning problem. Before this
+corridor is used in the pitch, the demo, or the paper as a worked example, either a Tambaram
+Corporation (or equivalent) data source must be found, or — per this same ADR's own precedent
+for the CMWSSB scraper ("remove the reservoir-escalation demo beat rather than build toward
+it") — drop this specific corridor as a demo beat and pick one the primary source actually
+covers (the Pallikaranai / Velachery-Taramani-Perungudi-Madipakkam / Besant Nagar-Thiruvanmiyur
+corridors all have strong coverage and equally real Michaung press corroboration).
+
+---
+
+## ADR-010 — Hazard observations decouple "permanent belief contribution" from "permanent raw location" (added 2026-09-12, review pass)
+
+**Decision.** A `HazardObservation` id, polarity, class, and its already-computed contribution
+to belief fusion are permanent, per ADR-008 — that property is what removes the merge-conflict
+class and must not change. But the record's precision is not permanent: 30 days after
+`observed_at` (comfortably past every hazard class's `T_c` in `config/hazard_classes.yaml`,
+so the record has already decayed to near-zero evidence weight by then), the record is
+rewritten **in place** — `geometry` is coarsened to a fixed ~150 m grid cell, and `source_id`
+is replaced with a non-reversible per-report bucket id for `source_class: crowd` and
+`app_traversal` reports. A user-initiated erasure request performs the same coarsening
+immediately, on their own reports, ahead of the 30-day schedule. Nothing is ever *deleted*;
+the id, polarity, class, and `observed_at` stay untouched, so CRDT convergence (`ON CONFLICT
+DO NOTHING`) is unaffected — this is a further mutation-in-place of an existing fact, not a
+retraction of it.
+
+**Why.** ADR-008's "immutable, appended forever" design and `research/raw/C-data-sources.md`'s
+explicit recommendation ("set an explicit retention limit, and implement erasure-on-request")
+directly contradicted each other, unreconciled, through the entire planning phase — flagged in
+the 2026-09-12 review. The contradiction exists because ADR-008 conflated two different
+things: the *belief-fusion effect* of a report (which must never change, or the whole CRDT
+argument collapses) and the *raw personal-location precision* of a report (which DPDP's
+retention-limitation and erasure principles govern, and which a citizen's own real-time
+position — required to be near a hazard to report it — makes personal data regardless of
+whose hazard it describes). Separating them resolves both requirements at once.
+
+**Consequences.** `HazardObservation` (`docs/CONTRACTS.md` §1) gains `precision_state: exact |
+coarsened` and `coarsened_at`. `fuse()` (T1.2) must compute `κ(d(e,x))` against a coarsened
+geometry correctly — since coarsening only happens after a report has already decayed past
+every class's `T_c`, this should not materially change any `n_eff` used in live routing;
+Study 2 should confirm this empirically rather than assume it. T5.4 (sync) gains a scheduled
+coarsening sweep, run alongside the existing decay ZSET sweeper. `docs/REVIEW_CHECKLIST.md`
+gains a retention/erasure gate.
+
+**Reconsider if.** Study 2 shows coarsening measurably degrades calibration within the
+30-day window (i.e., 150 m resolution loses real discriminating signal before `T_c` would have
+decayed it anyway) — shrink the window, not the coarsening radius; radius is what DPDP cares
+about.
+
+---
+
+## ADR-011 — The system never asserts passability, only relative risk (added 2026-09-12, review pass)
+
+**Decision.** No generated or templated output, and no UI element, may ever state or imply
+that a road, route, or edge is *safe* or *passable* in absolute terms. The system emits only
+comparative and confidence-qualified statements ("Route A avoids two unverified reports";
+"no recent data for this corridor"). This is enforced twice: as a **fifth verifier rule**,
+alongside `docs/CONTRACTS.md` §4's four — reject any text containing an unhedged
+affirmative-safety assertion, discard to Tier 0 on failure like any other verifier failure —
+and as a **UI rule**: no single-color "all clear" badge; only the four confidence bands
+(`high | moderate | low | stale`) with their hedge text attached. Before first use, and once
+per app version thereafter, the app shows an unavoidable disclaimer: *"CityPulse is a research
+prototype. It estimates risk from limited data — it does not guarantee any road is safe.
+Always use your own judgement."* A shorter form of the same sentence repeats on any card whose
+`confidence_band` is `low` or `stale`.
+
+**Why.** `docs/COUNCIL_VERDICT.md`'s Skeptic named this risk in the first council session
+("if they drown, the first question is who told them to drive there... no legal entity, no
+insurance, no disclaimer regime") and it went unaddressed through every document written since
+— confirmed by the 2026-09-12 review, which found zero occurrences of
+`liability|disclaimer|insurance` outside the verdict itself. The project's confidence machinery
+(bands, `data_gaps`, the verifier) was designed and discussed purely as an *explainability*
+feature; "we told the user we had low confidence" is not the same claim as "we are not
+liable," and nothing forced that distinction to be made until now. Encoding the rule as a
+verifier check, not just a UI convention, means a future UI change that adds a green "clear"
+badge fails the same way a hallucinated street name fails — silently, logged, counted in the
+verification pass rate — rather than depending on every future contributor remembering a
+written guideline.
+
+**Consequences.** `docs/CONTRACTS.md` §4 gains verifier rule 6. `docs/REVIEW_CHECKLIST.md` §2
+gains a check. Study 5's IEC protocol (T0.3) must show the same disclaimer during consent, and
+the consent script should be checked against this ADR before submission, not after.
+`docs/IMPLEMENTATION_PLAN.md` T5.1 (Flutter shell) gains an explicit acceptance line for the
+disclaimer and the badge-colour ban — an ADR that isn't wired into the task that builds UI is
+just words, and this one wasn't until the 2026-09-12 skeptic pass caught the gap.
+
+**Implementation note on rule 6 (added 2026-09-12, second pass — flagged by skeptic review,
+not resolved by wishful thinking).** Rules 1–5 (`docs/CONTRACTS.md` §4) are mechanical field
+lookups against the trace; rule 6 asks for a semantic judgement ("does this text imply
+absolute safety") that a denylist alone cannot make reliably — "should be fine" or "nothing to
+worry about" carry the same implication as "safe" without containing a banned word, and a
+naive keyword filter will both over- and under-trigger. Given that, rule 6 is enforced in two
+layers, not one: **(a)** Tier 0's template vocabulary is a closed, human-authored set — audit
+it once, by hand, to confirm no template string can ever produce an absolute-safety claim, and
+add that audit as a fixed test fixture (this makes Tier 0 compliance a design property, not a
+runtime check). **(b)** For Tier 1 (SLM) and the cloud path, apply a keyword/phrase denylist
+as a first-pass filter (this will both over- and under-trigger — that is expected, not a bug),
+and — since this is exactly the kind of automatic-checker accuracy question Study 3 already
+budgets for — report rule 6's own precision/recall against the human-κ subsample alongside the
+other verifier rules, rather than assuming it is as clean as rules 1–5. Do not ship rule 6 as
+a single unvalidated regex and call it done.
+
+**Numeric bar and fallback (added 2026-09-12, third pass — flagged by judge review as the one
+remaining gap before T5.1's UI review specifically, not before starting other work).** Rule
+6's denylist must clear **≥95% recall** against the Study 3 human-κ subsample's
+affirmative-safety-implying examples before Tier 1/cloud output is allowed to reach the
+low/stale-confidence UI path at all. **If it doesn't clear that bar, the fallback is not "keep
+tuning the denylist" — it's to serve Tier 0 only for any card whose `confidence_band` is `low`
+or `stale`**, regardless of tier, until the denylist is replaced or improved. High-confidence
+cards are lower-risk for this specific failure (the underlying belief is itself more likely
+correct), so the fallback is scoped to exactly the cards where an unhedged claim would be most
+dangerous, rather than disabling Tier 1 everywhere over one rule's shortfall.
+
+**Reconsider if.** VIT or a future institutional partner is willing to put formal backing
+behind passability claims (e.g., co-signing with the Corporation) — at that point the
+disclaimer's *wording* should change, but the "no absolute passability claim" rule should not,
+since the underlying data (a ~150–200-point watchlist against a ~10⁵-edge graph, ADR-009)
+still cannot support it.
+
+---
+
+## ADR-012 — Study 1/2 (T3.3/T3.4) ran against a corpus that cannot support several of the
+claims the studies were designed to make (added 2026-09-18)
+
+**Decision.** Ship the Study 1/2 infrastructure (`scripts/study1_route_quality.py`,
+`scripts/study2_calibration.py`, `scripts/study_common.py`) as built, and record the following
+results honestly rather than retuning any parameter until a number looks better
+(CLAUDE.md section 8.4). This ADR exists because several results below **contradict the
+design's intent**, which per this repo's convention is itself the finding, not a bug to hide.
+
+**What the data actually shows (2015 Chennai flood corpus, `data/corpus/2026-09-17/`, N as
+stated in each result.json):**
+
+1. **The corpus cannot support two of Study 1's four named metrics at all.** `depth_mm` is null
+   for every one of its 5,775 observed edges (no source KML carries measured depth), so the
+   literal chance-constraint hard-removal (`edge_cost.dart`) never fires for C0/C2/C3/C4/
+   C-infinity — "impassable-edge-hit rate" is reported `not_applicable` for those configs.
+   Separately, **every one of the corpus's 6,132 observations carries `polarity: 1`** (verified:
+   zero `-1` records) — there is no confirmed-absent ground truth anywhere in this snapshot, so
+   "false-avoidance cost" is reported `not_computable`, not approximated with a fabricated
+   proxy. Both are corpus properties, not harness defects — see T3.1's own MANIFEST.md, which
+   already flagged the depth gap; the all-positive-polarity gap had not previously been stated
+   as plainly and is stated here.
+2. **The oracle (C-infinity) degenerates to "ours" (C3) in this snapshot.** T3.1's corpus
+   carries exactly one proxy timestamp for every observation (`2015-12-02T00:00:00Z`), and the
+   replay clock is pinned to that same instant (T3.2 precedent) — so query-time windowing is
+   already a no-op and skipping it (oracle's realisation) changes nothing. The "perfect
+   hindsight upper bound" this config exists to establish cannot currently be demonstrated as
+   distinct from C3 — a second, temporally-spread corpus is required, not a code fix.
+3. **C1 (naive hard hazard avoidance) is not expressible via any existing CLI flag combination**
+   — the only hard-removal mechanism (the depth-based chance constraint) requires non-null
+   `depth_mm`, which point 1 above rules out entirely for real edges. It was realised by
+   injecting a synthetic `depth_mm`/`epsilon` on edges crossing a `z=0` `p_mean` threshold, using
+   the CLI's real removal mechanism on harness-injected, not measured, depth values — see
+   `study_common.build_c1_injected_overrides`'s docstring for the full mechanism.
+4. **Study 2's source-holdout calibration proxy is weakly discriminating and confounded with
+   hazard class.** Ground truth (edge confirmed by `official_feed`, predictor = crowd reports +
+   prior only) yields AUROC ≈ 0.56–0.57 for the per-hazard-class decay (C3/"ours"), the
+   single-shared-decay baseline (C2), and the fixed-TTL baseline (C4) alike — **all three are
+   statistically indistinguishable from each other and only marginally better than chance
+   (0.5)** on this corpus and this proxy label. This directly contradicts the design's premise
+   that per-hazard-class calibrated decay should out-discriminate a naive single decay constant
+   or a fixed TTL; on this evidence it does not, at least not as measured here. **Reported
+   prominently, not retuned to look better**, per this task's explicit instruction. Candidate
+   explanations, none yet tested: (a) the source-holdout label is itself weak evidence (an
+   unconfirmed crowd report is not proof of absence — see point 1's polarity gap — so `y=0` is
+   contaminated with true positives, capping achievable AUROC regardless of the decay model);
+   (b) the corpus's single timestamp means "report age" is entirely simulated
+   (`at = observed_at + Δ`), so real-world decay-shape differences that only matter for
+   genuinely time-separated reports may not be exercised at all; (c) the three decay mechanisms
+   may simply not differ enough at this corpus's actual evidence density to matter. Distinguishing
+   these requires either a second, real, time-separated event or ground truth beyond source-class
+   holdout — both out of this task's scope.
+5. **Study 2's hazard-class stratification degenerates to a single class ("flood") for the
+   crowd-only predictor pool** — not from a shortage of waterlogging data (753 records exist),
+   but because every `crowd_sourced_flooding_2015.kml` record is `hazard_class=flood` and every
+   `gcc_stagnation_2015.kml` (waterlogging) record is `source_class=official_feed`, and Study 2's
+   source-holdout design puts all `official_feed` records on the label side of the split, never
+   the predictor side. The "stratified by hazard class" requirement (docs/EVALUATION.md Study 2)
+   is genuinely satisfiable only for `flood` with this specific corpus and this specific
+   ground-truth design.
+6. **The Beta-reputation-with-forgetting baseline scores far worse (Brier ≈ 0.30 vs. ≈ 0.04 for
+   the exponential-decay baselines) mainly because it has no analogue of the static terrain
+   prior `ℓ₀`** — with no observations (the common case: most edges) it falls back to an
+   uninformative `p=0.5`, which is a poor prediction against this label's ≈2.4% base rate,
+   whereas every exponential-decay baseline falls back to the static prior instead. This makes
+   the Beta-reputation comparison structurally unfavourable to that baseline on this corpus,
+   independent of whether forgetting-factor decay itself is worse than exponential decay — an
+   asymmetry in what each model can fall back on, not (necessarily) in the decay mechanism being
+   compared. Flagged, not corrected by retrofitting a prior onto Beta-reputation after seeing
+   this result.
+7. **Scale was cut well below `docs/EVALUATION.md`'s stated N=1,000**, driven by a measured
+   per-CLI-call cost of ≈3.07s (dominated by per-process graph load of 471,240 edges; the "ALT landmark rebuild" in
+   the original wording was wrong, `planRoute` does not use ALT, F-11 — the CLI had no batch mode then; `route-batch`
+   was added 2026-10-02, F-20). See each script's
+   `result.json["scale_decision"]`/timing fields for the exact N used and the arithmetic behind
+   it — stated explicitly rather than silently under-run.
+
+**Why recorded as an ADR rather than just left in `result.json`.** Points 2, 4, 5, and 6 are
+exactly the class of "a benchmark kills an assumption" finding CLAUDE.md section 8.4 requires be
+written here, not just logged and moved past. None of these were retuned away — the decay
+constants, thresholds, and Beta-reputation formulation are exactly as originally chosen.
+
+**Consequences.** (a) A genuinely independent oracle upper bound and a genuine multi-event
+Study 2 split both require a second, temporally-distinct hazard corpus — this is now a concrete,
+named blocker for a stronger Study 1/2 result, not merely "T3.1's known limitation" in the
+abstract. (b) Point 4's null-ish discrimination result means the paper cannot yet claim
+per-hazard-class calibrated decay outperforms simpler baselines on real Chennai data — the
+paper's honest claim, until better ground truth exists, is limited to the ALT-admissibility
+result and the pessimism-under-uncertainty design argument (`research/SYNTHESIS.md`'s
+already-scoped four narrow contributions), not a demonstrated calibration win. (c) Before citing
+Study 2's AUROC/Brier numbers anywhere, the source-holdout proxy's limitations (points 4–5) must
+be restated alongside them — reporting the number without the caveat would overclaim, which
+CLAUDE.md section 3.7 names as the single most likely thing to sink the project at review.
+
+**Reconsider if.** A second Chennai hazard corpus with genuine per-observation timestamps
+(distinct from this proxy's single 2015-12-02 stamp) becomes available — at that point Study 2's
+event split, the oracle's distinctness from C3, and the report-age-bucket stratification all
+become independently testable rather than simulated, and the calibration comparison in point 4
+can be re-run without the source-holdout label's contamination.
+
+
+---
+
+## ADR-015 — The pessimistic index is a Beta posterior quantile (supersedes the Wald band of ADR-002) (added 2026-10-02)
+
+**Decision.** Each hazard edge's belief is `Beta(a, b)` with
+`a = n0·p0 + s·S⁺`, `b = n0·(1−p0) + s·S⁻`, where `p0 = σ(ℓ0)` is the static prior and
+`S = Σ polarity·κ(d)·e^(−Δt/T_c)·w(α)` is the **signed, reliability-weighted, decayed** evidence,
+`w(α) = min(1, logit(α)/logit(α_ref))` (`w = 0` for `α ≤ 0.5`). The routing index is
+`p̃ = min(1, max(p̄, Q_Φ(z)(Beta(a,b))))`: the `Φ(z)` upper quantile, floored at the mean `p̄ = a/(a+b)`.
+`z = 0` gives the mean, so the commuter default is unchanged on prior-only edges. Implementation:
+`packages/pulse_belief/lib/src/beta.dart` and `beta_belief.dart`; the router calls `fuseBeta` and
+`pessimisticBeta`. The old `fuse`/`pessimistic` stay in the package, as legacy, so the pre-fix
+numbers in `data/results/2026-09-18-*` remain reproducible.
+
+**Why.** KNOWN_FLAWS F-01 (critical) and F-12. Evidence reaches the index only through `S`, and
+`p̃` is increasing in `S`, so:
+- a positive report can never lower `p̃`, for any reliability (the Wald index went 0.329 → 0.309 → 0.333 → 0.380
+  at p0 = 0.05, α = 0.6, z = 1.28). `packages/pulse_belief/test/beta_test.dart` checks this on a grid of
+  more than 5,000 prior/reliability/z/age/starting-state combinations;
+- opposing reports cancel in `S`, instead of both raising `n_eff` and reading as certainty;
+- ageing shrinks `|S|`, so evidence decays monotonically back to the prior's own quantile;
+- it is a genuine posterior quantile: bounded by 1 without a clamp, no collapse near 0, and no longer
+  saturating to 1.0 on every high-prior edge at z = 2.
+
+`n_eff` is redefined as `|S|`, net reliability-weighted evidence in "full-reliability report" units:
+three crowd reports (α = 0.6) are about 0.35, not 3. Confidence-band thresholds (`low < 1`, `moderate < 3`) are unchanged
+and now mean report-equivalents, so "high" takes about five α = 0.9 reports.
+
+**What this does not claim.** `n0 = 2` (prior strength), `s = 2` (pseudo-counts per full report) and
+`α_ref = 0.97` are **placeholders**, like the `T_c` values (F-15). They cannot be fitted without time-stamped,
+independent labels. Mapping a source's reliability to an evidence weight via `logit(α)` keeps the original model's
+relative weighting but is a modelling choice, not a derivation. The quantile is a posterior quantile *under that
+model*; it carries no frequentist coverage guarantee, so the wording rule in `CLAUDE.md` §6 ("a pessimistic index",
+not a bound) still applies.
+
+**Consequences.** Every route-quality and calibration number computed with the Wald index is superseded for
+the *method* (old result folders are kept untouched). Studies 1 and 2 must be re-run (PLAN M1.11), and the Python
+replica in `scripts/study_common.py` must be ported before Study 2 is re-scored. The 2015 replay cannot show that the
+new index helps (it has no time spread and no independent labels); it only shows the old failure is gone.
+
+**Reconsider if.** Labelled monsoon data shows the evidence mapping `w(α)` or `n0`/`s` is badly off; fit them then.
+
+---
+
+## ADR-016 — Explanation semantics: free-flow deltas, truthful "avoids", report-aware wording, honest data gaps (added 2026-10-02)
+
+**Decision.**
+1. "Route A is N minutes slower/faster than Route B" compares **`chosen.free_flow_duration_s` with `alternatives[0].duration_s`**
+   (driving time against driving time). `chosen.duration_s` is the hazard-penalised cost the search minimised and is never
+   described as minutes. The `docs/CONTRACTS.md` §4 worked example now reads "2 minutes slower" (1023 − 907 = 116 s),
+   not "4 minutes" (1147 − 907).
+2. `planRoute` lists an alternative's blocking edge only if the chosen route does not use **that edge**. The judgement is edge-level, not
+   street-name-level, because a detour usually goes round one segment of a long road; the template words it "It avoids a stretch of X where
+   flooding was reported N minutes ago", which stays true when the route crosses X elsewhere. (A first version also suppressed the claim whenever
+   the route touched any stretch of the same named street; running the engine on real OSM names showed that hid the explanation in most
+   detours, so it was changed before release.)
+3. `BlockingEdge` gains an additive `has_observation` flag (serialised only when `false`). A prior-only edge is described as
+   "which the hazard map marks for flooding but where no report has been received", never "reported moments ago".
+4. **A data gap is a hazard-map edge on the chosen route with no recent observation** (none, or older than the staleness cutoff
+   `2·T_c`). Edges with no hazard entry at all are not listed individually; the route-level confidence band covers them.
+5. `renderTemplateSafe` never throws. If Tier 0 fails its own `verify()` it returns the fixed sentence `kMinimalExplanationText`
+   (`fallbackUsed: true`), reports the failure through a callback for logging, and never shows the failing text.
+6. The verifier gains: unit-typed number checks and subject binding ("N minutes slower" must equal the free-flow delta, "N minutes ago"
+   a report age), comparative **direction** against the trace, avoidance **subject** (must be the chosen route) and **object**
+   (must be something the trace names), an expanded English safety lexicon applied fail-closed with trace names stripped, and a
+   Tamil stem list (unreviewed by a native speaker).
+
+**Why.** KNOWN_FLAWS F-04, F-05, F-07, F-08. Measured with `packages/pulse_explain/test/fixtures/verifier_cases.json`
+(234 cases written before the change; two honest cases were added afterwards, so the final run has 236): false accepts of sentences
+that must be rejected fell from **150 of 209 (71.8%)** to **0 of 209**, with **0 of 27** honest sentences rejected (0 of 25 at baseline). Results: `data/results/2026-10-02-verifier-baseline/` and `data/results/2026-10-02-verifier/`.
+
+**Limits.** The set is authored by the people who wrote the fix, two patterns were added after seeing residual failures on it,
+and it is not model output. The real false-accept rate on Tier 1/2 text is unmeasured (Study 3). The Tamil list needs a native reader.
+`FactSet` (the rewriter prompt) still exposes `duration_s`; a rewriter that calls it "minutes" is now rejected, which is the intended
+safe failure.
+
+**Schema note.** The one wire change is the optional `has_observation` key, so existing documents and the golden trace are unaffected.
+
+
+## ADR-017 · Study 1 and Study 2 re-run on the fixed router (2026-10-02)
+
+**Status.** Accepted. Results: `data/results/2026-10-02-study1-route-quality/`, `...-study1-rescored/`, `...-study2-calibration/`. The 2026-09-18 folders are untouched.
+
+**What changed in the harness.** The router CLI (build `data/bin/2026-10-02/pulse_router.exe`) uses the Beta-posterior index (ADR-015). Evidence attaches to both directions of two-way streets (F-02). The harness calls `route-batch` (F-20), so Study 1 uses 1000 origin-destination pairs (seed 20260918; the first 100 are the same pairs as the 2026-09-18 run, checked). It adds the hybrid baseline (hard block at p-mean > 0.5 plus soft lambda = 5) and C3 at lambda = 5 and 20. Every route is re-scored under one reference belief, the Beta posterior mean of the C3 model, in free-flow time, with paired bootstrap intervals over pairs (B = 5000, seed 20261002). Parameters were fixed before the run.
+
+**Results (1000 pairs, none disconnected under any configuration).**
+1. Default commuter setting (z = 0, lambda = 0.3) changed 118 of 1000 routes (the old run: 7 of 100). Mean free-flow detour 0.01%. Change in sum of reference p-mean per route: -0.040 [-0.068, -0.017]; it comes from edges that carry reports (-0.037), not prior-only edges (-0.003 [-0.028, 0.017]).
+2. Hard block alone (C1) leaves sum p-mean unchanged (-0.030 [-0.075, 0.017]) and shifts exposure onto prior-only edges (+0.077 [+0.037, +0.119]). Hard block plus soft cost (hybrid): -0.579 [-0.671, -0.488].
+3. C3 at lambda = 5 is **not** better than the hybrid: C3(5) minus hybrid is +0.045 [+0.019, +0.072] in sum p-mean, i.e. slightly more exposure, with mean detour 0.85% vs 1.35%. On prior-only edges there is no difference (-0.011 [-0.032, 0.010]). The advantage over C1 reported in September comes from the soft cost, not from the C3 mechanism.
+4. **Held-out official check.** With official reports held out of both beliefs, prior + crowd routes cross *more* official-report edges than prior-only routes: +0.081 [0.039, 0.126] per route at lambda = 5, +0.107 [0.058, 0.159] at lambda = 20. Crowd reports did not help, and on this metric they hurt slightly.
+5. Study 2 (crowd pool now 9,336 edges, 56,016 rows; 61,016 rows with the 5,000 report-free edges): on the crowd pool the Brier skill against the prior alone is -0.15 for C3 and -0.285 for the fixed-TTL baseline; at report age 0 the prior scores 0.0361 and C3 0.0567. AUROC is 0.546 (C3) against 0.569 (prior alone).
+
+**Reading.** The Beta fix removed the non-monotone behaviour, and the September finding stands in a stronger form: the crowd-report layer adds nothing measurable over the static GCC prior on this corpus, and slightly worsens the held-out check. Use the hybrid baseline as the comparison in any paper table.
+
+**Limits.** One proxy timestamp, all reports positive, no depth, so decay, the chance constraint and false-avoidance cost remain untestable. The Study 2 label (an official report on the same edge) measures co-location, not flooding. "Official" points include GCC vulnerability designations. Node paths are mapped to edges by smallest free-flow time per hop, so parallel twins may differ. Study 2 pools are not yet split or controlled for edge length (F-14). The prior-strength and evidence-scale constants (2 and 2) are placeholders and were not tuned.
+
+
+## ADR-018 · Cities are data: `config/cities.yaml` and a city-aware pack pipeline (2026-10-03)
+
+**Status.** Accepted. Implements the "make the pipeline city-agnostic" option; a second live city is **not** started.
+
+**Context.** Chennai was hard-coded in the map centre, the user-facing texts (including Chennai's control-room number), the
+Overpass bounding box, the pack builder's file names and the router's error messages. The project's own plan
+(`NEXT_STEPS.md`, "Stop doing") says not to add cities before one monsoon of Chennai labels exists, so the aim was to remove the
+assumptions, not to expand.
+
+**Decision.**
+1. `config/cities.yaml` holds one entry per city: names (English, draft Tamil), centre, bounding box, pack folder, an optional
+   watchlist file, `hazard_layer: true|false`, an optional checked `local_contact`, and the three data texts. `CityConfig` in
+   `pulse_router` parses and validates it (a hazard-layer city must supply its own texts; one without gets honest defaults saying
+   no flood-hazard layer is loaded).
+2. `scripts/city_pipeline.py` fetches a city's roads and builds a pack in the existing binary format, reusing the Chennai
+   graph and pack code. It builds only `hazard_layer: false` cities (flat default prior, the same value Chennai uses away from its
+   zones) and refuses anything else; it also refuses a box that does not contain the configured centre. Output is deterministic.
+3. The apps and the router service take the city at build or start time (`--dart-define=CITY`, env `CITY`); strings use
+   `{city}` and three text placeholders; the Chennai local contact shows only for Chennai; the cloud-rewriter prompt no longer names a city.
+4. Chennai's pinned pack and every Chennai string are unchanged: for Chennai the resolved texts are identical to before (tested).
+
+**Consequences.** One build serves one city. A new city is routing-only until someone supplies a verified hazard source; the app
+says so on screen. Nothing in belief, routing or explanation changed.
+
+**Evidence.** A synthetic grid city ("Testville") goes Python builder -> Dart router -> HTTP service -> app texts in tests, with
+a rebuild-is-byte-identical check and a guard that the committed fixture matches the builder. This shows no Chennai assumption
+remains in code; it does not show that a real city's OpenStreetMap extract builds well. No real second city was fetched.
+
+**Limits.** Tamil city texts and defaults are drafts. The watchlist layer is empty for cities without a candidates file (the toggle
+still shows). Switching cities within one app or serving two cities from one router is not built.
+
+
+## ADR-019 · Travel modes are movement profiles; bicycle added (2026-10-03)
+
+**Status.** Accepted. Fixes KNOWN_FLAWS F-24; F-25 stays open.
+
+**Context.** `commuter`, `pedestrian` and `emergency` differed only in the hazard-caution numbers `z` and `λ`. All three searched the
+car graph at car speeds, so the same Chennai trip returned the same route and the same 14.9 minutes for 10.6 km for a walker as for
+a car. There was no bicycle mode.
+
+**Decision.**
+1. A **travel profile** turns the pack's per-edge car speed and road class into one traveller's speed on that edge, or closes the
+   edge to them, and says whether one-way streets bind them. `config/hazard_classes.yaml` `travel_profiles` holds `foot`,
+   `bicycle` and `emergency`; `car` is the pack as it is. Each user class names its profile. The engine builds one routing graph per
+   profile, on first use, keeping original edge ids, so hazard data and search stay unchanged and every mode finds its own route and
+   its own duration with the same code.
+2. **Foot:** 5 km/h (4-4.5 on trunk and primary), motorways closed, may walk against a one-way street (the reverse edge shares its
+   forward edge's id). **Bicycle:** 15 km/h on quiet streets, lower "effective" speeds on busier roads (14 tertiary, 12 secondary, 10
+   primary, 8 trunk), motorways closed, one-way streets obeyed. **Emergency:** car speed times a per-class factor from 1.0 (residential,
+   unclassified) up to 1.4 (primary, trunk, motorway), capped at 90 km/h, chosen from the reasoning that a large vehicle gains little in a
+   narrow lane and most on arterials. **Cyclist `z` = 1.0, `λ` = 0.8** (between pedestrian and car).
+3. **`cyclist` is added to the `user_class` enum** in the decision trace contract (`docs/CONTRACTS.md`, `UserClass`).
+4. The app offers four modes (car, bicycle, on foot, emergency vehicle); durations of 90 minutes and over read as hours.
+
+**What this is not.** It is not machine learning and not a language model. Route geometry comes from graph search (CLAUDE.md §3 rule
+6). **Every number in a profile is a placeholder assumption** chosen for plausibility; none is measured or fitted, and the bicycle
+speeds fold road discomfort into a lower speed, so they change the reported time too. Learned per-edge speeds would need probe or
+cycling data we do not have.
+
+**Evidence.** Seeded comparison on the real Chennai pack, 296 random node pairs with a car route, `tool/mode_compare.dart`
+(`data/results/2026-10-03-travel-modes-arterial-emergency/`; the earlier flat-multiplier run is kept in `...-travel-modes/`):
+- **On foot and bicycle:** the route differs from the car route on 296 of 296 trips. Median speeds 4.9 and 14.0 km/h (car 46.8), median
+  23.2 km on foot against 25.2 km by car.
+- **Emergency (arterial factors):** differs from the car route on 38% of trips when dry and 41% in an active flood event; median 24.7 min
+  against 31.9 min by car. With a flat 1.3 factor it differed on only 0.3% when dry and 8% in a flood event, which is why the factors are per class.
+- The same trip as before (T. Nagar to Velachery): car 14.9 min / 10.6 km, bicycle 51.2 min / 10.4 km, on foot 98.3 min / 7.9 km,
+  emergency 11.3 min / 11.2 km.
+- Tests: `packages/pulse_router/test/travel_profile_test.dart` (speeds, closed classes, one-way handling, per-class factors, bad
+  config refused) on the Testville grid and the real config.
+
+**Limits.**
+- The pack contains only roads cars can drive (F-25): no footways, paths, pedestrian streets, steps or cycle tracks. Walking and
+  cycling routes therefore follow roads, and a real walker may have shortcuts we cannot see.
+- The first walking or cycling route after start-up builds that mode's graph (a few hundred milliseconds on a desktop, more on a phone;
+  about 20 MB of memory per mode).
+- Depth-based slowdown (`δ`) is 1 when depth is unknown, which is always today, so water does not slow walkers in the model.
+- Emergency routes assume no siren-specific rules beyond speed; contraflow driving is not modelled.
+- The command-line router used by the study harness still searches the car graph; it only labels the class.
+
+---
+
+## ADR-020: Mapping India in phases, starting with Tamil Nadu's main roads (3 October 2026)
+
+**Status:** accepted. Phase 1 built and exercised on a laptop; not run on a phone.
+
+**Context.** The user's goal is the whole of India, mapped phase by phase. Everything until now was Chennai: the pack, the search, the
+hazard overlay and the "outside the mapped network" check. A whole state has to stay interactive, so size and smoothness are design
+constraints, not afterthoughts.
+
+**Decision.**
+1. **Phases.** Phase 1: Tamil Nadu, main roads only (motorway to secondary), as a *region pack* served by `services/router_api`. Later:
+   detailed packs per district or city (tertiary and below), stitched to the backbone; then other states by the same builder.
+2. **A leaner builder** (`scripts/region_pack.py`) streams a Geofabrik PBF with pyosmium instead of loading JSON, writes the same binary
+   format as `city_pipeline`, and a `places.json` gazetteer (cities, towns, villages, suburbs, with Tamil names where OSM has them).
+   Parity with `city_pipeline` is a test (byte-identical nodes and meta on Testville).
+3. **Long roads are cut at 800 m** (`MAX_EDGE_M`) because a main-roads-only graph otherwise merges whole highways into single edges.
+4. **Road numbers are searchable.** A street's search name is its name plus its OSM `ref` ("Salem - Kochi - Kanyakumari Highway (NH544)").
+   Search matches "NH 44", "NH-44" and "NH44" alike, and not "NH444".
+5. **Smoothness measures.** The hazard overlay is limited to the viewport (bbox, limit, compact GeoJSON, 250 ms debounce, padded regions
+   with a small cache) and is hidden below zoom 10.5; long routes are thinned (Douglas-Peucker, 1,500 points maximum); each region sets
+   its own snap radius and opening zoom (`max_snap_metres`, `initial_zoom` in `config/cities.yaml`); the route card says when the start or
+   end is far from a mapped road.
+6. **A region without a flood layer says so.** No flood-event banner, no "hazard confidence" badge or hazard explanation; the route card
+   shows the city's no-hazard note instead.
+
+**Evidence** (`data/results/2026-10-03-india-survey-tamil_nadu/result.json`, `data/packs/tamil_nadu-backbone-2026-10-03/manifest.json`):
+- Survey of the 557 MB southern-zone extract inside the Tamil Nadu box: motorway to secondary = 76,802 ways, 73,375 km. The estimate from
+  Chennai's edges-per-segment ratio was 1,298,218 edges and 42.7 MB. **The built pack has 257,249 edges and 9.0 MB.** The Chennai-calibrated
+  estimate overstates a rural network about five-fold; do not use it to size other regions without a trial build.
+- Pack: 143,227 nodes, 257,249 directed edges, 8,438 distinct street names; 25,144 places (39 cities, 571 towns, 23,013 villages, 1,521
+  suburbs); read time 59 s, build 3 s on the authoring machine.
+- One statewide route in the browser build (Chennai to the far south, 693.1 km): 1,278 route points, 65.3 KB, 291-305 ms on the server
+  through a local proxy; the overlay query for the whole state returns an empty result (no hazard data), and place search answers in
+  about 25 ms. Tamil-script search finds Madurai from "மதுரை".
+- Tests after this change: pulse_router 165, router_api 25, app 144, Python (scripts and server) 104, all passing.
+
+**Limits.**
+- **There is no flood data outside Chennai.** The region pack carries a flat prior (p = 0.02) on every edge. It routes by road speed only.
+- **Main roads only.** Tertiary and smaller roads are absent, so the start or end can be several kilometres from a mapped road (the card
+  says how far). Villages are searchable but not necessarily reachable by a mapped road.
+- The Tamil Nadu box is rectangular and includes parts of neighbouring states.
+- **Pack format v1 has a 16-bit street-name index (65,535 names).** Adding tertiary and below for the whole state will exceed it; a v2
+  with a 32-bit index is needed (F-26). One in-memory graph for the full state also did not fit this 7.4 GB machine.
+- Server-side only: the app on a phone has not loaded this pack, and the gazetteer is not wired to the on-device path.
+- Speeds are the placeholder per-class values of ADR-019, so intercity times (11 h 46 min for the 693 km trip above) are plausible
+  numbers, not validated against real travel times.
+
+---
+
+## ADR-021: A small offline route advisor, in the style of a "System One" model (3 October 2026)
+
+**Status:** accepted. Built and tested; not yet run on a phone.
+
+**Context.** The user asked for fast AI on every calculated route, naming Jev (TypeSafe AI, "System One" models) as the kind of decision
+model wanted. Jev is a hosted API in early access: every call goes over the network (about 70-500 ms by the vendor's own figure), costs per
+token, and would send the route off the phone. The app must work offline, the budget is Rs 0, and DPDP rules limit sending location data to
+third parties. The user then asked for a free model of the same kind that runs on the phone, with transparent scoring as its basis.
+
+**Decision.** `packages/pulse_router/lib/src/route_advisor.dart`: a pure-Dart function `advise(RouteFacts)` that reads a route's own
+`DecisionTrace` and returns, in one pass, typed decisions with scores:
+- **Risk** over lower / moderate / high; **action** over proceed with care / wait / avoid; **evidence** strong / some / little; a **route-choice**
+  check (how clearly the chosen route beats the alternatives); and at most two typed **reasons**. No text is generated. The words come from fixed,
+  checked strings (English and Tamil) and the existing template explanation is unchanged.
+- **How it scores** (all constants are visible in the file): the route's risk score is `0.7 * worst-edge index + 0.3 * hazard time added`; it is softly
+  assigned to the three levels; the result is blended toward a "mostly moderate" prior as evidence thins; the traveller's class (`commuter` 1.0,
+  `cyclist` 1.25, `pedestrian` 1.5, `emergency` 1.6) weights moderate and high risk; the action is a softmax over a small utility table.
+- **UI:** one card (`AdviceCard`): verdict, a three-segment risk bar, evidence dots, at most two reasons, and a hedge line. It replaces the separate
+  confidence badge on the route card. No green, no "safe", no percentages (ADR-011).
+- A pluggable hosted model (Jev or another) could be added later behind the same `RouteFacts` input; it is not built, and would need consent to
+  share the route.
+
+**What it is not.** Not learned, not a language model. **Every weight is a hand-set placeholder** and the outputs are model scores, not measured
+frequencies: there are no outcome labels to learn or calibrate from (ADR-012). Nothing here claims accuracy.
+
+**Evidence.**
+- `packages/pulse_router/test/route_advisor_test.dart` (20 tests) pins these properties: probabilities sum to 1 over a grid of inputs; more hazard never
+  lowers the chance of "avoid"; thinner evidence never raises the chance of "proceed with care"; no evidence gives a non-"lower" and less decisive answer;
+  a walker is warned more than a rider, a rider more than a driver; a much less risky chosen route wins the choice check clearly and an equal one only weakly; bad numbers (NaN, infinity) fall back to "avoid".
+- Speed, measured on the authoring laptop: 1.5-1.7 microseconds per call over 100,000 calls. A phone has not been measured.
+- `app/test/ui/advice_card_test.dart` (5 tests): the card, no percentages or safety words, two reasons at most, Tamil, one-sentence screen-reader label.
+
+**Limits.**
+- The Tamil text is a first draft, unreviewed, like the rest of the Tamil strings.
+- The route-choice check only compares the router's chosen route with the alternatives the trace carries (their hazard exposure is known only
+  for the edges the trace lists), so it is an agreement check, not an independent second opinion.
+- Regions with no flood layer (ADR-020) show no advice card, only the no-flood-data note.
+- Thresholds were chosen before looking at routes; if they are changed after seeing results the change must be recorded as a new ADR (CLAUDE.md rule 3 spirit).
+
+---
+
+## ADR-022: One app for Chennai and Tamil Nadu; advice only inside Chennai (3 October 2026)
+
+**Status:** accepted. Built and exercised in the web build and the API tests; not run on a phone.
+
+**Context.** The Chennai app (detailed streets, flood layer, AI advice, ADR-021) and the Tamil Nadu app (main roads only, ADR-020) were two
+builds. The user asked to combine them: give the AI inference for Chennai alone, and for anything that crosses the border drop the inference and
+show just the best route.
+
+**Decision.**
+1. **One deployment, two packs.** `config/cities.yaml` gives `tamil_nadu` a `detail_regions: [chennai]` list. The router API loads the Tamil Nadu
+   main-road pack and, for each detail region, its own pack and search index.
+2. **The rule is by start and end.** If **both** ends are inside Chennai's box, the Chennai pack answers; it cannot leave its own box, so the route
+   cannot cross the border. If that finds no route, or either end is outside, the Tamil Nadu pack answers. A route from Chennai to Madurai is
+   therefore a Tamil Nadu route, even though it starts in Chennai.
+3. **The answer says which.** `POST /route` returns `hazard_layer` and `region`. The app shows the advice card and the explanation only when
+   `hazard_layer` is true; otherwise it shows the time, distance, and the note "Flood-hazard data covers Chennai only…". The advice is computed on the phone
+   (ADR-021), so no inference runs for a Tamil Nadu route.
+4. **Flood overlay, reports and event state belong to Chennai.** `/risk` is answered from the Chennai engine only (so it is empty elsewhere); the event
+   state is set on both engines; the observation sync feeds the Chennai engine. The banner reads "Chennai · Flood event: …" so it is clear what it covers.
+5. **Search is merged.** Both indexes are searched and the results sorted by relevance, then kind (city, town, street, suburb, village), then nearness;
+   the same name within about 300 m appears once.
+6. The texts for the combined region (`hazard_note`, `about_data`, `data_credit`) credit the Chennai hazard data and say plainly that there is none elsewhere.
+
+**Evidence.**
+- `services/router_api/test/combined_test.dart` (7 tests, real packs): a route with both ends in Chennai returns `region: chennai`, `hazard_layer: true`;
+  T. Nagar to Madurai returns `region: tamil_nadu`, `hazard_layer: false`, about 380-520 km; Madurai to Coimbatore has no flood layer; the overlay has
+  features in Chennai and none near Madurai; search finds "Madurai" first and a Chennai street; the event state reaches both engines.
+- In the browser build: T. Nagar to Velachery (9.3 km, 139 ms) shows the advice card; Chennai to Madurai (447.1 km, 7 h 35 min, about 263-298 ms) shows no card
+  and the Chennai-only note.
+- App tests: the advice card appears for a route with `hazard_layer: true`, not for `false`; the banner names the city; the flag is parsed (and left unset
+  when a server omits it).
+- Test counts after this change: pulse_router 188, router_api 32, app 153 (Python scripts and server suite unchanged at 104, not re-run).
+
+**Limits.**
+- A route from a point just outside Chennai's box to one inside it gets no advice, even though most of it is in Chennai.
+- The Tamil Nadu box is a rectangle, so some points in neighbouring states route here too.
+- Only the web build was exercised; the on-device path still serves one pack and would need the same rule to combine (not built).
+- The memory cost of two engines in one process was not measured.

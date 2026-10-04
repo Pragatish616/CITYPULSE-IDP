@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Center 66dp bounding box is (21,21) to (87,87) -->
+    <!-- Safe Path: Cyan Route Line with Pulse Wave -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M26,74 L40,74 L47,56 L53,68 L60,40 L68,54 L82,54"
+        android:strokeWidth="4.5"
+        android:strokeColor="#00E5FF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Route Nodes / Waypoints -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M26,74 A4,4 0 1,0 26,74.1 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M82,54 A4.5,4.5 0 1,0 82,54.1 Z" />
+
+    <!-- Hazard Shield Badge on the Choke Point -->
+    <path
+        android:fillColor="#FF9100"
+        android:pathData="M54,26 L65,31 L65,41 C65,48 60,54 54,56 C48,54 43,48 43,41 L43,31 Z" />
+    <!-- Exclamation Mark in Shield -->
+    <path
+        android:fillColor="#0D1B2A"
+        android:pathData="M52.5,33 L55.5,33 L55,43 L53,43 Z" />
+    <path
+        android:fillColor="#0D1B2A"
+        android:pathData="M54,47 A1.5,1.5 0 1,0 54,47.1 Z" />
+
+    <!-- Navigation Pin Outline -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M78,32 C78,28 81,25 85,25 C89,25 92,28 92,32 C92,37 85,44 85,44 C85,44 78,37 78,32 Z" />
+    <path
+        android:fillColor="#0D1B2A"
+        android:pathData="M85,32 A2,2 0 1,0 85,32.1 Z" />
+</vector>
+

@@ -1,0 +1,532 @@
+{
+ "version": 0.6,
+ "generator": "scripts/tests/make_testville_fixture.py (synthetic; not OpenStreetMap)",
+ "osm3s": {
+  "timestamp_osm_base": "synthetic"
+ },
+ "bbox": {
+  "min_lat": 19.99,
+  "max_lat": 20.03,
+  "min_lon": 77.99,
+  "max_lon": 78.03
+ },
+ "elements": [
+  {
+   "type": "way",
+   "id": 2000,
+   "nodes": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005
+   ],
+   "geometry": [
+    {
+     "lat": 20.0,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.0,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.0,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.0,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.0,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.0,
+     "lon": 78.02
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Row Road 1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 2001,
+   "nodes": [
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015
+   ],
+   "geometry": [
+    {
+     "lat": 20.004,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.02
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Row Road 2"
+   }
+  },
+  {
+   "type": "way",
+   "id": 2002,
+   "nodes": [
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025
+   ],
+   "geometry": [
+    {
+     "lat": 20.008,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.02
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Row Road 3"
+   }
+  },
+  {
+   "type": "way",
+   "id": 2003,
+   "nodes": [
+    1030,
+    1031,
+    1032,
+    1033,
+    1034,
+    1035
+   ],
+   "geometry": [
+    {
+     "lat": 20.012,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.02
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Row Road 4"
+   }
+  },
+  {
+   "type": "way",
+   "id": 2004,
+   "nodes": [
+    1040,
+    1041,
+    1042,
+    1043,
+    1044,
+    1045
+   ],
+   "geometry": [
+    {
+     "lat": 20.016,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.02
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Row Road 5"
+   }
+  },
+  {
+   "type": "way",
+   "id": 2005,
+   "nodes": [
+    1050,
+    1051,
+    1052,
+    1053,
+    1054,
+    1055
+   ],
+   "geometry": [
+    {
+     "lat": 20.02,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.02
+    }
+   ],
+   "tags": {
+    "highway": "primary",
+    "name": "Ring Road",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 3000,
+   "nodes": [
+    1000,
+    1010,
+    1020,
+    1030,
+    1040,
+    1050
+   ],
+   "geometry": [
+    {
+     "lat": 20.0,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.0
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.0
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Column Street 1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 3001,
+   "nodes": [
+    1001,
+    1011,
+    1021,
+    1031,
+    1041,
+    1051
+   ],
+   "geometry": [
+    {
+     "lat": 20.0,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.004
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.004
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Column Street 2"
+   }
+  },
+  {
+   "type": "way",
+   "id": 3002,
+   "nodes": [
+    1002,
+    1012,
+    1022,
+    1032,
+    1042,
+    1052
+   ],
+   "geometry": [
+    {
+     "lat": 20.0,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.008
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.008
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Column Street 3"
+   }
+  },
+  {
+   "type": "way",
+   "id": 3003,
+   "nodes": [
+    1003,
+    1013,
+    1023
+   ],
+   "geometry": [
+    {
+     "lat": 20.0,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.012
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Column Street 4"
+   }
+  },
+  {
+   "type": "way",
+   "id": 3103,
+   "nodes": [
+    1033,
+    1043,
+    1053
+   ],
+   "geometry": [
+    {
+     "lat": 20.012,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.012
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.012
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Column Street 4"
+   }
+  },
+  {
+   "type": "way",
+   "id": 3004,
+   "nodes": [
+    1004,
+    1014,
+    1024,
+    1034,
+    1044,
+    1054
+   ],
+   "geometry": [
+    {
+     "lat": 20.0,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.016
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.016
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Column Street 5"
+   }
+  },
+  {
+   "type": "way",
+   "id": 3005,
+   "nodes": [
+    1005,
+    1015,
+    1025,
+    1035,
+    1045,
+    1055
+   ],
+   "geometry": [
+    {
+     "lat": 20.0,
+     "lon": 78.02
+    },
+    {
+     "lat": 20.004,
+     "lon": 78.02
+    },
+    {
+     "lat": 20.008,
+     "lon": 78.02
+    },
+    {
+     "lat": 20.012,
+     "lon": 78.02
+    },
+    {
+     "lat": 20.016,
+     "lon": 78.02
+    },
+    {
+     "lat": 20.02,
+     "lon": 78.02
+    }
+   ],
+   "tags": {
+    "highway": "residential",
+    "name": "Column Street 6"
+   }
+  }
+ ]
+}

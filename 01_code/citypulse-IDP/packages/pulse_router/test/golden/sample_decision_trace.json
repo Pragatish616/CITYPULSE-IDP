@@ -1,0 +1,54 @@
+{
+  "query_id": "0192f3d0-0000-7000-8000-000000000000",
+  "computed_at": "2026-09-12T05:15:01Z",
+  "mode": "offline",
+  "user_class": "pedestrian",
+  "z": 1.28,
+  "lambda": 0.6,
+  "chosen": {
+    "route_id": "A",
+    "duration_s": 1147,
+    "distance_m": 8420,
+    "free_flow_duration_s": 1023,
+    "hazard_time_penalty_s": 124,
+    "worst_edge_p": 0.31,
+    "geometry_ref": "polyline:fixed_test_geometry"
+  },
+  "alternatives": [
+    {
+      "route_id": "B",
+      "duration_s": 907,
+      "rejected_because": "chance_constraint",
+      "blocking_edges": [
+        {
+          "edge_id": 184223,
+          "street_name": "Kotturpuram Bridge approach",
+          "hazard_class": "flood",
+          "p_mean": 0.792,
+          "p_pessimistic": 1.0,
+          "n_eff": 1.8,
+          "newest_observation_age_s": 179,
+          "source_class": "crowd",
+          "depth_mm": 320.0,
+          "time_penalty_s": 0,
+          "removed_by_chance_constraint": true
+        }
+      ]
+    }
+  ],
+  "context_facts": [
+    {
+      "key": "reservoir_level_pct",
+      "value": 94,
+      "label": "Chembarambakkam",
+      "as_of": "2026-09-12T04:00:00Z"
+    }
+  ],
+  "data_gaps": [
+    {
+      "corridor": "Velachery Main Rd",
+      "reason": "no_observations_in_window"
+    }
+  ],
+  "confidence_band": "low"
+}

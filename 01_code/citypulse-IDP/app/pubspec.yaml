@@ -1,0 +1,107 @@
+name: citypulse_app
+description: >
+  CityPulse AI Flutter client shell (T5.1, docs/IMPLEMENTATION_PLAN.md). Loads
+  the real Chennai routing graph, computes an offline route in-process via
+  pulse_router/pulse_belief/pulse_explain (never a CLI shell-out — ADR-001,
+  "one router implementation, two consumers"), and renders the ADR-011
+  confidence UI. Android only, per docs/CHENNAI_PROTOTYPE_SPEC.md §3.
+publish_to: "none"
+
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.13.2
+
+dependencies:
+  # In-process router/belief/explanation packages -- path dependencies so the
+  # app runs the *same code* the Python evaluation harness's CLI wraps, never
+  # a second implementation (CLAUDE.md §5, ADR-001).
+  cupertino_icons: ^1.0.8
+
+  # T5.2 local hazard cache (docs/IMPLEMENTATION_PLAN.md, ADR-008, ADR-010):
+  # Drift over SQLite with the built-in R*Tree module for the append-only
+  # observation log + outbox -- not SpatiaLite, not Isar (docs/ARCHITECTURE.md
+  # app/ section is explicit about this).
+  drift: ^2.28.2
+  flutter:
+    sdk: flutter
+
+  # T4.3 on-device SLM rewriter (docs/IMPLEMENTATION_PLAN.md, ADR-004):
+  # Gemma 3 270M IT INT4-QAT via LiteRT-LM. Version verified on pub.dev
+  # 2026-09-18 (current published version at the time this was added) --
+  # see lib/src/explain/flutter_gemma_rewriter.dart's doc comment for what
+  # is and is not verified about this integration (no physical device here,
+  # T0.1 not yet run -- this compiles and is structurally correct against
+  # the package's real API, nothing more is claimed).
+  flutter_gemma: ^1.8.3
+
+  # T5.4 sync client (docs/IMPLEMENTATION_PLAN.md): plain package:http rather
+  # than dio -- nothing else in this app needs interceptors/retries built in
+  # (SyncClient implements its own retry-via-outbox instead), and http is the
+  # smaller, more commonly-audited dependency for a single POST/GET pair.
+  flutter_riverpod: ^3.4.3
+  go_router: ^18.0.2
+  http: ^1.2.2
+
+  # App version for the "re-shown on app-version change" disclaimer rule
+  # (ADR-011) -- reads pubspec's own version at runtime.
+  maplibre_gl: ^0.27.1
+  package_info_plus: ^10.2.1
+
+  # Locates the platform application-support directory for the file-backed
+  # Drift database (T5.2's `HazardDatabase.open()`).
+  path: ^1.9.1
+  path_provider: ^2.1.5
+  pointer_interceptor: ^0.10.1+3
+  pulse_belief:
+    path: ../packages/pulse_belief
+  pulse_explain:
+    path: ../packages/pulse_explain
+  pulse_router:
+    path: ../packages/pulse_router
+
+  # Persists "has this app version's ADR-011 disclaimer been acknowledged" --
+  # the only piece of local state this shell needs. Free, no key, no network.
+  shared_preferences: ^2.5.5
+  sqlite3_flutter_libs: ^0.5.34
+
+  # Parses config/hazard_classes.yaml (bundled as an asset, not hand-copied)
+  # so the Tier 0 renderer's display nouns have one source of truth
+  # (docs/CONTRACTS.md §5), not a second hard-coded copy in Dart.
+  uuid: ^4.6.0
+  yaml: ^3.1.4
+
+dev_dependencies:
+  # Codegen for the Drift database (T5.2) + in-memory NativeDatabase for tests.
+  build_runner: ^2.4.13
+  drift_dev: ^2.28.2
+  flutter_test:
+    sdk: flutter
+  sqlite3: ^2.7.5
+
+  # Matches the lint convention used by packages/pulse_router,
+  # packages/pulse_belief and packages/pulse_explain (CLAUDE.md §7).
+  very_good_analysis: ^7.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/config/hazard_classes.yaml
+    - assets/config/cities.yaml
+    - assets/packs/
+    - assets/data/watchlist_candidates.json
+    - assets/licenses/
+
+  # Bundled so the web app asks no third party for fonts (see assets/fonts/README.md).
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
+    - family: NotoSansTamil
+      fonts:
+        - asset: assets/fonts/NotoSansTamil-Regular.ttf
+        - asset: assets/fonts/NotoSansTamil-Bold.ttf
+          weight: 700

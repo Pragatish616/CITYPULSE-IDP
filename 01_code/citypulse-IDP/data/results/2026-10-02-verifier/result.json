@@ -1,0 +1,88 @@
+{
+  "task": "M1.4 verifier adversarial evaluation",
+  "fixture": "packages/pulse_explain/test/fixtures/verifier_cases.json",
+  "trace": "test/helpers.dart buildTrace() default",
+  "n_cases": 236,
+  "n_must_reject": 209,
+  "n_must_accept": 27,
+  "false_accepts": 0,
+  "false_accept_rate": 0.0,
+  "false_rejects": 0,
+  "false_reject_rate": 0.0,
+  "by_category": {
+    "safety_direct": {
+      "n": 20,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "dry_clear_open": {
+      "n": 20,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "passability": {
+      "n": 20,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "no_risk": {
+      "n": 20,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "reversed_comparison": {
+      "n": 15,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "wrong_route_avoidance": {
+      "n": 8,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "numeral_binding": {
+      "n": 16,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "invented_fact": {
+      "n": 10,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "hedged_safety": {
+      "n": 5,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "template_safety": {
+      "n": 50,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "tamil_safety": {
+      "n": 25,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "honest_en": {
+      "n": 22,
+      "false_accept": 0,
+      "false_reject": 0
+    },
+    "honest_ta": {
+      "n": 5,
+      "false_accept": 0,
+      "false_reject": 0
+    }
+  },
+  "false_accept_examples": [],
+  "false_reject_examples": [],
+  "limits": [
+    "Cases are authored by the checker authors. The set was written before the hardening, so the baseline is genuine (2026-10-02-verifier-baseline: 150 of 209 false accepts).",
+    "The hardened lexicon was then extended once more after three residual false accepts (\"no longer flooded\", \"the flood is over\", \"will not face any water\") were seen on this same set. The post-fix result is therefore partly fitted to it; the honest generalisation test is third-party and model-generated text (Study 3).",
+    "Not model output: Tier 1/2 rewriters have never run (F-06). The real false-accept rate on SLM text is unmeasured.",
+    "Tamil coverage is a 25-sentence hand-written lexicon check; it needs a native-speaker review before any Tamil explanation ships.",
+    "50 of the must-reject cases are templated cross-products and add volume, not diversity."
+  ]
+}

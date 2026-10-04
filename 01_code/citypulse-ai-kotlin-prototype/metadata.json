@@ -1,0 +1,6 @@
+{
+  "name": "CityPulse AI",
+  "description": "Hazard-aware urban routing for Chennai that keeps working and explaining decisions offline with confidence decay and pessimistic hazard fusion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

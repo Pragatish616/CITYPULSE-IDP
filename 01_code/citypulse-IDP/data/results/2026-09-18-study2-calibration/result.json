@@ -1,0 +1,826 @@
+{
+  "task": "T3.4 Study 2 -- confidence calibration",
+  "seed": 20260918,
+  "corpus_t0": "2015-12-02T00:00:00Z",
+  "age_buckets_hours_simulated": [
+    0,
+    1,
+    6,
+    24,
+    72,
+    168
+  ],
+  "timing": {
+    "scoring_seconds": 5.9060000000172295,
+    "figures_seconds": 4.7810000000172295,
+    "total_seconds": 10.687000000034459
+  },
+  "ground_truth_label_method": "y_edge=1 iff the edge has >=1 official_feed observation; predictor input excludes official_feed entirely (crowd observations + static prior only) -- a source-class holdout, not true confirmed-absence ground truth. See this file's module docstring for the full honesty caveat; this is the single most important limitation of Study 2 as run against this corpus.",
+  "pool_stats": {
+    "edges_with_official_confirmation": 118,
+    "edges_crowd_only": 4758,
+    "edges_no_report_sampled": 5000,
+    "edges_no_report_available": 465465
+  },
+  "n_crowd_pool_edges": 4876,
+  "n_crowd_pool_rows_all_age_buckets": 29256,
+  "n_no_report_pool_edges": 5000,
+  "baselines": [
+    "c3_ours",
+    "c2_single_decay",
+    "c4_fixed_ttl",
+    "beta_reputation_with_forgetting"
+  ],
+  "beta_reputation_baseline_source": "J\u00f8sang, A. and Ismail, R., 'The Beta Reputation System', 15th Bled Electronic Commerce Conference, 2002. [UNVERIFIED DETAIL] per CLAUDE.md section 7's citation discipline -- the primary paper PDF was not opened for this task; the standard documented formulation (Beta(r+1,s+1) posterior mean over forgetting-discounted, reliability- and kernel-weighted positive/negative evidence counts) was reconstructed and implemented directly in study_common.beta_reputation_p, verified only against hand-computed toy cases (scripts/tests/test_study_common.py), not against a reference implementation of the paper itself. Do not cite as a verified reproduction without opening the primary source first.",
+  "metrics_overall_all_edges": {
+    "n": 34256,
+    "n_positive": 708,
+    "n_negative": 33548,
+    "c3_ours": {
+      "brier": 0.03434127749060866,
+      "murphy_reliability": 0.013712642205446343,
+      "murphy_resolution": 6.916583843023064e-05,
+      "murphy_uncertainty": 0.020240749596248244,
+      "decomposition_check": 0.033884225963264354,
+      "adaptive_ece": 0.08163503538160993,
+      "log_loss": 0.15931363265011209,
+      "auroc_discrimination_only": 0.6089019553061336
+    },
+    "c2_single_decay": {
+      "brier": 0.034351250240508384,
+      "murphy_reliability": 0.013723283781134205,
+      "murphy_resolution": 6.9089024838083e-05,
+      "murphy_uncertainty": 0.020240749596248244,
+      "decomposition_check": 0.033894944352544365,
+      "adaptive_ece": 0.08166703030147975,
+      "log_loss": 0.1593453698662323,
+      "auroc_discrimination_only": 0.6090163668011902
+    },
+    "c4_fixed_ttl": {
+      "brier": 0.03671580160992263,
+      "murphy_reliability": 0.01614521524876047,
+      "murphy_resolution": 6.160223282288491e-05,
+      "murphy_uncertainty": 0.020240749596248244,
+      "decomposition_check": 0.03632436261218583,
+      "adaptive_ece": 0.0888281137318191,
+      "log_loss": 0.16664936638967237,
+      "auroc_discrimination_only": 0.6092810604789899
+    },
+    "beta_reputation_with_forgetting": {
+      "brier": 0.29209349102491694,
+      "murphy_reliability": 0.27122300331814725,
+      "murphy_resolution": 2.9200640346629096e-06,
+      "murphy_uncertainty": 0.020240749596248244,
+      "decomposition_check": 0.2914608328503608,
+      "adaptive_ece": 0.5195419158916545,
+      "log_loss": 0.7785381783284728,
+      "auroc_discrimination_only": 0.5678268813249453
+    },
+    "p_tilde_sanity_check_not_expected_to_calibrate": {
+      "brier": 0.37037342055344996,
+      "mean_p_tilde": 0.5286528187620146,
+      "mean_p_mean_c3": 0.10230294757217509,
+      "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+    }
+  },
+  "metrics_crowd_pool_only": {
+    "n": 29256,
+    "n_positive": 708,
+    "n_negative": 28548,
+    "c3_ours": {
+      "brier": 0.039189227650957094,
+      "murphy_reliability": 0.015116987417311743,
+      "murphy_resolution": 6.767233130113481e-05,
+      "murphy_uncertainty": 0.02361451612794683,
+      "decomposition_check": 0.03866383121395744,
+      "adaptive_ece": 0.08735990336920406,
+      "log_loss": 0.17771335668244237,
+      "auroc_discrimination_only": 0.5662417158058308
+    },
+    "c2_single_decay": {
+      "brier": 0.03920090479481015,
+      "murphy_reliability": 0.015129386756155437,
+      "murphy_resolution": 6.758205850423191e-05,
+      "murphy_uncertainty": 0.02361451612794683,
+      "decomposition_check": 0.038676320825598035,
+      "adaptive_ece": 0.08739736638448505,
+      "log_loss": 0.1777505179510852,
+      "auroc_discrimination_only": 0.5662873075696082
+    },
+    "c4_fixed_ttl": {
+      "brier": 0.04196957008434577,
+      "murphy_reliability": 0.017964208939786664,
+      "murphy_resolution": 5.733345695653501e-05,
+      "murphy_uncertainty": 0.02361451612794683,
+      "decomposition_check": 0.04152139161077696,
+      "adaptive_ece": 0.09578231559113341,
+      "log_loss": 0.1863028048292286,
+      "auroc_discrimination_only": 0.5652968060928606
+    },
+    "beta_reputation_with_forgetting": {
+      "brier": 0.2992874838853416,
+      "murphy_reliability": 0.27485014355818216,
+      "murphy_resolution": 2.799995658914356e-07,
+      "murphy_uncertainty": 0.02361451612794683,
+      "decomposition_check": 0.29846437968656314,
+      "adaptive_ece": 0.5228817292447538,
+      "log_loss": 0.7931319364926399,
+      "auroc_discrimination_only": 0.49436091973949714
+    },
+    "p_tilde_sanity_check_not_expected_to_calibrate": {
+      "brier": 0.4326509822572153,
+      "mean_p_tilde": 0.6107753117462598,
+      "mean_p_mean_c3": 0.111560067438113,
+      "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+    }
+  },
+  "metrics_by_report_age_bucket": {
+    "0": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.047827530350488104,
+        "murphy_reliability": 0.02397970700241026,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.047541694803713355,
+        "adaptive_ece": 0.11409771986693053,
+        "log_loss": 0.20469622383237573,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "c2_single_decay": {
+        "brier": 0.047827530350488104,
+        "murphy_reliability": 0.02397970700241026,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.047541694803713355,
+        "adaptive_ece": 0.11409771986693053,
+        "log_loss": 0.20469622383237573,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.047827530350488104,
+        "murphy_reliability": 0.02397970700241026,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.047541694803713355,
+        "adaptive_ece": 0.11409771986693053,
+        "log_loss": 0.20469622383237573,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.3649179812531109,
+        "murphy_reliability": 0.3411081699990262,
+        "murphy_resolution": 7.211697360643267e-06,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.36471547442961244,
+        "adaptive_ece": 0.5838031222918512,
+        "log_loss": 0.9272842791116722,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.39304843326181027,
+        "mean_p_tilde": 0.5790868731891492,
+        "mean_p_mean_c3": 0.13829788393583947,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "1": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.04242369861382574,
+        "murphy_reliability": 0.01847308161083783,
+        "murphy_resolution": 5.65436886781697e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.04203105405010649,
+        "adaptive_ece": 0.09858419148184513,
+        "log_loss": 0.1884492032600643,
+        "auroc_discrimination_only": 0.5660511110636145
+      },
+      "c2_single_decay": {
+        "brier": 0.042475103291079855,
+        "murphy_reliability": 0.018528485311180114,
+        "murphy_resolution": 5.610135814154768e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.042086900080985395,
+        "adaptive_ece": 0.09874093315224881,
+        "log_loss": 0.1886086351978124,
+        "auroc_discrimination_only": 0.566035080969785
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.047827530295695184,
+        "murphy_reliability": 0.023979706948640725,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.04754169474994382,
+        "adaptive_ece": 0.11409771971829369,
+        "log_loss": 0.2046962236722799,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.3549199136582288,
+        "murphy_reliability": 0.3310067444542583,
+        "murphy_resolution": 1.0173064581327448e-06,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.35462024327574704,
+        "adaptive_ece": 0.5752254396651666,
+        "log_loss": 0.9062972684122955,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4028339671597099,
+        "mean_p_tilde": 0.5866904537765357,
+        "mean_p_mean_c3": 0.12278435555075408,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "6": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.03654925390185128,
+        "murphy_reliability": 0.012394886987757278,
+        "murphy_resolution": 8.78546042728344e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03592154851143127,
+        "adaptive_ece": 0.08006922403448152,
+        "log_loss": 0.16940637163113154,
+        "auroc_discrimination_only": 0.5674421669837063
+      },
+      "c2_single_decay": {
+        "brier": 0.036567902582393376,
+        "murphy_reliability": 0.012413915451481586,
+        "murphy_resolution": 8.78297949981393e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03594060178443027,
+        "adaptive_ece": 0.08013290975831618,
+        "log_loss": 0.169469874649961,
+        "auroc_discrimination_only": 0.5674243557683402
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.047827530021730576,
+        "murphy_reliability": 0.02397970667979306,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.04754169448109615,
+        "adaptive_ece": 0.11409771897510947,
+        "log_loss": 0.20469622287180256,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.3153506574350088,
+        "murphy_reliability": 0.29157618170905364,
+        "murphy_resolution": 9.390811033653597e-08,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.31519060392889015,
+        "adaptive_ece": 0.5399290673757525,
+        "log_loss": 0.8246919845940825,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.44536143818240825,
+        "mean_p_tilde": 0.6209364876666957,
+        "mean_p_mean_c3": 0.1032767406309835,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "24": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.03611166314747023,
+        "murphy_reliability": 0.011967826543071457,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549189128263555,
+        "adaptive_ece": 0.07856187001574041,
+        "log_loss": 0.1679095689717945,
+        "auroc_discrimination_only": 0.5674813516575117
+      },
+      "c2_single_decay": {
+        "brier": 0.03611167265279238,
+        "murphy_reliability": 0.011967835623065614,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.035491900362629704,
+        "adaptive_ece": 0.07856190303757943,
+        "log_loss": 0.16790960162707788,
+        "auroc_discrimination_only": 0.5674813516575117
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.260468991349368,
+        "murphy_reliability": 0.2368402447518437,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.2604547608797905,
+        "adaptive_ece": 0.4866623518948673,
+        "log_loss": 0.7140890064840035,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4515534877704155,
+        "mean_p_tilde": 0.6259789194017041,
+        "mean_p_mean_c3": 0.10166727304897191,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "72": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682730601805345
+      },
+      "c2_single_decay": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218502,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.035491840461782595,
+        "adaptive_ece": 0.07856168519183108,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5691787604819002
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.2500673568892795,
+        "murphy_reliability": 0.22645278554084253,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.2500673016687894,
+        "adaptive_ece": 0.47587055544637613,
+        "log_loss": 0.693281894339561,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4515542835844741,
+        "mean_p_tilde": 0.6259795682217372,
+        "mean_p_mean_c3": 0.10166707573106457,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "168": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "c2_single_decay": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.2500000027270536,
+        "murphy_reliability": 0.2263854865968813,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.25000000272482814,
+        "adaptive_ece": 0.47579983879450954,
+        "log_loss": 0.6931471860140394,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4515542835844741,
+        "mean_p_tilde": 0.6259795682217372,
+        "mean_p_mean_c3": 0.10166707573106455,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    }
+  },
+  "metrics_by_hazard_class": {
+    "flood": {
+      "n": 29256,
+      "n_positive": 708,
+      "n_negative": 28548,
+      "c3_ours": {
+        "brier": 0.039189227650957094,
+        "murphy_reliability": 0.015116987417311743,
+        "murphy_resolution": 6.767233130113481e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03866383121395744,
+        "adaptive_ece": 0.08735990336920406,
+        "log_loss": 0.17771335668244237,
+        "auroc_discrimination_only": 0.5662417158058308
+      },
+      "c2_single_decay": {
+        "brier": 0.03920090479481015,
+        "murphy_reliability": 0.015129386756155437,
+        "murphy_resolution": 6.758205850423191e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.038676320825598035,
+        "adaptive_ece": 0.08739736638448505,
+        "log_loss": 0.1777505179510852,
+        "auroc_discrimination_only": 0.5662873075696082
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.04196957008434577,
+        "murphy_reliability": 0.017964208939786664,
+        "murphy_resolution": 5.733345695653501e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.04152139161077696,
+        "adaptive_ece": 0.09578231559113341,
+        "log_loss": 0.1863028048292286,
+        "auroc_discrimination_only": 0.5652968060928606
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.2992874838853416,
+        "murphy_reliability": 0.27485014355818216,
+        "murphy_resolution": 2.799995658914356e-07,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.29846437968656314,
+        "adaptive_ece": 0.5228817292447538,
+        "log_loss": 0.7931319364926399,
+        "auroc_discrimination_only": 0.49436091973949714
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4326509822572153,
+        "mean_p_tilde": 0.6107753117462598,
+        "mean_p_mean_c3": 0.111560067438113,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    }
+  },
+  "hazard_class_stratification_confound": "Corpus-driven confound found while running this study, flagged rather than papered over (CLAUDE.md section 8.4): every crowd_sourced_flooding_2015.kml observation is hazard_class='flood' (5,052/5,052) and every gcc_stagnation_2015.kml (waterlogging) observation is source_class='official_feed' (753/753) -- verified against data/corpus/2026-09-17/observations.ndjson. Because this study's ground-truth label is a source-class holdout (crowd predicts official_feed confirmation, see this file's module docstring), the crowd-only predictor pool contains *zero* waterlogging edges by construction -- 'stratified by hazard_class' degenerates to a single ('flood') stratum for this specific ground-truth design, not from a shortage of waterlogging data in the corpus overall (753 waterlogging records exist, all in the label side of the split, none in the predictor side). This is a real limitation of the source-holdout proxy itself, distinct from the already-flagged single-timestamp and all-positive-polarity limitations, and is being written into docs/DECISIONS.md.",
+  "metrics_by_age_bucket_and_hazard_class": {
+    "flood__age_0h": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.047827530350488104,
+        "murphy_reliability": 0.02397970700241026,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.047541694803713355,
+        "adaptive_ece": 0.11409771986693053,
+        "log_loss": 0.20469622383237573,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "c2_single_decay": {
+        "brier": 0.047827530350488104,
+        "murphy_reliability": 0.02397970700241026,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.047541694803713355,
+        "adaptive_ece": 0.11409771986693053,
+        "log_loss": 0.20469622383237573,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.047827530350488104,
+        "murphy_reliability": 0.02397970700241026,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.047541694803713355,
+        "adaptive_ece": 0.11409771986693053,
+        "log_loss": 0.20469622383237573,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.3649179812531109,
+        "murphy_reliability": 0.3411081699990262,
+        "murphy_resolution": 7.211697360643267e-06,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.36471547442961244,
+        "adaptive_ece": 0.5838031222918512,
+        "log_loss": 0.9272842791116722,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.39304843326181027,
+        "mean_p_tilde": 0.5790868731891492,
+        "mean_p_mean_c3": 0.13829788393583947,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_1h": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.04242369861382574,
+        "murphy_reliability": 0.01847308161083783,
+        "murphy_resolution": 5.65436886781697e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.04203105405010649,
+        "adaptive_ece": 0.09858419148184513,
+        "log_loss": 0.1884492032600643,
+        "auroc_discrimination_only": 0.5660511110636145
+      },
+      "c2_single_decay": {
+        "brier": 0.042475103291079855,
+        "murphy_reliability": 0.018528485311180114,
+        "murphy_resolution": 5.610135814154768e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.042086900080985395,
+        "adaptive_ece": 0.09874093315224881,
+        "log_loss": 0.1886086351978124,
+        "auroc_discrimination_only": 0.566035080969785
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.047827530295695184,
+        "murphy_reliability": 0.023979706948640725,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.04754169474994382,
+        "adaptive_ece": 0.11409771971829369,
+        "log_loss": 0.2046962236722799,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.3549199136582288,
+        "murphy_reliability": 0.3310067444542583,
+        "murphy_resolution": 1.0173064581327448e-06,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.35462024327574704,
+        "adaptive_ece": 0.5752254396651666,
+        "log_loss": 0.9062972684122955,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4028339671597099,
+        "mean_p_tilde": 0.5866904537765357,
+        "mean_p_mean_c3": 0.12278435555075408,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_6h": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.03654925390185128,
+        "murphy_reliability": 0.012394886987757278,
+        "murphy_resolution": 8.78546042728344e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03592154851143127,
+        "adaptive_ece": 0.08006922403448152,
+        "log_loss": 0.16940637163113154,
+        "auroc_discrimination_only": 0.5674421669837063
+      },
+      "c2_single_decay": {
+        "brier": 0.036567902582393376,
+        "murphy_reliability": 0.012413915451481586,
+        "murphy_resolution": 8.78297949981393e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03594060178443027,
+        "adaptive_ece": 0.08013290975831618,
+        "log_loss": 0.169469874649961,
+        "auroc_discrimination_only": 0.5674243557683402
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.047827530021730576,
+        "murphy_reliability": 0.02397970667979306,
+        "murphy_resolution": 5.252832664373647e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.04754169448109615,
+        "adaptive_ece": 0.11409771897510947,
+        "log_loss": 0.20469622287180256,
+        "auroc_discrimination_only": 0.5638638938166585
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.3153506574350088,
+        "murphy_reliability": 0.29157618170905364,
+        "murphy_resolution": 9.390811033653597e-08,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.31519060392889015,
+        "adaptive_ece": 0.5399290673757525,
+        "log_loss": 0.8246919845940825,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.44536143818240825,
+        "mean_p_tilde": 0.6209364876666957,
+        "mean_p_mean_c3": 0.1032767406309835,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_24h": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.03611166314747023,
+        "murphy_reliability": 0.011967826543071457,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549189128263555,
+        "adaptive_ece": 0.07856187001574041,
+        "log_loss": 0.1679095689717945,
+        "auroc_discrimination_only": 0.5674813516575117
+      },
+      "c2_single_decay": {
+        "brier": 0.03611167265279238,
+        "murphy_reliability": 0.011967835623065614,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.035491900362629704,
+        "adaptive_ece": 0.07856190303757943,
+        "log_loss": 0.16790960162707788,
+        "auroc_discrimination_only": 0.5674813516575117
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.260468991349368,
+        "murphy_reliability": 0.2368402447518437,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.2604547608797905,
+        "adaptive_ece": 0.4866623518948673,
+        "log_loss": 0.7140890064840035,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4515534877704155,
+        "mean_p_tilde": 0.6259789194017041,
+        "mean_p_mean_c3": 0.10166727304897191,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_72h": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682730601805345
+      },
+      "c2_single_decay": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218502,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.035491840461782595,
+        "adaptive_ece": 0.07856168519183108,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5691787604819002
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.2500673568892795,
+        "murphy_reliability": 0.22645278554084253,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.2500673016687894,
+        "adaptive_ece": 0.47587055544637613,
+        "log_loss": 0.693281894339561,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4515542835844741,
+        "mean_p_tilde": 0.6259795682217372,
+        "mean_p_mean_c3": 0.10166707573106457,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    },
+    "flood__age_168h": {
+      "n": 4876,
+      "n_positive": 118,
+      "n_negative": 4758,
+      "c3_ours": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "c2_single_decay": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "c4_fixed_ttl": {
+        "brier": 0.03611160994605359,
+        "murphy_reliability": 0.011967775722218498,
+        "murphy_resolution": 9.045138838273808e-05,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.03549184046178259,
+        "adaptive_ece": 0.07815151291947668,
+        "log_loss": 0.16790938619960222,
+        "auroc_discrimination_only": 0.5682766224236077
+      },
+      "beta_reputation_with_forgetting": {
+        "brier": 0.2500000027270536,
+        "murphy_reliability": 0.2263854865968813,
+        "murphy_resolution": 0.0,
+        "murphy_uncertainty": 0.02361451612794683,
+        "decomposition_check": 0.25000000272482814,
+        "adaptive_ece": 0.47579983879450954,
+        "log_loss": 0.6931471860140394,
+        "auroc_discrimination_only": 0.5145045632333768
+      },
+      "p_tilde_sanity_check_not_expected_to_calibrate": {
+        "brier": 0.4515542835844741,
+        "mean_p_tilde": 0.6259795682217372,
+        "mean_p_mean_c3": 0.10166707573106455,
+        "note": "p_tilde (z=2.0, emergency class) is expected to systematically overstate risk relative to p_mean and therefore score worse on Brier/ECE -- that is the design (ADR-002 pessimism-under-uncertainty), not a defect. Confirms mean_p_tilde > mean_p_mean_c3 as a sanity check that this baseline table is wired correctly."
+      }
+    }
+  },
+  "auroc_reported_separately_from_calibration": "Every metrics table above reports auroc_discrimination_only as a distinct field from brier/adaptive_ece/log_loss, per this task's explicit instruction not to conflate discrimination and calibration.",
+  "event_split": {
+    "method": "split_by_event_and_monsoon_episode",
+    "n_events_available": 1,
+    "event_ids": [
+      "chennai_2015_flood_2015-12-02_proxy"
+    ],
+    "folds": [
+      {
+        "fold": 0,
+        "event_ids": [
+          "chennai_2015_flood_2015-12-02_proxy"
+        ],
+        "n_records": 34256
+      }
+    ],
+    "honest_limitation": "Identical limitation to Study 1 (study1_route_quality.py's event_split field): T3.1's corpus is one event with one proxy timestamp -- no second event/monsoon episode exists to hold out. A genuine multi-event split is not currently possible; not fabricated here."
+  },
+  "reproduce_with": "python scripts/study2_calibration.py"
+}

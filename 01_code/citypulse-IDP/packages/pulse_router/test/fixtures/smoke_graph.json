@@ -1,0 +1,8 @@
+{
+  "node_count": 3,
+  "edges": [
+    {"edge_id": 0, "from": 0, "to": 1, "free_flow_seconds": 5, "free_flow_kmh": 40},
+    {"edge_id": 1, "from": 0, "to": 2, "free_flow_seconds": 20, "free_flow_kmh": 40},
+    {"edge_id": 2, "from": 2, "to": 1, "free_flow_seconds": 20, "free_flow_kmh": 40}
+  ]
+}

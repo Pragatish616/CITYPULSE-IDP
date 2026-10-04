@@ -1,0 +1,24 @@
+name: router_api
+description: >
+  CityPulse AI routing service (PLAN.md M2.2): the same pulse_router RoutingEngine the phone
+  runs in-process, behind a small HTTP API, so the web app (which cannot hold the city graph)
+  gets identical routes. One router implementation, two runtimes (ADR-001).
+version: 0.1.0
+publish_to: "none"
+
+environment:
+  sdk: ">=3.13.0 <4.0.0"
+
+dependencies:
+  http: ^1.2.2
+  pulse_belief:
+    path: ../../packages/pulse_belief
+  pulse_router:
+    path: ../../packages/pulse_router
+  shelf: ^1.4.2
+  shelf_router: ^1.1.4
+  yaml: ^3.1.3
+
+dev_dependencies:
+  test: ^1.25.0
+  very_good_analysis: ^7.0.0

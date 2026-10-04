@@ -1,0 +1,519 @@
+{
+  "task": "Study 1 re-scoring under one reference belief (PLAN M1.11)",
+  "source_results": "data\\results\\2026-10-02-study1-route-quality",
+  "reference_belief": "Beta posterior mean (ADR-015) of the C3 model at the replay clock, all report sources, independent of z; identical for every configuration",
+  "bootstrap": {
+    "unit": "origin-destination pair",
+    "B": 5000,
+    "seed": 20261002
+  },
+  "edge_mapping_caveat": "node paths mapped to the smallest-free-flow parallel edge per hop; where the router used a parallel twin the edge id may differ",
+  "router_build": "C:/Users/nprag/Downloads/final_citypulse_ai_idp/01_code/citypulse-IDP/data/bin/2026-10-02/pulse_router.exe",
+  "summary_all_pairs": {
+    "C0": {
+      "n_pairs": 1000,
+      "n_routed": 1000,
+      "n_disconnected": 0,
+      "sum_p_mean": 2.013251074478263,
+      "sum_p_observed_mean": 1.3992857785553388,
+      "sum_p_prior_only_mean": 0.613965295922924,
+      "share_routes_touching_p_ge_0_5": 0.148,
+      "mean_free_flow_detour_pct": 0.0,
+      "n_used_paired_with_c0": 1000
+    },
+    "C1": {
+      "n_pairs": 1000,
+      "n_routed": 1000,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.9832567381279236,
+      "sum_p_observed_mean": 1.292275136185703,
+      "sum_p_prior_only_mean": 0.6909816019422207,
+      "share_routes_touching_p_ge_0_5": 0.0,
+      "mean_free_flow_detour_pct": 0.4948318732395096,
+      "n_used_paired_with_c0": 1000
+    },
+    "Chyb": {
+      "n_pairs": 1000,
+      "n_routed": 1000,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.4346628065084623,
+      "sum_p_observed_mean": 1.0253093617220808,
+      "sum_p_prior_only_mean": 0.40935344478638175,
+      "share_routes_touching_p_ge_0_5": 0.0,
+      "mean_free_flow_detour_pct": 1.350780445911326,
+      "n_used_paired_with_c0": 1000
+    },
+    "C2": {
+      "n_pairs": 1000,
+      "n_routed": 1000,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.9732875534436267,
+      "sum_p_observed_mean": 1.3619756578642372,
+      "sum_p_prior_only_mean": 0.6113118955793894,
+      "share_routes_touching_p_ge_0_5": 0.115,
+      "mean_free_flow_detour_pct": 0.005163887063264205,
+      "n_used_paired_with_c0": 1000
+    },
+    "C3": {
+      "n_pairs": 1000,
+      "n_routed": 1000,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.9732875534436267,
+      "sum_p_observed_mean": 1.3619756578642372,
+      "sum_p_prior_only_mean": 0.6113118955793894,
+      "share_routes_touching_p_ge_0_5": 0.115,
+      "mean_free_flow_detour_pct": 0.005163887063264205,
+      "n_used_paired_with_c0": 1000
+    },
+    "C3_l5": {
+      "n_pairs": 1000,
+      "n_routed": 1000,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.4793107158594616,
+      "sum_p_observed_mean": 1.0806086648442543,
+      "sum_p_prior_only_mean": 0.39870205101520734,
+      "share_routes_touching_p_ge_0_5": 0.075,
+      "mean_free_flow_detour_pct": 0.8532906766648196,
+      "n_used_paired_with_c0": 1000
+    },
+    "C3_l20": {
+      "n_pairs": 1000,
+      "n_routed": 1000,
+      "n_disconnected": 0,
+      "sum_p_mean": 0.7953415737679238,
+      "sum_p_observed_mean": 0.618186380638575,
+      "sum_p_prior_only_mean": 0.177155193129349,
+      "share_routes_touching_p_ge_0_5": 0.025,
+      "mean_free_flow_detour_pct": 6.266387985843047,
+      "n_used_paired_with_c0": 1000
+    },
+    "C4": {
+      "n_pairs": 1000,
+      "n_routed": 1000,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.9732875534436267,
+      "sum_p_observed_mean": 1.3619756578642372,
+      "sum_p_prior_only_mean": 0.6113118955793894,
+      "share_routes_touching_p_ge_0_5": 0.115,
+      "mean_free_flow_detour_pct": 0.005163887063264205,
+      "n_used_paired_with_c0": 1000
+    },
+    "Cinf": {
+      "n_pairs": 1000,
+      "n_routed": 1000,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.9732875534436267,
+      "sum_p_observed_mean": 1.3619756578642372,
+      "sum_p_prior_only_mean": 0.6113118955793894,
+      "share_routes_touching_p_ge_0_5": 0.115,
+      "mean_free_flow_detour_pct": 0.005163887063264205,
+      "n_used_paired_with_c0": 1000
+    }
+  },
+  "summary_first_100_pairs": {
+    "C0": {
+      "n_pairs": 100,
+      "n_routed": 100,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.95694801712428,
+      "sum_p_observed_mean": 1.3826188968598132,
+      "sum_p_prior_only_mean": 0.5743291202644667,
+      "share_routes_touching_p_ge_0_5": 0.12,
+      "mean_free_flow_detour_pct": 0.0,
+      "n_used_paired_with_c0": 100
+    },
+    "C1": {
+      "n_pairs": 100,
+      "n_routed": 100,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.971735625059723,
+      "sum_p_observed_mean": 1.366427439082111,
+      "sum_p_prior_only_mean": 0.6053081859776122,
+      "share_routes_touching_p_ge_0_5": 0.0,
+      "mean_free_flow_detour_pct": 0.46180835932041475,
+      "n_used_paired_with_c0": 100
+    },
+    "Chyb": {
+      "n_pairs": 100,
+      "n_routed": 100,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.3471376506927726,
+      "sum_p_observed_mean": 1.0233997094307454,
+      "sum_p_prior_only_mean": 0.32373794126202726,
+      "share_routes_touching_p_ge_0_5": 0.0,
+      "mean_free_flow_detour_pct": 1.2734953152499173,
+      "n_used_paired_with_c0": 100
+    },
+    "C2": {
+      "n_pairs": 100,
+      "n_routed": 100,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.8612178559617638,
+      "sum_p_observed_mean": 1.3432306791675075,
+      "sum_p_prior_only_mean": 0.5179871767942561,
+      "share_routes_touching_p_ge_0_5": 0.09,
+      "mean_free_flow_detour_pct": 0.00629006996317738,
+      "n_used_paired_with_c0": 100
+    },
+    "C3": {
+      "n_pairs": 100,
+      "n_routed": 100,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.8612178559617638,
+      "sum_p_observed_mean": 1.3432306791675075,
+      "sum_p_prior_only_mean": 0.5179871767942561,
+      "share_routes_touching_p_ge_0_5": 0.09,
+      "mean_free_flow_detour_pct": 0.00629006996317738,
+      "n_used_paired_with_c0": 100
+    },
+    "C3_l5": {
+      "n_pairs": 100,
+      "n_routed": 100,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.3722147307143218,
+      "sum_p_observed_mean": 1.0939072366108982,
+      "sum_p_prior_only_mean": 0.27830749410342365,
+      "share_routes_touching_p_ge_0_5": 0.09,
+      "mean_free_flow_detour_pct": 0.7908263002429861,
+      "n_used_paired_with_c0": 100
+    },
+    "C3_l20": {
+      "n_pairs": 100,
+      "n_routed": 100,
+      "n_disconnected": 0,
+      "sum_p_mean": 0.7353656703626522,
+      "sum_p_observed_mean": 0.6530231492292177,
+      "sum_p_prior_only_mean": 0.08234252113343453,
+      "share_routes_touching_p_ge_0_5": 0.01,
+      "mean_free_flow_detour_pct": 6.703756294851648,
+      "n_used_paired_with_c0": 100
+    },
+    "C4": {
+      "n_pairs": 100,
+      "n_routed": 100,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.8612178559617638,
+      "sum_p_observed_mean": 1.3432306791675075,
+      "sum_p_prior_only_mean": 0.5179871767942561,
+      "share_routes_touching_p_ge_0_5": 0.09,
+      "mean_free_flow_detour_pct": 0.00629006996317738,
+      "n_used_paired_with_c0": 100
+    },
+    "Cinf": {
+      "n_pairs": 100,
+      "n_routed": 100,
+      "n_disconnected": 0,
+      "sum_p_mean": 1.8612178559617638,
+      "sum_p_observed_mean": 1.3432306791675075,
+      "sum_p_prior_only_mean": 0.5179871767942561,
+      "share_routes_touching_p_ge_0_5": 0.09,
+      "mean_free_flow_detour_pct": 0.00629006996317738,
+      "n_used_paired_with_c0": 100
+    }
+  },
+  "routes_changed_vs_c0": {
+    "C1": 148,
+    "Chyb": 445,
+    "C2": 118,
+    "C3": 118,
+    "C3_l5": 418,
+    "C3_l20": 697,
+    "C4": 118,
+    "Cinf": 118
+  },
+  "paired_contrasts": [
+    {
+      "a": "C1",
+      "b": "C0",
+      "metric": "sum_p",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.029994336350339008,
+      "ci95": [
+        -0.07516577646334739,
+        0.017282453980880588
+      ]
+    },
+    {
+      "a": "C1",
+      "b": "C0",
+      "metric": "sum_p_observed",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.10701064236963553,
+      "ci95": [
+        -0.14528827602210778,
+        -0.07016738992135657
+      ]
+    },
+    {
+      "a": "C1",
+      "b": "C0",
+      "metric": "sum_p_prior_only",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": 0.07701630601929656,
+      "ci95": [
+        0.03707472535464144,
+        0.1194994311666933
+      ]
+    },
+    {
+      "a": "Chyb",
+      "b": "C0",
+      "metric": "sum_p",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.5785882679698003,
+      "ci95": [
+        -0.6710811005236006,
+        -0.4877031547522348
+      ]
+    },
+    {
+      "a": "Chyb",
+      "b": "C0",
+      "metric": "sum_p_observed",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.37397641683325794,
+      "ci95": [
+        -0.43105392182407515,
+        -0.3202195192622536
+      ]
+    },
+    {
+      "a": "Chyb",
+      "b": "C0",
+      "metric": "sum_p_prior_only",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.20461185113654234,
+      "ci95": [
+        -0.2634624543183256,
+        -0.14952614995114014
+      ]
+    },
+    {
+      "a": "C3",
+      "b": "C0",
+      "metric": "sum_p",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.03996352103463611,
+      "ci95": [
+        -0.06831170150238468,
+        -0.01739103750448164
+      ]
+    },
+    {
+      "a": "C3",
+      "b": "C0",
+      "metric": "sum_p_observed",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.037310120691101366,
+      "ci95": [
+        -0.05151198005110994,
+        -0.024223494258627902
+      ]
+    },
+    {
+      "a": "C3",
+      "b": "C0",
+      "metric": "sum_p_prior_only",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.002653400343534731,
+      "ci95": [
+        -0.02750230269177225,
+        0.017124896533733107
+      ]
+    },
+    {
+      "a": "C3_l5",
+      "b": "C0",
+      "metric": "sum_p",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.5339403586188011,
+      "ci95": [
+        -0.6260100723302103,
+        -0.45006881351008643
+      ]
+    },
+    {
+      "a": "C3_l5",
+      "b": "C0",
+      "metric": "sum_p_observed",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.3186771137110843,
+      "ci95": [
+        -0.3725040280335114,
+        -0.26845234792592465
+      ]
+    },
+    {
+      "a": "C3_l5",
+      "b": "C0",
+      "metric": "sum_p_prior_only",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.21526324490771676,
+      "ci95": [
+        -0.27269865419922007,
+        -0.15978391397075664
+      ]
+    },
+    {
+      "a": "C3_l20",
+      "b": "C0",
+      "metric": "sum_p",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -1.217909500710339,
+      "ci95": [
+        -1.3418175771594816,
+        -1.094896338792392
+      ]
+    },
+    {
+      "a": "C3_l20",
+      "b": "C0",
+      "metric": "sum_p_observed",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.7810993979167637,
+      "ci95": [
+        -0.8589236646485902,
+        -0.7060515785567636
+      ]
+    },
+    {
+      "a": "C3_l20",
+      "b": "C0",
+      "metric": "sum_p_prior_only",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.43681010279357513,
+      "ci95": [
+        -0.5051707619645511,
+        -0.36776661604307076
+      ]
+    },
+    {
+      "a": "C3_l5",
+      "b": "C1",
+      "metric": "sum_p",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.5039460222684621,
+      "ci95": [
+        -0.5888004538366679,
+        -0.41931064975777954
+      ]
+    },
+    {
+      "a": "C3_l5",
+      "b": "C1",
+      "metric": "sum_p_observed",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.21166647134144873,
+      "ci95": [
+        -0.25728535192703356,
+        -0.16758622428789244
+      ]
+    },
+    {
+      "a": "C3_l5",
+      "b": "C1",
+      "metric": "sum_p_prior_only",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.2922795509270133,
+      "ci95": [
+        -0.36183783699575717,
+        -0.22751226271720498
+      ]
+    },
+    {
+      "a": "C3_l5",
+      "b": "Chyb",
+      "metric": "sum_p",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": 0.04464790935099926,
+      "ci95": [
+        0.019191946265111504,
+        0.07195244582409532
+      ]
+    },
+    {
+      "a": "C3_l5",
+      "b": "Chyb",
+      "metric": "sum_p_observed",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": 0.055299303122173654,
+      "ci95": [
+        0.03844445570993454,
+        0.07411038793353983
+      ]
+    },
+    {
+      "a": "C3_l5",
+      "b": "Chyb",
+      "metric": "sum_p_prior_only",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.010651393771174397,
+      "ci95": [
+        -0.032315276994219315,
+        0.009957924092232954
+      ]
+    },
+    {
+      "a": "C3_l20",
+      "b": "Chyb",
+      "metric": "sum_p",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.6393212327405385,
+      "ci95": [
+        -0.7093326481005054,
+        -0.5702972827539131
+      ]
+    },
+    {
+      "a": "C3_l20",
+      "b": "Chyb",
+      "metric": "sum_p_observed",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.40712298108350586,
+      "ci95": [
+        -0.45069068083295827,
+        -0.36416434673545844
+      ]
+    },
+    {
+      "a": "C3_l20",
+      "b": "Chyb",
+      "metric": "sum_p_prior_only",
+      "n_paired": 1000,
+      "mean_diff_a_minus_b": -0.23219825165703276,
+      "ci95": [
+        -0.27462208122375664,
+        -0.18893343822545144
+      ]
+    }
+  ],
+  "held_out_official_check": {
+    "lambda_5.0": {
+      "official_edges_per_route_prior_only": 1.037,
+      "official_edges_per_route_prior_plus_crowd": 1.118,
+      "mean_diff_crowd_minus_prior_only": 0.081,
+      "ci95": [
+        0.039,
+        0.126
+      ],
+      "n_paired": 1000,
+      "reading": "negative = adding crowd reports moved routes away from official-report edges; a CI that includes 0 means no measurable effect"
+    },
+    "lambda_20.0": {
+      "official_edges_per_route_prior_only": 0.958,
+      "official_edges_per_route_prior_plus_crowd": 1.065,
+      "mean_diff_crowd_minus_prior_only": 0.107,
+      "ci95": [
+        0.058,
+        0.159
+      ],
+      "n_paired": 1000,
+      "reading": "negative = adding crowd reports moved routes away from official-report edges; a CI that includes 0 means no measurable effect"
+    }
+  },
+  "corpus_caveats": [
+    "single proxy timestamp, all reports positive, no depth (CLAUDE.md section 4.4): decay, the chance constraint and false-avoidance cost are untestable here",
+    "'official' points include GCC vulnerability designations, not only dated observations"
+  ],
+  "reproduce_with": "PULSE_ROUTER_BIN=... python scripts/study1_rescore.py"
+}

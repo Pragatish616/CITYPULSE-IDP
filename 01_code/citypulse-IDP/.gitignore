@@ -1,0 +1,23 @@
+.env
+*.pyc
+__pycache__/
+.venv/
+data/osm/
+data/cache/
+# Large, regenerable T1.3 graph-build intermediates (scripts/t1_3_build_graph_and_prior.py) --
+# tens to hundreds of MB, reproducible from data/osm/ in minutes. The small aggregated
+# choropleth output (chennai_prior_choropleth.json) is deliberately NOT matched here and stays
+# tracked, same as data/watchlist/'s candidate output.
+data/graph/*/chennai_graph_cli.json
+data/graph/*/chennai_prior_ell0.json
+build/
+.dart_tool/
+# AOT-compiled pulse_router CLI binary (T2.4/T3.2) -- regenerable via
+# `dart compile exe packages/pulse_router/bin/pulse_router.dart`, platform-specific, not source.
+data/bin/
+*.pbf
+*.pmtiles
+*.gguf
+*.task
+.DS_Store
+*.docx

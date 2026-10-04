@@ -1,0 +1,72 @@
+{
+  "pack": "citypulse-map-pack",
+  "format_version": 1,
+  "built": "2026-10-03",
+  "script": "scripts/city_pipeline.py",
+  "city": {
+    "id": "testville",
+    "bbox": {
+      "min_lat": 19.99,
+      "max_lat": 20.03,
+      "min_lon": 77.99,
+      "max_lon": 78.03
+    },
+    "centre": {
+      "lat": 20.01,
+      "lon": 78.01
+    },
+    "hazard_layer": false,
+    "node_bounds": {
+      "min_lat": 20.0,
+      "max_lat": 20.02,
+      "min_lon": 78.0,
+      "max_lon": 78.02
+    }
+  },
+  "source_ways": "testville_ways.json",
+  "source_sha256": {
+    "testville_ways.json": "73b5c1f54d7e9d0222bb7649ad36f3bca5d5263f4089df121fbc26e6a9c26812"
+  },
+  "osm_snapshot_timestamp": "synthetic",
+  "cities_config_sha256": "4371c0d608a2eb1a27dd8fe934f2b0d62b18445320b7c5f6db1981c14f732114",
+  "counts": {
+    "nodes": 36,
+    "edges": 113,
+    "named_edges": 113,
+    "distinct_names": 12,
+    "unknown_highway_values": {},
+    "ways_skipped_unmapped_class": 0
+  },
+  "prior_scale": 1000,
+  "prior_note": "Flat default prior on every edge (p=0.02, the same no-zone value the Chennai pack uses away from its hazard zones). No flood-hazard source is loaded for this city.",
+  "highway_codes": [
+    "unknown",
+    "motorway",
+    "motorway_link",
+    "trunk",
+    "trunk_link",
+    "primary",
+    "primary_link",
+    "secondary",
+    "secondary_link",
+    "tertiary",
+    "tertiary_link",
+    "unclassified",
+    "residential"
+  ],
+  "licence_note": "OSM-derived (ODbL) graph and names. See data/MANIFEST.md.",
+  "files": {
+    "graph.bin": {
+      "bytes": 2276,
+      "sha256": "55c37d56952f5a8978ff53ad5f038939ffc0e90880039a4229c9d94a08f9cbbb"
+    },
+    "nodes.bin": {
+      "bytes": 592,
+      "sha256": "a0a8cad350617b5b981b3f381a8a2eaf66a80f977a8bcbe36ab666ea471d08c1"
+    },
+    "meta.bin": {
+      "bytes": 793,
+      "sha256": "078012c4ebb9eaee99b8cbb8579db4747442f992a61d29546a02f0ad7ffb26cd"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+name: pulse_explain
+description: >
+  CityPulse AI's explanation layer (docs/DECISIONS.md ADR-004) — the Tier 0
+  deterministic template renderer and the symbolic verifier every generated
+  explanation (Tier 0, the future Tier 1 SLM rewriter, and the cloud path)
+  must pass. Pure Dart, no I/O: reads nothing but a `DecisionTrace`
+  (pulse_router) and caller-supplied display vocabulary, per CLAUDE.md's
+  "the LLM never invents facts" rule. Shared identically between the Flutter
+  client and the Dart AOT evaluation CLI's future explanation harness (T4.5).
+version: 0.1.0
+publish_to: "none"
+
+environment:
+  sdk: ">=3.13.0 <4.0.0"
+
+dependencies:
+  pulse_router:
+    path: ../pulse_router
+
+dev_dependencies:
+  test: ^1.25.0
+  very_good_analysis: ^7.0.0

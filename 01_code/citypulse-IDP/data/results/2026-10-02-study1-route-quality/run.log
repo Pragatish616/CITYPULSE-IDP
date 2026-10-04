@@ -1,0 +1,22 @@
+C0: 1000 routes, 0 disconnected
+C1: 1000 routes, 0 disconnected
+Chyb: 1000 routes, 0 disconnected
+C2: 1000 routes, 0 disconnected
+C3: 1000 routes, 0 disconnected
+C3_l5: 1000 routes, 0 disconnected
+C3_l20: 1000 routes, 0 disconnected
+C4: 1000 routes, 0 disconnected
+Cinf: 1000 routes, 0 disconnected
+=== Study 1: route quality ===
+C0: n=1000 median_detour=1.0000
+C1: n=1000 median_detour=1.0000
+Chyb: n=1000 median_detour=1.0359
+C2: n=1000 median_detour=1.0024
+C3: n=1000 median_detour=1.0024
+C3_l5: n=1000 median_detour=1.0358
+C3_l20: n=1000 median_detour=1.1011
+C4: n=1000 median_detour=1.0024
+Cinf: n=1000 median_detour=1.0024
+Wrote C:\Users\nprag\Downloads\final_citypulse_ai_idp\01_code\citypulse-IDP\data\results\2026-10-02-study1-route-quality\result.json
+Wrote C:\Users\nprag\Downloads\final_citypulse_ai_idp\01_code\citypulse-IDP\data\results\2026-10-02-study1-route-quality\figures\figure3_pareto_frontier.png
+Wrote C:\Users\nprag\Downloads\final_citypulse_ai_idp\01_code\citypulse-IDP\data\results\2026-10-02-study1-route-quality\figures\figure3b_detour_ratio_distributions.png

@@ -1,0 +1,76 @@
+# Deploying CityPulse AI (preparation only, 3 October 2026)
+
+Nothing here has been published. This is the set-up for a single-origin deployment: one web server
+serves the Flutter web build and forwards `/api/*` to the router service and `/ingest/*` to the ingest
+server, so the browser makes no cross-origin calls and CORS stays off. Read `docs/LICENCE_AUDIT.md`
+first; its "re-check before launch" list applies.
+
+## What was tested and what was not
+
+| Part | State |
+|---|---|
+| Web build with `ROUTER_API_URL=/api`, `INGEST_URL=/ingest`, served behind a path-stripping proxy | **Tested** on 3 Oct with a small local stand-in for Caddy: map, `/api/health`, `/api/risk`, `/api/event-state` all worked, and the only outside host contacted was `tiles.openfreemap.org`. Route search and report posting through `/api` and `/ingest` were not clicked through. |
+| `deploy/Caddyfile`, `deploy/docker-compose.yml`, both Dockerfiles | **Untested.** The authoring machine has no Docker or Caddy. Expect to fix small things on the first build. |
+| `POST /api/rewrite` | Tested with a mocked Groq (19 router_api tests) and against the keyless server (503). Never run against live Groq. |
+| Ingest storage | In memory. Reports vanish on restart. Needs the database settings in `server/README.md` before anything beyond a demo. |
+| Compression, caching headers | In the Caddyfile, untested. |
+
+## Steps
+
+1. **Build the map pack** if it is missing: `python scripts/build_packs.py`.
+2. **Build the web app** from `app/`:
+
+   ```bash
+   bash scripts/sync_data_assets.sh && flutter pub get
+   flutter build web --release --no-web-resources-cdn \
+     --dart-define=ROUTER_API_URL=/api --dart-define=INGEST_URL=/ingest \
+     --output <absolute path to deploy/web>
+   ```
+
+   Two pitfalls found while testing: on Windows **Git Bash rewrites an argument that starts with `/`**
+   into `C:/Program Files/Git/...`, which silently bakes a wrong address into the build. Prefix the
+   command with `MSYS_NO_PATHCONV=1` or build from PowerShell. And `--output` must be an absolute path;
+   a relative `../` path fails in the shader step.
+3. **Configure**: `cp deploy/.env.example deploy/.env`, set `ADMIN_TOKEN` to a long random string. Leave
+   `GROQ_API_KEY` empty to run without the cloud rewriter (the app uses the template).
+4. **Run**: `docker compose -f deploy/docker-compose.yml --env-file deploy/.env up --build`, then open
+   `http://localhost:8088`.
+5. **A real domain**: set `SITE_ADDRESS=your.domain` in `.env`; Caddy then obtains a TLS certificate by
+   itself. Point DNS at the host first.
+
+## Settings that matter
+
+| Variable | Where | Purpose |
+|---|---|---|
+| `ADMIN_TOKEN` | router | Required to change the event state (`PUT /event-state`). Unset means the endpoint is disabled. |
+| `GROQ_API_KEY`, `GROQ_MODEL` | router | Enables `POST /rewrite`. Unset means 503 and the app falls back to the template. The key stays in the server's environment. |
+| `TRUST_FORWARDED_FOR=1` | router | Set only behind the proxy, so rate limits see real caller addresses. Never set it when the router is reachable directly. |
+| `OBSERVATIONS_URL` | router | Where the router pulls reports from (the ingest server). |
+| `CITY` | router, and `--dart-define=CITY=` for the app | Which city from `config/cities.yaml` to serve (default: its `default_city`). One deployment serves one city (`docs/ADDING_A_CITY.md`). |
+| `EVENT_STATE` | router | `dry`, `watch` or `active`; decides whether the static hazard prior counts (ADR-015). |
+| `CORS_ALLOWED_ORIGINS` | ingest | Leave empty for single-origin. |
+
+## Where to host it (not decided, nothing signed up)
+
+The budget is Rs 0. Any host that runs two small containers plus a static folder will do. Free-tier
+terms change and have **not** been checked for this project; compare current limits before choosing,
+and note that the router needs about 300 MB of memory (pack plus engine) and a free tier may sleep when
+idle, which makes the first request slow. Do not create accounts or publish without the team's say.
+
+## Before this is public
+
+- Choose and add a project licence; decide the Open-Meteo question; read the unchecked terms
+  (`docs/LICENCE_AUDIT.md`).
+- Connect the ingest server to a database so reports persist.
+- Decide how the DPDP duties are met (notice, erasure on request).
+- Serve over HTTPS; keep `ADMIN_TOKEN` and any API key out of the repository.
+
+## Serving a state (Tamil Nadu, ADR-020)
+
+Set `CITY=tamil_nadu` for the router (`PORT`, `ADMIN_TOKEN` as above) and build the web app with `--dart-define=CITY=tamil_nadu`. The router
+loads `places.json` from the pack folder for town and village search. Memory is small (the pack is 9 MB), but a larger or finer region pack
+needs measuring first (F-26).
+
+**Chennai inside Tamil Nadu (ADR-022).** With `CITY=tamil_nadu` the router also loads the Chennai pack, named by `detail_regions` in `config/cities.yaml`
+(about twice the memory of one pack; not measured). Routes with both ends in Chennai use it and get the flood layer and advice; every other route uses
+the main-road pack. `GET /health` lists `detail_regions`. `PUT /event-state` changes both engines.

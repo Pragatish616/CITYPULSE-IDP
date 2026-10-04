@@ -1,0 +1,1432 @@
+{
+ "dart": {
+  "_fe_analyzer_shared": {
+   "version": "96.0.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "analyzer": {
+   "version": "10.2.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "archive": {
+   "version": "4.3.0",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "args": {
+   "version": "2.7.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "async": {
+   "version": "2.13.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "background_downloader": {
+   "version": "9.6.3",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "boolean_selector": {
+   "version": "2.1.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "build": {
+   "version": "4.0.7",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "build_config": {
+   "version": "1.3.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "build_daemon": {
+   "version": "4.1.6",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "build_runner": {
+   "version": "2.15.1",
+   "licence": "BSD-3",
+   "dep": "direct dev",
+   "in": [
+    "app"
+   ]
+  },
+  "built_collection": {
+   "version": "5.1.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "built_value": {
+   "version": "8.13.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "characters": {
+   "version": "1.4.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "charcode": {
+   "version": "1.4.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "checked_yaml": {
+   "version": "2.0.4",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "cli_util": {
+   "version": "0.4.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "clock": {
+   "version": "1.1.3",
+   "licence": "Apache-2.0",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "code_assets": {
+   "version": "1.2.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "collection": {
+   "version": "1.19.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "connectivity_plus": {
+   "version": "7.3.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "connectivity_plus_platform_interface": {
+   "version": "2.1.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "convert": {
+   "version": "3.1.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "cross_file": {
+   "version": "0.3.5+5",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "crypto": {
+   "version": "3.0.7",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "cupertino_icons": {
+   "version": "1.0.9",
+   "licence": "MIT",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "cupertino_ui": {
+   "version": "1.1.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "dart_style": {
+   "version": "3.1.7",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "dbus": {
+   "version": "0.8.0",
+   "licence": "MPL-2.0",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "decimal": {
+   "version": "3.2.6",
+   "licence": "Apache-2.0",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "drift": {
+   "version": "2.31.0",
+   "licence": "MIT",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "drift_dev": {
+   "version": "2.31.0",
+   "licence": "MIT",
+   "dep": "direct dev",
+   "in": [
+    "app"
+   ]
+  },
+  "email_validator": {
+   "version": "3.0.0",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "fake_async": {
+   "version": "1.3.3",
+   "licence": "Apache-2.0",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "ffi": {
+   "version": "2.2.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "ffi_leak_tracker": {
+   "version": "0.1.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "file": {
+   "version": "7.0.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "fixnum": {
+   "version": "1.1.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "flutter_gemma": {
+   "version": "1.11.3",
+   "licence": "MIT",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "flutter_riverpod": {
+   "version": "3.4.3",
+   "licence": "MIT",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "genai_primitives": {
+   "version": "0.2.4",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "glob": {
+   "version": "2.2.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "go_router": {
+   "version": "18.0.2",
+   "licence": "BSD-3",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "graphs": {
+   "version": "2.3.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "hooks": {
+   "version": "2.0.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "http": {
+   "version": "1.6.0",
+   "licence": "BSD-3",
+   "dep": "direct main",
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "http_multi_server": {
+   "version": "3.2.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "http_parser": {
+   "version": "4.1.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "image": {
+   "version": "4.10.1",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "intl": {
+   "version": "0.20.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "io": {
+   "version": "1.1.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "jni": {
+   "version": "1.1.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "jni_flutter": {
+   "version": "1.0.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "jni_util": {
+   "version": "1.0.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "json_annotation": {
+   "version": "4.12.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "json_schema_builder": {
+   "version": "0.1.7",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "large_file_handler": {
+   "version": "0.5.2",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "leak_tracker": {
+   "version": "11.0.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "leak_tracker_flutter_testing": {
+   "version": "3.0.10",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "leak_tracker_testing": {
+   "version": "3.0.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "listen": {
+   "version": "1.0.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "logging": {
+   "version": "1.3.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "maplibre_gl": {
+   "version": "0.27.1",
+   "licence": "MIT",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "maplibre_gl_platform_interface": {
+   "version": "0.27.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "maplibre_gl_web": {
+   "version": "0.27.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "matcher": {
+   "version": "0.12.20",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "material_color_utilities": {
+   "version": "0.13.0",
+   "licence": "Apache-2.0",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "material_ui": {
+   "version": "1.5.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "meta": {
+   "version": "1.18.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "mime": {
+   "version": "2.1.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "mutex": {
+   "version": "3.1.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "nm": {
+   "version": "0.6.0",
+   "licence": "MPL-2.0",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "objective_c": {
+   "version": "9.5.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "package_config": {
+   "version": "2.2.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "package_info_plus": {
+   "version": "10.2.2",
+   "licence": "BSD-3",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "package_info_plus_platform_interface": {
+   "version": "4.1.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "path": {
+   "version": "1.9.1",
+   "licence": "BSD-3",
+   "dep": "direct main",
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "path_provider": {
+   "version": "2.1.6",
+   "licence": "BSD-3",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "path_provider_android": {
+   "version": "2.3.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "path_provider_foundation": {
+   "version": "2.6.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "path_provider_linux": {
+   "version": "2.2.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "path_provider_platform_interface": {
+   "version": "2.1.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "path_provider_windows": {
+   "version": "2.3.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "petitparser": {
+   "version": "7.0.2",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "platform": {
+   "version": "3.2.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "plugin_platform_interface": {
+   "version": "2.1.8",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "pointer_interceptor": {
+   "version": "0.10.1+3",
+   "licence": "BSD-3",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "pointer_interceptor_ios": {
+   "version": "0.10.1+1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "pointer_interceptor_platform_interface": {
+   "version": "0.10.0+1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "pointer_interceptor_web": {
+   "version": "0.10.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "pool": {
+   "version": "1.5.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "posix": {
+   "version": "6.5.2",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "pub_semver": {
+   "version": "2.2.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "pubspec_parse": {
+   "version": "1.6.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "rational": {
+   "version": "2.2.3",
+   "licence": "Apache-2.0",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "recase": {
+   "version": "4.1.0",
+   "licence": "BSD-2",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "record_use": {
+   "version": "0.6.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "riverpod": {
+   "version": "3.4.3",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "shared_preferences": {
+   "version": "2.5.5",
+   "licence": "BSD-3",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "shared_preferences_android": {
+   "version": "2.4.28",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "shared_preferences_foundation": {
+   "version": "2.5.7",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "shared_preferences_linux": {
+   "version": "2.4.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "shared_preferences_platform_interface": {
+   "version": "2.4.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "shared_preferences_web": {
+   "version": "2.4.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "shared_preferences_windows": {
+   "version": "2.4.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "shelf": {
+   "version": "1.4.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "shelf_web_socket": {
+   "version": "3.0.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "source_gen": {
+   "version": "4.2.4",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "source_span": {
+   "version": "1.10.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "sqlite3": {
+   "version": "2.9.4",
+   "licence": "MIT",
+   "dep": "direct dev",
+   "in": [
+    "app"
+   ]
+  },
+  "sqlite3_flutter_libs": {
+   "version": "0.5.42",
+   "licence": "MIT",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "sqlparser": {
+   "version": "0.43.1",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "stack_trace": {
+   "version": "1.12.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "state_notifier": {
+   "version": "1.0.0",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "stream_channel": {
+   "version": "2.1.4",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "stream_transform": {
+   "version": "2.1.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "string_scanner": {
+   "version": "1.4.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "term_glyph": {
+   "version": "1.2.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "test_api": {
+   "version": "0.7.12",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "typed_data": {
+   "version": "1.4.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "uuid": {
+   "version": "4.6.0",
+   "licence": "MIT",
+   "dep": "direct main",
+   "in": [
+    "app"
+   ]
+  },
+  "vector_math": {
+   "version": "2.4.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "very_good_analysis": {
+   "version": "7.0.0",
+   "licence": "MIT",
+   "dep": "direct dev",
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "vm_service": {
+   "version": "15.3.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "watcher": {
+   "version": "1.2.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "web": {
+   "version": "1.1.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "web_socket": {
+   "version": "1.0.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "web_socket_channel": {
+   "version": "3.0.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "win32": {
+   "version": "6.4.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "xdg_directories": {
+   "version": "1.1.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "xml": {
+   "version": "7.0.1",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "app"
+   ]
+  },
+  "yaml": {
+   "version": "3.1.4",
+   "licence": "MIT",
+   "dep": "direct main",
+   "in": [
+    "app",
+    "router_api"
+   ]
+  },
+  "cli_config": {
+   "version": "0.2.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "coverage": {
+   "version": "1.15.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "frontend_server_client": {
+   "version": "4.1.0",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "http_methods": {
+   "version": "1.1.1",
+   "licence": "Apache-2.0",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "node_preamble": {
+   "version": "2.0.2",
+   "licence": "MIT",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "shelf_packages_handler": {
+   "version": "3.0.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "shelf_router": {
+   "version": "1.1.4",
+   "licence": "Apache-2.0",
+   "dep": "direct main",
+   "in": [
+    "router_api"
+   ]
+  },
+  "shelf_static": {
+   "version": "1.1.3",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "source_map_stack_trace": {
+   "version": "2.1.2",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "source_maps": {
+   "version": "0.10.14",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "test": {
+   "version": "1.32.0",
+   "licence": "BSD-3",
+   "dep": "direct dev",
+   "in": [
+    "router_api"
+   ]
+  },
+  "test_core": {
+   "version": "0.6.20",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  },
+  "webkit_inspection_protocol": {
+   "version": "1.2.1",
+   "licence": "BSD-3",
+   "dep": null,
+   "in": [
+    "router_api"
+   ]
+  }
+ },
+ "python": {
+  "annotated-doc": {
+   "version": "0.0.5",
+   "licence": "MIT"
+  },
+  "annotated-types": {
+   "version": "0.8.0",
+   "licence": "MIT"
+  },
+  "anyio": {
+   "version": "4.15.1",
+   "licence": "MIT"
+  },
+  "black": {
+   "version": "26.5.1",
+   "licence": "MIT"
+  },
+  "certifi": {
+   "version": "2026.7.22",
+   "licence": "MPL-2.0"
+  },
+  "charset-normalizer": {
+   "version": "3.5.2",
+   "licence": "MIT"
+  },
+  "click": {
+   "version": "8.5.0",
+   "licence": "BSD-3-Clause"
+  },
+  "colorama": {
+   "version": "0.4.6",
+   "licence": "License :: OSI Approved :: BSD License"
+  },
+  "contourpy": {
+   "version": "1.4.0",
+   "licence": "BSD-3-Clause"
+  },
+  "cycler": {
+   "version": "0.12.1",
+   "licence": "Copyright (c) 2015, matplotlib project\nAll rights reserved.\n\nRedistribution and "
+  },
+  "fastapi": {
+   "version": "0.142.2",
+   "licence": "MIT"
+  },
+  "fonttools": {
+   "version": "4.66.1",
+   "licence": "MIT"
+  },
+  "h11": {
+   "version": "0.16.0",
+   "licence": "MIT"
+  },
+  "httpcore": {
+   "version": "1.0.9",
+   "licence": "BSD-3-Clause"
+  },
+  "httptools": {
+   "version": "0.8.0",
+   "licence": "MIT"
+  },
+  "httpx": {
+   "version": "0.28.1",
+   "licence": "BSD-3-Clause"
+  },
+  "idna": {
+   "version": "3.20",
+   "licence": "BSD-3-Clause"
+  },
+  "ijson": {
+   "version": "3.5.1",
+   "licence": "BSD-3-Clause AND ISC"
+  },
+  "iniconfig": {
+   "version": "2.3.0",
+   "licence": "MIT"
+  },
+  "kiwisolver": {
+   "version": "1.5.1",
+   "licence": "=========================\n The Kiwi licensing terms\n=========================\nKi"
+  },
+  "matplotlib": {
+   "version": "3.11.2",
+   "licence": "License agreement for matplotlib versions 1.3.0 and later\n ====================="
+  },
+  "mypy_extensions": {
+   "version": "1.1.0",
+   "licence": "MIT"
+  },
+  "numpy": {
+   "version": "2.5.3",
+   "licence": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0"
+  },
+  "opentelemetry-api": {
+   "version": "1.45.0",
+   "licence": "Apache-2.0"
+  },
+  "packaging": {
+   "version": "26.3",
+   "licence": "Apache-2.0 OR BSD-2-Clause"
+  },
+  "pathspec": {
+   "version": "1.1.1",
+   "licence": "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+  },
+  "pillow": {
+   "version": "12.3.0",
+   "licence": "MIT-CMU"
+  },
+  "platformdirs": {
+   "version": "4.12.2",
+   "licence": "MIT"
+  },
+  "pluggy": {
+   "version": "1.6.0",
+   "licence": "MIT"
+  },
+  "psycopg": {
+   "version": "3.3.6",
+   "licence": "LGPL-3.0-only"
+  },
+  "psycopg-binary": {
+   "version": "3.3.6",
+   "licence": "LGPL-3.0-only"
+  },
+  "psycopg-pool": {
+   "version": "3.3.3",
+   "licence": "LGPL-3.0-only"
+  },
+  "pydantic": {
+   "version": "2.13.5",
+   "licence": "MIT"
+  },
+  "pydantic_core": {
+   "version": "2.46.5",
+   "licence": "MIT"
+  },
+  "Pygments": {
+   "version": "2.21.0",
+   "licence": "BSD-2-Clause"
+  },
+  "pyparsing": {
+   "version": "3.3.3",
+   "licence": "MIT"
+  },
+  "pytest": {
+   "version": "9.1.1",
+   "licence": "MIT"
+  },
+  "pytest-asyncio": {
+   "version": "1.4.0",
+   "licence": "Apache-2.0"
+  },
+  "python-dateutil": {
+   "version": "2.9.0.post0",
+   "licence": "Dual License"
+  },
+  "python-dotenv": {
+   "version": "1.2.4",
+   "licence": "BSD-3-Clause"
+  },
+  "pytokens": {
+   "version": "0.4.1",
+   "licence": "MIT License\n\nCopyright (c) 2024 Tushar Sadhwani\n\nPermission is hereby granted, f"
+  },
+  "PyYAML": {
+   "version": "6.0.3",
+   "licence": "MIT"
+  },
+  "redis": {
+   "version": "8.1.0",
+   "licence": "MIT"
+  },
+  "requests": {
+   "version": "2.34.2",
+   "licence": "Apache-2.0"
+  },
+  "respx": {
+   "version": "0.23.1",
+   "licence": "BSD-3-Clause"
+  },
+  "ruff": {
+   "version": "0.16.10",
+   "licence": "MIT"
+  },
+  "scipy": {
+   "version": "1.18.1",
+   "licence": "Copyright (c) 2001-2002 Enthought, Inc. 2003, SciPy Developers.\n All rights rese"
+  },
+  "six": {
+   "version": "1.17.0",
+   "licence": "MIT"
+  },
+  "sse-starlette": {
+   "version": "3.5.0",
+   "licence": "BSD-3-Clause"
+  },
+  "starlette": {
+   "version": "1.7.0",
+   "licence": "BSD-3-Clause"
+  },
+  "typing_extensions": {
+   "version": "4.16.0",
+   "licence": "PSF-2.0"
+  },
+  "typing-inspection": {
+   "version": "0.4.4",
+   "licence": "MIT"
+  },
+  "tzdata": {
+   "version": "2026.4",
+   "licence": "Apache-2.0"
+  },
+  "urllib3": {
+   "version": "2.8.0",
+   "licence": "MIT"
+  },
+  "uvicorn": {
+   "version": "0.54.0",
+   "licence": "BSD-3-Clause"
+  },
+  "watchfiles": {
+   "version": "1.3.0",
+   "licence": "MIT"
+  },
+  "websockets": {
+   "version": "17.1",
+   "licence": "BSD-3-Clause"
+  }
+ }
+}

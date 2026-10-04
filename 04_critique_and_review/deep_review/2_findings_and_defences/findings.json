@@ -1,0 +1,516 @@
+{
+ "S1_novelty_flood_routing.md": [
+  {
+   "sev": "Critical",
+   "title": "C1. The related-work claim that prior flood routers treat flood state as known is contradicted by already-cited and recent work",
+   "location": "paper.tex L66 (\"These studies generally treat the flood state as known from a model. We instead treat it as an uncertain belief built from sparse reports.\"). The same framing appears in abstract L44 and in contribution 1 (L58).",
+   "problem": "This sentence is the paper's only stated point of departure from flood-routing work, and the record contradicts it:\n  - **Safaei-Moghadam et al. 2023**, already in refs.bib as `safaei2023waze` and cited at L72 only as \"crowd sensing\", estimates *the likelihood* of roadway pluvial flooding by combining a depression-based DEM susceptibility analysis with Waze crowd reports, explicitly \"to provide near-real-time navigational warnings\". That is a static prior plus crowd reports producing a probability for navigation, which is CityPulse's belief layer in outline.\n  - Toathom & Champrasert 2024 route relief vehicles on \"the likelihood that each section of the road will flood\".\n  - Bucar & Hayeri 2022 learn link-level flood risk and benchmark against most-reliable paths.\n  - Alabbad et al. 2024 drive routing from probabilistic 10-day forecasts.\n  - Lupa et al. 2026 bracket passability uncertainty with two satellite products.\n  - Cao et al. 2026 infer probabilistic road inundation from sparse observations with a Bayesian MRF and sequential updating.\n  - Most pointedly, **Li, Song & Li 2026** (Research Square preprint, July 2026) fuse crowdsourced road-passability reports under uncertain source credibility and \"stale forwarding\" into a *distributionally robust credal posterior* and dispatch min-max, with a replay of the 2021 Zhengzhou flood. That is a pessimistic fusion of unreliable, ageing crowd evidence for flood routing. Their companion paper (Discover Artificial Intelligence, Aug 2026) routes trucks on Bayesian road-access beliefs with a CVaR criterion."
+  },
+  {
+   "sev": "Critical",
+   "title": "C2. The motivation ignores shipped products and Chennai's own systems, and two motivating sentences are inaccurate as written",
+   "location": "- paper.tex L44: \"Navigation apps route drivers into flooded streets because they optimise travel time on a network assumed to be intact, and they often stop working when floods take down cellular service\".\n  - L54: \"cloud-dependent services fail when connectivity does\".\n  - The related work (L64\u201375) mentions no product, no patent beyond IBM and Uber, and no Chennai system.",
+   "problem": "- **Google Maps India** has let users report and receive flooding/waterlogging alerts since October 2024. India had \"the highest number of flood-related alerts on Maps globally\" in 2025, and Maps takes closures from traffic police in 18 cities and from NHAI.\n  - **Mappls** advertises \"real-time Waterlogging Alerts ahead on your route while you navigate\" (Aug 2026). Its CEO stated in 2023 that users are \"alerted about incidents \u2026 on their route, and can be suggested alternative routes\".\n  - Google Maps **does** navigate offline for driving. It loses traffic and alternate routes offline (\"If you're offline when you drive, you can't get traffic info or alternate routes\"); it does not \"stop working\".\n  - Chennai has the **RTFF & SDSS** (\u20b9107.2 crore, fully operational Oct 2025), which issues street-level inundation forecasts for Velachery, Saidapet, Mudichur and other localities and disseminates through TN-Alert.\n  - **RiskMap** (MIT Urban Risk Lab) ran crowd flood reporting in Chennai in 2017\u20132019 so residents could \"navigate to safety\".\n  - HERE's patent US11691646B2 (filed 2020) warns of and reroutes around active floods at flood-prone locations, and its background states the very motivation the paper uses: maps \"may actually define a route that directs a driver to and through a flooded roadway\"."
+  },
+  {
+   "sev": "Critical",
+   "title": "C3. The \"combination\" novelty is threatened by 2026 on-device-LLM flood apps, and the explanation half is unevaluated",
+   "location": "paper.tex L20 (title \"\u2026 with Verified Explanations\"), L56 (\"What we examine is a specific combination\"), L60 (contribution 3), L149 (\"We have not yet measured the pass rate \u2026\"); plan.tex L36 and L142 (\"On-device route + confidence + verified explanation: Defensible\").",
+   "problem": "Between April and August 2026, several publicly documented, non-peer-reviewed systems shipped the same architectural pattern: an on-device small LM narrates a deterministically computed, flood-avoiding route; numbers stay in code; and there is a deterministic fallback.\n  - **Disha** (Build with Gemma @Bangladesh, July 2026). Gemma 4 runs on-device over LiteRT-LM, with \"Dijkstra flood-avoid routing on real OSM road graphs\". \"Every exact value \u2026 is produced by tested code, never by the model. An automation and verification layer sits on both sides of every generation\". It runs a rule-based fallback when the model is unavailable, and it adopted \"precise values never pass through the model\" after observing number corruption.\n  - **Bonbibi** (Arm challenge, Aug 2026). Offline flood simulation on a Raspberry Pi with \"deterministic BFS\" shelter routing per mobility profile and depth limits; \"Granite composes personal guidance \u2026 The model composes; it never decides.\"\n  - **LIKAS** (Kaggle, Apr\u2013May 2026). \"Zero network calls at runtime\"; offline Dijkstra on a bundled OSM graph; a grammar-constrained Gemma tool dispatcher; a \"deterministic keyword router\" fallback.\n  - **Nongor** (July 2026). Offline flood-avoiding shelter routing with Gemma on the handset.\n  - **CrisisConnect Edge** (May 2026). Offline Gemma grounded in a cached package with \"freshness metadata\"; it must warn when the package is stale.\n  - **RainRoute AI** (Aug 2026). Crowd hazard reports that \"decay with distance and expire automatically after two hours\" drive an \"explainable\" flood-aware route.\n\n  All of these predate CityPulse's mid-September 2026 start. In the peer-reviewed literature, T2G2 already does template \u2192 LM rewrite, VCP does rule check plus regeneration, and RouteExplainer pairs route explanation with an LLM. Runtime verification of LLM output against domain constraints (RvLLM) and the \"deterministic LLM sandwich\" are documented patterns.\n\n  What remains distinct in CityPulse:\n  - (a) The hazard state is a **probabilistic, evidence-weighted belief** rather than a binary flood polygon.\n  - (b) Routing uses an **evidence-dependent pessimistic bound** with a per-class dial.\n  - (c) The gate is a **typed post-hoc verifier** (numerals with tolerance and unit conversion, entities, comparatives, data-gap coherence, required hedging, a ban on safety claims) that **fails closed to a template**, rather than keeping numbers out of the model.\n  - (d) The router runs on a **193k-node city graph** "
+  },
+  {
+   "sev": "Significant",
+   "title": "S1. The pessimism and risk-seeking argument lacks its intellectual ancestors, and the \"reverses the direction\" claim is stronger than the formula supports",
+   "location": "paper.tex L58, L88\u201394 (\"This mirrors the upper confidence bounds of bandit algorithms \u2026 but is used pessimistically\"; \"A common alternative prices an edge as w=\u03c40(1+\u03bbRC) \u2026\"; \"Equation (3) reverses the direction of that dependence\").",
+   "problem": "1. Pessimism-as-sign-flipped-bonus is the core of offline-RL pessimism (Jin, Yang & Wang, MOR 2025). Routing on confidence-interval information is in Flajolet et al. 2018. Worst-case CVaR because \"historical data are usually insufficient\" is in Toumazis & Kwon 2016. Ambiguity aversion is formalised in Ellsberg 1961 and Gilboa & Schmeidler 1989. Pessimistic fusion of stale crowd flood reports is in Li et al. 2026 [preprint]. None of these is cited.\n  2. The \"common alternative\" is asserted without citation. It *is* common, and saying so strengthens the paper:\n     - TomTom US9836486B2: confidence values \"age according to a predefined function\"; below a threshold, \"drivers are no longer informed\"; hazards expire by type.\n     - HERE US10650670B2: confidence is decreased for \"staleness\"; road events are cancelled below a lower threshold.\n     - Waze alerts are typically removed after about 30 minutes unless confirmed.\n     Citing these turns an abstract argument into a critique of deployed practice, which is the most original thing in the paper.\n  3. L92 says p\u0303 decreases with n_eff \"for fixed p\u0304\". Under the paper's own fusion, though, decay changes both p\u0304 and n_eff: as reports age, p\u0304 reverts toward the prior while the band widens. Whether p\u0303 rises or falls as a flood report ages therefore depends on the prior and z. The claim that Eq. (3) \"reverses the direction of that dependence\" holds only at fixed p\u0304.\n\n     (Out of my scope, flagged for the maths specialist: for prior-only edges, n_eff=0 gives p\u0303 = p0 + z\u00b7sqrt(p0(1\u2212p0)). With z=2 this saturates at 1 for every p0 \u2265 0.2, so the emergency class would treat every medium-or-higher hazard zone as certainly flooded.)"
+  },
+  {
+   "sev": "Significant",
+   "title": "S2. Class-specific report decay is pre-empted by patents, so the plan's fallback claim (\"calibrated, class-specific decay\") is left with only its calibration part, which Study 2 did not support",
+   "location": "plan.tex L138; paper.tex contribution framing (decay at L79\u201383, L186, L214); IDEA_AND_FACTS core idea (\"decays \u2026 at a hazard-class-specific rate\").",
+   "problem": "TomTom's US9836486B2 describes the Trapster scheme, in which hazards expire after type-specific periods (police trap 1 h, road closure 6 h, construction zone 5 days). It then claims confidences that age by a decay function and are adjusted by positive and negative reports. Microsoft's US8983976B2 claims dynamically learned expiry with confidence and user trust ratings. Intel's US10737698 weights crowd road data by age. \"Class-specific decay\" is therefore not new. \"Calibrated\" decay would be new, but Study 2 found C3 indistinguishable from C2."
+  },
+  {
+   "sev": "Significant",
+   "title": "S3. The cost formulation (slowdown separated from harm, per-class risk) has near-identical precedent",
+   "location": "paper.tex L58 (\"A formulation that separates slowdown from harm \u2026 with a per-user-class caution parameter\"), L96\u2013101.",
+   "problem": "- FLOAT (Jao et al., ICNSC 2025) uses \u03bb to trade travel time against flood risk and \u03b1 as a flood-speed penalty. It sweeps them and reports that high \u03bb and \u03b1 give odd detours, mirroring CityPulse's sweep.\n  - Krumm & Horvitz 2017 and Galbrun et al. 2016 keep time and risk separate.\n  - MITRE's US12135218B2 (granted Nov 2024) claims navigation \"dynamically assessed based on risk tolerance\", with risk scores \"weighed based on tolerance level\".\n  - Kang et al. 2014 make route choice \"a function of the level of risk tolerance\".\n  - Bonbibi uses per-mobility-profile depth limits."
+  },
+  {
+   "sev": "Significant",
+   "title": "S4. The \"bounded deterrence\" proposition is elementary and should not be sold as a \"new finding\"",
+   "location": "paper.tex L59 (contribution 2), Prop. 2 (L111\u2013117); plan.tex L143 (\"New finding\").",
+   "problem": "The bound follows from substituting \u03b4=1 and p\u0303\u22641, which is one line of algebra. Several works already note qualitatively that time-proportional exposure undercounts the harm of short severe segments and inflates the cost of detours:\n  - Donaldson et al. 2026: dose reductions are smaller because detours add time.\n  - Wang et al. 2022: slower travellers accrue more exposure.\n  - Krumm 2017: per-traversal Bernoulli risk, not per-time.\n  - Classic hazmat risk models.\n\n  No head-to-head comparison was found (uncertain_routing.md, Q1 table). So the *empirical* demonstration on a city graph, and a fix compared head-to-head (per-edge harm \u03bc\u00b7p\u0303\u00b7s), would be the actual contribution."
+  },
+  {
+   "sev": "Significant",
+   "title": "S5. The plan's \"make it unique\" items are presented as open white space, but prior art already exists for each",
+   "location": "plan.tex L124 (forecasting row), L151 (traversal silence), L154 (reservoir-to-corridor causality), L171 (positioning).",
+   "problem": "- L124 is outdated. Flood Hub has added urban flash-flood forecasts (Mar 2026, area-level), and Chennai's RTFF has given street-level inundation forecasts since Oct 2025.\n  - L151 overclaims. Inferring closures from probe absence is published: HERE's Pietrobon et al. 2019 (92% precision on low-volume roads), Kong 2022 (taxi passing-rate drop for floods), Hiramoto 2025 (no traffic or speed below 20 km/h means inundated), She 2019, and Yuan 2023 (INRIX null speed as a flood label). Itoi 2017 infers blocked segments from route deviation.\n  - L154 overclaims. RTFF already models lakes, rivers, drains and sea together across the Adyar, Cooum, Kosasthalaiyar and Kovalam sub-basins, with street-level outputs, and CFM-DSS publishes reservoir levels.\n  - L171 ignores RiskMap Chennai (2017\u201319), which had the same city, the same crowd-reporting premise and a stated navigation purpose."
+  },
+  {
+   "sev": "Significant",
+   "title": "S6. The evaluation protocol is listed as a contribution but is a correction of the team's own harness",
+   "location": "paper.tex L61; plan.tex L144.",
+   "problem": "The safest-path literature already scores routes on many OD pairs and reports exposure-versus-detour frontiers (Krumm 2017; Ghoul 2023; Rohmann 2026; Donaldson 2026). Scoring every configuration under one reference belief is ordinary experimental hygiene, and the paper itself shows that the reference is circular (L246). Reproducing the router's paths with an independent implementation is good engineering, not novelty."
+  }
+ ],
+ "S2_novelty_belief.md": [
+  {
+   "sev": "Critical",
+   "title": "C1. The central pessimism claim fails on the actual decay path: an ageing positive report lowers p~ at every z",
+   "location": ".** paper.tex L92 (\"thin evidence produces more caution, not less\"); L94 (\"Equation (3) reverses the direction of that dependence\"); contribution bullet L58; plan.tex L141; repository ADR-002 (\"thinner evidence *raises* caution\").",
+   "problem": ".** The monotonicity statement is a partial derivative at fixed p\u0304. When a positive flood report ages, \u03c9 \u2192 0 moves both terms at once: p\u0304 falls back toward the prior and n_eff falls toward 0. The fall in p\u0304 dominates. Representative values from Eq. (1)\u2013(3), with one fresh report of \u03b1 = 0.8 that then ages (\u03c9 = 1 \u2192 0):\n- prior 0.02, z = 0: 0.075 \u2192 0.020; z = 1.28: 0.315 \u2192 0.199; z = 2: 0.449 \u2192 0.300.\n- prior 0.10, z = 2: 0.960 \u2192 0.700. Prior 0.02 with 3 reports, z = 2: 1.000 \u2192 0.300.\n\np~ decreases monotonically with age in every tested case with \u03b1 \u2265 0.8 and every z. The only cases where p~ rises with age are weak reports (\u03b1 = 0.6), where the report barely moves p\u0304. For negative reports the claimed direction does hold (prior 0.25, \u03b1 = 0.8, z = 2: 0.454 \u2192 1.0).\n\nSo CityPulse also makes \"an unverified or ageing flood report make the road look clear[er]\", which is the behaviour the paper attributes to the strawman w = \u03c40(1 + \u03bbRC). The real differences are two:\n- An aged report decays to the prior plus an ignorance band instead of to zero.\n- For z = 0, the commuter default, it decays to the prior exactly."
+  },
+  {
+   "sev": "Critical",
+   "title": "C2. The z dial saturates. For the emergency class the \"belief layer\" reduces to a static prior-zone mask",
+   "location": ".** paper.tex L90\u201392 (per-class z); plan L63, L141; `config/hazard_classes.yaml` (emergency z = 2.0, pedestrian z = 1.28).",
+   "problem": ".** p~ = 1 whenever p\u0304 \u2265 1/(1 + z\u00b2/(n_eff + 1)). With no evidence the threshold is 1/(1 + z\u00b2):\n- z = 2: 0.20\n- z = 1.28: 0.38\n- z = 1: 0.50\n\nAll 8,759 prior-only configured edges have p0 \u2265 0.25 (IDEA_AND_FACTS). For the emergency class they are therefore pinned at p~ = 1 with zero evidence. Further positive reports cannot raise caution, so evidence is ignored. A single fresh negative report (\u03b1 = 0.8, \u03c9 = 1) on a 0.25-prior edge brings p~ only to 0.45. ADR-002 itself notes that the unclamped value \"routinely exceeds 1\" for the emergency class and calls the clamp \"load-bearing\". The clamp hides the saturation; it does not remove it."
+  },
+  {
+   "sev": "Critical",
+   "title": "C3. The pessimistic plug-in is a known construction. Contribution bullet 1 overclaims it as \"a formulation\"",
+   "location": ".** paper.tex L58 (contribution 1), L87\u201392 (\"This mirrors the upper confidence bounds of bandit algorithms [Auer] but is used pessimistically\"); plan L141 (\"Defensible\").",
+   "problem": ".**\n- The variance of a Beta distribution with mean p\u0304 and concentration a + b = n_eff is p\u0304(1 \u2212 p\u0304)/(n_eff + 1), exactly the term inside the root. So p~ is \"posterior mean + z posterior s.d.\" of a moment-matched Beta.\n- That is a Gaussian-approximation Bayes-UCB index (Kaufmann, Capp\u00e9 & Garivier, AISTATS 2012: \"Bayesian index policies that rely on quantiles of the posterior distribution\") applied to a beta-reputation estimate with forgetting (J\u00f8sang & Ismail 2002: Beta(r + 1, s + 1) with a forgetting factor).\n- Using an upper quantile pessimistically in place of optimistically is the PEVI construction of Jin, Yang & Wang (MOR 2025): the penalty \"simply flips the sign of the bonus function\".\n- Walley's imprecise Dirichlet model (JRSS-B 1996) gives upper probabilities that are \"initially vacuous\u2026 [and] become more precise as the number of observations increases\", which is precisely \"thin evidence \u2192 more caution\".\n- In planning, risk-aware costs of the form \u03bc + \u03c3\u00b7\u03c6(\u03a6\u207b\u00b9(\u03b1))/(1 \u2212 \u03b1) with \u03b1 chosen per mission or robot role are used with A* by Fan et al. (STEP, RSS 2021).\n- Per-class risk aversion in route choice is in Lo, Luo & Siu (TR-B 2006).\n\nThe only element not found elsewhere is the specific n_eff = \u03a3\u03c9, and that is the weakest part (S2)."
+  },
+  {
+   "sev": "Significant",
+   "title": "S1. \"Risk-seeking under ambiguity\" is the wrong term, and the comparison is a strawman",
+   "location": ".** paper.tex L94 and contribution bullet 1; plan L141; ADR-002.",
+   "problem": ".**\n- Risk-seeking is an attitude toward known variance. What the paper describes is shrinking the hazard estimate toward zero as evidence ages, which is an optimistic default prior. The decision-theoretic name for preferring the favourable end of an ambiguous set is ambiguity-seeking. The remedy, evaluating at the upper envelope of a set of priors, is maxmin expected utility (Gilboa & Schmeidler 1989), the Ellsberg (1961) motivation, and Walley's upper probability.\n- \"A common alternative prices an edge as \u03c40(1 + \u03bbRC)\" cites nothing. Per ADR-002, the only documented user of this form is the team's own original pitch.\n- CityPulse at z = 0 shrinks to the prior, which is the Bayesian-neutral option. That option is neither of the two the paragraph contrasts."
+  },
+  {
+   "sev": "Significant",
+   "title": "S2. n_eff is not an effective sample size, so p~ is not a bound",
+   "location": ".** paper.tex Eq. (2) L83, Eq. (3) L90 (\"the router uses the upper bound\"); `fusion.dart` (n_eff \"unsigned, so opposing observations cancel in \u2113 but still both count as evidence\"); plan item 6.",
+   "problem": ".**\n- n_eff = \u03a3\u03ba\u00b7e^(\u2212\u0394t/T) ignores reliability \u03b1. A worthless report (\u03b1 = 0.5, logit 0) leaves p\u0304 unchanged but narrows the band, so caution falls on no information.\n- Conflicting reports (+ and \u2212) cancel in p\u0304 but add to n_eff. Conflict therefore reads as confidence, whereas subjective logic and Dempster\u2013Shafer treat it as a signal of ambiguity.\n- Kernel weights are not counts. The Kish effective sample size is (\u03a3\u03c9)\u00b2/\u03a3\u03c9\u00b2, not \u03a3\u03c9.\n- Correlated duplicates, which the paper acknowledges at L248, inflate n_eff further.\n\nThere is thus no model under which p~ has coverage. \"Upper bound\" and ADR-002's \"upper confidence bound\" overclaim."
+  },
+  {
+   "sev": "Significant",
+   "title": "S3. \"Thin evidence \u2192 more caution\" does not hold where evidence is thinnest: unconfigured edges and p\u0304 \u2192 0",
+   "location": ".** paper.tex L92; L175 (14,534 configured edges); `cli_io.dart` (\"An edge with no hazard data at all is simply absent from `hazards`\").",
+   "problem": ".**\n- Edges absent from the hazard configuration get no penalty. That is 471,240 \u2212 14,534 \u2248 456,700 directed edges, about 97%, including prior-only edges with p0 < 0.25 that were dropped. Their evidence is zero, yet p~ = 0.\n- The Wald band also vanishes as p\u0304 \u2192 0: with no evidence and p0 = 0.001, z = 2 gives p~ = 0.064.\n- The property therefore holds only inside the GCC prior zones, which means it holds where a static map already flags risk."
+  },
+  {
+   "sev": "Significant",
+   "title": "S4. Traversal silence is established prior art; the \"moat\" and \"rarely modelled\" claims are overclaimed",
+   "location": ".** plan.tex L151 (\"the one input\u2026 nobody can buy it\"), L176 (moat), L219 (Paper 2); litreview L106 (\"rarely modelled\"), L168; paper L255 (future work, acceptable).",
+   "problem": ".**\n- Probe absence or anomaly as closure or flood evidence is established. Each of the following was opened:\n  - Pietrobon, Lewis & Heverly-Coulson (ACM TSAS 2019, HERE): \"compares the likelihood that every road segment\u2026 is closed or open\u2026 whenever the likelihood of the observed probe activity is too small given a historical model\"; precision 92% on lower-volume roads.\n  - Kong et al. 2022 (taxi passing-rate drop).\n  - She et al. 2019 (GPS density per road).\n  - Hiramoto et al. 2025: \"presence or absence of vehicle traffic\u2026 corresponds to\u2026 the inundation area\".\n  - Song et al. 2015 (\"sample losing rate\").\n- Traversal as positive passability evidence for phone routing appears in Hara, Sasabe & Kasahara (J. Ambient Intell. Humaniz. Comput. 2019): devices that pass a segment mark it passable (p_e \u2190 0) or blocked (p_e \u2190 1) and feed reliable path selection, including an offline case.\n- Vehicle-class-specific passability maps from truck probe data were produced in Japan, because car trajectories \"do not automatically mean that large vehicles can pass\" (WCEE 2012 paper; grey literature, authors not read).\n- Generic precedents: missed detections as Bayesian evidence with a survival prior (Rosen et al. 2016), and \"negative sensor evidence\" (Koch 2007).\n- The commercial claim is the weakest. HERE, TomTom and Google own far denser probe streams than a student app, and Pietrobon et al. are HERE employees."
+  },
+  {
+   "sev": "Significant",
+   "title": "S5. The defensible novelty is the pessimism \u00d7 traversal-silence feedback loop, which no draft mentions",
+   "location": ".** Absent from paper.tex, plan.tex and litreview.tex. Relevant to plan L151, L219 and ADR-002 \"Stretch\".",
+   "problem": ".** A pessimistic router sends its users away from uncertain edges. Those edges then receive no traversals, so silence-based evidence never accrues, n_eff stays low and p~ stays high. The app's own data are censored by its own policy. This is the runaway-feedback structure proved for predictive policing (Ensign et al., FAT* 2018: systems \"only observe crime in neighborhoods they patrol\"). It is also the exploration problem of online shortest-path learning (Talebi et al. 2018; Lagos et al. 2024). Risk-averse Canadian Traveller policies show \"information-seeking detours\" (Lamarre & Kelly 2026). Bandits explore with optimism, while CityPulse is deliberately pessimistic. The two goals conflict, and per-class z is the natural lever: commuters at z \u2248 0 act as explorers whose traversals inform the emergency class."
+  },
+  {
+   "sev": "Significant",
+   "title": "S6. Per-class decay is known, and ADR-002's planned \"persistence-filter derivation\" contains an error",
+   "location": ".** paper.tex L79\u201382; litreview L110; repository ADR-002 \"Stretch\": \"The pitched exponential is the exact observation-free marginal of that model\".",
+   "problem": ".**\n- Precedents for decay rates tuned to how fast the observed entity changes:\n  - J\u00f8sang & Ismail 2002: a forgetting factor \"adjusted according to the expected rapidity of change in the observed entity\".\n  - Biber & Duckett 2005: memories that \"fade at different rates depending on the timescale\".\n  - Rosen et al. 2016: a survival-time prior p_T per feature, whose belief \"decay[s]\u2026 in the absence of any signal\".\n- Class-specific constants add nothing conceptually, and Study 2 shows C3 \u2248 C2.\n- ADR-002's derivation claim does not hold. Under a Weibull survival prior, the observation-free persistence belief follows the Weibull survival function, not an exponential. The exponential is the special case of a constant hazard rate. Rosen's filter also decays a persistence probability, not a log-likelihood-ratio weight on a fixed prior, so Eq. (1) is not its marginal for any p_T."
+  },
+  {
+   "sev": "Significant",
+   "title": "S7. The \"combination not addressed\" statement must cite and narrow around Hara et al. and Rohmann & Bachem",
+   "location": ".** litreview synthesis (\"We found no work that simultaneously (i) routes on beliefs that fuse a static prior with sparse, decaying crowd evidence\u2026 (v) runs entirely on a phone\"); plan L142.",
+   "problem": ".** Two works cover parts of items (i) and (v):\n- Hara, Sasabe & Kasahara 2019, building on Komatsu et al.'s automatic evacuation guiding. It runs on evacuees' phones. It routes on per-segment blockage probabilities from a municipal static prior (Nagoya). It updates these from device trajectories and shared reports, and it is evaluated in an offline (no-communication) case.\n- Rohmann & Bachem (IEEE IV 2026). It fuses a prior with sparse per-edge evidence (Poisson\u2013Gamma empirical Bayes) and propagates uncertainty into risk-aware routing.\n\nNeither has decay, pessimism or verified explanations, so the five-way combination survives, but only narrowly."
+  }
+ ],
+ "S3_novelty_explanation.md": [
+  {
+   "sev": "Critical",
+   "title": "C1. A \"verified\" explanation can be false: the DecisionTrace that the verifier grounds against has wrong semantics",
+   "location": ".**\n- Paper: Abstract (\"a language-model rewrite that must pass a symbolic check against the router's decision record\"); Sec. I (\"explanations that are verified against the decision record\"); Sec. IV-A.\n- Code: `pulse_router/lib/src/query_orchestrator.dart` lines 162\u2013167 (the alternative is the free-flow shortest path), 197 (`chosen.durationSeconds = chosenResult.totalCostSeconds`, i.e. the penalised cost), 277 (`alt.durationSeconds = altResult.totalCostSeconds`, i.e. free-flow time), 241\u2013256 (for `higher_cost`, the \"blocking edge\" is the max-p\u0303 hazard edge anywhere on the alternative), and 337\u2013340 (newest-observation age = 0.0 when no observation exists).\n- `template_renderer.dart` lines 99\u2013123 (delta sentence) and 125\u2013147 (\"It avoids \u2026 reported on X, N minutes ago / moments ago\").",
+   "problem": ".** The verifier can only check that text is consistent with the trace. Three trace fields are not what the template says they are.\n1. **Penalty seconds reported as \"minutes slower\".** `chosen.duration_s` contains \u03bb\u00b7p\u0303\u00b7s\u00b7\u03c40 penalty seconds, but the alternative's `duration_s` is pure free-flow time. \"Route A is N minutes slower than Route B\" therefore compares a cost with a time. This is the same defect the paper criticises in its own earlier harness (Sec. VI-C, \"counted penalty seconds as travel time\"), reintroduced in the user-facing sentence.\n2. **\"It avoids X\" when the chosen route crosses X.** In the `higher_cost` branch the blocking edge is the worst edge on the *alternative*, even when the chosen route shares it.\n3. **A fabricated report for prior-only edges.** For a hazard-configured edge with no observation (8,759 prior-only edges), the age is set to 0.0 and `source_class` to `unknown`. The template then renders \"It avoids flooding reported on X, moments ago\" although nothing was reported. This case was not exercised in Study 1, where all 55 blocking edges had observations; it follows from lines 337\u2013345 together with template line 142."
+  },
+  {
+   "sev": "Critical",
+   "title": "C2. \"Fail-closed\" is in fact fail-crash at Tier 0, and the crash path displays the unverified text",
+   "location": ".**\n- `template_renderer.dart` lines 67\u201380: `throw StateError(... 'text: \"$text\"' ...)`.\n- `route_service.dart` line 99: `renderTemplate` called with no try/catch.\n- `home_screen.dart` lines 47\u201352: `Text('Could not compute a route: ${snapshot.error}')`.\n- Paper: Sec. IV-A (\"otherwise the Tier 0 text is shown\"); Fig. 1 (\"Symbolic verifier (fail-closed)\"); contribution 3.",
+   "problem": ".** Tier 0 verifies itself and throws if it fails. Nothing catches the exception. The app then shows no route at all, and its error banner prints the StateError message, which embeds the failing, unverified text. That inverts both the hazard-routing purpose and rule 5 (\"never show an unverified explanation\").\n\nRealistic traces make Tier 0 fail through three mechanisms:\n1. **A blocking-edge street label equals a data-gap corridor label.** The template's own sentence \"It avoids flooding reported on X\" then names a data-gap corridor next to \"avoids\" and a hazard noun, which trips `_checkDataGapContradiction` (verifier.dart 472\u2013504). The app's fallback label for any edge outside the demo label file is the constant `'an unnamed stretch'` (route_service.dart line 87). So for every non-demo OD pair where the alternative has a blocking edge, the blocking edge and the deduplicated data gap share that label. With app-style labels, Tier 0 fails on **30/100 C1 traces and 7/7 C3 traces that have an alternative** (port). With real OSM names this happens whenever both routes use segments of the same street, which is common for arterials (Anna Salai, OMR). Port check: blocking street \"Anna Salai\" plus data gap \"Anna Salai\" gives `rule3:data_gap_contradiction`.\n2. **Digits in street names hit rule 1.** The fix for \"100 Feet Road\" (verifier.dart 456\u2013471) strips corridor names only inside the data-gap check; rule 1 (`_checkNumerals`, 201\u2013217) still scans the whole text. The Dart regression test passes only because the fixture's blocking edge has `p_pessimistic = 1`, which grounds \"100\" as 100 %. With p\u0303 = 0.95 the same sentence fails with `rule1:numeral:100` (port).\n3. **Harness labels.** With the harness label `edge <id>`, Tier 0 fails on **300/300** Study-1 traces (rule 1 on the IDs, plus spurious data-gap hits from prefix matches such as \"edge 91\" inside \"edge 918\"). The explanation layer was therefore never run on the evaluation traces."
+  },
+  {
+   "sev": "Critical",
+   "title": "C3. The verifier is claimed as a contribution, but it is unevaluated, and Tiers 1/2 have never executed",
+   "location": ".**\n- Paper: Abstract; Sec. I, contribution 3 (\"a fail-closed explanation verifier\"); Sec. IV-B (\"We have not yet measured the pass rate \u2026 reports the design only\"); Threats (\"described, not evaluated\").\n- `flutter_gemma_rewriter.dart` lines 4\u201331 (\"never been run against real model weights\").\n- `cloud_rewriter.dart` (no API key exists).\n- No `FlutterGemmaRewriter(` or `CloudRewriter(` instantiation anywhere in `app/` (grep); `home_screen` calls `computeDemoRoute()` with no rewriter.\n- `docs/EVALUATION.md` Study 3: \"Report the verification pass rate. This is the number the paper is built around.\"",
+   "problem": ".** Sec. IV-B is honest, but the paper still lists the verifier as a contribution and describes Tiers 1/2 as part of the system. Neither has produced a single output: there is no pass rate, no false-reject rate, and no detection rate on outputs the authors did not write. The only evidence is a 30-case adversarial suite, written by the same team, targeting exactly the patterns the rules check (verifier_test.dart). That shows the code does what it says; it is not evidence that it catches what LMs actually get wrong."
+  },
+  {
+   "sev": "Critical",
+   "title": "C4. The verifier does not guarantee what Table I says: adversarial sentences that pass and mislead",
+   "location": ".** verifier.dart; paper Table I and Sec. IV-B. The paper discloses only two limitations: numerals are not bound to unit or subject, and capitalised-word matching does not transfer to Tamil.",
+   "problem": ".** Below are concrete sentences that pass all checks (port verdict = PASS, no unsupported claims) against the team's own `buildTrace()` fixture. The fixture is the CONTRACTS.md \u00a73 worked example:\n- chosen A: 1147 s, 8420 m, worst p\u0303 0.31;\n- alternative B: 907 s, removed by the chance constraint;\n- blocking edge \"Kotturpuram Bridge approach\": flood, p\u0304 0.792, p\u0303 1.0, depth 320 mm (above h_max 300 mm), age 179 s;\n- z = 0, \u03bb = 0.3, band `moderate`, with the production display nouns.\n\n| # | Sentence (passes) | What is wrong | Why it passes (verifier.dart lines) |\n|---|---|---|---|\n| A1 | \"Route A is 4 minutes **faster** than Route B. It avoids flooding reported on Kotturpuram Bridge approach, 3 minutes ago.\" | A is 4 min **slower**. Direction flipped. | Rule 3 only checks `alternatives.isNotEmpty` when \"faster/slower\" appears (404\u2013407). \"4\" is grounded as the *absolute* delta (261). Table I's \"a speed comparison is unsupported\" overstates this check. |\n| A2 | \"There is **no flooding** reported on Kotturpuram Bridge approach.\" | Polarity flip on the edge the router deleted (p\u0304 0.79, 320 mm). | No negation handling. The noun \"flooding\" is allowed because the class is present (369\u2013391). \"There\" is a stop word (290\u2013316); \"Kotturpuram\" and \"Bridge\" are grounded street words (336\u2013357). Rule 6's denylist (550\u2013572) has no \"no flooding\" or \"no water\". |\n| A3 | \"You can drive through Kotturpuram Bridge approach; standing water there is just 320 mm.\" | Endorses traversing water above the vehicle threshold. This is exactly ADR-011's prohibited affirmative-passability claim. | 320 is grounded as depth (268). \"You\" is a stop word. The denylist matches \"you can safely\", not \"you can drive through\" (571). |\n| A4 | \"Route A has only a **1%** chance of flooding at its worst point.\" (true: 31 %) | Understates risk 31-fold. | `%` is stripped and the bare number compared against *every* grounded value (205\u2013211). \"1\" matches the raw probability p\u0303 = 1.0 with tolerance 0.005 (241\u2013243). Units and percent are not bound. For a commuter (z = 0), \"**0%** chance of flooding\" also passes, because z = 0 and the zero time penalty ground \"0\" (256, 267). |\n| A5 | \"No recent hazard data is available for Velachery Main Rd. The water there drained 3 minutes ago, so it beats Route A.\" (data gap: Velachery Main Rd) | Invents a hazard fact about a corridor with no data \u2014 exactly the exploit the coherence check was added for. | The data-gap check is sentence-scoped (184\u2013185, 479); anaphora (\"there\")"
+  },
+  {
+   "sev": "Significant",
+   "title": "S1. Novelty is overstated by omission: the closest prior work is not cited",
+   "location": ".** Paper Sec. II-D (two sentences on explanation; cites Miller, Jacovi, Reiter, van Deemter, Ji, FActScore, TRUE, Gemma, MobileLLM); `refs.bib` (none of the works below appear; grep).",
+   "problem": ".** The design is template-then-rewrite plus a deterministic gate with fallback. Its nearest relatives:\n\n| Work | What it already does | CityPulse delta |\n|---|---|---|\n| Kale & Rastogi, EMNLP 2020 (T2G2), doi 10.18653/v1/2020.emnlp-main.527 | Concatenated templates, rewritten by T5 into fluent text | Adds a runtime gate and fallback; T2G2 checks faithfulness only offline |\n| Harkous et al., COLING 2020 (DataTuner), doi 10.18653/v1/2020.coling-main.218 | Generate, then rerank with a learned semantic-fidelity classifier | Deterministic, not learned; but no measured recall, whereas DataTuner reports it |\n| Ren, Zhang & Liu, MMAsia 2025 (VCP), doi 10.1145/3743093.3771022 | Rule-based keyword check, then regenerate (small LMs) | Checks assertions, not omissions; falls back instead of regenerating |\n| Kim & Jung, IEEE CAI 2025, pp. 69\u201374 (CARE) | Detects numerical hallucinations in LLM-generated text and replaces them with source values | Rejects rather than repairs; CARE is evaluated, CityPulse is not |\n| Rebedea et al., EMNLP 2023 Demos (NeMo Guardrails), aclanthology 2023.emnlp-demo.40 / arXiv 2310.10501 | Programmable output rails (fact-check, moderation) that block responses before they reach the user | CityPulse's rails are symbolic against a typed record, not LLM-judged |\n| Kikuta et al., PAKDD 2024 (RouteExplainer), doi 10.1007/978-981-97-2259-4_3 | Counterfactual route explanation verbalised by GPT-4; text evaluated only qualitatively | Domain (hazard), gate, on-device |\n| Schild et al., ACDA 2025 (SVE), doi 10.1137/1.9781611978759.19; Alsheeb & Brand\u00e3o, ITSC 2023, doi 10.1109/ITSC57777.2023.10422542 | Algorithmic \"why this route and not that one\": minimal sets of segments that explain a route difference | CityPulse's trace is not minimal or contrastive in this sense (C1(2)); these are the right baselines for *content* |\n| Ilyankou, Cavazzi & Haworth, arXiv 2603.14586 (2026) | Proposes a neuro-symbolic navigation architecture: symbolic router, an \"LLM Verbaliser\" constrained by a policy module enforcing \"template-bounded outputs\", and uncertainty-aware language \"programmatically triggered by the symbolic flags\" | **Conceptually anticipates CityPulse's design almost exactly.** CityPulse would be an implementation, which is a valid contribution only if evaluated |\n| Ilyankou, Haworth, Cheng & Cavazzi, CartoAI workshop @ AGILE 2025 (abstract) | GIS-to-YAML schema, then an LLM route description; reports hallucinated POIs and safety-relevant mischaracterisa"
+  },
+  {
+   "sev": "Significant",
+   "title": "S2. The confidence band carries no information, so rule 4 and the hedge sentence are constant",
+   "location": ".**\n- `decision_trace.dart` 454\u2013495 (`lowNEffThreshold = 1.0`; low if n_eff < 1).\n- `query_orchestrator.dart` 371\u2013396 (route band = the worst edge's band; `low` when the route touches no hazard edge, line 396).\n- `verifier.dart` 13\u201318 (rule 4 is route-level only).\n- Paper: Sec. IV-A/B, Table I \"Hedging\".",
+   "problem": ".** A single fresh official report gives n_eff < 1 (spatial kernel \u03ba < 1), so any route touching one observed edge is `low`. A route touching none is also `low`. On the evaluation traces the band is **`low` in 300/300 cases** (C0, C1, C3). The Tier-0 text therefore always says confidence is low, and rule 4 always demands a hedge; the hedge never discriminates. `high` needs three or more full-weight fresh reports on every hazard edge of the route, which the crowd will rarely supply in a flood (council verdict, \"the crowd is empty when needed\")."
+  },
+  {
+   "sev": "Significant",
+   "title": "S3. \"Explicit data gaps\" mark every unconfigured edge, which yields unreadable explanations and contradicts the prior",
+   "location": ".** `query_orchestrator.dart` 284\u2013293; `template_renderer.dart` 165\u2013173; paper Sec. IV-A (\"explicit data gaps\").",
+   "problem": ".** Every chosen-route edge without a hazard config is a \"data gap\", including edges the GCC prior rates low (p < 0.25 is excluded from configs). Per trace there are **median 217 data gaps (min 9, max 521)**. The Tier-0 data-gap sentence lists all of them, giving a **median of about 480 words** per explanation in the harness (port). With real names, deduplicated by street, a cross-city route still lists dozens of roads. Saying \"no recent hazard data\" for a road the prior rates very-low is also misleading: the prior *is* data."
+  },
+  {
+   "sev": "Significant",
+   "title": "S4. Tier 1 is unlikely ever to finish inside the 1.2 s deadline on the target phone",
+   "location": ".**\n- `flutter_gemma_rewriter.dart` 193\u2013201 (`getActiveModel` and `createChat` run on every call, inside the timed future).\n- `rewrite_pipeline.dart` 28 and 57.\n- `fact_set.dart` (the full JSON, including every data gap and blocking edge, goes into the prompt).\n- Paper Sec. IV-A; `docs/EVALUATION.md` Study 4 (a \u20b910\u201315k phone).",
+   "problem": ".** The deadline covers model acquisition, chat creation, prefill of a JSON prompt with hundreds of entries (S3), and decoding. Google's own figures for a fine-tuned Gemma 270M on a **Galaxy S25 Ultra** (flagship, cache warm, LiteRT XNNPACK, 4 threads) are about 1,700\u20132,200 tok/s prefill, about 126\u2013154 tok/s decode, and TTFT about 0.24\u20130.3 s (FunctionGemma model card; litert-community model card). An anecdotal user report gives about 10 tok/s for Gemma 3 270M Q8 on a mid-range Motorola G72 via llama.cpp/Termux (LinkedIn comment; not peer-reviewed). On a budget phone, a 40\u201360-token sentence plus a cold model load is likely to exceed 1.2 s, so Tier 1 would almost always fall back silently. Note also that `maxTokens: 512` is passed to `getActiveModel` (context size), while the fact-set prompt can exceed 512 tokens once data gaps are included."
+  },
+  {
+   "sev": "Significant",
+   "title": "S5. Tamil is mentioned as if supported, but no Tamil path exists and the verifier inverts under Tamil",
+   "location": ".**\n- Paper Sec. IV-B (\"does not transfer to Tamil script\").\n- `explanation.dart` line 133 (\"Tamil templates are future work\").\n- `verifyOrFallback` default `locale = 'en'`.\n- Both rewriter prompts are English-only and give no language instruction.",
+   "problem": ".** Mentioning Tamil only under \"entity check limitation\" implies the rest works. In fact, under Tamil output:\n- rules 1 (only partly: ASCII digits still checked), 2, 3 (comparative and avoidance terms), the hazard-noun part of the data-gap check, and 6 are all vacuous;\n- rule 4 rejects correct Tamil hedges;\n- Tier 0 has no Tamil.\n\nLLM factuality in Tamil is measurably worse: IndicGenBench (ACL 2024) finds a large generation gap against English across Indic languages, and IndicQuest-based evaluation (arXiv 2504.20022) places Tamil in a \"low performance\" bucket. TN-ALERT is the incumbent Tamil-language product."
+  },
+  {
+   "sev": "Significant",
+   "title": "S6. The false-reject rate is probably high, and the LM tiers may add almost nothing",
+   "location": ".** verifier.dart 284\u2013328 (capitalised-word rule with a 25-word stop list), 510\u2013540 (hedge list); `cloud_rewriter.dart` 220\u2013227 and `flutter_gemma_rewriter.dart` 205\u2013212 (the prompts say \"used in Chennai\" and give no hedge requirement).",
+   "problem": ".**\n- Any sentence-initial word outside the stop list fails rule 2: \"Heavy\", \"Flooding\", \"Expect\", \"Take\", \"Due\", \"Please\", \"Water\".\n- \"Chennai\", which the prompt itself introduces, fails.\n- So does any contraction such as \"It's\".\n- Port example: \"Heavy flooding was reported on Kotturpuram Bridge approach 3 minutes ago, so Route A takes 4 minutes longer.\" is rejected (`rule2:entity:Heavy`), although it is correct.\n- With every band `low` (S2), each rewrite must also contain one of 18 English hedge substrings, and the prompts do not ask for one.\n- A 270M model's weak instruction following (IFEval 51.2 for Gemma 3 270M IT, model card) makes compliance less likely still."
+  }
+ ],
+ "S4_eval_routes.md": [
+  {
+   "sev": "Critical",
+   "title": "C-1. Both arms of the C1 vs C3 comparison are circular, and the paper concedes only one of them",
+   "location": ".** \u00a7V-C (metrics); \u00a7VI-A; \u00a7VI-B (\"Against hard avoidance, the soft penalty reached lower expected exposure at a smaller mean detour\"); \u00a7VIII Conclusion (\"scored fairly \u2026 at small detours the soft penalty reduced expected exposure more than hard blocking did\"); Table I; Fig. 2.",
+   "problem": ".** The paper says C1 wins the threshold metric \"by construction\". It does not say that C3 wins the cumulative metrics by construction too:\n  - With \u03b4=1 and z=0, C3 minimises \u03a3_e \u03c4_e (1+\u03bb p\u0304_e s_e). That is a weighted-sum scalarisation of (free-flow time, \u03a3 s\u00b7\u03c4\u00b7p\u0304).\n  - Every C3 route is therefore a supported Pareto point for exactly the \"time-weighted p\u0304\" exposure that Table I reports. \u03a3p\u0304 is a close relative of that quantity.\n  - C1 optimises free-flow time subject to a p\u0304 threshold. It wins the \"share touching p\u0304\u2265\u03b8\" metric by construction.\n  - So each method wins the metric that mirrors its own objective. The ranking is set by the choice of metric, not measured."
+  },
+  {
+   "sev": "Critical",
+   "title": "C-2. The whole soft-over-hard advantage comes from prior-only (GCC zone default) edges, not from observed flood evidence",
+   "location": ".** \u00a7VI-B; abstract (\"With risk weights between 5 and 20, the expected number of hazardous edges per route fell \u2026\"); Conclusion.",
+   "problem": ".** \u03a3p\u0304 splits into two parts: edges with \u22651 observation (5,775 edges) and prior-only edges (8,759 edges, prior p 0.25\u20130.45, n_eff=0).\n  - C1 can never act on prior-only edges. Their maximum p\u0304 is 0.44999 (the \"Very High\" category default), so none of them crosses 0.5.\n  - C1's detours actually *increase* prior-only exposure. On the fresh uniform sample it goes from 0.583 to 0.665.\n  - C3 reduces \u03a3p\u0304 mostly by avoiding GCC hazard-zone polygons. Their probabilities are planning defaults that the paper itself calls uncalibrated, and Study 2 finds the beliefs over-predict.\n  - On the evidence-bearing edges, C3\u03bb5 is no better than C1 and slightly worse."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-1. \"Soft beats hard\" is directionally robust on \u03a3p\u0304 but rests on few informative pairs and has no stated uncertainty",
+   "location": ".** \u00a7VI-B; Table I has no CIs; `extra.json`.",
+   "problem": ".** The comparison is two point estimates without intervals.\n  - 59 of the 100 pairs give identical routes to C0 under both C1 and C3\u03bb5, which leaves about 41 informative pairs.\n  - One pair (#4: \u0394\u03a3p\u0304 \u22126.95, with C3 143 s slower there) accounts for 29% of the summed difference."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-2. C1 is a single, threshold-matched point, and failures of hard blocking are silently dropped",
+   "location": ".** \u00a7V-B; `study_common.build_c1_injected_overrides`; Table I.",
+   "problem": ".**\n  - C1 is one point (\u03b8=0.5), using the same threshold as the headline metric. It also uses \u03bb=0, so it has no soft term at all.\n  - A fair baseline family is \"hard block at \u03b8\" swept over \u03b8, plus a hybrid (block at \u03b8_hi with a soft penalty below it).\n  - The text says \"removes edges with p\u0304\u22650.5\". The code uses `p_mean > threshold`. I checked: no edge has p\u0304 exactly 0.5, so this has no numerical effect.\n  - Hard blocking can disconnect an OD pair. The CLI then returns an error and the pair drops out of the comparison, which hides C1's worst outcome. On the paper's 100 pairs this did not happen, but on fresh samples it does."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-3. The \"share touching p\u0304\u22650.5\" metric effectively means \"the route crosses an edge with an official report\"",
+   "location": ".** \u00a7V-C; \u00a7VI-A (\"29% \u2026 against 30%\"); abstract.",
+   "problem": ".** The threshold metric depends almost entirely on which edges carry an official report:\n  - 364 edges have p\u0304\u22650.5, and 356 of them have an official_feed report.\n  - Prior-only edges never exceed 0.45.\n  - With official reports held out, crowd evidence lifts p\u0304 above 0.5 on only 8 edges (max p\u0304 0.567).\n\n  Crowd and official evidence also barely overlap: 1,017 edges have an official report, 4,874 have a crowd report, and only 116 have both. The metric is therefore a proxy for \"touches a GCC stagnation or official flood point\", and those points are also inputs to the router."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-4. \"Expected number of hazardous edges\" is mislabelled and truncated",
+   "location": ".** Abstract, \u00a7V-C, \u00a7VI-A, \u00a7VI-B, Conclusion.",
+   "problem": ".** \u03a3p\u0304 is not an expected count of hazardous edges, for four reasons:\n  - **Not calibrated.** It would be an expected count only if p\u0304 were calibrated, and Study 2 shows over-prediction.\n  - **Truncated.** It counts only the 14,534 configured edges. T1.3 gave a nonzero prior (0.02\u20130.12) to 193,385 edges in total, but unconfigured edges count as p=0 in both router and reference. In the evaluation, 93.7% of C0 route free-flow time lies on unconfigured edges.\n  - **Segmentation-dependent.** It depends on how OSM splits roads into edges: the median route has 222 edges, and Spearman \u03c1(\u03a3p\u0304, edge count) = 0.38 for C0.\n  - **Severity mismatch.** Severity weights the objective (waterlogging s=0.6, on 624 edges) but not the metric."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-5. The OD sampling and trip-length distribution are not described, and the sample is not representative",
+   "location": ".** \u00a7V-C (\"sampled with the harness's pinned seed\"); `t3_2_replay_engine.sample_od_pairs`.",
+   "problem": ".** The sampler draws a source uniformly over all 193,191 OSM nodes, then a target uniformly from the source's BFS-reachable set.\n  - This gives long, metro-scale trips. Free-flow time: min 64 s, P10 1,045 s, median 1,834 s (31 min), P90 3,178 s, max 3,954 s. Distance: median 24.9 km, P90 45.5 km, max 62.4 km.\n  - The sample follows OSM node density, not population or travel demand.\n  - Exposure grows with trip length, so headline levels such as \"30% of routes\" and \"1.61\" are artefacts of this choice.\n  - Dead-end and reachability handling is fine: 0 dead-end draws, 100 attempts."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-6. The z sweep mostly measures \"avoid zones with no evidence\", which is why pessimism cannot be credited",
+   "location": ".** \u00a7VI-C (\"This is expected rather than informative\").",
+   "problem": ".** The paper says higher z cannot be credited without ground truth. There is also a mechanical reason.\n  - Prior-only edges have n_eff=0, so the bound puts the largest inflation on them:\n    - at z=1, median p\u0303 is 0.74 on prior-only edges and 0.38 on edges with an actual flood report;\n    - at z=1.28, 14.9% of prior-only edges saturate at p\u0303=1;\n    - at z=2, 100% saturate.\n  - Observed edges have median n_eff 0.97 (P90 0.999), so in practice almost every observed edge has one effective report.\n  - At z\u22651, the router therefore treats an edge with no reports, inside a hazard zone, as riskier than an edge with a flood report."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-7. N=100 is no longer justified, and the statistics are too thin",
+   "location": ".** \u00a7V-C (\"which is why the harness used 100 rather than 1,000 pairs\"); Threats (\"Scale\").",
+   "problem": ".**\n  - The 3.07 s per call is a CLI process-start cost. The validated SciPy re-implementation routes in about 0.04 s per query: 600 pairs \u00d7 10 configurations ran in about 2 minutes here.\n  - With C3 at its default, only 7/100 pairs change. The bootstrap CI for +0.026 s ([0.003, 0.061]) comes from 7 non-zero values among 93 zeros, and calling that \"significant\" is meaningless.\n  - The 30 sweep points in Table I have no CIs and no multiplicity control."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-8. The SciPy re-implementation matches the Dart cost, but it was validated only where routes barely change",
+   "location": ".** \u00a7V-C (\"reproduced the production router's C3 node sequences on 100 of 100 pairs\"); contributions bullet (\"reproduces the production router's paths\").",
+   "problem": ".** The cost formula matches. `edge_cost.dart` computes `\u03c4(1+p\u0303(\u03b4\u22121)) + \u03bb p\u0303 s \u03c4`. Depth is null on all edges, so \u03b4=1 and w = \u03c4(1+\u03bb p\u0303 s). Unconfigured edges cost \u03c4 (`query_orchestrator.dart`), and the SciPy weights are the same. Two further checks came back clean:\n  - **Parallel edges.** There are 2,100 (u,v) pairs with parallel edges, and 92 of them have edges with different hazard. SciPy keeps the minimum-weight edge per pair, which is correct. The re-analysis maps Dart node paths to the minimum-\u03c4 parallel edge. I checked every step of the C1 and C3 traces and found 0 cases where that edge differs from the minimum-cost edge, so there is no mapping error.\n  - **Ties.** Bidirectional Dijkstra and SciPy may break equal-cost ties differently. No mismatch appeared.\n\n  The gap is scope. The 100/100 check is at \u03bb=0.3, where 93/100 routes equal the free-flow route, so it really tests only 7 hazard-aware routes. I additionally confirmed C0 (100/100) and C1 at \u03b8=0.5 (100/100). No sweep point with \u03bb\u22651 or z>0 has been checked against Dart, and those are where ties and near-ties on detoured paths matter."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-9. Overclaiming sentences in paper.tex",
+   "location": "",
+   "problem": ""
+  },
+  {
+   "sev": "Significant",
+   "title": "S-10. A source-holdout route study is feasible now, and its pilot result is negative for the fusion claim",
+   "location": ".** Threats (\"Ground truth independent of the belief is required\"); Future work.",
+   "problem": ".** The paper treats independent ground truth as unavailable. A partly independent check can be run on the existing corpus: route on crowd plus prior, then score routes against official-report edges. This mirrors Study 2's label design. I piloted it on 300 fresh uniform pairs."
+  }
+ ],
+ "S5_eval_calibration.md": [
+  {
+   "sev": "Critical",
+   "title": "C1. The label is time-invariant, so \"report age\" cannot be evaluated, and decay variants differ only by construction",
+   "location": ".** `study2_calibration.py` L37\u201341, L157\u2013176; paper Sec. V-D (\"Report ages \u2026 were simulated\"), Sec. VI-D, abstract (\"no advantage of class-specific decay\"), conclusion.",
+   "problem": ".**\n  - The label y_edge says whether an official point exists on the edge. It is the same at every simulated age. Every crowd report on an edge has the same age, so \"age a\" means multiplying the whole crowd log-odds shift by one global constant, exp(\u2212a/T).\n  - Scoring a time-varying p(t) against a fixed label rewards whichever constant best fits the label's base rate. That tests evidence weighting, not the shape of the decay.\n  - With the corpus's single timestamp the three decay models collapse:\n    - At 0 h, C2, C3 and C4 are identical.\n    - At 24 h and later, all three equal the prior-only prediction.\n    - They differ only in the 1 h and 6 h buckets, which are 2 of the 6.\n  - The crowd pool is 100% flood class, so \"class-specific\" C3 uses T = 7200 s against C2's shared T = 7300 s. Those are the same model to within 0.0012 in any row."
+  },
+  {
+   "sev": "Critical",
+   "title": "C2. Crowd evidence lowers skill under this label, so \"faster decay wins\" just means \"discarding the crowd wins\"",
+   "location": ".** `result.json[\"metrics_by_report_age_bucket\"]`; paper Sec. VI-D, Table III.",
+   "problem": ".** Brier improves steadily as crowd evidence is decayed away. Once the evidence is gone (the prior alone), the model scores better than with it. This explains the whole ranking: C4 scores worst because it keeps the crowd evidence at full weight for 6 h, and C2 and C3 score better because they discard it sooner. None of this concerns the decay mechanism."
+  },
+  {
+   "sev": "Critical",
+   "title": "C3. Every model is worse than a constant forecast, and the paper does not say so",
+   "location": ".** Table III; Sec. VI-D.",
+   "problem": ".**\n  - Climatology means always predicting the base rate. Its Brier score equals the uncertainty term: 0.0202 pooled and 0.0236 on the crowd pool.\n  - Every reported model scores worse:\n\n    | Model | Brier skill score, pooled | Brier skill score, crowd pool |\n    |---|---|---|\n    | C3 | \u22120.70 | \u22120.66 |\n    | C4 | \u22120.81 | \u22120.78 |\n    | Beta | \u221213.4 | \u221211.7 |\n\n  - Prior-only on the crowd pool scores \u22120.53, the best of the non-trivial predictors, and still worse than climatology.\n  - The paper reports reliability and resolution but leaves out the single most interpretable fact: the forecasts have negative skill."
+  },
+  {
+   "sev": "Critical",
+   "title": "C4. All discrimination comes from non-hazard confounds: GCC coverage and edge length",
+   "location": ".** Label construction (`study2_calibration.py` L105\u2013126); paper Sec. VI-D (\"weak discrimination\").",
+   "problem": ".**\n  - **Coverage confound.** The prior falls back to 0.02 on edges more than 600 m from any GCC hazard zone, which in practice means outside GCC's mapping coverage. Official points (GCC stagnation and GCC hotspots) exist only inside GCC coverage.\n    - All 118 positive edges lie inside the convex hull of official points. Only 35% of prior-floor crowd edges do, against 99.6% of non-floor crowd edges.\n    - Within coverage, the models have no discrimination at all:\n\n      | Subset | Prior AUROC | C3 (0 h) AUROC |\n      |---|---|---|\n      | Non-floor (zone-covered) edges, n = 3,787, 115 positives | 0.456 | 0.455 |\n      | Inside-hull edges, n = 4,151, all 118 positives | 0.494 | 0.492 |\n\n    - A bare \"inside hull\" indicator scores 0.576, above C3's 0.566.\n  - **Edge-length confound.** y = 1 needs an official point to snap to the same edge as a crowd point, so longer edges are more likely to be positive.\n    - Edge length alone has AUROC 0.651 on the crowd pool, and 0.659 within coverage. That beats every model in Table III.\n    - Median length is 141 m for positives and 92 m for negatives.\n    - A logistic fit on log(length) plus prior reaches an in-sample AUROC of 0.653."
+  },
+  {
+   "sev": "Critical",
+   "title": "C5. The headline AUROC of 0.61 is inflated by 5,000 random easy negatives that the paper never mentions",
+   "location": ".** Abstract (\"area under the ROC curve 0.61\"); Sec. V-D (\"giving 34,256 edge\u2013age rows with 708 positives\"); Table III caption.",
+   "problem": ".**\n  - The 34,256 rows are 4,876 crowd edges \u00d7 6 ages (29,256 rows) plus 5,000 randomly sampled edges with no observations. Those 5,000 are labelled 0 by construction and predicted by the prior alone.\n  - Positives can only arise in the crowd pool, so those negatives are easy. The AUROC implied for positives against the no-report negatives is 0.852 (C3), 0.860 (C4) and 0.987 (Beta). The pooled 0.609 is a mixture of 0.566 and 0.852.\n  - The 5,000 rows also pull the pooled Brier down: their mean p is 0.048, so their mean p\u00b2 is 0.006.\n  - Sec. V-D does not mention the no-report pool, and \"34,256 edge\u2013age rows\" is arithmetically false: 4,876 \u00d7 6 = 29,256."
+  },
+  {
+   "sev": "Significant",
+   "title": "S1. Selection and collider bias in pool construction; the label measures co-location at edge resolution",
+   "location": ".** `load_edge_pools` L105\u2013143.",
+   "problem": ".**\n  - The crowd pool keeps only edges with at least one crowd report. 899 of the 1,017 edges with an official point have no crowd report, and they are dropped from the study completely; they are in neither pool. So the positives are \"official AND crowd on the same directed edge\", which is a co-location event.\n  - The label is badly sensitive to spatial granularity:\n    - 456 negative edges have an official point within 100 m, nearly four times the 118 positives.\n    - 1,477 negatives have one within 200 m.\n    - 86% of positives have one within 100 m.\n  - Each crowd \"observation\" is one OSM way, placed at its first sub-segment's midpoint (`t31_build_replay_corpus.py` L100\u2013109). A flooded street therefore gives evidence to one edge only. An official point on another edge of the same flooded street yields y = 0."
+  },
+  {
+   "sev": "Significant",
+   "title": "S2. Calibration-in-the-large reflects the proxy's base rate, not the hazard probability",
+   "location": ".** Sec. VI-D (\"predicted probabilities far above observed frequencies\"); Fig. 3 caption.",
+   "problem": ".**\n  - The proxy's prevalence (2.4% of crowd edges) is set by how many GCC points exist and how they snap. It does not represent P(flooded).\n  - The prior's category probabilities (0.02 to 0.45) and the crowd weight \u03b1 = 0.6 are meant to represent P(flooded). A gap between 0.10 mean prediction and 0.024 observed frequency is therefore uninterpretable; it may be the label, not the model.\n  - The reliability diagrams also show something the paper does not state: the observed frequency is flat across predicted bins. At 0 h:\n\n    | Mean predicted p | Observed frequency | 95% Wilson interval |\n    |---|---|---|\n    | 0.080 | 0.025 | [0.020, 0.030] |\n    | 0.277 | 0.023 | [0.016, 0.032] |\n    | 0.449 | 0.035 | [0.012, 0.098] |\n\n    A higher predicted p does not mean a higher label rate."
+  },
+  {
+   "sev": "Significant",
+   "title": "S3. The Beta-reputation baseline is structurally crippled, and the paper and ADR-012 misdiagnose why",
+   "location": ".** `study_common.beta_reputation_p` L382\u2013417; ADR-012 point 6; paper Sec. VI-D (\"largely because it falls back to 0.5 where no reports exist\").",
+   "problem": ".**\n  - The implementation has no base rate. It computes E[Beta(r+1, s+1)] = (r+1)/(r+s+2), and the corpus has only positive reports (s = 0), so p \u2265 0.5 on every row. The minimum p on the crowd pool is exactly 0.5.\n  - So the 0.5 fallback on no-report edges is not the main cause. On the crowd-only pool, where every edge has reports, Beta still scores Brier 0.299.\n  - Beta also differs from C2/C3 on more than decay:\n    - It weights by \u03b1 linearly rather than by logit(\u03b1).\n    - Its forgetting rate of 0.9 per hour is a time constant of about 9.5 h, against 2 h for C2/C3.\n    - It gets no prior.\n  - The comparison therefore does not isolate \"the decay mechanism\", contrary to the docstring at L389\u2013392.\n  - The repo flags the formulation as [UNVERIFIED DETAIL], since the primary paper was not opened. The paper cites it as J\u00f8sang & Ismail without that caveat."
+  },
+  {
+   "sev": "Significant",
+   "title": "S4. No uncertainty quantification, and rows are pseudo-replicated",
+   "location": ".** Table III; `compute_metrics_table`.",
+   "problem": ".**\n  - Each crowd edge appears in six rows (one per age), and each pooled metric treats the 29,256 rows as independent. The independent units are 4,876 edges with 118 positive edges. 708 \"positives\" means 118 edges \u00d7 6.\n  - Half the rows (24 h and later) are identical prior-only predictions for all decay variants.\n  - No confidence intervals are reported. The paper prints AUROC to three decimals (0.609, 0.609, 0.609) and Brier to four, which suggests a precision the data cannot support."
+  },
+  {
+   "sev": "Significant",
+   "title": "S5. The \"official\" label is partly a susceptibility designation, not an event observation, so it is circular with the prior in kind",
+   "location": ".** Corpus `gcc_flood_hotspots_2015.kml` (327 points); paper Sec. V-A/V-D.",
+   "problem": ".**\n  - The hotspot records carry `vulnerability` (\"Low Vulnerability\") and `inundation_ft_band` (\"<2ft\", \"3 to 5 ft\") fields. These look like GCC's designated vulnerable locations, a hazard map, rather than dated 2015 observations. The prior is also a GCC hazard map.\n  - Content leakage turned out to be weak in practice. Among all observed edges, prior AUROC for official-vs-crowd-only is 0.511 (0.524 for the hotspot layer, 0.505 for stagnation). But that only shows the two GCC products disagree. It does not make the hotspot layer ground truth.\n  - The stagnation layer (753 points, 70 of the 118 positives) has no date either."
+  }
+ ],
+ "S6_formulation.md": [
+  {
+   "sev": "Critical",
+   "title": "C1. Adding a positive crowd report *lowers* p\u0303 for every z>0 class, so Eq. (3) does not have the property the paper claims for it",
+   "location": "Eq. (3) and the sentence that follows it (\"thin evidence produces more caution, not less\"); \u00a7III-B \"Why not scale the penalty by confidence?\" (\"Equation (3) reverses the direction of that dependence\"); `pessimistic.dart:40\u201342` together with `fusion.dart:95\u201397`.",
+   "problem": "The statement \"for fixed p\u0304, p\u0303 decreases in n_eff\" is true (\u2202p\u0303/\u2202n = \u2212z\u00b7\u221a(p(1\u2212p))/(2(n+1)^{3/2}) < 0, checked with sympy). But p\u0304 is never held fixed: one report raises n_eff by \u03c9 and moves \u2113 by \u03c9\u00b7logit(\u03b1) at the same time. For a weak source, the band shrinks by more than the mean rises. With p0 = 0.05, the values are:\n\n  | evidence at d=0, age 0 | z=1.28 p\u0303 | z=2 p\u0303 |\n  |---|---|---|\n  | none (prior only) | 0.329 | 0.486 |\n  | 1 positive crowd report | **0.309** | **0.441** |\n  | 2 positive crowd reports | 0.333 | **0.461** |\n  | 3 positive crowd reports | 0.380 | 0.509 |\n\n  At z = 2 it takes three concurring flood reports before the router is more cautious than it was with none. With p0 = 0.20 and z = 2, one crowd report lowers p\u0303 from 1.00 to 0.90. Solving p\u0303(one report) = p\u0303(none) gives a crossover at \u03b1* \u2248 0.63 for z = 1.28 and \u03b1* \u2248 0.645 for z = 2. This holds for p0 from 0.02 to 0.10 (root-finding with brentq). The configured \u03b1_crowd = 0.60 sits just below that knife-edge."
+  },
+  {
+   "sev": "Critical",
+   "title": "C2. The production router does not use ALT, so Proposition 1 and the \"minimum ratio 1.0\" check concern code that is never on the query path",
+   "location": "\u00a7IV, first paragraph (\"bidirectional Dijkstra with ALT landmarks\"); Proposition 1; \u00a7VI-E (\"as Proposition 1 requires\"); `query_orchestrator.dart:155\u2013168`; `alt_landmarks.dart:195`.",
+   "problem": "`planRoute` calls plain `bidirectionalDijkstra` twice, once with the hazard cost and once with the free-flow cost. No landmark potential is involved. `aStarWithLandmarks` is a *unidirectional* A* and is referenced only from `test/alt_landmarks_test.dart` (grep over the whole repo; the `bin/` directory has no landmark reference). No bidirectional ALT exists anywhere, so the question of how forward and backward potentials are combined does not arise."
+  },
+  {
+   "sev": "Critical",
+   "title": "C3. Eq. (1) defines a spatial kernel over all edges, but the implementation snaps each observation to exactly one directed edge, so flooded two-way streets are penalised in one direction only",
+   "location": "Eq. (1) (\u03ba(d(e, x_i)) for every e); `scripts/t3_2_replay_engine.py:108\u2013139`; `data/corpus/2026-09-17/edge_snap_index.json`; `query_orchestrator.dart:120\u2013127` (observations are looked up by `edge_id`).",
+   "problem": "The snap index has 6,132 entries, one per observation, and every observation maps to exactly one `edge_id`. \u03ba is applied only to the snap distance; observations never spread to neighbouring edges. Of the 5,775 directed edges carrying observations, 5,177 have a reverse twin (to\u2192from) in the graph, and only 2 of those twins carry the evidence too. The twin receives a hazard entry only if its prior p0 \u2265 0.25."
+  },
+  {
+   "sev": "Significant",
+   "title": "S1. The \"risk-seeking under ambiguity\" argument is mislabelled and overstated",
+   "location": "\u00a7III-B, paragraph \"Why not scale the penalty by confidence?\"; contribution bullet 1.",
+   "problem": "1. *Terminology.* Preferring an option because its probability is less well known is **ambiguity-seeking** (ambiguity-loving, in the Ellsberg / Gilboa\u2013Schmeidler sense), not risk-seeking. Risk-seeking means preferring mean-preserving spreads of *known* distributions.\n  2. *Truth conditions.* Multiplying by confidence is not wrong in itself. If R = Pr[flood | report valid] and C = Pr[report still valid], then R\u00b7C is the correct marginal probability of flooding when an invalid report implies \"no flood\", and it is ambiguity-neutral. The argument is correct only when the no-information default should be the prior rather than 0. Then R\u00b7C is optimistic, because it decays to 0 instead of to p0, and it ignores second-order uncertainty. The paper's own fusion already handles the first point: an ageing report sends \u2113 \u2192 \u21130.\n  3. *The \"reverses the direction\" claim is false in general.* For the commuter default (z = 0), p\u0303 = p\u0304 falls with report age exactly as R\u00b7C does; it only stops at p0 instead of 0. For official reports, p\u0303 falls with age at every z. The direction reverses only for weak sources at z > 0, which is the perverse case in C1."
+  },
+  {
+   "sev": "Significant",
+   "title": "S2. The pessimistic bound is neither a confidence bound nor consistent with the posterior that already contains the prior; the \"+1\" is unexplained",
+   "location": "Eq. (3); `pessimistic.dart:40`.",
+   "problem": "1. *What is the \"+1\"?* p\u0304(1\u2212p\u0304)/(n_eff+1) equals the variance of a Beta(a, b) with mean p\u0304 and **a + b = n_eff**, because Var = m(1\u2212m)/(a+b+1). Under that reading the +1 is not a prior pseudo-count; the prior contributes zero pseudo-counts to the variance even though \u21130 is fully present in the mean. Under the other reading, a Wald interval with n_eff + 1 trials, the prior is worth exactly one observation whatever p0 or its provenance. Neither reading is stated, and the two disagree.\n  2. *Units mismatch.* Each report adds \u03c9\u00b7logit(\u03b1) to the mean but only \u03c9 to n_eff, so one official report (logit 2.44) and one crowd report (logit 0.41) count the same towards certainty.\n  3. *Conflict reads as certainty.* n_eff is unsigned (as documented in `fusion.dart:32`), so one positive and one negative crowd report leave p\u0304 = p0 but shrink the band. With p0 = 0.25 and z = 2, p\u0303 goes from 1.00 (no evidence) to 0.75 (conflicting pair). With p0 = 0.05 and z = 1.28, it goes from 0.329 to 0.211. Conflicting evidence is the textbook case where an ambiguity-averse rule should be *more* cautious.\n  4. *Wald collapse.* lim p\u0304\u21920 p\u0303 = 0 and lim p\u0304\u21921 p\u0303 = 1 (sympy), whatever n_eff is. Near 0 the bound is anti-conservative relative to standard intervals. At p\u0304 = 0.02, n_eff = 1, z = 2: ours 0.218; Wilson (n = 2) 0.680; Jeffreys 0.697; variance-matched Beta(a+b = n_eff) quantile 0.325. Near 0.5 with thin evidence it saturates. At p\u0304 = 0.5, n_eff = 0, z = 1: ours 1.000; Wilson 0.854; Jeffreys 0.841. Full grid for p\u0304 \u2208 {0.02, 0.1, 0.3, 0.5}, n_eff \u2208 {0, 0.5, 1, 5, 20}, z \u2208 {0, 1, 2} is in the appendix table below.\n  5. *Saturation on the actual hazard set.* With n_eff = 0, p\u0303 = 1 whenever p0 \u2265 0.20 at z = 2 (exact root 0.2000) and whenever p0 \u2265 0.379 at z = 1.28. All 8,759 prior-only hazard edges have p0 \u2265 0.25, so under the emergency class every one of them has p\u0303 = 1, and cost = 2\u03c40 at \u03bb = 1. The bound carries no information there, and any report can only lower it (C1).\n  6. \"Mirrors UCB of bandit algorithms [auer2002ucb]\": UCB1 is a Hoeffding/log-t bonus, not a variance-scaled Wald term. The analogy is loose."
+  },
+  {
+   "sev": "Significant",
+   "title": "S3. The log-odds sum is a heuristic, not a Bayesian update, and the independence assumption saturates quickly",
+   "location": "Eq. (1); `fusion.dart:95\u201397`; \u00a7VII \"Independence\".",
+   "problem": "1. Using logit(\u03b1) as each report's log-likelihood ratio assumes a *symmetric channel*: Pr(+report | flooded) = \u03b1 and Pr(+report | not flooded) = 1\u2212\u03b1. That is coherent for a source with sensitivity = specificity = \u03b1, but it should be stated. It is implausible for app traversal, where \"passed without reporting\" has a very different likelihood ratio.\n  2. Multiplying a log-LR by \u03c9 = \u03ba\u00b7e^{\u2212\u0394t/T_c} is a *tempered (power) likelihood*, not Bayesian conditioning. If \u03ba is \"probability the report refers to this edge\", the coherent mixture likelihood is log(\u03ba\u00b7LR + 1 \u2212 \u03ba), which exceeds \u03ba\u00b7log LR by Jensen. For \u03b1 = 0.92 and \u03ba = 0.5: 1.833 versus 1.221 (power). For time decay, a persistence model (two-state Markov, or the Rosen et al. persistence filter the paper already cites) relaxes the posterior toward the prior in probability space, not as e^{\u2212t/T}\u00b7log LR in log-odds space.\n  3. With independence, k identical fresh crowd reports on a prior of 0.05 give:\n\n     | k | p\u0304 | p\u0303 at z=2 |\n     |---|---|---|\n     | 1 | 0.073 | 0.441 |\n     | 3 | 0.151 | 0.509 |\n     | 10 | 0.752 | 1.000 |\n     | 30 | 0.9999 | 1.000 |\n\n     Thirty correlated reshares of one sighting make the edge certainly flooded. The 2015 corpus already needed 2,806 duplicates removed."
+  },
+  {
+   "sev": "Significant",
+   "title": "S4. The chance-constraint \"point approximation\" is not a valid chance constraint and fails open when depth is unknown",
+   "location": "\u00a7III-C, last sentence; `edge_cost.dart:101\u2013105`; `query_orchestrator.dart:53\u201356` (depth is the \"newest reading\", not fused or decayed).",
+   "problem": "The rule is: remove e if \u0125 > h_max and p\u0303 \u2265 \u03b5. In effect it sets Pr[h > h_max] := p\u0303\u00b71[\u0125 > h_max], which implies:\n  1. *Pr = 0 whenever depth is unknown.* An unknown depth does not imply zero probability of exceeding h_max, so the constraint fails open by default. On the evaluated corpus, which has no depth anywhere, it never fires. The paper says this in threats to validity, but \u00a7III presents the rule as an approximation of the constraint.\n  2. It treats Pr[h > h_max | hazard present, reading] as 1 if the point reading exceeds the threshold and 0 otherwise. There is no measurement-error model for crowd depth estimates.\n  3. *\u03b5 is vacuous on high-prior edges.* Since p\u0303 \u2265 p\u0304 \u2192 p0 \u2265 0.25 > \u03b5 (0.10 or 0.15) on every prior-only hazard edge, the probability clause is always satisfied there, and the rule reduces to \"\u0125 > h_max\".\n  4. *Stale depth never expires.* `depthMm` is not decayed, and p\u0303 does not fall below p0. A single old reading above 300 mm on a susceptible edge removes that edge permanently.\n  5. *Low-prior edges keep reported deep water.* A single fresh crowd report of 320 mm on a p0 = 0.02 edge gives p\u0303 = 0.030 at z = 0, below \u03b5, so the edge stays open. Its cost is only about 1.4\u03c40, because \u03b4 is capped at about 14.5 for a 30 km/h street (see S6). At z = 1.28 or z = 2 it is removed.\n  6. Removal depends on z, which is a robustness margin. That is acceptable but should be named; it resembles an ambiguity-robust chance constraint only if p\u0303 were a valid upper confidence bound (S2)."
+  },
+  {
+   "sev": "Significant",
+   "title": "S5. Proposition 2 is correct as a necessary condition but has unstated assumptions and a notation slip; the 60 s \u2192 18 s example is right",
+   "location": "Proposition 2 and the paragraph after it.",
+   "problem": "1. The ratio bound w/\u03c40 = 1 + \u03bbp\u0303s_c \u2264 1 + \u03bbs_c is correct. It needs s_c \u2265 0 and p\u0303 \u2264 1; the code guarantees both via `min{1,\u00b7}` and validation. The arithmetic checks: 0.3 \u00d7 1 \u00d7 60 \u00d7 1 = 18 s. For waterlogging (s = 0.6) the cap is 10.8 s; for a prior-only edge at z = 0 (p\u0303 = 0.25) it is 4.5 s.\n  2. The route statement is exact as an iff only if the avoiding route P2 carries no hazard penalty. In general, P2 beats P1 if and only if T2 \u2212 T1 < \u03bb(H1 \u2212 H2), with H = \u03a3_e p\u0303_e s_{c(e)} \u03c40(e) over each route's own edges; shared edges cancel. \"Only if \u0394T < \u03bbH1\" holds as a necessary condition because H2 \u2265 0, which the proof should say.\n  3. s_c sits outside the sum, but the class varies by edge (flood 1.0, waterlogging 0.6). The sum should be \u03a3_e p\u0303_e s_{c(e)} \u03c40(e) \u2264 \u03bb\u00b7s_max\u00b7T_h.\n  4. It also assumes \u03b4 = 1 on *both* routes, no edge removed, and T_h measured over edges of P1 not in P2.\n  5. \"Proposition\" is generous for a one-line substitution; \"Remark\" or \"Observation\" would fit an IEEE paper better. The actual insight, that a harm term proportional to \u03c40 makes short severe segments cheap, deserves its own sentence. A fix (harm per traversal, \u03bb\u00b7p\u0303\u00b7s\u00b7H_c in seconds independent of \u03c40) should be stated in \u00a7III, not only in future work."
+  },
+  {
+   "sev": "Significant",
+   "title": "S6. Pregnolato curve: coefficients verified, but the 300 mm handling and the curve's scope differ from the source",
+   "location": "\u00a7III-C (\u03b4 definition); `depth_disruption.dart:17, 26\u201333, 49\u201359`; `hazard_classes.yaml` (`h_max_mm_pedestrian`).",
+   "problem": "s:**\n  1. The fitted quadratic gives v(300) = 2.07 km/h, not 0, and has its vertex at 307.2 mm. The code clamps h to 300, so every depth \u2265 300 mm (500 mm, 1 m) yields v_safe = 2.07 km/h and a *finite* \u03b4 \u2248 14.5 on a 30 km/h street. The source treats 300 mm as impassable. The `vSafe <= 0 \u2192 \u221e` branch at `depth_disruption.dart:56` is unreachable dead code. If it were made reachable, 0\u00b7\u221e = NaN in `edge_cost.dart:109` whenever p\u0303 = 0.\n  2. *\u03b4 \u2265 1 clamp.* The paper's justification, \"for shallow water on a slow street\", understates how wide the \u03b4 = 1 region is. Solving v(h) = v0 gives \u03b4 = 1 for every h below 166 mm (20 km/h residential), 131 mm (30 km/h), 102 mm (40 km/h), 76 mm (50 km/h) and 53 mm (60 km/h). Graph speeds max out at 70 km/h, so no edge has \u03b4 > 1 at zero depth. On most Chennai streets the slowdown term is therefore zero over roughly the first 130\u2013170 mm and then rises steeply, so it acts almost like a step. The clamp is the natural reading of Pregnolato's min(v, v(w)) usage, so the paper can say that instead of presenting it as an implementation patch.\n  3. *Scope.* The curve was fitted for passenger cars. It is applied unchanged to the emergency class (Kramer et al. 2016, cited inside Pregnolato, give 0.6 m wading for emergency vehicles) and to pedestrians. `h_max_mm_pedestrian` exists in the YAML but is never read; `EdgeHazardConfig` has one h_max per edge regardless of user class."
+  },
+  {
+   "sev": "Significant",
+   "title": "S7. The static prior is used as P(flooded now) at all times",
+   "location": "\u00a7III-A (\"a static prior log-odds \u21130(e) encodes susceptibility\"); \u00a7V-A (GCC category \u2192 0.02\u20130.45).",
+   "problem": "Hazard-zone categories describe susceptibility *given a flood event*. Using them as the unconditional probability that an edge is flooded at query time means that on a dry day every \"Very High\" edge carries p\u0304 = 0.45. With z = 2 that becomes p\u0303 = 1, and with z = 1.28 also p\u0303 = 1. Ageing evidence decays back to this level, not to near zero."
+  }
+ ],
+ "S7_business.md": [
+  {
+   "sev": "Critical",
+   "title": "C-1. \"Fleet operators \u2026 First revenue\" has no supporting evidence, and the available evidence points the other way",
+   "location": "plan.tex L164 (customers); L171 (revenue sequence); L185 (\"fleet vehicles on the API\"); L211 (WTP interviews). This also inherits COUNCIL_VERDICT.md L117\u2013125 (\"a buyer with a budget\").",
+   "problem": "No Indian fleet has been shown buying third-party flood or passability data. What fleets actually do:\n  - They build in-house: Zomato runs about 650\u2013700 weather stations and gives the data away free as CSR (V8). Blinkit \"blacklists\" routes from rider reports.\n  - Their rain-day decision is coarse: service area on or off, dark store suspended (V14).\n  - Their binding constraint is rider supply (\"a sudden drop in delivery partner supply\"), not route choice (V14). A passability API optimises a decision fleets mostly don't make at segment level.\n  - Commodity routing is cheap: Google India Pro is US$3 per 1,000 calls after 35k free (market.md Q4). That leaves little room for a per-call add-on.\n  - Fleet-native competitors already pitch waterlogging and hazard data: Delhivery Maps, Civilytix, NAYAN AI, FlowSense, MapmyIndia (V12)."
+  },
+  {
+   "sev": "Critical",
+   "title": "C-2. The moat claim (\"nobody can buy it\") is contradicted: traversal data is already owned, sold and bought by others",
+   "location": "plan.tex L151 (\"the one input dense exactly where users are, and nobody can buy it\"); L176 (\"Data network effect from traversal silence\").",
+   "problem": "Traversal is exactly what probe-based traffic data measures, and others already hold it:\n  - Google live speeds come from tens of millions of Android users. GCTP pays for them today through Mandark (V5).\n  - Delhivery processes about 1B pings a day and sells routing APIs (V12). Every fleet holds its own riders' traces.\n  - CityPulse's own data position: zero users today, and a free app that the plan itself says has zero willingness to pay (L163). Under DPDP and B2B terms, a fleet's traces would be processed for that fleet as data processor (market.md Q5). That usually forbids pooling across clients, so the \"network effect\" does not accrue to CityPulse.\n  - The technique (treating no-report traversals as missing-not-at-random evidence) is publishable. It is not proprietary."
+  },
+  {
+   "sev": "Critical",
+   "title": "C-3. Positioning sells \"passability\", which the product's own safety rule forbids asserting",
+   "location": "plan.tex L171 (\"Chennai's monsoon passability layer\"), L164/L171 (\"paid fleet API\"), versus L194 (\"Never assert passability (ADR-011)\") and L156 (\"liability shield\").",
+   "problem": "- A B2B \"passability API\" that tells a dispatcher which roads riders can use is asserting passability, and to a commercial party that will route gig workers through water on the strength of it.\n  - The symbolic verifier only constrains consumer explanation text. It does nothing for API outputs.\n  - Bareilly shows Indian police will name a navigation provider in a culpable-homicide FIR (V11). A 3-student unincorporated team has no intermediary-status argument and no balance sheet."
+  },
+  {
+   "sev": "Critical",
+   "title": "C-4. The most credible first paying customer is misplaced: the government-vendor channel is treated as slow and late",
+   "location": "plan.tex L166 (\"grants or MoUs; 12\u201324 month cycles\"); L171 (government licences come third); L211 (\"draft GCC/TNSDMA pilot note\" in weeks 8\u201312).",
+   "problem": "The only verified Chennai buyers of road intelligence pay through vendors:\n  - GCTP pays about \u20b996 lakh/yr to Mandark for a Google-traffic dashboard, still running in Sep 2025 (V5).\n  - GCC is tendering ICCC 2.0 (\u20b998.25 cr over 5 years) with \"data integration and APIs\", flood sensors and boom barriers. Its temporary O&M ends 30 Nov 2026 (V4), so a system integrator is likely chosen around Dec 2026\u2013Q1 2027. That is inside the 90-day window.\n  - GCTP has used a vendor (Lepton) to push closures to Google Maps (V6).\n  - The plan postpones this channel to \"weeks 8\u201312\" and frames it as 12\u201324 months, when a **subcontract or add-on to an incumbent vendor** is the shortest path to money that exists."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-1. Consumer segment description is contradicted, and the \"riders are the sensors\" premise has a failed local precedent",
+   "location": "L163; L171 (\"Free citizen app (the sensor network)\"); L193 (cold start).",
+   "problem": "- Riders do not rely only on WhatsApp. Google Maps has offered flood reporting and alerts in India since Oct 2024, with the highest flood-alert volume globally in 2025 (V1, V2). Mappls advertises on-route waterlogging alerts (V12).\n  - RiskMap ran this exact crowd concept in Chennai from 2017 to 2019 with MIT and Tata backing and ended as a pilot (V7). IIT-M's chennaiwaterlogging.org reached about 1,200 reporters at the Michaung peak (chennai_india.md O7).\n  - Networks failed during Michaung (market.md Q3).\n  - The plan does not explain why a free CityPulse app would recruit sensors when Google already has the crowd."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-2. Government segment: these agencies are builders and SI buyers, and RTFF already gives street-level forecasts in the pilot corridors",
+   "location": "L166, L154.",
+   "problem": "- RTFF & SDSS (\u20b9107.2 cr, IIT-M oversight) gives \"street-level inundation forecasts\" for Velachery, Mudichur, Saidapet and others. It covers the Adyar, Cooum, Kosasthalaiyar and Kovalam basins and is integrated with TNSMART and TN-Alert (V3). That overlaps directly with the plan's corridors (L163) and with the \"reservoir-to-corridor causality\" differentiator (L154).\n  - TNSDMA is unlikely to license a student layer that competes with its own system."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-3. Insurer hypothesis: the value mechanism is probably parking, not routing",
+   "location": "L167; L156.",
+   "problem": "- Insurers' own Chennai flood actions are SMS advice not to park in low-lying areas or basements and not to crank submerged engines, plus claims desks and towing (V13).\n  - Engine damage from driving into water is commonly excluded unless an add-on is bought (market.md Q3). So route-avoidance benefits accrue partly to the driver, not the insurer.\n  - ICICI Lombard built its weather alert system in-house with an IIT-B startup. HDFC ERGO funds IIT-B as CSR.\n  - Hypothesis: parked-vehicle submersion is the larger claim pool. I did not verify this split."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-4. Roadmap sequencing: willingness-to-pay comes after the pilot, the pilot lands at monsoon peak, and exams clash",
+   "location": "L210 (fleet pilot in weeks 4\u20138, i.e. about 29 Oct\u201326 Nov); L211 (WTP interviews in weeks 8\u201312); L193 (\"before the first heavy rain\"); L194 (register an entity).",
+   "problem": "- Demand discovery is scheduled after the most expensive step.\n  - Seeding a fleet and two RWAs before the first heavy rain leaves about 2 weeks. A DPDP processor agreement and an entity are prerequisites for a fleet pilot handling rider traces, and neither exists.\n  - Ops managers have the least bandwidth during monsoon peak.\n  - VIT end-semester exams typically fall in Nov\u2013Dec, overlapping the monsoon. This is a schedule risk the plan does not list; I have not verified the exam dates."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-5. Regulation section misses the possible DPDP compression and the retention rule, and understates the traversal-silence consent burden",
+   "location": "L196 (\"DPDP consent for any location use\"); L209 (\"traversal-silence logging with consent\"); L103 (\"DPDP-aware retention\").",
+   "problem": "- MeitY proposed moving the main DPDP compliance date from 13 May 2027 to **13 Nov 2026**. No instrument had been located as of 6 Sep 2026, but the risk is live (V10).\n  - Rule 8(3) requires keeping personal data plus processing logs for **at least one year** for Seventh-Schedule purposes (V9). That may conflict with short-retention designs.\n  - Traversal silence needs continuous location from gig workers. Done via a fleet, the fleet is the data fiduciary and CityPulse is the processor, which also blocks pooling (see C-2)."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-6. The competitive set is incomplete and \"offline\" is not unique",
+   "location": "\u00a75 table L115\u2013128 (product facts marked * as not re-verified); L171\u2013173; L176.",
+   "problem": "- The plan omits Mappls on-route waterlogging alerts and MapmyIndia NaviMaps offline navigation (V12).\n  - It omits fleet-facing hazard startups: Civilytix (offline, on-device waterlogging detection for fleets), NAYAN AI, FlowSense. It omits FloodSafe (offline-first flood-routing PWA) and Delhivery Maps.\n  - It omits Google Flood Hub urban flash floods (Mar 2026, area-level, with Google aiming at hyper-local).\n  - \"Offline\" is matched by Mappls for navigation, though not for hazard belief. \"On-device AI, offline\" is Civilytix's own tagline."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-7. The on-device \"commercial\" argument is immaterial at pilot scale",
+   "location": "L173.",
+   "problem": "78% of \u20b910,700/month (repo `docs/APIS_AND_COSTS.md` L91) is about \u20b98,300/month. No buyer chooses a vendor on that."
+  },
+  {
+   "sev": "Significant",
+   "title": "S-8. No non-dilutive funding path, and no commercial-validation metrics",
+   "location": "\u00a77.4 metrics L178\u2013185; \u00a78; \u00a710.",
+   "problem": "- The metrics are technical and growth vanity: there are no LOIs, no pilots signed, no data-sharing agreements and no paid conversions.\n  - The plan omits the funding a \u20b90 team can realistically get first:\n    - TANSEED: up to \u20b915 lakh for green-tech; needs Tamil Nadu registration plus DPIIT recognition; the call ran in December last year.\n    - Insurer CSR (the HDFC ERGO and IIT-B precedent).\n    - The next Bharat WIN, Greenovation and EcoHub cycles."
+  }
+ ],
+ "S8_code_claims_classification.md": [
+  {
+   "sev": "Critical",
+   "title": "C1. The router that ships and is evaluated does not use ALT; the paper's only surviving theory claim is about code that is never run",
+   "location": "`IDP/packages/pulse_router/lib/src/query_orchestrator.dart:155-168`; `alt_landmarks.dart:195-245`; `bin/pulse_router.dart:73-80`; paper.tex l.103-109, l.120, l.128 (Fig.1 \"landmarks\"), l.242; plan.tex l.62; `docs/DECISIONS.md:424,439`; `docs/ARCHITECTURE.md:24,52` (\"bidir A* + ALT\").",
+   "problem": "`planRoute`, the one function both consumers call, runs plain bidirectional Dijkstra. The ALT code is a separate unidirectional A* (`aStarWithLandmarks`) that only tests call. No landmarks are computed in the graph build, the CLI or the app. ADR-012 point 7 blames the 3.07 s CLI time on \"graph load + ALT landmark rebuild\", but the CLI never builds landmarks. ADR-012(b) also says the paper's \"honest claim \u2026 is limited to the ALT-admissibility result\". The paper's Section IV sentence \"compressed-sparse-row graph, bidirectional Dijkstra with ALT landmarks\" is therefore false as a description of the system. The VI-E check (\"minimum ratio w/\u03c40 was exactly 1.0, as Proposition 1 requires\") was computed on the SciPy re-implementation. With \u03b4=1 on every edge (no depth data), that check holds trivially."
+  },
+  {
+   "sev": "Critical",
+   "title": "C2. \"Runs entirely on the phone\" is not implemented: the app is one fixed demo query on a hand-made hazard slice, with no on-device prior or report pipeline, and it has never been shown running on a phone",
+   "location": "`IDP/app/lib/src/routing/route_service.dart:65-104`; `app/lib/src/data/demo_route_fixture.dart:1-59`; `app/assets/demo/demo_hazards.json` (60 entries); `app/lib/src/ui/home_screen.dart:23`; paper.tex l.43-44 (abstract \"runs entirely on the phone\"), l.120, l.139-141 (Fig.1 dashed box \"runs on the phone without connectivity\"); plan.tex l.42, l.62-67.",
+   "problem": "- **Routing is live, but on a fixed fixture.** The graph is the real 193k/471k graph, loaded from a 46 MB JSON asset and searched at runtime. But origin and destination are hard-coded (nodes 31140 \u2192 47036, T. Nagar \u2192 Velachery), as are the clock (`2026-09-17T06:00Z`), z=0 and \u03bb=0.3.\n  - **The hazard input is hand-built.** It is a 60-edge slice with real \u21130 values plus one synthetic crowd report (`demo-obs-mambalam-1`, depth 350 mm, 8 minutes old). That report exists to make the chance constraint fire.\n  - **No city-wide prior on the device.** The 152 MB `chennai_prior_ell0.json` is not bundled, so the phone has no prior for the other ~471k edges.\n  - **No report-to-edge path.** No Dart code snaps an observation to an edge or computes `distance_m` (grep for snap, nearest-edge and haversine in `app/lib` and `packages/*/lib` finds only grid coarsening). A report in the SQLite cache therefore cannot reach the router even after wiring.\n  - **No reporting UI.** There is no OD picker and no way to submit a report.\n  - **No device run.** Nothing in the repo shows the app on an Android device or emulator (`flutter_gemma_rewriter.dart:13`; CLAUDE.md \u00a74 item 1). The only test that loads the real graph runs in the host VM (`app/test/route_service_integration_test.dart`). The staged copy also has no `android/` directory and no `hazard_database.g.dart`; see Q1."
+  },
+  {
+   "sev": "Critical",
+   "title": "C3. The verifier fails open on route direction, number words and unlisted safety phrasing. The plan blames this defect only on the Kotlin prototype.",
+   "location": "`IDP/packages/pulse_explain/lib/src/verifier.dart:191` (digits-only regex), `:261` (`(chosen \u2212 alt).abs()` grounded), `:397-406` (speed comparatives need only *some* alternative to exist), `:550-575` (substring denylist); paper.tex Table I (l.151-168) and l.146 (\"fail-closed\"); plan.tex l.65 and l.72; README l.48 (\"no hallucinated facts \u2026 ever\").",
+   "problem": "On the suite's own default trace (`test/helpers.dart`: chosen route A 1147 s, alternative B 907 s with a chance-constraint-removed bridge, confidence moderate), my line-by-line port of rules 1, 2, 3, 4 and 6 **accepts** all of these:\n  1. \"Route A is 4 minutes faster than Route B.\" (A is 4 minutes *slower*)\n  2. \"Route A saves you 4 minutes.\"\n  3. \"Route A is twenty minutes slower than Route B.\" (number words are not checked)\n  4. \"Route A takes 4 km longer.\" (unit swap, which the paper does acknowledge)\n  5. \"Route B is flooded to waist depth; Route A has no water at all.\"\n  6. \"The bridge is dry now, so go ahead on Route B.\" (tells the user to take the route whose bridge the chance constraint removed)\n\n  Case 6 is the dangerous one. Plan l.72 says the Kotlin verifier \"would pass 'saves 3 minutes' when the trace says the route is 3 minutes slower\". The IDP verifier has the same direction blindness. The plan's comparison table (l.65) presents the IDP verifier as free of this flaw."
+  },
+  {
+   "sev": "Significant",
+   "title": "S1. The user-facing \"N minutes slower\" sentence mixes objective cost with travel time",
+   "location": "`pulse_explain/lib/src/template_renderer.dart:113-120`; `pulse_router/lib/src/query_orchestrator.dart:197` (chosen `durationSeconds = totalCostSeconds` under hazard cost) vs `:277` (alternative `durationSeconds` = free-flow cost); `docs/CONTRACTS.md:146-147`.",
+   "problem": "`chosen.duration_s` includes \u03bb\u00b7p\u0303\u00b7s\u00b7\u03c40 penalty seconds. When depth is unknown, which in this corpus is always, those seconds are not travel time. `alternatives[0].duration_s` is pure free-flow time. The template's \"Route A is N minutes slower than Route B\" therefore overstates the detour by the penalty. The verifier passes it because both numbers are in the trace. Plan finding #2 covers this conflation only in the harness detour metric, not in the explanation users see."
+  },
+  {
+   "sev": "Significant",
+   "title": "S2. HLC is decorative: sync orders and pages on device-reported `observed_at`, so late offline reports are silently skipped",
+   "location": "`app/lib/src/sync/sync_client.dart:114,151-153,200`; `server/app/storage/postgis.py:80,93`; `server/app/storage/memory.py:45`; paper.tex l.120 (\"append-only log ordered by hybrid logical clocks\").",
+   "problem": "The HLC is put into an opaque `raw._hlc` field. The server never parses or indexes it, and `GET /observations?since=` filters on `observed_at`. Suppose phone X records a report at 10:00 while offline and uploads it at 12:00. Peer Y's cursor has already moved past 10:00, so Y never pulls it. This is the scenario offline-first sync exists for, and HLCs (or a server-assigned sequence or `received_at` cursor) are the standard fix. G-Set dedup by id is implemented correctly."
+  },
+  {
+   "sev": "Significant",
+   "title": "S3. One future-dated report anywhere in the city makes every query throw",
+   "location": "`pulse_belief/lib/src/fusion.dart:88-93`; `pulse_router/lib/src/query_orchestrator.dart:120-134`; `server/app/models.py:70-77`.",
+   "problem": "`fuse` throws if any observation postdates the query time, which is correct for one belief. But `planRoute` fuses **every** configured edge before searching, so a single future-dated observation on any edge aborts every route. The server accepts future `observed_at`, so one phone with a fast clock poisons every client after sync. This is latent today because the cache is not wired to the router (C2), but the design ensures it once wiring happens."
+  },
+  {
+   "sev": "Significant",
+   "title": "S4. Tier-1 and Tier-2 are unrunnable as claimed. The 1.2 s deadline is likely unreachable as written.",
+   "location": "`app/lib/src/explain/flutter_gemma_rewriter.dart:12-22,58-60`; `rewrite_pipeline.dart:28,57`; `route_service.dart:104`; paper.tex l.146; plan.tex l.65.",
+   "problem": "No model asset, no install flow and no device run exist. `generate()` calls `FlutterGemma.getActiveModel` on **every** query, so model load sits inside the 1.2 s budget. `.timeout()` abandons but does not cancel the native generation, which keeps burning CPU and battery. No test exercises `attemptRewrite` (the cited `app/test/fixtures/fake_slm_rewriter.dart` is missing). The Groq path needs a key compiled into the APK (`cloud_rewriter.dart:26-33`, already flagged by the authors)."
+  },
+  {
+   "sev": "Significant",
+   "title": "S5. Server \"live ingest\" is not live, and nothing it ingests is flood evidence",
+   "location": "`server/app/ingest/__init__.py:3-5`; `server/app/main.py:12-26`; `open_meteo.py:77,93`; `gdacs.py` docstring; `cmwssb.py`, `openaq.py`, `tomtom.py` (`NotImplementedError`); `server/app/storage/factory.py:37`; README l.13-15, l.50; plan.tex l.67.",
+   "problem": "No scheduler or lifespan task runs any worker. Open-Meteo ingests `temperature_2m` as `heat` observations; flood discharge is returned as a context dict and dropped. GDACS is country-level and its element names are unverified. The README's \"live rainfall + flood-alert workers\" and \"fuses live signals (rainfall, reservoir levels, citizen reports)\" are not true: no precipitation is fetched and the reservoir scraper is a stub. The PostGIS DSN fallback uses `SUPABASE_SERVICE_KEY` (an API JWT) as the Postgres password, which will fail to authenticate. The server runs in memory by default and has never been deployed."
+  },
+  {
+   "sev": "Significant",
+   "title": "S6. The decision trace is thinner than described",
+   "location": "`query_orchestrator.dart:204-205,276,284-294,312`; paper.tex l.146.",
+   "problem": "`context_facts` is always empty. \"The alternatives the router rejected\" is always at most one: the free-flow path, labelled B. Edges with a prior-only config and zero observations are not reported as data gaps, even though \"no recent evidence\" is exactly what a user should be told. The confidence band is the worst band over configured edges and defaults to `low` when none are configured. That is reasonable, but it is undocumented in any ADR (comment at `:398-403`)."
+  },
+  {
+   "sev": "Significant",
+   "title": "S7. Kotlin prototype: the \"Tier-1 SLM\" makes the exact absolute-safety claim the project forbids, its own verifier passes it, and the handoff doc claims production readiness",
+   "location": "- `KT/app/src/main/java/com/example/engine/SymbolicExplanationEngine.kt:56-69` (\"CityPulse **safely** redirected your journey\u2026\")\n  - `:78-139` (numeral-only check, `abs()`, tolerance 0.15, and 0/1/2 always allowed)\n  - `engine/PulseRouter.kt:165` (edges with no belief get an invented p\u0303=0.1), `:239` (badge 94/88)\n  - `engine/BeliefFusionEngine.kt:94-100` (n0=3; clamp to [0.01,0.99]; \u03b4=1+3.2\u00b7p\u0303^1.5 attributed to Pregnolato)\n  - `app/build.gradle.kts:103` (`firebase.ai` dependency present but unused)\n  - `AGENT_HANDOFF_CITYPULSE_AI.md:412-414` (\"fully operational \u2026 production readiness \u2026 life-saving\")",
+   "problem": "The Tier-1 text is a fixed string template, not a model. It asserts safety, which violates ADR-011, and the verifier passes it because it only checks numerals. There are 3 substantive tests (`ExampleRobolectricTest.kt`). The rest are boilerplate."
+  }
+ ]
+}

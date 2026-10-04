@@ -1,0 +1,38 @@
+# Local production-like stack. UNTESTED (no Docker on the authoring machine).
+#   1. Build the web app (see docs/DEPLOY.md) into deploy/web
+#   2. cp deploy/.env.example deploy/.env   and fill it in
+#   3. docker compose -f deploy/docker-compose.yml --env-file deploy/.env up --build
+services:
+  router:
+    build:
+      context: ..
+      dockerfile: deploy/router_api.Dockerfile
+    environment:
+      ADMIN_TOKEN: ${ADMIN_TOKEN:?set ADMIN_TOKEN in deploy/.env}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      OBSERVATIONS_URL: http://ingest:8000
+      TRUST_FORWARDED_FOR: "1"
+      EVENT_STATE: ${EVENT_STATE:-active}
+    restart: unless-stopped
+  ingest:
+    build:
+      context: ..
+      dockerfile: deploy/ingest.Dockerfile
+    environment:
+      # In-memory storage loses reports on restart. Set the database variables
+      # named in server/README.md for anything beyond a demo.
+      CORS_ALLOWED_ORIGINS: ""
+    restart: unless-stopped
+  web:
+    image: caddy:2
+    ports:
+      - "${HTTP_PORT:-8088}:80"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./web:/srv/web:ro
+    depends_on:
+      - router
+      - ingest
+    restart: unless-stopped

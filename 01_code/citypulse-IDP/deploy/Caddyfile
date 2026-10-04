@@ -1,0 +1,26 @@
+# One origin for the web app and both services, so the browser makes no
+# cross-origin calls and CORS stays off. Caddy gets a TLS certificate by itself
+# when SITE_ADDRESS is a real domain; with the default it serves plain HTTP on :80.
+{$SITE_ADDRESS::80} {
+	encode zstd gzip
+
+	handle_path /api/* {
+		reverse_proxy router:8080
+	}
+	handle_path /ingest/* {
+		reverse_proxy ingest:8000
+	}
+
+	handle {
+		root * /srv/web
+		# Files whose names do not change per build: always revalidate.
+		@shell path / /index.html /flutter_bootstrap.js /flutter_service_worker.js /version.json /main.dart.js
+		header @shell Cache-Control "no-cache"
+		# Large, rarely changing: a day.
+		@static path /canvaskit/* /vendor/* /assets/* /icons/*
+		header @static Cache-Control "public, max-age=86400"
+		header X-Content-Type-Options nosniff
+		header Referrer-Policy no-referrer
+		file_server
+	}
+}
