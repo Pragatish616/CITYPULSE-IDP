@@ -26,7 +26,12 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Terrain and past floods as training data: 91 India flood maps and elevation tiles, a nationwide terrain model, Chennai studies and three routing tests, all pre-registered; the nationwide model met its rule, the Chennai and routing rules were not met (ADR-026).
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
+### Added (deployment preparation, nothing published)
+- One-container image (`deploy/single/`: Dockerfile, Caddyfile, start.sh) that serves the web app, router API and report server from one address, and `scripts/smoke_deploy.py` (12 checks, local or live URL). Untested as an image; see docs/DEPLOY.md.
+- Hosting options researched and recorded in docs/DEPLOY.md, with measured memory.
+
 ### Fixed
+- The router Docker image copied neither `config/cities.yaml` nor the places file, so it could not start (F-35).
 - Place search finds neighbourhoods and suburbs (a dated OSM gazetteer for Chennai), and a name typed exactly now ranks first (F-31).
 - Web: the report sheet closes after sending; sheets no longer pass clicks through to the map (F-32).
 - Report sheet names the spot as the centre of the map and says how to pick another (F-33).

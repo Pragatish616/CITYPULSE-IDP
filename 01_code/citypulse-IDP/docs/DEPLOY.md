@@ -14,6 +14,8 @@ first; its "re-check before launch" list applies.
 | `POST /api/rewrite` | Tested with a mocked Groq (19 router_api tests) and against the keyless server (503). Never run against live Groq. |
 | Ingest storage | In memory. Reports vanish on restart. Needs the database settings in `server/README.md` before anything beyond a demo. |
 | Compression, caching headers | In the Caddyfile, untested. |
+| One-container image (`deploy/single/`) | **Untested as an image** (no Docker here). Tested instead, on 4 Oct: the router started from a folder laid out like the image's `/app` (health, Adyar and T. Nagar search); the router, report server and web build behind a stand-in proxy, passing `scripts/smoke_deploy.py` (12 checks, including one test report). Real Caddy, the Flutter web stage and the image build were not run. |
+| Memory | Measured on Windows (working set, not Linux RSS): router 83 MB at start, 170 MB after 30 walking routes; report server 50 MB. Caddy not measured. Expect roughly 250 to 300 MB in total. |
 
 ## Steps
 
@@ -50,12 +52,48 @@ first; its "re-check before launch" list applies.
 | `EVENT_STATE` | router | `dry`, `watch` or `active`; decides whether the static hazard prior counts (ADR-015). |
 | `CORS_ALLOWED_ORIGINS` | ingest | Leave empty for single-origin. |
 
-## Where to host it (not decided, nothing signed up)
+## One container, for hosts that run a single service
 
-The budget is Rs 0. Any host that runs two small containers plus a static folder will do. Free-tier
-terms change and have **not** been checked for this project; compare current limits before choosing,
-and note that the router needs about 300 MB of memory (pack plus engine) and a free tier may sleep when
-idle, which makes the first request slow. Do not create accounts or publish without the team's say.
+`deploy/single/` builds one image holding the web app, the router API, the report server and Caddy (the front door on `$PORT`).
+Build and run it anywhere Docker runs:
+
+```bash
+docker build -f deploy/single/Dockerfile -t citypulse .      # from 01_code/citypulse-IDP
+docker run --rm -p 8080:8080 -e ADMIN_TOKEN=change-me citypulse
+python scripts/smoke_deploy.py http://127.0.0.1:8080 --write   # 12 checks; --write posts one test report
+```
+
+Files: `deploy/single/Dockerfile` (web stage, router stage, runtime), `Caddyfile` (plain HTTP on `$PORT`; the host ends TLS),
+`start.sh` (starts the three processes and stops the container if one dies, so the host restarts it). `.dockerignore` is an
+allow-list because `data/` holds gigabytes of research inputs.
+
+Things to know before the first build:
+- The web stage uses `ghcr.io/cirruslabs/flutter:stable`. This project was built with Flutter 3.47.2 and Dart 3.13.2. `stable` may be
+  newer; pin a tag you have checked (`--build-arg FLUTTER_IMAGE=...`). The tag has not been checked.
+- Reports are held in memory. A restart, a redeploy, or a free host going to sleep loses them. Persistence needs the database settings
+  in `server/README.md`, which means a Supabase account that you create.
+- Set `ADMIN_TOKEN` in the host's environment settings, not in the image. Without it the event state cannot be changed.
+- A fix made while preparing this: the older `deploy/router_api.Dockerfile` did not copy `config/cities.yaml` or the places file, so the
+  router would not have started in it (F-35).
+
+## Where to host it (nothing signed up, nothing published)
+
+Searched on 4 October 2026. Free-tier terms change often; read the host's own page before choosing. The router and report server
+need about 300 MB, so a 512 MB free service is enough on paper, though a free host's CPU share is small (below) and the route times
+measured here (10 to 14 ms for a car, up to about 0.4 s on foot) will be slower.
+
+| Host | What the search found | Fit |
+|---|---|---|
+| [Render](https://docs.render.com/free) | Free web service: 512 MB RAM, 0.1 CPU, sleeps after 15 minutes idle (30 to 60 s to wake), 750 free hours a month, 100 GB bandwidth ([summary](https://livemy.app/blog/render-pricing)). Runs a Dockerfile from a GitHub repo. Whether an account needs a card was not confirmed. | Best first try. Set Root Directory `01_code/citypulse-IDP` and Dockerfile path `deploy/single/Dockerfile`. |
+| [Koyeb](https://www.koyeb.com/docs/faqs/pricing) | One free service, 512 MB, 0.1 vCPU, sleeps after an hour; a credit card was added as a requirement in February 2026 ([source](https://freetier.co/directory/products/koyeb)). | Needs a card, which breaks the "no card" rule. |
+| [Hugging Face Spaces](https://huggingface.co/docs/hub/en/spaces-overview) | Free CPU is 2 vCPU and 16 GB, but a [forum thread](https://discuss.huggingface.co/t/docker-sdk-now-marked-as-paid-when-creating-a-new-space/177580/5) reports Docker Spaces now marked as paid. Not confirmed on the host's own docs. | Check before relying on it. |
+| Your own machine plus a tunnel | Run the image locally and publish it through a tunnel. Not researched. | Fallback for a demo; the site is down when the machine is off. |
+
+Sleeping hosts: the first request after idle takes up to a minute, so the smoke test waits 60 s for it. For a live demo, open the site a
+few minutes beforehand.
+
+A split alternative (static web app on a static host, router and reports on a container host) needs CORS switched on and
+`ALLOWED_ORIGIN` set. It is not prepared because it undoes the no-CORS design above.
 
 ## Before this is public
 

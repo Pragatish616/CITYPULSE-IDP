@@ -1,0 +1,32 @@
+# Front door for the one-container image. Hosts that give a public https address (Render, Fly, Cloud Run and
+# similar) end TLS themselves and tell the container which port to listen on in $PORT, so Caddy serves plain
+# HTTP here and does not try to get certificates.
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT} {
+	encode zstd gzip
+
+	# The router and the report server are reached only through this door.
+	handle_path /api/* {
+		reverse_proxy 127.0.0.1:8081
+	}
+	handle_path /ingest/* {
+		reverse_proxy 127.0.0.1:8000
+	}
+
+	handle {
+		root * /srv/web
+		# Files whose names do not change per build: always revalidate.
+		@shell path / /index.html /flutter_bootstrap.js /flutter_service_worker.js /version.json /main.dart.js
+		header @shell Cache-Control "no-cache"
+		# Large, rarely changing: a day.
+		@static path /canvaskit/* /vendor/* /assets/* /icons/*
+		header @static Cache-Control "public, max-age=86400"
+		header X-Content-Type-Options nosniff
+		header Referrer-Policy no-referrer
+		file_server
+	}
+}

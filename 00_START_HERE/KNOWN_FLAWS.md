@@ -273,3 +273,7 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 - **What:** with thin evidence the advisor leans to "moderate" and "wait" (ADR-021), so almost every Chennai route gets that verdict while its worst street has a risk index of 0.0. The card showed only "Little recent data".
 - **Fix:** the card now also says "No flood hazard was found on this route in the data we have" (not on dry days, not when anything was found). The verdict is unchanged.
 - **Open:** whether "wait" is the right action when the only reason is missing data is a design decision for the team (ADR-011, ADR-021). It may teach users to ignore the card.
+
+### F-35 · The router Docker image could not start: it did not copy config/cities.yaml or the places file · FIXED (4 Oct 2026, deploy/router_api.Dockerfile)
+- **What:** the server reads `config/cities.yaml` (relative to `CITIES_CONFIG`, default `../../config/`) and, since F-31, the places file. The first Dockerfile copied neither, so the container would have exited at start. Found while preparing the one-container image; the compose stack had never been built (no Docker on the authoring machine).
+- **Fix:** both Dockerfiles now lay the files out like the repository under `/app` and set `CITIES_CONFIG`. Checked by running the router from such a folder, not by building an image.
