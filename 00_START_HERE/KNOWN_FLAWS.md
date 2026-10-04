@@ -83,6 +83,7 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 - **Where:** `app/lib/src/routing/route_service.dart`, `app/lib/src/data/demo_route_fixture.dart`
 - **What is missing:**
   - The app has never run on a physical device.
+  - **Update, 4 Oct 2026:** the Android app now compiles. The GitHub workflow `android-apk.yml` built a release APK (60.9 MB, arm64, debug-signed, SHA-256 `d0162f5a1701ff976bdb2730a3011a8c64dfc2456c6abadb925dec6b72f144c9`) on its second run, after one fix (the map plugin needs Java 21). It has been built, not run: nothing has been installed on a device yet. The local Windows build still fails on Gradle/NDK licences.
   - The prior (`chennai_prior_ell0.json`, 152 MB) is not on the device.
   - There is no code that snaps a new report to an edge, and no report screen.
   - The app runs one fixed origin–destination pair (T. Nagar → Velachery).

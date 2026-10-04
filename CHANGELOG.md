@@ -27,7 +27,7 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
 ### Added (deployment)
-- Phone testing: a manual GitHub workflow that builds an installable Android APK (`.github/workflows/android-apk.yml`) and `docs/MOBILE_TESTING.md` (home-screen install of the web demo, APK install, what to record). Not yet run.
+- Phone testing: a manual GitHub workflow that builds an installable Android APK (`.github/workflows/android-apk.yml`) and `docs/MOBILE_TESTING.md` (home-screen install of the web demo, APK install, what to record). First built on 4 Oct 2026 (60.9 MB APK, second run); not yet installed on a phone.
 - Web demo live on a free Render instance: <https://citypulse-idp.onrender.com> (README "Live demo"; a temporary demo, see its limits).
 - One-container image (`deploy/single/`: Dockerfile, Caddyfile, start.sh) that serves the web app, router API and report server from one address, and `scripts/smoke_deploy.py` (12 checks, local or live URL). Untested as an image; see docs/DEPLOY.md.
 - A generated `Dockerfile` and `.dockerignore` at the repository root (`scripts/make_root_dockerfile.py`) so hosts that build from the top of the repo work without settings; a test checks it is current and that every copied file is in Git.
