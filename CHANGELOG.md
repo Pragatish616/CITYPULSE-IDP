@@ -21,6 +21,8 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 
 - Training-data assessment and downloads: Chennai Flood Monitor archive (local only) and NYC FloodNet sandbox, with fetch and profile scripts (ADR-024).
 
+- Nationwide district flood-event model, trained under a pre-registered rule; it did not beat two simple baselines (ADR-025).
+
 ### Changed
 - Pessimistic index is now a Beta-posterior upper quantile; it no longer lowers caution after a weak report
   (ADR-015).

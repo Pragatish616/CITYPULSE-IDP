@@ -820,3 +820,38 @@ A search found no public dataset with street-level, time-stamped flood labels fo
 
 **Limits.** Daily rain is coarse for flash flooding; there is no rain data for 2020 to 2022; no rain or level data from automatic stations in any flood window; the ward depth table is a frozen 2021 model run;
 the Hugging Face cards overstated the data (15-minute readings, 169 reports from 2025), as the download showed.
+
+---
+
+## ADR-025: A nationwide district flood-event model, trained and found not to add value (4 October 2026)
+
+**Status:** accepted. Trained once under a pre-registered rule; the rule's verdict is **no evidence of added value**.
+
+**Context.** The user asked for a model trained on a dataset covering all of India. The only nationwide labels are district-level (IMD events in the India Flood Inventory), so the
+model predicts whether a district is under a reported flood event on a given day, from rainfall. It does not place a flood on a street. The plan, features, splits, grid, baselines, metrics and
+decision rule were committed in `data/nationwide_flood/2026-10-04/PREREGISTRATION.md` (commit `151dcfa`) before any rainfall was joined to labels or any model run. Two documented changes were made before any join
+(addendum A: two more geocoding levels; addendum B: NASA POWER instead of Open-Meteo because the free tier allowed about 60 districts an hour).
+
+**Result** (`data/results/2026-10-04-nationwide-flood-gating/result.json`; 592 districts, 29 states; train 1990-2009, validation 2010-2015, test 2016-2023 touched once):
+
+| Test 2016-2023 | Average precision (95% CI) | Event recall at a 2% alert budget (95% CI) |
+|---|---|---|
+| Gradient-boosted model | 0.090 (0.057, 0.126) | 0.326 (0.252, 0.387) |
+| B1: district and month event rate | 0.097 (0.055, 0.145) | 0.206 (0.120, 0.274) |
+| B2: 3-day rain against its 95th percentile | 0.066 (0.044, 0.092) | 0.356 (0.309, 0.397) |
+
+- Differences (model minus baseline, 95% CI): against B1, AP -0.007 (-0.020, +0.005), recall +0.120 (+0.092, +0.157); against B2, AP +0.024 (+0.008, +0.041), recall -0.030 (-0.106, +0.023).
+- **The pre-registered rule needs the model to beat both baselines on both metrics. It does not:** it ties B1 on AP and B2 on recall. State-holdout AP (5 folds of held-out states, validation years) is 0.0506 against the best baseline's 0.0497; the model trained on all states did better than the unseen-states model in 4 of 5 folds.
+- Test positives are 4.45% of district-days (77,002 of 1,729,824) against 1.35% in training: the reporting rate rose a lot.
+- Validation AP is nearly flat across the 8 grid settings (0.059 to 0.062), so the extra capacity found nothing more to use.
+- A plain rule, "alert when 3-day rain is in the district's top 5%", catches 36% of reported events while alerting on 2% of district-days. That is what the data supports; it is a baseline, not a validated product.
+
+**What this means.** District-day reports of flood events are only weakly predictable from daily reanalysis rainfall. A learned nationwide model did not beat two trivial rules. We do not replace the flat prior outside Chennai with this model, and we do not claim nationwide
+flood knowledge from it. Per the rule, no further tuning, features or baselines were tried after the verdict.
+
+**Limits.**
+- Labels are reported events, not floods; district names are noisy (the IFI lists districts under old states, misspells some, and its LGD codes collide across states).
+- Coverage: 592 of 948 district names got a point, 77.2% of district-event pairs; 29 states; Arunachal Pradesh, Meghalaya, Delhi, Goa and several large Assam districts are absent.
+- Rainfall is NASA POWER daily at 0.5 degrees (MERRA-2), which under-reads extreme local rain; points are district seats.
+- Brier score is reported only for B1 (0.0428) and no reliability table was produced, because the model is trained with balanced class weights and its scores are rankings, not probabilities.
+- Not tried, because the rule forbids tuning after the verdict: better rainfall (IMD gridded, ERA5-Land, IMERG), sub-daily rain, other labels. They are the next experiments, each needing its own pre-registration.

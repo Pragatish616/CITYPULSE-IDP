@@ -1,0 +1,264 @@
+{
+  "chosen_config": {
+    "iterations": 300,
+    "l2": 1.0,
+    "learning_rate": 0.1,
+    "max_depth": 3
+  },
+  "clarifications": [
+    "grid ranked by validation AP at best log-loss iteration (every 10 iterations)",
+    "score ties broken with a fixed 1e-9 jitter for every method",
+    "bootstrap re-weights test years by draw count; 2000 resamples",
+    "Brier score is reported only for the monthly-rate baseline and the reliability table is not produced: the model is trained with balanced class weights, so its scores are rankings, not probabilities"
+  ],
+  "data": {
+    "districts": 592,
+    "events_dropped_unresolved_district_mentions": 4059,
+    "states": 29,
+    "test_event_district_pairs": 4759,
+    "test_positives": 77002,
+    "test_rows": 1729824,
+    "train_positives": 58286,
+    "train_rows": 4324560,
+    "val_positives": 10047,
+    "val_rows": 1297072
+  },
+  "decision_rule": {
+    "model_adds_value": false,
+    "text": "beats both baselines on AP and event recall@2% with 95% CI above zero, and state-holdout AP >= better baseline"
+  },
+  "grid": [
+    {
+      "best_iteration": 300,
+      "l2": 0.0,
+      "learning_rate": 0.05,
+      "max_depth": 3,
+      "val_ap": 0.059342581314146256,
+      "val_logloss": 0.3954862299515594
+    },
+    {
+      "best_iteration": 300,
+      "l2": 1.0,
+      "learning_rate": 0.05,
+      "max_depth": 3,
+      "val_ap": 0.05943575655601901,
+      "val_logloss": 0.3952736723899185
+    },
+    {
+      "best_iteration": 300,
+      "l2": 0.0,
+      "learning_rate": 0.05,
+      "max_depth": 5,
+      "val_ap": 0.06137675960497048,
+      "val_logloss": 0.3543753099827977
+    },
+    {
+      "best_iteration": 300,
+      "l2": 1.0,
+      "learning_rate": 0.05,
+      "max_depth": 5,
+      "val_ap": 0.06007746808311578,
+      "val_logloss": 0.3552810044365348
+    },
+    {
+      "best_iteration": 300,
+      "l2": 0.0,
+      "learning_rate": 0.1,
+      "max_depth": 3,
+      "val_ap": 0.06079184099717939,
+      "val_logloss": 0.3794975692944535
+    },
+    {
+      "best_iteration": 300,
+      "l2": 1.0,
+      "learning_rate": 0.1,
+      "max_depth": 3,
+      "val_ap": 0.06162144055066821,
+      "val_logloss": 0.3783049934209161
+    },
+    {
+      "best_iteration": 300,
+      "l2": 0.0,
+      "learning_rate": 0.1,
+      "max_depth": 5,
+      "val_ap": 0.05891621458236167,
+      "val_logloss": 0.32331130957730075
+    },
+    {
+      "best_iteration": 300,
+      "l2": 1.0,
+      "learning_rate": 0.1,
+      "max_depth": 5,
+      "val_ap": 0.059040828487253165,
+      "val_logloss": 0.3236646502179852
+    }
+  ],
+  "preregistration_commit": "151dcfa402492c69fc840cf63bb8e226cb4b6ac3",
+  "seconds": 4092,
+  "seed": 20261004,
+  "state_holdout_mean_ap": {
+    "best_baseline": 0.049670157767680086,
+    "model_unseen_states": 0.05057349566199163
+  },
+  "state_holdout_validation_years": [
+    {
+      "ap_b1": 0.12556502785184065,
+      "ap_b2": 0.08268840964423939,
+      "ap_model_trained_on_all_states": 0.11955696181475092,
+      "ap_model_unseen_states": 0.08532497130642516,
+      "districts": 109,
+      "fold": 0,
+      "held_out_states": [
+        "Andhra Pradesh",
+        "Gujarat",
+        "Jharkhand",
+        "Maharashtra",
+        "Punjab",
+        "Tripura"
+      ],
+      "positives": 4488
+    },
+    {
+      "ap_b1": 0.06715503129321358,
+      "ap_b2": 0.028649501913295374,
+      "ap_model_trained_on_all_states": 0.09231706503698656,
+      "ap_model_unseen_states": 0.06885662880987577,
+      "districts": 189,
+      "fold": 1,
+      "held_out_states": [
+        "Assam",
+        "Haryana",
+        "Karnataka",
+        "Manipur",
+        "Rajasthan",
+        "Uttar Pradesh"
+      ],
+      "positives": 2661
+    },
+    {
+      "ap_b1": 0.028883737539011883,
+      "ap_b2": 0.034101892548043945,
+      "ap_model_trained_on_all_states": 0.03464129140657935,
+      "ap_model_unseen_states": 0.038084644334961684,
+      "districts": 82,
+      "fold": 2,
+      "held_out_states": [
+        "Bihar",
+        "Himachal Pradesh",
+        "Kerala",
+        "Mizoram",
+        "Sikkim",
+        "Uttarakhand"
+      ],
+      "positives": 1838
+    },
+    {
+      "ap_b1": 0.017563035587356342,
+      "ap_b2": 0.020836169761486136,
+      "ap_model_trained_on_all_states": 0.04822064835519413,
+      "ap_model_unseen_states": 0.040868645675525256,
+      "districts": 76,
+      "fold": 3,
+      "held_out_states": [
+        "Chandigarh",
+        "Jammu & Kashmir",
+        "Ladakh",
+        "Nagaland",
+        "Tamil Nadu",
+        "West Bengal"
+      ],
+      "positives": 425
+    },
+    {
+      "ap_b1": 0.009183956566977963,
+      "ap_b2": 0.02307172001206304,
+      "ap_model_trained_on_all_states": 0.03316895762743567,
+      "ap_model_unseen_states": 0.01973258818317026,
+      "districts": 136,
+      "fold": 4,
+      "held_out_states": [
+        "Chhattisgarh",
+        "Jammu and Kashmir",
+        "Madhya Pradesh",
+        "Odisha",
+        "Telangana"
+      ],
+      "positives": 635
+    }
+  ],
+  "task": "ADR-025 nationwide district flood-event model",
+  "test": {
+    "b1_month_rate": {
+      "alerted_share": 0.02000030060861683,
+      "ap": 0.0972400664081129,
+      "ap_ci95": [
+        0.055262255209935975,
+        0.1453301164301569
+      ],
+      "brier": 0.042760217957471314,
+      "event_recall_at_2pct": 0.2059256146249212,
+      "event_recall_ci95": [
+        0.11985847292417579,
+        0.27441528263925674
+      ]
+    },
+    "b2_rain_rule": {
+      "alerted_share": 0.02000030060861683,
+      "ap": 0.06580985639704465,
+      "ap_ci95": [
+        0.04375245735884931,
+        0.09159351227556056
+      ],
+      "brier": null,
+      "event_recall_at_2pct": 0.3563773902080269,
+      "event_recall_ci95": [
+        0.30856660835857996,
+        0.3970784696509737
+      ]
+    },
+    "model": {
+      "alerted_share": 0.02000030060861683,
+      "ap": 0.08975899392233994,
+      "ap_ci95": [
+        0.057263719726034154,
+        0.12589639207211756
+      ],
+      "brier": null,
+      "event_recall_at_2pct": 0.3259088043706661,
+      "event_recall_ci95": [
+        0.2522610450645318,
+        0.38653637350705755
+      ]
+    }
+  },
+  "test_differences_vs_baselines": {
+    "model_minus_b1_month_rate__ap": {
+      "ci95": [
+        -0.020498746851815196,
+        0.004788947399901762
+      ],
+      "estimate": -0.007481072485772969
+    },
+    "model_minus_b1_month_rate__event_recall_at_2pct": {
+      "ci95": [
+        0.09189658918096894,
+        0.15748016140634832
+      ],
+      "estimate": 0.1199831897457449
+    },
+    "model_minus_b2_rain_rule__ap": {
+      "ci95": [
+        0.008150285211566417,
+        0.041201872266715976
+      ],
+      "estimate": 0.02394913752529529
+    },
+    "model_minus_b2_rain_rule__event_recall_at_2pct": {
+      "ci95": [
+        -0.10621524351352979,
+        0.0230361667818475
+      ],
+      "estimate": -0.030468585837360784
+    }
+  }
+}

@@ -109,3 +109,15 @@ Source: `01_code/citypulse-IDP/data/results/2026-10-03-travel-modes-arterial-eme
 | Spatial flood labels | 2015: 327 GCC hotspots, 4,001 extent polygons; 2005: 200 depth points, 235 extent polygons; 2020: 53 hotspots |
 | NYC FloodNet | 3,422 events, 318 sensors, 2020-11 to 2026-09; median peak depth 3.48 in; 8% reach 12 in |
 | Source | `data/chennai_cfm/2026-10-04/profile.json`, `data/nyc_floodnet/2026-10-04/profile.json` |
+
+## Nationwide district flood-event model (ADR-025, 4 October 2026)
+
+| Quantity | Value |
+|---|---|
+| Districts and states with a point | 592 of 948 names; 29 states; 77.2% of 17,787 district-event pairs |
+| Rows | train 4,324,560 (1.35% positive), validation 1,297,072, test 1,729,824 (4.45% positive, 77,002) |
+| Test average precision | model 0.090 (0.057, 0.126); month-rate baseline 0.097; 3-day-rain rule 0.066 |
+| Test event recall at a 2% alert budget | model 0.326; month-rate 0.206; 3-day-rain rule 0.356 |
+| State-holdout mean AP | model on unseen states 0.0506; best baseline 0.0497 |
+| Verdict against the pre-registered rule | **no evidence of added value** |
+| Source | `data/results/2026-10-04-nationwide-flood-gating/result.json` |

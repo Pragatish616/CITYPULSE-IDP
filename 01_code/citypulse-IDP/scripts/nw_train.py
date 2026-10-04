@@ -17,6 +17,7 @@ from __future__ import annotations
 import csv
 import datetime as dt
 import json
+import os
 import re
 import subprocess
 import sys
@@ -30,13 +31,16 @@ from sklearn.metrics import average_precision_score, brier_score_loss, log_loss
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "data" / "nationwide_flood" / "2026-10-04"
-OUT = ROOT / "data" / "results" / "2026-10-04-nationwide-flood-gating"
+OUT = ROOT / "data" / "results" / ("_smoke" if os.environ.get("NW_SMOKE") else "2026-10-04-nationwide-flood-gating")
 SEED = 20261004
 START = dt.date(1990, 1, 1)
 T = 12418
 TRAIN_END, VAL_END = dt.date(2009, 12, 31), dt.date(2015, 12, 31)
 ALERT_FRACTION = 0.02
-GRID = list(product([0.05, 0.1], [3, 5], [0.0, 1.0]))  # learning rate, max depth, l2
+SMOKE = bool(os.environ.get("NW_SMOKE"))  # a quick wiring check on a few districts; its numbers mean nothing
+GRID = [(0.1, 3, 0.0)] if SMOKE else list(product([0.05, 0.1], [3, 5], [0.0, 1.0]))  # learning rate, max depth, l2
+MAX_ITER = 30 if SMOKE else 300
+BOOT = 20 if SMOKE else 2000
 FEATURES = [
     "r0", "r3", "r7", "r14", "r30", "r90", "mx7",
     "n_r0", "n_r3", "n_r7", "n_r14", "n_r30", "n_r90", "n_mx7",
@@ -52,13 +56,21 @@ def load():
     geo = json.loads((BASE / "geocode.json").read_text(encoding="utf-8"))
     merged = geo["merged_into"]
     ids = sorted(geo["chosen"])
+    if SMOKE:
+        ids = ids[::10]
     index = {d: i for i, d in enumerate(ids)}
+    npz = BASE / "power_daily_precip.npz"
+    packed = np.load(npz) if npz.exists() and not (BASE / "power").exists() else None
+    packed_row = {d: i for i, d in enumerate(packed["district_id"])} if packed is not None else {}
     P = np.zeros((len(ids), T), dtype=np.float32)
     elev = np.zeros(len(ids), dtype=np.float32)
     for d in ids:
-        j = json.loads((BASE / "rain" / f"{slug(d)}.json").read_text(encoding="utf-8"))
-        P[index[d]] = np.array([0.0 if v is None else v for v in j["precip_mm"]], dtype=np.float32)
-        elev[index[d]] = j.get("elevation") or 0.0
+        if packed is not None:  # the committed pack of the NASA POWER files (same values)
+            P[index[d]] = np.nan_to_num(packed["precip_mm"][packed_row[d]], nan=0.0)
+        else:
+            j = json.loads((BASE / "power" / f"{slug(d)}.json").read_text(encoding="utf-8"))  # NASA POWER (addendum B)
+            P[index[d]] = np.array([0.0 if v is None else v for v in j["precip_mm"]], dtype=np.float32)
+        elev[index[d]] = geo["chosen"][d].get("elevation") or 0.0
     Y = np.zeros((len(ids), T), dtype=bool)
     events = []  # (district index, first day index, last day index)
     dropped = 0
@@ -195,7 +207,7 @@ def main() -> int:
     grid_log = []
     best = None
     for lr, depth, l2 in GRID:
-        m = HistGradientBoostingClassifier(learning_rate=lr, max_depth=depth, l2_regularization=l2, max_iter=300,
+        m = HistGradientBoostingClassifier(learning_rate=lr, max_depth=depth, l2_regularization=l2, max_iter=MAX_ITER,
                                            early_stopping=False, class_weight="balanced", random_state=SEED)
         m.fit(Xtr, ytr)
         best_ll, best_it, p_at = 1e9, 10, None
@@ -221,7 +233,7 @@ def main() -> int:
     te_events = [(d, a - test_cols[0], b - test_cols[0]) for d, a, b in events if a >= test_cols[0]]
     te_events = [(d, a, min(b, len(test_cols) - 1)) for d, a, b in te_events]
     day_year = year[test_cols]
-    boot = 2000
+    boot = BOOT
     results, boots = {}, {}
     scores = {"model": score(model, Xte, best_it), "b1_month_rate": block(test_cols, b1).astype(np.float64), "b2_rain_rule": block(test_cols, b2).astype(np.float64)}
     for name, s in scores.items():

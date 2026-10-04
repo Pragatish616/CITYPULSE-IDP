@@ -248,3 +248,7 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 ### F-28 · The merged India flood data is district- and region-level, non-commercial, and linked for Tamil Nadu only · OPEN (by design, ADR-023)
 - **What:** no free national source gives street-level passability. IFI has no coordinates; DFO polygons are hand-drawn and miss Chennai for the 2015 event; licences are non-commercial.
 - **Fix:** time-stamped passability from GCC, GCTP or IIT Madras (the 15 October gate), and district boundaries for the other states.
+
+### F-29 · The nationwide model does not beat simple rules, and covers 77% of events in 29 states · OPEN (ADR-025)
+- **What:** trained as pre-registered, the district-day model tied a month-rate baseline on average precision and a 3-day-rain rule on event recall. Districts without a point (Arunachal Pradesh, Meghalaya, Delhi, Goa, parts of Assam) are not covered.
+- **Fix:** better rainfall and labels, each as a new pre-registered experiment; do not use this model to replace the flat prior outside Chennai.

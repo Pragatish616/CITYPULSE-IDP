@@ -69,3 +69,12 @@ the IFI lists districts under pre-split states (for example Adilabad under Andhr
 for the unresolved only: (3) the district's state or a state it was split from, with exact name or second-level-region match; (4) the name
 with its last 1 to 4 letters removed, accepted only at 80% or more similarity and inside the state or a split-from state. Nothing else in this
 document changes. The result file reports the number of districts resolved at each level and the share of events lost to unresolved districts.
+
+## Addendum B (4 October 2026): rainfall source, written before any rainfall was joined to labels and before any model run
+
+The Open-Meteo free tier (ERA5) allowed about 60 district requests an hour and about 115 a day, so a full pull would have taken over a week.
+With the owner's approval the rainfall source is changed to **NASA POWER daily PRECTOTCORR** (MERRA-2 reanalysis corrected with gauge-based
+monthly rainfall, native 0.5 degree grid), 1990 to 2023, at the same district points, for **every** district. The 72 districts already fetched from
+Open-Meteo are not used. Elevation still comes from the geocoding answer. Everything else in this document, including the features,
+splits, grid, baselines, metrics and decision rule, is unchanged. The coarser grid means more districts share a cell and extreme local rain is under-read;
+this is added to the known weaknesses above.

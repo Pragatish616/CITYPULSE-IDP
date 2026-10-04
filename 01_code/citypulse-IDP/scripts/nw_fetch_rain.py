@@ -38,10 +38,10 @@ def fetch(lat: float, lon: float) -> dict:
             )
         except requests.RequestException as e:  # dropped connection: wait and retry, but not forever
             drops += 1
-            if drops > 8:
+            if drops > 30:  # about half an hour of outage, then stop
                 raise
             print(f"  {type(e).__name__}; retry {drops}", file=sys.stderr)
-            time.sleep(5 * drops)
+            time.sleep(min(60, 5 * drops))
             continue
         if r.status_code == 200:
             try:

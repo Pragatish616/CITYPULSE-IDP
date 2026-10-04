@@ -27,3 +27,10 @@ numpy>=2.5
 # Added 2026-10-02 (M1.11): study_common's Beta replica takes the Phi(z) upper quantile with SciPy
 # (the Dart code has its own inverse incomplete beta; agreement is tested in scripts/tests).
 scipy>=1.13
+
+# Added 2026-10-04 (nationwide flood model, ADR-025): scikit-learn and numpy for scripts/nw_train.py; pandas and pyarrow
+# for scripts/profile_training_sources.py. Tests that need them skip when they are missing.
+numpy>=1.26
+scikit-learn>=1.5
+pandas>=2.2
+pyarrow>=15

@@ -783,6 +783,11 @@ Budgets to measure against (targets, not claims): cold start under 4 s; offline 
 
 ---
 
+**M6.4 Nationwide district flood-event model (ADR-025)**
+- Status: DONE; **negative result** (no evidence of added value under the pre-registered rule). · Owner: Agent · Depends on: M3.5
+- Done: registry, geocoding (3 levels), NASA POWER rainfall, pre-registration with two addenda, `scripts/nw_*.py`, result file, 5 helper tests.
+- Next: new pre-registered experiments with better rainfall (IMD gridded, ERA5-Land, IMERG) or finer labels; none is started.
+
 ### M7. Evaluation and the paper
 
 **M7.1 Studies on monsoon labels**

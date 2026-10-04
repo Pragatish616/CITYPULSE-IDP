@@ -26,3 +26,7 @@ Thumbs.db
 
 # CFM-DSS archive: the publisher states no licence (see data/DATA_SOURCES_ASSESSMENT.md). Keep local, do not publish.
 01_code/citypulse-IDP/data/chennai_cfm/*/raw/
+
+# Nationwide model (ADR-025): per-district files are packed into power_daily_precip.npz; the unused Open-Meteo files stay local.
+01_code/citypulse-IDP/data/nationwide_flood/*/power/
+01_code/citypulse-IDP/data/nationwide_flood/*/rain/
