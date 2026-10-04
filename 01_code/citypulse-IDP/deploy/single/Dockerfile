@@ -68,6 +68,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
     && useradd --system --uid 10001 --create-home app
 ENV PATH=/opt/venv/bin:$PATH
 COPY --from=caddy:2 /usr/bin/caddy /usr/local/bin/caddy
+# The official image gives the binary a file capability (to bind ports below 1024) and COPY keeps it. A non-root user in a
+# sandbox without that capability then cannot start it ("Operation not permitted"). We listen on a high port, so rewrite the
+# file as plain bytes, which drops the capability.
+RUN cat /usr/local/bin/caddy > /tmp/caddy && rm /usr/local/bin/caddy \
+    && install -m 0755 /tmp/caddy /usr/local/bin/caddy && rm /tmp/caddy
 
 # Report server (FastAPI). Test-only packages are left out of the install.
 COPY server/requirements.txt /tmp/requirements.txt
