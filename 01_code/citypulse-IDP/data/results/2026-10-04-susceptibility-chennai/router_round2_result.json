@@ -1,0 +1,293 @@
+{
+  "decision_rule": {
+    "D1_oracle_removes_25pct_exposure_for_ped_l20_within_5pct_time": false,
+    "D2_learned_prior_helps_when_router_cares": false
+  },
+  "oracle_edges": 77018,
+  "pairs_requested": 250,
+  "pairs_scored": 246,
+  "preregistration_commit": "b072237d2621985483b8a3ae9e7f47b9e9223889",
+  "seconds": 1229,
+  "summary": {
+    "base05|car_l5": {
+      "mean_added_free_flow_min": 0.0675601626016258,
+      "mean_exposure_share": 0.08675471711354661,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        -0.002213534510203416,
+        0.0030187767054065764
+      ],
+      "reduction_vs_flat": 0.0003655639561279382,
+      "relative_reduction": 0.004196083295869742,
+      "share_of_routes_changed": 0.13008130081300814
+    },
+    "base05|ped_l20": {
+      "mean_added_free_flow_min": 5.1024467442035455,
+      "mean_exposure_share": 0.11385835151808557,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.010146085784934082,
+        0.00011612055729468229
+      ],
+      "reduction_vs_flat": -0.004856717429203593,
+      "relative_reduction": -0.04455637266174684,
+      "share_of_routes_changed": 0.5040650406504065
+    },
+    "base05|ped_l5": {
+      "mean_added_free_flow_min": 2.3046314363143656,
+      "mean_exposure_share": 0.1105354552404433,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.005574597139692541,
+        0.002495106844948728
+      ],
+      "reduction_vs_flat": -0.0015338211515613267,
+      "relative_reduction": -0.014071542728530295,
+      "share_of_routes_changed": 0.45121951219512196
+    },
+    "flat|car_l5": {
+      "mean_added_free_flow_min": 0.0,
+      "mean_exposure_share": 0.08712028106967454,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        0.0,
+        0.0
+      ],
+      "reduction_vs_flat": 0.0,
+      "relative_reduction": 0.0,
+      "share_of_routes_changed": 0.0
+    },
+    "flat|ped_l20": {
+      "mean_added_free_flow_min": 0.0,
+      "mean_exposure_share": 0.10900163408888196,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        0.0,
+        0.0
+      ],
+      "reduction_vs_flat": 0.0,
+      "relative_reduction": 0.0,
+      "share_of_routes_changed": 0.0
+    },
+    "flat|ped_l5": {
+      "mean_added_free_flow_min": 0.0,
+      "mean_exposure_share": 0.10900163408888196,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        0.0,
+        0.0
+      ],
+      "reduction_vs_flat": 0.0,
+      "relative_reduction": 0.0,
+      "share_of_routes_changed": 0.0
+    },
+    "gcc|car_l5": {
+      "mean_added_free_flow_min": 0.1451199864498646,
+      "mean_exposure_share": 0.08723369913733245,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        -0.0019235678577191075,
+        0.00172374744168864
+      ],
+      "reduction_vs_flat": -0.00011341806765792317,
+      "relative_reduction": -0.0013018560806434605,
+      "share_of_routes_changed": 0.15853658536585366
+    },
+    "gcc|ped_l20": {
+      "mean_added_free_flow_min": 2.964235958672101,
+      "mean_exposure_share": 0.10756384964230628,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.002502276318522172,
+        0.005505640129353541
+      ],
+      "reduction_vs_flat": 0.001437784446575703,
+      "relative_reduction": 0.013190485249086328,
+      "share_of_routes_changed": 0.33739837398373984
+    },
+    "gcc|ped_l5": {
+      "mean_added_free_flow_min": 1.8680661020776959,
+      "mean_exposure_share": 0.10674727482369713,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.0015521682818830642,
+        0.0061964933961475045
+      ],
+      "reduction_vs_flat": 0.002254359265184845,
+      "relative_reduction": 0.020681885038040793,
+      "share_of_routes_changed": 0.3333333333333333
+    },
+    "model05_better_than_base05|car_l5": {
+      "ci95": [
+        -0.004633137285396704,
+        0.0017383013375065666
+      ],
+      "mean_exposure_difference": -0.0015212060644351462
+    },
+    "model05_better_than_base05|ped_l20": {
+      "ci95": [
+        0.0005587281285257364,
+        0.010685956584330933
+      ],
+      "mean_exposure_difference": 0.005319066708418749
+    },
+    "model05_better_than_base05|ped_l5": {
+      "ci95": [
+        -0.002083494417262161,
+        0.006162674845035103
+      ],
+      "mean_exposure_difference": 0.001955049781708599
+    },
+    "model05_better_than_gcc|car_l5": {
+      "ci95": [
+        -0.0035664755650230183,
+        0.0015803685304029147
+      ],
+      "mean_exposure_difference": -0.0010422240406492847
+    },
+    "model05_better_than_gcc|ped_l20": {
+      "ci95": [
+        -0.005211228242984713,
+        0.002981465739657543
+      ],
+      "mean_exposure_difference": -0.0009754351673605472
+    },
+    "model05_better_than_gcc|ped_l5": {
+      "ci95": [
+        -0.005888131572284892,
+        0.0018153009471598874
+      ],
+      "mean_exposure_difference": -0.0018331306350375732
+    },
+    "model05_better_than_random|car_l5": {
+      "ci95": [
+        -0.004054338937604158,
+        0.00018283286065581418
+      ],
+      "mean_exposure_difference": -0.0019396896599986823
+    },
+    "model05_better_than_random|ped_l20": {
+      "ci95": [
+        -0.0028401258640483795,
+        0.006993142795512829
+      ],
+      "mean_exposure_difference": 0.0019398718035240994
+    },
+    "model05_better_than_random|ped_l5": {
+      "ci95": [
+        -0.001284724352399709,
+        0.0072272694844347915
+      ],
+      "mean_exposure_difference": 0.0028961286221960863
+    },
+    "model05|car_l5": {
+      "mean_added_free_flow_min": 0.34209512195121994,
+      "mean_exposure_share": 0.08827592317798176,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        -0.003062940718336863,
+        0.0007830810009345163
+      ],
+      "reduction_vs_flat": -0.0011556421083072082,
+      "relative_reduction": -0.013264903351069106,
+      "share_of_routes_changed": 0.18699186991869918
+    },
+    "model05|ped_l20": {
+      "mean_added_free_flow_min": 5.956789214468535,
+      "mean_exposure_share": 0.10853928480966682,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.0021491542053883395,
+        0.00306932232070007
+      ],
+      "reduction_vs_flat": 0.00046234927921515656,
+      "relative_reduction": 0.004241672916922955,
+      "share_of_routes_changed": 0.3902439024390244
+    },
+    "model05|ped_l5": {
+      "mean_added_free_flow_min": 2.6217286359530267,
+      "mean_exposure_share": 0.1085804054587347,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.0015805670009530928,
+        0.0024801399035415464
+      ],
+      "reduction_vs_flat": 0.0004212286301472722,
+      "relative_reduction": 0.003864424911316417,
+      "share_of_routes_changed": 0.36585365853658536
+    },
+    "oracle|car_l5": {
+      "mean_added_free_flow_min": 3.1261336043360455,
+      "mean_exposure_share": 0.0337074257471855,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        0.044167691588826496,
+        0.06269840870808169
+      ],
+      "reduction_vs_flat": 0.053412855322489045,
+      "relative_reduction": 0.6130932392168484,
+      "share_of_routes_changed": 0.7235772357723578
+    },
+    "oracle|ped_l20": {
+      "mean_added_free_flow_min": 38.84157000338756,
+      "mean_exposure_share": 0.017932005293278763,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        0.07972111583151877,
+        0.10297390709264248
+      ],
+      "reduction_vs_flat": 0.09106962879560321,
+      "relative_reduction": 0.835488656264945,
+      "share_of_routes_changed": 0.926829268292683
+    },
+    "oracle|ped_l5": {
+      "mean_added_free_flow_min": 24.914722056609488,
+      "mean_exposure_share": 0.023170358466861492,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        0.07503078399686182,
+        0.09704418696817524
+      ],
+      "reduction_vs_flat": 0.08583127562202048,
+      "relative_reduction": 0.7874310907305486,
+      "share_of_routes_changed": 0.9186991869918699
+    },
+    "random|car_l5": {
+      "mean_added_free_flow_min": 0.10281551490514952,
+      "mean_exposure_share": 0.08633623351798306,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        -0.0006026415864617872,
+        0.0022590621712032044
+      ],
+      "reduction_vs_flat": 0.0007840475516914744,
+      "relative_reduction": 0.008999598509839878,
+      "share_of_routes_changed": 0.42276422764227645
+    },
+    "random|ped_l20": {
+      "mean_added_free_flow_min": 6.7258462567750685,
+      "mean_exposure_share": 0.11047915661319091,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.006072207467766621,
+        0.002902963042922761
+      ],
+      "reduction_vs_flat": -0.0014775225243089422,
+      "relative_reduction": -0.013555049304161283,
+      "share_of_routes_changed": 0.975609756097561
+    },
+    "random|ped_l5": {
+      "mean_added_free_flow_min": 3.8669851419000376,
+      "mean_exposure_share": 0.11147653408093078,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.006766150670093656,
+        0.0015581554272175299
+      ],
+      "reduction_vs_flat": -0.0024748999920488138,
+      "relative_reduction": -0.02270516412653717,
+      "share_of_routes_changed": 0.9634146341463414
+    }
+  },
+  "task": "ADR-026 part C2: routing test round 2"
+}

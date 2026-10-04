@@ -1,0 +1,852 @@
+{
+ "events": [
+  {
+   "name": "DFO_4265_From_20150624_to_20150629.tif",
+   "negatives": 1960407,
+   "observed": 1966582,
+   "permanent_water_cells": 17423,
+   "positives": 6175,
+   "sampled_negatives": 15000,
+   "sampled_positives": 6175,
+   "shape": [
+    1884,
+    2410
+   ],
+   "tiles_needed": 30,
+   "tiles_used": 27
+  },
+  {
+   "name": "DFO_3636_From_20100418_to_20100421.tif",
+   "negatives": 1440802,
+   "observed": 1623714,
+   "permanent_water_cells": 21442,
+   "positives": 182912,
+   "sampled_negatives": 15000,
+   "sampled_positives": 15000,
+   "shape": [
+    2136,
+    2925
+   ],
+   "tiles_needed": 48,
+   "tiles_used": 48
+  },
+  {
+   "name": "DFO_2754_From_20051021_to_20051028.tif",
+   "negatives": 3124645,
+   "observed": 3166502,
+   "permanent_water_cells": 73021,
+   "positives": 41857,
+   "sampled_negatives": 15000,
+   "sampled_positives": 15000,
+   "shape": [
+    2034,
+    3257
+   ],
+   "tiles_needed": 45,
+   "tiles_used": 41
+  },
+  {
+   "name": "DFO_4251_From_20150517_to_20150521.tif",
+   "negatives": 3700844,
+   "observed": 3705955,
+   "permanent_water_cells": 24226,
+   "positives": 5111,
+   "sampled_negatives": 15000,
+   "sampled_positives": 5111,
+   "shape": [
+    3693,
+    2388
+   ],
+   "tiles_needed": 54,
+   "tiles_used": 50
+  },
+  {
+   "name": "DFO_4640_From_20180625_to_20180711.tif",
+   "shape": [
+    2725,
+    5257
+   ],
+   "skipped": "needs 91 DEM tiles (> 80)",
+   "tiles_needed": 91
+  },
+  {
+   "name": "DFO_3713_From_20100905_to_20100917.tif",
+   "negatives": 1781855,
+   "observed": 1943544,
+   "permanent_water_cells": 26948,
+   "positives": 161689,
+   "sampled_negatives": 15000,
+   "sampled_positives": 15000,
+   "shape": [
+    2281,
+    3818
+   ],
+   "tiles_needed": 60,
+   "tiles_used": 60
+  },
+  {
+   "name": "DFO_4499_From_20170727_to_20170810.tif",
+   "negatives": 3099235,
+   "observed": 3166502,
+   "permanent_water_cells": 73021,
+   "positives": 67267,
+   "sampled_negatives": 15000,
+   "sampled_positives": 15000,
+   "shape": [
+    2034,
+    3257
+   ],
+   "tiles_needed": 45,
+   "tiles_used": 41
+  },
+  {
+   "name": "DFO_4001_From_20121104_to_20121108.tif",
+   "negatives": 3675635,
+   "observed": 3705955,
+   "permanent_water_cells": 24226,
+   "positives": 30320,
+   "sampled_negatives": 15000,
+   "sampled_positives": 15000,
+   "shape": [
+    3693,
+    2388
+   ],
+   "tiles_needed": 54,
+   "tiles_used": 50
+  },
+  {
+   "name": "DFO_3856_From_20110815_to_20110908.tif",
+   "negatives": 1808562,
+   "observed": 1943544,
+   "permanent_water_cells": 26948,
+   "positives": 134982,
+   "sampled_negatives": 15000,
+   "sampled_positives": 15000,
+   "shape": [
+    2281,
+    3818
+   ],
+   "tiles_needed": 60,
+   "tiles_used": 60
+  },
+  {
+   "name": "DFO_3650_From_20100515_to_20100626.tif",
+   "negatives": 1853788,
+   "observed": 1943544,
+   "permanent_water_cells": 26948,
+   "positives": 89756,
+   "sampled_negatives": 15000,
+   "sampled_positives": 15000,
+   "shape": [
+    2281,
+    3818
+   ],
+   "tiles_needed": 60,
+   "tiles_used": 60
+  },
+  {
+   "name": "DFO_4239_From_20150320_to_20150331.tif",
+   "shape": [
+    2946,
+    5257
+   ],
+   "skipped": "needs 91 DEM tiles (> 80)",
+   "tiles_needed": 91
+  },
+  {
+   "name": "DFO_4309_From_20151110_to_20151204.tif",
+   "negatives": 3665038,
+   "observed": 3705955,
+   "permanent_water_cells": 24226,
+   "positives": 40917,
+   "sampled_negatives": 15000,
+   "sampled_positives": 15000,
+   "shape": [
+    3693,
+    2388
+   ],
+   "tiles_needed": 54,
+   "tiles_used": 50
+  },
+  {
+   "name": "DFO_4154_From_20140623_to_20140625.tif",
+   "shape": [
+    3329,
+    7019
+   ],
+   "skipped": "needs 144 DEM tiles (> 80)",
+   "tiles_needed": 144
+  },
+  {
+   "name": "DFO_2049_From_20020903_to_20020906.tif",
+   "shape": [
+    7357,
+    4128
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_3966_From_20120816_to_20120820.tif",
+   "shape": [
+    3127,
+    5877
+   ],
+   "skipped": "needs 112 DEM tiles (> 80)",
+   "tiles_needed": 112
+  },
+  {
+   "name": "DFO_2758_From_20051023_to_20051209.tif",
+   "negatives": 3636301,
+   "observed": 3705955,
+   "permanent_water_cells": 24226,
+   "positives": 69654,
+   "sampled_negatives": 15000,
+   "sampled_positives": 15000,
+   "shape": [
+    3693,
+    2388
+   ],
+   "tiles_needed": 54,
+   "tiles_used": 50
+  },
+  {
+   "name": "DFO_3960_From_20120803_to_20120806.tif",
+   "shape": [
+    3127,
+    5898
+   ],
+   "skipped": "needs 112 DEM tiles (> 80)",
+   "tiles_needed": 112
+  },
+  {
+   "name": "DFO_1747_From_20010708_to_20010810.tif",
+   "shape": [
+    3634,
+    4792
+   ],
+   "skipped": "needs 108 DEM tiles (> 80)",
+   "tiles_needed": 108
+  },
+  {
+   "name": "DFO_4665_From_20180802_to_20180810.tif",
+   "shape": [
+    3329,
+    7019
+   ],
+   "skipped": "needs 144 DEM tiles (> 80)",
+   "tiles_needed": 144
+  },
+  {
+   "name": "DFO_2958_From_20060831_to_20060911.tif",
+   "shape": [
+    3577,
+    6666
+   ],
+   "skipped": "needs 144 DEM tiles (> 80)",
+   "tiles_needed": 144
+  },
+  {
+   "name": "DFO_3496_From_20090703_to_20090706.tif",
+   "shape": [
+    3759,
+    7019
+   ],
+   "skipped": "needs 160 DEM tiles (> 80)",
+   "tiles_needed": 160
+  },
+  {
+   "name": "DFO_3208_From_20071017_to_20071024.tif",
+   "shape": [
+    5533,
+    4061
+   ],
+   "skipped": "needs 130 DEM tiles (> 80)",
+   "tiles_needed": 130
+  },
+  {
+   "name": "DFO_3217_From_20071027_to_20071101.tif",
+   "shape": [
+    5011,
+    3391
+   ],
+   "skipped": "needs 96 DEM tiles (> 80)",
+   "tiles_needed": 96
+  },
+  {
+   "name": "DFO_4259_From_20150602_to_20150629.tif",
+   "shape": [
+    3329,
+    7019
+   ],
+   "skipped": "needs 144 DEM tiles (> 80)",
+   "tiles_needed": 144
+  },
+  {
+   "name": "DFO_4176_From_20140815_to_20140908.tif",
+   "shape": [
+    3329,
+    7019
+   ],
+   "skipped": "needs 144 DEM tiles (> 80)",
+   "tiles_needed": 144
+  },
+  {
+   "name": "DFO_4288_From_20150813_to_20150911.tif",
+   "shape": [
+    3329,
+    7019
+   ],
+   "skipped": "needs 144 DEM tiles (> 80)",
+   "tiles_needed": 144
+  },
+  {
+   "name": "DFO_2734_From_20050922_to_20051011.tif",
+   "shape": [
+    7500,
+    4729
+   ],
+   "skipped": "needs 187 DEM tiles (> 80)",
+   "tiles_needed": 187
+  },
+  {
+   "name": "DFO_3104_From_20070618_to_20070626.tif",
+   "shape": [
+    3759,
+    7019
+   ],
+   "skipped": "needs 160 DEM tiles (> 80)",
+   "tiles_needed": 160
+  },
+  {
+   "name": "DFO_3864_From_20110825_to_20110913.tif",
+   "shape": [
+    7500,
+    4729
+   ],
+   "skipped": "needs 187 DEM tiles (> 80)",
+   "tiles_needed": 187
+  },
+  {
+   "name": "DFO_3195_From_20070922_to_20071008.tif",
+   "shape": [
+    3634,
+    4792
+   ],
+   "skipped": "needs 108 DEM tiles (> 80)",
+   "tiles_needed": 108
+  },
+  {
+   "name": "DFO_4188_From_20140924_to_20141011.tif",
+   "shape": [
+    3759,
+    6718
+   ],
+   "skipped": "needs 160 DEM tiles (> 80)",
+   "tiles_needed": 160
+  },
+  {
+   "name": "DFO_3866_From_20110905_to_20111002.tif",
+   "shape": [
+    3634,
+    4792
+   ],
+   "skipped": "needs 108 DEM tiles (> 80)",
+   "tiles_needed": 108
+  },
+  {
+   "name": "DFO_3150_From_20070803_to_20070827.tif",
+   "shape": [
+    3634,
+    4792
+   ],
+   "skipped": "needs 108 DEM tiles (> 80)",
+   "tiles_needed": 108
+  },
+  {
+   "name": "DFO_3652_From_20100518_to_20100524.tif",
+   "shape": [
+    5126,
+    5959
+   ],
+   "skipped": "needs 168 DEM tiles (> 80)",
+   "tiles_needed": 168
+  },
+  {
+   "name": "DFO_3356_From_20080805_to_20080811.tif",
+   "shape": [
+    5126,
+    5959
+   ],
+   "skipped": "needs 168 DEM tiles (> 80)",
+   "tiles_needed": 168
+  },
+  {
+   "name": "DFO_3312_From_20080524_to_20080528.tif",
+   "shape": [
+    5600,
+    4831
+   ],
+   "skipped": "needs 156 DEM tiles (> 80)",
+   "tiles_needed": 156
+  },
+  {
+   "name": "DFO_2931_From_20060724_to_20060822.tif",
+   "shape": [
+    3577,
+    6666
+   ],
+   "skipped": "needs 144 DEM tiles (> 80)",
+   "tiles_needed": 144
+  },
+  {
+   "name": "DFO_2473_From_20040414_to_20040503.tif",
+   "shape": [
+    5533,
+    4831
+   ],
+   "skipped": "needs 156 DEM tiles (> 80)",
+   "tiles_needed": 156
+  },
+  {
+   "name": "DFO_4179_From_20140901_to_20141011.tif",
+   "shape": [
+    4781,
+    6666
+   ],
+   "skipped": "needs 176 DEM tiles (> 80)",
+   "tiles_needed": 176
+  },
+  {
+   "name": "DFO_2338_From_20030827_to_20031020.tif",
+   "shape": [
+    3634,
+    4792
+   ],
+   "skipped": "needs 108 DEM tiles (> 80)",
+   "tiles_needed": 108
+  },
+  {
+   "name": "DFO_2718_From_20050826_to_20050830.tif",
+   "shape": [
+    4010,
+    7287
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_2911_From_20060704_to_20060707.tif",
+   "shape": [
+    10168,
+    6133
+   ],
+   "skipped": "map has 62,360,344 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_1791_From_20010907_to_20010924.tif",
+   "shape": [
+    4010,
+    7287
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_3119_From_20070701_to_20070706.tif",
+   "shape": [
+    7357,
+    4747
+   ],
+   "skipped": "needs 204 DEM tiles (> 80)",
+   "tiles_needed": 204
+  },
+  {
+   "name": "DFO_4673_From_20180901_to_20180907.tif",
+   "shape": [
+    4010,
+    7287
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_3530_From_20090818_to_20090827.tif",
+   "shape": [
+    6648,
+    7490
+   ],
+   "skipped": "map has 49,793,520 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3372_From_20080830_to_20080908.tif",
+   "shape": [
+    6648,
+    7490
+   ],
+   "skipped": "map has 49,793,520 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2956_From_20060829_to_20060904.tif",
+   "shape": [
+    4010,
+    7287
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_4355_From_20160420_to_20160501.tif",
+   "shape": [
+    6648,
+    7490
+   ],
+   "skipped": "map has 49,793,520 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_1789_From_20010820_to_20010911.tif",
+   "shape": [
+    4010,
+    7287
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_3191_From_20070916_to_20071007.tif",
+   "shape": [
+    5126,
+    4372
+   ],
+   "skipped": "needs 132 DEM tiles (> 80)",
+   "tiles_needed": 132
+  },
+  {
+   "name": "DFO_3160_From_20070808_to_20070815.tif",
+   "shape": [
+    10168,
+    6133
+   ],
+   "skipped": "map has 62,360,344 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3717_From_20100918_to_20100930.tif",
+   "shape": [
+    4010,
+    7287
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_4483_From_20170602_to_20170703.tif",
+   "shape": [
+    6648,
+    7490
+   ],
+   "skipped": "map has 49,793,520 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2680_From_20050628_to_20050715.tif",
+   "shape": [
+    10168,
+    6133
+   ],
+   "skipped": "map has 62,360,344 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3107_From_20070622_to_20070704.tif",
+   "shape": [
+    7357,
+    6334
+   ],
+   "skipped": "map has 46,599,238 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3118_From_20070630_to_20070713.tif",
+   "shape": [
+    7476,
+    8326
+   ],
+   "skipped": "map has 62,245,176 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_4174_From_20140814_to_20140908.tif",
+   "shape": [
+    4010,
+    7287
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_4171_From_20140811_to_20140908.tif",
+   "shape": [
+    4010,
+    7287
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_3983_From_20120916_to_20120918.tif",
+   "shape": [
+    5669,
+    9687
+   ],
+   "skipped": "map has 54,915,603 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_1641_From_20000918_to_20001021.tif",
+   "shape": [
+    4971,
+    9426
+   ],
+   "skipped": "map has 46,856,646 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3164_From_20070812_to_20070817.tif",
+   "shape": [
+    5890,
+    9687
+   ],
+   "skipped": "map has 57,056,430 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3551_From_20090925_to_20091012.tif",
+   "shape": [
+    7357,
+    6334
+   ],
+   "skipped": "map has 46,599,238 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2570_From_20041007_to_20041018.tif",
+   "shape": [
+    4971,
+    9426
+   ],
+   "skipped": "map has 46,856,646 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2686_From_20050702_to_20050715.tif",
+   "shape": [
+    10413,
+    7682
+   ],
+   "skipped": "map has 79,992,666 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_4198_From_20141012_to_20141027.tif",
+   "shape": [
+    7357,
+    6334
+   ],
+   "skipped": "map has 46,599,238 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2940_From_20060801_to_20060910.tif",
+   "shape": [
+    5240,
+    7951
+   ],
+   "skipped": "map has 41,663,240 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_4098_From_20131012_to_20131110.tif",
+   "shape": [
+    4971,
+    7931
+   ],
+   "skipped": "needs 228 DEM tiles (> 80)",
+   "tiles_needed": 228
+  },
+  {
+   "name": "DFO_3854_From_20110815_to_20111002.tif",
+   "shape": [
+    4010,
+    7287
+   ],
+   "skipped": "needs 170 DEM tiles (> 80)",
+   "tiles_needed": 170
+  },
+  {
+   "name": "DFO_2698_From_20050723_to_20050816.tif",
+   "shape": [
+    7357,
+    6334
+   ],
+   "skipped": "map has 46,599,238 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3338_From_20080720_to_20080808.tif",
+   "shape": [
+    4010,
+    10861
+   ],
+   "skipped": "map has 43,552,610 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3674_From_20100705_to_20100715.tif",
+   "shape": [
+    5669,
+    9687
+   ],
+   "skipped": "map has 54,915,603 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2731_From_20050916_to_20051005.tif",
+   "shape": [
+    5669,
+    9687
+   ],
+   "skipped": "map has 54,915,603 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2728_From_20050914_to_20050930.tif",
+   "shape": [
+    7476,
+    8326
+   ],
+   "skipped": "map has 62,245,176 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2894_From_20060624_to_20060803.tif",
+   "shape": [
+    4971,
+    9426
+   ],
+   "skipped": "map has 46,856,646 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3327_From_20080705_to_20080714.tif",
+   "shape": [
+    6728,
+    11332
+   ],
+   "skipped": "map has 76,241,696 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3382_From_20080922_to_20080929.tif",
+   "shape": [
+    10413,
+    8326
+   ],
+   "skipped": "map has 86,698,638 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_4378_From_20160707_to_20160803.tif",
+   "shape": [
+    10413,
+    7682
+   ],
+   "skipped": "map has 79,992,666 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_4507_From_20170810_to_20170826.tif",
+   "shape": [
+    6630,
+    10331
+   ],
+   "skipped": "map has 68,494,530 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2879_From_20060531_to_20060724.tif",
+   "shape": [
+    6433,
+    10861
+   ],
+   "skipped": "map has 69,868,813 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3120_From_20070701_to_20070713.tif",
+   "shape": [
+    10413,
+    9687
+   ],
+   "skipped": "map has 100,870,731 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2690_From_20050707_to_20050727.tif",
+   "shape": [
+    6728,
+    11332
+   ],
+   "skipped": "map has 76,241,696 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_1974_From_20020621_to_20020828.tif",
+   "shape": [
+    6433,
+    9579
+   ],
+   "skipped": "map has 61,621,707 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3122_From_20070703_to_20070922.tif",
+   "shape": [
+    4971,
+    9426
+   ],
+   "skipped": "map has 46,856,646 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_3128_From_20070712_to_20071010.tif",
+   "shape": [
+    4010,
+    10861
+   ],
+   "skipped": "map has 43,552,610 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2689_From_20050705_to_20050814.tif",
+   "shape": [
+    5689,
+    10506
+   ],
+   "skipped": "map has 59,768,634 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2279_From_20030715_to_20030901.tif",
+   "shape": [
+    7080,
+    12506
+   ],
+   "skipped": "map has 88,542,480 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2935_From_20060728_to_20060912.tif",
+   "shape": [
+    10413,
+    9687
+   ],
+   "skipped": "map has 100,870,731 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_4282_From_20150715_to_20150819.tif",
+   "shape": [
+    12072,
+    11826
+   ],
+   "skipped": "map has 142,763,472 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2507_From_20040620_to_20041007.tif",
+   "shape": [
+    7616,
+    11953
+   ],
+   "skipped": "map has 91,034,048 cells (> 40,000,000)"
+  },
+  {
+   "name": "DFO_2248_From_20030611_to_20031010.tif",
+   "shape": [
+    8092,
+    13261
+   ],
+   "skipped": "map has 107,308,012 cells (> 40,000,000)"
+  }
+ ],
+ "events_used": 11,
+ "rows": 311286
+}

@@ -12,6 +12,7 @@ Output: data/results/2026-10-04-susceptibility-national/result.json
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import time
@@ -26,7 +27,8 @@ from sus_train import ci, weighted_auc, weighted_ap  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "data" / "susceptibility" / "2026-10-04"
-OUT = ROOT / "data" / "results" / "2026-10-04-susceptibility-national"
+ALL = os.environ.get("SUS_SAMPLES") == "all"  # addendum B2: the windowed builder's samples for all 91 maps
+OUT = ROOT / "data" / "results" / ("2026-10-04-susceptibility-national-all" if ALL else "2026-10-04-susceptibility-national")
 SEED = 20261004
 BOOT = 1000
 TERRAIN = ["elev", "elev_min", "elev_range", "slope", "relief5km", "tpi5km", "dist_sea_km", "dist_water_km", "hand_water"]
@@ -111,7 +113,7 @@ def best_single(X, y, w, names):
 def main() -> int:
     t0 = time.time()
     OUT.mkdir(parents=True, exist_ok=True)
-    z = np.load(BASE / "national_samples.npz")
+    z = np.load(BASE / ("national_samples_all.npz" if ALL else "national_samples.npz"))
     y, ev, year = z["y"], z["event"], z["year"]
     lon, lat = z["lon"], z["lat"]
     Xt = np.column_stack([z[k] for k in TERRAIN]).astype(np.float32)

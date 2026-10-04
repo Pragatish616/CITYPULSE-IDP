@@ -49,3 +49,13 @@ Otherwise the corresponding statement is: no evidence. No further features, mode
 
 - The flood maps finished downloading faster than expected: **all 91 India maps** (2,027 MB) are present. The frozen list is `national_events.json` (written by `scripts/sus_national_freeze.py`, committed with this addendum). Because of this, the remark above that the list is biased toward small footprints no longer applies; it is the full set of the 91 maps, which are themselves the maps in the database for the Dartmouth India events of ADR-023 (2000 to 2018).
 - The memory limit of this machine (7.4 GB) is lower than the 80-million-cell limit written above. The limit is **40 million cells** per map; larger maps are skipped and listed in `national_report.json`. Nothing else changes.
+
+## Addendum B2 (4 October 2026): all 91 maps, written before the windowed builder ran
+
+The analysis registered above was run on the maps small enough to hold in memory; **11 of 91 maps** were used and its verdict is reported as it stands (`data/results/2026-10-04-susceptibility-national/`). Seeing only how many maps were used (not any model result about the others),
+a memory-safe builder, `scripts/sus_national_build_v2.py`, is registered to repeat the **identical analysis on all 91 maps**:
+
+- Each map is processed in horizontal windows of 1,200 rows with 60 rows of margin; samples come from the core rows only; windows get sampling quotas proportional to their share of the event's observed positives and negatives (at least one per class where present), and every sampled cell carries the weight that restores its window's true observed class size.
+- Distance to the sea and to permanent water, and the height above the nearest permanent water (the mean height of the water cells in the nearest 4 by 4 block), are computed on a 4-times coarser grid (about 1 km) and looked up at full resolution. On one window of one map, the windowed features agree with the unwindowed ones with correlation 1.000 for elevation, slope and relief, 0.999 for the distance to water, and 0.97 for the height above water (median absolute difference 0.0 m; 95th percentile 2.5 m).
+- All DEM tiles needed by any map are downloaded first.
+- Models, baselines, weights, folds, metrics, intervals and the decision rule are exactly as registered above. The **primary result for the nationwide claim becomes the all-maps result**; the 11-map result is reported alongside it, and both are shown with the number of comparisons made.

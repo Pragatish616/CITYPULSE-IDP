@@ -1,0 +1,99 @@
+# Per-hazard-class parameters. Every study varies these — keep them here, never inline.
+# T_c values are STARTING GUESSES to be replaced by values fitted from Chennai data (T3.4).
+# The pitch's single global decay constant is a known defect: urban flooding persists for
+# hours while debris clears in minutes (ADR-002).
+
+source_reliability:          # alpha_c -> evidence weight logit(alpha_c)
+  municipal_sensor:   0.97
+  official_feed:      0.92
+  verified_responder: 0.90
+  crowd:              0.60
+  app_traversal:      0.70   # used for polarity -1 (absence) evidence; see improvement I-02
+
+user_classes:
+  # `profile` names an entry of travel_profiles below (default: car). z and lambda set how much
+  # hazard caution the class carries; the profile sets how it moves (ADR-019).
+  commuter:   { z: 0.0,  lambda: 0.3, profile: car }
+  emergency:  { z: 2.0,  lambda: 1.0, profile: emergency }
+  pedestrian: { z: 1.28, lambda: 5.0, profile: foot }   # improvement I-07; depth thresholds differ sharply
+  # PLACEHOLDER: z and lambda for a cyclist are a judgement between the pedestrian and the car,
+  # not fitted to anything. A cyclist is exposed to water like a walker but moves faster.
+  cyclist:    { z: 1.0,  lambda: 0.8, profile: bicycle }
+
+# How each kind of traveller moves (ADR-019). The pack stores car speeds per road class; a profile
+# turns them into this traveller's speed on each road, or closes the road to them.
+#
+# EVERY NUMBER BELOW IS A PLACEHOLDER ASSUMPTION chosen for plausibility, not measured and not
+# fitted. Cyclist speeds fold in how unpleasant a busy road is (an "effective" speed), so they also
+# change the reported time on those roads. Nothing here comes from a model or a language model.
+# Route geometry always comes from graph search.
+travel_profiles:
+  foot:
+    speed_kmh: { default: 5.0, primary: 4.5, primary_link: 4.5, trunk: 4.0, trunk_link: 4.0 }
+    forbidden: [motorway, motorway_link]
+    ignore_oneway: true            # a pedestrian may walk against a one-way street
+  bicycle:
+    speed_kmh:
+      default: 15.0
+      tertiary: 14.0
+      tertiary_link: 14.0
+      secondary: 12.0
+      secondary_link: 12.0
+      primary: 10.0
+      primary_link: 10.0
+      trunk: 8.0
+      trunk_link: 8.0
+    forbidden: [motorway, motorway_link]
+    ignore_oneway: false           # one-way streets are obeyed
+  emergency:
+    # Priority passage helps most where a large vehicle can use it: on arterial roads. In a narrow
+    # residential lane an ambulance cannot pass what is in front of it, so it gains nothing.
+    # Factors chosen from that reasoning BEFORE any run; no evidence behind the numbers.
+    speed_multiplier: 1.0
+    speed_multiplier_by_class:
+      tertiary: 1.15
+      tertiary_link: 1.10
+      secondary: 1.30
+      secondary_link: 1.20
+      primary: 1.40
+      primary_link: 1.30
+      trunk: 1.40
+      trunk_link: 1.30
+      motorway: 1.40
+      motorway_link: 1.30
+    max_speed_kmh: 90.0
+
+classes:
+  flood:
+    T_c_seconds: 7200          # PLACEHOLDER - fit from data
+    severity: 1.0
+    h_max_mm: 300              # chance-constraint threshold, vehicles
+    h_max_mm_pedestrian: 150   # PLACEHOLDER - needs a source, not a guess
+    epsilon: 0.1
+    display_noun: "flooding"
+  waterlogging:
+    T_c_seconds: 5400
+    severity: 0.6
+    h_max_mm: 200
+    epsilon: 0.15
+    display_noun: "waterlogging"
+  debris:
+    T_c_seconds: 900           # clears fast - the pitch had this backwards
+    severity: 0.5
+    display_noun: "debris on the road"
+  accident:
+    T_c_seconds: 1800
+    severity: 0.4
+    display_noun: "an accident"
+  closure:
+    T_c_seconds: 14400
+    severity: 0.9
+    display_noun: "a road closure"
+  heat:
+    T_c_seconds: 10800
+    severity: 0.2
+    display_noun: "extreme heat"
+  aqi:
+    T_c_seconds: 10800
+    severity: 0.2
+    display_noun: "poor air quality"
