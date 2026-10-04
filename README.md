@@ -14,6 +14,7 @@ and adds a small on-device advisor that says how much to trust what it found.
 ![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![Data](https://img.shields.io/badge/map%20data-OpenStreetMap%20(ODbL)-7EBC6F)
 ![Budget](https://img.shields.io/badge/infrastructure-%E2%82%B90-lightgrey)
+[![License: MIT](https://img.shields.io/badge/code%20licence-MIT-green.svg)](LICENSE)
 
 [Overview](#overview) ·
 [What it does](#what-it-does) ·
@@ -212,8 +213,8 @@ The full plan is [`PLAN.md`](PLAN.md); the gated next steps are in
 Provenance for every pinned file is in [`data/MANIFEST.md`](01_code/citypulse-IDP/data/MANIFEST.md).
 No Google Maps Platform data is used, and the project does not bulk-use the public OpenStreetMap tile servers.
 
-**Licence for the code:** not yet chosen by the team. Until a `LICENSE` file is added, all rights are
-reserved. Open an issue if you want to use the code.
+**Licence for the code:** [MIT](LICENSE). The data keeps its own licences (table above): OpenStreetMap-derived
+files, including the map packs, stay under the ODbL and carry its share-alike terms.
 
 ## Contributing and conduct
 
