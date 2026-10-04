@@ -1,6 +1,6 @@
 # Project status (as of 2 October 2026, updated after the build session)
 
-A build session on 2 October 2026 closed F-01, F-02, F-04, F-07, F-08, F-09, F-12, F-19, F-20 and F-21, and partly closed F-05, F-06 and F-11. It also added a working web app, a router service and a rewritten Flutter app. Rows below reflect that. Nothing has run on a phone.
+A build session on 2 October 2026 closed F-01, F-02, F-04, F-07, F-08, F-09, F-12, F-19, F-20 and F-21, and partly closed F-05, F-06 and F-11. It also added a working web app, a router service and a rewritten Flutter app. Rows below reflect that. Nothing had run on a phone then; see the 5 October paragraph at the end.
 
 Status words used below:
 - **Works:** tested and reproducible.
@@ -40,7 +40,7 @@ Status words used below:
 | Study 1 (route quality) | Re-run on the fixed router; the crowd layer still adds nothing (ADR-017) | — | `data/results/2026-10-02-study1-route-quality/` and `...-study1-rescored/`; the 2026-09-18 folder and `07_reanalysis/` are the earlier record | F-03 |
 | Study 2 (calibration) | Re-run, still confounded | — | `data/results/2026-10-02-study2-calibration/`; pools are not yet split or controlled for coverage and edge length | F-14 |
 | Studies 3–5 (faithfulness, connectivity, human) | Missing | — | Not run | — |
-| Device run on a Rs 10–15k phone | Missing | — | — | F-06 |
+| Device run on a Rs 10–15k phone | Partly: installed and run on one Android phone (model not recorded), reported to behave like the web app; no measurements, offline untested | — | MOBILE_TESTING.md table is empty | F-06 |
 | Live passability data feed | Missing | — | Decides the startup track | — |
 
 **Whole system: TRL 3.** Each critical function has been shown separately. The integrated system has never been demonstrated, even in the lab.
@@ -74,4 +74,6 @@ Status words used below:
 4. Free-tier accounts (Supabase, Upstash, Groq, TomTom, OpenAQ). The code runs without them.
 5. Author details for the paper: departments, surnames, e-mails.
 
-**Web demo (4 October 2026).** The web app, router API and report server run as one container on a free Render instance at <https://citypulse-idp.onrender.com>. `scripts/smoke_deploy.py` passes 11 read-only checks against it. Reports are in memory, the host sleeps when idle, and nothing has run on a phone, so the readiness levels above do not change.
+**Web demo (4 October 2026).** The web app, router API and report server run as one container on a free Render instance at <https://citypulse-idp.onrender.com>. `scripts/smoke_deploy.py` passes 11 read-only checks against it. Reports are in memory and the host sleeps when idle.
+
+**Android app (5 October 2026).** A GitHub workflow built a 60.9 MB release APK; the team installed it on one Android phone and reports that it behaves exactly like the web app. No timing, memory, battery or airplane-mode result is recorded, so the readiness levels above do not change (the offline claim in particular is still untested). The next step is the measurement table in `01_code/citypulse-IDP/docs/MOBILE_TESTING.md`.

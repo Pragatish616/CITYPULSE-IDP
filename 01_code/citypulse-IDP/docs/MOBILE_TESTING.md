@@ -1,6 +1,6 @@
 # Testing CityPulse on a phone
 
-Status on 4 October 2026: **nothing in this project has run on a phone yet** (KNOWN_FLAWS F-06). There are two ways to start, and they test different things.
+Status on 5 October 2026: the Android app (path B) has been **installed and run on one phone** and is reported to behave like the web app. **No measurements have been recorded yet**: the table below is still empty, and airplane-mode routing is untested (KNOWN_FLAWS F-06). There are two ways to test, and they test different things.
 
 | | A. Web app on the home screen | B. Android app (APK) |
 |---|---|---|

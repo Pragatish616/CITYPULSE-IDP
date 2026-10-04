@@ -70,6 +70,6 @@ sequenceDiagram
 
 ## Honest status
 
-TRL 4 for the router and belief engine on a deterministic replay, TRL 3 for the system as a whole. The app has
-not been run on a phone, and the Chennai flood layer is built from 2015 records. See
+TRL 4 for the router and belief engine on a deterministic replay, TRL 3 for the system as a whole. The Android app has
+been installed and run on one phone (unmeasured, offline use untested), and the Chennai flood layer is built from 2015 records. See
 [`00_START_HERE/PROJECT_STATUS.md`](../00_START_HERE/PROJECT_STATUS.md).

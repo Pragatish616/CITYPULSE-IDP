@@ -3,10 +3,11 @@
 One Flutter codebase for the Android app and the web app (PLAN.md M4, M5). Flutter, Riverpod,
 go_router, MapLibre (`maplibre_gl`, Android and web) on the OpenFreeMap `liberty` style.
 
-**Status, stated plainly.** The web build has been run end to end in a browser against local
-services. The Android build has **not** been compiled or run on a device or emulator; nothing in
-this repo has run on a phone (KNOWN_FLAWS F-06). Tier 1 (`flutter_gemma`) and Tier 2 (Groq)
-rewriters have never been executed.
+**Status, stated plainly.** The web build has been run end to end in a browser, locally and on the
+hosted demo. The Android app compiles in GitHub Actions (`.github/workflows/android-apk.yml`, 4 Oct 2026)
+and has been installed and run on one phone (5 Oct 2026), where it is reported to behave like the web
+app. Not yet recorded: timings, memory, battery, airplane-mode routing (KNOWN_FLAWS F-06). Tier 1
+(`flutter_gemma`) and Tier 2 (Groq) rewriters have never been executed.
 
 ## What it does
 

@@ -14,7 +14,7 @@ Team: Pragatish N, Ravi, Jyotish (B.Tech, VIT Chennai). This is a credited unive
    - It keeps a flood probability for every road segment, fusing GCC flood-hazard zones with age-decayed, source-weighted reports.
    - It routes on a pessimistic version of that probability.
    - It produces a structured decision record, which a template and an optional language model turn into an explanation.
-2. **What exists.** The router and belief engine work on the full Chennai graph (193,191 nodes, 471,240 directed edges) in a deterministic replay. Readiness is TRL 4 for those components and TRL 3 for the system as a whole. **Nothing has run on a phone.**
+2. **What exists.** The router and belief engine work on the full Chennai graph (193,191 nodes, 471,240 directed edges) in a deterministic replay. Readiness is TRL 4 for those components and TRL 3 for the system as a whole. **The Android app has been installed and run on one phone (5 Oct 2026, reported to behave like the web app); no timings or offline tests are recorded.**
 3. **Main result.** On the 2015 flood replay, the crowd reports added **nothing** over the static GCC hazard map. The default commuter setting changed 7 of 100 routes.
 4. **The pessimistic index is broken.** It *lowers* caution after one weak crowd report (Section 5.2).
 5. **Evidence is one-directional.** Reports are attached to one direction of each two-way street only.
@@ -127,7 +127,7 @@ What none of them documents publicly is:
 | `packages/pulse_router/` | Dart | CSR graph, bidirectional Dijkstra, edge cost, depth–disruption, decision trace, CLI (`bin/pulse_router.dart`); `alt_landmarks.dart` exists but is **not used** by `planRoute` | Works; about 80 tests |
 | `packages/pulse_belief/` | Dart | Log-odds fusion (`fusion.dart`), kernel, pessimistic index (`pessimistic.dart`) | Works as coded; **the index has a design flaw** (F-01) |
 | `packages/pulse_explain/` | Dart | Tier 0 template (`template_renderer.dart`) and the 6-rule verifier (`verifier.dart`) | Works; **false accepts and false text** (F-04, F-05) |
-| `app/` | Flutter (Android) | Offline shell: loads the real graph, runs **one fixed query** (T. Nagar → Velachery) in-process, confidence badge, SQLite + R*-tree cache, outbox, HLC, Tier 1 (`flutter_gemma`) and Tier 2 (Groq) rewriters | Desktop-host tests only; **never run on a device**; rewriters never executed |
+| `app/` | Flutter (Android) | Offline shell: loads the real graph, runs **one fixed query** (T. Nagar → Velachery) in-process, confidence badge, SQLite + R*-tree cache, outbox, HLC, Tier 1 (`flutter_gemma`) and Tier 2 (Groq) rewriters | Desktop-host tests; built as an APK in CI and run on one phone (unmeasured, offline untested); rewriters never executed |
 | `server/` | Python, FastAPI | Observation ingest, SSE events, memory or PostGIS storage, ingest adapters (Open-Meteo, GDACS, TomTom, OpenAQ, CMWSSB) | In-memory tests pass; never deployed; workers unscheduled |
 | `scripts/` | Python | Graph and prior build (`t1_3_build_graph_and_prior.py`), corpus build (`t31_build_replay_corpus.py`), replay engine (`t3_2_replay_engine.py`), Study 1 (`study1_route_quality.py`), Study 2 (`study2_calibration.py`), shared helpers (`study_common.py`) | Deterministic; byte-identical reruns |
 | `config/hazard_classes.yaml` | YAML | Source reliabilities, user classes (z, λ), per-class T_c, severity, h_max, ε | **T_c values are placeholders**, never fitted |
