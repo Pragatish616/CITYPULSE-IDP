@@ -44,3 +44,8 @@ Otherwise the corresponding statement is: no evidence. No further features, mode
 - The event list is whichever small maps arrived; it is not a random sample of Indian floods.
 - Terrain tells where water can collect, not when; the model is a prior, not a forecast.
 - The maps are non-redistributable: derived samples, results and the model file are kept out of git except the aggregate result file.
+
+## Addendum B1 (4 October 2026), before any map was joined to features or any model trained
+
+- The flood maps finished downloading faster than expected: **all 91 India maps** (2,027 MB) are present. The frozen list is `national_events.json` (written by `scripts/sus_national_freeze.py`, committed with this addendum). Because of this, the remark above that the list is biased toward small footprints no longer applies; it is the full set of the 91 maps, which are themselves the maps in the database for the Dartmouth India events of ADR-023 (2000 to 2018).
+- The memory limit of this machine (7.4 GB) is lower than the 80-million-cell limit written above. The limit is **40 million cells** per map; larger maps are skipped and listed in `national_report.json`. Nothing else changes.

@@ -36,7 +36,7 @@ SEED = 20261004
 TRIAL = bool(os.environ.get("SUS_TRIAL"))  # wiring check on one event; writes to trial files, never the real ones
 N_PER_CLASS = 15000
 MAX_TILES = 80
-MAX_CELLS = 80_000_000
+MAX_CELLS = 40_000_000
 MIN_CLEAR_VIEWS = 5
 FEATURES = ["elev", "elev_min", "elev_range", "slope", "relief5km", "tpi5km", "dist_sea_km", "dist_water_km", "hand_water"]
 
