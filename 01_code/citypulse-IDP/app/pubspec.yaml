@@ -81,7 +81,7 @@ dev_dependencies:
 
   # Matches the lint convention used by packages/pulse_router,
   # packages/pulse_belief and packages/pulse_explain (CLAUDE.md §7).
-  very_good_analysis: ^7.0.0
+  very_good_analysis: ^11.0.0
 
 flutter:
   uses-material-design: true
