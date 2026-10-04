@@ -3,7 +3,7 @@
 //   dart run tool/prior_routes.dart OUT.json PAIRS SEED label=packDir [label=packDir ...]
 //
 // For every pair and every pack it asks the engine for a route in an active flood event, for the commuter and pedestrian
-// classes, and records the polyline and the distances. Scoring against a flood extent happens in Python
+// classes (ROUTE_CLASSES, default commuter,pedestrian; HAZARD_CONFIG may name another config file), and records the polyline and the distances. Scoring against a flood extent happens in Python
 // (scripts/sus_router_eval.py). All packs must share one graph (same nodes and edges); only meta.bin's prior differs.
 import 'dart:convert';
 import 'dart:io';
@@ -42,7 +42,7 @@ void main(List<String> args) {
     }
   }
   final config = EngineConfig.fromMap(
-    (loadYaml(File('../../config/hazard_classes.yaml').readAsStringSync()) as YamlMap)
+    (loadYaml(File(Platform.environment['HAZARD_CONFIG'] ?? '../../config/hazard_classes.yaml').readAsStringSync()) as YamlMap)
         .cast<Object?, Object?>(),
   );
   final at = DateTime.utc(2026, 10, 3, 6);
@@ -57,7 +57,7 @@ void main(List<String> args) {
         eventState: EventState.active,
       ),
   };
-  const classes = ['commuter', 'pedestrian'];
+  final classes = (Platform.environment['ROUTE_CLASSES'] ?? 'commuter,pedestrian').split(',');
   final rng = math.Random(seed);
   final rows = <Map<String, Object?>>[];
   var skipped = 0;

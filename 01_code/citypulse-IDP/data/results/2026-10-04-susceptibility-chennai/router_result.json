@@ -1,0 +1,212 @@
+{
+  "baseline_feature": "relief5km",
+  "decision_rule": {
+    "a_reduces_exposure_both_classes": false,
+    "b_beats_elevation_and_random_pedestrian": false,
+    "c_added_time_within_5pct": true,
+    "model_prior_improves_routing": false
+  },
+  "edges": 471240,
+  "mean_trip_free_flow_min_flat": 33.194782382550336,
+  "pairs_requested": 600,
+  "pairs_scored": 596,
+  "preregistration_commit": "8ef69027d00ab58342b9549e276cf4f92e28ee23",
+  "scored_edges": 464061,
+  "seconds": 1500,
+  "share_of_pairs_where_route_inside_extent_ever": 0.9513422818791947,
+  "summary": {
+    "base05|commuter": {
+      "added_min_ci95": [
+        0.00040919183445187044,
+        0.003042630732661791
+      ],
+      "mean_added_free_flow_min": 0.001447231543624035,
+      "mean_distance_km": 26.982939532065625,
+      "mean_exposure_share": 0.09226410131699879,
+      "reduction_ci95": [
+        4.600724032089704e-05,
+        0.0006799634035461754
+      ],
+      "reduction_vs_flat": 0.00033905880858598494,
+      "share_of_routes_changed": 0.025167785234899327
+    },
+    "base05|pedestrian": {
+      "added_min_ci95": [
+        0.528313497370585,
+        0.785679947081631
+      ],
+      "mean_added_free_flow_min": 0.6548762288714917,
+      "mean_distance_km": 24.81272116191275,
+      "mean_exposure_share": 0.11747842165241995,
+      "reduction_ci95": [
+        -0.0015011454383262375,
+        0.0017280035688642089
+      ],
+      "reduction_vs_flat": 0.00015712203022215368,
+      "share_of_routes_changed": 0.39932885906040266
+    },
+    "flat|commuter": {
+      "added_min_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_added_free_flow_min": 0.0,
+      "mean_distance_km": 26.978093976043997,
+      "mean_exposure_share": 0.09260316012558478,
+      "reduction_ci95": [
+        0.0,
+        0.0
+      ],
+      "reduction_vs_flat": 0.0,
+      "share_of_routes_changed": 0.0
+    },
+    "flat|pedestrian": {
+      "added_min_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_added_free_flow_min": 0.0,
+      "mean_distance_km": 24.769266233221476,
+      "mean_exposure_share": 0.11763554368264208,
+      "reduction_ci95": [
+        0.0,
+        0.0
+      ],
+      "reduction_vs_flat": 0.0,
+      "share_of_routes_changed": 0.0
+    },
+    "gcc|commuter": {
+      "added_min_ci95": [
+        0.0003969134507830214,
+        0.002118270413870313
+      ],
+      "mean_added_free_flow_min": 0.0011753076062640299,
+      "mean_distance_km": 26.982993705723345,
+      "mean_exposure_share": 0.09270163312532584,
+      "reduction_ci95": [
+        -0.0003123629904784654,
+        6.23126594550453e-05
+      ],
+      "reduction_vs_flat": -9.847299974104811e-05,
+      "share_of_routes_changed": 0.018456375838926176
+    },
+    "gcc|pedestrian": {
+      "added_min_ci95": [
+        0.7615419278018538,
+        1.1358697769854527
+      ],
+      "mean_added_free_flow_min": 0.9443657065622622,
+      "mean_distance_km": 24.857532370898586,
+      "mean_exposure_share": 0.11732990896273471,
+      "reduction_ci95": [
+        -0.001631177719686929,
+        0.002198547155868987
+      ],
+      "reduction_vs_flat": 0.00030563471990738137,
+      "share_of_routes_changed": 0.2634228187919463
+    },
+    "model05_better_than_base05|commuter": {
+      "ci95": [
+        -0.0007492467532889364,
+        0.00011475817449749439
+      ],
+      "mean_exposure_difference": -0.0003063943855881911
+    },
+    "model05_better_than_base05|pedestrian": {
+      "ci95": [
+        -0.0011375575151297513,
+        0.0027315328361458193
+      ],
+      "mean_exposure_difference": 0.0007172997925609573
+    },
+    "model05_better_than_gcc|commuter": {
+      "ci95": [
+        -0.00029435398047564823,
+        0.0005974867111250935
+      ],
+      "mean_exposure_difference": 0.00013113742273884193
+    },
+    "model05_better_than_gcc|pedestrian": {
+      "ci95": [
+        -0.0018046800363806974,
+        0.003095705807703685
+      ],
+      "mean_exposure_difference": 0.0005687871028757298
+    },
+    "model05_better_than_random|commuter": {
+      "ci95": [
+        -0.0007095755777401212,
+        0.00023617129960487495
+      ],
+      "mean_exposure_difference": -0.00024408622692858033
+    },
+    "model05_better_than_random|pedestrian": {
+      "ci95": [
+        0.0002991011777593886,
+        0.004350986925143563
+      ],
+      "mean_exposure_difference": 0.002256193594964908
+    },
+    "model05|commuter": {
+      "added_min_ci95": [
+        0.0011325650167784448,
+        0.004901607941834213
+      ],
+      "mean_added_free_flow_min": 0.002825083892617287,
+      "mean_distance_km": 26.973501915548102,
+      "mean_exposure_share": 0.09257049570258699,
+      "reduction_ci95": [
+        -0.0003485370982748047,
+        0.00047150758517453087
+      ],
+      "reduction_vs_flat": 3.2664422997793806e-05,
+      "share_of_routes_changed": 0.030201342281879196
+    },
+    "model05|pedestrian": {
+      "added_min_ci95": [
+        0.9082330354562874,
+        1.5146684576769558
+      ],
+      "mean_added_free_flow_min": 1.1919491618506177,
+      "mean_distance_km": 24.876010246551086,
+      "mean_exposure_share": 0.11676112185985897,
+      "reduction_ci95": [
+        -0.00047535896840950997,
+        0.0023063830462396987
+      ],
+      "reduction_vs_flat": 0.0008744218227831112,
+      "share_of_routes_changed": 0.3221476510067114
+    },
+    "random|commuter": {
+      "added_min_ci95": [
+        0.0002528278803132476,
+        0.00079089135906045
+      ],
+      "mean_added_free_flow_min": 0.0004954418344519202,
+      "mean_distance_km": 26.97732417505593,
+      "mean_exposure_share": 0.0923264094756584,
+      "reduction_ci95": [
+        5.966356452502974e-05,
+        0.0005350836780530972
+      ],
+      "reduction_vs_flat": 0.00027675064992637414,
+      "share_of_routes_changed": 0.06711409395973154
+    },
+    "random|pedestrian": {
+      "added_min_ci95": [
+        0.9850042335088759,
+        1.2812616037472018
+      ],
+      "mean_added_free_flow_min": 1.1285794494158545,
+      "mean_distance_km": 24.844347098713644,
+      "mean_exposure_share": 0.11901731545482387,
+      "reduction_ci95": [
+        -0.0030831299354204767,
+        0.00015175643184935496
+      ],
+      "reduction_vs_flat": -0.0013817717721817976,
+      "share_of_routes_changed": 0.860738255033557
+    }
+  },
+  "task": "ADR-026 part C: learned prior against other priors, December 2015 flood extent"
+}

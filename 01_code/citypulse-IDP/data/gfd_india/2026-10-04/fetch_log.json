@@ -1,0 +1,372 @@
+{
+ "bucket": "gfd_v3",
+ "bytes": 1090363101,
+ "count": 73,
+ "files": [
+  {
+   "bytes": 2374322,
+   "gcs_md5": "apzwltV4eMU84qRdj0JzDw==",
+   "name": "DFO_4265_From_20150624_to_20150629.tif"
+  },
+  {
+   "bytes": 2653247,
+   "gcs_md5": "IwVec0resv32/oov1TQ9oQ==",
+   "name": "DFO_3636_From_20100418_to_20100421.tif"
+  },
+  {
+   "bytes": 3831984,
+   "gcs_md5": "sum1MLF6TpVIPelDU7M5EA==",
+   "name": "DFO_2754_From_20051021_to_20051028.tif"
+  },
+  {
+   "bytes": 4570994,
+   "gcs_md5": "xxOMiwNzqBFH+FrDP0n54w==",
+   "name": "DFO_4251_From_20150517_to_20150521.tif"
+  },
+  {
+   "bytes": 4641261,
+   "gcs_md5": "KpIpSMM/4eahvheC8iGxjA==",
+   "name": "DFO_4640_From_20180625_to_20180711.tif"
+  },
+  {
+   "bytes": 4672096,
+   "gcs_md5": "DZhvarlALDWtSttigW60gA==",
+   "name": "DFO_3713_From_20100905_to_20100917.tif"
+  },
+  {
+   "bytes": 4772471,
+   "gcs_md5": "Uq/iPcjE9mOioEHxL93yRw==",
+   "name": "DFO_4499_From_20170727_to_20170810.tif"
+  },
+  {
+   "bytes": 5016010,
+   "gcs_md5": "y7DAMcR/mti7SpruCH4ABQ==",
+   "name": "DFO_4001_From_20121104_to_20121108.tif"
+  },
+  {
+   "bytes": 5222402,
+   "gcs_md5": "YzNDbOlv5kG7Ozi1W7SRzA==",
+   "name": "DFO_3856_From_20110815_to_20110908.tif"
+  },
+  {
+   "bytes": 5287014,
+   "gcs_md5": "Uj5nTi7tX4/vhhw4TE4iwA==",
+   "name": "DFO_3650_From_20100515_to_20100626.tif"
+  },
+  {
+   "bytes": 5606126,
+   "gcs_md5": "DKFM5xlvto/6rD3JK0KOmw==",
+   "name": "DFO_4239_From_20150320_to_20150331.tif"
+  },
+  {
+   "bytes": 6231283,
+   "gcs_md5": "m7Nw0REhezfvKRebPxp7Cg==",
+   "name": "DFO_4309_From_20151110_to_20151204.tif"
+  },
+  {
+   "bytes": 7106705,
+   "gcs_md5": "HnEKxLfeOjlbLaUHZFWlCg==",
+   "name": "DFO_4154_From_20140623_to_20140625.tif"
+  },
+  {
+   "bytes": 7291411,
+   "gcs_md5": "K2LoHwcHbh2N+ybE+XA86w==",
+   "name": "DFO_2049_From_20020903_to_20020906.tif"
+  },
+  {
+   "bytes": 7369463,
+   "gcs_md5": "fv+IxcUrVn8UdSp75mljGQ==",
+   "name": "DFO_3966_From_20120816_to_20120820.tif"
+  },
+  {
+   "bytes": 7678088,
+   "gcs_md5": "/D5lxvp3cQRoRVtFfyE/4Q==",
+   "name": "DFO_2758_From_20051023_to_20051209.tif"
+  },
+  {
+   "bytes": 7768508,
+   "gcs_md5": "ivNGoIf03C2jOpHWq9EF1Q==",
+   "name": "DFO_3960_From_20120803_to_20120806.tif"
+  },
+  {
+   "bytes": 8297853,
+   "gcs_md5": "NhZxFWbVA7H45rshlM1UfQ==",
+   "name": "DFO_1747_From_20010708_to_20010810.tif"
+  },
+  {
+   "bytes": 8850400,
+   "gcs_md5": "y9DvNQqqyHAuiVP2SxLtLA==",
+   "name": "DFO_4665_From_20180802_to_20180810.tif"
+  },
+  {
+   "bytes": 8909223,
+   "gcs_md5": "vEq7JR+Il0hn40y4Upw1yA==",
+   "name": "DFO_2958_From_20060831_to_20060911.tif"
+  },
+  {
+   "bytes": 8916032,
+   "gcs_md5": "9PZOwh0YT+pha9hEUvHMdw==",
+   "name": "DFO_3496_From_20090703_to_20090706.tif"
+  },
+  {
+   "bytes": 9179878,
+   "gcs_md5": "97OoTGhAgUd14zApnW+7Wg==",
+   "name": "DFO_3208_From_20071017_to_20071024.tif"
+  },
+  {
+   "bytes": 9242466,
+   "gcs_md5": "s28sUm53ENkzEHD2ab05LQ==",
+   "name": "DFO_3217_From_20071027_to_20071101.tif"
+  },
+  {
+   "bytes": 9522334,
+   "gcs_md5": "7dwHfkCqzlF2HYMWsru+lw==",
+   "name": "DFO_4259_From_20150602_to_20150629.tif"
+  },
+  {
+   "bytes": 9534797,
+   "gcs_md5": "u/PM0aTwwlbDTY6jmlPQZg==",
+   "name": "DFO_4176_From_20140815_to_20140908.tif"
+  },
+  {
+   "bytes": 9920593,
+   "gcs_md5": "JOq6enyAnL9UdvKGE+jgaw==",
+   "name": "DFO_4288_From_20150813_to_20150911.tif"
+  },
+  {
+   "bytes": 10149815,
+   "gcs_md5": "aJjKat7WvooLsWDjbcspaw==",
+   "name": "DFO_2734_From_20050922_to_20051011.tif"
+  },
+  {
+   "bytes": 10246107,
+   "gcs_md5": "LdIArVmKYDo5P2gJ4Jr5VA==",
+   "name": "DFO_3104_From_20070618_to_20070626.tif"
+  },
+  {
+   "bytes": 10400652,
+   "gcs_md5": "BSxsRorgcei9BN49Ts1vEg==",
+   "name": "DFO_3864_From_20110825_to_20110913.tif"
+  },
+  {
+   "bytes": 10725024,
+   "gcs_md5": "dYCnn65rY+aP4fuaOu7yow==",
+   "name": "DFO_3195_From_20070922_to_20071008.tif"
+  },
+  {
+   "bytes": 10815978,
+   "gcs_md5": "Ls5RSLY/ZLOTqpIBmmTB2A==",
+   "name": "DFO_4188_From_20140924_to_20141011.tif"
+  },
+  {
+   "bytes": 11127616,
+   "gcs_md5": "QPMfYmIYafaKGMLJC8ZZbA==",
+   "name": "DFO_3866_From_20110905_to_20111002.tif"
+  },
+  {
+   "bytes": 11427717,
+   "gcs_md5": "arrcseKrp/WAOvEiMU9Dmg==",
+   "name": "DFO_3150_From_20070803_to_20070827.tif"
+  },
+  {
+   "bytes": 11984094,
+   "gcs_md5": "IFUlExjbG9umR7u7VRrMjw==",
+   "name": "DFO_3652_From_20100518_to_20100524.tif"
+  },
+  {
+   "bytes": 12428365,
+   "gcs_md5": "RMwQ3v0mKkXPeGZLdMZ0eA==",
+   "name": "DFO_3356_From_20080805_to_20080811.tif"
+  },
+  {
+   "bytes": 12481766,
+   "gcs_md5": "xk7HCbaFRCkSYeqr3zrA8A==",
+   "name": "DFO_3312_From_20080524_to_20080528.tif"
+  },
+  {
+   "bytes": 12630254,
+   "gcs_md5": "24D6OSuuYP8eWGkiRyAQag==",
+   "name": "DFO_2931_From_20060724_to_20060822.tif"
+  },
+  {
+   "bytes": 13056169,
+   "gcs_md5": "IBmjGTF9WEKRZmqUvHrJug==",
+   "name": "DFO_2473_From_20040414_to_20040503.tif"
+  },
+  {
+   "bytes": 13470862,
+   "gcs_md5": "VliMlRDTB2mB+jj6xTi8mw==",
+   "name": "DFO_4179_From_20140901_to_20141011.tif"
+  },
+  {
+   "bytes": 13946289,
+   "gcs_md5": "No/9q984gEDoR++RlKI6Aw==",
+   "name": "DFO_2338_From_20030827_to_20031020.tif"
+  },
+  {
+   "bytes": 14523865,
+   "gcs_md5": "OVFRt3LMOnrQnC6529HVhg==",
+   "name": "DFO_2718_From_20050826_to_20050830.tif"
+  },
+  {
+   "bytes": 14983418,
+   "gcs_md5": "/0ArOHdHLYJ1FblqDpI3Bw==",
+   "name": "DFO_2911_From_20060704_to_20060707.tif"
+  },
+  {
+   "bytes": 15028235,
+   "gcs_md5": "/L+SkJaTxT1TJZNY980M9g==",
+   "name": "DFO_1791_From_20010907_to_20010924.tif"
+  },
+  {
+   "bytes": 15037071,
+   "gcs_md5": "gtPtRfAGpoAnFuOvk6LVXw==",
+   "name": "DFO_3119_From_20070701_to_20070706.tif"
+  },
+  {
+   "bytes": 16013017,
+   "gcs_md5": "nmDird8aXQ4APpUYsii5gQ==",
+   "name": "DFO_4673_From_20180901_to_20180907.tif"
+  },
+  {
+   "bytes": 16024275,
+   "gcs_md5": "ofJsx0z30ds+R2C07u31vg==",
+   "name": "DFO_3530_From_20090818_to_20090827.tif"
+  },
+  {
+   "bytes": 16529756,
+   "gcs_md5": "1No+zcjb9G24RmAsWKmvLg==",
+   "name": "DFO_3372_From_20080830_to_20080908.tif"
+  },
+  {
+   "bytes": 17004928,
+   "gcs_md5": "VCYAq6Cpe+wqcdo/Z+D9Mg==",
+   "name": "DFO_2956_From_20060829_to_20060904.tif"
+  },
+  {
+   "bytes": 17051557,
+   "gcs_md5": "+MF7YF53aMI+PMM9mtJCXQ==",
+   "name": "DFO_4355_From_20160420_to_20160501.tif"
+  },
+  {
+   "bytes": 17162441,
+   "gcs_md5": "1IGfveN/BDjXmHMBhWI9Qw==",
+   "name": "DFO_1789_From_20010820_to_20010911.tif"
+  },
+  {
+   "bytes": 17617595,
+   "gcs_md5": "P8sDUQwu1Td/knBn09IJIw==",
+   "name": "DFO_3191_From_20070916_to_20071007.tif"
+  },
+  {
+   "bytes": 18117278,
+   "gcs_md5": "FxW32KvyOiclu7NB6tbWZQ==",
+   "name": "DFO_3160_From_20070808_to_20070815.tif"
+  },
+  {
+   "bytes": 18631213,
+   "gcs_md5": "X0fxzrqb9xLyqIV9GagqRw==",
+   "name": "DFO_3717_From_20100918_to_20100930.tif"
+  },
+  {
+   "bytes": 18754217,
+   "gcs_md5": "jWk1eIkIBhnsPWDIk1/QXw==",
+   "name": "DFO_4483_From_20170602_to_20170703.tif"
+  },
+  {
+   "bytes": 19490063,
+   "gcs_md5": "V+N9h+KMAW2J0fVFzUQruw==",
+   "name": "DFO_2680_From_20050628_to_20050715.tif"
+  },
+  {
+   "bytes": 23202296,
+   "gcs_md5": "ijA1ljXqGfuNzSNr7xoQ3g==",
+   "name": "DFO_3107_From_20070622_to_20070704.tif"
+  },
+  {
+   "bytes": 23707081,
+   "gcs_md5": "J7sKSmMJu8Y2lbvGzjFC8g==",
+   "name": "DFO_3118_From_20070630_to_20070713.tif"
+  },
+  {
+   "bytes": 24781629,
+   "gcs_md5": "4zgGPekazvKJbnJPYISgNQ==",
+   "name": "DFO_4174_From_20140814_to_20140908.tif"
+  },
+  {
+   "bytes": 25181354,
+   "gcs_md5": "RrR1SVrbYU3dyORUDJWZtg==",
+   "name": "DFO_4171_From_20140811_to_20140908.tif"
+  },
+  {
+   "bytes": 25390328,
+   "gcs_md5": "RQP80FVEfZBPjeWa0roX8g==",
+   "name": "DFO_3983_From_20120916_to_20120918.tif"
+  },
+  {
+   "bytes": 25852948,
+   "gcs_md5": "SeV5RryH13EOCC67Nhbu5Q==",
+   "name": "DFO_1641_From_20000918_to_20001021.tif"
+  },
+  {
+   "bytes": 26025288,
+   "gcs_md5": "MMEn/+2bdZ3MF+7rRjA7zQ==",
+   "name": "DFO_3164_From_20070812_to_20070817.tif"
+  },
+  {
+   "bytes": 26971571,
+   "gcs_md5": "RdtrBFiErRieRUp7ZyWrWw==",
+   "name": "DFO_3551_From_20090925_to_20091012.tif"
+  },
+  {
+   "bytes": 27528159,
+   "gcs_md5": "Fbq7t3dFk9X6ZVZ0avQfQQ==",
+   "name": "DFO_2570_From_20041007_to_20041018.tif"
+  },
+  {
+   "bytes": 27550669,
+   "gcs_md5": "VOCNlvdKoUpR3WEs3S7U5w==",
+   "name": "DFO_2686_From_20050702_to_20050715.tif"
+  },
+  {
+   "bytes": 28699226,
+   "gcs_md5": "uJrZOj0CKFM40dKLQzo15Q==",
+   "name": "DFO_4198_From_20141012_to_20141027.tif"
+  },
+  {
+   "bytes": 28978448,
+   "gcs_md5": "II/KvpW6/j+7cnFY8A44RA==",
+   "name": "DFO_2940_From_20060801_to_20060910.tif"
+  },
+  {
+   "bytes": 28985576,
+   "gcs_md5": "vqMSE0TZk87R17CX0TLddg==",
+   "name": "DFO_4098_From_20131012_to_20131110.tif"
+  },
+  {
+   "bytes": 30023054,
+   "gcs_md5": "8xPevClSct9Lz/RjMuHtCA==",
+   "name": "DFO_3854_From_20110815_to_20111002.tif"
+  },
+  {
+   "bytes": 30093877,
+   "gcs_md5": "f7DMxK5OBYJ0GPLylD5/MQ==",
+   "name": "DFO_2698_From_20050723_to_20050816.tif"
+  },
+  {
+   "bytes": 30364791,
+   "gcs_md5": "p5fPtJYgKAfn8AwwNZVRPg==",
+   "name": "DFO_3338_From_20080720_to_20080808.tif"
+  },
+  {
+   "bytes": 31543380,
+   "gcs_md5": "+RIEtAVnaztajsMIGmckGw==",
+   "name": "DFO_3674_From_20100705_to_20100715.tif"
+  },
+  {
+   "bytes": 34156828,
+   "gcs_md5": "Isv1IhIC/KLK03v1uU9ixQ==",
+   "name": "DFO_2731_From_20050916_to_20051005.tif"
+  }
+ ]
+}

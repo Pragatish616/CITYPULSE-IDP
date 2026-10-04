@@ -1,0 +1,70 @@
+{
+  "cell_km": 0.0916,
+  "drainage_coverage_box_lonlat": [
+    79.272,
+    12.478,
+    80.332,
+    13.384
+  ],
+  "dropped_for_missing_drainage_coverage": 25252,
+  "feature_ranges": {
+    "dist_drain_km": [
+      0.0,
+      40.481
+    ],
+    "dist_sea_km": [
+      0.366,
+      85.964
+    ],
+    "dist_water_km": [
+      0.092,
+      41.451
+    ],
+    "elev": [
+      2.359,
+      325.756
+    ],
+    "hand_drain": [
+      -39.595,
+      141.549
+    ],
+    "hand_water": [
+      -36.598,
+      120.218
+    ],
+    "relief5km": [
+      2.0,
+      157.68
+    ],
+    "slope": [
+      0.04,
+      18.16
+    ],
+    "tpi1km": [
+      -20.557,
+      32.155
+    ],
+    "tpi5km": [
+      -41.073,
+      75.786
+    ]
+  },
+  "grid_shape": [
+    1080,
+    1260
+  ],
+  "land_cells": 1250384,
+  "land_cells_not_in_water": 1184808,
+  "modelled_cells": 1159556,
+  "n_drain_cells": 36164,
+  "n_water_cells": 66127,
+  "points": {
+    "gcc2015": 327,
+    "gcc2020": 53,
+    "irs2005": 200
+  },
+  "positive_share_2005_in_box": 0.1675,
+  "positive_share_2015": 0.0291,
+  "positives_2005_modelled_in_box": 27555,
+  "positives_2015_modelled": 33798
+}

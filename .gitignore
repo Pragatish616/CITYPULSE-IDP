@@ -30,3 +30,13 @@ Thumbs.db
 # Nationwide model (ADR-025): per-district files are packed into power_daily_precip.npz; the unused Open-Meteo files stay local.
 01_code/citypulse-IDP/data/nationwide_flood/*/power/
 01_code/citypulse-IDP/data/nationwide_flood/*/rain/
+
+# Susceptibility study (ADR-026): derived rasters, samples, routes and models built from licensed or bulky inputs stay local.
+01_code/citypulse-IDP/data/gfd_india/*/raw/
+01_code/citypulse-IDP/data/dem90/raw/
+01_code/citypulse-IDP/data/susceptibility/*/grid.npz
+01_code/citypulse-IDP/data/susceptibility/*/national_samples*.npz
+01_code/citypulse-IDP/data/susceptibility/*/routes.json
+01_code/citypulse-IDP/data/susceptibility/*/packs/
+01_code/citypulse-IDP/data/results/*-susceptibility-national/*.joblib
+01_code/citypulse-IDP/data/results/*-susceptibility-chennai/*.joblib

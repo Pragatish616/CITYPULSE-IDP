@@ -29,8 +29,12 @@ def tile_name(lat0: int, lon0: int) -> str:
     return f"Copernicus_DSM_COG_30_{ns}{abs(lat0):02d}_00_{ew}{abs(lon0):03d}_00_DEM"
 
 
-def main() -> int:
-    min_lat, max_lat, min_lon, max_lon = map(float, sys.argv[1:5])
+def tiles_for(min_lat: float, max_lat: float, min_lon: float, max_lon: float) -> list[str]:
+    """Names of the 1 degree tiles that cover the box."""
+    return [tile_name(la, lo) for la in range(math.floor(min_lat), math.ceil(max_lat)) for lo in range(math.floor(min_lon), math.ceil(max_lon))]
+
+
+def fetch(min_lat: float, max_lat: float, min_lon: float, max_lon: float) -> None:
     out = ROOT / "data" / "dem90"
     (out / "raw").mkdir(parents=True, exist_ok=True)
     log_path = out / "fetch_log.json"
@@ -59,6 +63,10 @@ def main() -> int:
                 log["tiles"][name] = {"bytes": len(r.content), "sha256": hashlib.sha256(r.content).hexdigest()}
                 print(f"{name}: {len(r.content) / 1e6:.1f} MB")
             log_path.write_text(json.dumps(log, indent=1, sort_keys=True), encoding="utf-8")
+
+
+def main() -> int:
+    fetch(*map(float, sys.argv[1:5]))
     return 0
 
 

@@ -1,0 +1,31 @@
+# Pre-registration: routing test, round 2 (ADR-026, part C2)
+
+Written and committed **before round 2 was run.** Round 1 (`PREREGISTRATION_ROUTER.md`) is finished and reported separately.
+
+## Why a second round
+
+Round 1 found that **no prior reduced exposure to the December 2015 flood** for the default commuter and pedestrian classes, not even the current prior,
+which was built from the Greater Chennai Corporation's 2015 hazard zones. So the limit may be the router (its default risk weights are mild: 0.3 and 1.2) rather than the quality of the priors.
+Round 2 asks two things: (D1) *how much exposure can any prior remove at all?* by adding an oracle prior built from the 2015 extent itself; (D2) *if the router is allowed to care, does the learned prior help?* with more cautious travellers.
+
+## Design
+
+- **Same Chennai graph and the same five prior variants as round 1** (`gcc`, `model05`, `base05`, `random`, `flat`; the first four hold exactly the current prior's values), **plus `oracle`**: every edge whose midpoint lies in the 2015 flood extent gets a prior of 0.9
+  (log-odds +2.197), every other edge the flat value. `oracle` is an upper-bound reference; it does not hold the same prior values as the others and it uses the answer.
+- **Traveller classes** (defined in `hazard_classes_round2.yaml`; the repository's own config is untouched): `ped_l5` (walker, risk weight 5), `ped_l20` (walker, risk weight 20), `car_l5` (car, risk weight 5), all with the pessimism and severity of the existing classes.
+  The values 5 and 20 are the ones already used in Study 1 (ADR-017); they were chosen before looking at any round 2 result.
+- **Pairs.** 250 seeded random node pairs (seed 20261017, different from round 1), event state active, normal engine cost. Pairs with a missing route are dropped and counted.
+- **Truth and detour.** As in round 1: share of route length (50 m steps) inside the NRSC December 2015 extent; change in free-flow time against the `flat` route for the same pair.
+- **Statistics.** Paired differences over pairs, 95% bootstrap intervals over pairs (2,000 resamples).
+
+## Decision rules
+
+- **D1 (is avoidance possible?)** For `ped_l20`: `oracle` reduces exposure against `flat` by at least 25% (relative), with the 95% interval of the absolute reduction above zero, at a mean added free-flow time of at most 5% of the mean `flat` trip time. If not, then no prior can help at these settings and the limit is the router's cost model.
+- **D2 (does the learned prior help when the router cares?)** `model05` improves routing only if, for **both** `ped_l5` and `ped_l20`: its exposure reduction against `flat` has a 95% interval above zero, its mean added time is at most 5% of the mean trip time, **and** its exposure is lower than `base05`'s and `random`'s, each with a 95% interval of the paired difference above zero.
+Otherwise: no evidence. The `gcc` and `car_l5` results are reported but not part of either rule.
+
+## Known weaknesses stated in advance
+
+- Same single flood event and the same uniformly random pairs as round 1; long trips dominate.
+- Raising the risk weight is a change of the router's settings, not a result about the prior; any claim about routing must say which weight it was measured at.
+- Three more classes and one more variant were tested in this round; results from round 1 are reported alongside so the number of comparisons is visible.
