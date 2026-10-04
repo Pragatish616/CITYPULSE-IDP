@@ -31,6 +31,7 @@ Status words used below:
 | Travel modes (car, bicycle, on foot, emergency) | Works; placeholder speeds | 3 | ADR-019; own graph, speeds, closed roads and route per mode; footpaths and cycle tracks not in the pack | F-25 |
 | Tamil Nadu main-road region (server and web) | Works on a laptop; routing only | 3 | ADR-020; 257,249 edges / 9.0 MB, 25,144 searchable places, 693 km route in about 0.3 s; flat prior, no flood data; never run on a phone | F-26, F-27 |
 | One app for Chennai and Tamil Nadu | Works in the web build; advice and flood layer inside Chennai only | 3 | ADR-022; routes with both ends in Chennai use the Chennai pack, all others the main-road pack with no advice; 7 API tests; never run on a phone | F-27 |
+| Merged India flood events | Built; research-only licences; not used by the router | 3 | ADR-023; 7,172 events, district and region level, Tamil Nadu linked; no street-level data | F-28 |
 | City pipeline (`config/cities.yaml`, `scripts/city_pipeline.py`) | Works on a synthetic city; no real second city fetched | 3 | ADR-018; routing-only for any city without a verified hazard source | — |
 | Map pack (`data/packs/2026-10-02`) | Works | 4 | Prior for all 471,240 edges, 7,808 street names, 15 MB | — |
 | Replay corpus (6,132 observations) | Works, weak | — | One timestamp, no depth, positives only | F-02, F-14 |
@@ -56,6 +57,7 @@ Status words used below:
 - **Council, 1 October 2026:**
   - *Startup:* FIX FIRST, for the second time. It becomes KILL without a live, timestamped passability feed by 15 October 2026.
   - *Research paper:* BUILD.
+- **ADR-023** (4 Oct 2026): merged India flood event dataset.
 - **ADR-021, ADR-022** (3 Oct 2026): offline route advisor; one app for Chennai and Tamil Nadu, advice inside Chennai only.
 - **ADR-020** (3 Oct 2026): India in phases, Tamil Nadu main roads first.
 - **ADR-001 to ADR-012** in `01_code/citypulse-IDP/docs/DECISIONS.md` remain in force, except where `KNOWN_FLAWS.md` shows a claim is wrong.

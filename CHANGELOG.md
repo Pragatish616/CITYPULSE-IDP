@@ -17,6 +17,8 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - City-agnostic pack pipeline (ADR-018) and an "Adding a city" guide.
 - Project documentation for GitHub: README, contribution guide, security policy, CI, issue templates.
 
+- Merged India flood event dataset: India Flood Inventory v4 plus Dartmouth Flood Observatory events, linked for Tamil Nadu, research-only licences (ADR-023).
+
 ### Changed
 - Pessimistic index is now a Beta-posterior upper quantile; it no longer lowers caution after a weak report
   (ADR-015).

@@ -87,3 +87,14 @@ Source: `01_code/citypulse-IDP/data/results/2026-10-03-travel-modes-arterial-eme
 | Route inside Chennai (T. Nagar to Velachery) | 9.3 km, advice shown, 139 ms (first call) on the server |
 | Chennai to Madurai | 447.1 km, 7 h 35 min, no advice, 263-298 ms |
 | Test counts | pulse_router 188 · router_api 32 · app 153 |
+
+## Merged India flood events (ADR-023, 4 October 2026)
+
+| Quantity | Value |
+|---|---|
+| Events | 7,172 = 6,876 IMD (1967-2023, no coordinates) + 296 DFO polygons (1985-2021) |
+| Tamil Nadu | 188 IMD events; 172 calendar rows after linking; 15 seen by both sources; 47 name Chennai |
+| Links | 31 (date +-3 days and the DFO polygon contains a named district's headquarters point) |
+| Chennai District Flood Severity Index | 16.62: 2nd of 37 in Tamil Nadu, 117th of 743 in India |
+| Replay proxy date 2015-12-02 | inside the IMD Chennai event of 1-3 December 2015 |
+| Source | `data/india_flood/2026-10-04/result.json` |

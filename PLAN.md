@@ -724,6 +724,12 @@ Budgets to measure against (targets, not claims): cold start under 4 s; offline 
 - Done: `route_advisor.dart` (risk, action, evidence, route-choice check, reasons), `AdviceCard`, English and Tamil strings, 25 tests.
 - Next: measure on a real phone; Tamil review by a native speaker; an optional hosted-model adapter only with explicit consent to share the route.
 
+**M3.5 Merged India flood event data (ADR-023)**
+- Status: DONE as a dataset (2026-10-04); not used by the router. · Owner: Agent · Depends on: M3.1
+- Done: `scripts/build_india_flood_dataset.py`, `data/india_flood/2026-10-04/`, 11 tests.
+- Next: pre-register and run a study of whether a district-level prior beats the flat prior outside Chennai; add district boundaries to link other states; use the Tamil Nadu calendar to test event-state gating (ADR-015).
+- Done when (next): a result folder reports the district prior against the flat prior with a stated rule fixed beforehand.
+
 ### M6. AI and ML (each task is gated)
 
 **Label threshold for training (proposed; confirm in ADR-017):** at least 300 site-visit labels over at least 5 rain days, with at least 20% "not passable". Until this is met, tasks M6.1–M6.3 and M6.9 can build pipelines and run on the 2015 data and synthetic data only, and must say so.

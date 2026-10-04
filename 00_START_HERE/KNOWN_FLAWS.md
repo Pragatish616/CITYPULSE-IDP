@@ -244,3 +244,7 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 
 ### F-27 · Regions outside Chennai have no flood data, and only main roads · OPEN (by design, ADR-020)
 - **What:** the Tamil Nadu pack routes by road speed alone (flat prior). The app says so (no flood banner, no hazard badge). Routes can start or end kilometres from a mapped road.
+
+### F-28 · The merged India flood data is district- and region-level, non-commercial, and linked for Tamil Nadu only · OPEN (by design, ADR-023)
+- **What:** no free national source gives street-level passability. IFI has no coordinates; DFO polygons are hand-drawn and miss Chennai for the 2015 event; licences are non-commercial.
+- **Fix:** time-stamped passability from GCC, GCTP or IIT Madras (the 15 October gate), and district boundaries for the other states.

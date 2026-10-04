@@ -1,0 +1,86 @@
+{
+  "built": "2026-10-04",
+  "chennai_2015": {
+    "dfo_events_2015_containing_chennai_hq": [],
+    "imd_events_naming_chennai_2015-11-01_to_2015-12-31": [
+      {
+        "end": "2015-11-09",
+        "id": "UEI-IMD-FL-2015-0092",
+        "start": "2015-11-09"
+      },
+      {
+        "end": "2015-11-13",
+        "id": "UEI-IMD-FL-2015-0093",
+        "start": "2015-11-11"
+      },
+      {
+        "end": "2015-11-22",
+        "id": "UEI-IMD-FL-2015-0094",
+        "start": "2015-11-18"
+      },
+      {
+        "end": "2015-11-23",
+        "id": "UEI-IMD-FL-2015-0095",
+        "start": "2015-11-23"
+      },
+      {
+        "end": "2015-11-30",
+        "id": "UEI-IMD-FL-2015-0096",
+        "start": "2015-11-28"
+      },
+      {
+        "end": "2015-12-03",
+        "id": "UEI-IMD-FL-2015-0097",
+        "start": "2015-12-01"
+      },
+      {
+        "end": "2015-12-11",
+        "id": "UEI-IMD-FL-2015-0098",
+        "start": "2015-12-08"
+      }
+    ],
+    "proxy_date_inside_an_imd_chennai_event": true,
+    "proxy_timestamp_in_replay_corpus": "2015-12-02"
+  },
+  "counts": {
+    "dfo_events": 296,
+    "dfo_events_with_india_in_countries": 296,
+    "district_rows": 744,
+    "district_rows_ambiguous_area_name": 24,
+    "district_rows_no_area_match": 0,
+    "district_rows_no_impact_match": 0,
+    "ifi_events": 6876,
+    "ifi_events_with_coordinates": 0,
+    "ifi_years": [
+      "1967-07-02",
+      "2023-09-12"
+    ],
+    "links": 31,
+    "tn_calendar_chennai_named": 47,
+    "tn_calendar_corroborated_by_both": 15,
+    "tn_calendar_rows": 172,
+    "tn_districts_with_hq_point": 38,
+    "tn_districts_without_hq_point": [],
+    "tn_imd_events": 188
+  },
+  "inputs_sha256": {
+    "DFSI.csv": "25cb6ad0ad7b8b681ece2c99dcc6030de1debf2569f5e8e8a47a4144d90a8cac",
+    "District_FloodImpact.csv": "0cc7381e8153cdd34e287540e64947e4cd2e5ff46d2461581e7b6c041b3655fb",
+    "District_FloodedArea.csv": "738d5edf8a29c70de520b3b7b8e148eb7eed2ce89bbd9f0ecacd3cbc17b07610",
+    "India_Flood_Inventory_v3.csv": "ef9ab2cd0db7bf917dcc22c7cb094ec599f5013ef1b96ba525d816f26ff1b108",
+    "dfo_india_events.geojson": "a5c5fb53ae504be23ebe792647c04901efedf1f54abcef81fceef11b32af5468"
+  },
+  "limits": [
+    "IFI rows have no coordinates: district level only.",
+    "DFO polygons are hand-drawn regions; most cover thousands of square kilometres.",
+    "District points exist for Tamil Nadu only, from OSM place names (not boundaries).",
+    "Deaths from the two sources are different counts and are never summed.",
+    "Non-commercial licences: research use only; filter commercial_use=false rows out of any product build."
+  ],
+  "link_rule": {
+    "link_days": 3,
+    "text": "date overlap (+-3 days) AND DFO polygon contains the HQ point of a named district; Tamil Nadu only"
+  },
+  "script": "scripts/build_india_flood_dataset.py",
+  "task": "ADR-023 merged India flood event dataset"
+}

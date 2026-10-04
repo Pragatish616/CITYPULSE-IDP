@@ -756,3 +756,41 @@ show just the best route.
 - The Tamil Nadu box is a rectangle, so some points in neighbouring states route here too.
 - Only the web build was exercised; the on-device path still serves one pack and would need the same rule to combine (not built).
 - The memory cost of two engines in one process was not measured.
+
+---
+
+## ADR-023: A merged India flood event dataset from the free sources (4 October 2026)
+
+**Status:** accepted. Built; not yet used by the router or the app.
+
+**Context.** The scarce resource is independent, time-stamped flood evidence (CLAUDE.md section 0). The user asked to merge the free
+Indian sources into the best dataset available. A search found no free source with street-level passability. What exists is district-level
+event history (IMD, via the India Flood Inventory), region polygons with dates (Dartmouth Flood Observatory), district severity tables,
+and river-level and satellite portals with no documented bulk access. The user approved downloading two: the India Flood Inventory v4 (four
+CSVs, 1.9 MB) and the DFO India events (296 polygons, 0.4 MB).
+
+**Decision.** `scripts/build_india_flood_dataset.py` writes `data/india_flood/2026-10-04/`:
+1. `events.ndjson`: 6,876 IMD events and 296 DFO events in one schema, each tagged with source, licence and `commercial_use: false`.
+2. `district_summary.csv`: 744 district rows joining the severity index, corrected flooded-area share, fatalities, population, mean duration and
+   IFI event counts.
+3. `tn_event_calendar.csv` and `links_tn.csv`: Tamil Nadu events from both sources joined by a rule fixed before any count was seen:
+   **an IMD event and a DFO event are linked if their dates overlap within +-3 days AND the DFO polygon contains the headquarters point of a
+   district named in the IMD event.** Tamil Nadu only, because only Tamil Nadu has district points (OSM place names from the Tamil Nadu pack).
+4. Deaths from the two sources are kept in separate columns and never summed. Everything is research-only; a product build filters on `commercial_use`.
+
+**Evidence** (`data/india_flood/2026-10-04/result.json`; tests in `scripts/tests/test_india_flood_dataset.py`, 11):
+- 7,172 events; IFI spans 1967-07-02 to 2023-09-12 and has no coordinates; 188 events name Tamil Nadu.
+- 38 of 38 Tamil Nadu districts got a headquarters point. 31 IMD-DFO links; 172 calendar rows, of which 15 are seen by both sources; 47 name Chennai.
+- Chennai ranks 2nd of 37 Tamil Nadu districts and 117th of 743 in India on the District Flood Severity Index (16.62; Thanjavur is first in Tamil Nadu at 16.98).
+- **The replay corpus's single proxy timestamp, 2015-12-02, falls inside an IMD Chennai event (1-3 December 2015).** IMD lists seven Chennai events from 9 November
+  to 11 December 2015. This supports the proxy date as a plausible peak day. It does not give any observation its own time.
+- The DFO polygon for that November to December 2015 event (centre 78.86 E, 11.83 N, "Tropical Storm Rovan", 180 deaths) does **not** contain the Chennai headquarters point. These
+  polygons are too coarse to place a city.
+
+**Limits.**
+- None of this is street-level or live. It does not help with the 15 October gate by itself.
+- Only Tamil Nadu is linked spatially. Other states are in the tables but need district boundaries, which were not downloaded.
+- The link rule can chain: one DFO polygon joined seven IMD events into one 2015 cluster.
+- District points are place names, not boundaries, so containment is approximate.
+- Licences: IFI is CC BY-NC 4.0; DFO is CC BY 3.0 for older and CC BY-NC-SA 4.0 for recent events. The merged data must stay research-only and share-alike.
+- Not yet tested: whether a district-level prior from this data beats the flat prior (p = 0.02) used outside Chennai. That needs its own pre-registered study.

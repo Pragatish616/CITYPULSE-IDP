@@ -1,0 +1,173 @@
+start,end,n_imd,n_dfo,corroborated_by_both_sources,districts,chennai_named,imd_deaths_max,dfo_deaths_max,causes,imd_ids,dfo_ids,licence
+1969-10-15,1969-10-29,1,0,False,Chennai,True,0,0,heavy rains,UEI-IMD-FL-1969-0010,,CC-BY-NC-4.0 and DFO terms: research use only
+1970-11-21,1970-11-27,1,0,False,Chennai,True,0,0,"heavy rains,floods",UEI-IMD-FL-1970-0012,,CC-BY-NC-4.0 and DFO terms: research use only
+1975-11-21,1975-11-27,1,0,False,Chengalpattu; Chennai; Thanjavur,True,0,0,heavy rains,UEI-IMD-FL-1975-0027,,CC-BY-NC-4.0 and DFO terms: research use only
+1976-05-11,1976-05-11,1,0,False,,False,0,0,heavy rains,UEI-IMD-FL-1976-0027,,CC-BY-NC-4.0 and DFO terms: research use only
+1976-10-08,1976-10-21,1,0,False,Chennai; Coimbatore; The Nilgiris,True,2,0,floods,UEI-IMD-FL-1976-0028,,CC-BY-NC-4.0 and DFO terms: research use only
+1976-11-15,1976-11-21,1,0,False,Coimbatore,False,5,0,"heavy rains,floods",UEI-IMD-FL-1976-0029,,CC-BY-NC-4.0 and DFO terms: research use only
+1978-04-01,1978-04-07,1,0,False,The Nilgiris,False,0,0,moderate,UEI-IMD-FL-1978-0054,,CC-BY-NC-4.0 and DFO terms: research use only
+1978-11-01,1978-11-07,1,0,False,Coimbatore; Erode; Salem; Thanjavur; The Nilgiris,False,200,0,moderate to severe,UEI-IMD-FL-1978-0055,,CC-BY-NC-4.0 and DFO terms: research use only
+1978-11-22,1978-11-28,1,0,False,The Nilgiris,False,0,0,severe,UEI-IMD-FL-1978-0056,,CC-BY-NC-4.0 and DFO terms: research use only
+1978-12-22,1978-12-28,1,0,False,Chennai; Ramanathapuram,True,45,0,moderate to severe,UEI-IMD-FL-1978-0057,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-05-12,1979-11-13,1,0,False,Chennai,True,4,0,heavy rains,UEI-IMD-FL-1979-0048,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-07-23,1979-11-18,1,0,False,Thanjavur,False,3,0,heavy rains,UEI-IMD-FL-1979-0053,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-11-12,1979-11-18,1,0,False,Tirunelveli,False,30,0,severe floods,UEI-IMD-FL-1979-0056,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-11-13,1979-11-20,1,0,False,Madurai,False,19,0,severe floods,UEI-IMD-FL-1979-0049,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-11-13,1979-11-20,1,0,False,Cuddalore,False,9,0,heavy rains,UEI-IMD-FL-1979-0052,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-11-13,1979-11-20,1,0,False,The Nilgiris,False,18,0,heavy rains,UEI-IMD-FL-1979-0054,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-11-13,1979-11-22,1,0,False,Tiruchirappalli,False,9,0,"heavy rains,moderate floods",UEI-IMD-FL-1979-0055,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-11-17,1979-11-23,1,0,False,Coimbatore,False,18,0,heavy rains,UEI-IMD-FL-1979-0047,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-11-19,1979-11-19,1,0,False,Ramanathapuram,False,34,0,heavy rains,UEI-IMD-FL-1979-0051,,CC-BY-NC-4.0 and DFO terms: research use only
+1979-11-22,1979-11-22,1,0,False,Pudukkottai,False,0,0,heavy rains,UEI-IMD-FL-1979-0050,,CC-BY-NC-4.0 and DFO terms: research use only
+1980-07-01,1980-07-07,1,0,False,Coimbatore,False,1,0,moderate floods,UEI-IMD-FL-1980-0052,,CC-BY-NC-4.0 and DFO terms: research use only
+1980-11-12,1980-11-12,1,0,False,Chengalpattu,False,1,0,flash floods,UEI-IMD-FL-1980-0053,,CC-BY-NC-4.0 and DFO terms: research use only
+1980-11-15,1980-11-21,1,0,False,Chennai,True,0,0,heavy rains,UEI-IMD-FL-1980-0054,,CC-BY-NC-4.0 and DFO terms: research use only
+1981-09-11,1981-09-11,1,0,False,Vellore,False,0,0,palar river in floods,UEI-IMD-FL-1981-0074,,CC-BY-NC-4.0 and DFO terms: research use only
+1982-08-13,1982-08-13,1,0,False,Cuddalore; Viluppuram,False,2,0,flash flood(tambraparni river),UEI-IMD-FL-1982-0049,,CC-BY-NC-4.0 and DFO terms: research use only
+1983-09-07,1983-09-14,1,0,False,Vellore,False,3,0,"severe(flash flooding in palar,mahakamanta)",UEI-IMD-FL-1983-0087,,CC-BY-NC-4.0 and DFO terms: research use only
+1983-12-21,1983-12-26,1,0,False,Cuddalore; Pudukkottai; Ramanathapuram; Thanjavur; Tiruchirappalli; Viluppuram,False,64,0,heavy rains,UEI-IMD-FL-1983-0088,,CC-BY-NC-4.0 and DFO terms: research use only
+1984-02-16,1984-02-17,1,0,False,Chennai,True,8,0,heavy rains,UEI-IMD-FL-1984-0078,,CC-BY-NC-4.0 and DFO terms: research use only
+1984-03-04,1984-03-06,1,0,False,Tirunelveli,False,12,0,heavy rains,UEI-IMD-FL-1984-0079,,CC-BY-NC-4.0 and DFO terms: research use only
+1984-03-04,1984-03-07,1,0,False,Madurai; Vellore,False,0,0,severe,UEI-IMD-FL-1984-0080,,CC-BY-NC-4.0 and DFO terms: research use only
+1984-03-06,1984-03-06,1,0,False,Tiruchirappalli,False,3,0,heavy rains,UEI-IMD-FL-1984-0081,,CC-BY-NC-4.0 and DFO terms: research use only
+1984-04-30,1984-04-30,1,0,False,Madurai,False,4,0,heavy rains,UEI-IMD-FL-1984-0082,,CC-BY-NC-4.0 and DFO terms: research use only
+1984-10-03,1984-10-04,1,0,False,Coimbatore,False,9,0,severe,UEI-IMD-FL-1984-0083,,CC-BY-NC-4.0 and DFO terms: research use only
+1985-11-01,1985-11-14,1,0,False,Ariyalur; Chengalpattu; Chennai; Coimbatore; Cuddalore; Dharmapuri; Dindigul; Erode; Kallakurichi; Kancheepuram; Kanniyakumariumari; Karur; Krishnagiri; Madurai; Nagapattinam; Namakkal; Perambalur; Pudukkottai; Ramanathapuram; Ranipet; Salem; Sivaganga; Tenkasi; Thanjavur; The Nilgiris; Theni; Thiruvallur; Thiruvarur; Thoothukkudi; Tiruchirappalli; Tirunelveli; Tirupathur; Tiruppur; Tiruvannamalai; Vellore; Viluppuram; Virudhunagar,True,80,0,severe,UEI-IMD-FL-1985-0057,,CC-BY-NC-4.0 and DFO terms: research use only
+1986-11-03,1986-11-03,1,0,False,Tiruchirappalli,False,0,0,flash floods,UEI-IMD-FL-1986-0073,,CC-BY-NC-4.0 and DFO terms: research use only
+1986-11-05,1986-11-06,1,0,False,Chengalpattu; Chennai; Cuddalore; Kallakurichi; Tiruchirappalli; Viluppuram,True,20,0,heavy rains,UEI-IMD-FL-1986-0074,,CC-BY-NC-4.0 and DFO terms: research use only
+1987-12-06,1987-12-07,1,0,False,Pudukkottai; Thanjavur; Tiruchirappalli,False,11,0,heavy rains,UEI-IMD-FL-1987-0035,,CC-BY-NC-4.0 and DFO terms: research use only
+1988-11-06,1988-11-06,1,0,False,Chennai,True,3,0,heavy rains,UEI-IMD-FL-1988-0093,,CC-BY-NC-4.0 and DFO terms: research use only
+1989-06-19,1989-06-19,1,0,False,Chennai,True,0,0,heavy rains,UEI-IMD-FL-1989-0050,,CC-BY-NC-4.0 and DFO terms: research use only
+1989-07-22,1989-07-22,1,0,False,Coimbatore; The Nilgiris,False,10,0,heavy rains,UEI-IMD-FL-1989-0051,,CC-BY-NC-4.0 and DFO terms: research use only
+1990-10-18,1990-10-31,1,1,True,Chennai; The Nilgiris,True,62,44,Monsoonal rain; heavy rains,UEI-IMD-FL-1990-0077,DFO-474,CC-BY-NC-4.0 and DFO terms: research use only
+1991-10-20,1991-10-30,1,0,False,Ariyalur; Chengalpattu; Chennai; Coimbatore; Cuddalore; Dharmapuri; Dindigul; Erode; Kallakurichi; Kancheepuram; Kanniyakumariumari; Karur; Krishnagiri; Madurai; Nagapattinam; Namakkal; Perambalur; Pudukkottai; Ramanathapuram; Ranipet; Salem; Sivaganga; Tenkasi; Thanjavur; The Nilgiris; Theni; Thiruvallur; Thiruvarur; Thoothukkudi; Tiruchirappalli; Tirunelveli; Tirupathur; Tiruppur; Tiruvannamalai; Vellore; Viluppuram; Virudhunagar,True,21,0,heavy rains,UEI-IMD-FL-1991-0093,,CC-BY-NC-4.0 and DFO terms: research use only
+1992-09-12,1992-11-20,1,1,True,Kanniyakumariumari,False,7,263,Tropical cyclone; heavy rains,UEI-IMD-FL-1992-0074,DFO-694,CC-BY-NC-4.0 and DFO terms: research use only
+1993-08-06,1993-08-06,1,0,False,Dindigul,False,3,0,heavy rains,UEI-IMD-FL-1993-0064,,CC-BY-NC-4.0 and DFO terms: research use only
+1993-11-07,1993-11-14,1,1,True,Coimbatore; Ramanathapuram; Thanjavur; The Nilgiris,False,60,95,Heavy rain; heavy rains,UEI-IMD-FL-1993-0065,DFO-798,CC-BY-NC-4.0 and DFO terms: research use only
+1994-07-13,1994-07-13,1,0,False,Coimbatore,False,1,0,heavy rains,UEI-IMD-FL-1994-0104,,CC-BY-NC-4.0 and DFO terms: research use only
+1994-10-27,1994-11-04,1,1,True,Chennai; Madurai,True,0,40,Tropical cyclone; heavy rains,UEI-IMD-FL-1994-0105,DFO-909,CC-BY-NC-4.0 and DFO terms: research use only
+1994-11-07,1994-11-07,1,0,False,Dindigul; Tiruchirappalli,False,1,0,heavy rains,UEI-IMD-FL-1994-0106,,CC-BY-NC-4.0 and DFO terms: research use only
+1994-12-20,1994-12-22,1,0,False,Chennai,True,3,0,heavy rains,UEI-IMD-FL-1994-0107,,CC-BY-NC-4.0 and DFO terms: research use only
+1995-05-06,1995-05-06,1,0,False,Kanniyakumariumari,False,12,0,heavy rains,UEI-IMD-FL-1995-0114,,CC-BY-NC-4.0 and DFO terms: research use only
+1995-09-07,1995-09-11,1,0,False,Kancheepuram,False,0,0,heavy rains,UEI-IMD-FL-1995-0115,,CC-BY-NC-4.0 and DFO terms: research use only
+1995-11-02,1995-11-08,1,0,False,Nagapattinam; Thanjavur,False,14,0,heavy rains,UEI-IMD-FL-1995-0116,,CC-BY-NC-4.0 and DFO terms: research use only
+1996-06-14,1996-06-15,1,0,False,Chennai; Coimbatore; Cuddalore; Thanjavur,True,14,0,heavy rains,UEI-IMD-FL-1996-0102,,CC-BY-NC-4.0 and DFO terms: research use only
+1996-10-17,1996-10-19,1,0,False,Chengalpattu; Chennai; Dharmapuri; Dindigul; Kanniyakumariumari; Madurai; Nagapattinam; Salem; Tiruchirappalli; Tirunelveli; Tiruvannamalai,True,21,0,severe flood,UEI-IMD-FL-1996-0103,,CC-BY-NC-4.0 and DFO terms: research use only
+1996-11-17,1996-11-28,1,0,False,Chennai; Nagapattinam; Thanjavur,True,5,0,heavy rains,UEI-IMD-FL-1996-0104,,CC-BY-NC-4.0 and DFO terms: research use only
+1996-12-12,1996-12-18,1,0,False,Ariyalur; Chengalpattu; Chennai; Coimbatore; Cuddalore; Dharmapuri; Dindigul; Erode; Kallakurichi; Kancheepuram; Kanniyakumariumari; Karur; Krishnagiri; Madurai; Nagapattinam; Namakkal; Perambalur; Pudukkottai; Ramanathapuram; Ranipet; Salem; Sivaganga; Tenkasi; Thanjavur; The Nilgiris; Theni; Thiruvallur; Thiruvarur; Thoothukkudi; Tiruchirappalli; Tirunelveli; Tirupathur; Tiruppur; Tiruvannamalai; Vellore; Viluppuram; Virudhunagar,True,135,0,heavy rains,UEI-IMD-FL-1996-0105,,CC-BY-NC-4.0 and DFO terms: research use only
+1997-10-28,1997-10-31,1,0,False,Chengalpattu; Chennai; Dindigul,True,0,0,heavy rains,UEI-IMD-FL-1997-0107,,CC-BY-NC-4.0 and DFO terms: research use only
+1997-11-01,1997-12-20,2,1,True,Ariyalur; Chengalpattu; Chennai; Coimbatore; Cuddalore; Dharmapuri; Dindigul; Erode; Kallakurichi; Kancheepuram; Kanniyakumariumari; Karur; Krishnagiri; Madurai; Nagapattinam; Namakkal; Perambalur; Pudukkottai; Ramanathapuram; Ranipet; Salem; Sivaganga; Tenkasi; Thanjavur; The Nilgiris; Theni; Thiruvallur; Thiruvarur; Thoothukkudi; Tiruchirappalli; Tirunelveli; Tirupathur; Tiruppur; Tiruvannamalai; Vellore; Viluppuram; Virudhunagar,True,177,6,Monsoonal rain; heavy rains,UEI-IMD-FL-1997-0108|UEI-IMD-FL-1997-0109,DFO-1295,CC-BY-NC-4.0 and DFO terms: research use only
+1998-10-11,1998-10-11,1,0,False,Kanniyakumariumari,False,0,0,heavy rains,UEI-IMD-FL-1998-0095,,CC-BY-NC-4.0 and DFO terms: research use only
+1998-11-01,1998-11-14,1,0,False,Ariyalur; Chengalpattu; Chennai; Coimbatore; Cuddalore; Dharmapuri; Dindigul; Erode; Kallakurichi; Kancheepuram; Kanniyakumariumari; Karur; Krishnagiri; Madurai; Nagapattinam; Namakkal; Perambalur; Pudukkottai; Ramanathapuram; Ranipet; Salem; Sivaganga; Tenkasi; Thanjavur; The Nilgiris; Theni; Thiruvallur; Thiruvarur; Thoothukkudi; Tiruchirappalli; Tirunelveli; Tirupathur; Tiruppur; Tiruvannamalai; Vellore; Viluppuram; Virudhunagar,True,82,0,heavy rains,UEI-IMD-FL-1998-0096,,CC-BY-NC-4.0 and DFO terms: research use only
+1998-12-04,1998-12-12,1,0,False,Cuddalore; Madurai; Nagapattinam; Perambalur; Thanjavur; Tiruchirappalli; Tirunelveli; Viluppuram,False,28,0,heavy rains,UEI-IMD-FL-1998-0097,,CC-BY-NC-4.0 and DFO terms: research use only
+1999-05-05,1999-05-05,1,0,False,Dindigul,False,3,0,heavy rains,UEI-IMD-FL-1999-0073,,CC-BY-NC-4.0 and DFO terms: research use only
+1999-11-21,1999-11-23,1,0,False,Karur; Nagapattinam; Perambalur; Pudukkottai; Thanjavur; Tiruchirappalli,False,17,0,moderate flood,UEI-IMD-FL-1999-0074,,CC-BY-NC-4.0 and DFO terms: research use only
+2000-02-24,2000-02-27,1,0,False,Chennai; Perambalur,True,6,0,heavy rains,UEI-IMD-FL-2000-0108,,CC-BY-NC-4.0 and DFO terms: research use only
+2000-06-08,2000-06-08,1,0,False,Kanniyakumariumari,False,1,0,heavy rains,UEI-IMD-FL-2000-0109,,CC-BY-NC-4.0 and DFO terms: research use only
+2002-01-31,2002-02-05,1,1,True,Cuddalore; Nagapattinam; Pudukkottai; Ramanathapuram; Thanjavur; Thiruvarur; Tirunelveli,False,11,11,Heavy rain; heavy rains,UEI-IMD-FL-2002-0055,DFO-1871,CC-BY-NC-4.0 and DFO terms: research use only
+2002-10-27,2002-10-31,1,0,False,Many parts,False,20,0,heavy rains,UEI-IMD-FL-2002-0056,,CC-BY-NC-4.0 and DFO terms: research use only
+2002-10-31,2002-11-11,1,1,True,Chennai; Coimbatore; Namakkal; Perambalur; Pudukkottai; Thanjavur; Theni; Thiruvallur; Tirunelveli; Tiruvannamalai,True,20,20,Heavy rain; heavy rains,UEI-IMD-FL-2002-0057,DFO-2081,CC-BY-NC-4.0 and DFO terms: research use only
+2003-06-25,2003-06-25,1,0,False,South Tripura,False,0,0,flash flood,UEI-IMD-FL-2003-0092,,CC-BY-NC-4.0 and DFO terms: research use only
+2004-09-20,2004-09-20,1,0,False,Chennai,True,0,0,heavy rains,UEI-IMD-FL-2004-0056,,CC-BY-NC-4.0 and DFO terms: research use only
+2004-10-30,2004-10-30,1,0,False,Thanjavur; Thiruvarur; Viluppuram,False,5,0,heavy rains,UEI-IMD-FL-2004-0057,,CC-BY-NC-4.0 and DFO terms: research use only
+2004-11-05,2004-11-05,1,0,False,Thiruvarur,False,0,0,heavy rains,UEI-IMD-FL-2004-0058,,CC-BY-NC-4.0 and DFO terms: research use only
+2004-11-09,2004-11-09,1,0,False,Chennai,True,2,0,heavy rains,UEI-IMD-FL-2004-0059,,CC-BY-NC-4.0 and DFO terms: research use only
+2004-11-23,2004-11-23,1,0,False,Nagapattinam,False,0,0,heavy rains,UEI-IMD-FL-2004-0060,,CC-BY-NC-4.0 and DFO terms: research use only
+2005-04-07,2005-04-07,1,0,False,Kanniyakumariumari; Namakkal; The Nilgiris; Tiruchirappalli,False,27,0,heavy rains,UEI-IMD-FL-2005-0136,,CC-BY-NC-4.0 and DFO terms: research use only
+2005-10-13,2005-10-13,1,0,False,Chennai,True,2,0,heavy rains,UEI-IMD-FL-2005-0137,,CC-BY-NC-4.0 and DFO terms: research use only
+2005-10-15,2005-12-11,7,1,True,Ariyalur; Chengalpattu; Chennai; Coimbatore; Cuddalore; Dharmapuri; Dindigul; Erode; Kallakurichi; Kancheepuram; Kanniyakumariumari; Karur; Krishnagiri; Madurai; Nagapattinam; Namakkal; Perambalur; Pudukkottai; Ramanathapuram; Ranipet; Salem; Sivaganga; Tenkasi; Thanjavur; The Nilgiris; Theni; Thiruvallur; Thiruvarur; Thoothukkudi; Tiruchirappalli; Tirunelveli; Tirupathur; Tiruppur; Tiruvannamalai; Vellore; Viluppuram; Virudhunagar,True,80,279,Monsoonal rain; heavy rains; severe flood,UEI-IMD-FL-2005-0138|UEI-IMD-FL-2005-0139|UEI-IMD-FL-2005-0141|UEI-IMD-FL-2005-0142|UEI-IMD-FL-2005-0143|UEI-IMD-FL-2005-0144|UEI-IMD-FL-2005-0145,DFO-2758,CC-BY-NC-4.0 and DFO terms: research use only
+2005-11-22,2005-11-22,1,0,False,Nagapattinam,False,8,0,flash flood,UEI-IMD-FL-2005-0140,,CC-BY-NC-4.0 and DFO terms: research use only
+2006-05-13,2006-05-13,1,0,False,Salem,False,0,0,heavy rains,UEI-IMD-FL-2006-0102,,CC-BY-NC-4.0 and DFO terms: research use only
+2006-10-22,2006-11-04,1,1,True,Chennai; Madurai; Nagapattinam; Thoothukkudi; Tirunelveli; Tiruvannamalai; Viluppuram,True,47,47,Monsoonal rain; flash flood,UEI-IMD-FL-2006-0103,DFO-2985,CC-BY-NC-4.0 and DFO terms: research use only
+2006-11-09,2006-11-15,1,0,False,The Nilgiris,False,1,0,heavy rains,UEI-IMD-FL-2006-0104,,CC-BY-NC-4.0 and DFO terms: research use only
+2006-11-18,2006-11-18,1,0,False,Nagapattinam,False,7,0,flash flood,UEI-IMD-FL-2006-0105,,CC-BY-NC-4.0 and DFO terms: research use only
+2007-10-24,2007-11-01,2,1,True,Chennai; Cuddalore; Kancheepuram; Nagapattinam; Tiruvannamalai; Viluppuram,True,15,29,Heavy rain; heavy rains,UEI-IMD-FL-2007-0125|UEI-IMD-FL-2007-0126,DFO-3217,CC-BY-NC-4.0 and DFO terms: research use only
+2007-11-06,2007-11-06,1,0,False,Kanniyakumariumari,False,6,0,heavy rains,UEI-IMD-FL-2007-0127,,CC-BY-NC-4.0 and DFO terms: research use only
+2007-12-19,2007-12-20,1,0,False,Chennai,True,30,0,heavy rains,UEI-IMD-FL-2007-0128,,CC-BY-NC-4.0 and DFO terms: research use only
+2008-03-13,2008-03-13,1,0,False,Cuddalore,False,0,0,heavy rains,UEI-IMD-FL-2008-0109,,CC-BY-NC-4.0 and DFO terms: research use only
+2008-05-25,2008-05-25,1,0,False,Coimbatore,False,13,0,flash flood,UEI-IMD-FL-2008-0110,,CC-BY-NC-4.0 and DFO terms: research use only
+2008-11-26,2008-11-28,1,0,False,Ariyalur; Chennai; Cuddalore; Dindigul; Nagapattinam; Thanjavur; Thiruvarur; Thoothukkudi; Tiruchirappalli; Viluppuram,True,0,0,flood,UEI-IMD-FL-2008-0111,,CC-BY-NC-4.0 and DFO terms: research use only
+2009-09-16,2009-09-16,1,0,False,Vellore,False,5,0,heavy rains,UEI-IMD-FL-2009-0069,,CC-BY-NC-4.0 and DFO terms: research use only
+2009-09-25,2009-09-25,1,0,False,Tiruvannamalai,False,2,0,heavy rains,UEI-IMD-FL-2009-0070,,CC-BY-NC-4.0 and DFO terms: research use only
+2009-11-06,2009-11-11,1,0,False,Kanniyakumariumari; The Nilgiris; Thiruvallur; Thiruvarur; Tirunelveli,False,49,0,heavy rains,UEI-IMD-FL-2009-0071,,CC-BY-NC-4.0 and DFO terms: research use only
+2009-11-16,2009-11-16,1,0,False,Dharmapuri; Kanniyakumariumari; The Nilgiris; Thiruvallur,False,5,0,heavy rains,UEI-IMD-FL-2009-0072,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-05-01,2010-05-05,1,0,False,Kanniyakumariumari; Salem; Thoothukkudi; Tiruchirappalli,False,2,0,heavy rains,UEI-IMD-FL-2010-0120,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-05-18,2010-05-18,1,0,False,Karur; Tiruchirappalli,False,0,0,heavy rains,UEI-IMD-FL-2010-0121,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-07-09,2010-07-09,1,0,False,Kancheepuram,False,1,0,heavy rains,UEI-IMD-FL-2010-0122,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-08-08,2010-08-08,1,0,False,Cuddalore; Kancheepuram,False,0,0,heavy rains,UEI-IMD-FL-2010-0123,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-08-23,2010-08-23,1,0,False,Cuddalore; Erode,False,0,0,heavy rains,UEI-IMD-FL-2010-0124,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-09-23,2010-09-27,1,0,False,Coimbatore,False,0,0,heavy rains,UEI-IMD-FL-2010-0125,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-11-07,2010-11-07,1,0,False,Chennai; Cuddalore; Tiruchirappalli; Tiruvannamalai; Vellore; Viluppuram,True,5,0,heavy rains,UEI-IMD-FL-2010-0126,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-11-15,2010-12-09,3,1,True,Ariyalur; Kanniyakumariumari; Madurai; Nagapattinam; Ramanathapuram; Thanjavur; Thoothukkudi; Tirunelveli; Viluppuram,False,12,170,Monsoon Rain; heavy rains,UEI-IMD-FL-2010-0128|UEI-IMD-FL-2010-0130|UEI-IMD-FL-2010-0131,DFO-3757,CC-BY-NC-4.0 and DFO terms: research use only
+2010-11-22,2010-11-23,1,0,False,Many districts of Tamil Nadu.,False,100,0,heavy rains,UEI-IMD-FL-2010-0127,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-11-30,2010-11-30,1,0,False,Many districts of Tamil Nadu.,False,0,0,heavy rains,UEI-IMD-FL-2010-0129,,CC-BY-NC-4.0 and DFO terms: research use only
+2010-12-16,2010-12-20,1,0,False,Tiruppur,False,0,0,heavy rains,UEI-IMD-FL-2010-0132,,CC-BY-NC-4.0 and DFO terms: research use only
+2011-04-21,2011-04-21,1,0,False,The Nilgiris,False,2,0,heavy rains,UEI-IMD-FL-2011-0086,,CC-BY-NC-4.0 and DFO terms: research use only
+2011-09-16,2011-09-16,1,0,False,Kancheepuram,False,2,0,heavy rains,UEI-IMD-FL-2011-0087,,CC-BY-NC-4.0 and DFO terms: research use only
+2011-10-16,2011-10-16,1,0,False,Coimbatore,False,0,0,heavy rains,UEI-IMD-FL-2011-0088,,CC-BY-NC-4.0 and DFO terms: research use only
+2011-10-20,2011-10-20,1,0,False,Cuddalore,False,0,0,heavy rains,UEI-IMD-FL-2011-0089,,CC-BY-NC-4.0 and DFO terms: research use only
+2011-10-30,2011-10-30,1,0,False,Cuddalore,False,0,0,heavy rains,UEI-IMD-FL-2011-0090,,CC-BY-NC-4.0 and DFO terms: research use only
+2011-11-01,2011-11-09,1,0,False,Chennai; Dindigul; Districts of Cauvery delta zone,True,70,0,heavy rains,UEI-IMD-FL-2011-0091,,CC-BY-NC-4.0 and DFO terms: research use only
+2011-11-24,2011-11-30,1,0,False,Districts of Cauvery delta,False,0,0,heavy rains,UEI-IMD-FL-2011-0092,,CC-BY-NC-4.0 and DFO terms: research use only
+2012-10-20,2012-10-21,1,0,False,Many parts of Tamil Nadu.,False,0,0,heavy rains,UEI-IMD-FL-2012-0073,,CC-BY-NC-4.0 and DFO terms: research use only
+2012-11-01,2012-11-08,1,1,True,Chennai; Thiruvarur; Vellore,True,0,40,Tropical Storm Nilam; heavy rains,UEI-IMD-FL-2012-0074,DFO-4001,CC-BY-NC-4.0 and DFO terms: research use only
+2013-09-11,2013-09-11,1,0,False,Chennai; Tiruvannamalai,True,4,0,heavy rains,UEI-IMD-FL-2013-0118,,CC-BY-NC-4.0 and DFO terms: research use only
+2013-10-15,2013-10-15,1,0,False,Coimbatore; Cuddalore,False,0,0,heavy rains,UEI-IMD-FL-2013-0119,,CC-BY-NC-4.0 and DFO terms: research use only
+2013-10-20,2013-10-20,1,0,False,Coimbatore; Tiruvannamalai,False,1,0,heavy rains,UEI-IMD-FL-2013-0120,,CC-BY-NC-4.0 and DFO terms: research use only
+2013-11-16,2013-11-16,1,0,False,Cuddalore; Dharmapuri; Kanniyakumariumari; Nagapattinam; Thanjavur; Thiruvarur; Viluppuram,False,11,0,heavy rains,UEI-IMD-FL-2013-0121,,CC-BY-NC-4.0 and DFO terms: research use only
+2013-11-25,2013-11-25,1,0,False,Pudukkottai,False,3,0,heavy rains,UEI-IMD-FL-2013-0122,,CC-BY-NC-4.0 and DFO terms: research use only
+2013-12-13,2013-12-13,1,0,False,Nagapattinam,False,1,0,heavy rains,UEI-IMD-FL-2013-0123,,CC-BY-NC-4.0 and DFO terms: research use only
+2014-03-08,2014-03-08,1,0,False,Coimbatore,False,0,0,heavy rains,UEI-IMD-FL-2014-0077,,CC-BY-NC-4.0 and DFO terms: research use only
+2014-05-06,2014-05-08,1,0,False,Kanniyakumariumari; Madurai; The Nilgiris; Theni,False,3,0,heavy rains,UEI-IMD-FL-2014-0078,,CC-BY-NC-4.0 and DFO terms: research use only
+2014-05-21,2014-05-21,1,0,False,Coimbatore; Krishnagiri,False,2,0,heavy rains,UEI-IMD-FL-2014-0079,,CC-BY-NC-4.0 and DFO terms: research use only
+2014-08-22,2014-08-22,1,0,False,Erode,False,2,0,heavy rains,UEI-IMD-FL-2014-0080,,CC-BY-NC-4.0 and DFO terms: research use only
+2014-09-23,2014-09-23,1,0,False,Dindigul; Erode; Virudhunagar,False,1,0,heavy rains,UEI-IMD-FL-2014-0081,,CC-BY-NC-4.0 and DFO terms: research use only
+2015-04-12,2015-04-12,1,0,False,Virudhunagar,False,0,0,heavy rains,UEI-IMD-FL-2015-0084,,CC-BY-NC-4.0 and DFO terms: research use only
+2015-04-21,2015-04-21,1,0,False,Thiruvarur,False,1,0,heavy rains,UEI-IMD-FL-2015-0085,,CC-BY-NC-4.0 and DFO terms: research use only
+2015-04-25,2015-04-25,1,0,False,Vellore,False,3,0,heavy rains,UEI-IMD-FL-2015-0086,,CC-BY-NC-4.0 and DFO terms: research use only
+2015-05-14,2015-05-21,1,1,True,Coimbatore; Pudukkottai,False,3,8,Torrential Rain; heavy rains,UEI-IMD-FL-2015-0087,DFO-4251,CC-BY-NC-4.0 and DFO terms: research use only
+2015-05-17,2015-05-19,1,0,False,Thiruvallur; Virudhunagar,False,11,0,heavy rains,UEI-IMD-FL-2015-0088,,CC-BY-NC-4.0 and DFO terms: research use only
+2015-06-17,2015-06-17,1,0,False,Chennai,True,1,0,heavy rains,UEI-IMD-FL-2015-0089,,CC-BY-NC-4.0 and DFO terms: research use only
+2015-06-21,2015-06-21,1,0,False,The Nilgiris,False,1,0,heavy rains,UEI-IMD-FL-2015-0090,,CC-BY-NC-4.0 and DFO terms: research use only
+2015-07-17,2015-07-17,1,0,False,Chennai,True,1,0,heavy rains,UEI-IMD-FL-2015-0091,,CC-BY-NC-4.0 and DFO terms: research use only
+2015-11-09,2015-12-11,7,1,True,Ariyalur; Chennai; Coimbatore; Cuddalore; Dharmapuri; Dindigul; Erode; Kancheepuram; Kanniyakumari; Kanniyakumariumari; Karur; Krishnagiri; Madurai; Nagapattinam; Namakkal; Perambalur; Pudukkottai; Salem; Thanjavur; The Nilgiris; Theni; Thiruvallur; Thiruvarur; Thoothukkudi; Tiruchirappalli; Tirunelveli; Tiruppur; Tiruvannamalai; Viluppuram; Virudhunagar,True,50,180,Tropical Storm Rovan; heavy rains,UEI-IMD-FL-2015-0092|UEI-IMD-FL-2015-0093|UEI-IMD-FL-2015-0094|UEI-IMD-FL-2015-0095|UEI-IMD-FL-2015-0096|UEI-IMD-FL-2015-0097|UEI-IMD-FL-2015-0098,DFO-4309,CC-BY-NC-4.0 and DFO terms: research use only
+2016-06-11,2016-06-13,1,0,False,Kanniyakumariumari,False,3,0,"flood(kuzhithurai ,sitraru rivers)",UEI-IMD-FL-2016-0115,,CC-BY-NC-4.0 and DFO terms: research use only
+2016-07-26,2016-07-26,1,0,False,Krishnagiri,False,2,0,heavy rains,UEI-IMD-FL-2016-0116,,CC-BY-NC-4.0 and DFO terms: research use only
+2017-01-09,2017-01-09,1,0,False,Thiruvallur,False,0,0,Heavy Rains,UEI-IMD-FL-2017-0105,,CC-BY-NC-4.0 and DFO terms: research use only
+2017-02-11,2017-04-11,1,0,False,Chennai; Cuddalore; Kanniyakumariumari; Karaikal; Nagarkoil; Tirunelveli,True,10,0,Heavy Rains,UEI-IMD-FL-2017-0109,,CC-BY-NC-4.0 and DFO terms: research use only
+2017-04-10,2017-05-10,1,0,False,Krishnagiri,False,5,0,Heavy Rains,UEI-IMD-FL-2017-0107,,CC-BY-NC-4.0 and DFO terms: research use only
+2017-05-28,2017-05-28,1,0,False,Vellore,False,0,0,Heavy Rains,UEI-IMD-FL-2017-0104,,CC-BY-NC-4.0 and DFO terms: research use only
+2017-06-09,2017-06-09,1,0,False,Coimbatore; Nagapattinam; Tiruppur,False,3,0,Floods & Heavy Rains,UEI-IMD-FL-2017-0106,,CC-BY-NC-4.0 and DFO terms: research use only
+2017-12-10,2017-12-10,1,0,False,Vellore,False,2,0,Heavy rains & Flood in Palar river,UEI-IMD-FL-2017-0108,,CC-BY-NC-4.0 and DFO terms: research use only
+2018-03-14,2018-03-16,1,0,False,Chennai; Thoothukkudi,True,0,0,Heavy rain,UEI-IMD-FL-2018-0077,,CC-BY-NC-4.0 and DFO terms: research use only
+2018-05-20,2018-05-20,1,0,False,Salem,False,1,0,Heavy rain,UEI-IMD-FL-2018-0078,,CC-BY-NC-4.0 and DFO terms: research use only
+2018-09-15,2018-09-15,1,0,False,Sivaganga,False,0,0,Heavy rain,UEI-IMD-FL-2018-0079,,CC-BY-NC-4.0 and DFO terms: research use only
+2018-11-22,2018-11-22,1,0,False,Viluppuram,False,3,0,Heavy rain,UEI-IMD-FL-2018-0080,,CC-BY-NC-4.0 and DFO terms: research use only
+2018-11-24,2018-11-24,1,0,False,Thanjavur,False,2,0,Heavy rain,UEI-IMD-FL-2018-0081,,CC-BY-NC-4.0 and DFO terms: research use only
+2019-01-05,2019-03-05,1,0,False,Coimbatore,False,1,0,Heavy rain,UEI-IMD-FL-2019-0134,,CC-BY-NC-4.0 and DFO terms: research use only
+2019-01-12,2019-01-12,1,0,False,Tirunelveli,False,1,0,Heavy rain,UEI-IMD-FL-2019-0136,,CC-BY-NC-4.0 and DFO terms: research use only
+2019-02-12,2019-02-12,1,0,False,Chennai; Coimbatore; Cuddalore; Thoothukkudi; Tirunelveli,True,17,0,Heavy rains & Flood,UEI-IMD-FL-2019-0137,,CC-BY-NC-4.0 and DFO terms: research use only
+2019-11-30,2019-12-06,1,1,True,Thanjavur,False,1,30,Heavy Rain; Heavy rain,UEI-IMD-FL-2019-0135,DFO-4832,CC-BY-NC-4.0 and DFO terms: research use only
+2021-07-17,2021-07-17,1,0,False,Tiruvannamalai,False,1,0,Heavy Rains,UEI-IMD-FL-2021-0258,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-09-17,2021-09-17,1,0,False,Pudukkottai,False,1,0,Heavy Rains,UEI-IMD-FL-2021-0259,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-06,2021-11-21,1,0,False,Chennai,True,4,0,Heavy rains & Floods,UEI-IMD-FL-2021-0260,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-06,2021-11-21,1,0,False,Kallakurichi,False,0,0,Heavy rains & Floods,UEI-IMD-FL-2021-0261,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-06,2021-11-21,1,0,False,Krishnagiri,False,0,0,Heavy rains & Floods,UEI-IMD-FL-2021-0262,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-06,2021-11-21,1,0,False,Madurai,False,0,0,Heavy rains & Floods,UEI-IMD-FL-2021-0263,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-06,2021-11-21,1,0,False,Thanjavur,False,0,0,Heavy rains & Floods,UEI-IMD-FL-2021-0264,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-06,2021-11-21,1,0,False,Theni,False,0,0,Heavy rains & Floods,UEI-IMD-FL-2021-0265,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-06,2021-11-21,1,0,False,Tiruvannamalai,False,0,0,Heavy rains & Floods,UEI-IMD-FL-2021-0266,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-06,2021-11-21,1,0,False,Vellore,False,0,0,Heavy rains & Floods,UEI-IMD-FL-2021-0267,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-06,2021-11-21,1,0,False,Viluppuram,False,0,0,Heavy rains & Floods,UEI-IMD-FL-2021-0268,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-07,2021-11-07,1,0,False,Chennai,True,1,0,Heavy Rains,UEI-IMD-FL-2021-0269,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-10,2021-11-10,1,0,False,Thanjavur,False,2,0,Heavy Rains,UEI-IMD-FL-2021-0270,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-18,2021-11-18,1,0,False,Vellore,False,9,0,Heavy Rains,UEI-IMD-FL-2021-0271,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-19,2021-11-19,1,0,False,Viluppuram,False,0,0,Heavy Rains,UEI-IMD-FL-2021-0272,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-19,2021-11-19,1,0,False,Krishnagiri; Tiruvannamalai,False,3,0,Heavy Rains,UEI-IMD-FL-2021-0273,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-19,2021-11-19,1,0,False,Krishnagiri; Tiruvannamalai,False,3,0,Heavy Rains,UEI-IMD-FL-2021-0274,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-11-21,2021-11-21,1,0,False,Kallakurichi,False,1,0,Heavy Rains,UEI-IMD-FL-2021-0275,,CC-BY-NC-4.0 and DFO terms: research use only
+2021-12-30,2021-12-30,1,0,False,Chennai,True,3,0,Heavy Rains,UEI-IMD-FL-2021-0276,,CC-BY-NC-4.0 and DFO terms: research use only
+2022-10-21,2022-10-21,1,0,False,Erode,False,1,0,Heavy Rains & Floods,UEI-IMD-FL-2022-0835,,CC-BY-NC-4.0 and DFO terms: research use only
+2022-11-01,2022-11-01,1,0,False,Chennai,True,2,0,Heavy Rains,UEI-IMD-FL-2022-0836,,CC-BY-NC-4.0 and DFO terms: research use only
+2022-11-01,2022-11-01,1,0,False,Ranipet,False,0,0,Heavy Rains,UEI-IMD-FL-2022-0837,,CC-BY-NC-4.0 and DFO terms: research use only
+2022-11-01,2022-11-01,1,0,False,Tiruvannamalai,False,0,0,Heavy Rains,UEI-IMD-FL-2022-0838,,CC-BY-NC-4.0 and DFO terms: research use only
