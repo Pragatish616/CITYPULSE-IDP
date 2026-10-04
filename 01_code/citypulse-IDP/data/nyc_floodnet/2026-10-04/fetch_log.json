@@ -1,0 +1,13 @@
+{
+  "fetched_on": "2026-10-04",
+  "files": [
+    {
+      "bytes": 5699960,
+      "path": "raw/floodnet_flood_events.csv",
+      "sha256": "f9ad8ef08ddef9ba9b81765604651b43376f5420d6fc65a1fecc7c6e1d441731"
+    }
+  ],
+  "script": "scripts/fetch_training_sources.py",
+  "source": "NYC Open Data, FloodNet: Street Flooding Events Measured by FloodNet Sensors (aq7i-eu5q)",
+  "url": "https://data.cityofnewyork.us/resource/aq7i-eu5q.csv"
+}

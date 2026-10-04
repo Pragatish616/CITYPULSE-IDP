@@ -23,3 +23,6 @@ Thumbs.db
 *.gguf
 01_code/citypulse-IDP/data/osm/
 01_code/citypulse-IDP/data/_web_same_origin/
+
+# CFM-DSS archive: the publisher states no licence (see data/DATA_SOURCES_ASSESSMENT.md). Keep local, do not publish.
+01_code/citypulse-IDP/data/chennai_cfm/*/raw/

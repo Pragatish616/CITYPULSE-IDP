@@ -1,0 +1,28 @@
+{
+  "events_per_sensor": {
+    "max": 469,
+    "median": 3.0,
+    "sensors_with_at_least_10": 57
+  },
+  "events_per_year": {
+    "2020": 2,
+    "2021": 58,
+    "2022": 142,
+    "2023": 362,
+    "2024": 662,
+    "2025": 682,
+    "2026": 1514
+  },
+  "first": "2020-11-16",
+  "has_per_minute_depth_profile": true,
+  "last": "2026-09-28",
+  "max_depth_inches": {
+    "median": 3.48,
+    "p90": 11.18,
+    "p99": 25.74
+  },
+  "rows": 3422,
+  "sensors": 318,
+  "share_max_depth_at_least_12in": 0.084,
+  "share_max_depth_at_least_4in": 0.448
+}

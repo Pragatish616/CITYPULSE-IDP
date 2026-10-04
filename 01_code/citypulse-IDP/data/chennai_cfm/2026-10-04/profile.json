@@ -1,0 +1,341 @@
+{
+  "awlr_water_level": {
+    "by_year": {
+      "2021": {
+        "rows": 2,
+        "stations": 1
+      },
+      "2022": {
+        "rows": 2,
+        "stations": 1
+      },
+      "2023": {
+        "rows": 45520,
+        "stations": 8
+      },
+      "2024": {
+        "rows": 134183,
+        "stations": 10
+      },
+      "2025": {
+        "rows": 155059,
+        "stations": 40
+      },
+      "2026": {
+        "rows": 51183,
+        "stations": 25
+      }
+    }
+  },
+  "aws_arg": {
+    "by_year": {
+      "2012": {
+        "rows": 7,
+        "stations": 1
+      },
+      "2017": {
+        "rows": 818,
+        "stations": 6
+      },
+      "2018": {
+        "rows": 223538,
+        "stations": 7
+      },
+      "2019": {
+        "rows": 134839,
+        "stations": 7
+      },
+      "2020": {
+        "rows": 228480,
+        "stations": 7
+      },
+      "2021": {
+        "rows": 81462,
+        "stations": 9
+      },
+      "2022": {
+        "rows": 3,
+        "stations": 2
+      }
+    }
+  },
+  "crowd_reports": {
+    "details_containing_test": 3,
+    "first": "2022-11-14 11:59:49+00:00",
+    "inside_chennai_box": 170,
+    "last": "2025-12-04 03:00:18+00:00",
+    "level_2_or_more": 12,
+    "level_2_or_more_inside_chennai_box": 9,
+    "level_counts": {
+      "1": 161,
+      "2": 9,
+      "3": 2,
+      "6": 1
+    },
+    "rows": 173
+  },
+  "event_windows": {
+    "2005_Oct_Nov": {
+      "awlr": {
+        "rows": 0,
+        "stations": 0
+      },
+      "aws_arg": {
+        "rows": 0,
+        "stations": 0
+      },
+      "srg": {
+        "rows": 3074,
+        "stations": 53
+      }
+    },
+    "2015_Nov_Dec": {
+      "awlr": {
+        "rows": 0,
+        "stations": 0
+      },
+      "aws_arg": {
+        "rows": 0,
+        "stations": 0
+      },
+      "srg": {
+        "rows": 1749,
+        "stations": 53
+      }
+    },
+    "2023_Michaung": {
+      "awlr": {
+        "rows": 2589,
+        "stations": 4
+      },
+      "aws_arg": {
+        "rows": 0,
+        "stations": 0
+      },
+      "srg": {
+        "rows": 326,
+        "stations": 41
+      }
+    },
+    "2025_NEM": {
+      "awlr": {
+        "rows": 14531,
+        "stations": 25
+      },
+      "aws_arg": {
+        "rows": 0,
+        "stations": 0
+      },
+      "srg": {
+        "rows": 2440,
+        "stations": 40
+      }
+    }
+  },
+  "gis_layers": {
+    "boundaries": 24,
+    "drainage": 8,
+    "flood_history": 9,
+    "forecasts": 36,
+    "misc": 32,
+    "stations": 30,
+    "wards_crowd_alerts": 8,
+    "water": 34
+  },
+  "history_layers_rows": {
+    "hotspots_gcc_2015": 327,
+    "hotspots_gcc_nem2020": 53,
+    "hotspots_irs_2005": 200,
+    "hotspots_kancheepuram_2015": 139,
+    "hotspots_tiruvallur_2015": 200,
+    "hotspots_vellore_2015": 29,
+    "irs_flood_extent_2005": 235,
+    "nrsc_flood_extent_2015": 4001
+  },
+  "imd_chennai_events": {
+    "all_years": 47,
+    "days_in_1988_2019": 11688,
+    "event_days_inside_1988_2019_for_events_up_to_60_days": 354,
+    "inside_1988_2019": 33
+  },
+  "srg_2015_max_single_row_mm": 494.2,
+  "srg_daily_rain": {
+    "by_year": {
+      "1975": {
+        "rows": 2,
+        "stations": 2
+      },
+      "1976": {
+        "rows": 2014,
+        "stations": 8
+      },
+      "1984": {
+        "rows": 15,
+        "stations": 15
+      },
+      "1985": {
+        "rows": 5460,
+        "stations": 15
+      },
+      "1987": {
+        "rows": 53,
+        "stations": 53
+      },
+      "1988": {
+        "rows": 19398,
+        "stations": 53
+      },
+      "1989": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "1990": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "1991": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "1992": {
+        "rows": 19398,
+        "stations": 53
+      },
+      "1993": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "1994": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "1995": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "1996": {
+        "rows": 19398,
+        "stations": 53
+      },
+      "1997": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "1998": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "1999": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2000": {
+        "rows": 19398,
+        "stations": 53
+      },
+      "2001": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2002": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2003": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2004": {
+        "rows": 19398,
+        "stations": 53
+      },
+      "2005": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2006": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2007": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2008": {
+        "rows": 19398,
+        "stations": 53
+      },
+      "2009": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2010": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2011": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2012": {
+        "rows": 19398,
+        "stations": 53
+      },
+      "2013": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2014": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2015": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2016": {
+        "rows": 19398,
+        "stations": 53
+      },
+      "2017": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2018": {
+        "rows": 19345,
+        "stations": 53
+      },
+      "2019": {
+        "rows": 19292,
+        "stations": 53
+      },
+      "2021": {
+        "rows": 20,
+        "stations": 9
+      },
+      "2023": {
+        "rows": 4048,
+        "stations": 41
+      },
+      "2024": {
+        "rows": 14883,
+        "stations": 41
+      },
+      "2025": {
+        "rows": 15078,
+        "stations": 51
+      },
+      "2026": {
+        "rows": 1920,
+        "stations": 40
+      }
+    },
+    "max_mm_in_a_row": 494.2
+  },
+  "ward_water_depth_model": {
+    "datetime_values": [
+      "2021-08-11 05:38:55.801000+00:00"
+    ],
+    "rows": 200
+  }
+}

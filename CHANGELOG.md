@@ -19,6 +19,8 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 
 - Merged India flood event dataset: India Flood Inventory v4 plus Dartmouth Flood Observatory events, linked for Tamil Nadu, research-only licences (ADR-023).
 
+- Training-data assessment and downloads: Chennai Flood Monitor archive (local only) and NYC FloodNet sandbox, with fetch and profile scripts (ADR-024).
+
 ### Changed
 - Pessimistic index is now a Beta-posterior upper quantile; it no longer lowers caution after a weak report
   (ADR-015).

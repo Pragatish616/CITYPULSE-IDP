@@ -1,0 +1,1181 @@
+{
+  "datasets": {
+    "CashlessConsumer/chennai-flood-history": {
+      "files": [
+        {
+          "bytes": 2982,
+          "path": "README.md",
+          "sha256": "eb05b41503b64424405b8c3fde998f174185a9848ca2ae56ad2d403255a5ef94"
+        },
+        {
+          "bytes": 20709,
+          "path": "crowdsourced/reports_scrubbed.parquet",
+          "sha256": "fa144c74f5243e8edaa58bdffcec54e3cdf992893a52a8eda4edaa59a0dab895"
+        },
+        {
+          "bytes": 127187,
+          "path": "flood_extents/irs_flood_extent_2005.parquet",
+          "sha256": "d81dd3a95abd296ab6c08ed3dbde332b20c0600cc909f2df0435b99b9c0bbf80"
+        },
+        {
+          "bytes": 821814,
+          "path": "flood_extents/nrsc_flood_extent_2015.parquet",
+          "sha256": "60735a3a24040906f3dab9abfa21ef8c24a646e7f3db1e94e8986534ede5626d"
+        },
+        {
+          "bytes": 9166,
+          "path": "floodwarnings.parquet",
+          "sha256": "0db3a4c202915badd08646bf00ad75e393430b051bf953a8ed636c809b3ddb94"
+        },
+        {
+          "bytes": 37096,
+          "path": "hotspots_2015/hotspots_gcc_2015.parquet",
+          "sha256": "7a9c7f2b608ca5cbbcef0186ae8a16946ac935f31560ea65a6126eec5bd2a6ff"
+        },
+        {
+          "bytes": 12777,
+          "path": "hotspots_2015/hotspots_gcc_nem2020.parquet",
+          "sha256": "bbdb44158a0920305e2c88f0401379aee425e2829dc0d5a3a42a11db0452f758"
+        },
+        {
+          "bytes": 20893,
+          "path": "hotspots_2015/hotspots_irs_2005.parquet",
+          "sha256": "2c191892b0e05c739a6e66b103dfa60b76bc15cc9445c25446c0d3bd33ec9730"
+        },
+        {
+          "bytes": 27217,
+          "path": "hotspots_2015/hotspots_kancheepuram_2015.parquet",
+          "sha256": "1fa616cdf8490fffc45a5fca9fabcf0b781d22987880b3f0433126a6bdba1fb1"
+        },
+        {
+          "bytes": 24956,
+          "path": "hotspots_2015/hotspots_tiruvallur_2015.parquet",
+          "sha256": "2c876a012e84274e2ce25ad387f82e7eb86e166737d492b2496c6cd7c62071fb"
+        },
+        {
+          "bytes": 13542,
+          "path": "hotspots_2015/hotspots_vellore_2015.parquet",
+          "sha256": "45b0470ffd7880e741102d74d3d662f5dd8fa3392abab141f9873b93434e9e4b"
+        },
+        {
+          "bytes": 1233965,
+          "path": "wards/ward_waterdepth_minmax.parquet",
+          "sha256": "1a24ebe883bccd737d88b82437d6db4d9e4afa512bf8d50576825deb33d44e80"
+        }
+      ],
+      "license_tag": [
+        "license:other"
+      ],
+      "revision": "60074d53fc80d5b61e07494d4c52cebafe242198"
+    },
+    "CashlessConsumer/chennai-flood-monitor-transactions": {
+      "files": [
+        {
+          "bytes": 3993,
+          "path": "README.md",
+          "sha256": "8fc206b4cf7b65b044d57787d1f760b4866d108a7d9077f4723c335d7195008e"
+        },
+        {
+          "bytes": 3831905,
+          "path": "data/awlr_waterlevel.parquet",
+          "sha256": "291db4de0b4ea34615b795da1c92e342d60ee4d194a6f39a9c5e2031867e9f3a"
+        },
+        {
+          "bytes": 7726282,
+          "path": "data/aws_arg_rain_met.parquet",
+          "sha256": "7e90e3318655f9936f6e83bf54fe0a6d9b568299d21e529c65b40a9bbb6e7664"
+        },
+        {
+          "bytes": 4566819,
+          "path": "data/srg_rain.parquet",
+          "sha256": "f9bbbf4395581b2f7a546c1d1a0ba3798d6f9ab4e8f5863c513c6e9059e4f903"
+        },
+        {
+          "bytes": 11080,
+          "path": "stations/administrativetable.parquet",
+          "sha256": "9c1e8f71a310a455ad35cbaabdf3e5020654bd363d43277dfbc564c84def407e"
+        },
+        {
+          "bytes": 15822,
+          "path": "stations/agro_stations.parquet",
+          "sha256": "8059b3e427c7baf5b34ce1cd229138b93cff9ad7013dab54a0bcc5bfebfc6b0b"
+        },
+        {
+          "bytes": 12412,
+          "path": "stations/arg_iitm_existing.parquet",
+          "sha256": "76c461671454dde6fae348dae64c8dcb7d798a3e5076c9ebccac0e63cc61e534"
+        },
+        {
+          "bytes": 18524,
+          "path": "stations/arg_proposed.parquet",
+          "sha256": "d8921a160791758c4e7d0803163761549e0919c450e341af66d94db01481851b"
+        },
+        {
+          "bytes": 82603,
+          "path": "stations/arg_registry_328.parquet",
+          "sha256": "00ec2630fc148f2000d3e248ce1d6d3a6c2a71b529679a16d71f903ecf0e3c61"
+        },
+        {
+          "bytes": 25531,
+          "path": "stations/awlr_44.parquet",
+          "sha256": "d7820caa790755a967b0d2fbdaed6900aca2c5666cb6b3113edb3fc67de161db"
+        },
+        {
+          "bytes": 12484,
+          "path": "stations/awlr_gcc_existing_46.parquet",
+          "sha256": "65008e18b429559674a10bd7f2297d0ead3fa4d598bcc95aa802c2f60911428f"
+        },
+        {
+          "bytes": 10591,
+          "path": "stations/awlr_iitm_existing.parquet",
+          "sha256": "9e6b687db6fc230e67e42038d9a7132bd2a0ae102cd81d0d61e49993e0e07362"
+        },
+        {
+          "bytes": 10982,
+          "path": "stations/awlr_plank.parquet",
+          "sha256": "04a41fab133c402b1cbdbac707dc5c26bd5810f3a5c7f1a9586cf620fa6411c1"
+        },
+        {
+          "bytes": 24153,
+          "path": "stations/awlr_proposed_78.parquet",
+          "sha256": "4526ec69976ecfc082167dde5c7a01994083cffab41bfd2d52b5bc4519329a71"
+        },
+        {
+          "bytes": 21490,
+          "path": "stations/awlr_proposed_basin.parquet",
+          "sha256": "d42b6efb59da31ac467532e0fbba2a82fbc767abac2d08f908ac91ac3b333bda"
+        },
+        {
+          "bytes": 21490,
+          "path": "stations/awlr_proposed_basin_139.parquet",
+          "sha256": "d42b6efb59da31ac467532e0fbba2a82fbc767abac2d08f908ac91ac3b333bda"
+        },
+        {
+          "bytes": 16848,
+          "path": "stations/awlr_radarpressureultrasonic.parquet",
+          "sha256": "9182965f631854772d9bf420b7fecae7517b09ee03646af2da2ea6ef5751de1d"
+        },
+        {
+          "bytes": 39168,
+          "path": "stations/awlr_shaftencoder.parquet",
+          "sha256": "386dc0d026fc86aa5e6c8a30f475d330c0e70032e5395007e39c304b6fb27455"
+        },
+        {
+          "bytes": 33825,
+          "path": "stations/awlr_stations_121.parquet",
+          "sha256": "0701cc4c49ecfe518d6cbaf7a3c01f06e53bc1f2fbeb20904eafb7ce47a0db31"
+        },
+        {
+          "bytes": 12184,
+          "path": "stations/aws_iitm_existing.parquet",
+          "sha256": "fbc0e9de997976872ca287ff978ad80778da46eb2451c59a2be31a9e482f3ba6"
+        },
+        {
+          "bytes": 13606,
+          "path": "stations/aws_proposed.parquet",
+          "sha256": "a19c7a903ed2ac508b3df22e4bde36972752ef071fac2201894c27dc7ac9577a"
+        },
+        {
+          "bytes": 53618,
+          "path": "stations/aws_registry.parquet",
+          "sha256": "69a7fb3488c5e5ed71894f1e84c8aea7410a3a6b61bcc56d9f99ebcb29d02f1b"
+        },
+        {
+          "bytes": 55923,
+          "path": "stations/aws_registry_39.parquet",
+          "sha256": "ee43bc9eef2993fdbd431a352ebb9fb9a75e75fc82ef381eeee67b1015c167a2"
+        },
+        {
+          "bytes": 13792,
+          "path": "stations/aws_registry_sql.parquet",
+          "sha256": "c195acdd5f6467c56e63211bef60dfbe99b89a1bfecc82ee0419bfbf3fffc97f"
+        },
+        {
+          "bytes": 48842,
+          "path": "stations/dgps_tanks.parquet",
+          "sha256": "3868c9303aa4e1a575dd23f458bcc326748843d0659051a4f38be232646bc5b0"
+        },
+        {
+          "bytes": 12991,
+          "path": "stations/gate_sensors_proposed.parquet",
+          "sha256": "d3ed6df12f7e84189a121ae62c9838839ad31f67b65066b4a3c6a5473fb19119"
+        },
+        {
+          "bytes": 6546,
+          "path": "stations/groundwater_stations.parquet",
+          "sha256": "bded12005a2bb11b28538b41ca02eef8ec43660dfbe59b1c0e58b5676c2f625e"
+        },
+        {
+          "bytes": 6546,
+          "path": "stations/hydrological_stations.parquet",
+          "sha256": "bded12005a2bb11b28538b41ca02eef8ec43660dfbe59b1c0e58b5676c2f625e"
+        },
+        {
+          "bytes": 6546,
+          "path": "stations/meteorological_stations.parquet",
+          "sha256": "bded12005a2bb11b28538b41ca02eef8ec43660dfbe59b1c0e58b5676c2f625e"
+        },
+        {
+          "bytes": 6546,
+          "path": "stations/raingauge_proposed.parquet",
+          "sha256": "bded12005a2bb11b28538b41ca02eef8ec43660dfbe59b1c0e58b5676c2f625e"
+        },
+        {
+          "bytes": 21129,
+          "path": "stations/raingauge_stations_63.parquet",
+          "sha256": "e54f37d3785b1c64d29ce52f2fbb5b19b4e11c9bf6f388382f149a887dbe0587"
+        },
+        {
+          "bytes": 26208,
+          "path": "stations/srg.parquet",
+          "sha256": "680d5a3514c23953e2a796b7eef21f48340522323cc80e385e8fae3941fa83e3"
+        },
+        {
+          "bytes": 13287,
+          "path": "stations/srg_pwd_existing_53.parquet",
+          "sha256": "b6f2d4734ce9c6256bf2c49b2e89c74547bc4eb3a2edf627ffaf748ae730c980"
+        },
+        {
+          "bytes": 15814,
+          "path": "stations/srg_registry.parquet",
+          "sha256": "6596fcf8715c3cfeb6dbd1b0796280ee2aa2dfc5b125565788173bdf06ffe576"
+        },
+        {
+          "bytes": 6546,
+          "path": "stations/tidal_stations.parquet",
+          "sha256": "bded12005a2bb11b28538b41ca02eef8ec43660dfbe59b1c0e58b5676c2f625e"
+        }
+      ],
+      "license_tag": [
+        "license:other"
+      ],
+      "revision": "e8db7c44ebb36aa4a7e04b20dc2935ae2253d0c6"
+    },
+    "CashlessConsumer/chennaidss-gis-layers": {
+      "files": [
+        {
+          "bytes": 2439,
+          "path": "README.md",
+          "sha256": "8374c57963689dee4143c5528d534e99e9dc3ce85f4f640bdb1324706d3e94ac"
+        },
+        {
+          "bytes": 143740,
+          "path": "boundaries/adjacent_subbasin.parquet",
+          "sha256": "d3a28ce36695e05b653f602b8d5d8cce92307d0808ea018eade31c5e434c8d68"
+        },
+        {
+          "bytes": 81141,
+          "path": "boundaries/basin.parquet",
+          "sha256": "84d3aa6198a70f56e41e24af34e822a3ae0773c3659ae6864690f3acc4968d96"
+        },
+        {
+          "bytes": 74308,
+          "path": "boundaries/basin_boundary.parquet",
+          "sha256": "f7754f1de47e2754de6fdfa57108d7d56db639ee654dfbf377203945fbd4a9b5"
+        },
+        {
+          "bytes": 301306,
+          "path": "boundaries/blocks.parquet",
+          "sha256": "27785e1cd8567bbb08b01e71885013b33fb7679d7b78abae9336c9dd1d51ae70"
+        },
+        {
+          "bytes": 322539,
+          "path": "boundaries/catchments.parquet",
+          "sha256": "c8c26a179df2e24f356a7721eebd4f06705262e75aada4e4139553a18cb574ee"
+        },
+        {
+          "bytes": 23976,
+          "path": "boundaries/cma_boundary.parquet",
+          "sha256": "1cb03a4bac4e28f549bb0994fd5d4d83028f9c7208dc1e9b3364b4558eebd9a7"
+        },
+        {
+          "bytes": 220903,
+          "path": "boundaries/cmwssb_areas.parquet",
+          "sha256": "236208ebb6ee2c2e8b3104f8d3f32e13afd7d2ca41224413697690446a9b433b"
+        },
+        {
+          "bytes": 690217,
+          "path": "boundaries/cmwssb_divisions.parquet",
+          "sha256": "c801a96c5f72ddbe95c61e5034702858db63138632c1b8b324eee5ec6b016b20"
+        },
+        {
+          "bytes": 2626236,
+          "path": "boundaries/district.parquet",
+          "sha256": "80a5dc16f536d7d0a5f0e479b033fdf35e6b8d4831d84c8cf730591aabbb1a2e"
+        },
+        {
+          "bytes": 17574,
+          "path": "boundaries/erstwhile_cc.parquet",
+          "sha256": "285edb61111c73b3caaf96b317f4ec7d5cbf9cfbf6522cf0312b74a3bbf8c08b"
+        },
+        {
+          "bytes": 24112,
+          "path": "boundaries/extended_gcc.parquet",
+          "sha256": "02b9094a76957e7cf85a12f6753a034f9751dab3251b9c80c450ea643ae4c473"
+        },
+        {
+          "bytes": 222740,
+          "path": "boundaries/extended_gcc_zones.parquet",
+          "sha256": "32be649a5f3d0e2d996f40ebbfe2bd0c71ad850ec7b86eb5cbaeaefde6db68c9"
+        },
+        {
+          "bytes": 24759,
+          "path": "boundaries/gcc_boundary.parquet",
+          "sha256": "8255de35776fda116e62a00bde244165d5d95bd8287fe1e9d6aa42da9cde0d6c"
+        },
+        {
+          "bytes": 22528,
+          "path": "boundaries/municipalities.parquet",
+          "sha256": "ab0028b5e9bda4f8d228e7ff76da1339bb507c89c963d8417b51233e701d5e4c"
+        },
+        {
+          "bytes": 134047,
+          "path": "boundaries/new_subbasin.parquet",
+          "sha256": "f5f9a72104c1724093ce79cf92f00f1955d336b9b39f37205a92fef1430f4fb9"
+        },
+        {
+          "bytes": 125219,
+          "path": "boundaries/subbasin.parquet",
+          "sha256": "8f4a7c8f62549db35124ca6416be8696f909cd2d0169402091353ffa6823fa74"
+        },
+        {
+          "bytes": 133558,
+          "path": "boundaries/subbasin_boundary.parquet",
+          "sha256": "f499905c7873183b079a51aa22a482f101726904ff882d07e67373adf54c4400"
+        },
+        {
+          "bytes": 412042,
+          "path": "boundaries/taluks.parquet",
+          "sha256": "9f94791b7ab9dd65998a17a9de836481d385f5562260fa17797c578f3bed8fad"
+        },
+        {
+          "bytes": 562642,
+          "path": "boundaries/tehsil_boundary.parquet",
+          "sha256": "3a69114894cc9e6965b33586209ca48f4d096b44c6126490a848298d3c16dc90"
+        },
+        {
+          "bytes": 23042,
+          "path": "boundaries/ulb_boundary.parquet",
+          "sha256": "5e3493d972f8bdbbeae6c1181309b6110fa2f8a35423d87ffa3780955347ccff"
+        },
+        {
+          "bytes": 1005125,
+          "path": "boundaries/villages_1127.parquet",
+          "sha256": "fb0a1592d9911ff168064eb1a03c1deacb3859170106f5fc227545eb114e4566"
+        },
+        {
+          "bytes": 323194,
+          "path": "boundaries/watershed_boundary.parquet",
+          "sha256": "9c3fb9efdd9fc5ef18ba697c286561528a11192589994f5792b1d4525bcb029f"
+        },
+        {
+          "bytes": 304044,
+          "path": "boundaries/watersheds.parquet",
+          "sha256": "81c5bd50be7eb27cb162a3d3f622062477621930fed8c27974b2619280d66210"
+        },
+        {
+          "bytes": 214601,
+          "path": "boundaries/zone_boundary.parquet",
+          "sha256": "b46211f7671d840138ed2c2a13d0493416eb65867d30596fd15eeb4dfcd96604"
+        },
+        {
+          "bytes": 7351,
+          "path": "drainage/buckingham_canal.parquet",
+          "sha256": "112870a53fe14cec5248fa51f3f6f5e145fb81a49e507cbbac9f85cb55e19870"
+        },
+        {
+          "bytes": 2866,
+          "path": "drainage/krishna_water_canal.parquet",
+          "sha256": "02b0d3ce07eb37ed95b4632201ff957b637c2572663799b62490221f7a7860ea"
+        },
+        {
+          "bytes": 31728,
+          "path": "drainage/macro_drains.parquet",
+          "sha256": "a06dd2dfec55da427df0248081e31b960c7cecc6e740a48f8502b04b93f19a94"
+        },
+        {
+          "bytes": 263142,
+          "path": "drainage/manmade_channels.parquet",
+          "sha256": "bfe6eda3b3a8a88ec7a70143b0e8ad348c73816ee9ed2f850bbc875e59554188"
+        },
+        {
+          "bytes": 445479,
+          "path": "drainage/manmade_channels_line_3874.parquet",
+          "sha256": "966c03e48ff7755813c49bf143c2d308f192da26e147d7981ee59e5b6d21db35"
+        },
+        {
+          "bytes": 49465,
+          "path": "drainage/micro_drains.parquet",
+          "sha256": "686ba45d7de48cc4447f321ecccc8ade92e77009277f992860369702e02454e9"
+        },
+        {
+          "bytes": 1347943,
+          "path": "drainage/rivers_line_labels.parquet",
+          "sha256": "887398a03fc5f7dde4f19624f08e5b3f6fc257f4fa23f66e551b48c560f69fc6"
+        },
+        {
+          "bytes": 1232276,
+          "path": "drainage/rivers_streams_876.parquet",
+          "sha256": "f886dd832624b46acf0630c0c8d79b87cb2f12a65aeb4c5163633fdef2f7c1f9"
+        },
+        {
+          "bytes": 23457,
+          "path": "flood_history/flood_spot_heights.parquet",
+          "sha256": "51fe5f4cf7ef6294861ed88bcf824b754c2e4edfed2416191d519030c9113995"
+        },
+        {
+          "bytes": 18110,
+          "path": "flood_history/hotspots_gcc_2015.parquet",
+          "sha256": "a0510ff22cb2bbbc54ad27a9f26980f3d9ed596ca63ca018dd7baca1633e5a1c"
+        },
+        {
+          "bytes": 3404,
+          "path": "flood_history/hotspots_gcc_nem2020.parquet",
+          "sha256": "43c19270775174efd38498c3dfd4c5e49a2a2b6d55eef7aaa7e235af8ba8b771"
+        },
+        {
+          "bytes": 9389,
+          "path": "flood_history/hotspots_irs_2005.parquet",
+          "sha256": "8ac5e611f61660680381663e1086c3573e701641fe0c8e6a8b52561aec04a1f5"
+        },
+        {
+          "bytes": 12276,
+          "path": "flood_history/hotspots_kancheepuram_2015.parquet",
+          "sha256": "682440c9faae69fd6a8c63cea2aa4748466a2c54d9a3ce43dd4e244608b040e9"
+        },
+        {
+          "bytes": 10944,
+          "path": "flood_history/hotspots_tiruvallur_2015.parquet",
+          "sha256": "b4cfe07b1afbf604a63eef48f9e420f59cb0995acaddde71578941ccdcf27dd3"
+        },
+        {
+          "bytes": 3400,
+          "path": "flood_history/hotspots_vellore_2015.parquet",
+          "sha256": "7b810f8508276e69b5f32b2068bb3f4dac87b058ed1934454d79411488b3b1ff"
+        },
+        {
+          "bytes": 95128,
+          "path": "flood_history/irs_flood_extent_2005_235.parquet",
+          "sha256": "55521e9f9ed59458d55fb252dd90179727e65b0402ec2054adf69524995ffab0"
+        },
+        {
+          "bytes": 520457,
+          "path": "flood_history/nrsc_flood_extent_2015_4001.parquet",
+          "sha256": "c6e2d5d9dcac55e6de59ee61428ff9ad0e97b609aef406b64be40f8c78249056"
+        },
+        {
+          "bytes": 2305,
+          "path": "forecasts/ecmfw_bulletin.parquet",
+          "sha256": "56a5bf4884437493a2750be8c6c802d364a6d88e7fbe263c4b72e774ff8158fb"
+        },
+        {
+          "bytes": 2220,
+          "path": "forecasts/ecmfw_bulletin_values.parquet",
+          "sha256": "6f9071b9b54c9b845f38930071f1a45c85f024206a6b4c56833bc2edac5f2f4d"
+        },
+        {
+          "bytes": 8033,
+          "path": "forecasts/ecmwf_control.parquet",
+          "sha256": "889793ba0a90b990b52c5a5b66e4ea601731a8fbce8bfb171f0eee2082ceb010"
+        },
+        {
+          "bytes": 94,
+          "path": "forecasts/ecmwf_control_max.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 8151,
+          "path": "forecasts/ecmwf_ens_aftermichaung_p75.parquet",
+          "sha256": "05d72df86a779cef1dc8be41de9e714323fb6a786a023d9f5faef7730905fa5b"
+        },
+        {
+          "bytes": 94,
+          "path": "forecasts/ecmwf_ens_p25.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 94,
+          "path": "forecasts/ecmwf_ens_p50.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 94,
+          "path": "forecasts/ecmwf_ens_p75.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 94,
+          "path": "forecasts/ecmwf_ens_p90.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 7987,
+          "path": "forecasts/ecmwf_ensemble_after_michaung.parquet",
+          "sha256": "d617dbd7978c91e7dbc88820a812e769614c966730eebba48953195dab829635"
+        },
+        {
+          "bytes": 6980,
+          "path": "forecasts/ecmwfcontrol_651.parquet",
+          "sha256": "cb4508e1c17782e4ed6d52a981311e0bd4052dbcbf15ac4b92831aa61b2d0f98"
+        },
+        {
+          "bytes": 12371,
+          "path": "forecasts/floodforecast_2d_outputarea.parquet",
+          "sha256": "90cebde3c757ed6b48db2e2db0cfe3e0027febdbda5eb4c8c0d2123e0503c9b3"
+        },
+        {
+          "bytes": 94,
+          "path": "forecasts/getDailyRainfallValue_EMPTY.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 94,
+          "path": "forecasts/idw_demo.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 8983,
+          "path": "forecasts/iitm_bulletin_670.parquet",
+          "sha256": "416e06c5e927242a2abcede3f0ceb076952b96b6e89862e0bff7d2840b8d9569"
+        },
+        {
+          "bytes": 73585,
+          "path": "forecasts/iitm_control_12136.parquet",
+          "sha256": "da256afbd79968ec9013715b0ed8d64f7f78eb49864bc1e66de86862b7082355"
+        },
+        {
+          "bytes": 94,
+          "path": "forecasts/imd_bulletin.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 2053,
+          "path": "forecasts/imd_bulletin_values.parquet",
+          "sha256": "99989b918e442bdaf24c70b7c7a44fe8b68e304e2e3d7ed2473f02defd82bd08"
+        },
+        {
+          "bytes": 3153,
+          "path": "forecasts/ncepcontrol.parquet",
+          "sha256": "d63534cccdb539d84d2b12c3fec98e6e92dd9c2d55923c24fec8dd4412ad5104"
+        },
+        {
+          "bytes": 1430,
+          "path": "forecasts/ncepgfs_bulletin.parquet",
+          "sha256": "b889afb85d6785a2175ca0e5cd860353750d26fce0565c2ef7d588f1c4e49cd9"
+        },
+        {
+          "bytes": 2352,
+          "path": "forecasts/ncepgfs_control.parquet",
+          "sha256": "2fc159779c3be21a8da75d8b4c81c058c5a49a530d590f58e2b2f239eea4cf68"
+        },
+        {
+          "bytes": 4211,
+          "path": "forecasts/ncepgfs_control_ensemble.parquet",
+          "sha256": "85fe0d3ca4634b54da4a3fb6a2cb33368efb89b33c2a4ac2409000e8b051086e"
+        },
+        {
+          "bytes": 2237,
+          "path": "forecasts/ncepgfs_control_max.parquet",
+          "sha256": "d60b16ea96bc5a59d0de02b0dddcae2141199cbe1a1f86cc515abd332cf59deb"
+        },
+        {
+          "bytes": 1624,
+          "path": "forecasts/ncepgfs_ens_p75.parquet",
+          "sha256": "27c8bf0001ef6cdd017d3e6aef750eb1c340ec482c7c43749efc7ca2851a6176"
+        },
+        {
+          "bytes": 9155,
+          "path": "forecasts/ncmrwf_bulletin_573.parquet",
+          "sha256": "64035a1a8a022306aebb7b68d2ce9fab4ce2ef318a781715f4ca674cffce16c9"
+        },
+        {
+          "bytes": 9254,
+          "path": "forecasts/ncmrwf_bulletin_values.parquet",
+          "sha256": "d141956638411fca2161d8ad0c228a561dc8f17c0af082ca7365c5e33aec3ff9"
+        },
+        {
+          "bytes": 16504,
+          "path": "forecasts/ncmrwf_control_1452.parquet",
+          "sha256": "8911653cfb163d47907ed798d652ca6f5d604deeff1793f68997d4ef0b49ad9a"
+        },
+        {
+          "bytes": 3182,
+          "path": "forecasts/observed_rainfall_bulletin.parquet",
+          "sha256": "324b8e80d30f2e74a20842904ab4763655c883b322e4f18b9c1211a87fc74b66"
+        },
+        {
+          "bytes": 94,
+          "path": "forecasts/observed_rainfall_values.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 225343,
+          "path": "forecasts/onedim_model_area.parquet",
+          "sha256": "f75de98c402458aeddab7cdc794e3ba952f1ccb5dab5a1898c498254599e41c4"
+        },
+        {
+          "bytes": 25267,
+          "path": "forecasts/streetfloodbulletin_waterbodies.parquet",
+          "sha256": "a1f9726f68836364f1b887a1230f959459aa92cb57dbea519783e3c335980188"
+        },
+        {
+          "bytes": 1370669,
+          "path": "forecasts/streetfloodbulletin_waterways_1700.parquet",
+          "sha256": "cfea3d0f871f4927762f8feafc15ef9c4ff88f407eaaad9fb9c71386d70893df"
+        },
+        {
+          "bytes": 40801,
+          "path": "forecasts/twodim_modelarea_ecmwf.parquet",
+          "sha256": "3d2751c0cc6e60802b195e7c97775b58a36e5de30e0d0d6e91fbb1c0696221a5"
+        },
+        {
+          "bytes": 36605,
+          "path": "forecasts/twodim_modelarea_ncep.parquet",
+          "sha256": "6d3c804fb769b4d4318bbddc43fd82459d6c3e1b22ad6b4b527ca1aa32597ad9"
+        },
+        {
+          "bytes": 4753,
+          "path": "forecasts/ukmo_control.parquet",
+          "sha256": "d0e8246845bf0199c42bd54c91f5707253ccdef9484e2285d6b5f11452056048"
+        },
+        {
+          "bytes": 4768,
+          "path": "forecasts/ukmo_control_max.parquet",
+          "sha256": "dc3767ed93b0a332ea09bb9cac257e45a40de87f6a3072a06fc58e1272c6ab43"
+        },
+        {
+          "bytes": 25388,
+          "path": "layer_diff.json",
+          "sha256": "0fabee4637cc383f4535fd579a0e988fafd25b3c4b59906c71e2fdd2a5d79b1d"
+        },
+        {
+          "bytes": 1249,
+          "path": "misc/amenities.parquet",
+          "sha256": "26e5b1e8b142f908bc02554d978dba478b721bf0e46743c00a7ae490556a0328"
+        },
+        {
+          "bytes": 74567,
+          "path": "misc/basinboundary_obsbulletin.parquet",
+          "sha256": "c5023811776bae2f2e879f15660a836c2d74409bdf6dba9c4c05d98409231a6c"
+        },
+        {
+          "bytes": 5692,
+          "path": "misc/camera_poles_gcc.parquet",
+          "sha256": "37ebe465e8a97ed9ee24f408744eaca55f76e1a11353d674ccd1cd91c84bac20"
+        },
+        {
+          "bytes": 23478,
+          "path": "misc/cma_bulletin.parquet",
+          "sha256": "3d143fb33d24151487e14df24e051040135c693f29931e5d3bf8c0b089181a90"
+        },
+        {
+          "bytes": 33283,
+          "path": "misc/gcc_bulletin.parquet",
+          "sha256": "b661ec4b5a7ab365e53bd93f6ed48d6e32c09a1ea4d5e8b00049b8040e54dd52"
+        },
+        {
+          "bytes": 33365,
+          "path": "misc/gcc_observedrainfallbulletin.parquet",
+          "sha256": "b9a9d8c618d6e1ddb8e8035507a16d4c0eab4745481cfdbadf4061955a9a7e00"
+        },
+        {
+          "bytes": 223521,
+          "path": "misc/gcczones_bulletin.parquet",
+          "sha256": "41121b8167f64e5f6d34cc8660c144ae90e5ce8d9a870fd33b3cf12b13372f09"
+        },
+        {
+          "bytes": 94,
+          "path": "misc/gds.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 3033237,
+          "path": "misc/indianboundary_bulletin.parquet",
+          "sha256": "48a0fc62a4af013683866793995f7b372b5ffc0d6ab70baa56195098ecc22fc0"
+        },
+        {
+          "bytes": 1189,
+          "path": "misc/keylocations_gcc_obsbulletin.parquet",
+          "sha256": "dae6fa2334d000c8d2c8d8e265cf6c87e85b402c21ebbff393b97ef2e157e88c"
+        },
+        {
+          "bytes": 160771,
+          "path": "misc/levelling.parquet",
+          "sha256": "6c932e9f79b2cde105f1db7c5305da9f6e5aac3d881a142dfaeeaf64a863b605"
+        },
+        {
+          "bytes": 5920,
+          "path": "misc/locations.parquet",
+          "sha256": "660d347b47116eccff8de8398dce0cc20267c3998631f616f5b9b975e2bb8a83"
+        },
+        {
+          "bytes": 6231,
+          "path": "misc/ncepgfsgrid.parquet",
+          "sha256": "9a8665b60399cbddc3d7d7405ed6b37841ac518af90fd09d1e196da5c6d45074"
+        },
+        {
+          "bytes": 897,
+          "path": "misc/offices_cmwssb.parquet",
+          "sha256": "fa0a7cc32166269358216f6bd70f6f8dcbe8b0b991243e13259c6c4013eca10c"
+        },
+        {
+          "bytes": 1340,
+          "path": "misc/offices_collectors.parquet",
+          "sha256": "8461cc0b234106554bb51d14752c832452c49fb6b091c6782db1e266d3479757"
+        },
+        {
+          "bytes": 957,
+          "path": "misc/offices_fire.parquet",
+          "sha256": "ae5f880d078ae7851f431847c638ad2ec84bc474a65c433dbf97dcd8f7ff4d6a"
+        },
+        {
+          "bytes": 3063,
+          "path": "misc/offices_gcc.parquet",
+          "sha256": "2bc7257a7d6ed2dccfbd4d06f3f678856e6d46057f69aef502aaf05852f8b5bb"
+        },
+        {
+          "bytes": 1423,
+          "path": "misc/offices_police.parquet",
+          "sha256": "5ce0e90c726440caf381302de638aea1fb27c452b028107687d4c90868616fd3"
+        },
+        {
+          "bytes": 1066,
+          "path": "misc/offices_twad.parquet",
+          "sha256": "1131e9ae7f22e95716f5d0f81d79296a436ad14fe27989c7a3c155d690f22137"
+        },
+        {
+          "bytes": 2502,
+          "path": "misc/offices_wrd.parquet",
+          "sha256": "0c7ec26eeb980b0e26fde203b1d7e6ab63e6624a97628a2f8a903ffcfc6a65e0"
+        },
+        {
+          "bytes": 1840,
+          "path": "misc/proposed_flood_control_rooms.parquet",
+          "sha256": "34d1f3f41666e9733bd0609b4498080d4f406282c4202a73cae06b9ba6682080"
+        },
+        {
+          "bytes": 1343394,
+          "path": "misc/results_elements_242_sample20k.parquet",
+          "sha256": "92efe436dda84810d8638772fef3c22ad26d737d7479880dea090faf9e027727"
+        },
+        {
+          "bytes": 8461,
+          "path": "misc/rf_ddmmyy_obsbulletin.parquet",
+          "sha256": "0a9816ee79e8e3d063b4357a33ae2e626982e2303318c5da5fa88a160ba27347"
+        },
+        {
+          "bytes": 8505,
+          "path": "misc/rf_gcc_obsbulletin.parquet",
+          "sha256": "23e725a35d448de6861359b4d0735c643608bfbc6c8788ae9ac5cbfb7596bfb7"
+        },
+        {
+          "bytes": 1265,
+          "path": "misc/sewage_treatment_plants.parquet",
+          "sha256": "4d1178c9e8954c60fc39c7de726a072be70875c6aa2d3ddee35ffb3c0579b9db"
+        },
+        {
+          "bytes": 52474,
+          "path": "misc/stateboundary_bulletin.parquet",
+          "sha256": "510c218680970ae7beeae70401240e5430a928d9e177854040f891361ae3a04e"
+        },
+        {
+          "bytes": 102292,
+          "path": "misc/subbasinboundary_bulletin.parquet",
+          "sha256": "35fd0981c69ff8083be30f25fb8a1422f3bfe01975491ad1f42e3e127935dd4d"
+        },
+        {
+          "bytes": 94,
+          "path": "misc/surface_test.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 317622,
+          "path": "misc/testview.parquet",
+          "sha256": "dca457e38a7d9e8f0e7908f974a819cb844e6a5860467067bdc6873ddc56b95a"
+        },
+        {
+          "bytes": 351603,
+          "path": "misc/tmp_table_32k_sample.parquet",
+          "sha256": "8afe63062ccc9a756314b9a348435777e5c3d2546e93ded82c9248302e5636cf"
+        },
+        {
+          "bytes": 6330,
+          "path": "misc/water_distribution_stations.parquet",
+          "sha256": "0814feb3283ed2570ae66813d06af3a77c7d469363d5872659a929bc24b03162"
+        },
+        {
+          "bytes": 1893,
+          "path": "misc/water_treatment_plants.parquet",
+          "sha256": "fc012cbb1ef78e7c08c5bce53097504282c2f0f36107a914392f9066f4e0c753"
+        },
+        {
+          "bytes": 1753,
+          "path": "stations/administrativetable.parquet",
+          "sha256": "e3383ef80b35ea62007a436b4867c8757b73365ae955b8a2fbbe57e02fe55933"
+        },
+        {
+          "bytes": 2475,
+          "path": "stations/agro_stations.parquet",
+          "sha256": "d581b584a0b8be3f23ba2eba3a37633476d84e3af6f9e7c0ce8e505d7b99763f"
+        },
+        {
+          "bytes": 28348,
+          "path": "stations/arg.parquet",
+          "sha256": "4cd5338f04df671b9a62bc58bf145bfc3a4c0e1786fff0151d675074731ac338"
+        },
+        {
+          "bytes": 2427,
+          "path": "stations/arg_iitm_existing.parquet",
+          "sha256": "1e1364e7a322699133d68a22f4840115ea04762ccddbdcde13626ae2d7fa1748"
+        },
+        {
+          "bytes": 6684,
+          "path": "stations/arg_proposed.parquet",
+          "sha256": "95a3aefe15663a9c35e94af03fa6c41f900416e505b68978a3faf88ed5d5705f"
+        },
+        {
+          "bytes": 37306,
+          "path": "stations/arg_registry_328.parquet",
+          "sha256": "f2c2abc93a0ae20c673917f6e747d9f9b85acf01b85df0286f901a8b75924a00"
+        },
+        {
+          "bytes": 8227,
+          "path": "stations/awlr_44.parquet",
+          "sha256": "0b35a0dc316bdf2586be9ebd2c62f141487859c6022e2da5dc06e7cca8ef1dc5"
+        },
+        {
+          "bytes": 3349,
+          "path": "stations/awlr_gcc_existing_46.parquet",
+          "sha256": "eab8d4523b48fd2130a836d4dda542ec80e0f2ef3ebd8b767bedbc29d7ef849c"
+        },
+        {
+          "bytes": 1734,
+          "path": "stations/awlr_iitm_existing.parquet",
+          "sha256": "ad68057d9d0c5a4d782e2d655b66bee68daf57136742ebd66df31c546bd11913"
+        },
+        {
+          "bytes": 1674,
+          "path": "stations/awlr_plank.parquet",
+          "sha256": "a31037c06cd49a64f40f514647947fe6d786f5c9e8ac0af08af6a47456d49335"
+        },
+        {
+          "bytes": 9236,
+          "path": "stations/awlr_proposed_78.parquet",
+          "sha256": "7b97b3cf31c12f41b115f15c6260a00d1510837af8fc248eb860b02b432904c6"
+        },
+        {
+          "bytes": 8859,
+          "path": "stations/awlr_proposed_basin_139.parquet",
+          "sha256": "f5004569314cd03a37b21d8c3c85dc54cddac10b59096109724ab9b2569326c4"
+        },
+        {
+          "bytes": 3310,
+          "path": "stations/awlr_radarpressureultrasonic.parquet",
+          "sha256": "459832355c9405cddf09f904043de18359bac43c97a720df35565d055473311d"
+        },
+        {
+          "bytes": 8054,
+          "path": "stations/awlr_shaftencoder.parquet",
+          "sha256": "962d746751abbf2f5bccdab631f2b968feacde84c3e500e1f45f37c849a11c00"
+        },
+        {
+          "bytes": 14390,
+          "path": "stations/awlr_stations_121.parquet",
+          "sha256": "20f0b591fb88ad172f3c92fecc912eac034612a092582e4de947c720a16471a1"
+        },
+        {
+          "bytes": 2277,
+          "path": "stations/aws_iitm_existing.parquet",
+          "sha256": "b0b7dcdbc7fe40eb7b962433cc89e6fcc3b80cf66a4bc130a8db04d5a18f37d4"
+        },
+        {
+          "bytes": 2843,
+          "path": "stations/aws_proposed.parquet",
+          "sha256": "3ed442010e939e201f60fa7c8e7f77122a056faddbed81824815463adab55d22"
+        },
+        {
+          "bytes": 21082,
+          "path": "stations/aws_registry_39.parquet",
+          "sha256": "a86b5579903eec32915689026bc6141679202966bd0a16396d9065dc1a014fb0"
+        },
+        {
+          "bytes": 3640,
+          "path": "stations/aws_registry_sql.parquet",
+          "sha256": "ff56700fcf2b2f2399bf525211e364386dd094848a1c76501c70319679e017fc"
+        },
+        {
+          "bytes": 25903,
+          "path": "stations/dgps_tanks.parquet",
+          "sha256": "d76f4e4b1f5257a0840a8c3d81f04c623b1476bb284057b2c7ec5f0a2dea281d"
+        },
+        {
+          "bytes": 2303,
+          "path": "stations/gate_sensors_proposed.parquet",
+          "sha256": "f8be762583a498ff0be5f2312b3a4db6ef88639da497290a844779064902f690"
+        },
+        {
+          "bytes": 94,
+          "path": "stations/groundwater_stations.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 94,
+          "path": "stations/hydrological_stations.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 94,
+          "path": "stations/meteorological_stations.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 94,
+          "path": "stations/raingauge_proposed.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 7277,
+          "path": "stations/raingauge_stations_63.parquet",
+          "sha256": "9616a6ac312e75a740075aa130f4ed73f59ef0ba6f87f206443151e480ee4900"
+        },
+        {
+          "bytes": 8246,
+          "path": "stations/srg.parquet",
+          "sha256": "8d8cbcf18f2693f941d598afcb3406c1b019a644c3e584bf67d1156bb7f492f1"
+        },
+        {
+          "bytes": 3795,
+          "path": "stations/srg_pwd_existing_53.parquet",
+          "sha256": "eed0a763d1e986ee1217895bbdb52d7e8d6d750370bf9e460e0a62ef01b32af4"
+        },
+        {
+          "bytes": 4729,
+          "path": "stations/srg_registry.parquet",
+          "sha256": "e7318b56e19c21857ca7b88fd7095fc4c4248f4afe45207dd87dff1e38af2f18"
+        },
+        {
+          "bytes": 94,
+          "path": "stations/tidal_stations.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 12294,
+          "path": "wards_crowd_alerts/crowdsourced_173.parquet",
+          "sha256": "f3f6d1ac2352dc1e9929b4feebdd5a341f7dbc3db34b3e98aaaf70e1b3421e24"
+        },
+        {
+          "bytes": 1070,
+          "path": "wards_crowd_alerts/floodwarnings_4.parquet",
+          "sha256": "4d84ec16d589d5c4e4ac8e761eac07c8b74d2f59826b7a8a11db7ac1cff8f13f"
+        },
+        {
+          "bytes": 690209,
+          "path": "wards_crowd_alerts/gcc_200_wards.parquet",
+          "sha256": "aecfeb777025fe6a37e22430c272587bfd2db24bc0e7530a2a45620347dd0582"
+        },
+        {
+          "bytes": 690209,
+          "path": "wards_crowd_alerts/gcc_200_wards_labels.parquet",
+          "sha256": "aecfeb777025fe6a37e22430c272587bfd2db24bc0e7530a2a45620347dd0582"
+        },
+        {
+          "bytes": 94,
+          "path": "wards_crowd_alerts/giswardmesh.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 698611,
+          "path": "wards_crowd_alerts/sb_wardboundaries_337.parquet",
+          "sha256": "b71622655449aeb0ffed9047ff586794575fe03466801f866ed462fc4f6f8831"
+        },
+        {
+          "bytes": 793964,
+          "path": "wards_crowd_alerts/ward_boundary_200.parquet",
+          "sha256": "6d3fbda6c1369c6d5aa4acacf5254cdbb822d2404932c90f5d15e2da771ffb49"
+        },
+        {
+          "bytes": 790950,
+          "path": "wards_crowd_alerts/ward_waterdepth_minmax_200.parquet",
+          "sha256": "2b4e4817f28ae077725035fa61d290b2cc6394a092b45ed919dada89e3aba149"
+        },
+        {
+          "bytes": 10934,
+          "path": "water/awlrrls_latest_69.parquet",
+          "sha256": "8571f6976aef1181cd49264c42ec02361befcdb4af6919202e61066db03dce48"
+        },
+        {
+          "bytes": 76169,
+          "path": "water/basin_lakes.parquet",
+          "sha256": "a80fc6293363825207375bb5a4108ec20d55974147a30689cec8e40c200d3648"
+        },
+        {
+          "bytes": 242295,
+          "path": "water/bathymetry_5298.parquet",
+          "sha256": "32c9f7c5e46b1c2314927025fe617cfeb5522090c92c8be4a3570fee589240f6"
+        },
+        {
+          "bytes": 5527381,
+          "path": "water/bathymetry_contours_2863.parquet",
+          "sha256": "71dd4a37c222e0bfd9a38ff32be6011c5efac4afd2786b805a80ba19ec87fe8a"
+        },
+        {
+          "bytes": 8776,
+          "path": "water/creeks.parquet",
+          "sha256": "e35b4c2f2cad5939737839e8087066c61623e770492b592910968a2e7731efd3"
+        },
+        {
+          "bytes": 143953,
+          "path": "water/gcc_tanks.parquet",
+          "sha256": "4460c2fed994f7ec0a832bbc169b526530d5e84a90911402cdce0c7e52c39709"
+        },
+        {
+          "bytes": 3090165,
+          "path": "water/lakes_reservoirs_5841.parquet",
+          "sha256": "dc8b1b46afb7146b23c4a359535a20a19ed868900a7aaefa76a1979b26341b43"
+        },
+        {
+          "bytes": 77597,
+          "path": "water/majorwaterbodies_bulletin.parquet",
+          "sha256": "5bbd0179c939345d6934afd5c7e33187292cae40ac451022068c33ec46cd2398"
+        },
+        {
+          "bytes": 3543,
+          "path": "water/pallikaranai_marsh.parquet",
+          "sha256": "5e462c00dce4e5abc6277af023ef0b54660b0f62029f2993b3c693306841c2d3"
+        },
+        {
+          "bytes": 2398973,
+          "path": "water/purd_tanks_6720.parquet",
+          "sha256": "d863a379a2232da9e2f52c153c98b449325cd06c2ff509356473ad41c887c9d0"
+        },
+        {
+          "bytes": 813396,
+          "path": "water/pwd_tanks_785.parquet",
+          "sha256": "5c4d61389825664f75475242667b14d3a1bec9548249ffe45624a36e7f567b9f"
+        },
+        {
+          "bytes": 18651,
+          "path": "water/rivers_naturalchannels.parquet",
+          "sha256": "4a08eb0dfebe36c85035469148eff6f5fe1f194bbe65180694c20158e7b98676"
+        },
+        {
+          "bytes": 1347943,
+          "path": "water/rivers_naturalchannels_line_946.parquet",
+          "sha256": "887398a03fc5f7dde4f19624f08e5b3f6fc257f4fa23f66e551b48c560f69fc6"
+        },
+        {
+          "bytes": 144035,
+          "path": "water/routing_tanks.parquet",
+          "sha256": "2e0651f160c3de09a6b8b93fd683ea3537fb9c252b70b33cdcc3204852d945b2"
+        },
+        {
+          "bytes": 4212,
+          "path": "water/scenario_points_bydatetime.parquet",
+          "sha256": "24452f3399409c4f453c2424ddaae3fb112a538c3b0fab47353153138800c3cb"
+        },
+        {
+          "bytes": 4212,
+          "path": "water/scenario_waterlevel_points_datetime.parquet",
+          "sha256": "24452f3399409c4f453c2424ddaae3fb112a538c3b0fab47353153138800c3cb"
+        },
+        {
+          "bytes": 94,
+          "path": "water/spillway_uncontrolled.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 15164,
+          "path": "water/structures.parquet",
+          "sha256": "cfe20864da3f809688c30ae567c59bc3aa6015280be4e131e91d3ac02435d1eb"
+        },
+        {
+          "bytes": 4324,
+          "path": "water/tank_agency.parquet",
+          "sha256": "d82e9041b95e3070aa1de1fa56279b5422a740e38d9f8ed4045da3277f627cc4"
+        },
+        {
+          "bytes": 925,
+          "path": "water/tank_drinkingwateroff_pump.parquet",
+          "sha256": "fe17fe3b4293cb0f948aefe6093186e0ff981b65701d3aab91727eaefe91634a"
+        },
+        {
+          "bytes": 2054,
+          "path": "water/tank_drinkingwaterofftakes.parquet",
+          "sha256": "edea6353fb60868623582de87519809b9a7db91ebbb7da43ff08d20ad5f7c0dd"
+        },
+        {
+          "bytes": 4597,
+          "path": "water/tank_hydraulic.parquet",
+          "sha256": "acb792f7b778f327d0df0c6a87607a9aecc85421734aec0cb96675d6a9a3ab51"
+        },
+        {
+          "bytes": 4762,
+          "path": "water/tank_inflowdetails.parquet",
+          "sha256": "7ed1c5496bd6f42b3ed1c26c3b1c63c1965d2cf45dd299d14b397f884abcaa8b"
+        },
+        {
+          "bytes": 4317,
+          "path": "water/tank_master.parquet",
+          "sha256": "7e86ec2cc7526f517919d7b00e1e35470b5dd598da6e167bfdd177f3ab8d666e"
+        },
+        {
+          "bytes": 4220,
+          "path": "water/tank_master_new.parquet",
+          "sha256": "36c0ec200be08adf474ac461ea81c194e563145f31441e58a4feb4541b8a0d1e"
+        },
+        {
+          "bytes": 2675,
+          "path": "water/tank_sluice.parquet",
+          "sha256": "f67fbd5e0fcfd847dd564f0b29b35e8f242fa9eaf7b41e5f9676b87ae6bc3562"
+        },
+        {
+          "bytes": 2858,
+          "path": "water/tank_spillway_gate.parquet",
+          "sha256": "106df0f1820b434cbb8e6fa3191ba154162f5dc2bf69b3fc076540de4657909d"
+        },
+        {
+          "bytes": 2004,
+          "path": "water/tank_spillway_uc.parquet",
+          "sha256": "610933bc8d880c214220dfa3edd5fe3a83169570ab421621e7ea20d31c927eff"
+        },
+        {
+          "bytes": 2365604,
+          "path": "water/waterbodies_bulletin_5659.parquet",
+          "sha256": "7ab45aed390b20ac0d1edb13095c1bcb3e876cfd2c4cbe802be23c68045c7619"
+        },
+        {
+          "bytes": 426120,
+          "path": "water/waterbodies_cma.parquet",
+          "sha256": "0d883de32c1f23212e35ec1576a0dc08e099ee457b0994c7279e5b95e5b32e61"
+        },
+        {
+          "bytes": 94,
+          "path": "water/waterlevel_display_points.parquet",
+          "sha256": "19c2f7701b36b57264898bb063f00c62351d8e32c4cdb51e96348a8a92e1c13c"
+        },
+        {
+          "bytes": 4212,
+          "path": "water/waterlevel_display_points_datetime.parquet",
+          "sha256": "24452f3399409c4f453c2424ddaae3fb112a538c3b0fab47353153138800c3cb"
+        },
+        {
+          "bytes": 1190424,
+          "path": "water/waterways_bulletin_941.parquet",
+          "sha256": "44e15f727cbeeaf5f0e7ad83916cb5153b9bf3ee92e2c39b509296996d22d0ad"
+        },
+        {
+          "bytes": 187734,
+          "path": "water/waterways_cma.parquet",
+          "sha256": "c392dc082d645238740f78ea9a85124af0c734e05290a73f69540df7bd677c17"
+        }
+      ],
+      "license_tag": [
+        "license:other"
+      ],
+      "revision": "13ced17865ff59f93a2fbae7c9e5744a38117563"
+    }
+  },
+  "fetched_on": "2026-10-04",
+  "script": "scripts/fetch_training_sources.py",
+  "source": "Chennai Flood Monitor archive via Hugging Face"
+}

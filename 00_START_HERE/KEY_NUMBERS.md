@@ -98,3 +98,14 @@ Source: `01_code/citypulse-IDP/data/results/2026-10-03-travel-modes-arterial-eme
 | Chennai District Flood Severity Index | 16.62: 2nd of 37 in Tamil Nadu, 117th of 743 in India |
 | Replay proxy date 2015-12-02 | inside the IMD Chennai event of 1-3 December 2015 |
 | Source | `data/india_flood/2026-10-04/result.json` |
+
+## Training-source profile (ADR-024, 4 October 2026)
+
+| Quantity | Value |
+|---|---|
+| Daily rain gauges, every year 1988 to 2019 | 53 stations, about 19,300 rows a year; none for 2020 to 2022; 41 to 51 stations for 2023 to 2026 |
+| Chennai-named IMD events in 1988 to 2019 | 33 events, 354 event-days of 11,688 (3%) |
+| Citizen flood reports | 173; 161 are level 1; 12 are level 2 or more (9 inside Chennai); 3 contain "test" |
+| Spatial flood labels | 2015: 327 GCC hotspots, 4,001 extent polygons; 2005: 200 depth points, 235 extent polygons; 2020: 53 hotspots |
+| NYC FloodNet | 3,422 events, 318 sensors, 2020-11 to 2026-09; median peak depth 3.48 in; 8% reach 12 in |
+| Source | `data/chennai_cfm/2026-10-04/profile.json`, `data/nyc_floodnet/2026-10-04/profile.json` |

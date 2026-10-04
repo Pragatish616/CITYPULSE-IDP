@@ -10,3 +10,4 @@
 *.mjs text eol=lf
 # Pinned raw downloads must stay byte-identical (their SHA-256 is recorded in result.json).
 01_code/citypulse-IDP/data/india_flood/**/raw/* -text
+01_code/citypulse-IDP/data/nyc_floodnet/**/raw/* -text

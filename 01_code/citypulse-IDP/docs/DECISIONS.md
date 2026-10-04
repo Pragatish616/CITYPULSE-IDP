@@ -794,3 +794,29 @@ CSVs, 1.9 MB) and the DFO India events (296 polygons, 0.4 MB).
 - District points are place names, not boundaries, so containment is approximate.
 - Licences: IFI is CC BY-NC 4.0; DFO is CC BY 3.0 for older and CC BY-NC-SA 4.0 for recent events. The merged data must stay research-only and share-alike.
 - Not yet tested: whether a district-level prior from this data beats the flat prior (p = 0.02) used outside Chennai. That needs its own pre-registered study.
+
+---
+
+## ADR-024: What to train on, and what not to (4 October 2026)
+
+**Status:** accepted as a plan; nothing has been trained.
+
+**Context.** The user asked for the best dataset to make an ML model worth using for route selection (`00_START_HERE/DATA_SOURCES_ASSESSMENT.md`).
+A search found no public dataset with street-level, time-stamped flood labels for Chennai. The user approved downloading the Chennai Flood Monitor archive
+(three Hugging Face datasets) and NYC FloodNet; the DEM, the OpenCity depth points and a live poller were not approved and are not built.
+
+**Decision.**
+1. Two models are worth attempting, both small, both judged against a baseline fixed beforehand:
+   (a) an **event-gating model**: daily rain from 53 Chennai gauges, 1988 to 2019, against the 33 IMD-reported Chennai events of those years (354 event-days of 11,688),
+   tested on later years and compared with a seasonal-rate table; (b) a **spatial susceptibility model** on the 2005, 2015 and 2020 flood points and extents plus drainage layers,
+   tested on held-out areas and held-out events, treated as positive-unlabelled.
+2. **No street-by-street live predictor is claimed.** The one source with street-level timestamps (173 citizen reports) has 12 reports above level 1.
+3. **NYC FloodNet is a pipeline sandbox only.** Models trained on it are not transferred to Chennai.
+4. **Street-level, time-stamped labels must be collected this monsoon** (field logs at the GCC subways and named points; app reports with a passability state). This needs the owner's go-ahead
+   for any polling of the government server and volunteers for field work.
+5. The CFM raw files stay out of git (no stated licence).
+
+**Evidence.** `data/chennai_cfm/2026-10-04/profile.json`, `data/nyc_floodnet/2026-10-04/profile.json`.
+
+**Limits.** Daily rain is coarse for flash flooding; there is no rain data for 2020 to 2022; no rain or level data from automatic stations in any flood window; the ward depth table is a frozen 2021 model run;
+the Hugging Face cards overstated the data (15-minute readings, 169 reports from 2025), as the download showed.
