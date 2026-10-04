@@ -788,6 +788,11 @@ Budgets to measure against (targets, not claims): cold start under 4 s; offline 
 - Done: registry, geocoding (3 levels), NASA POWER rainfall, pre-registration with two addenda, `scripts/nw_*.py`, result file, 5 helper tests.
 - Next: new pre-registered experiments with better rainfall (IMD gridded, ERA5-Land, IMERG) or finer labels; none is started.
 
+**M6.5 Terrain and past floods as a flood prior (ADR-026)**
+- Status: DONE as a research result; **no prior is in the app.** · Owner: Agent · Depends on: M3.5, M6.4
+- Done: 91 India flood maps and elevation tiles fetched, nationwide terrain model trained under a pre-registered rule (met), Chennai-local models (not met), transfer to Chennai (met, narrowly), three routing tests (not met), tested hydrology code. Scripts `scripts/sus_*.py`, `dem_fetch.py`, `gfd_fetch.py`, `hydrology.py`.
+- Next: collect street-level, time-stamped passability this monsoon; only then revisit a learned prior, and test it against the oracle gap shown in ADR-026.
+
 ### M7. Evaluation and the paper
 
 **M7.1 Studies on monsoon labels**

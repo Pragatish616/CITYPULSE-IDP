@@ -121,3 +121,17 @@ Source: `01_code/citypulse-IDP/data/results/2026-10-03-travel-modes-arterial-eme
 | State-holdout mean AP | model on unseen states 0.0506; best baseline 0.0497 |
 | Verdict against the pre-registered rule | **no evidence of added value** |
 | Source | `data/results/2026-10-04-nationwide-flood-gating/result.json` |
+
+## Terrain and past floods (ADR-026, 4 October 2026)
+
+| Quantity | Value |
+|---|---|
+| India flood maps used | 91 Global Flood Database maps (2000 to 2018), 2,610,126 sampled cells, 163 two-degree blocks |
+| Terrain model, held-out blocks | AP 0.311, AUC 0.930; best single feature (relief within 5 km) AP 0.188, AUC 0.866 |
+| Maps where the model beats the single feature | 81 of 91 (AP), 89 of 91 (AUC) |
+| Rainfall climatology added | no evidence (AP +0.0084) |
+| Chennai, local model, held-out blocks | AP 0.238, AUC 0.921; inside the city AUC 0.614 |
+| Nationwide model on Chennai (no Chennai training cells) | AP 0.073, AUC 0.759, base rate 0.029 |
+| Oracle prior, walker risk weight 20 | removes 84% of exposure to the 2015 flood at +39 min on a 315-minute walk |
+| Learned and current priors | no measurable reduction |
+| Sources | `data/results/2026-10-04-susceptibility-*/` |

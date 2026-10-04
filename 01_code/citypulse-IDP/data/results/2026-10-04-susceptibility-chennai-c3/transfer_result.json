@@ -1,0 +1,93 @@
+{
+  "base_rate": 0.028505033906826738,
+  "baseline": {
+    "ap": 0.06405021622868559,
+    "auc": 0.7011612448448947,
+    "ci95": {
+      "ap": [
+        0.04211626497465414,
+        0.09111778450803579
+      ],
+      "auc": [
+        0.6553267517714252,
+        0.746155134064588
+      ]
+    },
+    "top10_capture": 0.2723166272316627
+  },
+  "best_single_feature_on_training": "relief5km",
+  "best_single_feature_training_ap": 0.18870595288787126,
+  "chennai_cells": 163094,
+  "chennai_positives": 4649,
+  "decision_rule_1_transfers_to_chennai": true,
+  "model": {
+    "ap": 0.07332013317170624,
+    "auc": 0.759011072339619,
+    "ci95": {
+      "ap": [
+        0.05115845602844953,
+        0.10284310786580408
+      ],
+      "auc": [
+        0.7173729980675294,
+        0.7974791508883804
+      ]
+    },
+    "top10_capture": 0.31318563131856314
+  },
+  "model_minus_baseline": {
+    "ap": 0.00926991694302065,
+    "ap_ci95": [
+      8.24483058345965e-05,
+      0.018275689825580126
+    ],
+    "auc": 0.057849827494724226,
+    "auc_ci95": [
+      0.03351192663995371,
+      0.08584664395791572
+    ]
+  },
+  "preregistration_commit": "3533dfc5b0e743e7c3a541ef9397558312495c8a",
+  "rows_removed_inside_chennai_area": 10470,
+  "seconds": 72,
+  "single_feature_scores_on_chennai": {
+    "dist_sea_km": {
+      "ap": 0.1188,
+      "auc": 0.8725
+    },
+    "dist_water_km": {
+      "ap": 0.072,
+      "auc": 0.7881
+    },
+    "elev": {
+      "ap": 0.104,
+      "auc": 0.8513
+    },
+    "elev_min": {
+      "ap": 0.103,
+      "auc": 0.8511
+    },
+    "elev_range": {
+      "ap": 0.0435,
+      "auc": 0.5961
+    },
+    "hand_water": {
+      "ap": 0.0261,
+      "auc": 0.5097
+    },
+    "relief5km": {
+      "ap": 0.0641,
+      "auc": 0.7012
+    },
+    "slope": {
+      "ap": 0.0504,
+      "auc": 0.6666
+    },
+    "tpi5km": {
+      "ap": 0.0275,
+      "auc": 0.5268
+    }
+  },
+  "task": "ADR-026 Part C3 transfer: nationwide terrain model applied to Chennai",
+  "training_rows": 2599656
+}

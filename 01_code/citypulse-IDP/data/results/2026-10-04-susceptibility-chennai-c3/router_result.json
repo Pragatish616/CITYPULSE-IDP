@@ -1,0 +1,302 @@
+{
+  "decision_rule_2_nationwide_prior_improves_routing": false,
+  "pairs_scored": 246,
+  "seconds": 380,
+  "summary": {
+    "base05|car_l5": {
+      "mean_added_free_flow_min": 0.0675601626016258,
+      "mean_exposure_share": 0.08675471711354661,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        -0.0021923298195806484,
+        0.002974762058461935
+      ],
+      "reduction_vs_flat": 0.0003655639561279382
+    },
+    "base05|ped_l20": {
+      "mean_added_free_flow_min": 5.1024467442035455,
+      "mean_exposure_share": 0.11385835151808557,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.01031012735026531,
+        7.250649261458726e-05
+      ],
+      "reduction_vs_flat": -0.004856717429203593
+    },
+    "base05|ped_l5": {
+      "mean_added_free_flow_min": 2.3046314363143656,
+      "mean_exposure_share": 0.1105354552404433,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.005858924151034438,
+        0.0027872091645276082
+      ],
+      "reduction_vs_flat": -0.0015338211515613267
+    },
+    "flat|car_l5": {
+      "mean_added_free_flow_min": 0.0,
+      "mean_exposure_share": 0.08712028106967454,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        0.0,
+        0.0
+      ],
+      "reduction_vs_flat": 0.0
+    },
+    "flat|ped_l20": {
+      "mean_added_free_flow_min": 0.0,
+      "mean_exposure_share": 0.10900163408888196,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        0.0,
+        0.0
+      ],
+      "reduction_vs_flat": 0.0
+    },
+    "flat|ped_l5": {
+      "mean_added_free_flow_min": 0.0,
+      "mean_exposure_share": 0.10900163408888196,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        0.0,
+        0.0
+      ],
+      "reduction_vs_flat": 0.0
+    },
+    "gcc|car_l5": {
+      "mean_added_free_flow_min": 0.1451199864498646,
+      "mean_exposure_share": 0.08723369913733245,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        -0.0018749104616999465,
+        0.0016459180929568576
+      ],
+      "reduction_vs_flat": -0.00011341806765792317
+    },
+    "gcc|ped_l20": {
+      "mean_added_free_flow_min": 2.964235958672101,
+      "mean_exposure_share": 0.10756384964230628,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.0027646054600137895,
+        0.005436445039040532
+      ],
+      "reduction_vs_flat": 0.001437784446575703
+    },
+    "gcc|ped_l5": {
+      "mean_added_free_flow_min": 1.8680661020776959,
+      "mean_exposure_share": 0.10674727482369713,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.0018731796517472558,
+        0.006232017827386735
+      ],
+      "reduction_vs_flat": 0.002254359265184845
+    },
+    "model05|car_l5": {
+      "mean_added_free_flow_min": 0.34209512195121994,
+      "mean_exposure_share": 0.08827592317798176,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        -0.003175239146389778,
+        0.000741185277448849
+      ],
+      "reduction_vs_flat": -0.0011556421083072082
+    },
+    "model05|ped_l20": {
+      "mean_added_free_flow_min": 5.956789214468535,
+      "mean_exposure_share": 0.10853928480966682,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.0020733488688833,
+        0.00309046602709645
+      ],
+      "reduction_vs_flat": 0.00046234927921515656
+    },
+    "model05|ped_l5": {
+      "mean_added_free_flow_min": 2.6217286359530267,
+      "mean_exposure_share": 0.1085804054587347,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.0016723369213685847,
+        0.0024880167896630945
+      ],
+      "reduction_vs_flat": 0.0004212286301472722
+    },
+    "national_better_than_base05|car_l5": {
+      "ci95": [
+        -0.004631392657960453,
+        0.0009290520717857211
+      ],
+      "mean_exposure_difference": -0.0015567366891482267
+    },
+    "national_better_than_base05|ped_l20": {
+      "ci95": [
+        0.0011915715209636362,
+        0.01062169010009944
+      ],
+      "mean_exposure_difference": 0.00571363891404927
+    },
+    "national_better_than_base05|ped_l5": {
+      "ci95": [
+        -0.002422891656922229,
+        0.005693848415060225
+      ],
+      "mean_exposure_difference": 0.0014885442184679248
+    },
+    "national_better_than_gcc|car_l5": {
+      "ci95": [
+        -0.004094470161509806,
+        0.0016280349470061614
+      ],
+      "mean_exposure_difference": -0.0010777546653623652
+    },
+    "national_better_than_gcc|ped_l20": {
+      "ci95": [
+        -0.005399455851537051,
+        0.004520657948455411
+      ],
+      "mean_exposure_difference": -0.0005808629617300251
+    },
+    "national_better_than_gcc|ped_l5": {
+      "ci95": [
+        -0.006794550673743581,
+        0.002364568156469774
+      ],
+      "mean_exposure_difference": -0.002299636198278247
+    },
+    "national_better_than_model05|car_l5": {
+      "ci95": [
+        -0.003194066146793415,
+        0.0027952420890261166
+      ],
+      "mean_exposure_difference": -3.553062471308047e-05
+    },
+    "national_better_than_model05|ped_l20": {
+      "ci95": [
+        -0.0033428372112301943,
+        0.0040517282385450215
+      ],
+      "mean_exposure_difference": 0.0003945722056305214
+    },
+    "national_better_than_model05|ped_l5": {
+      "ci95": [
+        -0.004156998627215384,
+        0.0031805303856431793
+      ],
+      "mean_exposure_difference": -0.0004665055632406737
+    },
+    "national_better_than_random|car_l5": {
+      "ci95": [
+        -0.004873958381109831,
+        0.0006381593274539507
+      ],
+      "mean_exposure_difference": -0.0019752202847117626
+    },
+    "national_better_than_random|ped_l20": {
+      "ci95": [
+        -0.002273393376071088,
+        0.007383348879578253
+      ],
+      "mean_exposure_difference": 0.00233444400915462
+    },
+    "national_better_than_random|ped_l5": {
+      "ci95": [
+        -0.0018453238665711274,
+        0.007271138366991113
+      ],
+      "mean_exposure_difference": 0.002429623058955411
+    },
+    "national|car_l5": {
+      "mean_added_free_flow_min": 0.12174166666666705,
+      "mean_exposure_share": 0.08831145380269485,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        -0.004130355722302088,
+        0.0012248213953678212
+      ],
+      "reduction_vs_flat": -0.0011911727330202887
+    },
+    "national|ped_l20": {
+      "mean_added_free_flow_min": 4.349502282821429,
+      "mean_exposure_share": 0.1081447126040363,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.002411054518535959,
+        0.004413497035682238
+      ],
+      "reduction_vs_flat": 0.0008569214848456781
+    },
+    "national|ped_l5": {
+      "mean_added_free_flow_min": 2.3595631417494607,
+      "mean_exposure_share": 0.10904691102197538,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.0032230080191823036,
+        0.003075175431106581
+      ],
+      "reduction_vs_flat": -4.5276933093402036e-05
+    },
+    "oracle|car_l5": {
+      "mean_added_free_flow_min": 3.1261336043360455,
+      "mean_exposure_share": 0.0337074257471855,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        0.04426019779421741,
+        0.06307644928949784
+      ],
+      "reduction_vs_flat": 0.053412855322489045
+    },
+    "oracle|ped_l20": {
+      "mean_added_free_flow_min": 38.84157000338756,
+      "mean_exposure_share": 0.017932005293278763,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        0.07987704589877116,
+        0.10249118887791582
+      ],
+      "reduction_vs_flat": 0.09106962879560321
+    },
+    "oracle|ped_l5": {
+      "mean_added_free_flow_min": 24.914722056609488,
+      "mean_exposure_share": 0.023170358466861492,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        0.07510919616751736,
+        0.09675999438220893
+      ],
+      "reduction_vs_flat": 0.08583127562202048
+    },
+    "random|car_l5": {
+      "mean_added_free_flow_min": 0.10281551490514952,
+      "mean_exposure_share": 0.08633623351798306,
+      "mean_trip_min_flat": 34.1726822493225,
+      "reduction_ci95": [
+        -0.0006495294828488312,
+        0.0023040454828249855
+      ],
+      "reduction_vs_flat": 0.0007840475516914744
+    },
+    "random|ped_l20": {
+      "mean_added_free_flow_min": 6.7258462567750685,
+      "mean_exposure_share": 0.11047915661319091,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.006135550288942197,
+        0.002605380806523246
+      ],
+      "reduction_vs_flat": -0.0014775225243089422
+    },
+    "random|ped_l5": {
+      "mean_added_free_flow_min": 3.8669851419000376,
+      "mean_exposure_share": 0.11147653408093078,
+      "mean_trip_min_flat": 315.06654621725386,
+      "reduction_ci95": [
+        -0.006838844316299432,
+        0.0013590871198218629
+      ],
+      "reduction_vs_flat": -0.0024748999920488138
+    }
+  },
+  "task": "ADR-026 Part C3 routing with the nationwide prior"
+}

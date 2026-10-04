@@ -1,0 +1,1102 @@
+{
+ "block": 4,
+ "events": [
+  {
+   "name": "DFO_4265_From_20150624_to_20150629.tif",
+   "observed_negatives": 1960407,
+   "observed_positives": 6175,
+   "sampled_negatives": 15001,
+   "sampled_positives": 6175,
+   "shape": [
+    1884,
+    2410
+   ],
+   "windows": 2
+  },
+  {
+   "name": "DFO_3636_From_20100418_to_20100421.tif",
+   "observed_negatives": 1440802,
+   "observed_positives": 182912,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    2136,
+    2925
+   ],
+   "windows": 2
+  },
+  {
+   "name": "DFO_2754_From_20051021_to_20051028.tif",
+   "observed_negatives": 3124645,
+   "observed_positives": 41857,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    2034,
+    3257
+   ],
+   "windows": 2
+  },
+  {
+   "name": "DFO_4251_From_20150517_to_20150521.tif",
+   "observed_negatives": 3700844,
+   "observed_positives": 5111,
+   "sampled_negatives": 15002,
+   "sampled_positives": 5111,
+   "shape": [
+    3693,
+    2388
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_4640_From_20180625_to_20180711.tif",
+   "observed_negatives": 3116119,
+   "observed_positives": 39578,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15001,
+   "shape": [
+    2725,
+    5257
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_3713_From_20100905_to_20100917.tif",
+   "observed_negatives": 1781855,
+   "observed_positives": 161689,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    2281,
+    3818
+   ],
+   "windows": 2
+  },
+  {
+   "name": "DFO_4499_From_20170727_to_20170810.tif",
+   "observed_negatives": 3099235,
+   "observed_positives": 67267,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    2034,
+    3257
+   ],
+   "windows": 2
+  },
+  {
+   "name": "DFO_4001_From_20121104_to_20121108.tif",
+   "observed_negatives": 3675635,
+   "observed_positives": 30320,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    3693,
+    2388
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3856_From_20110815_to_20110908.tif",
+   "observed_negatives": 1808562,
+   "observed_positives": 134982,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    2281,
+    3818
+   ],
+   "windows": 2
+  },
+  {
+   "name": "DFO_3650_From_20100515_to_20100626.tif",
+   "observed_negatives": 1853788,
+   "observed_positives": 89756,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    2281,
+    3818
+   ],
+   "windows": 2
+  },
+  {
+   "name": "DFO_4239_From_20150320_to_20150331.tif",
+   "observed_negatives": 3534037,
+   "observed_positives": 11134,
+   "sampled_negatives": 15002,
+   "sampled_positives": 11134,
+   "shape": [
+    2946,
+    5257
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_4309_From_20151110_to_20151204.tif",
+   "observed_negatives": 3665038,
+   "observed_positives": 40917,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    3693,
+    2388
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_4154_From_20140623_to_20140625.tif",
+   "observed_negatives": 2724468,
+   "observed_positives": 3650,
+   "sampled_negatives": 15001,
+   "sampled_positives": 3650,
+   "shape": [
+    3329,
+    7019
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_2049_From_20020903_to_20020906.tif",
+   "observed_negatives": 4040791,
+   "observed_positives": 2547,
+   "sampled_negatives": 15004,
+   "sampled_positives": 2547,
+   "shape": [
+    7357,
+    4128
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_3966_From_20120816_to_20120820.tif",
+   "observed_negatives": 6491389,
+   "observed_positives": 78,
+   "sampled_negatives": 15001,
+   "sampled_positives": 78,
+   "shape": [
+    3127,
+    5877
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_2758_From_20051023_to_20051209.tif",
+   "observed_negatives": 3636301,
+   "observed_positives": 69654,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    3693,
+    2388
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3960_From_20120803_to_20120806.tif",
+   "observed_negatives": 7096187,
+   "observed_positives": 2433,
+   "sampled_negatives": 15002,
+   "sampled_positives": 2433,
+   "shape": [
+    3127,
+    5898
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_1747_From_20010708_to_20010810.tif",
+   "observed_negatives": 5688912,
+   "observed_positives": 8856,
+   "sampled_negatives": 15002,
+   "sampled_positives": 8856,
+   "shape": [
+    3634,
+    4792
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_4665_From_20180802_to_20180810.tif",
+   "observed_negatives": 2288309,
+   "observed_positives": 439809,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15001,
+   "shape": [
+    3329,
+    7019
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_2958_From_20060831_to_20060911.tif",
+   "observed_negatives": 4757343,
+   "observed_positives": 50548,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15002,
+   "shape": [
+    3577,
+    6666
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_3496_From_20090703_to_20090706.tif",
+   "observed_negatives": 3641515,
+   "observed_positives": 41411,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    3759,
+    7019
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3208_From_20071017_to_20071024.tif",
+   "observed_negatives": 3807058,
+   "observed_positives": 221761,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    5533,
+    4061
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_3217_From_20071027_to_20071101.tif",
+   "observed_negatives": 7574148,
+   "observed_positives": 46524,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15002,
+   "shape": [
+    5011,
+    3391
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_4259_From_20150602_to_20150629.tif",
+   "observed_negatives": 2611176,
+   "observed_positives": 116942,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15001,
+   "shape": [
+    3329,
+    7019
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_4176_From_20140815_to_20140908.tif",
+   "observed_negatives": 2492465,
+   "observed_positives": 235653,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15001,
+   "shape": [
+    3329,
+    7019
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_4288_From_20150813_to_20150911.tif",
+   "observed_negatives": 2501238,
+   "observed_positives": 226880,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15001,
+   "shape": [
+    3329,
+    7019
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_2734_From_20050922_to_20051011.tif",
+   "observed_negatives": 4476858,
+   "observed_positives": 66387,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15004,
+   "shape": [
+    7500,
+    4729
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_3104_From_20070618_to_20070626.tif",
+   "observed_negatives": 3332756,
+   "observed_positives": 350170,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15002,
+   "shape": [
+    3759,
+    7019
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3864_From_20110825_to_20110913.tif",
+   "observed_negatives": 4521870,
+   "observed_positives": 21375,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15003,
+   "shape": [
+    7500,
+    4729
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_3195_From_20070922_to_20071008.tif",
+   "observed_negatives": 5525519,
+   "observed_positives": 172249,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15003,
+   "shape": [
+    3634,
+    4792
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_4188_From_20140924_to_20141011.tif",
+   "observed_negatives": 3255272,
+   "observed_positives": 313178,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    3759,
+    6718
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3866_From_20110905_to_20111002.tif",
+   "observed_negatives": 5538875,
+   "observed_positives": 158893,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    3634,
+    4792
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3150_From_20070803_to_20070827.tif",
+   "observed_negatives": 5528979,
+   "observed_positives": 168789,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    3634,
+    4792
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3652_From_20100518_to_20100524.tif",
+   "observed_negatives": 11308413,
+   "observed_positives": 12262,
+   "sampled_negatives": 15002,
+   "sampled_positives": 12262,
+   "shape": [
+    5126,
+    5959
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_3356_From_20080805_to_20080811.tif",
+   "observed_negatives": 11314184,
+   "observed_positives": 6491,
+   "sampled_negatives": 15002,
+   "sampled_positives": 6491,
+   "shape": [
+    5126,
+    5959
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_3312_From_20080524_to_20080528.tif",
+   "observed_negatives": 5937606,
+   "observed_positives": 32672,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15003,
+   "shape": [
+    5600,
+    4831
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_2931_From_20060724_to_20060822.tif",
+   "observed_negatives": 5272706,
+   "observed_positives": 105147,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15002,
+   "shape": [
+    3577,
+    6666
+   ],
+   "windows": 3
+  },
+  {
+   "name": "DFO_2473_From_20040414_to_20040503.tif",
+   "observed_negatives": 5472737,
+   "observed_positives": 177809,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    5533,
+    4831
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_4179_From_20140901_to_20141011.tif",
+   "observed_negatives": 6353123,
+   "observed_positives": 120504,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15002,
+   "shape": [
+    4781,
+    6666
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_2338_From_20030827_to_20031020.tif",
+   "observed_negatives": 5540444,
+   "observed_positives": 157324,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    3634,
+    4792
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_2718_From_20050826_to_20050830.tif",
+   "observed_negatives": 12673302,
+   "observed_positives": 169998,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    4010,
+    7287
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_2911_From_20060704_to_20060707.tif",
+   "observed_negatives": 13014799,
+   "observed_positives": 118271,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15006,
+   "shape": [
+    10168,
+    6133
+   ],
+   "windows": 9
+  },
+  {
+   "name": "DFO_1791_From_20010907_to_20010924.tif",
+   "observed_negatives": 12770646,
+   "observed_positives": 72654,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    4010,
+    7287
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3119_From_20070701_to_20070706.tif",
+   "observed_negatives": 12517691,
+   "observed_positives": 348,
+   "sampled_negatives": 15003,
+   "sampled_positives": 348,
+   "shape": [
+    7357,
+    4747
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_4673_From_20180901_to_20180907.tif",
+   "observed_negatives": 12610829,
+   "observed_positives": 232471,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    4010,
+    7287
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3530_From_20090818_to_20090827.tif",
+   "observed_negatives": 5663812,
+   "observed_positives": 136216,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    6648,
+    7490
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_3372_From_20080830_to_20080908.tif",
+   "observed_negatives": 5497842,
+   "observed_positives": 302186,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    6648,
+    7490
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_2956_From_20060829_to_20060904.tif",
+   "observed_negatives": 12767960,
+   "observed_positives": 75340,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    4010,
+    7287
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_4355_From_20160420_to_20160501.tif",
+   "observed_negatives": 6624288,
+   "observed_positives": 130427,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    6648,
+    7490
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_1789_From_20010820_to_20010911.tif",
+   "observed_negatives": 12763394,
+   "observed_positives": 79906,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    4010,
+    7287
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3191_From_20070916_to_20071007.tif",
+   "observed_negatives": 10649208,
+   "observed_positives": 62704,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    5126,
+    4372
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_3160_From_20070808_to_20070815.tif",
+   "observed_negatives": 13084283,
+   "observed_positives": 48787,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15004,
+   "shape": [
+    10168,
+    6133
+   ],
+   "windows": 9
+  },
+  {
+   "name": "DFO_3717_From_20100918_to_20100930.tif",
+   "observed_negatives": 12607567,
+   "observed_positives": 235733,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15001,
+   "shape": [
+    4010,
+    7287
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_4483_From_20170602_to_20170703.tif",
+   "observed_negatives": 5693235,
+   "observed_positives": 106793,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15004,
+   "shape": [
+    6648,
+    7490
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_2680_From_20050628_to_20050715.tif",
+   "observed_negatives": 12499852,
+   "observed_positives": 17083,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15004,
+   "shape": [
+    10168,
+    6133
+   ],
+   "windows": 9
+  },
+  {
+   "name": "DFO_3107_From_20070622_to_20070704.tif",
+   "observed_negatives": 16377756,
+   "observed_positives": 8773,
+   "sampled_negatives": 15003,
+   "sampled_positives": 8773,
+   "shape": [
+    7357,
+    6334
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_3118_From_20070630_to_20070713.tif",
+   "observed_negatives": 14146449,
+   "observed_positives": 153728,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15003,
+   "shape": [
+    7476,
+    8326
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_4174_From_20140814_to_20140908.tif",
+   "observed_negatives": 12708222,
+   "observed_positives": 135078,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15002,
+   "shape": [
+    4010,
+    7287
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_4171_From_20140811_to_20140908.tif",
+   "observed_negatives": 12706004,
+   "observed_positives": 137296,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15003,
+   "shape": [
+    4010,
+    7287
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3983_From_20120916_to_20120918.tif",
+   "observed_negatives": 22688263,
+   "observed_positives": 397372,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    5669,
+    9687
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_1641_From_20000918_to_20001021.tif",
+   "observed_negatives": 18373728,
+   "observed_positives": 276305,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15002,
+   "shape": [
+    4971,
+    9426
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_3164_From_20070812_to_20070817.tif",
+   "observed_negatives": 23345224,
+   "observed_positives": 129885,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15003,
+   "shape": [
+    5890,
+    9687
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_3551_From_20090925_to_20091012.tif",
+   "observed_negatives": 15236477,
+   "observed_positives": 119091,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15004,
+   "shape": [
+    7357,
+    6334
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_2570_From_20041007_to_20041018.tif",
+   "observed_negatives": 17986381,
+   "observed_positives": 663652,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    4971,
+    9426
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_2686_From_20050702_to_20050715.tif",
+   "observed_negatives": 16862864,
+   "observed_positives": 17476,
+   "sampled_negatives": 15005,
+   "sampled_positives": 15004,
+   "shape": [
+    10413,
+    7682
+   ],
+   "windows": 9
+  },
+  {
+   "name": "DFO_4198_From_20141012_to_20141027.tif",
+   "observed_negatives": 17123988,
+   "observed_positives": 151892,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15004,
+   "shape": [
+    7357,
+    6334
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_2940_From_20060801_to_20060910.tif",
+   "observed_negatives": 14167998,
+   "observed_positives": 228291,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    5240,
+    7951
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_4098_From_20131012_to_20131110.tif",
+   "observed_negatives": 15768767,
+   "observed_positives": 237049,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15003,
+   "shape": [
+    4971,
+    7931
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_3854_From_20110815_to_20111002.tif",
+   "observed_negatives": 12493022,
+   "observed_positives": 350278,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    4010,
+    7287
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_2698_From_20050723_to_20050816.tif",
+   "observed_negatives": 18300009,
+   "observed_positives": 6832,
+   "sampled_negatives": 15004,
+   "sampled_positives": 6832,
+   "shape": [
+    7357,
+    6334
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_3338_From_20080720_to_20080808.tif",
+   "observed_negatives": 15260111,
+   "observed_positives": 307794,
+   "sampled_negatives": 15001,
+   "sampled_positives": 15001,
+   "shape": [
+    4010,
+    10861
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_3674_From_20100705_to_20100715.tif",
+   "observed_negatives": 22937429,
+   "observed_positives": 148206,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15004,
+   "shape": [
+    5669,
+    9687
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_2731_From_20050916_to_20051005.tif",
+   "observed_negatives": 22804039,
+   "observed_positives": 281596,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    5669,
+    9687
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_2728_From_20050914_to_20050930.tif",
+   "observed_negatives": 20241992,
+   "observed_positives": 198411,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15004,
+   "shape": [
+    7476,
+    8326
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_2894_From_20060624_to_20060803.tif",
+   "observed_negatives": 17427340,
+   "observed_positives": 199449,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    4971,
+    9426
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_3327_From_20080705_to_20080714.tif",
+   "observed_negatives": 22555066,
+   "observed_positives": 270387,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15002,
+   "shape": [
+    6728,
+    11332
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_3382_From_20080922_to_20080929.tif",
+   "observed_negatives": 26791062,
+   "observed_positives": 340200,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15003,
+   "shape": [
+    10413,
+    8326
+   ],
+   "windows": 9
+  },
+  {
+   "name": "DFO_4378_From_20160707_to_20160803.tif",
+   "observed_negatives": 23297365,
+   "observed_positives": 66206,
+   "sampled_negatives": 15006,
+   "sampled_positives": 15005,
+   "shape": [
+    10413,
+    7682
+   ],
+   "windows": 9
+  },
+  {
+   "name": "DFO_4507_From_20170810_to_20170826.tif",
+   "observed_negatives": 25846980,
+   "observed_positives": 401172,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15004,
+   "shape": [
+    6630,
+    10331
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_2879_From_20060531_to_20060724.tif",
+   "observed_negatives": 16835092,
+   "observed_positives": 392723,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    6433,
+    10861
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_3120_From_20070701_to_20070713.tif",
+   "observed_negatives": 30492309,
+   "observed_positives": 36959,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15004,
+   "shape": [
+    10413,
+    9687
+   ],
+   "windows": 9
+  },
+  {
+   "name": "DFO_2690_From_20050707_to_20050727.tif",
+   "observed_negatives": 22389482,
+   "observed_positives": 435971,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15004,
+   "shape": [
+    6728,
+    11332
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_1974_From_20020621_to_20020828.tif",
+   "observed_negatives": 18794888,
+   "observed_positives": 490871,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15002,
+   "shape": [
+    6433,
+    9579
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_3122_From_20070703_to_20070922.tif",
+   "observed_negatives": 16656515,
+   "observed_positives": 970274,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15003,
+   "shape": [
+    4971,
+    9426
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_3128_From_20070712_to_20071010.tif",
+   "observed_negatives": 15352027,
+   "observed_positives": 1170686,
+   "sampled_negatives": 15002,
+   "sampled_positives": 15002,
+   "shape": [
+    4010,
+    10861
+   ],
+   "windows": 4
+  },
+  {
+   "name": "DFO_2689_From_20050705_to_20050814.tif",
+   "observed_negatives": 25995921,
+   "observed_positives": 254720,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    5689,
+    10506
+   ],
+   "windows": 5
+  },
+  {
+   "name": "DFO_2279_From_20030715_to_20030901.tif",
+   "observed_negatives": 28797482,
+   "observed_positives": 677115,
+   "sampled_negatives": 15003,
+   "sampled_positives": 15003,
+   "shape": [
+    7080,
+    12506
+   ],
+   "windows": 6
+  },
+  {
+   "name": "DFO_2935_From_20060728_to_20060912.tif",
+   "observed_negatives": 33929073,
+   "observed_positives": 511655,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15003,
+   "shape": [
+    10413,
+    9687
+   ],
+   "windows": 9
+  },
+  {
+   "name": "DFO_4282_From_20150715_to_20150819.tif",
+   "observed_negatives": 36015468,
+   "observed_positives": 413700,
+   "sampled_negatives": 15006,
+   "sampled_positives": 15005,
+   "shape": [
+    12072,
+    11826
+   ],
+   "windows": 11
+  },
+  {
+   "name": "DFO_2507_From_20040620_to_20041007.tif",
+   "observed_negatives": 24077905,
+   "observed_positives": 1362413,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15004,
+   "shape": [
+    7616,
+    11953
+   ],
+   "windows": 7
+  },
+  {
+   "name": "DFO_2248_From_20030611_to_20031010.tif",
+   "observed_negatives": 29196117,
+   "observed_positives": 1435458,
+   "sampled_negatives": 15004,
+   "sampled_positives": 15005,
+   "shape": [
+    8092,
+    13261
+   ],
+   "windows": 7
+  }
+ ],
+ "events_used": 91,
+ "margin": 60,
+ "rows": 2610126,
+ "seconds": 5206,
+ "window_rows": 1200
+}

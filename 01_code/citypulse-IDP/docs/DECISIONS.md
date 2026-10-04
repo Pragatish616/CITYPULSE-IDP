@@ -855,3 +855,64 @@ flood knowledge from it. Per the rule, no further tuning, features or baselines 
 - Rainfall is NASA POWER daily at 0.5 degrees (MERRA-2), which under-reads extreme local rain; points are district seats.
 - Brier score is reported only for B1 (0.0428) and no reliability table was produced, because the model is trained with balanced class weights and its scores are rankings, not probabilities.
 - Not tried, because the rule forbids tuning after the verdict: better rainfall (IMD gridded, ERA5-Land, IMERG), sub-daily rain, other labels. They are the next experiments, each needing its own pre-registration.
+
+---
+
+## ADR-026: Terrain and past floods as the training data for where water collects (4 October 2026)
+
+**Status:** accepted. Eight pre-registered studies, run in order; every rule and every change to a plan was committed before the result it governs. The model-quality rules passed in the nationwide studies (B, B2) and in the transfer of the nationwide model to Chennai (C3, narrowly). The Chennai-local studies (A, A2) and all three routing tests were not met.
+
+**Context.** The nationwide rainfall model (ADR-025) found no gain, and the user suggested elevation and previous flood records as better data. This ADR records what that data can and cannot do. It asks *where* water collects, not *when*, and it does not tell anyone a road is passable.
+
+**Data used.** The Global Flood Database's 91 satellite maps of India floods 2000 to 2018 (250 m; CC BY-NC-ND 4.0, research only, never redistributed from this repository); Copernicus 90 m elevation tiles; for Chennai, the NRSC (December 2015) and IRS (2005) flood extents and three hotspot lists from the Chennai Flood Monitor archive, and its drainage and water layers.
+
+### Results
+
+| Study | What it asked | Result against its pre-registered rule |
+|---|---|---|
+| **B2, all 91 India maps** (spatial 2-degree blocks held out, 2.6 million sampled cells) | Does a terrain model rank flooded cells above dry ones better than the best single terrain feature? | **Met.** Average precision 0.311 (0.256, 0.364) against 0.188 (0.152, 0.231) for relief within 5 km; AUC 0.930 (0.915, 0.944) against 0.866 (0.835, 0.893). It beat the single feature on 81 of 91 maps in average precision and 89 of 91 in AUC. |
+| B (the 11 maps that fit in memory, registered first) | The same | Met: AP 0.341 against 0.218. |
+| B2, rainfall climatology added | Does the earlier rainfall work add anything? | **No evidence**: AP difference +0.0084 (-0.0054, +0.0222), AUC difference +0.0008 (-0.0043, +0.0053). |
+| **A, Chennai region** (2005 and 2015 floods, hotspots) | Does a local terrain model beat the best single feature, across floods, across blocks, and on hotspot points no model saw? | **Not met.** Across floods and blocks it won (held-out blocks: AP 0.238, AUC 0.921 against 0.109, 0.853). Inside the city the AUC is only 0.614 (2005 to 2015) and 0.643 (2015 to 2005), and on the hotspot points the best single-feature rule ranked them higher than the model in three of the four cases, so the third rule failed. |
+| **A2, Chennai plus water-ponding, water-flow and street-density features** | Do hydrology features fix the city core? | **Not met.** Held-out-block AP 0.243 against 0.238 for the Part A features (difference +0.0056 (-0.0207, +0.0322)); the new features had permutation importance near zero. |
+| **C3, nationwide model applied to Chennai** (every training cell from the Chennai area removed) | Does it transfer to a place it never saw? | **Met, narrowly.** AP 0.073 (0.051, 0.103), AUC 0.759 (0.717, 0.797) against 0.064 and 0.701 for the best single feature; the AP difference is +0.0093 (+0.0001, +0.0183), so the AP gain is only just above zero and the AUC gain is +0.058. The base rate is 0.029. |
+| **Routing round 1** (600 pairs, current classes) | Does a prior learned from 2005 keep routes out of the 2015 flood? | **Not met.** No prior, including the current one built from the 2015 hazard zones, reduced exposure for the commuter or pedestrian classes (reductions of at most 0.0015 of the route's length; the intervals include zero, except for two commuter variants, one of them the random allocation, whose reduction of 0.0003 is statistically above zero but negligible, so it is not evidence of skill). |
+| **Routing round 2** (250 pairs, cautious travellers) | Can *any* prior help? Does the learned one when the router cares? | **Both rules not met.** An oracle prior built from the 2015 flood itself removes 84% of a walker's exposure (risk weight 20) at +39 min on a 315-minute walk, and 61% of a driver's (risk weight 5) at +3.1 min on 34. The learned and current priors removed essentially none. |
+| **Routing C3** (nationwide prior, same 250 pairs) | Does the nationwide prior route around the flood? | **Not met.** See the table below. |
+
+Routing results, December 2015 flood extent as truth (share of the route's length inside it; reductions are against a flat prior):
+
+| Traveller | Prior | Share of route in the 2015 flood | Reduction vs flat (95% CI) | Added free-flow min |
+|---|---|---|---|---|
+| ped_l5 | flat | 0.109 | +0.0000 (+0.0000, +0.0000) | 0.0 |
+| ped_l5 | gcc | 0.107 | +0.0023 (-0.0019, +0.0062) | 1.9 |
+| ped_l5 | model05 | 0.109 | +0.0004 (-0.0017, +0.0025) | 2.6 |
+| ped_l5 | national | 0.109 | -0.0000 (-0.0032, +0.0031) | 2.4 |
+| ped_l5 | oracle | 0.023 | +0.0858 (+0.0751, +0.0968) | 24.9 |
+| ped_l20 | flat | 0.109 | +0.0000 (+0.0000, +0.0000) | 0.0 |
+| ped_l20 | gcc | 0.108 | +0.0014 (-0.0028, +0.0054) | 3.0 |
+| ped_l20 | model05 | 0.109 | +0.0005 (-0.0021, +0.0031) | 6.0 |
+| ped_l20 | national | 0.108 | +0.0009 (-0.0024, +0.0044) | 4.3 |
+| ped_l20 | oracle | 0.018 | +0.0911 (+0.0799, +0.1025) | 38.8 |
+| car_l5 | flat | 0.087 | +0.0000 (+0.0000, +0.0000) | 0.0 |
+| car_l5 | gcc | 0.087 | -0.0001 (-0.0019, +0.0016) | 0.1 |
+| car_l5 | model05 | 0.088 | -0.0012 (-0.0032, +0.0007) | 0.3 |
+| car_l5 | national | 0.088 | -0.0012 (-0.0041, +0.0012) | 0.1 |
+| car_l5 | oracle | 0.034 | +0.0534 (+0.0443, +0.0631) | 3.1 |
+
+### What this means
+
+1. **Terrain predicts where floods happen at the scale of a state or a river basin.** Across all 91 maps and held-out regions the terrain model is clearly better than the best single feature. Rainfall climatology adds nothing detectable. This is the clearest positive result here, and it is reproducible from the scripts.
+2. **It does not predict which streets flood inside a city.** In Chennai the local model fails inside the city core; hydrology features did not rescue it; the nationwide model transfers to Chennai only weakly (AP about 2.6 times the base rate).
+3. **A prior from this model does not make the router avoid a real flood.** Even the prior built from the 2015 hazard zones does not. The oracle shows the router *can* avoid it (61 to 84% of exposure at about 8 to 12% extra time) when the prior is correct, so the limit is the information in the prior, not the router. What changes routes is real, time-stamped evidence about particular streets, which is the data this project still lacks (ADR-024).
+4. **No claim that this beats every other flood model.** It was compared with single-feature rules and with the existing prior, on these maps. It was not compared with published flood models, and we make no such claim.
+
+### Limits
+
+- Satellite flood maps (250 m MODIS) catch broad river and coastal flooding and miss street-scale urban flooding; negatives mean "not detected as flooded".
+- Events overlap in space; blocks reduce but do not remove optimism. The secondary test on later events had one test event after excluding seen blocks and is not informative.
+- The Global Flood Database licence (CC BY-NC-ND 4.0) forbids sharing derived material: the maps, the sampled cells and the trained models stay out of git; only aggregate results are committed. Everything regenerates from the scripts.
+- Part A and A2 reuse the same Chennai extents, so they are not independent. Eight studies were run; the plans, additions and the changes made to them (memory limits, the class-name constraint, the geocoding fallback) are in the pre-registration files with their dates.
+- Round 2's and C3's route tests use uniformly random node pairs, mostly long trips.
+- The windowed feature builder agrees with the unwindowed one with correlation 1.000 on elevation, slope and relief and 0.97 on height above water (checked on one window).
+- Nothing here has run on a phone, and no flood prior built from this work is in the app.

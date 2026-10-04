@@ -252,3 +252,7 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 ### F-29 · The nationwide model does not beat simple rules, and covers 77% of events in 29 states · OPEN (ADR-025)
 - **What:** trained as pre-registered, the district-day model tied a month-rate baseline on average precision and a 3-day-rain rule on event recall. Districts without a point (Arunachal Pradesh, Meghalaya, Delhi, Goa, parts of Assam) are not covered.
 - **Fix:** better rainfall and labels, each as a new pre-registered experiment; do not use this model to replace the flat prior outside Chennai.
+
+### F-30 · No flood prior reduces routes' exposure to a real flood, and nothing predicts which city streets flood · OPEN (ADR-026)
+- **What:** terrain predicts where floods happen at basin scale (91 India maps), but the Chennai-local and nationwide terrain models, and the current prior, remove essentially none of a route's exposure to the 2015 flood. An oracle prior built from the flood itself removes 61 to 84% at 8 to 12% extra time, so the router can avoid a flood when told where it is.
+- **Fix:** time-stamped, street-level passability evidence (the 15 October gate). Better priors from 90 m terrain are not the route to it.

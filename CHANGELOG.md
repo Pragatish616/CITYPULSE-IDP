@@ -23,6 +23,9 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 
 - Nationwide district flood-event model, trained under a pre-registered rule; it did not beat two simple baselines (ADR-025).
 
+- Terrain and past floods as training data: 91 India flood maps and elevation tiles, a nationwide terrain model, Chennai studies and three routing tests, all pre-registered; the nationwide model met its rule, the Chennai and routing rules were not met (ADR-026).
+- Tested terrain-hydrology code (`scripts/hydrology.py`).
+
 ### Changed
 - Pessimistic index is now a Beta-posterior upper quantile; it no longer lowers caution after a weak report
   (ADR-015).
