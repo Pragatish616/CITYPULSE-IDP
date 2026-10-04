@@ -1,7 +1,7 @@
 {
  "bucket": "gfd_v3",
- "bytes": 1090363101,
- "count": 73,
+ "bytes": 2027205963,
+ "count": 91,
  "files": [
   {
    "bytes": 2374322,
@@ -367,6 +367,96 @@
    "bytes": 34156828,
    "gcs_md5": "Isv1IhIC/KLK03v1uU9ixQ==",
    "name": "DFO_2731_From_20050916_to_20051005.tif"
+  },
+  {
+   "bytes": 34576080,
+   "gcs_md5": "ptV0eYk6X3lPTOfE7yWFbw==",
+   "name": "DFO_2728_From_20050914_to_20050930.tif"
+  },
+  {
+   "bytes": 36345269,
+   "gcs_md5": "LntQ66lGKK1MhVZ/7Od0eA==",
+   "name": "DFO_2894_From_20060624_to_20060803.tif"
+  },
+  {
+   "bytes": 36709097,
+   "gcs_md5": "3oTmhu6DOGMhK1HjepWzjg==",
+   "name": "DFO_3327_From_20080705_to_20080714.tif"
+  },
+  {
+   "bytes": 39529059,
+   "gcs_md5": "UT7VUhK7EC9eD8nQBqOjnw==",
+   "name": "DFO_3382_From_20080922_to_20080929.tif"
+  },
+  {
+   "bytes": 40885230,
+   "gcs_md5": "r7Ps7dIEcStTmQU1p1cCUw==",
+   "name": "DFO_4378_From_20160707_to_20160803.tif"
+  },
+  {
+   "bytes": 40940096,
+   "gcs_md5": "tP+EgdTz6Ejy+CzOlDeMxg==",
+   "name": "DFO_4507_From_20170810_to_20170826.tif"
+  },
+  {
+   "bytes": 43083063,
+   "gcs_md5": "vjzxh8srSQGOXfrPn/2o+A==",
+   "name": "DFO_2879_From_20060531_to_20060724.tif"
+  },
+  {
+   "bytes": 43532383,
+   "gcs_md5": "a+bQ+MCypM36kDm6YUi6ZA==",
+   "name": "DFO_3120_From_20070701_to_20070713.tif"
+  },
+  {
+   "bytes": 46141642,
+   "gcs_md5": "/Gt60ZJeZaTLPUh1xMsvsQ==",
+   "name": "DFO_2690_From_20050707_to_20050727.tif"
+  },
+  {
+   "bytes": 46322555,
+   "gcs_md5": "akRNXPCLf9pIghSKpfAtPw==",
+   "name": "DFO_1974_From_20020621_to_20020828.tif"
+  },
+  {
+   "bytes": 47672080,
+   "gcs_md5": "GaD65RBiy0JJabXBK5+wqQ==",
+   "name": "DFO_3122_From_20070703_to_20070922.tif"
+  },
+  {
+   "bytes": 48168487,
+   "gcs_md5": "cfGapnbKqwqdWjuU4iN2ug==",
+   "name": "DFO_3128_From_20070712_to_20071010.tif"
+  },
+  {
+   "bytes": 49209291,
+   "gcs_md5": "JhfMJERQ2bC+pQd7k1MXdQ==",
+   "name": "DFO_2689_From_20050705_to_20050814.tif"
+  },
+  {
+   "bytes": 65883217,
+   "gcs_md5": "D1HBUXioPJKnSYF7F5zSpg==",
+   "name": "DFO_2279_From_20030715_to_20030901.tif"
+  },
+  {
+   "bytes": 70592388,
+   "gcs_md5": "d65Oz4i05UYgu483BeQzAQ==",
+   "name": "DFO_2935_From_20060728_to_20060912.tif"
+  },
+  {
+   "bytes": 73505090,
+   "gcs_md5": "cjEqdbxCoHfqi8EOJ115Vg==",
+   "name": "DFO_4282_From_20150715_to_20150819.tif"
+  },
+  {
+   "bytes": 82844925,
+   "gcs_md5": "UQ7UnuqNUtfEfo1tUlqOLg==",
+   "name": "DFO_2507_From_20040620_to_20041007.tif"
+  },
+  {
+   "bytes": 90902910,
+   "gcs_md5": "niu3HL9RPl2m8A6Kh0ZsDQ==",
+   "name": "DFO_2248_From_20030611_to_20031010.tif"
   }
  ]
 }

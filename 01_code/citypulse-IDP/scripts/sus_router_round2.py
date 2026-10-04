@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -39,26 +40,42 @@ def main() -> int:
         assert (BASE / "packs" / n / "meta.bin").exists(), f"run sus_router_eval.py first: pack {n} missing"
     print(f"oracle edges {int(inside.sum()):,} of {len(src):,}", flush=True)
 
-    out_json = BASE / "routes_round2.json"
-    env = {**os.environ, "HAZARD_CONFIG": str(BASE / "hazard_classes_round2.yaml"), "ROUTE_CLASSES": ",".join(CLASSES)}
-    cmd = ["dart", "run", "tool/prior_routes.dart", str(out_json), str(PAIRS), str(SEED + 13)] + [f"{n}={BASE / 'packs' / n}" for n in names]
-    p = subprocess.run(cmd, cwd=ROOT / "packages" / "pulse_router", capture_output=True, text=True, env=env, shell=(sys.platform == "win32"))
-    print(p.stdout.strip(), p.stderr.strip()[-400:], flush=True)
-    if p.returncode != 0:
-        return p.returncode
-    data = json.loads(out_json.read_text(encoding="utf-8"))
-    rows = data["rows"]
+    # The decision-trace contract accepts only four class names, so each cautious traveller is run as its own configuration that
+    # redefines an existing class (same pessimism z and travel profile, only the risk weight lambda changes).
+    base_cfg = (ROOT / "config" / "hazard_classes.yaml").read_text(encoding="utf-8")
+    runs = [("ped_l5", "pedestrian", 5.0), ("ped_l20", "pedestrian", 20.0), ("car_l5", "commuter", 5.0)]
+    merged: dict[int, dict] = {}
+    for label, cls, lam in runs:
+        cfg_text, n_sub = re.subn(rf"(?m)^(  {cls}:\s*\{{ z: [0-9.]+,\s*lambda: )[0-9.]+(,)", rf"\g<1>{lam}\g<2>", base_cfg)
+        assert n_sub == 1, f"could not set lambda for {cls}"
+        cfg_path = BASE / f"hazard_classes_round2_{label}.yaml"
+        cfg_path.write_text(cfg_text, encoding="utf-8")
+        out_json = BASE / f"routes_round2_{label}.json"
+        env = {**os.environ, "HAZARD_CONFIG": str(cfg_path), "ROUTE_CLASSES": cls}
+        cmd = ["dart", "run", "tool/prior_routes.dart", str(out_json), str(PAIRS), str(SEED + 13)] + [f"{n}={BASE / 'packs' / n}" for n in names]
+        p = subprocess.run(cmd, cwd=ROOT / "packages" / "pulse_router", capture_output=True, text=True, env=env, shell=(sys.platform == "win32"))
+        print(label, p.stdout.strip(), p.stderr.strip()[-300:], flush=True)
+        if p.returncode != 0:
+            return p.returncode
+        for row in json.loads(out_json.read_text(encoding="utf-8"))["rows"]:
+            slot = merged.setdefault(row["pair"], {"pair": row["pair"], "routes": {}, "got": set()})
+            for key, val in row["routes"].items():
+                variant = key.split("|")[0]
+                slot["routes"][f"{variant}|{label}"] = val
+            slot["got"].add(label)
+    rows = [r for r in merged.values() if r["got"] == {c for c, _, _ in runs}]
     n = len(rows)
+    print(f"pairs with every route: {n} of {PAIRS}", flush=True)
     table = {f"{k}|{c}": {"exposure": np.zeros(n), "added_min": np.zeros(n), "dist_km": np.zeros(n)} for k in names for c in CLASSES}
     for i, row in enumerate(rows):
         for c in CLASSES:
             ref = row["routes"][f"flat|{c}"]
             for k in names:
                 rt = row["routes"][f"{k}|{c}"]
-                t = table[f"{k}|{c}"]
-                t["exposure"][i] = exposure_share(rt["path"], y15, lon_g, lat_g)
-                t["added_min"][i] = (rt["free_flow_s"] - ref["free_flow_s"]) / 60.0
-                t["dist_km"][i] = rt["distance_m"] / 1000.0
+                t_ = table[f"{k}|{c}"]
+                t_["exposure"][i] = exposure_share(rt["path"], y15, lon_g, lat_g)
+                t_["added_min"][i] = (rt["free_flow_s"] - ref["free_flow_s"]) / 60.0
+                t_["dist_km"][i] = rt["distance_m"] / 1000.0
     rng = np.random.default_rng(SEED + 31)
     idx = [rng.integers(0, n, n) for _ in range(2000)]
 
