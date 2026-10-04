@@ -183,6 +183,22 @@ void main() {
       expect(a.reasons[1], AdviceReason.floodedAlternativesAvoided);
     });
 
+    test('a route with nothing found says so, next to the thin-evidence reason (ADR-011: not "safe")', () {
+      final a = advise(_facts(band: ConfidenceBand.low));
+      expect(a.reasons, [AdviceReason.noHazardFound, AdviceReason.littleData]);
+      expect(a.riskLevel, RiskLevel.moderate, reason: 'the verdict itself is unchanged');
+      expect(a.bestAction, AdviceAction.wait);
+    });
+
+    test('"nothing found" is not said when something was found, or on a dry day', () {
+      expect(advise(_facts(p: 0.3)).reasons, isNot(contains(AdviceReason.noHazardFound)));
+      expect(advise(_facts(ratio: 0.05)).reasons, isNot(contains(AdviceReason.noHazardFound)));
+      expect(
+        advise(_facts(event: EventState.dry)).reasons,
+        isNot(contains(AdviceReason.noHazardFound)),
+      );
+    });
+
     test('stale and low data are named', () {
       expect(
         advise(_facts(band: ConfidenceBand.stale)).reasons,

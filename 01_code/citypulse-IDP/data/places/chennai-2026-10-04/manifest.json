@@ -1,0 +1,57 @@
+{
+  "city": "chennai",
+  "built": "2026-10-04",
+  "built_utc": "2026-10-04T16:32:48Z",
+  "script": "scripts/build_places.py",
+  "bbox": [
+    12.75,
+    13.25,
+    79.95,
+    80.35
+  ],
+  "kinds": [
+    "city",
+    "town",
+    "suburb",
+    "neighbourhood",
+    "quarter",
+    "village"
+  ],
+  "source_extract": "southern-zone-260911.osm.pbf",
+  "source_extract_bytes": 557263963,
+  "licence": "OpenStreetMap contributors, ODbL 1.0",
+  "places_json": {
+    "count": 661,
+    "by_kind": {
+      "city": 3,
+      "town": 17,
+      "neighbourhood": 254,
+      "suburb": 294,
+      "village": 92,
+      "quarter": 1
+    },
+    "bytes": 45815,
+    "sha256": "47209543bf188c9961aae29d794433fe5e2ebd794cdb507d49ca62f1126158dc"
+  },
+  "aliases_applied": {
+    "Thiyagaraya Nagar": [
+      "T. Nagar",
+      "T Nagar",
+      "T.Nagar",
+      "Thyagaraya Nagar",
+      "Thyagaraya Nagar (T. Nagar)"
+    ]
+  },
+  "extras_applied": [
+    {
+      "name": "Velachery",
+      "kind": "suburb",
+      "lat": 12.96762,
+      "lon": 80.21951,
+      "alt": [
+        "வேளச்சேரி"
+      ],
+      "source": "OpenStreetMap node named 'Velachery' tagged railway=station, public_transport=station, name:ta='வேளச்சேரி' (12.96762, 80.21951), read from southern-zone-260911.osm.pbf on 2026-10-04. OSM has no place=* node for Velachery, so the station is the nearest OSM-sourced point; it is a search anchor, not the neighbourhood's centre."
+    }
+  ]
+}

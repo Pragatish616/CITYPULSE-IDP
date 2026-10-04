@@ -22,6 +22,9 @@ cities:
     # Same box the 2026-09-14 snapshot was fetched with (scripts/fetch_chennai_drivable_ways.py).
     bbox: { min_lat: 12.75, max_lat: 13.25, min_lon: 79.95, max_lon: 80.35 }
     pack: data/packs/2026-10-02
+    # Neighbourhoods and suburbs for search (OSM place nodes), built by scripts/build_places.py. The pack itself has
+    # street names only.
+    places: data/places/chennai-2026-10-04/places.json
     # Optional: a hotspot-candidates file for the map's watchlist layer. Cities without one get an empty layer.
     watchlist: data/watchlist/2026-09-14/watchlist_candidates.json
     hazard_layer: true

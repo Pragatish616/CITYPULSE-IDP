@@ -1,5 +1,7 @@
 // Widget tests for the main screen, driven through the real router, theme and
 // providers with a fake back end and a fake map.
+import 'dart:async';
+
 import 'package:citypulse_app/src/core/settings.dart';
 import 'package:citypulse_app/src/core/strings.dart';
 import 'package:citypulse_app/src/domain/models.dart';
@@ -589,6 +591,47 @@ void main() {
       expect(find.textContaining('not accepted'), findsOneWidget);
       expect(find.byKey(const Key('report-submit')), findsOneWidget);
       expect(h.backend.observations, isEmpty);
+    });
+
+    testWidgets('the report button says the spot is the map centre and how to pick another', (
+      tester,
+    ) async {
+      await AppHarness().pump(tester, size: _desktop);
+      await tester.tap(find.byKey(const Key('report-button')));
+      await tester.pumpAndSettle();
+      expect(
+        tester.widget<Text>(find.byKey(const Key('report-location'))).data,
+        startsWith('Centre of the map: '),
+      );
+      expect(find.byKey(const Key('report-location-hint')), findsOneWidget);
+    });
+
+    testWidgets('the report sheet closes itself even if another route was pushed above it '
+        'while the report was being sent', (tester) async {
+      final h = AppHarness(
+        ingest: MockClient((req) async {
+          await Future<void>.delayed(const Duration(milliseconds: 300));
+          return http.Response('{"inserted":true}', 201);
+        }),
+      );
+      await h.pump(tester, size: _desktop);
+      await tester.tap(find.byKey(const Key('report-button')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('report-submit')));
+      await tester.pump(const Duration(milliseconds: 50));
+      // On the web a click that reached the map underneath opened the tap menu above the sheet.
+      unawaited(
+        Navigator.of(tester.element(find.byKey(const Key('report-submit')))).push(
+          MaterialPageRoute<void>(builder: (_) => const Scaffold(key: Key('stray-route'))),
+        ),
+      );
+      await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 600)));
+      await tester.pumpAndSettle();
+      expect(find.text('Report sent. Thank you.'), findsOneWidget);
+      expect(find.byKey(const Key('stray-route')), findsOneWidget, reason: 'the other route is left alone');
+      Navigator.of(tester.element(find.byKey(const Key('stray-route')))).pop();
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('report-submit')), findsNothing, reason: 'the report sheet is gone');
     });
 
     testWidgets('"water has cleared" hides the depth question', (tester) async {

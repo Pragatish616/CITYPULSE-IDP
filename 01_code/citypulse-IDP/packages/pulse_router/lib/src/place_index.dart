@@ -41,7 +41,7 @@ class GazetteerEntry {
   /// Longitude.
   final double lon;
 
-  /// `city`, `town`, `village` or `suburb`.
+  /// `city`, `town`, `village`, `suburb`, `neighbourhood` or `quarter`.
   final String kind;
 
   /// Other names that also match (for example the Tamil name).
@@ -92,11 +92,11 @@ class PlaceMatch {
     this.rank = 0,
   });
 
-  /// 0 when the name starts with the query, 1 when it only contains its words. For merging the results of
-  /// several indexes (ADR-022).
+  /// -1 when the name is exactly the query, 0 when it starts with the query, 1 when it only contains its
+  /// words. For merging the results of several indexes (ADR-022).
   final int rank;
 
-  /// `street`, or the kind of place (`city`, `town`, `village`, `suburb`).
+  /// `street`, or the kind of place (`city`, `town`, `village`, `suburb`, `neighbourhood`, `quarter`).
   final String kind;
 
   /// The street's OSM name.
@@ -220,12 +220,20 @@ class PlaceIndex {
       .replaceAll(RegExp(r'\s+'), ' ')
       .trim();
 
-  // Order in a result list: a city before a town before a street before a suburb before a village,
-  // among equally good name matches.
+  // Order in a result list: a city before a town before a street before a suburb or neighbourhood before a
+  // village, among equally good name matches. A name that is exactly the query comes before all of those.
   /// Order of kinds in a result list, lower first.
   static int tierOf(String kind) => _tier[kind] ?? 5;
 
-  static const _tier = {'city': 0, 'town': 1, 'street': 2, 'suburb': 3, 'village': 4};
+  static const _tier = {
+    'city': 0,
+    'town': 1,
+    'street': 2,
+    'suburb': 3,
+    'neighbourhood': 3,
+    'quarter': 3,
+    'village': 4,
+  };
 
   /// Streets and places matching [query], best first: names starting with the query, then names
   /// containing every query word; within each, a city or town before a street; then nearer to [near]
@@ -251,6 +259,7 @@ class PlaceIndex {
         : null;
 
     int? rankOf(String name) {
+      if (name == q) return -1;
       if (name.startsWith(q)) return 0;
       if (words.every(name.contains)) {
         if (numbered == null) return 1;

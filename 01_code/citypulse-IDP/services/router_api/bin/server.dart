@@ -50,7 +50,9 @@ Future<void> main() async {
     meta: _read(packDir, 'meta.bin'),
   );
   // Named places (cities, towns, villages) for search, if the pack has them.
-  final placesFile = File('$packDir/places.json');
+  final placesFile = File(
+    city.placesFile == null ? '$packDir/places.json' : '$repoRoot/${city.placesFile}',
+  );
   final gazetteer = placesFile.existsSync()
       ? parseGazetteer(placesFile.readAsStringSync())
       : const <GazetteerEntry>[];

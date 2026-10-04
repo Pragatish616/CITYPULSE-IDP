@@ -26,6 +26,12 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Terrain and past floods as training data: 91 India flood maps and elevation tiles, a nationwide terrain model, Chennai studies and three routing tests, all pre-registered; the nationwide model met its rule, the Chennai and routing rules were not met (ADR-026).
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
+### Fixed
+- Place search finds neighbourhoods and suburbs (a dated OSM gazetteer for Chennai), and a name typed exactly now ranks first (F-31).
+- Web: the report sheet closes after sending; sheets no longer pass clicks through to the map (F-32).
+- Report sheet names the spot as the centre of the map and says how to pick another (F-33).
+- Route card says when no flood hazard was found, beside the thin-evidence reason (F-34).
+
 ### Changed
 - Pessimistic index is now a Beta-posterior upper quantile; it no longer lowers caution after a weak report
   (ADR-015).

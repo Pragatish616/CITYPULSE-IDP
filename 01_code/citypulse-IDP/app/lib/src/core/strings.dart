@@ -78,6 +78,7 @@ enum Msg {
   reasonLittleData,
   reasonStaleData,
   reasonNoEvent,
+  reasonNoHazardFound,
   choiceClose,
   adviceHedge,
   errorNetwork,
@@ -96,6 +97,8 @@ enum Msg {
   depthKnee,
   depthAbove,
   reportLocation,
+  reportLocationCentre,
+  reportLocationHint,
   reportPrivacy,
   reportSubmit,
   reportSent,
@@ -270,6 +273,8 @@ const Map<Msg, String> _en = {
   Msg.reasonStaleData: 'The data for this route is out of date.',
   Msg.reasonNoEvent:
       'No flood event is under way, so the flood map is not applied.',
+  Msg.reasonNoHazardFound:
+      'No flood hazard was found on this route in the data we have.',
   Msg.choiceClose: 'Another route is a close call.',
   Msg.adviceHedge: 'A guide from the data we have, not a guarantee.',
   Msg.startFarFromRoad: 'Your start is {km} km from the nearest road on this map. The route begins there.',
@@ -291,6 +296,10 @@ const Map<Msg, String> _en = {
   Msg.depthKnee: 'Knee deep',
   Msg.depthAbove: 'Above the knee',
   Msg.reportLocation: 'Location',
+  Msg.reportLocationCentre: 'Centre of the map',
+  Msg.reportLocationHint:
+      'To report a different spot, close this, tap the road on the map and '
+      'choose "Report water here".',
   Msg.reportPrivacy:
       'Only the spot you choose is sent, rounded to about 10 metres, with a '
       'random install code that is not linked to you. No name, photo or '
@@ -412,6 +421,8 @@ const Map<Msg, String> _ta = {
   Msg.reasonStaleData: 'இந்த வழிக்கான தரவு பழையது.',
   Msg.reasonNoEvent:
       'வெள்ள நிகழ்வு இல்லாததால் வெள்ள வரைபடம் பயன்படுத்தப்படவில்லை.',
+  Msg.reasonNoHazardFound:
+      'எங்களிடம் உள்ள தரவில் இந்த வழியில் வெள்ள ஆபத்து எதுவும் காணப்படவில்லை.',
   Msg.choiceClose: 'மற்றொரு வழி கிட்டத்தட்ட சமமாக உள்ளது.',
   Msg.adviceHedge:
       'எங்களிடம் உள்ள தரவின் அடிப்படையிலான வழிகாட்டி; உத்தரவாதம் அல்ல.',
@@ -433,6 +444,10 @@ const Map<Msg, String> _ta = {
   Msg.depthKnee: 'முழங்கால் அளவு',
   Msg.depthAbove: 'முழங்காலுக்கு மேல்',
   Msg.reportLocation: 'இடம்',
+  Msg.reportLocationCentre: 'வரைபடத்தின் மையம்',
+  Msg.reportLocationHint:
+      'வேறு இடத்தைப் புகாரளிக்க, இதை மூடி, வரைபடத்தில் சாலையைத் தொட்டு '
+      '"இங்குள்ள தண்ணீரைப் புகாரளி" என்பதைத் தேர்ந்தெடுக்கவும்.',
   Msg.reportPrivacy:
       'நீங்கள் தேர்ந்தெடுக்கும் இடம் மட்டுமே, சுமார் 10 மீட்டருக்குச் '
       'சுருக்கப்பட்டு, உங்களுடன் தொடர்பில்லாத ஒரு சீரற்ற நிறுவல் குறியீட்டுடன் '

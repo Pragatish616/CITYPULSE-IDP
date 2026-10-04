@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Velachery",
+    "kind": "suburb",
+    "lat": 12.96762,
+    "lon": 80.21951,
+    "alt": ["வேளச்சேரி"],
+    "source": "OpenStreetMap node named 'Velachery' tagged railway=station, public_transport=station, name:ta='வேளச்சேரி' (12.96762, 80.21951), read from southern-zone-260911.osm.pbf on 2026-10-04. OSM has no place=* node for Velachery, so the station is the nearest OSM-sourced point; it is a search anchor, not the neighbourhood's centre."
+  }
+]

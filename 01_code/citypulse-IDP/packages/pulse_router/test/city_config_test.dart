@@ -29,6 +29,12 @@ void main() {
       expect(c.name.en, 'Chennai');
       expect(c.name.forLanguage('ta'), 'சென்னை');
       expect(c.packDir, 'data/packs/2026-10-02');
+      expect(c.placesFile, 'data/places/chennai-2026-10-04/places.json');
+      expect(
+        File('../../${c.placesFile}').existsSync(),
+        isTrue,
+        reason: 'the places file named in cities.yaml must exist',
+      );
       expect(c.hazardLayer, isTrue);
       expect(c.contains(13.0419, 80.2339), isTrue, reason: 'T. Nagar');
       expect(c.contains(28.6, 77.2), isFalse);
@@ -156,6 +162,22 @@ void main() {
       expect(
         () => CityConfig.fromMap(
           _doc(_minimal.replaceFirst('lat: 28.0', 'lat: 35.0')),
+          'testville',
+        ),
+        throwsFormatException,
+      );
+    });
+
+    test('places is optional, and must be a file path when given', () {
+      expect(CityConfig.fromMap(_doc(_minimal), 'testville').placesFile, isNull);
+      final ok = CityConfig.fromMap(
+        _doc(_minimal.replaceFirst('hazard_layer: false', 'places: data/places/t/places.json\n    hazard_layer: false')),
+        'testville',
+      );
+      expect(ok.placesFile, 'data/places/t/places.json');
+      expect(
+        () => CityConfig.fromMap(
+          _doc(_minimal.replaceFirst('hazard_layer: false', 'places: 7\n    hazard_layer: false')),
           'testville',
         ),
         throwsFormatException,

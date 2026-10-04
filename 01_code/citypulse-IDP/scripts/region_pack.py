@@ -166,9 +166,10 @@ def read_ways_overpass_json(path: Path, classes):
 PLACE_KINDS = ("city", "town", "village", "suburb")
 
 
-def read_places_pbf(pbf: Path, box):
+def read_places_pbf(pbf: Path, box, kinds=PLACE_KINDS):
     """Named places inside `box`: [name, lat, lon, kind, alt names...]. Alternative names are the
-    Tamil and English names when the node carries them, so a search in either script finds the place."""
+    Tamil and English names when the node carries them, so a search in either script finds the place.
+    `kinds` limits the OSM `place` values read; the default is the list the state packs were built with."""
     import osmium
 
     fp = osmium.FileProcessor(str(pbf), osmium.osm.NODE).with_filter(osmium.filter.KeyFilter("place"))
@@ -177,7 +178,7 @@ def read_places_pbf(pbf: Path, box):
         for n in fp:
             kind = n.tags.get("place")
             name = (n.tags.get("name") or "").strip()
-            if kind not in PLACE_KINDS or not name or not n.location.valid():
+            if kind not in kinds or not name or not n.location.valid():
                 continue
             lat, lon = n.location.lat, n.location.lon
             if not (box[0] <= lat <= box[1] and box[2] <= lon <= box[3]):

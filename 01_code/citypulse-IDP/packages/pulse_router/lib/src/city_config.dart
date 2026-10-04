@@ -37,6 +37,7 @@ class CityConfig {
     required this.minLon,
     required this.maxLon,
     required this.packDir,
+    this.placesFile,
     required this.hazardLayer,
     required this.hazardNote,
     required this.aboutData,
@@ -103,6 +104,10 @@ class CityConfig {
     if (pack is! String || pack.isEmpty) {
       throw FormatException('cities config: $id.pack is missing');
     }
+    final places = m['places'];
+    if (places != null && (places is! String || places.isEmpty)) {
+      throw FormatException('cities config: $id.places must be a file path');
+    }
     final layer = m['hazard_layer'];
     if (layer is! bool) {
       throw FormatException(
@@ -164,6 +169,7 @@ class CityConfig {
       minLon: minLon,
       maxLon: maxLon,
       packDir: pack,
+      placesFile: places as String?,
       hazardLayer: layer,
       localContact: text('local_contact', required: false),
       maxSnapMetres: snap,
@@ -209,6 +215,10 @@ class CityConfig {
 
   /// Pack folder, relative to the repository's data root.
   final String packDir;
+
+  /// Optional `places.json` (neighbourhoods and suburbs for search), relative to the repository root. When
+  /// absent the router looks for `places.json` inside the pack folder, as region packs carry one.
+  final String? placesFile;
 
   /// Whether a real flood-hazard source is loaded into the pack's prior.
   final bool hazardLayer;

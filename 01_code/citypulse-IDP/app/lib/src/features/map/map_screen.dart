@@ -281,44 +281,46 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
-      builder: (sheetContext) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              dense: true,
-              title: Text(
-                '${point.lat.toStringAsFixed(5)}, ${point.lon.toStringAsFixed(5)}',
+      builder: (sheetContext) => PointerInterceptor(
+        child: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                dense: true,
+                title: Text(
+                  '${point.lat.toStringAsFixed(5)}, ${point.lon.toStringAsFixed(5)}',
+                ),
               ),
-            ),
-            ListTile(
-              key: const Key('tap-set-start'),
-              leading: const Icon(Icons.trip_origin),
-              title: Text(s(Msg.setStart)),
-              onTap: () {
-                Navigator.pop(sheetContext);
-                planner.setOrigin(place);
-              },
-            ),
-            ListTile(
-              key: const Key('tap-set-destination'),
-              leading: const Icon(Icons.place),
-              title: Text(s(Msg.setDestination)),
-              onTap: () {
-                Navigator.pop(sheetContext);
-                planner.setDestination(place);
-              },
-            ),
-            ListTile(
-              key: const Key('tap-report'),
-              leading: const Icon(Icons.water_drop_outlined),
-              title: Text(s(Msg.reportHere)),
-              onTap: () {
-                Navigator.pop(sheetContext);
-                showReportSheet(context, point);
-              },
-            ),
-          ],
+              ListTile(
+                key: const Key('tap-set-start'),
+                leading: const Icon(Icons.trip_origin),
+                title: Text(s(Msg.setStart)),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  planner.setOrigin(place);
+                },
+              ),
+              ListTile(
+                key: const Key('tap-set-destination'),
+                leading: const Icon(Icons.place),
+                title: Text(s(Msg.setDestination)),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  planner.setDestination(place);
+                },
+              ),
+              ListTile(
+                key: const Key('tap-report'),
+                leading: const Icon(Icons.water_drop_outlined),
+                title: Text(s(Msg.reportHere)),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  showReportSheet(context, point);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -367,7 +369,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     );
     Widget buttons() => PointerInterceptor(
       child: _MapButtons(
-        onReport: () => showReportSheet(context, _centre),
+        onReport: () => showReportSheet(context, _centre, fromMapCentre: true),
         onLayers: () => _showLayers(context),
       ),
     );
@@ -455,7 +457,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
       context: context,
       showDragHandle: true,
       isScrollControlled: true,
-      builder: (_) => const _LayersSheet(),
+      builder: (_) => PointerInterceptor(child: const _LayersSheet()),
     );
   }
 }

@@ -78,6 +78,10 @@ enum AdviceReason {
 
   /// No flood event is under way, so the flood map is not applied.
   noEvent,
+
+  /// The route's riskiest street has almost no flood risk in the data held. This says what the data shows;
+  /// it is not a statement that the route is safe (ADR-011), and it is shown beside the evidence level.
+  noHazardFound,
 }
 
 /// The facts the advisor reads. Plain numbers, so the model can be tested without a router.
@@ -343,6 +347,13 @@ List<AdviceReason> _reasons(RouteFacts f, double r) {
     out.add(AdviceReason.highRiskStreet);
   } else if (f.worstEdgeP >= 0.2) {
     out.add(AdviceReason.someRiskStreets);
+  } else if (f.worstEdgeP < 0.05 &&
+      f.hazardPenaltyRatio < 0.01 &&
+      f.eventState != EventState.dry) {
+    // Without this line a verdict of "moderate" on a route with nothing found reads as if the numbers were
+    // missing: the verdict comes from thin evidence, and the card should say what was and was not found. Not on
+    // a dry day, when the flood map is not applied and "nothing found" would mean nothing.
+    out.add(AdviceReason.noHazardFound);
   }
   if (f.blockedAlternatives > 0)
     out.add(AdviceReason.floodedAlternativesAvoided);

@@ -99,6 +99,45 @@ void main() {
     });
   });
 
+  group('searching by neighbourhood name', () {
+    // Streets in the Testville fixture that start with "ring" must not push a place named exactly "Ring" out.
+    const hoods = [
+      GazetteerEntry(name: 'Ring', lat: 20.2, lon: 78.2, kind: 'suburb'),
+      GazetteerEntry(
+        name: 'Thiyagaraya Nagar',
+        lat: 13.0378,
+        lon: 80.2318,
+        kind: 'suburb',
+        altNames: ['T. Nagar', 'T Nagar'],
+      ),
+      GazetteerEntry(name: 'Ring Colony', lat: 20.3, lon: 78.3, kind: 'neighbourhood'),
+    ];
+
+    test('a place named exactly as typed comes before streets that only start with it', () {
+      final r = PlaceIndex(pack, gazetteer: hoods).search('ring');
+      expect(r.first.name, 'Ring');
+      expect(r.first.rank, -1);
+      expect(r.first.kind, 'suburb');
+      expect(r.skip(1).every((m) => m.rank >= 0), isTrue);
+    });
+
+    test('an alternative spelling counts as an exact match', () {
+      final idx = PlaceIndex(pack, gazetteer: hoods);
+      expect(idx.search('T. Nagar').first.name, 'Thiyagaraya Nagar');
+      expect(idx.search('t nagar').first.name, 'Thiyagaraya Nagar');
+      expect(idx.search('T.Nagar').first.name, 'Thiyagaraya Nagar');
+    });
+
+    test('a neighbourhood is ranked with suburbs, after streets of the same relevance', () {
+      expect(PlaceIndex.tierOf('neighbourhood'), PlaceIndex.tierOf('suburb'));
+      expect(PlaceIndex.tierOf('quarter'), PlaceIndex.tierOf('suburb'));
+      expect(PlaceIndex.tierOf('neighbourhood'), greaterThan(PlaceIndex.tierOf('street')));
+      final r = PlaceIndex(pack, gazetteer: hoods).search('ring');
+      final names = r.map((m) => m.name).toList();
+      expect(names, contains('Ring Colony'));
+    });
+  });
+
   group('highway numbers', () {
     const roads = [
       GazetteerEntry(name: 'NH44', lat: 10, lon: 78, kind: 'town'),

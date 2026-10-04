@@ -256,3 +256,20 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 ### F-30 · No flood prior reduces routes' exposure to a real flood, and nothing predicts which city streets flood · OPEN (ADR-026)
 - **What:** terrain predicts where floods happen at basin scale (91 India maps), but the Chennai-local and nationwide terrain models, and the current prior, remove essentially none of a route's exposure to the 2015 flood. An oracle prior built from the flood itself removes 61 to 84% at 8 to 12% extra time, so the router can avoid a flood when told where it is.
 - **Fix:** time-stamped, street-level passability evidence (the 15 October gate). Better priors from 90 m terrain are not the route to it.
+
+### F-31 · Place search found streets, not neighbourhoods ("T Nagar", "Adyar", "Velachery") · FIXED (4 Oct 2026, scripts/build_places.py, data/places/chennai-2026-10-04/)
+- **What:** the Chennai pack holds street names only, so a neighbourhood name returned streets that merely contained the words.
+- **Fix:** a dated OSM gazetteer of 661 city, town, suburb, neighbourhood, quarter and village names, with one reviewed alias set ("T. Nagar" for "Thiyagaraya Nagar") and one extra point (Velachery, from its OSM railway-station node, because OSM has no place node for it). An exact name now ranks before names that only start with it. Not done: the Android app still searches streets only (its offline index does not load the places file).
+
+### F-32 · The report sheet stayed open after "Report sent" on the web · FIXED (4 Oct 2026, app/lib/src/features/report/report_sheet.dart, map_screen.dart)
+- **What:** on the web a click on a sheet reached the map underneath and opened the tap menu above the report sheet, so the sheet's own "close" closed the tap menu instead. The send button then stayed disabled.
+- **Fix:** the three bottom sheets now block clicks from reaching the map, and the report sheet closes its own route whatever is above it. A widget test covers the second part and was checked to fail on the old code.
+
+### F-33 · The report button gave coordinates with no meaning · FIXED (4 Oct 2026, report_sheet.dart, strings.dart)
+- **What:** "Report water here" from the button used the middle of the map, labelled only "Location: lat, lon".
+- **Fix:** the sheet says "Centre of the map" and how to pick another spot. A pin or live location is not added. The Tamil text is a draft.
+
+### F-34 · "Wait if you can / Moderate risk" on a route with nothing found had no visible reason · FIXED as to wording; the rule itself is OPEN (4 Oct 2026, packages/pulse_router/lib/src/route_advisor.dart)
+- **What:** with thin evidence the advisor leans to "moderate" and "wait" (ADR-021), so almost every Chennai route gets that verdict while its worst street has a risk index of 0.0. The card showed only "Little recent data".
+- **Fix:** the card now also says "No flood hazard was found on this route in the data we have" (not on dry days, not when anything was found). The verdict is unchanged.
+- **Open:** whether "wait" is the right action when the only reason is missing data is a design decision for the team (ADR-011, ADR-021). It may teach users to ignore the card.
