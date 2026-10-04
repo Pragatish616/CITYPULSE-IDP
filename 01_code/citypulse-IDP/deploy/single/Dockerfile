@@ -73,7 +73,7 @@ COPY --from=web /src/app/build/web /srv/web
 COPY deploy/single/Caddyfile /etc/caddy/Caddyfile
 COPY deploy/single/start.sh /app/start.sh
 # Belt and braces: strip any Windows line endings the checkout may have added.
-RUN sed -i 's/$//' /app/start.sh /etc/caddy/Caddyfile && chmod +x /app/start.sh
+RUN sed -i 's/\r$//' /app/start.sh /etc/caddy/Caddyfile && chmod +x /app/start.sh
 
 USER app
 ENV CITIES_CONFIG=/app/config/cities.yaml \
