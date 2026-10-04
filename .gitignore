@@ -44,3 +44,5 @@ Thumbs.db
 01_code/citypulse-IDP/data/susceptibility/*/national_samples_all.npz
 01_code/citypulse-IDP/data/results/*-susceptibility-chennai-a2/*.joblib
 01_code/citypulse-IDP/data/susceptibility/*/grid_a2.npz
+01_code/citypulse-IDP/data/susceptibility/*/chennai250*.npz
+01_code/citypulse-IDP/data/susceptibility/*/routes_*.json

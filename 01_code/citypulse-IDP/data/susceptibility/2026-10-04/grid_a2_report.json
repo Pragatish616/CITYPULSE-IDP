@@ -1,0 +1,27 @@
+{
+  "edges_in_grid": 471240,
+  "nodes_in_grid": 193191,
+  "ranges_1_99_percentile_in_modelled_cells": {
+    "fill_depth": [
+      0.0,
+      1.013
+    ],
+    "log_upslope": [
+      0.0,
+      3.873
+    ],
+    "node_density": [
+      0.0,
+      295.576
+    ],
+    "road_density": [
+      -0.0,
+      43.903
+    ],
+    "twi": [
+      6.046,
+      18.968
+    ]
+  },
+  "seconds": 9
+}
