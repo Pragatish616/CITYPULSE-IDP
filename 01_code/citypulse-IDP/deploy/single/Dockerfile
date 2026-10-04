@@ -29,6 +29,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 RUN git clone --depth 1 --branch ${FLUTTER_VERSION} https://github.com/flutter/flutter.git /opt/flutter
 ENV PATH=/opt/flutter/bin:$PATH
+# Some build sandboxes (Render's, for one) refuse to set file owners, and Flutter unpacks its archives with tar, which tries to
+# keep the owner recorded in the archive ("Cannot change ownership ... Invalid argument"). GNU tar reads this variable.
+ENV TAR_OPTIONS=--no-same-owner
 # Downloads the Dart SDK and the web engine now, so the build step below only compiles.
 RUN flutter --version && flutter precache --web
 WORKDIR /src
