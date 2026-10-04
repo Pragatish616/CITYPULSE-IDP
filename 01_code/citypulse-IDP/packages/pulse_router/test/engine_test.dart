@@ -85,37 +85,45 @@ void main() {
       expect(pack.edgeFreeFlowSeconds[0], closeTo(32.488, 1e-12));
     });
 
-    test('routes identically to the JSON graph it was built from '
-        '(100 seeded pairs: same cost, same edge path)', () {
-      final jsonGraph = graphFromJson(
-        jsonDecode(File(_jsonGraph).readAsStringSync()) as Map<String, Object?>,
-      );
-      final rng = math.Random(20261002);
-      var compared = 0;
-      while (compared < 100) {
-        final s = rng.nextInt(pack.nodeCount);
-        final g = rng.nextInt(pack.nodeCount);
-        if (s == g) continue;
-        double? freeFlow(RouteEdge e) => e.freeFlowSeconds;
-        final a = bidirectionalDijkstra(
-          graph: pack.graph,
-          source: s,
-          target: g,
-          edgeCost: freeFlow,
+    test(
+      'routes identically to the JSON graph it was built from '
+      '(100 seeded pairs: same cost, same edge path)',
+      // The JSON graph is 47 MB and not in git (scripts/t1_3_build_graph_and_prior.py makes it).
+      skip: File(_jsonGraph).existsSync()
+          ? false
+          : 'Chennai JSON graph not built (data/graph is not in git)',
+      () {
+        final jsonGraph = graphFromJson(
+          jsonDecode(File(_jsonGraph).readAsStringSync())
+              as Map<String, Object?>,
         );
-        final b = bidirectionalDijkstra(
-          graph: jsonGraph,
-          source: s,
-          target: g,
-          edgeCost: freeFlow,
-        );
-        expect(a == null, b == null, reason: '$s -> $g reachability');
-        if (a == null || b == null) continue;
-        expect(a.totalCostSeconds, closeTo(b.totalCostSeconds, 1e-9));
-        expect(a.edgePath, equals(b.edgePath), reason: '$s -> $g');
-        compared++;
-      }
-    });
+        final rng = math.Random(20261002);
+        var compared = 0;
+        while (compared < 100) {
+          final s = rng.nextInt(pack.nodeCount);
+          final g = rng.nextInt(pack.nodeCount);
+          if (s == g) continue;
+          double? freeFlow(RouteEdge e) => e.freeFlowSeconds;
+          final a = bidirectionalDijkstra(
+            graph: pack.graph,
+            source: s,
+            target: g,
+            edgeCost: freeFlow,
+          );
+          final b = bidirectionalDijkstra(
+            graph: jsonGraph,
+            source: s,
+            target: g,
+            edgeCost: freeFlow,
+          );
+          expect(a == null, b == null, reason: '$s -> $g reachability');
+          if (a == null || b == null) continue;
+          expect(a.totalCostSeconds, closeTo(b.totalCostSeconds, 1e-9));
+          expect(a.edgePath, equals(b.edgePath), reason: '$s -> $g');
+          compared++;
+        }
+      },
+    );
 
     test('rejects a truncated or mislabelled file with a clear error', () {
       final graph = File('$_packDir/graph.bin').readAsBytesSync();

@@ -9,7 +9,7 @@ import 'package:pulse_router/pulse_router.dart';
 
 import '../helpers/harness.dart';
 
-String _routeJson({int status = 200, Map<String, Object?>? override}) {
+String _routeJson({Map<String, Object?>? override}) {
   final view = sampleRoute();
   return jsonEncode({
     'trace': view.trace.toJson(),

@@ -509,7 +509,7 @@ void main() {
       final sent = jsonDecode(seen.body) as Map<String, Object?>;
       expect(sent['model'], 'llama-3.1-8b-instant');
       expect(sent['max_tokens'], 200);
-      final messages = (sent['messages']! as List).cast<Map>();
+      final messages = (sent['messages']! as List).cast<Map<String, Object?>>();
       expect(messages, hasLength(2));
       expect(messages[0]['content'], kRewriteSystemPrompt);
       expect(jsonDecode(messages[1]['content'] as String), facts);
