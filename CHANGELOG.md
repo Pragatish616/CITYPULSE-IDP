@@ -28,6 +28,7 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 
 ### Added (deployment preparation, nothing published)
 - One-container image (`deploy/single/`: Dockerfile, Caddyfile, start.sh) that serves the web app, router API and report server from one address, and `scripts/smoke_deploy.py` (12 checks, local or live URL). Untested as an image; see docs/DEPLOY.md.
+- A generated `Dockerfile` and `.dockerignore` at the repository root (`scripts/make_root_dockerfile.py`) so hosts that build from the top of the repo work without settings; a test checks it is current and that every copied file is in Git.
 - Hosting options researched and recorded in docs/DEPLOY.md, with measured memory.
 
 ### Fixed

@@ -67,6 +67,10 @@ Files: `deploy/single/Dockerfile` (web stage, router stage, runtime), `Caddyfile
 `start.sh` (starts the three processes and stops the container if one dies, so the host restarts it). `.dockerignore` is an
 allow-list because `data/` holds gigabytes of research inputs.
 
+A host that expects `Dockerfile` at the top of the Git repository (Render's default) uses the generated copy at the repository root. Never edit it by hand:
+change `deploy/single/Dockerfile` and run `python scripts/make_root_dockerfile.py`. `scripts/tests/test_root_dockerfile.py` fails if the copy is stale or if a file
+the image copies is not tracked in Git (a fresh clone could not build it).
+
 Things to know before the first build:
 - The web stage uses `ghcr.io/cirruslabs/flutter:stable`. This project was built with Flutter 3.47.2 and Dart 3.13.2. `stable` may be
   newer; pin a tag you have checked (`--build-arg FLUTTER_IMAGE=...`). The tag has not been checked.
@@ -84,7 +88,7 @@ measured here (10 to 14 ms for a car, up to about 0.4 s on foot) will be slower.
 
 | Host | What the search found | Fit |
 |---|---|---|
-| [Render](https://docs.render.com/free) | Free web service: 512 MB RAM, 0.1 CPU, sleeps after 15 minutes idle (30 to 60 s to wake), 750 free hours a month, 100 GB bandwidth ([summary](https://livemy.app/blog/render-pricing)). Runs a Dockerfile from a GitHub repo. Whether an account needs a card was not confirmed. | Best first try. Set Root Directory `01_code/citypulse-IDP` and Dockerfile path `deploy/single/Dockerfile`. |
+| [Render](https://docs.render.com/free) | Free web service: 512 MB RAM, 0.1 CPU, sleeps after 15 minutes idle (30 to 60 s to wake), 750 free hours a month, 100 GB bandwidth ([summary](https://livemy.app/blog/render-pricing)). Runs a Dockerfile from a GitHub repo. Whether an account needs a card was not confirmed. | Best first try. A generated `Dockerfile` at the repository root makes Render's default settings work, so no Root Directory or Dockerfile path needs setting; only set `ADMIN_TOKEN`. (The first attempt, with those settings typed by hand, was not picked up and failed with "open Dockerfile: no such file".) |
 | [Koyeb](https://www.koyeb.com/docs/faqs/pricing) | One free service, 512 MB, 0.1 vCPU, sleeps after an hour; a credit card was added as a requirement in February 2026 ([source](https://freetier.co/directory/products/koyeb)). | Needs a card, which breaks the "no card" rule. |
 | [Hugging Face Spaces](https://huggingface.co/docs/hub/en/spaces-overview) | Free CPU is 2 vCPU and 16 GB, but a [forum thread](https://discuss.huggingface.co/t/docker-sdk-now-marked-as-paid-when-creating-a-new-space/177580/5) reports Docker Spaces now marked as paid. Not confirmed on the host's own docs. | Check before relying on it. |
 | Your own machine plus a tunnel | Run the image locally and publish it through a tunnel. Not researched. | Fallback for a demo; the site is down when the machine is off. |

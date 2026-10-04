@@ -14,3 +14,5 @@
 # Shell scripts and the one-container files run on Linux: a Windows line ending breaks them.
 *.sh text eol=lf
 01_code/citypulse-IDP/deploy/single/* text eol=lf
+Dockerfile text eol=lf
+.dockerignore text eol=lf
