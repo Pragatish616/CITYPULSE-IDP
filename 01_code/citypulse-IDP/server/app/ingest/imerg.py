@@ -409,7 +409,9 @@ class RainContextService:
                             self._legend or {},
                             when,
                         )
-                    except Exception:  # noqa: BLE001 - an older image that fails is counted as missing, not fatal
+                    except (
+                        Exception
+                    ):  # noqa: BLE001 - an older image that fails is counted as missing, not fatal
                         return None
 
             results = await asyncio.gather(*(one(t) for t in times))
