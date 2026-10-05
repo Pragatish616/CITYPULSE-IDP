@@ -26,6 +26,11 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Terrain and past floods as training data: 91 India flood maps and elevation tiles, a nationwide terrain model, Chennai studies and three routing tests, all pre-registered; the nationwide model met its rule, the Chennai and routing rules were not met (ADR-026).
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
+### Added (field log, 6 October 2026, local commits only, not deployed)
+- A volunteer field log for the missing ground truth: a phone page (English, Tamil draft) where a volunteer records passable / not passable / can't tell at one of 402 candidate sites from the GCC hazard zones, or at another spot, with the time. Entries queue on the phone offline and sync later; the server stores them append-only and fsynced, idempotent by entry id, with per-volunteer tokens, rate limits and a checked, formula-safe CSV export. Kept apart from the router: it changes no route and is shown to no traveller (ADR-028).
+- `docs/FIELD_PROTOCOL.md`: safety rules, what to tap, the sampling plan, volunteer notice, and the analysis pre-registered before any data. `scripts/fieldlog_ops.py`: token generation, status and a verified export.
+- Not yet shown on a real phone or a live host; storage is not durable on a free host until a disk or database is attached.
+
 ### Added (deployment)
 - Rain on the map screen: the flood-event banner now has a second line from NASA satellite rain (for example "Rain by satellite over Chennai: none in the last 3 h · image 5 h 44 min old", or "heavy now · 24 mm in the last 3 h"), and tapping the banner opens a sheet with the numbers, where the state comes from (automatic, operator, default) and the limits. It reads the existing `GET /event-state`, so there is no new server code. English and a Tamil draft. If the service cannot be reached the line is simply absent; an unknown is never shown as no rain.
 - Automatic event state (ADR-027): the router sets dry / watch / active from NASA satellite rain every 15 minutes, with a human override (`PUT /event-state`, optional hours, or `{"mode":"auto"}` to return). `GET /event-state` now also reports the mode, source, reason and rain behind it. Falls back to `EVENT_STATE` when the rain data is missing or over 12 hours old; `EVENT_AUTO=0` turns it off. Placeholder thresholds (F-36).

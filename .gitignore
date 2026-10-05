@@ -46,3 +46,8 @@ Thumbs.db
 01_code/citypulse-IDP/data/susceptibility/*/grid_a2.npz
 01_code/citypulse-IDP/data/susceptibility/*/chennai250*.npz
 01_code/citypulse-IDP/data/susceptibility/*/routes_*.json
+
+# Field-log exports and logs (ADR-028): volunteer pseudonyms with times and places. Never commit, never publish.
+fieldlog-export-*.csv
+**/exports/
+**/citypulse-fieldlog/

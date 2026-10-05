@@ -27,6 +27,7 @@ Status words used below:
 | Local cache (SQLite + R*-tree) and outbox | Works (tests) | 3 | `app/test/storage` | — |
 | Sync (HLC, G-Set) | Partial | 3 | Pulls by `observed_at`; the Drift outbox is not wired into the new app | F-10 |
 | FastAPI server and ingest adapters | Works (in-memory) | 3 | `server/tests`, 35 tests (CORS opt-in added) | Never deployed |
+| Volunteer field log (`/fieldlog`, `scripts/fieldlog_ops.py`) | Built and tested locally; not deployed; no data | 3 | ADR-028, `docs/FIELD_PROTOCOL.md`; 51 server tests for it (including one that runs the browser logic tests), 21 browser-logic tests, 14 operator-tool tests; walked through in a real browser at desktop and phone width. Separate from the router and the belief | F-37 |
 | Router service (`services/router_api`) | Works locally | 3 | 23 tests, including the Groq proxy and a second-city check; `/route`, `/risk`, `/places`, event state | Never deployed |
 | Travel modes (car, bicycle, on foot, emergency) | Works; placeholder speeds | 3 | ADR-019; own graph, speeds, closed roads and route per mode; footpaths and cycle tracks not in the pack | F-25 |
 | Tamil Nadu main-road region (server and web) | Works on a laptop; routing only | 3 | ADR-020; 257,249 edges / 9.0 MB, 25,144 searchable places, 693 km route in about 0.3 s; flat prior, no flood data; never run on a phone | F-26, F-27 |

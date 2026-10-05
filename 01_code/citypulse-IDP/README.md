@@ -16,7 +16,7 @@ The code behind CityPulse AI. For the project overview, results and status start
 | [`packages/pulse_explain/`](packages/pulse_explain) | Dart | Template explanation and the symbolic verifier |
 | [`services/router_api/`](services/router_api) | Dart | HTTP service for routes, search, hazard overlay and event state; serves Chennai and Tamil Nadu together |
 | [`app/`](app) | Flutter | Android and web client |
-| [`server/`](server) | Python (FastAPI) | Citizen-report ingest and the source adapters |
+| [`server/`](server) | Python (FastAPI) | Citizen-report ingest, the source adapters, and the volunteer field log (ADR-028; off until tokens are set) |
 | [`scripts/`](scripts) | Python | Pack builders, replay engine, Study 1 and Study 2, tests |
 | [`config/`](config) | YAML | `cities.yaml` (regions) and `hazard_classes.yaml` (reliabilities, traveller classes, travel profiles) |
 | [`data/`](data) | | Pinned snapshots, map packs, results; provenance in [`data/MANIFEST.md`](data/MANIFEST.md) |

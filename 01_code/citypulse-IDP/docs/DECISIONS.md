@@ -976,3 +976,51 @@ Three of three flood windows and one of two controls met the criterion written i
 - **Not tested: whether the hazard map helps** when it is switched on. That needs street-level, time-stamped passability data, which does not exist yet.
 
 **Owner's decision on the false alarm (5 October 2026): leave the rule as found, for now.** The single-cell condition stays at 7.6 mm/h for `watch` and 25 mm/h for `active`. The cost accepted: a brief shower can keep the 2015 hazard map on for up to 12 hours. The rule is deployed in this form (live from 16:49 UTC). Revisit when there is more evidence, for example after the coming north-east monsoon: how often the rule switches, whether any switch matched a real event, and whether an operator had to override it. Any change then is a new ADR that cites the replay table above.
+
+
+## ADR-028: A volunteer field log, kept apart from the router, to produce the missing ground truth (6 October 2026)
+
+**Status:** built and tested locally; **not deployed, no volunteer has used it, no field data exists.** Written while the owner was away; the owner has not reviewed it.
+
+**Context.** Every result so far ends at the same wall: there is no independent, time-stamped, street-level record of which roads were passable when. The replay corpus has one proxy timestamp and no depth (CLAUDE.md §4.4); Study 2's label is a co-location artefact (§5.3); ADR-027's rain rule was checked only for "wet versus dry" and never against a street (F-36); the 15 October 2026 gate asks for a live, timestamped passability feed and `NEXT_STEPS.md` lists a field-label pilot as the cheapest way to start one. A person standing at a point and saying "passable", "not passable" or "can't tell" is the oldest form of that evidence. The tool to collect it did not exist.
+
+**Decision.** Build a small volunteer field log as part of the report server, under `/fieldlog` (reached as `/ingest/fieldlog/` in the one-container image), and keep it **separate from the router, the belief and the report store.**
+
+*What it is.*
+- A web page for a phone (English and Tamil; the Tamil is an unreviewed draft). A volunteer picks a site, taps one of three states, optionally a depth band if not passable, confirms, and the entry is stored on the phone and sent when there is a connection.
+- 402 **candidate sites**: the centres of the GCC flood-hazard zones in `data/watchlist/2026-09-14/watchlist_candidates.json` (316 `High`, 86 `Very High`), each with the nearest OSM place name within 2 km (400 of 402) so a volunteer can search by area. **None is verified on the ground**; the page says so. 216 have no street name. A volunteer who finds the site is not at that point logs the nearest real spot, or uses "another place" (`adhoc`), which sends the spot's position rounded to about 10 m.
+- Entries: `entry_id` (a UUID made on the phone), `site_id`, `state` (`passable` / `not_passable` / `unknown`), `observed_at` (the phone's clock, with zone), optional `depth_band` (`ankle` / `knee` / `above_knee` / `unknown`, only with `not_passable`), `client`; the server adds `volunteer` (a pseudonymous code), `received_at` and `lag_seconds`. No names, no free text, no photos in this version.
+- `unknown` is a real answer. A volunteer who cannot tell must be able to say so without being counted as "passable".
+
+*What it is not.*
+- **It does not change any route and is not shown to any traveller.** Nothing in the router, the belief engine, `HazardObservation` or `docs/CONTRACTS.md` was touched. There is no switch that feeds it into the belief. Doing that would be a new ADR that says at what trust and how decay applies.
+- It never says a road is safe (ADR-011). The page text and its Tamil twin are tested against a list of banned words ("safe", "dry", "clear", "open", "fine" and others); "passable" is the volunteer's own word for what they saw, and the stored label is `passable`, not "safe".
+
+*Engineering choices, and why.*
+- **Append-only, fsynced daily JSONL files; nothing is edited or deleted by the service.** A wrong entry is kept and a later one is added; analysis decides what to do. Reason: ground truth that can be quietly rewritten is not ground truth.
+- **Idempotent by `entry_id`.** The same entry sent again with identical content returns 200 `duplicate`; the same id with different content returns 409 and nothing is changed. A phone that lost a response can therefore resend safely.
+- **Offline first.** The queue lives in the phone's `localStorage`; sync rules are by HTTP status (retry on network error, 5xx and 429; stop on 401 and 403 and keep the queue; mark 4xx validation errors as rejected so they do not block the rest). Entries older than 14 days or more than 5 minutes in the future are refused by the server, because a wrong phone clock would put the observation in the wrong rain event; the page warns when the phone's clock differs from the server's.
+- **Per-volunteer tokens from the environment** (`FIELDLOG_TOKENS`), compared in constant time. No tokens configured means logging is **off** (403), never open. A token shorter than 16 characters is refused and counted. Reading and exporting need a separate `FIELDLOG_ADMIN_TOKEN`.
+- **Wrong guesses are slowed, but a valid token is never refused because of them.** In the single-container image many users arrive from one proxy address; a lockout that also blocked valid tokens would let anyone lock every volunteer out. This was first built the other way and changed after reasoning about the proxy case.
+- **Rate limits** per volunteer: 300 per hour and 2,000 per day, to stop a runaway script, not a busy volunteer.
+- **Strict page headers** (a Content Security Policy with no inline script or style, no third-party requests, geolocation allowed for the page only to sort the site list; the position never leaves the phone for listed sites).
+- **CSV export is formula-safe** (cells starting with `=`, `+`, `-`, `@` are prefixed) because the file will be opened in a spreadsheet.
+- **A service worker caches the page shell so it opens offline. It is untested in a real browser** (the embedded browser used in development blocks service-worker registration). The page works without it; only "open the page with no signal" depends on it.
+
+**Limits, stated plainly.**
+- **Storage is not durable on a free host.** The log is files on the container's disk. Render's free tier wipes that on a restart, a redeploy and (as far as is known) when the service sleeps. `/fieldlog/health` says `durable: false` unless the operator sets `FIELDLOG_DURABLE=1` after attaching a persistent disk; until then the log must be exported after every logging day (`scripts/fieldlog_ops.py export`, which checks the row count and prints a SHA-256). Not durable storage is the largest practical risk to the data.
+- **Candidate sites are not verified passage points.** A hazard-zone centroid snapped to a road may be a field, a flyover or the wrong street. Counting `not_passable` at such a point measures the zone, not a street.
+- **Volunteers choose when and where to look.** People log when it is wet and where they can reach, so the data will over-represent rain days and accessible places. The protocol asks for a paired dry-day control, but that reduces the problem, it does not remove it.
+- **One observer, one moment, a phone clock.** There is no photo to check against. The protocol asks for occasional paired observations to measure how often two people disagree.
+- **Privacy.** A volunteer code plus a time and a place is personal data about the volunteer. See `docs/FIELD_PROTOCOL.md` for the notice, retention and deletion; whether this meets the DPDP Act 2023 is **not established** and nobody on the team is a lawyer. Whether recruiting people beyond the team needs institutional ethics approval is for the owner to check with the institution (`docs/ethics/`).
+- **Tamil text is a first draft**, never read by a native speaker.
+- **No photo evidence**, although the field-label pilot in `NEXT_STEPS.md` mentions one. Photos carry faces, number plates and exact locations; adding them needs a storage and consent decision first.
+
+**Analysis is pre-registered in `docs/FIELD_PROTOCOL.md` §8, before any data exists, and no analysis code has been written.** The ground truth must not be fitted to the models it will judge. Any use of field data to change ADR-027's thresholds, the prior, or the router is a new ADR citing the results file.
+
+**Not decided here (owner).**
+1. Who issues tokens and to whom (the team only, or outside volunteers).
+2. Persistent storage: a free database account (Supabase, which `server/README.md` already describes) or a persistent disk on a paid plan. Either needs an account the owner creates.
+3. Whether field data may ever feed the belief, and if so at what reliability α.
+4. Whether to ask for institutional ethics review before outside volunteers.
+5. Whether to deploy now. The local commits are not pushed.

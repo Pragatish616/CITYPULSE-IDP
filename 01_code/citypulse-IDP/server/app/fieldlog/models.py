@@ -1,8 +1,8 @@
 """Field-log data model (ADR-028).
 
 A volunteer at a site records what they SEE, with the time on their phone. This is research ground truth for the project's open question
-(which streets are passable when it rains), not a statement to other users about any road: nothing here is shown to a traveller and, by
-default, nothing here reaches the router's belief (see FIELDLOG_FEEDS_BELIEF in routers/fieldlog.py).
+(which streets are passable when it rains), not a statement to other users about any road: nothing here is shown to a traveller and
+nothing here reaches the router's belief. There is no switch for that; feeding it would be a new decision (ADR-028).
 
 Privacy by design (DPDP): no names, no free text, no photos in v1. The volunteer is a short pseudonymous code issued by the operator. A site
 is either one of the fixed candidate sites (position known, never sent by the phone) or "adhoc", where the volunteer chooses to send the

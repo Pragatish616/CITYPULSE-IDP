@@ -66,6 +66,7 @@ Formatters/linters (must be clean before committing, CLAUDE.md §7):
 | `TOMTOM_API_KEY` | Would enable `app/ingest/tomtom.py`. Currently an interface-shaped stub — see below. | **Not set — no account.** |
 | `OPENAQ_API_KEY` | Would enable `app/ingest/openaq.py`. Currently an interface-shaped stub. | **Not set — no account.** |
 | `GROQ_API_KEY` | Not used anywhere in this server. Cloud LLM calls are T4.4's scope, out of T5.3. | **Not set — not applicable here.** |
+| `FIELDLOG_TOKENS`, `FIELDLOG_ADMIN_TOKEN`, `FIELDLOG_DIR`, `FIELDLOG_DURABLE` | The volunteer field log under `/fieldlog` (ADR-028, `docs/FIELD_PROTOCOL.md`). Tokens unset: logging is off (403). Admin token unset: reading and export are off. | **Not set; nothing deployed.** |
 | *(none)* | `app/ingest/open_meteo.py`, `app/ingest/gdacs.py` — both real, no key required. | **Working today.** |
 
 ## Storage backend selection

@@ -72,6 +72,20 @@ If the rain data is missing, older than 12 hours, or flagged stale, the configur
 | `OBSERVATIONS_URL` | router | The report server root. It also supplies the satellite rain (`/context/rain`), so with it set the event state is **automatic** (ADR-027). In the one-container image it is `http://127.0.0.1:8000`. |
 | `EVENT_AUTO` | router | Set to `0` to turn the automatic state off and use `EVENT_STATE` as a fixed value, as before ADR-027. |
 | `CORS_ALLOWED_ORIGINS` | ingest | Leave empty for single-origin. |
+| `FIELDLOG_TOKENS` | ingest | `code:token,code:token`, one pair per volunteer (make them with `scripts/fieldlog_ops.py token`). **Unset means field logging is off**, not open. A token under 16 characters is refused. ADR-028. |
+| `FIELDLOG_ADMIN_TOKEN` | ingest | Lets an operator read and export the field log. Unset means reading is off. Use a different value from every volunteer token. |
+| `FIELDLOG_DIR` | ingest | Where the field-log files go. Default: a folder in the container's temporary directory, which a free host wipes. |
+| `FIELDLOG_DURABLE` | ingest | Set to `1` only when `FIELDLOG_DIR` is on a persistent disk. It changes only what `/fieldlog/health` says. |
+
+## The volunteer field log (ADR-028, off until you set tokens)
+
+The image already contains the field-log page and API. At `<site>/ingest/fieldlog/` there is a page for volunteers to record what they see at a road point (passable, not passable, can't tell). It is research data and is kept apart from the router: it does not change any route. The protocol, safety rules, notice and the pre-registered analysis are in `docs/FIELD_PROTOCOL.md`.
+
+To switch it on: make tokens (`python scripts/fieldlog_ops.py token v01 v02`), set `FIELDLOG_TOKENS` and `FIELDLOG_ADMIN_TOKEN` in the host's environment, and redeploy. Check with `python scripts/fieldlog_ops.py status https://<site>/ingest`.
+
+**Storage is the weak point.** The log is files on the container's disk. On Render's free tier that disk is wiped by a restart or a redeploy and probably when the service sleeps, so every entry made since the last export can vanish. Until a persistent disk or a database is attached, export after every logging day: `FIELDLOG_ADMIN_TOKEN=... python scripts/fieldlog_ops.py export https://<site>/ingest`. The export refuses to write a file whose row count does not match the server's and prints a SHA-256. `/ingest/fieldlog/health` reports `durable: false` until `FIELDLOG_DURABLE=1`.
+
+Not checked on a live host yet: the page behind the `/ingest` prefix was tested through a stand-in proxy that copies the Caddy rules, not through Caddy itself; and the offline service worker has not been seen to register in any browser used so far. `scripts/smoke_deploy.py` does not test the field log (a new check would fail against a site that has not been redeployed); use the `status` command instead.
 
 ## One container, for hosts that run a single service
 
