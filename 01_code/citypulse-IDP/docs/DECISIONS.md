@@ -916,3 +916,42 @@ Routing results, December 2015 flood extent as truth (share of the route's lengt
 - Round 2's and C3's route tests use uniformly random node pairs, mostly long trips.
 - The windowed feature builder agrees with the unwindowed one with correlation 1.000 on elevation, slope and relief and 0.97 on height above water (checked on one window).
 - Nothing here has run on a phone, and no flood prior built from this work is in the app.
+
+---
+
+## ADR-027: The event state follows satellite rain by default, and a person can override it (5 October 2026)
+
+**Status:** accepted by the owner on 5 October 2026 (decision), rule fixed the same day **before any replay or live trial**. The check described under *Validation* has not been run when this was written; its result will be added below, whatever it is.
+
+**Context.** The event state (`dry`, `watch`, `active`) decides whether the static GCC hazard prior is applied (ADR-015, F-09). Until now a person set it by hand (`PUT /event-state` with the admin token) or the server's `EVENT_STATE` setting applied; the demo has run at `active`. ADR-026 and the NASA IMERG adapter (`server/app/ingest/imerg.py`, `GET /context/rain`) give a keyless satellite rain measure for Chennai. Options put to the owner: A manual, B automatic from rain, C suggest only. The owner chose **B with a human override**.
+
+**Decision.**
+1. **Default (mode `auto`).** The router service polls the report server's `/context/rain` every 15 minutes and sets the state from the rule below.
+2. **Override (mode `manual`).** `PUT /event-state` with the admin token sets a state that wins over the rain rule. It stays until cleared, or for `hours` if given. `PUT /event-state {"mode": "auto"}` returns to the rain rule. The response and `GET /event-state` always say which mode and why.
+3. **Mode `fixed`.** If no rain source is configured (no `OBSERVATIONS_URL`), the configured `EVENT_STATE` applies as before. Behaviour is unchanged for existing deployments that do not set the source.
+4. **If the feed fails.** When the rain data is older than 12 hours, or no poll has succeeded for 12 hours, or none has ever succeeded, the state falls back to the configured `EVENT_STATE` (default `active`, the cautious setting) and is reported as `source: fallback`. Nothing is invented.
+
+**The rule (placeholders; parameters fixed now, not tuned later).** Inputs are from the last three hours of the rain context: `A` = area-mean accumulation (mm), `P` = highest single-cell rate (mm/h).
+
+| Level | Condition |
+|---|---|
+| `active` | `A >= 15 mm` or `P >= 25 mm/h` |
+| `watch` | `A >= 8 mm` or `P >= 7.6 mm/h` |
+| `dry` | otherwise |
+
+*Holds*, because waterlogging outlasts rain and the data runs about six hours behind: after a reading at `active`, stay at `active` for 6 hours from when it was seen; after a reading at `watch` or higher, stay at `watch` or higher for 12 hours from when it was seen. Holds are counted from when the service saw the reading, not from the satellite time, so the data lag does not use them up. They are kept in memory; a restart forgets them (limitation).
+
+*Where the numbers come from.* Not fitted to Chennai floods. `8 mm` and `15 mm` in three hours are the sustained rates of IMD's *heavy* (64.5 to 115.5 mm in 24 h) and *very heavy* (115.6 to 204.4 mm in 24 h) daily classes (64.5 / 24 x 3 = 8.1; 115.6 / 24 x 3 = 14.5). [UNVERIFIED: IMD class limits recalled, not opened in this session; check before citing.] `7.6 mm/h` is the lower bound of the generic *heavy* hourly band in `imerg.py`; `25 mm/h` is a round placeholder between that and the *violent* band at 50 mm/h.
+
+**Disclosure about independence.** Before these numbers were fixed, the live adapter run had already shown the IMERG values for Michaung on 4 December 2023 (area mean about 6.6 mm/h, cell peak 9.7 to 12.2 mm/h). A three-hour accumulation near 20 mm from those values reaches `active` under this rule, so **Michaung is not an independent test of it**. The numbers were chosen from the IMD classes above, not by adjusting until Michaung passed, but the owner should read that sentence as a disclosure, not a reassurance.
+
+**Limits, stated plainly.**
+- **Late.** The newest image was about six hours old at the first live check, so the rule reacts hours after rain starts and cannot warn ahead. A forecast input would be needed for that; not built.
+- **Coarse.** A cell is about 10 km; the Chennai box holds a handful. It can miss a local downpour and cannot see which street floods.
+- **Not a flood measure.** Rain is not flooding; drainage, tides and tank releases matter. The rule only decides whether the static map is applied.
+- **Every user is affected at once** by a switch, including a wrong one. That is why the override exists and why the mode and reason are always reported.
+- **A dry reading turns the map off.** On a `dry` state the router ignores the prior and routes on road speeds and citizen reports only, and the advisor says "no flood event is under way". The demo, which has been fixed at `active`, will show `dry` on dry days from now on.
+
+**Validation (to be run after the implementation, with these windows fixed now).** Replay the rule with the IMERG archive at 00, 06, 12 and 18 UTC (each with its six preceding half-hour images) over: **flood windows** 1 to 3 December 2015 (the project's replay day is 2 December 2015), 3 to 5 December 2023, and 29 November to 1 December 2025; **dry controls** 5 to 7 March 2024 and 10 to 12 April 2025. Report what state the rule gives at each time, in a result file. Expected, not guaranteed: `watch` or `active` on the flood windows, `dry` on the controls. A miss or a false alarm is reported as a negative result and the rule is not adjusted to remove it; any change is a new ADR with the reason.
+
+**Not decided here.** Whether the app should show *why* the state is what it is (the server reports it; the app banner does not yet use it). Whether to add a forecast input.
