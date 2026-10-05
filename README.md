@@ -53,7 +53,7 @@ What to know before you try it:
 - **Phones.** The page is laid out for phone-sized screens. The Android app (below) has been installed on a phone and is reported to behave like this web demo.
 
 How it is built and checked: [`docs/DEPLOY.md`](01_code/citypulse-IDP/docs/DEPLOY.md) (one container; the `Dockerfile` at the top of this repository is
-generated from it). `python 01_code/citypulse-IDP/scripts/smoke_deploy.py https://citypulse-idp.onrender.com` runs 11 read-only checks against the demo.
+generated from it). `python 01_code/citypulse-IDP/scripts/smoke_deploy.py https://citypulse-idp.onrender.com` runs 12 read-only checks against the demo.
 
 ### Android app
 

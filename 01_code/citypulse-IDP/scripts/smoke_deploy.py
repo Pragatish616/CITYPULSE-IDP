@@ -102,6 +102,14 @@ def main(argv=None) -> int:
     # 4. the report server
     status, _, ing, _ = call(base, "/ingest/health")
     rep.check("reports: /ingest/health is ok", status == 200 and isinstance(ing, dict) and ing.get("status") == "ok", str(status))
+    # Rain context from NASA. An optional extra: if NASA is unreachable the site still works, so that only warns.
+    status, _, rain, took = call(base, "/ingest/context/rain", timeout=90)
+    if status == 503:
+        print("[warn] rain context: NASA GIBS was unreachable (503); the rest of the site does not depend on it")
+    else:
+        ok = status == 200 and isinstance(rain, dict) and "as_of" in rain and "data_age_minutes" in rain and "now" in rain
+        rep.check("rain context: /ingest/context/rain answers with the data age", ok,
+                  f"{status}, {took:.1f}s" + (f", {rain['now']['intensity_class']} rain, {rain['data_age_minutes']} min old" if ok else ""))
     if args.write:
         now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
         obs = {

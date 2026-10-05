@@ -27,6 +27,7 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
 ### Added (deployment)
+- `GET /context/rain` on the report server: NASA IMERG satellite rain intensity and 3-hour accumulation for Chennai (keyless, cached, shows its age, serves stale when NASA is down). Context only; nothing is stored as a hazard report. Not yet used by the router or the app.
 - Phone testing: a manual GitHub workflow that builds an installable Android APK (`.github/workflows/android-apk.yml`) and `docs/MOBILE_TESTING.md` (home-screen install of the web demo, APK install, what to record). First built on 4 Oct 2026 (60.9 MB APK, second run); installed on one Android phone on 5 Oct 2026 and reported to behave like the web app (no measurements recorded yet).
 - Web demo live on a free Render instance: <https://citypulse-idp.onrender.com> (README "Live demo"; a temporary demo, see its limits).
 - One-container image (`deploy/single/`: Dockerfile, Caddyfile, start.sh) that serves the web app, router API and report server from one address, and `scripts/smoke_deploy.py` (12 checks, local or live URL). Untested as an image; see docs/DEPLOY.md.

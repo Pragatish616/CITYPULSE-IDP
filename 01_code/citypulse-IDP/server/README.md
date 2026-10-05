@@ -98,6 +98,11 @@ not verified-correct, until it has been.
   time from `config/hazard_classes.yaml` (`app/config.py`) — one source of truth, no second
   hardcoded enum.
 - `POST /observations`, `GET /observations`, `GET /health`, `GET /events` (SSE).
+- `GET /context/rain` (`app/ingest/imerg.py`): NASA IMERG satellite rain intensity for the Chennai box, decoded from NASA GIBS map
+  images with GIBS's own colour legend. No key, no login. Context, not a hazard report: it is never stored as an observation and says
+  nothing about a road being flooded or passable. Returns the age of the data (it ran about 6 hours behind in the first live check),
+  caches 15 minutes, serves the last good answer marked `stale` if NASA is down, and returns 503 if there is none. The intensity bands
+  are generic descriptive rain bands, placeholders until a pre-registered study fits them. 28 tests (mocked HTTP).
 - G-Set dedup (`ON CONFLICT DO NOTHING` semantics, ADR-008) in both storage backends.
 - `app/ingest/open_meteo.py` — real HTTP calls to the Open-Meteo forecast API, normalised
   into `heat` `HazardObservation` records. The Open-Meteo *flood* API (GloFAS river
