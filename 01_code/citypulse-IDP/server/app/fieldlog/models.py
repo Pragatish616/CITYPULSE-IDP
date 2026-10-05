@@ -78,7 +78,9 @@ class FieldLogEntry(BaseModel):
     @classmethod
     def _client_plain(cls, v: str) -> str:
         if not re.fullmatch(r"[A-Za-z0-9._ -]*", v):
-            raise ValueError("client may only contain letters, digits, spaces and . _ -")
+            raise ValueError(
+                "client may only contain letters, digits, spaces and . _ -"
+            )
         return v
 
     @model_validator(mode="after")
@@ -95,7 +97,9 @@ class FieldLogEntry(BaseModel):
             # About 10 m: the volunteer chose to share the spot, not an exact track of where they stood.
             self.lat, self.lon = round(self.lat, 4), round(self.lon, 4)
         elif self.lat is not None or self.lon is not None:
-            raise ValueError("lat and lon are only for adhoc entries; a known site's position is not sent")
+            raise ValueError(
+                "lat and lon are only for adhoc entries; a known site's position is not sent"
+            )
         return self
 
     def check_time(self, now: datetime) -> None:
@@ -126,14 +130,31 @@ class StoredEntry(BaseModel):
     lag_seconds: int
 
     @classmethod
-    def from_entry(cls, e: FieldLogEntry, volunteer: str, received_at: datetime) -> StoredEntry:
+    def from_entry(
+        cls, e: FieldLogEntry, volunteer: str, received_at: datetime
+    ) -> StoredEntry:
         return cls(
-            entry_id=e.entry_id, site_id=e.site_id, state=e.state, observed_at=e.observed_at, depth_band=e.depth_band,
-            lat=e.lat, lon=e.lon, client=e.client, volunteer=volunteer, received_at=received_at,
+            entry_id=e.entry_id,
+            site_id=e.site_id,
+            state=e.state,
+            observed_at=e.observed_at,
+            depth_band=e.depth_band,
+            lat=e.lat,
+            lon=e.lon,
+            client=e.client,
+            volunteer=volunteer,
+            received_at=received_at,
             lag_seconds=int((received_at - e.observed_at).total_seconds()),
         )
 
     def content_key(self) -> tuple:
         """What must match for the same entry_id to count as a harmless repeat rather than a conflict."""
-        return (self.site_id, self.state.value, self.observed_at.isoformat(), self.depth_band.value if self.depth_band else None,
-                self.lat, self.lon, self.volunteer)
+        return (
+            self.site_id,
+            self.state.value,
+            self.observed_at.isoformat(),
+            self.depth_band.value if self.depth_band else None,
+            self.lat,
+            self.lon,
+            self.volunteer,
+        )

@@ -31,7 +31,11 @@ def create_app() -> FastAPI:
 
     # Browsers cannot post reports from another origin without CORS. Off unless the operator
     # names the origins (comma-separated); never "*" by default (PLAN.md M2.5, strict CORS).
-    origins = [o.strip() for o in os.environ.get("CORS_ALLOWED_ORIGINS", "").split(",") if o.strip()]
+    origins = [
+        o.strip()
+        for o in os.environ.get("CORS_ALLOWED_ORIGINS", "").split(",")
+        if o.strip()
+    ]
     if origins:
         app.add_middleware(
             CORSMiddleware,

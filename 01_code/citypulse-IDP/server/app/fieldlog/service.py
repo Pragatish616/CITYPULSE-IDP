@@ -61,7 +61,9 @@ class TokenBook:
 class Window:
     """Sliding-window counter per key."""
 
-    def __init__(self, limit: int, seconds: float, clock: Callable[[], float] = time.monotonic) -> None:
+    def __init__(
+        self, limit: int, seconds: float, clock: Callable[[], float] = time.monotonic
+    ) -> None:
         self.limit, self.seconds, self._clock = limit, seconds, clock
         self._hits: dict[str, deque[float]] = defaultdict(deque)
         self._lock = threading.Lock()
@@ -107,10 +109,16 @@ class FieldLogService:
     ) -> None:
         self.now = now or (lambda: datetime.now(timezone.utc))
         self.tokens = TokenBook(tokens)
-        self.admin_token = admin_token if admin_token and len(admin_token) >= MIN_TOKEN_LENGTH else None
+        self.admin_token = (
+            admin_token
+            if admin_token and len(admin_token) >= MIN_TOKEN_LENGTH
+            else None
+        )
         self.admin_token_refused = bool(admin_token) and self.admin_token is None
         self.durable = durable
-        self.store = FieldLogStore(directory or Path(tempfile.gettempdir()) / "citypulse-fieldlog")
+        self.store = FieldLogStore(
+            directory or Path(tempfile.gettempdir()) / "citypulse-fieldlog"
+        )
         doc = json.loads(sites_file.read_text(encoding="utf-8"))
         self.sites_doc = doc
         self.site_ids = {s["id"] for s in doc["sites"]}
@@ -137,7 +145,13 @@ class FieldLogService:
         return site_id == ADHOC_SITE or site_id in self.site_ids
 
     def admin_ok(self, presented: str | None) -> bool:
-        return bool(self.admin_token and presented and hmac.compare_digest(presented.encode("utf-8"), self.admin_token.encode("utf-8")))
+        return bool(
+            self.admin_token
+            and presented
+            and hmac.compare_digest(
+                presented.encode("utf-8"), self.admin_token.encode("utf-8")
+            )
+        )
 
     def health(self) -> dict:
         return {
@@ -150,7 +164,8 @@ class FieldLogService:
             "corrupt_lines_skipped": self.store.corrupt_lines,
             "durable": self.durable,
             "durability_note": (
-                "The operator says the log directory is on a persistent disk." if self.durable
+                "The operator says the log directory is on a persistent disk."
+                if self.durable
                 else "The log directory is NOT known to be persistent: on a free host it is wiped by a restart or a deploy. Export regularly."
             ),
         }

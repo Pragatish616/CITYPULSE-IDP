@@ -16,22 +16,40 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data" / "watchlist" / "2026-09-14" / "watchlist_candidates.json"
+PLACES = ROOT / "data" / "places" / "chennai-2026-10-04" / "places.json"
 OUT = ROOT / "server" / "app" / "fieldlog" / "sites.json"
+NEAR_KINDS = {"suburb", "neighbourhood", "quarter", "town", "city"}
+NEAR_MAX_M = 2000.0
 
 
-def label(row: dict) -> str:
-    street = ((row.get("snapped_edge") or {}).get("street_name") or "").strip()
-    basin = (row.get("basin_label_heuristic") or "").strip()
-    cid = row["candidate_id"]
-    if street:
-        return f"{street} (candidate {cid})"
-    if basin:
-        return f"{basin} area, unnamed road (candidate {cid})"
-    return f"Unnamed road (candidate {cid})"
+def haversine_m(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    r = 6371008.8
+    p = math.pi / 180
+    a = math.sin((lat2 - lat1) * p / 2) ** 2 + math.cos(lat1 * p) * math.cos(lat2 * p) * math.sin((lon2 - lon1) * p / 2) ** 2
+    return 2 * r * math.asin(math.sqrt(a))
+
+
+def load_places() -> list[tuple[str, float, float]]:
+    """Named OSM places (data/places/chennai-2026-10-04, ODbL) a volunteer would recognise: suburbs, neighbourhoods, towns."""
+    rows = json.loads(PLACES.read_text(encoding="utf-8"))["places"]
+    return [(r[0], r[1], r[2]) for r in rows if r[3] in NEAR_KINDS]
+
+
+def nearest_place(lat: float, lon: float, places: list[tuple[str, float, float]]) -> tuple[str, float] | None:
+    best = min(places, key=lambda p: haversine_m(lat, lon, p[1], p[2]))
+    d = haversine_m(lat, lon, best[1], best[2])
+    return (best[0], d) if d <= NEAR_MAX_M else None
+
+
+def label(row: dict, near: str | None) -> str:
+    street = ((row.get("snapped_edge") or {}).get("street_name") or "").strip() or "Unnamed road"
+    where = f", near {near}" if near else ""
+    return f"{street}{where} (candidate {row['candidate_id']})"
 
 
 def build() -> dict:
@@ -39,6 +57,7 @@ def build() -> dict:
     rows = json.loads(raw.decode("utf-8"))
     sites = []
     seen = set()
+    places = load_places()
     for r in sorted(rows, key=lambda x: x["candidate_id"]):
         cid = r["candidate_id"]
         if cid in seen:
@@ -48,9 +67,12 @@ def build() -> dict:
         if not (12.0 <= lat <= 14.0 and 79.0 <= lon <= 81.0):
             raise SystemExit(f"{cid}: point {lat},{lon} is outside the Chennai region")
         cats = r.get("source_categories") or []
+        near = nearest_place(lat, lon, places)
         sites.append({
             "id": cid,
-            "label": label(r),
+            "label": label(r, near[0] if near else None),
+            "near": near[0] if near else None,
+            "near_m": round(near[1] / 50) * 50 if near else None,
             "lat": round(lat, 5),
             "lon": round(lon, 5),
             "hazard_category": cats[0] if cats else None,
@@ -63,6 +85,7 @@ def build() -> dict:
         "kind": "candidate",
         "note": "Candidate points from GCC flood-hazard zones. None is verified on the ground. Positions are zone centres snapped to a road.",
         "source": {"file": "data/watchlist/2026-09-14/watchlist_candidates.json", "sha256": hashlib.sha256(raw).hexdigest(), "rows": len(rows)},
+        "places_source": {"file": "data/places/chennai-2026-10-04/places.json", "licence": "OpenStreetMap contributors, ODbL 1.0", "max_distance_m": NEAR_MAX_M},
         "sites": sites,
     }
 

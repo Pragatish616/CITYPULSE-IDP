@@ -1,15 +1,22 @@
 {
  "kind": "candidate",
  "note": "Candidate points from GCC flood-hazard zones. None is verified on the ground. Positions are zone centres snapped to a road.",
+ "places_source": {
+  "file": "data/places/chennai-2026-10-04/places.json",
+  "licence": "OpenStreetMap contributors, ODbL 1.0",
+  "max_distance_m": 2000.0
+ },
  "sites": [
   {
    "basin_hint": "Adyar",
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0000",
-   "label": "Adyar area, unnamed road (candidate tw1-0000)",
+   "label": "Unnamed road, near Kamakoti Nagar (candidate tw1-0000)",
    "lat": 12.93315,
    "lon": 80.2223,
+   "near": "Kamakoti Nagar",
+   "near_m": 1300,
    "verified_on_ground": false
   },
   {
@@ -17,9 +24,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0001",
-   "label": "Classic farms Avenue (candidate tw1-0001)",
+   "label": "Classic farms Avenue, near Sholinganallur (candidate tw1-0001)",
    "lat": 12.89783,
    "lon": 80.21534,
+   "near": "Sholinganallur",
+   "near_m": 1850,
    "verified_on_ground": false
   },
   {
@@ -27,9 +36,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0002",
-   "label": "Kalaingar Karunanidhi Road (candidate tw1-0002)",
+   "label": "Kalaingar Karunanidhi Road, near Kaveri Rangan Colony (candidate tw1-0002)",
    "lat": 13.05454,
    "lon": 80.20054,
+   "near": "Kaveri Rangan Colony",
+   "near_m": 100,
    "verified_on_ground": false
   },
   {
@@ -37,9 +48,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0003",
-   "label": "Nookampalayam Link Road (candidate tw1-0003)",
+   "label": "Nookampalayam Link Road, near Nookampalayam (candidate tw1-0003)",
    "lat": 12.87923,
    "lon": 80.21469,
+   "near": "Nookampalayam",
+   "near_m": 1500,
    "verified_on_ground": false
   },
   {
@@ -47,9 +60,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0004",
-   "label": "Adyar area, unnamed road (candidate tw1-0004)",
+   "label": "Unnamed road, near Kuberan Nagar (candidate tw1-0004)",
    "lat": 12.9588,
    "lon": 80.20846,
+   "near": "Kuberan Nagar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -57,9 +72,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0005",
-   "label": "Adyar area, unnamed road (candidate tw1-0005)",
+   "label": "Unnamed road, near AGS Officers Colony (candidate tw1-0005)",
    "lat": 12.97898,
    "lon": 80.2085,
+   "near": "AGS Officers Colony",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -67,9 +84,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0006",
-   "label": "Cooum area, unnamed road (candidate tw1-0006)",
+   "label": "Unnamed road, near Choolai (candidate tw1-0006)",
    "lat": 13.0908,
    "lon": 80.26143,
+   "near": "Choolai",
+   "near_m": 100,
    "verified_on_ground": false
   },
   {
@@ -77,9 +96,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0007",
-   "label": "Cooum area, unnamed road (candidate tw1-0007)",
+   "label": "Unnamed road, near T Block (candidate tw1-0007)",
    "lat": 13.08951,
    "lon": 80.21489,
+   "near": "T Block",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -87,9 +108,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0008",
-   "label": "Cooum area, unnamed road (candidate tw1-0008)",
+   "label": "Unnamed road, near Egmore (candidate tw1-0008)",
    "lat": 13.07172,
    "lon": 80.25747,
+   "near": "Egmore",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -97,9 +120,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0009",
-   "label": "PT Rajan Salai (candidate tw1-0009)",
+   "label": "PT Rajan Salai, near K.K.Nagar (candidate tw1-0009)",
    "lat": 13.04139,
    "lon": 80.20494,
+   "near": "K.K.Nagar",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -107,9 +132,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0010",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0010)",
+   "label": "Unnamed road, near Kodungaiyur (candidate tw1-0010)",
    "lat": 13.14128,
    "lon": 80.26969,
+   "near": "Kodungaiyur",
+   "near_m": 1850,
    "verified_on_ground": false
   },
   {
@@ -117,9 +144,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0011",
-   "label": "Cooum area, unnamed road (candidate tw1-0011)",
+   "label": "Unnamed road, near Anna Nagar (candidate tw1-0011)",
    "lat": 13.09083,
    "lon": 80.20727,
+   "near": "Anna Nagar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -127,9 +156,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0012",
-   "label": "Adyar area, unnamed road (candidate tw1-0012)",
+   "label": "Unnamed road, near Metukuppam (candidate tw1-0012)",
    "lat": 12.93847,
    "lon": 80.24172,
+   "near": "Metukuppam",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -137,9 +168,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0013",
-   "label": "Adithanar Road (candidate tw1-0013)",
+   "label": "Adithanar Road, near Pudupet (candidate tw1-0013)",
    "lat": 13.07304,
    "lon": 80.26272,
+   "near": "Pudupet",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -147,9 +180,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0014",
-   "label": "Adyar area, unnamed road (candidate tw1-0014)",
+   "label": "Unnamed road, near Isha Garden (candidate tw1-0014)",
    "lat": 12.91322,
    "lon": 80.21447,
+   "near": "Isha Garden",
+   "near_m": 1350,
    "verified_on_ground": false
   },
   {
@@ -157,9 +192,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0015",
-   "label": "Adyar area, unnamed road (candidate tw1-0015)",
+   "label": "Unnamed road, near Madipakkam (candidate tw1-0015)",
    "lat": 12.95919,
    "lon": 80.20254,
+   "near": "Madipakkam",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -167,9 +204,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0016",
-   "label": "Adyar area, unnamed road (candidate tw1-0016)",
+   "label": "Unnamed road, near Bhuvaneswary Nagar (candidate tw1-0016)",
    "lat": 12.96324,
    "lon": 80.22699,
+   "near": "Bhuvaneswary Nagar",
+   "near_m": 900,
    "verified_on_ground": false
   },
   {
@@ -177,9 +216,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0017",
-   "label": "9th Main Road (candidate tw1-0017)",
+   "label": "9th Main Road, near AC Block (candidate tw1-0017)",
    "lat": 13.08241,
    "lon": 80.20975,
+   "near": "AC Block",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -187,9 +228,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0018",
-   "label": "Kovalam area, unnamed road (candidate tw1-0018)",
+   "label": "Unnamed road (candidate tw1-0018)",
    "lat": 12.87021,
    "lon": 80.22646,
+   "near": null,
+   "near_m": null,
    "verified_on_ground": false
   },
   {
@@ -197,9 +240,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0019",
-   "label": "16th Main Road (candidate tw1-0019)",
+   "label": "16th Main Road, near Thirumangalam (candidate tw1-0019)",
    "lat": 13.08897,
    "lon": 80.19886,
+   "near": "Thirumangalam",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -207,9 +252,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0020",
-   "label": "Adyar area, unnamed road (candidate tw1-0020)",
+   "label": "Unnamed road, near Venus Colony (candidate tw1-0020)",
    "lat": 12.974,
    "lon": 80.22544,
+   "near": "Venus Colony",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -217,9 +264,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0021",
-   "label": "Annai Flats (candidate tw1-0021)",
+   "label": "Annai Flats, near Thirumangalam (candidate tw1-0021)",
    "lat": 13.08422,
    "lon": 80.19279,
+   "near": "Thirumangalam",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -227,9 +276,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0022",
-   "label": "Adyar area, unnamed road (candidate tw1-0022)",
+   "label": "Unnamed road, near Pallikaranai (candidate tw1-0022)",
    "lat": 12.92815,
    "lon": 80.22285,
+   "near": "Pallikaranai",
+   "near_m": 1650,
    "verified_on_ground": false
   },
   {
@@ -237,9 +288,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0023",
-   "label": "Inner Ring Road (Southern Sector) (candidate tw1-0023)",
+   "label": "Inner Ring Road (Southern Sector), near Ram Nagar (candidate tw1-0023)",
    "lat": 12.97039,
    "lon": 80.2138,
+   "near": "Ram Nagar",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -247,9 +300,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0024",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0024)",
+   "label": "Unnamed road, near Kadapakkam (candidate tw1-0024)",
    "lat": 13.19705,
    "lon": 80.26543,
+   "near": "Kadapakkam",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -257,9 +312,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0025",
-   "label": "Defence Colony 1st Avenue (candidate tw1-0025)",
+   "label": "Defence Colony 1st Avenue, near Jafferkhanpet (candidate tw1-0025)",
    "lat": 13.02642,
    "lon": 80.19771,
+   "near": "Jafferkhanpet",
+   "near_m": 950,
    "verified_on_ground": false
   },
   {
@@ -267,9 +324,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0026",
-   "label": "Adyar area, unnamed road (candidate tw1-0026)",
+   "label": "Unnamed road, near Sai Nagar (candidate tw1-0026)",
    "lat": 12.96135,
    "lon": 80.22948,
+   "near": "Sai Nagar",
+   "near_m": 1200,
    "verified_on_ground": false
   },
   {
@@ -277,9 +336,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0027",
-   "label": "Khader Nawaz Khan Road (candidate tw1-0027)",
+   "label": "Khader Nawaz Khan Road, near Thousand Lights (candidate tw1-0027)",
    "lat": 13.06103,
    "lon": 80.25047,
+   "near": "Thousand Lights",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -287,9 +348,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0028",
-   "label": "Kovalam area, unnamed road (candidate tw1-0028)",
+   "label": "Unnamed road, near Navalur (candidate tw1-0028)",
    "lat": 12.86252,
    "lon": 80.22439,
+   "near": "Navalur",
+   "near_m": 1900,
    "verified_on_ground": false
   },
   {
@@ -297,9 +360,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0029",
-   "label": "4th Avenue (candidate tw1-0029)",
+   "label": "4th Avenue, near Ashok Nagar (candidate tw1-0029)",
    "lat": 13.03775,
    "lon": 80.21334,
+   "near": "Ashok Nagar",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -307,9 +372,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0030",
-   "label": "Cooum area, unnamed road (candidate tw1-0030)",
+   "label": "Unnamed road, near Mahaveer Colony (candidate tw1-0030)",
    "lat": 13.08186,
    "lon": 80.25903,
+   "near": "Mahaveer Colony",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -317,9 +384,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0031",
-   "label": "Cooum area, unnamed road (candidate tw1-0031)",
+   "label": "Unnamed road, near Aminjikarai (candidate tw1-0031)",
    "lat": 13.06945,
    "lon": 80.21697,
+   "near": "Aminjikarai",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -327,9 +396,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0032",
-   "label": "Adyar area, unnamed road (candidate tw1-0032)",
+   "label": "Unnamed road, near MRC Nagar (candidate tw1-0032)",
    "lat": 13.01552,
    "lon": 80.26957,
+   "near": "MRC Nagar",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -337,9 +408,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0033",
-   "label": "Thiru Vi Ka Sundaram High Road (candidate tw1-0033)",
+   "label": "Thiru Vi Ka Sundaram High Road, near Lloyds Colony (candidate tw1-0033)",
    "lat": 13.04482,
    "lon": 80.26659,
+   "near": "Lloyds Colony",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -347,9 +420,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0034",
-   "label": "Malaiyappan Street (candidate tw1-0034)",
+   "label": "Malaiyappan Street, near George Town (candidate tw1-0034)",
    "lat": 13.09812,
    "lon": 80.28724,
+   "near": "George Town",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -357,9 +432,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0035",
-   "label": "Adyar area, unnamed road (candidate tw1-0035)",
+   "label": "Unnamed road, near VGP Selva Nagar (candidate tw1-0035)",
    "lat": 12.97306,
    "lon": 80.21426,
+   "near": "VGP Selva Nagar",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -367,9 +444,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0036",
-   "label": "1st Cross street (candidate tw1-0036)",
+   "label": "1st Cross street, near Ramapuram (candidate tw1-0036)",
    "lat": 13.02358,
    "lon": 80.18455,
+   "near": "Ramapuram",
+   "near_m": 1000,
    "verified_on_ground": false
   },
   {
@@ -377,9 +456,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0037",
-   "label": "Adyar area, unnamed road (candidate tw1-0037)",
+   "label": "Unnamed road, near Meenambakkam (candidate tw1-0037)",
    "lat": 12.99812,
    "lon": 80.16558,
+   "near": "Meenambakkam",
+   "near_m": 1500,
    "verified_on_ground": false
   },
   {
@@ -387,9 +468,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0038",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0038)",
+   "label": "Unnamed road, near Thiru Vi Ka Nagar (candidate tw1-0038)",
    "lat": 13.13144,
    "lon": 80.22677,
+   "near": "Thiru Vi Ka Nagar",
+   "near_m": 1200,
    "verified_on_ground": false
   },
   {
@@ -397,9 +480,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0039",
-   "label": "Ramakrishna Street (candidate tw1-0039)",
+   "label": "Ramakrishna Street, near Perambur (candidate tw1-0039)",
    "lat": 13.11036,
    "lon": 80.25015,
+   "near": "Perambur",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -407,9 +492,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0040",
-   "label": "Ragavan Colony 1st Link street (candidate tw1-0040)",
+   "label": "Ragavan Colony 1st Link street, near West Saidapet (candidate tw1-0040)",
    "lat": 13.0291,
    "lon": 80.2154,
+   "near": "West Saidapet",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -417,9 +504,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0041",
-   "label": "Taramani Road (candidate tw1-0041)",
+   "label": "Taramani Road, near Taramani (candidate tw1-0041)",
    "lat": 12.987,
    "lon": 80.24601,
+   "near": "Taramani",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -427,9 +516,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0042",
-   "label": "Adikesavalu Street (candidate tw1-0042)",
+   "label": "Adikesavalu Street, near Chintadripet (candidate tw1-0042)",
    "lat": 13.0738,
    "lon": 80.27212,
+   "near": "Chintadripet",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -437,9 +528,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0043",
-   "label": "Cooum area, unnamed road (candidate tw1-0043)",
+   "label": "Unnamed road, near Anna Nagar East (candidate tw1-0043)",
    "lat": 13.0865,
    "lon": 80.22686,
+   "near": "Anna Nagar East",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -447,9 +540,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0044",
-   "label": "Loop Road (candidate tw1-0044)",
+   "label": "Loop Road, near Foreshore Estate (candidate tw1-0044)",
    "lat": 13.02292,
    "lon": 80.27488,
+   "near": "Foreshore Estate",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -457,9 +552,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0045",
-   "label": "Pallavaram - Thoraipakkam Road (candidate tw1-0045)",
+   "label": "Pallavaram - Thoraipakkam Road, near Kamatchi Nagar (candidate tw1-0045)",
    "lat": 12.94692,
    "lon": 80.2211,
+   "near": "Kamatchi Nagar",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -467,9 +564,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0046",
-   "label": "Cooum area, unnamed road (candidate tw1-0046)",
+   "label": "Unnamed road, near Mahalingapuram (candidate tw1-0046)",
    "lat": 13.06117,
    "lon": 80.23502,
+   "near": "Mahalingapuram",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -477,9 +576,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0047",
-   "label": "Adyar area, unnamed road (candidate tw1-0047)",
+   "label": "Unnamed road, near Vikram Sarabhai Industrial Estate (candidate tw1-0047)",
    "lat": 12.98444,
    "lon": 80.25258,
+   "near": "Vikram Sarabhai Industrial Estate",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -487,9 +588,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0048",
-   "label": "Thiruvottriyur – Ponneri – Panchetty Road (candidate tw1-0048)",
+   "label": "Thiruvottriyur – Ponneri – Panchetty Road, near Manali (candidate tw1-0048)",
    "lat": 13.17892,
    "lon": 80.26824,
+   "near": "Manali",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -497,9 +600,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0049",
-   "label": "Anna Nagar 3rd Avenue (candidate tw1-0049)",
+   "label": "Anna Nagar 3rd Avenue, near T Block (candidate tw1-0049)",
    "lat": 13.08885,
    "lon": 80.2185,
+   "near": "T Block",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -507,9 +612,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0050",
-   "label": "Kovalam area, unnamed road (candidate tw1-0050)",
+   "label": "Unnamed road, near Thazhambur (candidate tw1-0050)",
    "lat": 12.86331,
    "lon": 80.21645,
+   "near": "Thazhambur",
+   "near_m": 1750,
    "verified_on_ground": false
   },
   {
@@ -517,9 +624,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0051",
-   "label": "Adyar area, unnamed road (candidate tw1-0051)",
+   "label": "Unnamed road, near SIDCO Industrial Estate (candidate tw1-0051)",
    "lat": 13.01135,
    "lon": 80.21152,
+   "near": "SIDCO Industrial Estate",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -527,9 +636,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0052",
-   "label": "Kovalam area, unnamed road (candidate tw1-0052)",
+   "label": "Unnamed road, near Karanai (candidate tw1-0052)",
    "lat": 12.86932,
    "lon": 80.21323,
+   "near": "Karanai",
+   "near_m": 1900,
    "verified_on_ground": false
   },
   {
@@ -537,9 +648,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0053",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0053)",
+   "label": "Unnamed road, near Vyasarpadi (candidate tw1-0053)",
    "lat": 13.10784,
    "lon": 80.25281,
+   "near": "Vyasarpadi",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -547,9 +660,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0054",
-   "label": "Cooum area, unnamed road (candidate tw1-0054)",
+   "label": "Unnamed road, near Nolambur (candidate tw1-0054)",
    "lat": 13.07421,
    "lon": 80.17046,
+   "near": "Nolambur",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -557,9 +672,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0055",
-   "label": "Adyar area, unnamed road (candidate tw1-0055)",
+   "label": "Unnamed road, near Metukuppam (candidate tw1-0055)",
    "lat": 12.9337,
    "lon": 80.22986,
+   "near": "Metukuppam",
+   "near_m": 900,
    "verified_on_ground": false
   },
   {
@@ -567,9 +684,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0056",
-   "label": "1st Street (candidate tw1-0056)",
+   "label": "1st Street, near Saligramam (candidate tw1-0056)",
    "lat": 13.05867,
    "lon": 80.20429,
+   "near": "Saligramam",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -577,9 +696,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0057",
-   "label": "Sylvan Lodge Colony 4th Street (candidate tw1-0057)",
+   "label": "Sylvan Lodge Colony 4th Street, near Kellys (candidate tw1-0057)",
    "lat": 13.08242,
    "lon": 80.24704,
+   "near": "Kellys",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -587,9 +708,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0058",
-   "label": "Cooum area, unnamed road (candidate tw1-0058)",
+   "label": "Unnamed road, near NGO Colony (candidate tw1-0058)",
    "lat": 13.06172,
    "lon": 80.2139,
+   "near": "NGO Colony",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -597,9 +720,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0059",
-   "label": "Cooum area, unnamed road (candidate tw1-0059)",
+   "label": "Unnamed road, near Nolambur (candidate tw1-0059)",
    "lat": 13.07478,
    "lon": 80.17348,
+   "near": "Nolambur",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -607,9 +732,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0060",
-   "label": "Adyar area, unnamed road (candidate tw1-0060)",
+   "label": "Unnamed road, near Srinivasa Nagar (candidate tw1-0060)",
    "lat": 12.95296,
    "lon": 80.25075,
+   "near": "Srinivasa Nagar",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -617,9 +744,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0061",
-   "label": "Mayor Ramanathan Road (Spur Tank Road) (candidate tw1-0061)",
+   "label": "Mayor Ramanathan Road (Spur Tank Road), near Egmore (candidate tw1-0061)",
    "lat": 13.07295,
    "lon": 80.25127,
+   "near": "Egmore",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -627,9 +756,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0062",
-   "label": "1st Main Road West (candidate tw1-0062)",
+   "label": "1st Main Road West, near Bharathipuram (candidate tw1-0062)",
    "lat": 13.07753,
    "lon": 80.22322,
+   "near": "Bharathipuram",
+   "near_m": 100,
    "verified_on_ground": false
   },
   {
@@ -637,9 +768,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0063",
-   "label": "2nd Avenue, Anna Nagar West (candidate tw1-0063)",
+   "label": "2nd Avenue, Anna Nagar West, near Anna Nagar (candidate tw1-0063)",
    "lat": 13.0851,
    "lon": 80.20635,
+   "near": "Anna Nagar",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -647,9 +780,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0064",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0064)",
+   "label": "Unnamed road, near Madhavaram (candidate tw1-0064)",
    "lat": 13.13886,
    "lon": 80.22259,
+   "near": "Madhavaram",
+   "near_m": 1100,
    "verified_on_ground": false
   },
   {
@@ -657,9 +792,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0065",
-   "label": "M.G.R. 2nd Street (candidate tw1-0065)",
+   "label": "M.G.R. 2nd Street, near Uthandi (candidate tw1-0065)",
    "lat": 12.86518,
    "lon": 80.23501,
+   "near": "Uthandi",
+   "near_m": 1400,
    "verified_on_ground": false
   },
   {
@@ -667,9 +804,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0066",
-   "label": "Cooum area, unnamed road (candidate tw1-0066)",
+   "label": "Unnamed road, near Officers Colony (candidate tw1-0066)",
    "lat": 13.0686,
    "lon": 80.22854,
+   "near": "Officers Colony",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -677,9 +816,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0067",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0067)",
+   "label": "Unnamed road, near Saidayankuppam (candidate tw1-0067)",
    "lat": 13.19089,
    "lon": 80.28845,
+   "near": "Saidayankuppam",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -687,9 +828,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0068",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0068)",
+   "label": "Unnamed road, near Kodungaiyur (candidate tw1-0068)",
    "lat": 13.12614,
    "lon": 80.25848,
+   "near": "Kodungaiyur",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -697,9 +840,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0069",
-   "label": "6th Street (candidate tw1-0069)",
+   "label": "6th Street, near Stanley Nagar (candidate tw1-0069)",
    "lat": 13.11709,
    "lon": 80.27029,
+   "near": "Stanley Nagar",
+   "near_m": 900,
    "verified_on_ground": false
   },
   {
@@ -707,9 +852,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0070",
-   "label": "Mayor Ramanathan Road (Spur Tank Road) (candidate tw1-0070)",
+   "label": "Mayor Ramanathan Road (Spur Tank Road), near Chetpet (candidate tw1-0070)",
    "lat": 13.06941,
    "lon": 80.24426,
+   "near": "Chetpet",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -717,9 +864,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0071",
-   "label": "Cooum area, unnamed road (candidate tw1-0071)",
+   "label": "Unnamed road, near Chetpet (candidate tw1-0071)",
    "lat": 13.07531,
    "lon": 80.24236,
+   "near": "Chetpet",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -727,9 +876,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0072",
-   "label": "Adyar area, unnamed road (candidate tw1-0072)",
+   "label": "Unnamed road, near Venus Colony (candidate tw1-0072)",
    "lat": 12.96872,
    "lon": 80.23066,
+   "near": "Venus Colony",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -737,9 +888,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0073",
-   "label": "Riverview 2nd St (candidate tw1-0073)",
+   "label": "Riverview 2nd St, near Karapakkam (candidate tw1-0073)",
    "lat": 12.91673,
    "lon": 80.22398,
+   "near": "Karapakkam",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -747,9 +900,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0074",
-   "label": "Adyar area, unnamed road (candidate tw1-0074)",
+   "label": "Unnamed road, near Manapakkam (candidate tw1-0074)",
    "lat": 13.0132,
    "lon": 80.17936,
+   "near": "Manapakkam",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -757,9 +912,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0075",
-   "label": "Puthu Farrance Salai (candidate tw1-0075)",
+   "label": "Puthu Farrance Salai, near Otteri (candidate tw1-0075)",
    "lat": 13.10034,
    "lon": 80.25338,
+   "near": "Otteri",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -767,9 +924,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0076",
-   "label": "Pulla Avenue (candidate tw1-0076)",
+   "label": "Pulla Avenue, near Shenoy Nagar (candidate tw1-0076)",
    "lat": 13.07904,
    "lon": 80.22619,
+   "near": "Shenoy Nagar",
+   "near_m": 100,
    "verified_on_ground": false
   },
   {
@@ -777,9 +936,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0077",
-   "label": "Adyar area, unnamed road (candidate tw1-0077)",
+   "label": "Unnamed road, near Narayanapuram (candidate tw1-0077)",
    "lat": 12.94477,
    "lon": 80.20336,
+   "near": "Narayanapuram",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -787,9 +948,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0078",
-   "label": "Bharathi Salai (candidate tw1-0078)",
+   "label": "Bharathi Salai, near Zam Bazaar (candidate tw1-0078)",
    "lat": 13.05861,
    "lon": 80.26854,
+   "near": "Zam Bazaar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -797,9 +960,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0079",
-   "label": "2nd Street (candidate tw1-0079)",
+   "label": "2nd Street, near Venkateshpuram (candidate tw1-0079)",
    "lat": 12.96821,
    "lon": 80.25291,
+   "near": "Venkateshpuram",
+   "near_m": 100,
    "verified_on_ground": false
   },
   {
@@ -807,9 +972,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0080",
-   "label": "CS Koil 3rd Street (candidate tw1-0080)",
+   "label": "CS Koil 3rd Street, near CIT Colony (candidate tw1-0080)",
    "lat": 13.04015,
    "lon": 80.26563,
+   "near": "CIT Colony",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -817,9 +984,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0081",
-   "label": "Cooum area, unnamed road (candidate tw1-0081)",
+   "label": "Unnamed road, near West Saidapet (candidate tw1-0081)",
    "lat": 13.02064,
    "lon": 80.21624,
+   "near": "West Saidapet",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -827,9 +996,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0082",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0082)",
+   "label": "Unnamed road, near Edayanchavadi (candidate tw1-0082)",
    "lat": 13.21403,
    "lon": 80.29398,
+   "near": "Edayanchavadi",
+   "near_m": 1000,
    "verified_on_ground": false
   },
   {
@@ -837,9 +1008,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0083",
-   "label": "Cooum area, unnamed road (candidate tw1-0083)",
+   "label": "Unnamed road, near Nandanam Extension (candidate tw1-0083)",
    "lat": 13.02786,
    "lon": 80.24209,
+   "near": "Nandanam Extension",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -847,9 +1020,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0084",
-   "label": "Adyar area, unnamed road (candidate tw1-0084)",
+   "label": "Unnamed road, near Kamatchi Nagar (candidate tw1-0084)",
    "lat": 12.94149,
    "lon": 80.22044,
+   "near": "Kamatchi Nagar",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -857,9 +1032,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0085",
-   "label": "Cooum area, unnamed road (candidate tw1-0085)",
+   "label": "Unnamed road, near Secretariat Colony (candidate tw1-0085)",
    "lat": 13.09074,
    "lon": 80.24549,
+   "near": "Secretariat Colony",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -867,9 +1044,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0086",
-   "label": "Meenatchi Amman Nagar Kumaran Street (candidate tw1-0086)",
+   "label": "Meenatchi Amman Nagar Kumaran Street, near Virugambakkam (candidate tw1-0086)",
    "lat": 13.05498,
    "lon": 80.18344,
+   "near": "Virugambakkam",
+   "near_m": 950,
    "verified_on_ground": false
   },
   {
@@ -877,9 +1056,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0087",
-   "label": "3rd Street (candidate tw1-0087)",
+   "label": "3rd Street, near NGO Colony (candidate tw1-0087)",
    "lat": 13.06532,
    "lon": 80.21701,
+   "near": "NGO Colony",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -887,9 +1068,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0088",
-   "label": "Drift Wood Drive Avenue (candidate tw1-0088)",
+   "label": "Drift Wood Drive Avenue, near Panaiyur (candidate tw1-0088)",
    "lat": 12.90201,
    "lon": 80.25193,
+   "near": "Panaiyur",
+   "near_m": 1750,
    "verified_on_ground": false
   },
   {
@@ -897,9 +1080,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0089",
-   "label": "12th Street (candidate tw1-0089)",
+   "label": "12th Street, near Anna Nagar West (candidate tw1-0089)",
    "lat": 13.09563,
    "lon": 80.19576,
+   "near": "Anna Nagar West",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -907,9 +1092,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0090",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0090)",
+   "label": "Unnamed road, near Edayanchavadi (candidate tw1-0090)",
    "lat": 13.22085,
    "lon": 80.29175,
+   "near": "Edayanchavadi",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -917,9 +1104,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0091",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0091)",
+   "label": "Unnamed road, near Kargil Nagar (candidate tw1-0091)",
    "lat": 13.17331,
    "lon": 80.29289,
+   "near": "Kargil Nagar",
+   "near_m": 100,
    "verified_on_ground": false
   },
   {
@@ -927,9 +1116,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0092",
-   "label": "2nd Ln (candidate tw1-0092)",
+   "label": "2nd Ln, near Otteri (candidate tw1-0092)",
    "lat": 13.1045,
    "lon": 80.24774,
+   "near": "Otteri",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -937,9 +1128,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0093",
-   "label": "Cooum area, unnamed road (candidate tw1-0093)",
+   "label": "Unnamed road, near KSR Nagar (candidate tw1-0093)",
    "lat": 13.09833,
    "lon": 80.15607,
+   "near": "KSR Nagar",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -947,9 +1140,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0094",
-   "label": "Cooum area, unnamed road (candidate tw1-0094)",
+   "label": "Unnamed road, near Ekkattuthangal (candidate tw1-0094)",
    "lat": 13.02205,
    "lon": 80.20278,
+   "near": "Ekkattuthangal",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -957,9 +1152,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0095",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0095)",
+   "label": "Unnamed road, near New Washermanpet (candidate tw1-0095)",
    "lat": 13.13871,
    "lon": 80.27742,
+   "near": "New Washermanpet",
+   "near_m": 1500,
    "verified_on_ground": false
   },
   {
@@ -967,9 +1164,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0096",
-   "label": "Abraham Bridge (candidate tw1-0096)",
+   "label": "Abraham Bridge, near Labour Colony (candidate tw1-0096)",
    "lat": 13.01646,
    "lon": 80.21719,
+   "near": "Labour Colony",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -977,9 +1176,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0097",
-   "label": "Cooum area, unnamed road (candidate tw1-0097)",
+   "label": "Unnamed road, near Otteri (candidate tw1-0097)",
    "lat": 13.09369,
    "lon": 80.24576,
+   "near": "Otteri",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -987,9 +1188,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0098",
-   "label": "Cooum area, unnamed road (candidate tw1-0098)",
+   "label": "Unnamed road, near Otteri (candidate tw1-0098)",
    "lat": 13.09332,
    "lon": 80.24944,
+   "near": "Otteri",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -997,9 +1200,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0099",
-   "label": "Thandavarayan Street (candidate tw1-0099)",
+   "label": "Thandavarayan Street, near MRC Nagar (candidate tw1-0099)",
    "lat": 13.01725,
    "lon": 80.27222,
+   "near": "MRC Nagar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -1007,9 +1212,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0100",
-   "label": "Adyar area, unnamed road (candidate tw1-0100)",
+   "label": "Unnamed road, near AGS Officers Colony (candidate tw1-0100)",
    "lat": 12.97607,
    "lon": 80.21179,
+   "near": "AGS Officers Colony",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -1017,9 +1224,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0101",
-   "label": "VGP Selva Nagar 2nd Main Road (candidate tw1-0101)",
+   "label": "VGP Selva Nagar 2nd Main Road, near Venus Colony (candidate tw1-0101)",
    "lat": 12.97103,
    "lon": 80.22577,
+   "near": "Venus Colony",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -1027,9 +1236,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0102",
-   "label": "Elcot SEZ Main road (candidate tw1-0102)",
+   "label": "Elcot SEZ Main road, near Karapakkam (candidate tw1-0102)",
    "lat": 12.9102,
    "lon": 80.21812,
+   "near": "Karapakkam",
+   "near_m": 1050,
    "verified_on_ground": false
   },
   {
@@ -1037,9 +1248,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0103",
-   "label": "Cudappah Rangarachetti Street (candidate tw1-0103)",
+   "label": "Cudappah Rangarachetti Street, near Periamet (candidate tw1-0103)",
    "lat": 13.08214,
    "lon": 80.2679,
+   "near": "Periamet",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -1047,9 +1260,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0104",
-   "label": "Rajaji Colony (candidate tw1-0104)",
+   "label": "Rajaji Colony, near SBI Colony (candidate tw1-0104)",
    "lat": 13.05483,
    "lon": 80.19725,
+   "near": "SBI Colony",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -1057,9 +1272,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0105",
-   "label": "Major Mukund Varadharajan Salai (candidate tw1-0105)",
+   "label": "Major Mukund Varadharajan Salai, near Ram Nagar (candidate tw1-0105)",
    "lat": 12.96278,
    "lon": 80.21663,
+   "near": "Ram Nagar",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -1067,9 +1284,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0106",
-   "label": "Cooum area, unnamed road (candidate tw1-0106)",
+   "label": "Unnamed road, near Pulianthope (candidate tw1-0106)",
    "lat": 13.09648,
    "lon": 80.26094,
+   "near": "Pulianthope",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -1077,9 +1296,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0107",
-   "label": "14th street (candidate tw1-0107)",
+   "label": "14th street, near Arumbakkam (candidate tw1-0107)",
    "lat": 13.07172,
    "lon": 80.20697,
+   "near": "Arumbakkam",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -1087,9 +1308,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0108",
-   "label": "Cooum area, unnamed road (candidate tw1-0108)",
+   "label": "Unnamed road, near Jafferkhanpet (candidate tw1-0108)",
    "lat": 13.03317,
    "lon": 80.20547,
+   "near": "Jafferkhanpet",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1097,9 +1320,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0109",
-   "label": "Indira Nagar 13th Cross Street (candidate tw1-0109)",
+   "label": "Indira Nagar 13th Cross Street, near Bakthavatchalam Nagar (candidate tw1-0109)",
    "lat": 12.99672,
    "lon": 80.25011,
+   "near": "Bakthavatchalam Nagar",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -1107,9 +1332,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0110",
-   "label": "Cooum area, unnamed road (candidate tw1-0110)",
+   "label": "Unnamed road, near Nolambur (candidate tw1-0110)",
    "lat": 13.06796,
    "lon": 80.16813,
+   "near": "Nolambur",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -1117,9 +1344,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0111",
-   "label": "Cooum area, unnamed road (candidate tw1-0111)",
+   "label": "Unnamed road, near Nerkundram (candidate tw1-0111)",
    "lat": 13.07332,
    "lon": 80.17706,
+   "near": "Nerkundram",
+   "near_m": 900,
    "verified_on_ground": false
   },
   {
@@ -1127,9 +1356,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0112",
-   "label": "Cooum area, unnamed road (candidate tw1-0112)",
+   "label": "Unnamed road, near Egmore (candidate tw1-0112)",
    "lat": 13.07519,
    "lon": 80.25526,
+   "near": "Egmore",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1137,9 +1368,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0113",
-   "label": "Adyar area, unnamed road (candidate tw1-0113)",
+   "label": "Unnamed road, near Jothiammal Nagar (candidate tw1-0113)",
    "lat": 13.01772,
    "lon": 80.23159,
+   "near": "Jothiammal Nagar",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1147,9 +1380,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0114",
-   "label": "6th Street (candidate tw1-0114)",
+   "label": "6th Street, near Korukkupet (candidate tw1-0114)",
    "lat": 13.12216,
    "lon": 80.2727,
+   "near": "Korukkupet",
+   "near_m": 1200,
    "verified_on_ground": false
   },
   {
@@ -1157,9 +1392,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0115",
-   "label": "Adyar area, unnamed road (candidate tw1-0115)",
+   "label": "Unnamed road, near Kuberan Nagar (candidate tw1-0115)",
    "lat": 12.94921,
    "lon": 80.20373,
+   "near": "Kuberan Nagar",
+   "near_m": 950,
    "verified_on_ground": false
   },
   {
@@ -1167,9 +1404,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0116",
-   "label": "Labour Colony 2nd Street (candidate tw1-0116)",
+   "label": "Labour Colony 2nd Street, near Labour Colony (candidate tw1-0116)",
    "lat": 13.01641,
    "lon": 80.20778,
+   "near": "Labour Colony",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -1177,9 +1416,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0117",
-   "label": "Adyar area, unnamed road (candidate tw1-0117)",
+   "label": "Unnamed road, near Kannagi Nagar (candidate tw1-0117)",
    "lat": 12.9178,
    "lon": 80.23846,
+   "near": "Kannagi Nagar",
+   "near_m": 1100,
    "verified_on_ground": false
   },
   {
@@ -1187,9 +1428,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0118",
-   "label": "19th Street (candidate tw1-0118)",
+   "label": "19th Street, near F Block (candidate tw1-0118)",
    "lat": 13.09011,
    "lon": 80.22463,
+   "near": "F Block",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -1197,9 +1440,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0119",
-   "label": "Adyar area, unnamed road (candidate tw1-0119)",
+   "label": "Unnamed road, near Sholinganallur (candidate tw1-0119)",
    "lat": 12.90436,
    "lon": 80.23942,
+   "near": "Sholinganallur",
+   "near_m": 1450,
    "verified_on_ground": false
   },
   {
@@ -1207,9 +1452,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0120",
-   "label": "Cooum area, unnamed road (candidate tw1-0120)",
+   "label": "Unnamed road, near Arumbakkam (candidate tw1-0120)",
    "lat": 13.07001,
    "lon": 80.20909,
+   "near": "Arumbakkam",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -1217,9 +1464,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0121",
-   "label": "7th Avenue (candidate tw1-0121)",
+   "label": "7th Avenue, near Ashok Nagar (candidate tw1-0121)",
    "lat": 13.03183,
    "lon": 80.21586,
+   "near": "Ashok Nagar",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -1227,9 +1476,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0122",
-   "label": "Taramani Link Road (candidate tw1-0122)",
+   "label": "Taramani Link Road, near Udhayam Nagar (candidate tw1-0122)",
    "lat": 12.97809,
    "lon": 80.23479,
+   "near": "Udhayam Nagar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -1237,9 +1488,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0123",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0123)",
+   "label": "Unnamed road, near Saidayankuppam (candidate tw1-0123)",
    "lat": 13.18134,
    "lon": 80.2952,
+   "near": "Saidayankuppam",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -1247,9 +1500,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0124",
-   "label": "Cooum area, unnamed road (candidate tw1-0124)",
+   "label": "Unnamed road, near Lloyds Colony (candidate tw1-0124)",
    "lat": 13.04598,
    "lon": 80.27781,
+   "near": "Lloyds Colony",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -1257,9 +1512,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0125",
-   "label": "Cooum area, unnamed road (candidate tw1-0125)",
+   "label": "Unnamed road, near Annai Sathya Nagar Nesapakkam (candidate tw1-0125)",
    "lat": 13.03416,
    "lon": 80.1901,
+   "near": "Annai Sathya Nagar Nesapakkam",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -1267,9 +1524,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0126",
-   "label": "Cooum area, unnamed road (candidate tw1-0126)",
+   "label": "Unnamed road, near Ekkattuthangal (candidate tw1-0126)",
    "lat": 13.02756,
    "lon": 80.21166,
+   "near": "Ekkattuthangal",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -1277,9 +1536,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0127",
-   "label": "Adyar area, unnamed road (candidate tw1-0127)",
+   "label": "Unnamed road, near Kuberan Nagar (candidate tw1-0127)",
    "lat": 12.9568,
    "lon": 80.21177,
+   "near": "Kuberan Nagar",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -1287,9 +1548,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0128",
-   "label": "Cooum area, unnamed road (candidate tw1-0128)",
+   "label": "Unnamed road, near Officers Colony (candidate tw1-0128)",
    "lat": 13.0685,
    "lon": 80.23498,
+   "near": "Officers Colony",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -1297,9 +1560,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0129",
-   "label": "Dr Girappa Road (candidate tw1-0129)",
+   "label": "Dr Girappa Road, near Teynampet (candidate tw1-0129)",
    "lat": 13.04387,
    "lon": 80.24671,
+   "near": "Teynampet",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1307,9 +1572,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0130",
-   "label": "College Road (candidate tw1-0130)",
+   "label": "College Road, near Egmore (candidate tw1-0130)",
    "lat": 13.06885,
    "lon": 80.25194,
+   "near": "Egmore",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -1317,9 +1584,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0131",
-   "label": "Adyar area, unnamed road (candidate tw1-0131)",
+   "label": "Unnamed road, near MRC Nagar (candidate tw1-0131)",
    "lat": 13.01447,
    "lon": 80.27775,
+   "near": "MRC Nagar",
+   "near_m": 950,
    "verified_on_ground": false
   },
   {
@@ -1327,9 +1596,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0132",
-   "label": "Cooum area, unnamed road (candidate tw1-0132)",
+   "label": "Unnamed road, near SBI Colony (candidate tw1-0132)",
    "lat": 13.05846,
    "lon": 80.19414,
+   "near": "SBI Colony",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -1337,9 +1608,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0133",
-   "label": "Cooum area, unnamed road (candidate tw1-0133)",
+   "label": "Unnamed road, near Ashok Nagar (candidate tw1-0133)",
    "lat": 13.03438,
    "lon": 80.21692,
+   "near": "Ashok Nagar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -1347,9 +1620,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0134",
-   "label": "Vasantha Street (candidate tw1-0134)",
+   "label": "Vasantha Street, near Nerkundram (candidate tw1-0134)",
    "lat": 13.07471,
    "lon": 80.18325,
+   "near": "Nerkundram",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -1357,9 +1632,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0135",
-   "label": "Bazaar Main Road (candidate tw1-0135)",
+   "label": "Bazaar Main Road, near Ram Nagar (candidate tw1-0135)",
    "lat": 12.96383,
    "lon": 80.21356,
+   "near": "Ram Nagar",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -1367,9 +1644,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0136",
-   "label": "Cooum area, unnamed road (candidate tw1-0136)",
+   "label": "Unnamed road, near Chintadripet (candidate tw1-0136)",
    "lat": 13.0761,
    "lon": 80.27486,
+   "near": "Chintadripet",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -1377,9 +1656,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0137",
-   "label": "7th Main Road (candidate tw1-0137)",
+   "label": "7th Main Road, near Arumbakkam (candidate tw1-0137)",
    "lat": 13.07899,
    "lon": 80.20711,
+   "near": "Arumbakkam",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -1387,9 +1668,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0138",
-   "label": "Cooum area, unnamed road (candidate tw1-0138)",
+   "label": "Unnamed road, near Nandambakkam (candidate tw1-0138)",
    "lat": 13.02345,
    "lon": 80.18918,
+   "near": "Nandambakkam",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -1397,9 +1680,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0139",
-   "label": "Adyar area, unnamed road (candidate tw1-0139)",
+   "label": "Unnamed road, near Labour Colony (candidate tw1-0139)",
    "lat": 13.01528,
    "lon": 80.21252,
+   "near": "Labour Colony",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1407,9 +1692,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0140",
-   "label": "Cooum area, unnamed road (candidate tw1-0140)",
+   "label": "Unnamed road, near Chetpet (candidate tw1-0140)",
    "lat": 13.07236,
    "lon": 80.24545,
+   "near": "Chetpet",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -1417,9 +1704,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0141",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0141)",
+   "label": "Unnamed road, near Saidayankuppam (candidate tw1-0141)",
    "lat": 13.18054,
    "lon": 80.28946,
+   "near": "Saidayankuppam",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -1427,9 +1716,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0142",
-   "label": "Adyar area, unnamed road (candidate tw1-0142)",
+   "label": "Unnamed road, near PVS Nagar (candidate tw1-0142)",
    "lat": 12.94114,
    "lon": 80.24615,
+   "near": "PVS Nagar",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -1437,9 +1728,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0143",
-   "label": "ஸ்ரீநகர் காலனி குறுக்கு தெரு (candidate tw1-0143)",
+   "label": "ஸ்ரீநகர் காலனி குறுக்கு தெரு, near Srinagar Colony (candidate tw1-0143)",
    "lat": 13.01513,
    "lon": 80.22981,
+   "near": "Srinagar Colony",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -1447,9 +1740,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0144",
-   "label": "Cooum area, unnamed road (candidate tw1-0144)",
+   "label": "Unnamed road, near Secretariat Colony (candidate tw1-0144)",
    "lat": 13.0879,
    "lon": 80.24183,
+   "near": "Secretariat Colony",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -1457,9 +1752,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0145",
-   "label": "Vetenaz Hospital Road (candidate tw1-0145)",
+   "label": "Vetenaz Hospital Road, near Nandanam (candidate tw1-0145)",
    "lat": 13.02653,
    "lon": 80.23768,
+   "near": "Nandanam",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1467,9 +1764,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0146",
-   "label": "Kamakoti Nagar 3rd Main Road (candidate tw1-0146)",
+   "label": "Kamakoti Nagar 3rd Main Road, near Kamakoti Nagar (candidate tw1-0146)",
    "lat": 12.94316,
    "lon": 80.21141,
+   "near": "Kamakoti Nagar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -1477,9 +1776,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0147",
-   "label": "Thiruvottriyur – Ponneri – Panchetty Road (candidate tw1-0147)",
+   "label": "Thiruvottriyur – Ponneri – Panchetty Road, near Manali (candidate tw1-0147)",
    "lat": 13.16706,
    "lon": 80.2716,
+   "near": "Manali",
+   "near_m": 1600,
    "verified_on_ground": false
   },
   {
@@ -1487,9 +1788,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0148",
-   "label": "1st Avenue, bus stand street (candidate tw1-0148)",
+   "label": "1st Avenue, bus stand street, near JJ Nagar (candidate tw1-0148)",
    "lat": 13.08059,
    "lon": 80.17084,
+   "near": "JJ Nagar",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -1497,9 +1800,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0149",
-   "label": "Cooum area, unnamed road (candidate tw1-0149)",
+   "label": "Unnamed road, near Maduravoyal (candidate tw1-0149)",
    "lat": 13.06742,
    "lon": 80.16356,
+   "near": "Maduravoyal",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -1507,9 +1812,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0150",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0150)",
+   "label": "Unnamed road (candidate tw1-0150)",
    "lat": 13.15271,
    "lon": 80.26945,
+   "near": null,
+   "near_m": null,
    "verified_on_ground": false
   },
   {
@@ -1517,9 +1824,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0151",
-   "label": "Cooum area, unnamed road (candidate tw1-0151)",
+   "label": "Unnamed road, near Annai Sathya Nagar Nesapakkam (candidate tw1-0151)",
    "lat": 13.03159,
    "lon": 80.19553,
+   "near": "Annai Sathya Nagar Nesapakkam",
+   "near_m": 900,
    "verified_on_ground": false
   },
   {
@@ -1527,9 +1836,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0152",
-   "label": "Cooum area, unnamed road (candidate tw1-0152)",
+   "label": "Unnamed road, near Kilpauk Garden (candidate tw1-0152)",
    "lat": 13.08433,
    "lon": 80.23274,
+   "near": "Kilpauk Garden",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -1537,9 +1848,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0153",
-   "label": "Harris Street (candidate tw1-0153)",
+   "label": "Harris Street, near SBI Colony (candidate tw1-0153)",
    "lat": 13.06011,
    "lon": 80.1974,
+   "near": "SBI Colony",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -1547,9 +1860,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0154",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0154)",
+   "label": "Unnamed road, near Puthagaram (candidate tw1-0154)",
    "lat": 13.1382,
    "lon": 80.1944,
+   "near": "Puthagaram",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -1557,9 +1872,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0155",
-   "label": "Cooum area, unnamed road (candidate tw1-0155)",
+   "label": "Unnamed road, near Kilpauk (candidate tw1-0155)",
    "lat": 13.08454,
    "lon": 80.24024,
+   "near": "Kilpauk",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -1567,9 +1884,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0156",
-   "label": "Cooum area, unnamed road (candidate tw1-0156)",
+   "label": "Unnamed road, near Shenoy Nagar (candidate tw1-0156)",
    "lat": 13.08115,
    "lon": 80.22887,
+   "near": "Shenoy Nagar",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1577,9 +1896,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0157",
-   "label": "Bharathidasan Street (candidate tw1-0157)",
+   "label": "Bharathidasan Street, near Jafferkhanpet (candidate tw1-0157)",
    "lat": 13.02913,
    "lon": 80.20495,
+   "near": "Jafferkhanpet",
+   "near_m": 100,
    "verified_on_ground": false
   },
   {
@@ -1587,9 +1908,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0158",
-   "label": "Thiru Vi Ka Bridge (candidate tw1-0158)",
+   "label": "Thiru Vi Ka Bridge, near Arunachalapuram (candidate tw1-0158)",
    "lat": 13.01276,
    "lon": 80.25859,
+   "near": "Arunachalapuram",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -1597,9 +1920,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0159",
-   "label": "Adyar area, unnamed road (candidate tw1-0159)",
+   "label": "Unnamed road, near Injambakkam (candidate tw1-0159)",
    "lat": 12.9115,
    "lon": 80.24734,
+   "near": "Injambakkam",
+   "near_m": 950,
    "verified_on_ground": false
   },
   {
@@ -1607,9 +1932,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0160",
-   "label": "Adyar area, unnamed road (candidate tw1-0160)",
+   "label": "Unnamed road, near Madura Kali Nagar (candidate tw1-0160)",
    "lat": 12.95288,
    "lon": 80.195,
+   "near": "Madura Kali Nagar",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -1617,9 +1944,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0161",
-   "label": "Cooum area, unnamed road (candidate tw1-0161)",
+   "label": "Unnamed road, near Ekkattuthangal (candidate tw1-0161)",
    "lat": 13.02168,
    "lon": 80.21255,
+   "near": "Ekkattuthangal",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -1627,9 +1956,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0162",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0162)",
+   "label": "Unnamed road, near Kargil Nagar (candidate tw1-0162)",
    "lat": 13.17889,
    "lon": 80.29339,
+   "near": "Kargil Nagar",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -1637,9 +1968,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0163",
-   "label": "Muthuswamy Road (candidate tw1-0163)",
+   "label": "Muthuswamy Road, near Island Grounds (candidate tw1-0163)",
    "lat": 13.07633,
    "lon": 80.28416,
+   "near": "Island Grounds",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -1647,9 +1980,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0164",
-   "label": "Adyar area, unnamed road (candidate tw1-0164)",
+   "label": "Unnamed road, near Srinivasa Nagar (candidate tw1-0164)",
    "lat": 12.94844,
    "lon": 80.24566,
+   "near": "Srinivasa Nagar",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -1657,9 +1992,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0165",
-   "label": "Srinivasapuram Road (candidate tw1-0165)",
+   "label": "Srinivasapuram Road, near Velachery (candidate tw1-0165)",
    "lat": 12.96804,
    "lon": 80.21545,
+   "near": "Velachery",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -1667,9 +2004,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0166",
-   "label": "TVK 1st Link Road (candidate tw1-0166)",
+   "label": "TVK 1st Link Road, near Kodungaiyur (candidate tw1-0166)",
    "lat": 13.12747,
    "lon": 80.26505,
+   "near": "Kodungaiyur",
+   "near_m": 1050,
    "verified_on_ground": false
   },
   {
@@ -1677,9 +2016,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0167",
-   "label": "Cooum area, unnamed road (candidate tw1-0167)",
+   "label": "Unnamed road, near Ekkattuthangal (candidate tw1-0167)",
    "lat": 13.02419,
    "lon": 80.2096,
+   "near": "Ekkattuthangal",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1687,9 +2028,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0168",
-   "label": "13th Street (candidate tw1-0168)",
+   "label": "13th Street, near Anna Nagar (candidate tw1-0168)",
    "lat": 13.09195,
    "lon": 80.21024,
+   "near": "Anna Nagar",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -1697,9 +2040,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0169",
-   "label": "East Mada Street (candidate tw1-0169)",
+   "label": "East Mada Street, near Srinagar Colony (candidate tw1-0169)",
    "lat": 13.01232,
    "lon": 80.23096,
+   "near": "Srinagar Colony",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -1707,9 +2052,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0170",
-   "label": "Dhadiratnam Street (candidate tw1-0170)",
+   "label": "Dhadiratnam Street, near West Saidapet (candidate tw1-0170)",
    "lat": 13.02633,
    "lon": 80.21725,
+   "near": "West Saidapet",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1717,9 +2064,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0171",
-   "label": "Cooum area, unnamed road (candidate tw1-0171)",
+   "label": "Unnamed road, near Nagerkoyil Sudalaimuthu Krishnan Nagar (candidate tw1-0171)",
    "lat": 13.0789,
    "lon": 80.219,
+   "near": "Nagerkoyil Sudalaimuthu Krishnan Nagar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -1727,9 +2076,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0172",
-   "label": "Cooum area, unnamed road (candidate tw1-0172)",
+   "label": "Unnamed road, near Nerkundram (candidate tw1-0172)",
    "lat": 13.0752,
    "lon": 80.17938,
+   "near": "Nerkundram",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -1737,9 +2088,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0173",
-   "label": "Varuna Salai (candidate tw1-0173)",
+   "label": "Varuna Salai, near Lock Nagar (candidate tw1-0173)",
    "lat": 13.06892,
    "lon": 80.28518,
+   "near": "Lock Nagar",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -1747,9 +2100,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0174",
-   "label": "Adyar area, unnamed road (candidate tw1-0174)",
+   "label": "Unnamed road, near Srinivasa Nagar (candidate tw1-0174)",
    "lat": 12.94758,
    "lon": 80.24948,
+   "near": "Srinivasa Nagar",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -1757,9 +2112,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0175",
-   "label": "Elcot SEZ Main road (candidate tw1-0175)",
+   "label": "Elcot SEZ Main road, near Karapakkam (candidate tw1-0175)",
    "lat": 12.9053,
    "lon": 80.21608,
+   "near": "Karapakkam",
+   "near_m": 1450,
    "verified_on_ground": false
   },
   {
@@ -1767,9 +2124,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0176",
-   "label": "Westcott Road (candidate tw1-0176)",
+   "label": "Westcott Road, near Royapettah (candidate tw1-0176)",
    "lat": 13.05596,
    "lon": 80.26277,
+   "near": "Royapettah",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -1777,9 +2136,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0177",
-   "label": "Anderson Road (candidate tw1-0177)",
+   "label": "Anderson Road, near Thousand Lights (candidate tw1-0177)",
    "lat": 13.06396,
    "lon": 80.25306,
+   "near": "Thousand Lights",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -1787,9 +2148,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0178",
-   "label": "Valayapathi Salai (candidate tw1-0178)",
+   "label": "Valayapathi Salai, near Mogappair East (candidate tw1-0178)",
    "lat": 13.07928,
    "lon": 80.18781,
+   "near": "Mogappair East",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -1797,9 +2160,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0179",
-   "label": "Cooum area, unnamed road (candidate tw1-0179)",
+   "label": "Unnamed road, near Janaki Nagar (candidate tw1-0179)",
    "lat": 13.04609,
    "lon": 80.17847,
+   "near": "Janaki Nagar",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -1807,9 +2172,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0180",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0180)",
+   "label": "Unnamed road, near Padi (candidate tw1-0180)",
    "lat": 13.11293,
    "lon": 80.1949,
+   "near": "Padi",
+   "near_m": 1100,
    "verified_on_ground": false
   },
   {
@@ -1817,9 +2184,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0181",
-   "label": "Cooum area, unnamed road (candidate tw1-0181)",
+   "label": "Unnamed road, near Mahalingapuram (candidate tw1-0181)",
    "lat": 13.06004,
    "lon": 80.23198,
+   "near": "Mahalingapuram",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -1827,9 +2196,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0182",
-   "label": "Mount - Poonamallee - Avadi Road (candidate tw1-0182)",
+   "label": "Mount - Poonamallee - Avadi Road, near Ramapuram (candidate tw1-0182)",
    "lat": 13.02496,
    "lon": 80.17956,
+   "near": "Ramapuram",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -1837,9 +2208,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0183",
-   "label": "Cooum area, unnamed road (candidate tw1-0183)",
+   "label": "Unnamed road, near Koyambedu (candidate tw1-0183)",
    "lat": 13.07213,
    "lon": 80.1937,
+   "near": "Koyambedu",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -1847,9 +2220,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0184",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0184)",
+   "label": "Unnamed road, near Kodungaiyur (candidate tw1-0184)",
    "lat": 13.126,
    "lon": 80.26968,
+   "near": "Kodungaiyur",
+   "near_m": 1550,
    "verified_on_ground": false
   },
   {
@@ -1857,9 +2232,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0185",
-   "label": "Cooum area, unnamed road (candidate tw1-0185)",
+   "label": "Unnamed road, near Mogappair East (candidate tw1-0185)",
    "lat": 13.07875,
    "lon": 80.1822,
+   "near": "Mogappair East",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -1867,9 +2244,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0186",
-   "label": "Cooum area, unnamed road (candidate tw1-0186)",
+   "label": "Unnamed road, near Anna Nagar West (candidate tw1-0186)",
    "lat": 13.08902,
    "lon": 80.191,
+   "near": "Anna Nagar West",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -1877,9 +2256,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0187",
-   "label": "3rd Street (candidate tw1-0187)",
+   "label": "3rd Street, near Malar Colony (candidate tw1-0187)",
    "lat": 13.09554,
    "lon": 80.20495,
+   "near": "Malar Colony",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -1887,9 +2268,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0188",
-   "label": "Cooum area, unnamed road (candidate tw1-0188)",
+   "label": "Unnamed road, near West Mambalam (candidate tw1-0188)",
    "lat": 13.04499,
    "lon": 80.2175,
+   "near": "West Mambalam",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -1897,9 +2280,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0189",
-   "label": "Lake View Road (candidate tw1-0189)",
+   "label": "Lake View Road, near Lakshmi Hayagriva Nagar (candidate tw1-0189)",
    "lat": 12.9884,
    "lon": 80.21191,
+   "near": "Lakshmi Hayagriva Nagar",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1907,9 +2292,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0190",
-   "label": "Cooum area, unnamed road (candidate tw1-0190)",
+   "label": "Unnamed road, near Koyambedu (candidate tw1-0190)",
    "lat": 13.07713,
    "lon": 80.19402,
+   "near": "Koyambedu",
+   "near_m": 900,
    "verified_on_ground": false
   },
   {
@@ -1917,9 +2304,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0191",
-   "label": "Cooum area, unnamed road (candidate tw1-0191)",
+   "label": "Unnamed road, near Mattankuppam (candidate tw1-0191)",
    "lat": 13.05448,
    "lon": 80.2806,
+   "near": "Mattankuppam",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -1927,9 +2316,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0192",
-   "label": "Anna Salai (Mount Road) (candidate tw1-0192)",
+   "label": "Anna Salai (Mount Road), near Pudupet (candidate tw1-0192)",
    "lat": 13.06495,
    "lon": 80.26457,
+   "near": "Pudupet",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -1937,9 +2328,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0193",
-   "label": "Sundaramoorthy Street (candidate tw1-0193)",
+   "label": "Sundaramoorthy Street, near Jafferkhanpet (candidate tw1-0193)",
    "lat": 13.03034,
    "lon": 80.19976,
+   "near": "Jafferkhanpet",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -1947,9 +2340,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0194",
-   "label": "Cooum area, unnamed road (candidate tw1-0194)",
+   "label": "Unnamed road, near Nesapakkam (candidate tw1-0194)",
    "lat": 13.0278,
    "lon": 80.18901,
+   "near": "Nesapakkam",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -1957,9 +2352,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0195",
-   "label": "Cooum area, unnamed road (candidate tw1-0195)",
+   "label": "Unnamed road, near Karpagam Avenue (candidate tw1-0195)",
    "lat": 13.02328,
    "lon": 80.2711,
+   "near": "Karpagam Avenue",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -1967,9 +2364,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0196",
-   "label": "Sathyani Muthu Street (candidate tw1-0196)",
+   "label": "Sathyani Muthu Street, near East Abhiramapuram (candidate tw1-0196)",
    "lat": 13.03131,
    "lon": 80.26241,
+   "near": "East Abhiramapuram",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -1977,9 +2376,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0197",
-   "label": "Mount - Poonamallee - Avadi Road (candidate tw1-0197)",
+   "label": "Mount - Poonamallee - Avadi Road, near Ramapuram (candidate tw1-0197)",
    "lat": 13.0261,
    "lon": 80.17325,
+   "near": "Ramapuram",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -1987,9 +2388,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0198",
-   "label": "Natesan Nagar Main Road (candidate tw1-0198)",
+   "label": "Natesan Nagar Main Road, near Virugambakkam (candidate tw1-0198)",
    "lat": 13.05748,
    "lon": 80.188,
+   "near": "Virugambakkam",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -1997,9 +2400,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0199",
-   "label": "Cooum area, unnamed road (candidate tw1-0199)",
+   "label": "Unnamed road, near Ayanambakkam (candidate tw1-0199)",
    "lat": 13.08204,
    "lon": 80.16023,
+   "near": "Ayanambakkam",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -2007,9 +2412,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0200",
-   "label": "Adyar area, unnamed road (candidate tw1-0200)",
+   "label": "Unnamed road, near Sai Nagar (candidate tw1-0200)",
    "lat": 12.94662,
    "lon": 80.23392,
+   "near": "Sai Nagar",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -2017,9 +2424,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0201",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0201)",
+   "label": "Unnamed road, near VOC Nagar (candidate tw1-0201)",
    "lat": 13.10702,
    "lon": 80.25568,
+   "near": "VOC Nagar",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -2027,9 +2436,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0202",
-   "label": "Cooum area, unnamed road (candidate tw1-0202)",
+   "label": "Unnamed road, near Kilpauk Garden (candidate tw1-0202)",
    "lat": 13.08098,
    "lon": 80.23347,
+   "near": "Kilpauk Garden",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2037,9 +2448,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0203",
-   "label": "Kumaran Colony 1st Street (candidate tw1-0203)",
+   "label": "Kumaran Colony 1st Street, near Velayudam Colony (candidate tw1-0203)",
    "lat": 13.05119,
    "lon": 80.20553,
+   "near": "Velayudam Colony",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -2047,9 +2460,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0204",
-   "label": "Adyar area, unnamed road (candidate tw1-0204)",
+   "label": "Unnamed road, near Perungudi (candidate tw1-0204)",
    "lat": 12.97477,
    "lon": 80.24005,
+   "near": "Perungudi",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2057,9 +2472,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0205",
-   "label": "Cooum area, unnamed road (candidate tw1-0205)",
+   "label": "Unnamed road, near Thirumangalam (candidate tw1-0205)",
    "lat": 13.08676,
    "lon": 80.19756,
+   "near": "Thirumangalam",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2067,9 +2484,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0206",
-   "label": "Gangadharan Street (candidate tw1-0206)",
+   "label": "Gangadharan Street, near Saligramam (candidate tw1-0206)",
    "lat": 13.0565,
    "lon": 80.20755,
+   "near": "Saligramam",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -2077,9 +2496,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0207",
-   "label": "Cooum area, unnamed road (candidate tw1-0207)",
+   "label": "Unnamed road, near Ayanambakkam (candidate tw1-0207)",
    "lat": 13.08422,
    "lon": 80.15943,
+   "near": "Ayanambakkam",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -2087,9 +2508,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0208",
-   "label": "ELCOT Back Gate Road (candidate tw1-0208)",
+   "label": "ELCOT Back Gate Road, near Karapakkam (candidate tw1-0208)",
    "lat": 12.91372,
    "lon": 80.22401,
+   "near": "Karapakkam",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2097,9 +2520,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0209",
-   "label": "Boat Club 3rd Avenue (candidate tw1-0209)",
+   "label": "Boat Club 3rd Avenue, near Kottur Gardens (candidate tw1-0209)",
    "lat": 13.02229,
    "lon": 80.24866,
+   "near": "Kottur Gardens",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -2107,9 +2532,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0210",
-   "label": "Cooum area, unnamed road (candidate tw1-0210)",
+   "label": "Unnamed road, near Nungambakkam (candidate tw1-0210)",
    "lat": 13.06589,
    "lon": 80.2363,
+   "near": "Nungambakkam",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -2117,9 +2544,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0211",
-   "label": "Ellaiamman Kovil Street (candidate tw1-0211)",
+   "label": "Ellaiamman Kovil Street, near Kannammapet (candidate tw1-0211)",
    "lat": 13.03425,
    "lon": 80.22509,
+   "near": "Kannammapet",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -2127,9 +2556,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0212",
-   "label": "Kaliamman Koil Street (candidate tw1-0212)",
+   "label": "Kaliamman Koil Street, near Virugambakkam (candidate tw1-0212)",
    "lat": 13.05532,
    "lon": 80.1937,
+   "near": "Virugambakkam",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -2137,9 +2568,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0213",
-   "label": "Swami Sivananda Salai (candidate tw1-0213)",
+   "label": "Swami Sivananda Salai, near Government Estate (candidate tw1-0213)",
    "lat": 13.06907,
    "lon": 80.27833,
+   "near": "Government Estate",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -2147,9 +2580,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0214",
-   "label": "VSM Garden Street (candidate tw1-0214)",
+   "label": "VSM Garden Street, near West Saidapet (candidate tw1-0214)",
    "lat": 13.0257,
    "lon": 80.21386,
+   "near": "West Saidapet",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -2157,9 +2592,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0215",
-   "label": "Cooum area, unnamed road (candidate tw1-0215)",
+   "label": "Unnamed road, near Virugambakkam (candidate tw1-0215)",
    "lat": 13.05385,
    "lon": 80.17988,
+   "near": "Virugambakkam",
+   "near_m": 1300,
    "verified_on_ground": false
   },
   {
@@ -2167,9 +2604,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0216",
-   "label": "Anna Salai (Mount Road) (candidate tw1-0216)",
+   "label": "Anna Salai (Mount Road), near Thousand Lights (candidate tw1-0216)",
    "lat": 13.06179,
    "lon": 80.26156,
+   "near": "Thousand Lights",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -2177,9 +2616,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0217",
-   "label": "Cooum area, unnamed road (candidate tw1-0217)",
+   "label": "Unnamed road, near Choolai (candidate tw1-0217)",
    "lat": 13.09444,
    "lon": 80.26331,
+   "near": "Choolai",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2187,9 +2628,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0218",
-   "label": "Perungudi Station Road (candidate tw1-0218)",
+   "label": "Perungudi Station Road, near Velachery (candidate tw1-0218)",
    "lat": 12.96928,
    "lon": 80.22,
+   "near": "Velachery",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -2197,9 +2640,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0219",
-   "label": "Cooum area, unnamed road (candidate tw1-0219)",
+   "label": "Unnamed road, near Reserve Bank Staff Quarters (candidate tw1-0219)",
    "lat": 13.07988,
    "lon": 80.23684,
+   "near": "Reserve Bank Staff Quarters",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -2207,9 +2652,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0220",
-   "label": "Cooum area, unnamed road (candidate tw1-0220)",
+   "label": "Unnamed road, near Mogappair East (candidate tw1-0220)",
    "lat": 13.08262,
    "lon": 80.18542,
+   "near": "Mogappair East",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -2217,9 +2664,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0221",
-   "label": "Cooum area, unnamed road (candidate tw1-0221)",
+   "label": "Unnamed road, near Mogappair East (candidate tw1-0221)",
    "lat": 13.08126,
    "lon": 80.19245,
+   "near": "Mogappair East",
+   "near_m": 950,
    "verified_on_ground": false
   },
   {
@@ -2227,9 +2676,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0222",
-   "label": "Mahroof Sahib Street (candidate tw1-0222)",
+   "label": "Mahroof Sahib Street, near Zam Bazaar (candidate tw1-0222)",
    "lat": 13.06292,
    "lon": 80.26889,
+   "near": "Zam Bazaar",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2237,9 +2688,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0223",
-   "label": "3rd Main Road (candidate tw1-0223)",
+   "label": "3rd Main Road, near Alapakkam (candidate tw1-0223)",
    "lat": 13.04909,
    "lon": 80.17328,
+   "near": "Alapakkam",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -2247,9 +2700,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0224",
-   "label": "Gajapathy Lala Street (candidate tw1-0224)",
+   "label": "Gajapathy Lala Street, near Lloyds Colony (candidate tw1-0224)",
    "lat": 13.052,
    "lon": 80.27549,
+   "near": "Lloyds Colony",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -2257,9 +2712,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0225",
-   "label": "Cooum area, unnamed road (candidate tw1-0225)",
+   "label": "Unnamed road, near Shenoy Nagar (candidate tw1-0225)",
    "lat": 13.07825,
    "lon": 80.23161,
+   "near": "Shenoy Nagar",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2267,9 +2724,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0226",
-   "label": "Adyar area, unnamed road (candidate tw1-0226)",
+   "label": "Unnamed road, near Injambakkam (candidate tw1-0226)",
    "lat": 12.92117,
    "lon": 80.24444,
+   "near": "Injambakkam",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -2277,9 +2736,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0227",
-   "label": "Vasantha Press Road (North) (candidate tw1-0227)",
+   "label": "Vasantha Press Road (North), near Arunachalapuram (candidate tw1-0227)",
    "lat": 13.01041,
    "lon": 80.26108,
+   "near": "Arunachalapuram",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -2287,9 +2748,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0228",
-   "label": "Adyar area, unnamed road (candidate tw1-0228)",
+   "label": "Unnamed road, near Mugalivakkam (candidate tw1-0228)",
    "lat": 13.01693,
    "lon": 80.16898,
+   "near": "Mugalivakkam",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -2297,9 +2760,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0229",
-   "label": "Rajaji Salai (candidate tw1-0229)",
+   "label": "Rajaji Salai, near Evening Bazaar (candidate tw1-0229)",
    "lat": 13.08162,
    "lon": 80.28536,
+   "near": "Evening Bazaar",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -2307,9 +2772,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0230",
-   "label": "Madhavaram - Red Hills Road (candidate tw1-0230)",
+   "label": "Madhavaram - Red Hills Road, near Manjampakkam (candidate tw1-0230)",
    "lat": 13.16482,
    "lon": 80.22289,
+   "near": "Manjampakkam",
+   "near_m": 1000,
    "verified_on_ground": false
   },
   {
@@ -2317,9 +2784,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0231",
-   "label": "Cooum area, unnamed road (candidate tw1-0231)",
+   "label": "Unnamed road, near Nesapakkam (candidate tw1-0231)",
    "lat": 13.0286,
    "lon": 80.19423,
+   "near": "Nesapakkam",
+   "near_m": 950,
    "verified_on_ground": false
   },
   {
@@ -2327,9 +2796,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0232",
-   "label": "Adyar area, unnamed road (candidate tw1-0232)",
+   "label": "Unnamed road, near Ullagaram (candidate tw1-0232)",
    "lat": 12.97712,
    "lon": 80.20002,
+   "near": "Ullagaram",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -2337,9 +2808,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0233",
-   "label": "Adyar area, unnamed road (candidate tw1-0233)",
+   "label": "Unnamed road, near Manapakkam (candidate tw1-0233)",
    "lat": 13.01011,
    "lon": 80.18268,
+   "near": "Manapakkam",
+   "near_m": 1050,
    "verified_on_ground": false
   },
   {
@@ -2347,9 +2820,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0234",
-   "label": "Cooum area, unnamed road (candidate tw1-0234)",
+   "label": "Unnamed road, near T Block (candidate tw1-0234)",
    "lat": 13.09131,
    "lon": 80.21717,
+   "near": "T Block",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -2357,9 +2832,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0235",
-   "label": "Poonuswamy Street (candidate tw1-0235)",
+   "label": "Poonuswamy Street, near Ganapathy Colony (candidate tw1-0235)",
    "lat": 13.05361,
    "lon": 80.26087,
+   "near": "Ganapathy Colony",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -2367,9 +2844,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0236",
-   "label": "Cooum area, unnamed road (candidate tw1-0236)",
+   "label": "Unnamed road, near T Block (candidate tw1-0236)",
    "lat": 13.0932,
    "lon": 80.22148,
+   "near": "T Block",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -2377,9 +2856,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0237",
-   "label": "Periya Malaiyappan Street (candidate tw1-0237)",
+   "label": "Periya Malaiyappan Street, near Lloyds Colony (candidate tw1-0237)",
    "lat": 13.05263,
    "lon": 80.2716,
+   "near": "Lloyds Colony",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -2387,9 +2868,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0238",
-   "label": "Adyar area, unnamed road (candidate tw1-0238)",
+   "label": "Unnamed road, near Perungudi (candidate tw1-0238)",
    "lat": 12.96492,
    "lon": 80.23322,
+   "near": "Perungudi",
+   "near_m": 1150,
    "verified_on_ground": false
   },
   {
@@ -2397,9 +2880,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0239",
-   "label": "Cooum area, unnamed road (candidate tw1-0239)",
+   "label": "Unnamed road, near Chetpet (candidate tw1-0239)",
    "lat": 13.06801,
    "lon": 80.24064,
+   "near": "Chetpet",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -2407,9 +2892,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0240",
-   "label": "Cooum area, unnamed road (candidate tw1-0240)",
+   "label": "Unnamed road, near Lloyds Colony (candidate tw1-0240)",
    "lat": 13.04941,
    "lon": 80.27845,
+   "near": "Lloyds Colony",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -2417,9 +2904,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0241",
-   "label": "Raji Street (candidate tw1-0241)",
+   "label": "Raji Street, near Kilpauk Garden (candidate tw1-0241)",
    "lat": 13.08978,
    "lon": 80.23242,
+   "near": "Kilpauk Garden",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -2427,9 +2916,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0242",
-   "label": "Cooum area, unnamed road (candidate tw1-0242)",
+   "label": "Unnamed road, near Nolambur (candidate tw1-0242)",
    "lat": 13.07479,
    "lon": 80.16661,
+   "near": "Nolambur",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -2437,9 +2928,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0243",
-   "label": "Ganesapuram Street (candidate tw1-0243)",
+   "label": "Ganesapuram Street, near Lloyds Colony (candidate tw1-0243)",
    "lat": 13.04213,
    "lon": 80.2728,
+   "near": "Lloyds Colony",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -2447,9 +2940,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0244",
-   "label": "Cooum area, unnamed road (candidate tw1-0244)",
+   "label": "Unnamed road, near Lloyds Colony (candidate tw1-0244)",
    "lat": 13.04226,
    "lon": 80.27792,
+   "near": "Lloyds Colony",
+   "near_m": 1000,
    "verified_on_ground": false
   },
   {
@@ -2457,9 +2952,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0245",
-   "label": "DGS Dhinakaran Road (candidate tw1-0245)",
+   "label": "DGS Dhinakaran Road, near Karpagam Avenue (candidate tw1-0245)",
    "lat": 13.01931,
    "lon": 80.26632,
+   "near": "Karpagam Avenue",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -2467,9 +2964,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0246",
-   "label": "Cooum area, unnamed road (candidate tw1-0246)",
+   "label": "Unnamed road, near Mehta Nagar (candidate tw1-0246)",
    "lat": 13.06447,
    "lon": 80.22698,
+   "near": "Mehta Nagar",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -2477,9 +2976,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0247",
-   "label": "Adyar area, unnamed road (candidate tw1-0247)",
+   "label": "Unnamed road, near Meenambakkam (candidate tw1-0247)",
    "lat": 12.98935,
    "lon": 80.16872,
+   "near": "Meenambakkam",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -2487,9 +2988,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0248",
-   "label": "Cooum area, unnamed road (candidate tw1-0248)",
+   "label": "Unnamed road, near Royapettah (candidate tw1-0248)",
    "lat": 13.0601,
    "lon": 80.26487,
+   "near": "Royapettah",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -2497,9 +3000,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0249",
-   "label": "Avvai Nagar Main Road (candidate tw1-0249)",
+   "label": "Avvai Nagar Main Road, near Avvai Nagar (candidate tw1-0249)",
    "lat": 12.97862,
    "lon": 80.25403,
+   "near": "Avvai Nagar",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -2507,9 +3012,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0250",
-   "label": "Cooum area, unnamed road (candidate tw1-0250)",
+   "label": "Unnamed road, near Egmore (candidate tw1-0250)",
    "lat": 13.06731,
    "lon": 80.25844,
+   "near": "Egmore",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -2517,9 +3024,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0251",
-   "label": "Cooum area, unnamed road (candidate tw1-0251)",
+   "label": "Unnamed road, near Officers Colony (candidate tw1-0251)",
    "lat": 13.06749,
    "lon": 80.23129,
+   "near": "Officers Colony",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2527,9 +3036,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0252",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0252)",
+   "label": "Unnamed road, near Vadaperumbakkam (candidate tw1-0252)",
    "lat": 13.16639,
    "lon": 80.21874,
+   "near": "Vadaperumbakkam",
+   "near_m": 1000,
    "verified_on_ground": false
   },
   {
@@ -2537,9 +3048,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0253",
-   "label": "Cooum area, unnamed road (candidate tw1-0253)",
+   "label": "Unnamed road, near Ayanavaram (candidate tw1-0253)",
    "lat": 13.09661,
    "lon": 80.24005,
+   "near": "Ayanavaram",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -2547,9 +3060,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0254",
-   "label": "Cooum area, unnamed road (candidate tw1-0254)",
+   "label": "Unnamed road, near JJ Nagar (candidate tw1-0254)",
    "lat": 13.08759,
    "lon": 80.16539,
+   "near": "JJ Nagar",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -2557,9 +3072,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0255",
-   "label": "Jawaharlal Nehru Road (100 Feet Road) (candidate tw1-0255)",
+   "label": "Jawaharlal Nehru Road (100 Feet Road), near Koyambedu (candidate tw1-0255)",
    "lat": 13.07119,
    "lon": 80.20373,
+   "near": "Koyambedu",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2567,9 +3084,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0256",
-   "label": "Suresh Nagar Main road (candidate tw1-0256)",
+   "label": "Suresh Nagar Main road, near Suresh Nagar (candidate tw1-0256)",
    "lat": 13.03873,
    "lon": 80.18347,
+   "near": "Suresh Nagar",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -2577,9 +3096,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0257",
-   "label": "20th Main Road (candidate tw1-0257)",
+   "label": "20th Main Road, near Malar Colony (candidate tw1-0257)",
    "lat": 13.09819,
    "lon": 80.20328,
+   "near": "Malar Colony",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2587,9 +3108,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0258",
-   "label": "Doctor Natesan Road (candidate tw1-0258)",
+   "label": "Doctor Natesan Road, near Ashok Nagar (candidate tw1-0258)",
    "lat": 13.03673,
    "lon": 80.20978,
+   "near": "Ashok Nagar",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -2597,9 +3120,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0259",
-   "label": "Cooum area, unnamed road (candidate tw1-0259)",
+   "label": "Unnamed road, near JJ Nagar (candidate tw1-0259)",
    "lat": 13.08608,
    "lon": 80.16223,
+   "near": "JJ Nagar",
+   "near_m": 950,
    "verified_on_ground": false
   },
   {
@@ -2607,9 +3132,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0260",
-   "label": "Adyar area, unnamed road (candidate tw1-0260)",
+   "label": "Unnamed road, near TNHB Colony (candidate tw1-0260)",
    "lat": 12.99116,
    "lon": 80.21675,
+   "near": "TNHB Colony",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -2617,9 +3144,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0261",
-   "label": "Cooum area, unnamed road (candidate tw1-0261)",
+   "label": "Unnamed road, near Karambakkam (candidate tw1-0261)",
    "lat": 13.03704,
    "lon": 80.16857,
+   "near": "Karambakkam",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -2627,9 +3156,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0262",
-   "label": "Ariyalur - Vilangadupakkam Road (candidate tw1-0262)",
+   "label": "Ariyalur - Vilangadupakkam Road, near Kadapakkam (candidate tw1-0262)",
    "lat": 13.19355,
    "lon": 80.26458,
+   "near": "Kadapakkam",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -2637,9 +3168,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0263",
-   "label": "Tiruvalluvar Street (candidate tw1-0263)",
+   "label": "Tiruvalluvar Street, near Kodungaiyur (candidate tw1-0263)",
    "lat": 13.12581,
    "lon": 80.25449,
+   "near": "Kodungaiyur",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -2647,9 +3180,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0264",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0264)",
+   "label": "Unnamed road, near Manjampakkam (candidate tw1-0264)",
    "lat": 13.14314,
    "lon": 80.21598,
+   "near": "Manjampakkam",
+   "near_m": 1550,
    "verified_on_ground": false
   },
   {
@@ -2657,9 +3192,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0265",
-   "label": "Cooum area, unnamed road (candidate tw1-0265)",
+   "label": "Unnamed road, near Bharathipuram (candidate tw1-0265)",
    "lat": 13.07521,
    "lon": 80.22053,
+   "near": "Bharathipuram",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -2667,9 +3204,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0266",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0266)",
+   "label": "Unnamed road, near Kodungaiyur (candidate tw1-0266)",
    "lat": 13.1319,
    "lon": 80.26306,
+   "near": "Kodungaiyur",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -2677,9 +3216,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0267",
-   "label": "Cooum area, unnamed road (candidate tw1-0267)",
+   "label": "Unnamed road, near Nolambur (candidate tw1-0267)",
    "lat": 13.07944,
    "lon": 80.1653,
+   "near": "Nolambur",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -2687,9 +3228,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0268",
-   "label": "Anna Nagar 3rd Avenue (candidate tw1-0268)",
+   "label": "Anna Nagar 3rd Avenue, near T Block (candidate tw1-0268)",
    "lat": 13.09403,
    "lon": 80.21806,
+   "near": "T Block",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -2697,9 +3240,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0269",
-   "label": "Kannagam Road (candidate tw1-0269)",
+   "label": "Kannagam Road, near Taramani (candidate tw1-0269)",
    "lat": 12.99039,
    "lon": 80.24097,
+   "near": "Taramani",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -2707,9 +3252,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0270",
-   "label": "Murasoli Maran Street (candidate tw1-0270)",
+   "label": "Murasoli Maran Street, near Thiruvalluvar Nagar (candidate tw1-0270)",
    "lat": 12.96284,
    "lon": 80.24956,
+   "near": "Thiruvalluvar Nagar",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -2717,9 +3264,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0271",
-   "label": "Cooum area, unnamed road (candidate tw1-0271)",
+   "label": "Unnamed road, near Ayanambakkam (candidate tw1-0271)",
    "lat": 13.07945,
    "lon": 80.16016,
+   "near": "Ayanambakkam",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -2727,9 +3276,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0272",
-   "label": "Cooum area, unnamed road (candidate tw1-0272)",
+   "label": "Unnamed road, near Mogappair East (candidate tw1-0272)",
    "lat": 13.08502,
    "lon": 80.18975,
+   "near": "Mogappair East",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -2737,9 +3288,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0273",
-   "label": "Adyar area, unnamed road (candidate tw1-0273)",
+   "label": "Unnamed road, near Meenambakkam (candidate tw1-0273)",
    "lat": 12.98761,
    "lon": 80.16657,
+   "near": "Meenambakkam",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -2747,9 +3300,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0274",
-   "label": "Adyar area, unnamed road (candidate tw1-0274)",
+   "label": "Unnamed road, near Narayanapuram (candidate tw1-0274)",
    "lat": 12.94353,
    "lon": 80.20834,
+   "near": "Narayanapuram",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -2757,9 +3312,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0275",
-   "label": "Adyar area, unnamed road (candidate tw1-0275)",
+   "label": "Unnamed road, near Venkateshwara Nagar Colony (candidate tw1-0275)",
    "lat": 12.97721,
    "lon": 80.24271,
+   "near": "Venkateshwara Nagar Colony",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -2767,9 +3324,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0276",
-   "label": "Adyar area, unnamed road (candidate tw1-0276)",
+   "label": "Unnamed road, near Nazarethpuram (candidate tw1-0276)",
    "lat": 13.01622,
    "lon": 80.202,
+   "near": "Nazarethpuram",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -2777,9 +3336,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0277",
-   "label": "Adyar area, unnamed road (candidate tw1-0277)",
+   "label": "Unnamed road, near Sai Nagar (candidate tw1-0277)",
    "lat": 12.95898,
    "lon": 80.22742,
+   "near": "Sai Nagar",
+   "near_m": 1100,
    "verified_on_ground": false
   },
   {
@@ -2787,9 +3348,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0278",
-   "label": "Phipps Road (candidate tw1-0278)",
+   "label": "Phipps Road, near Perambur (candidate tw1-0278)",
    "lat": 13.10528,
    "lon": 80.23846,
+   "near": "Perambur",
+   "near_m": 1050,
    "verified_on_ground": false
   },
   {
@@ -2797,9 +3360,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0279",
-   "label": "28th Cross Street (candidate tw1-0279)",
+   "label": "28th Cross Street, near Vikram Sarabhai Industrial Estate (candidate tw1-0279)",
    "lat": 12.99067,
    "lon": 80.25201,
+   "near": "Vikram Sarabhai Industrial Estate",
+   "near_m": 1100,
    "verified_on_ground": false
   },
   {
@@ -2807,9 +3372,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0280",
-   "label": "Arokya Matha Nagar 2nd Street (candidate tw1-0280)",
+   "label": "Arokya Matha Nagar 2nd Street, near Jothiammal Nagar (candidate tw1-0280)",
    "lat": 13.01821,
    "lon": 80.22821,
+   "near": "Jothiammal Nagar",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -2817,9 +3384,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0281",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0281)",
+   "label": "Unnamed road, near Edayanchavadi (candidate tw1-0281)",
    "lat": 13.20667,
    "lon": 80.29785,
+   "near": "Edayanchavadi",
+   "near_m": 1800,
    "verified_on_ground": false
   },
   {
@@ -2827,9 +3396,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0282",
-   "label": "Cooum area, unnamed road (candidate tw1-0282)",
+   "label": "Unnamed road, near Nagerkoyil Sudalaimuthu Krishnan Nagar (candidate tw1-0282)",
    "lat": 13.0764,
    "lon": 80.21526,
+   "near": "Nagerkoyil Sudalaimuthu Krishnan Nagar",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -2837,9 +3408,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0283",
-   "label": "Tiruvalluvar Street (candidate tw1-0283)",
+   "label": "Tiruvalluvar Street, near Mehta Nagar (candidate tw1-0283)",
    "lat": 13.07123,
    "lon": 80.22666,
+   "near": "Mehta Nagar",
+   "near_m": 100,
    "verified_on_ground": false
   },
   {
@@ -2847,9 +3420,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0284",
-   "label": "Nolambur Phase-1 6th Cross Street (candidate tw1-0284)",
+   "label": "Nolambur Phase-1 6th Cross Street, near JJ Nagar (candidate tw1-0284)",
    "lat": 13.08276,
    "lon": 80.16353,
+   "near": "JJ Nagar",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -2857,9 +3432,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0285",
-   "label": "Sri Lakshmi Nagar 2nd Main Road (candidate tw1-0285)",
+   "label": "Sri Lakshmi Nagar 2nd Main Road, near Alapakkam (candidate tw1-0285)",
    "lat": 13.05182,
    "lon": 80.17602,
+   "near": "Alapakkam",
+   "near_m": 1150,
    "verified_on_ground": false
   },
   {
@@ -2867,9 +3444,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0286",
-   "label": "Bharani Street (candidate tw1-0286)",
+   "label": "Bharani Street, near Venus Colony (candidate tw1-0286)",
    "lat": 12.9738,
    "lon": 80.23311,
+   "near": "Venus Colony",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -2877,9 +3456,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0287",
-   "label": "Cooum area, unnamed road (candidate tw1-0287)",
+   "label": "Unnamed road, near Arumbakkam (candidate tw1-0287)",
    "lat": 13.07796,
    "lon": 80.21079,
+   "near": "Arumbakkam",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -2887,9 +3468,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0288",
-   "label": "Thiru Vi Ka Bridge (candidate tw1-0288)",
+   "label": "Thiru Vi Ka Bridge, near Arunachalapuram (candidate tw1-0288)",
    "lat": 13.01363,
    "lon": 80.26169,
+   "near": "Arunachalapuram",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -2897,9 +3480,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0289",
-   "label": "1st Avenue, bus stand street (candidate tw1-0289)",
+   "label": "1st Avenue, bus stand street, near Maduravoyal (candidate tw1-0289)",
    "lat": 13.0659,
    "lon": 80.16644,
+   "near": "Maduravoyal",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -2907,9 +3492,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0290",
-   "label": "Cooum area, unnamed road (candidate tw1-0290)",
+   "label": "Unnamed road, near Nolambur (candidate tw1-0290)",
    "lat": 13.07782,
    "lon": 80.16269,
+   "near": "Nolambur",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -2917,9 +3504,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0291",
-   "label": "Cooum area, unnamed road (candidate tw1-0291)",
+   "label": "Unnamed road, near Pudupet (candidate tw1-0291)",
    "lat": 13.07527,
    "lon": 80.26661,
+   "near": "Pudupet",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -2927,9 +3516,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0292",
-   "label": "Adyar area, unnamed road (candidate tw1-0292)",
+   "label": "Unnamed road, near Meenambakkam (candidate tw1-0292)",
    "lat": 12.9968,
    "lon": 80.16142,
+   "near": "Meenambakkam",
+   "near_m": 1650,
    "verified_on_ground": false
   },
   {
@@ -2937,9 +3528,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0293",
-   "label": "Cooum area, unnamed road (candidate tw1-0293)",
+   "label": "Unnamed road, near Flower Bazaar (candidate tw1-0293)",
    "lat": 13.08182,
    "lon": 80.29173,
+   "near": "Flower Bazaar",
+   "near_m": 1350,
    "verified_on_ground": false
   },
   {
@@ -2947,9 +3540,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0294",
-   "label": "Cooum area, unnamed road (candidate tw1-0294)",
+   "label": "Unnamed road, near Aspiran Garden (candidate tw1-0294)",
    "lat": 13.08595,
    "lon": 80.23734,
+   "near": "Aspiran Garden",
+   "near_m": 50,
    "verified_on_ground": false
   },
   {
@@ -2957,9 +3552,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0295",
-   "label": "Ponammal Street (candidate tw1-0295)",
+   "label": "Ponammal Street, near Vadapalani (candidate tw1-0295)",
    "lat": 13.05144,
    "lon": 80.20924,
+   "near": "Vadapalani",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -2967,9 +3564,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0296",
-   "label": "Adyar area, unnamed road (candidate tw1-0296)",
+   "label": "Unnamed road, near Moovarasampettai (candidate tw1-0296)",
    "lat": 12.97087,
    "lon": 80.17785,
+   "near": "Moovarasampettai",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -2977,9 +3576,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0297",
-   "label": "Cooum area, unnamed road (candidate tw1-0297)",
+   "label": "Unnamed road, near Ganesapuram (candidate tw1-0297)",
    "lat": 13.03354,
    "lon": 80.24252,
+   "near": "Ganesapuram",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -2987,9 +3588,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0298",
-   "label": "5th Avenue (candidate tw1-0298)",
+   "label": "5th Avenue, near Urur Kuppam (candidate tw1-0298)",
    "lat": 13.01047,
    "lon": 80.27563,
+   "near": "Urur Kuppam",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -2997,9 +3600,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0299",
-   "label": "Cooum area, unnamed road (candidate tw1-0299)",
+   "label": "Unnamed road, near Nerkundram (candidate tw1-0299)",
    "lat": 13.07167,
    "lon": 80.17992,
+   "near": "Nerkundram",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -3007,9 +3612,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0300",
-   "label": "Mount - Poonamallee - Avadi Road (candidate tw1-0300)",
+   "label": "Mount - Poonamallee - Avadi Road, near Nandambakkam (candidate tw1-0300)",
    "lat": 13.02038,
    "lon": 80.18443,
+   "near": "Nandambakkam",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -3017,9 +3624,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0301",
-   "label": "Crescent Park 1st Main Road (candidate tw1-0301)",
+   "label": "Crescent Park 1st Main Road, near Gandhinagar (candidate tw1-0301)",
    "lat": 13.01271,
    "lon": 80.25243,
+   "near": "Gandhinagar",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -3027,9 +3636,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0302",
-   "label": "Grand Southern Trunk Road (candidate tw1-0302)",
+   "label": "Grand Southern Trunk Road, near Meenambakkam (candidate tw1-0302)",
    "lat": 12.99545,
    "lon": 80.17533,
+   "near": "Meenambakkam",
+   "near_m": 1050,
    "verified_on_ground": false
   },
   {
@@ -3037,9 +3648,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0303",
-   "label": "Adyar area, unnamed road (candidate tw1-0303)",
+   "label": "Unnamed road, near Srinivasa Nagar (candidate tw1-0303)",
    "lat": 12.95151,
    "lon": 80.24544,
+   "near": "Srinivasa Nagar",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -3047,9 +3660,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0304",
-   "label": "Bhajanai Koil Street (candidate tw1-0304)",
+   "label": "Bhajanai Koil Street, near Kannammapet (candidate tw1-0304)",
    "lat": 13.03212,
    "lon": 80.22992,
+   "near": "Kannammapet",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -3057,9 +3672,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0305",
-   "label": "EVR Periyar Salai (candidate tw1-0305)",
+   "label": "EVR Periyar Salai, near Arumbakkam (candidate tw1-0305)",
    "lat": 13.07761,
    "lon": 80.2049,
+   "near": "Arumbakkam",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -3067,9 +3684,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0306",
-   "label": "Dr Alagappa Road (candidate tw1-0306)",
+   "label": "Dr Alagappa Road, near Doveton (candidate tw1-0306)",
    "lat": 13.08156,
    "lon": 80.25483,
+   "near": "Doveton",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -3077,9 +3696,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0307",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0307)",
+   "label": "Unnamed road, near Kodungaiyur (candidate tw1-0307)",
    "lat": 13.12505,
    "lon": 80.25077,
+   "near": "Kodungaiyur",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -3087,9 +3708,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0308",
-   "label": "Adyar area, unnamed road (candidate tw1-0308)",
+   "label": "Unnamed road, near Kannagi Nagar (candidate tw1-0308)",
    "lat": 12.92443,
    "lon": 80.23702,
+   "near": "Kannagi Nagar",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -3097,9 +3720,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0309",
-   "label": "Kottivakkam Kuppam Road (candidate tw1-0309)",
+   "label": "Kottivakkam Kuppam Road, near Kottivakkam (candidate tw1-0309)",
    "lat": 12.97256,
    "lon": 80.26379,
+   "near": "Kottivakkam",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -3107,9 +3732,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0310",
-   "label": "Cooum area, unnamed road (candidate tw1-0310)",
+   "label": "Unnamed road, near Todhunter Nagar (candidate tw1-0310)",
    "lat": 13.02647,
    "lon": 80.22703,
+   "near": "Todhunter Nagar",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -3117,9 +3744,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0311",
-   "label": "Grand Northern Trunk Road (candidate tw1-0311)",
+   "label": "Grand Northern Trunk Road, near Madhavaram (candidate tw1-0311)",
    "lat": 13.13691,
    "lon": 80.22881,
+   "near": "Madhavaram",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -3127,9 +3756,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0312",
-   "label": "Cooum area, unnamed road (candidate tw1-0312)",
+   "label": "Unnamed road, near Nolambur (candidate tw1-0312)",
    "lat": 13.06782,
    "lon": 80.17137,
+   "near": "Nolambur",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -3137,9 +3768,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0313",
-   "label": "Anna Main Road (candidate tw1-0313)",
+   "label": "Anna Main Road, near K.K.Nagar (candidate tw1-0313)",
    "lat": 13.03712,
    "lon": 80.1976,
+   "near": "K.K.Nagar",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -3147,9 +3780,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0314",
-   "label": "1st Street (candidate tw1-0314)",
+   "label": "1st Street, near Kodungaiyur (candidate tw1-0314)",
    "lat": 13.13417,
    "lon": 80.2612,
+   "near": "Kodungaiyur",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -3157,9 +3792,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0315",
-   "label": "Arcot Road (candidate tw1-0315)",
+   "label": "Arcot Road, near Virugambakkam (candidate tw1-0315)",
    "lat": 13.04634,
    "lon": 80.19592,
+   "near": "Virugambakkam",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -3167,9 +3804,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0316",
-   "label": "Rayala Nagar 1st main road (candidate tw1-0316)",
+   "label": "Rayala Nagar 1st main road, near Nesapakkam (candidate tw1-0316)",
    "lat": 13.0286,
    "lon": 80.18611,
+   "near": "Nesapakkam",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -3177,9 +3816,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0317",
-   "label": "Manali Road (candidate tw1-0317)",
+   "label": "Manali Road, near Korukkupet (candidate tw1-0317)",
    "lat": 13.12538,
    "lon": 80.27211,
+   "near": "Korukkupet",
+   "near_m": 1350,
    "verified_on_ground": false
   },
   {
@@ -3187,9 +3828,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0318",
-   "label": "Cooum area, unnamed road (candidate tw1-0318)",
+   "label": "Unnamed road, near Ayanambakkam (candidate tw1-0318)",
    "lat": 13.08181,
    "lon": 80.15708,
+   "near": "Ayanambakkam",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -3197,9 +3840,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0319",
-   "label": "Canal Bank Road (candidate tw1-0319)",
+   "label": "Canal Bank Road, near CIT Nagar (candidate tw1-0319)",
    "lat": 13.03134,
    "lon": 80.23585,
+   "near": "CIT Nagar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -3207,9 +3852,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0320",
-   "label": "Adyar area, unnamed road (candidate tw1-0320)",
+   "label": "Unnamed road, near Labour Colony (candidate tw1-0320)",
    "lat": 13.01846,
    "lon": 80.21222,
+   "near": "Labour Colony",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -3217,9 +3864,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0321",
-   "label": "Adyar area, unnamed road (candidate tw1-0321)",
+   "label": "Unnamed road, near Ram Nagar (candidate tw1-0321)",
    "lat": 12.9595,
    "lon": 80.21259,
+   "near": "Ram Nagar",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -3227,9 +3876,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0322",
-   "label": "Mount - Poonamallee - Avadi Road (candidate tw1-0322)",
+   "label": "Mount - Poonamallee - Avadi Road, near Ramapuram (candidate tw1-0322)",
    "lat": 13.02429,
    "lon": 80.17535,
+   "near": "Ramapuram",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -3237,9 +3888,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0323",
-   "label": "Ponni Colony Main Road (candidate tw1-0323)",
+   "label": "Ponni Colony Main Road, near Anna Nagar (candidate tw1-0323)",
    "lat": 13.09143,
    "lon": 80.20417,
+   "near": "Anna Nagar",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -3247,9 +3900,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0324",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0324)",
+   "label": "Unnamed road, near Stanley Nagar (candidate tw1-0324)",
    "lat": 13.12076,
    "lon": 80.26993,
+   "near": "Stanley Nagar",
+   "near_m": 1300,
    "verified_on_ground": false
   },
   {
@@ -3257,9 +3912,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0325",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0325)",
+   "label": "Unnamed road, near Kadapakkam (candidate tw1-0325)",
    "lat": 13.20026,
    "lon": 80.26728,
+   "near": "Kadapakkam",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -3267,9 +3924,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0326",
-   "label": "Adyar area, unnamed road (candidate tw1-0326)",
+   "label": "Unnamed road, near Kannagi Nagar (candidate tw1-0326)",
    "lat": 12.92575,
    "lon": 80.22913,
+   "near": "Kannagi Nagar",
+   "near_m": 1150,
    "verified_on_ground": false
   },
   {
@@ -3277,9 +3936,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0327",
-   "label": "Cooum area, unnamed road (candidate tw1-0327)",
+   "label": "Unnamed road, near Nesapakkam (candidate tw1-0327)",
    "lat": 13.02987,
    "lon": 80.1908,
+   "near": "Nesapakkam",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -3287,9 +3948,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0328",
-   "label": "Branson Garden Street (candidate tw1-0328)",
+   "label": "Branson Garden Street, near Kellys (candidate tw1-0328)",
    "lat": 13.08584,
    "lon": 80.24395,
+   "near": "Kellys",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -3297,9 +3960,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0329",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0329)",
+   "label": "Unnamed road, near Kodungaiyur (candidate tw1-0329)",
    "lat": 13.14376,
    "lon": 80.26183,
+   "near": "Kodungaiyur",
+   "near_m": 1550,
    "verified_on_ground": false
   },
   {
@@ -3307,9 +3972,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0330",
-   "label": "Cooum area, unnamed road (candidate tw1-0330)",
+   "label": "Unnamed road, near Aminjikarai (candidate tw1-0330)",
    "lat": 13.07159,
    "lon": 80.22087,
+   "near": "Aminjikarai",
+   "near_m": 50,
    "verified_on_ground": false
   },
   {
@@ -3317,9 +3984,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0331",
-   "label": "Adyar area, unnamed road (candidate tw1-0331)",
+   "label": "Unnamed road, near Kannagi Nagar (candidate tw1-0331)",
    "lat": 12.92486,
    "lon": 80.24231,
+   "near": "Kannagi Nagar",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -3327,9 +3996,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0332",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0332)",
+   "label": "Unnamed road, near Kodungaiyur (candidate tw1-0332)",
    "lat": 13.14535,
    "lon": 80.26562,
+   "near": "Kodungaiyur",
+   "near_m": 1900,
    "verified_on_ground": false
   },
   {
@@ -3337,9 +4008,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0333",
-   "label": "Cooum area, unnamed road (candidate tw1-0333)",
+   "label": "Unnamed road, near Foreshore Estate (candidate tw1-0333)",
    "lat": 13.02145,
    "lon": 80.27782,
+   "near": "Foreshore Estate",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -3347,9 +4020,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0334",
-   "label": "Venkatachala Street (candidate tw1-0334)",
+   "label": "Venkatachala Street, near Pudupet (candidate tw1-0334)",
    "lat": 13.06976,
    "lon": 80.2676,
+   "near": "Pudupet",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -3357,9 +4032,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0335",
-   "label": "200 Feet Bypass Road (candidate tw1-0335)",
+   "label": "200 Feet Bypass Road, near Nolambur (candidate tw1-0335)",
    "lat": 13.07577,
    "lon": 80.16046,
+   "near": "Nolambur",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -3367,9 +4044,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0336",
-   "label": "Cooum area, unnamed road (candidate tw1-0336)",
+   "label": "Unnamed road, near Mogappair East (candidate tw1-0336)",
    "lat": 13.08283,
    "lon": 80.18177,
+   "near": "Mogappair East",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -3377,9 +4056,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0337",
-   "label": "Alandur Road (candidate tw1-0337)",
+   "label": "Alandur Road, near SIDCO Industrial Estate (candidate tw1-0337)",
    "lat": 13.01265,
    "lon": 80.21438,
+   "near": "SIDCO Industrial Estate",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -3387,9 +4068,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0338",
-   "label": "Cooum area, unnamed road (candidate tw1-0338)",
+   "label": "Unnamed road, near Mylapore (candidate tw1-0338)",
    "lat": 13.03716,
    "lon": 80.27,
+   "near": "Mylapore",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -3397,9 +4080,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0339",
-   "label": "Adyar area, unnamed road (candidate tw1-0339)",
+   "label": "Unnamed road, near Meenambakkam (candidate tw1-0339)",
    "lat": 12.99081,
    "lon": 80.16639,
+   "near": "Meenambakkam",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -3407,9 +4092,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0340",
-   "label": "Cooum area, unnamed road (candidate tw1-0340)",
+   "label": "Unnamed road, near Mugalivakkam (candidate tw1-0340)",
    "lat": 13.02455,
    "lon": 80.16902,
+   "near": "Mugalivakkam",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -3417,9 +4104,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0341",
-   "label": "Adyar area, unnamed road (candidate tw1-0341)",
+   "label": "Unnamed road, near Puzhuthivakkam (candidate tw1-0341)",
    "lat": 12.97259,
    "lon": 80.2105,
+   "near": "Puzhuthivakkam",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -3427,9 +4116,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0342",
-   "label": "Adyar area, unnamed road (candidate tw1-0342)",
+   "label": "Unnamed road, near Sholinganallur (candidate tw1-0342)",
    "lat": 12.90195,
    "lon": 80.241,
+   "near": "Sholinganallur",
+   "near_m": 1350,
    "verified_on_ground": false
   },
   {
@@ -3437,9 +4128,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0343",
-   "label": "2nd Street (candidate tw1-0343)",
+   "label": "2nd Street, near Devendra Nagar (candidate tw1-0343)",
    "lat": 12.97979,
    "lon": 80.2569,
+   "near": "Devendra Nagar",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -3447,9 +4140,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0344",
-   "label": "Kovalam area, unnamed road (candidate tw1-0344)",
+   "label": "Unnamed road, near Sholinganallur (candidate tw1-0344)",
    "lat": 12.8865,
    "lon": 80.21896,
+   "near": "Sholinganallur",
+   "near_m": 1600,
    "verified_on_ground": false
   },
   {
@@ -3457,9 +4152,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0345",
-   "label": "Greams Road (candidate tw1-0345)",
+   "label": "Greams Road, near Thousand Lights (candidate tw1-0345)",
    "lat": 13.05975,
    "lon": 80.25468,
+   "near": "Thousand Lights",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -3467,9 +4164,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0346",
-   "label": "Palayakaran Street (candidate tw1-0346)",
+   "label": "Palayakaran Street, near Kamarajar Colony (candidate tw1-0346)",
    "lat": 13.04781,
    "lon": 80.21851,
+   "near": "Kamarajar Colony",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -3477,9 +4176,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0347",
-   "label": "12th Avenue (candidate tw1-0347)",
+   "label": "12th Avenue, near Ashok Nagar (candidate tw1-0347)",
    "lat": 13.03136,
    "lon": 80.21203,
+   "near": "Ashok Nagar",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -3487,9 +4188,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0348",
-   "label": "1st Avenue, bus stand street (candidate tw1-0348)",
+   "label": "1st Avenue, bus stand street, near Nolambur (candidate tw1-0348)",
    "lat": 13.06982,
    "lon": 80.17494,
+   "near": "Nolambur",
+   "near_m": 900,
    "verified_on_ground": false
   },
   {
@@ -3497,9 +4200,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0349",
-   "label": "Kalki Krishnamurty Road (candidate tw1-0349)",
+   "label": "Kalki Krishnamurty Road, near Devendra Nagar (candidate tw1-0349)",
    "lat": 12.9824,
    "lon": 80.25474,
+   "near": "Devendra Nagar",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -3507,9 +4212,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0350",
-   "label": "Ratnam Street (candidate tw1-0350)",
+   "label": "Ratnam Street, near Jafferkhanpet (candidate tw1-0350)",
    "lat": 13.02756,
    "lon": 80.20774,
+   "near": "Jafferkhanpet",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -3517,9 +4224,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0351",
-   "label": "Malayappan Street (candidate tw1-0351)",
+   "label": "Malayappan Street, near Otteri (candidate tw1-0351)",
    "lat": 13.10038,
    "lon": 80.24829,
+   "near": "Otteri",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -3527,9 +4236,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0352",
-   "label": "Adyar area, unnamed road (candidate tw1-0352)",
+   "label": "Unnamed road, near Karapakkam (candidate tw1-0352)",
    "lat": 12.91344,
    "lon": 80.22834,
+   "near": "Karapakkam",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -3537,9 +4248,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0353",
-   "label": "9th Street (candidate tw1-0353)",
+   "label": "9th Street, near Anna Nagar West (candidate tw1-0353)",
    "lat": 13.09047,
    "lon": 80.19577,
+   "near": "Anna Nagar West",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -3547,9 +4260,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0354",
-   "label": "Mehta Nagar Bridge (candidate tw1-0354)",
+   "label": "Mehta Nagar Bridge, near Officers Colony (candidate tw1-0354)",
    "lat": 13.07131,
    "lon": 80.22984,
+   "near": "Officers Colony",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -3557,9 +4272,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0355",
-   "label": "Pudu Street (candidate tw1-0355)",
+   "label": "Pudu Street, near Purasawalkam (candidate tw1-0355)",
    "lat": 13.09423,
    "lon": 80.25581,
+   "near": "Purasawalkam",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -3567,9 +4284,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0356",
-   "label": "Adyar Gate Club Road (candidate tw1-0356)",
+   "label": "Adyar Gate Club Road, near Nandanam Extension (candidate tw1-0356)",
    "lat": 13.02505,
    "lon": 80.24743,
+   "near": "Nandanam Extension",
+   "near_m": 550,
    "verified_on_ground": false
   },
   {
@@ -3577,9 +4296,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0357",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0357)",
+   "label": "Unnamed road, near Perambur (candidate tw1-0357)",
    "lat": 13.10728,
    "lon": 80.2492,
+   "near": "Perambur",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -3587,9 +4308,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0358",
-   "label": "Cooum area, unnamed road (candidate tw1-0358)",
+   "label": "Unnamed road, near NGO Colony (candidate tw1-0358)",
    "lat": 13.06424,
    "lon": 80.21035,
+   "near": "NGO Colony",
+   "near_m": 1050,
    "verified_on_ground": false
   },
   {
@@ -3597,9 +4320,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0359",
-   "label": "18th Avenue (candidate tw1-0359)",
+   "label": "18th Avenue, near Ashok Nagar (candidate tw1-0359)",
    "lat": 13.04162,
    "lon": 80.21042,
+   "near": "Ashok Nagar",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -3607,9 +4332,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0360",
-   "label": "Adyar area, unnamed road (candidate tw1-0360)",
+   "label": "Unnamed road, near Karapakkam (candidate tw1-0360)",
    "lat": 12.90399,
    "lon": 80.22258,
+   "near": "Karapakkam",
+   "near_m": 1000,
    "verified_on_ground": false
   },
   {
@@ -3617,9 +4344,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0361",
-   "label": "Adyar area, unnamed road (candidate tw1-0361)",
+   "label": "Unnamed road, near Karapakkam (candidate tw1-0361)",
    "lat": 12.91977,
    "lon": 80.22353,
+   "near": "Karapakkam",
+   "near_m": 1000,
    "verified_on_ground": false
   },
   {
@@ -3627,9 +4356,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0362",
-   "label": "1st Street (candidate tw1-0362)",
+   "label": "1st Street, near AA Block (candidate tw1-0362)",
    "lat": 13.08303,
    "lon": 80.21681,
+   "near": "AA Block",
+   "near_m": 50,
    "verified_on_ground": false
   },
   {
@@ -3637,9 +4368,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0363",
-   "label": "Cooum area, unnamed road (candidate tw1-0363)",
+   "label": "Unnamed road, near Nolambur (candidate tw1-0363)",
    "lat": 13.07143,
    "lon": 80.1697,
+   "near": "Nolambur",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -3647,9 +4380,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0364",
-   "label": "Adyar area, unnamed road (candidate tw1-0364)",
+   "label": "Unnamed road, near Manapakkam (candidate tw1-0364)",
    "lat": 13.01816,
    "lon": 80.17961,
+   "near": "Manapakkam",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -3657,9 +4392,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0365",
-   "label": "Cooum area, unnamed road (candidate tw1-0365)",
+   "label": "Unnamed road, near Karambakkam (candidate tw1-0365)",
    "lat": 13.04116,
    "lon": 80.16593,
+   "near": "Karambakkam",
+   "near_m": 150,
    "verified_on_ground": false
   },
   {
@@ -3667,9 +4404,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0366",
-   "label": "Inner Ring Road (candidate tw1-0366)",
+   "label": "Inner Ring Road, near Manali (candidate tw1-0366)",
    "lat": 13.18006,
    "lon": 80.26363,
+   "near": "Manali",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -3677,9 +4416,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0367",
-   "label": "Adyar area, unnamed road (candidate tw1-0367)",
+   "label": "Unnamed road, near Taramani (candidate tw1-0367)",
    "lat": 12.99075,
    "lon": 80.24563,
+   "near": "Taramani",
+   "near_m": 850,
    "verified_on_ground": false
   },
   {
@@ -3687,9 +4428,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0368",
-   "label": "Palli Arasan street (candidate tw1-0368)",
+   "label": "Palli Arasan street, near Kilpauk Garden (candidate tw1-0368)",
    "lat": 13.08676,
    "lon": 80.23128,
+   "near": "Kilpauk Garden",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -3697,9 +4440,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0369",
-   "label": "Chittibabu nagar - Ambal Nagar (candidate tw1-0369)",
+   "label": "Chittibabu nagar - Ambal Nagar, near Narayanapuram (candidate tw1-0369)",
    "lat": 12.9382,
    "lon": 80.19951,
+   "near": "Narayanapuram",
+   "near_m": 1050,
    "verified_on_ground": false
   },
   {
@@ -3707,9 +4452,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0370",
-   "label": "Adyar area, unnamed road (candidate tw1-0370)",
+   "label": "Unnamed road, near Injambakkam (candidate tw1-0370)",
    "lat": 12.90409,
    "lon": 80.24654,
+   "near": "Injambakkam",
+   "near_m": 1750,
    "verified_on_ground": false
   },
   {
@@ -3717,9 +4464,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0371",
-   "label": "Cooum area, unnamed road (candidate tw1-0371)",
+   "label": "Unnamed road, near Anna Nagar West (candidate tw1-0371)",
    "lat": 13.0971,
    "lon": 80.19069,
+   "near": "Anna Nagar West",
+   "near_m": 400,
    "verified_on_ground": false
   },
   {
@@ -3727,9 +4476,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0372",
-   "label": "Fifth Main Road (candidate tw1-0372)",
+   "label": "Fifth Main Road, near Virugambakkam (candidate tw1-0372)",
    "lat": 13.05912,
    "lon": 80.19022,
+   "near": "Virugambakkam",
+   "near_m": 800,
    "verified_on_ground": false
   },
   {
@@ -3737,9 +4488,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0373",
-   "label": "Cooum area, unnamed road (candidate tw1-0373)",
+   "label": "Unnamed road, near Ramapuram (candidate tw1-0373)",
    "lat": 13.03157,
    "lon": 80.17856,
+   "near": "Ramapuram",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -3747,9 +4500,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0374",
-   "label": "Tana street (candidate tw1-0374)",
+   "label": "Tana street, near Purasawalkam (candidate tw1-0374)",
    "lat": 13.08773,
    "lon": 80.25492,
+   "near": "Purasawalkam",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -3757,9 +4512,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0375",
-   "label": "Cooum area, unnamed road (candidate tw1-0375)",
+   "label": "Unnamed road, near Alwarthirunagar (candidate tw1-0375)",
    "lat": 13.04541,
    "lon": 80.18778,
+   "near": "Alwarthirunagar",
+   "near_m": 100,
    "verified_on_ground": false
   },
   {
@@ -3767,9 +4524,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0376",
-   "label": "Thiruvalluvar Street (candidate tw1-0376)",
+   "label": "Thiruvalluvar Street, near Saligramam (candidate tw1-0376)",
    "lat": 13.06099,
    "lon": 80.19987,
+   "near": "Saligramam",
+   "near_m": 600,
    "verified_on_ground": false
   },
   {
@@ -3777,9 +4536,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0377",
-   "label": "Kovalam area, unnamed road (candidate tw1-0377)",
+   "label": "Unnamed road, near Sholinganallur (candidate tw1-0377)",
    "lat": 12.89651,
    "lon": 80.22051,
+   "near": "Sholinganallur",
+   "near_m": 1300,
    "verified_on_ground": false
   },
   {
@@ -3787,9 +4548,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0378",
-   "label": "N Avenue Road (candidate tw1-0378)",
+   "label": "N Avenue Road, near Kodungaiyur (candidate tw1-0378)",
    "lat": 13.12681,
    "lon": 80.26132,
+   "near": "Kodungaiyur",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -3797,9 +4560,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0379",
-   "label": "Sathya Nagar 2nd Main Road (candidate tw1-0379)",
+   "label": "Sathya Nagar 2nd Main Road, near Mannurpet (candidate tw1-0379)",
    "lat": 13.09115,
    "lon": 80.17894,
+   "near": "Mannurpet",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -3807,9 +4572,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0380",
-   "label": "Adyar area, unnamed road (candidate tw1-0380)",
+   "label": "Unnamed road, near Kuberan Nagar (candidate tw1-0380)",
    "lat": 12.9544,
    "lon": 80.20138,
+   "near": "Kuberan Nagar",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -3817,9 +4584,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0381",
-   "label": "13th Main Road (candidate tw1-0381)",
+   "label": "13th Main Road, near Malar Colony (candidate tw1-0381)",
    "lat": 13.09445,
    "lon": 80.20084,
+   "near": "Malar Colony",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -3827,9 +4596,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0382",
-   "label": "Dams Road (candidate tw1-0382)",
+   "label": "Dams Road, near Pudupet (candidate tw1-0382)",
    "lat": 13.06712,
    "lon": 80.26861,
+   "near": "Pudupet",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -3837,9 +4608,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0383",
-   "label": "Inner Ring Road (candidate tw1-0383)",
+   "label": "Inner Ring Road, near SIDCO Industrial Estate (candidate tw1-0383)",
    "lat": 13.01414,
    "lon": 80.20517,
+   "near": "SIDCO Industrial Estate",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -3847,9 +4620,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0384",
-   "label": "VI Cross Street (candidate tw1-0384)",
+   "label": "VI Cross Street, near PVS Nagar (candidate tw1-0384)",
    "lat": 12.94359,
    "lon": 80.2421,
+   "near": "PVS Nagar",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -3857,9 +4632,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0385",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0385)",
+   "label": "Unnamed road, near Edayanchavadi (candidate tw1-0385)",
    "lat": 13.21712,
    "lon": 80.29521,
+   "near": "Edayanchavadi",
+   "near_m": 1100,
    "verified_on_ground": false
   },
   {
@@ -3867,9 +4644,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0386",
-   "label": "Jothiammal Nagar (candidate tw1-0386)",
+   "label": "Jothiammal Nagar, near Saidapet (candidate tw1-0386)",
    "lat": 13.02101,
    "lon": 80.22606,
+   "near": "Saidapet",
+   "near_m": 250,
    "verified_on_ground": false
   },
   {
@@ -3877,9 +4656,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0387",
-   "label": "Adyar area, unnamed road (candidate tw1-0387)",
+   "label": "Unnamed road, near Metukuppam (candidate tw1-0387)",
    "lat": 12.94026,
    "lon": 80.23139,
+   "near": "Metukuppam",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -3887,9 +4668,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0388",
-   "label": "Varuna Salai (candidate tw1-0388)",
+   "label": "Varuna Salai, near Chepauk (candidate tw1-0388)",
    "lat": 13.06892,
    "lon": 80.28835,
+   "near": "Chepauk",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -3897,9 +4680,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0389",
-   "label": "Kosasthalaiyar area, unnamed road (candidate tw1-0389)",
+   "label": "Unnamed road, near Malar Colony (candidate tw1-0389)",
    "lat": 13.10446,
    "lon": 80.20039,
+   "near": "Malar Colony",
+   "near_m": 750,
    "verified_on_ground": false
   },
   {
@@ -3907,9 +4692,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0390",
-   "label": "Wall Tax Road (candidate tw1-0390)",
+   "label": "Wall Tax Road, near Vallalar Nagar (candidate tw1-0390)",
    "lat": 13.09742,
    "lon": 80.27489,
+   "near": "Vallalar Nagar",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -3917,9 +4704,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0391",
-   "label": "Adyar area, unnamed road (candidate tw1-0391)",
+   "label": "Unnamed road, near MRC Nagar (candidate tw1-0391)",
    "lat": 13.01674,
    "lon": 80.27604,
+   "near": "MRC Nagar",
+   "near_m": 650,
    "verified_on_ground": false
   },
   {
@@ -3927,9 +4716,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0392",
-   "label": "Adyar area, unnamed road (candidate tw1-0392)",
+   "label": "Unnamed road, near Perungudi (candidate tw1-0392)",
    "lat": 12.96607,
    "lon": 80.2382,
+   "near": "Perungudi",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -3937,9 +4728,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0393",
-   "label": "Metrozone Driveway (candidate tw1-0393)",
+   "label": "Metrozone Driveway, near Thirumangalam (candidate tw1-0393)",
    "lat": 13.08212,
    "lon": 80.19701,
+   "near": "Thirumangalam",
+   "near_m": 450,
    "verified_on_ground": false
   },
   {
@@ -3947,9 +4740,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0394",
-   "label": "Cooum area, unnamed road (candidate tw1-0394)",
+   "label": "Unnamed road, near JJ Nagar (candidate tw1-0394)",
    "lat": 13.07877,
    "lon": 80.17288,
+   "near": "JJ Nagar",
+   "near_m": 500,
    "verified_on_ground": false
   },
   {
@@ -3957,9 +4752,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0395",
-   "label": "Umpherson Street (candidate tw1-0395)",
+   "label": "Umpherson Street, near Flower Bazaar (candidate tw1-0395)",
    "lat": 13.08912,
    "lon": 80.28478,
+   "near": "Flower Bazaar",
+   "near_m": 300,
    "verified_on_ground": false
   },
   {
@@ -3967,9 +4764,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0396",
-   "label": "Swami Sivananda Salai (candidate tw1-0396)",
+   "label": "Swami Sivananda Salai, near Lock Nagar (candidate tw1-0396)",
    "lat": 13.0681,
    "lon": 80.28176,
+   "near": "Lock Nagar",
+   "near_m": 200,
    "verified_on_ground": false
   },
   {
@@ -3977,9 +4776,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0397",
-   "label": "1st Street (candidate tw1-0397)",
+   "label": "1st Street, near Lloyds Colony (candidate tw1-0397)",
    "lat": 13.04083,
    "lon": 80.26983,
+   "near": "Lloyds Colony",
+   "near_m": 950,
    "verified_on_ground": false
   },
   {
@@ -3987,9 +4788,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0398",
-   "label": "Rukmani Lakshmipathi Road (candidate tw1-0398)",
+   "label": "Rukmani Lakshmipathi Road, near Egmore (candidate tw1-0398)",
    "lat": 13.06545,
    "lon": 80.26075,
+   "near": "Egmore",
+   "near_m": 900,
    "verified_on_ground": false
   },
   {
@@ -3997,9 +4800,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0399",
-   "label": "7th Main Road (candidate tw1-0399)",
+   "label": "7th Main Road, near Nagerkoyil Sudalaimuthu Krishnan Nagar (candidate tw1-0399)",
    "lat": 13.08012,
    "lon": 80.2149,
+   "near": "Nagerkoyil Sudalaimuthu Krishnan Nagar",
+   "near_m": 350,
    "verified_on_ground": false
   },
   {
@@ -4007,9 +4812,11 @@
    "basin_hint_verified": false,
    "hazard_category": "Very High",
    "id": "tw1-0400",
-   "label": "Purasawalkam High Road (candidate tw1-0400)",
+   "label": "Purasawalkam High Road, near Kellys (candidate tw1-0400)",
    "lat": 13.08588,
    "lon": 80.24905,
+   "near": "Kellys",
+   "near_m": 700,
    "verified_on_ground": false
   },
   {
@@ -4017,9 +4824,11 @@
    "basin_hint_verified": false,
    "hazard_category": "High",
    "id": "tw1-0401",
-   "label": "Adyar area, unnamed road (candidate tw1-0401)",
+   "label": "Unnamed road, near PVS Nagar (candidate tw1-0401)",
    "lat": 12.94757,
    "lon": 80.24167,
+   "near": "PVS Nagar",
+   "near_m": 50,
    "verified_on_ground": false
   }
  ],

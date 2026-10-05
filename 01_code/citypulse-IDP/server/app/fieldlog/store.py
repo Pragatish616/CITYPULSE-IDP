@@ -70,7 +70,10 @@ class FieldLogStore:
                 if existing == entry.content_key():
                     return False
                 raise Conflict(key)
-            path = self.dir / f"fieldlog-{entry.received_at.astimezone(timezone.utc):%Y-%m-%d}.jsonl"
+            path = (
+                self.dir
+                / f"fieldlog-{entry.received_at.astimezone(timezone.utc):%Y-%m-%d}.jsonl"
+            )
             line = entry.model_dump_json() + "\n"
             with path.open("a", encoding="utf-8", newline="\n") as f:
                 f.write(line)
@@ -109,11 +112,32 @@ def to_csv_row(e: StoredEntry) -> list[str]:
         return "'" + s if s[:1] in ("=", "+", "-", "@", "\t", "\r") else s
 
     return [
-        safe(e.protocol), safe(e.entry_id), safe(e.site_id), safe(e.state.value), safe(e.observed_at.isoformat()),
-        safe(e.depth_band.value if e.depth_band else ""), safe(e.lat), safe(e.lon), safe(e.volunteer),
-        safe(e.received_at.isoformat()), safe(e.lag_seconds), safe(e.client),
+        safe(e.protocol),
+        safe(e.entry_id),
+        safe(e.site_id),
+        safe(e.state.value),
+        safe(e.observed_at.isoformat()),
+        safe(e.depth_band.value if e.depth_band else ""),
+        safe(e.lat),
+        safe(e.lon),
+        safe(e.volunteer),
+        safe(e.received_at.isoformat()),
+        safe(e.lag_seconds),
+        safe(e.client),
     ]
 
 
-CSV_HEADER = ["protocol", "entry_id", "site_id", "state", "observed_at_utc", "depth_band", "lat", "lon", "volunteer", "received_at_utc", "lag_seconds", "client"]
-
+CSV_HEADER = [
+    "protocol",
+    "entry_id",
+    "site_id",
+    "state",
+    "observed_at_utc",
+    "depth_band",
+    "lat",
+    "lon",
+    "volunteer",
+    "received_at_utc",
+    "lag_seconds",
+    "client",
+]

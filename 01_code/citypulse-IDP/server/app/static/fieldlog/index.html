@@ -1,1 +1,105 @@
-<!doctype html><title>placeholder</title>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <title>CityPulse field log</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <main id="app">
+    <header class="top">
+      <h1 data-i18n="title">CityPulse field log</h1>
+      <div class="top-actions">
+        <span id="net" class="badge" role="status" aria-live="polite"></span>
+        <button id="lang" type="button" class="link" lang="ta">தமிழ்</button>
+      </div>
+    </header>
+
+    <div id="notices" aria-live="polite"></div>
+
+    <p class="lead" data-i18n="lead"></p>
+    <p class="safety" data-i18n="safety"></p>
+
+    <section id="token-section" hidden>
+      <h2 data-i18n="token_title"></h2>
+      <p class="help" data-i18n="token_help"></p>
+      <label class="sr-only" for="token-input" data-i18n="token_title"></label>
+      <input id="token-input" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" inputmode="text">
+      <button id="token-save" type="button" class="primary" data-i18n="token_save"></button>
+      <p id="token-error" class="error" role="alert" hidden></p>
+    </section>
+
+    <section id="log-section" hidden>
+      <div id="chosen-card" class="card" hidden>
+        <div class="card-label" data-i18n="chosen"></div>
+        <div id="chosen-label" class="card-title"></div>
+        <button id="change-site" type="button" class="link" data-i18n="change_site"></button>
+      </div>
+
+      <div id="site-picker">
+        <h2 data-i18n="site_title"></h2>
+        <p class="help" data-i18n="candidate_note"></p>
+        <button id="near-btn" type="button" class="secondary" data-i18n="find_near"></button>
+        <p class="help small" data-i18n="find_near_note"></p>
+        <p id="near-status" class="help" role="status" hidden></p>
+        <label for="search" data-i18n="search_label"></label>
+        <input id="search" type="search" autocomplete="off" spellcheck="false">
+        <ul id="site-list" class="list" aria-label="Sites"></ul>
+        <p id="site-none" class="help" hidden data-i18n="search_none"></p>
+        <button id="adhoc-btn" type="button" class="secondary" data-i18n="adhoc_button"></button>
+        <p class="help small" data-i18n="adhoc_note"></p>
+      </div>
+
+      <div id="state-picker" hidden>
+        <h2 data-i18n="what_title"></h2>
+        <div class="states">
+          <button type="button" class="state s-passable" data-state="passable"><span class="s-main" data-i18n="passable"></span><span class="s-hint" data-i18n="passable_hint"></span></button>
+          <button type="button" class="state s-blocked" data-state="not_passable"><span class="s-main" data-i18n="not_passable"></span><span class="s-hint" data-i18n="not_passable_hint"></span></button>
+          <button type="button" class="state s-unknown" data-state="unknown"><span class="s-main" data-i18n="unknown"></span><span class="s-hint" data-i18n="unknown_hint"></span></button>
+        </div>
+      </div>
+    </section>
+
+    <dialog id="confirm" aria-labelledby="confirm-title">
+      <h2 id="confirm-title" data-i18n="confirm_title"></h2>
+      <dl class="facts">
+        <dt data-i18n="chosen"></dt><dd id="confirm-site"></dd>
+        <dt data-i18n="what_title"></dt><dd id="confirm-state"></dd>
+        <dt data-i18n="confirm_when"></dt><dd id="confirm-time"></dd>
+      </dl>
+      <fieldset id="depth-picker" hidden>
+        <legend data-i18n="depth_title"></legend>
+        <div class="chips">
+          <button type="button" class="chip" data-depth="ankle" data-i18n="depth_ankle"></button>
+          <button type="button" class="chip" data-depth="knee" data-i18n="depth_knee"></button>
+          <button type="button" class="chip" data-depth="above_knee" data-i18n="depth_above_knee"></button>
+          <button type="button" class="chip" data-depth="unknown" data-i18n="depth_unknown"></button>
+        </div>
+      </fieldset>
+      <p id="confirm-error" class="error" role="alert" hidden></p>
+      <div class="buttons">
+        <button id="confirm-no" type="button" class="secondary" data-i18n="confirm_no"></button>
+        <button id="confirm-yes" type="button" class="primary" data-i18n="confirm_yes"></button>
+      </div>
+    </dialog>
+
+    <section id="history-section" hidden>
+      <h2 data-i18n="history_title"></h2>
+      <p id="pending" class="help" role="status"></p>
+      <div class="buttons">
+        <button id="sync-now" type="button" class="secondary" data-i18n="sync_now"></button>
+        <button id="export" type="button" class="secondary" data-i18n="export_csv"></button>
+      </div>
+      <ul id="history" class="list"></ul>
+      <p id="history-empty" class="help" data-i18n="history_empty"></p>
+    </section>
+
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+  </main>
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>
