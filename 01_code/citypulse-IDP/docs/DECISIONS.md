@@ -955,3 +955,22 @@ Routing results, December 2015 flood extent as truth (share of the route's lengt
 **Validation (to be run after the implementation, with these windows fixed now).** Replay the rule with the IMERG archive at 00, 06, 12 and 18 UTC (each with its six preceding half-hour images) over: **flood windows** 1 to 3 December 2015 (the project's replay day is 2 December 2015), 3 to 5 December 2023, and 29 November to 1 December 2025; **dry controls** 5 to 7 March 2024 and 10 to 12 April 2025. Report what state the rule gives at each time, in a result file. Expected, not guaranteed: `watch` or `active` on the flood windows, `dry` on the controls. A miss or a false alarm is reported as a negative result and the rule is not adjusted to remove it; any change is a new ADR with the reason.
 
 **Not decided here.** Whether the app should show *why* the state is what it is (the server reports it; the app banner does not yet use it). Whether to add a forecast input.
+
+### Validation result (run 5 October 2026 16:39 UTC; `data/results/2026-10-05-imerg-event-rule-replay/result.json`)
+
+Run with the windows and numbers above, unchanged. Instantaneous level (no holds) at 00, 06, 12 and 18 UTC, from the six half-hour images ending at each time:
+
+| Window | Highest level | Times at `watch` or higher | Criterion met? |
+|---|---|---|---|
+| 1 to 3 Dec 2015 (flood) | `active` | 4 of 12 (1 Dec 06:00 to 2 Dec 00:00) | yes |
+| 3 to 5 Dec 2023 Michaung (flood; not independent) | `active` | 6 of 12 (3 Dec 18:00 to 4 Dec 18:00) | yes |
+| 29 Nov to 1 Dec 2025 (north-east monsoon) | `watch` | 2 of 12 | yes, weakly (see below) |
+| 5 to 7 Mar 2024 (dry control) | `dry` | 0 of 12 | yes |
+| 10 to 12 Apr 2025 (dry control) | `watch` | 1 of 12 (11 Apr 00:00) | **no: a false alarm** |
+
+Three of three flood windows and one of two controls met the criterion written in advance. Read it this way:
+- **The April 2025 false alarm is a result, not noise to tune away.** That reading had a three-hour area mean of only 4.8 mm but one cell at 23.05 mm/h, so the single-cell condition (`P >= 7.6 mm/h`) fired. A brief convective shower can therefore switch the hazard map on; with the 12-hour hold, one such reading would keep it on for half a day. The rule was **not** changed. Whether to raise the cell threshold, require two cells, or drop the cell condition is a decision for the owner and, if taken, a new ADR with this table as its reason.
+- **The November 2025 window is weak evidence.** It was chosen as a north-east monsoon window; it was never checked that Chennai flooded then. It reached `watch` twice (7.2 mm and 13.5 mm in three hours) and never `active`. It neither supports nor undermines the rule.
+- **December 2015 and Michaung fit the rule,** and 2 December 2015 (the project's replay proxy day) falls in the tail of the 2015 window, where the rule has returned to `dry` by 06:00 UTC; with the holds the live rule would still read `watch` for 12 hours from the last `watch` reading. Michaung was seen before the numbers were fixed.
+- **Not tested: timeliness.** The replay uses images ending at each time. Live, the newest image is about six hours old, so a real switch comes about six hours after the replay's time. The replay measures whether the rule can tell wet from dry, not whether it is early enough to help anyone.
+- **Not tested: whether the hazard map helps** when it is switched on. That needs street-level, time-stamped passability data, which does not exist yet.

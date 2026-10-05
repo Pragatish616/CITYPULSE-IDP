@@ -15,6 +15,8 @@ import 'package:router_api/src/rewrite_proxy.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
+import 'event_state.dart';
+
 /// Settings for [buildHandler].
 class ApiConfig {
   /// Creates the settings.
@@ -111,6 +113,7 @@ Handler buildHandler(
   DateTime Function() now = _utcNow,
   int Function()? observationCount,
   RewriteProxy? rewrite,
+  EventStateController? events,
 }) {
   final router = Router();
   final riskCache = <String, ({DateTime at, String body})>{};
@@ -197,7 +200,8 @@ Handler buildHandler(
     var usedRegion = config.cityId;
     var hazardLayer = config.hazardLayer;
     for (final d in details) {
-      if (d.city.contains(from.lat, from.lon) && d.city.contains(to.lat, to.lon)) {
+      if (d.city.contains(from.lat, from.lon) &&
+          d.city.contains(to.lat, to.lon)) {
         final detailed = d.engine.route(
           fromLat: from.lat,
           fromLon: from.lon,
@@ -261,7 +265,9 @@ Handler buildHandler(
           'event_state': plan.eventState.name,
           'hazard_layer': hazardLayer,
           'region': usedRegion,
-          'compute_ms': double.parse(plan.computeMilliseconds.toStringAsFixed(1)),
+          'compute_ms': double.parse(
+            plan.computeMilliseconds.toStringAsFixed(1),
+          ),
         });
     }
   });
@@ -293,7 +299,8 @@ Handler buildHandler(
     // The same viewport is asked for again and again while a map is panned back and forth, so keep
     // the answers for a few seconds. The key changes with the reports, so a new report shows up at
     // once.
-    final key = '$userClass|${hazardEngines.first.eventState.name}|'
+    final key =
+        '$userClass|${hazardEngines.first.eventState.name}|'
         '${hazardEngines.fold<int>(0, (a, e) => a + e.observationCount)}|$detail|$minP|$limit|'
         '${q['bbox']}|${t.millisecondsSinceEpoch ~/ (config.riskCacheSeconds * 1000)}';
     var cached = riskCache[key];
@@ -306,13 +313,22 @@ Handler buildHandler(
       // not pay for a whole state.
       final box = bbox == null
           ? null
-          : (minLon: bbox[0], minLat: bbox[1], maxLon: bbox[2], maxLat: bbox[3]);
+          : (
+              minLon: bbox[0],
+              minLat: bbox[1],
+              maxLon: bbox[2],
+              maxLat: bbox[3],
+            );
       var edges = [
         for (final e in hazardEngines)
           ...e.riskEdges(at: t, userClass: userClass, bbox: box, limit: limit),
       ];
       if (edges.length > limit) edges = edges.sublist(0, limit);
-      if (minP > 0) edges = [for (final e in edges) if (e.pPessimistic >= minP) e];
+      if (minP > 0)
+        edges = [
+          for (final e in edges)
+            if (e.pPessimistic >= minP) e,
+        ];
       cached = (
         at: t,
         body: jsonEncode(riskEdgesToGeoJson(edges, compact: !detail)),
@@ -385,7 +401,8 @@ Handler buildHandler(
             'lon': _round6(m.point.lon),
             'segments': m.edgeCount,
             'kind': m.kind,
-            if (m.distanceMetres != null) 'distance_m': m.distanceMetres!.round(),
+            if (m.distanceMetres != null)
+              'distance_m': m.distanceMetres!.round(),
           },
       ],
     });
@@ -434,6 +451,8 @@ Handler buildHandler(
   });
 
   router.get('/event-state', (Request request) {
+    final c = events;
+    if (c != null) return _json(200, c.status().toJson());
     return _json(200, {'event_state': hazardEngines.first.eventState.name});
   });
 
@@ -445,21 +464,56 @@ Handler buildHandler(
     if (request.headers['x-admin-token'] != token) {
       return _error(401, 'unauthorised', 'Missing or wrong x-admin-token.');
     }
+    final c = events;
     try {
-      final body = jsonDecode(await request.readAsString());
-      final state = EventState.parse((body as Map)['event_state']! as String);
-      engine.eventState = state;
-      for (final d in details) {
-        d.engine.eventState = state;
+      final body = jsonDecode(await request.readAsString()) as Map;
+      if (body['mode'] == 'auto') {
+        // Give the decision back to the satellite rain rule (ADR-027).
+        if (c == null || !c.resumeAuto()) {
+          return _error(
+            400,
+            'no_rain_source',
+            'No rain source is configured, so there is no automatic mode to return to.',
+          );
+        }
+        return _json(200, c.status().toJson());
+      }
+      final state = EventState.parse(body['event_state']! as String);
+      final hours = body['hours'];
+      if (hours != null && (hours is! num || hours <= 0 || hours > 24 * 14)) {
+        return _error(
+          400,
+          'bad_hours',
+          '"hours" must be a number from 0 to 336 (14 days).',
+        );
+      }
+      if (c != null) {
+        c.setManual(
+          state,
+          hold: hours == null
+              ? null
+              : Duration(minutes: ((hours as num) * 60).round()),
+        );
+      } else {
+        engine.eventState = state;
+        for (final d in details) {
+          d.engine.eventState = state;
+        }
       }
     } on Object {
       return _error(
         400,
         'bad_state',
-        'Body must be {"event_state": "dry" | "watch" | "active"}.',
+        'Body must be {"event_state": "dry" | "watch" | "active", "hours": optional number} or {"mode": "auto"}.',
       );
     }
-    return _json(200, {'event_state': hazardEngines.first.eventState.name});
+    final after = events;
+    return _json(
+      200,
+      after != null
+          ? after.status().toJson()
+          : {'event_state': hazardEngines.first.eventState.name},
+    );
   });
 
   final cors = <String, String>{
@@ -476,6 +530,7 @@ Handler buildHandler(
             return Response(204, headers: cors);
           }
           final sw = Stopwatch()..start();
+          events?.refresh(); // overrides and holds can run out between polls
           Response response;
           try {
             response = await inner(request);

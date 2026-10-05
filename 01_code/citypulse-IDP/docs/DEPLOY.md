@@ -40,6 +40,25 @@ first; its "re-check before launch" list applies.
 5. **A real domain**: set `SITE_ADDRESS=your.domain` in `.env`; Caddy then obtains a TLS certificate by
    itself. Point DNS at the host first.
 
+## The event state: automatic by default, with a human override (ADR-027)
+
+The router sets the event state from NASA satellite rain, polled every 15 minutes: `watch` after about 8 mm in three hours (or a heavy cell), `active` after about 15 mm (or a violent cell), held for hours after, `dry` otherwise. The numbers are placeholders (ADR-027). The data runs about six hours behind, so it cannot warn ahead.
+
+See what it decided and why (no token needed): `GET /api/event-state` returns the state, `mode` (`auto`, `manual` or `fixed`), `source` (`rain`, `manual`, `fallback` or `configured`), a sentence of reasons with the numbers, and the rain reading.
+
+Override it (admin token in the `x-admin-token` header; set `ADMIN_TOKEN` in the host's environment settings or this is disabled):
+
+```bash
+# force a state until cleared
+curl -X PUT https://YOUR-SITE/api/event-state -H "x-admin-token: $ADMIN_TOKEN" -H "content-type: application/json" -d '{"event_state":"active"}'
+# force a state for 6 hours, then return to automatic by itself
+curl -X PUT https://YOUR-SITE/api/event-state -H "x-admin-token: $ADMIN_TOKEN" -H "content-type: application/json" -d '{"event_state":"watch","hours":6}'
+# give the decision back to the rain rule
+curl -X PUT https://YOUR-SITE/api/event-state -H "x-admin-token: $ADMIN_TOKEN" -H "content-type: application/json" -d '{"mode":"auto"}'
+```
+
+If the rain data is missing, older than 12 hours, or flagged stale, the configured `EVENT_STATE` (default `active`) applies and the answer says `source: fallback`. Holds are kept in memory, so a restart (a free host sleeping) forgets them. On a dry day the demo now shows `dry`: the 2015 hazard map is off and the advice card says no flood event is under way.
+
 ## Settings that matter
 
 | Variable | Where | Purpose |
@@ -49,7 +68,9 @@ first; its "re-check before launch" list applies.
 | `TRUST_FORWARDED_FOR=1` | router | Set only behind the proxy, so rate limits see real caller addresses. Never set it when the router is reachable directly. |
 | `OBSERVATIONS_URL` | router | Where the router pulls reports from (the ingest server). |
 | `CITY` | router, and `--dart-define=CITY=` for the app | Which city from `config/cities.yaml` to serve (default: its `default_city`). One deployment serves one city (`docs/ADDING_A_CITY.md`). |
-| `EVENT_STATE` | router | `dry`, `watch` or `active`; decides whether the static hazard prior counts (ADR-015). |
+| `EVENT_STATE` | router | `dry`, `watch` or `active`; decides whether the static hazard prior counts (ADR-015). With a rain source (below) it is the **fallback** used when the rain data is missing or older than 12 hours; default `active`. Without one, it is the state. |
+| `OBSERVATIONS_URL` | router | The report server root. It also supplies the satellite rain (`/context/rain`), so with it set the event state is **automatic** (ADR-027). In the one-container image it is `http://127.0.0.1:8000`. |
+| `EVENT_AUTO` | router | Set to `0` to turn the automatic state off and use `EVENT_STATE` as a fixed value, as before ADR-027. |
 | `CORS_ALLOWED_ORIGINS` | ingest | Leave empty for single-origin. |
 
 ## One container, for hosts that run a single service

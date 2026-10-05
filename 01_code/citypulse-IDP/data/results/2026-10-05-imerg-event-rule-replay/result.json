@@ -1,0 +1,635 @@
+{
+  "task": "ADR-027 validation: the event-state rule replayed over NASA IMERG for fixed past windows",
+  "run_at": "2026-10-05T16:39:40Z",
+  "rule": {
+    "active": "A>=15.0 mm or P>=25.0 mm/h",
+    "watch": "A>=8.0 mm or P>=7.6 mm/h",
+    "holds_applied": false,
+    "note": "no holds: a necessary condition for the live rule to leave dry"
+  },
+  "decision_record_commit": "d76646becae390f877125314a8b75e3266e95676",
+  "data": {
+    "layer": "IMERG_Precipitation_Rate_30min",
+    "bbox": [
+      12.75,
+      79.95,
+      13.25,
+      80.35
+    ],
+    "resolution_km": 10,
+    "source": "NASA GPM IMERG (GSFC), served by NASA GIBS. NASA open data."
+  },
+  "windows": [
+    {
+      "label": "2015-12 (the project's replay flood; 2 Dec 2015 is the proxy day)",
+      "kind": "flood",
+      "first_day": "2015-12-01",
+      "last_day": "2015-12-03",
+      "points": [
+        {
+          "time": "2015-12-01T00:00Z",
+          "area_mean_accumulation_3h_mm": 6.04,
+          "peak_cell_rate_mm_h": 5.79,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2015-12-01T06:00Z",
+          "area_mean_accumulation_3h_mm": 47.69,
+          "peak_cell_rate_mm_h": 43.42,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "active"
+        },
+        {
+          "time": "2015-12-01T12:00Z",
+          "area_mean_accumulation_3h_mm": 35.94,
+          "peak_cell_rate_mm_h": 30.74,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "active"
+        },
+        {
+          "time": "2015-12-01T18:00Z",
+          "area_mean_accumulation_3h_mm": 33.62,
+          "peak_cell_rate_mm_h": 20.54,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "active"
+        },
+        {
+          "time": "2015-12-02T00:00Z",
+          "area_mean_accumulation_3h_mm": 19.66,
+          "peak_cell_rate_mm_h": 10.3,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "active"
+        },
+        {
+          "time": "2015-12-02T06:00Z",
+          "area_mean_accumulation_3h_mm": 3.36,
+          "peak_cell_rate_mm_h": 3.65,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2015-12-02T12:00Z",
+          "area_mean_accumulation_3h_mm": 1.64,
+          "peak_cell_rate_mm_h": 3.26,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2015-12-02T18:00Z",
+          "area_mean_accumulation_3h_mm": 2.06,
+          "peak_cell_rate_mm_h": 2.9,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2015-12-03T00:00Z",
+          "area_mean_accumulation_3h_mm": 0.72,
+          "peak_cell_rate_mm_h": 1.94,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2015-12-03T06:00Z",
+          "area_mean_accumulation_3h_mm": 0.54,
+          "peak_cell_rate_mm_h": 0.58,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2015-12-03T12:00Z",
+          "area_mean_accumulation_3h_mm": 1.38,
+          "peak_cell_rate_mm_h": 2.31,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2015-12-03T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.06,
+          "peak_cell_rate_mm_h": 1.94,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        }
+      ],
+      "highest_instantaneous_level": "active",
+      "times_at_watch_or_higher": 4,
+      "times_total": 12,
+      "expected": "watch or active at least once",
+      "as_expected": true
+    },
+    {
+      "label": "2023-12 Michaung (NOT independent: its values were seen before the rule was fixed)",
+      "kind": "flood",
+      "first_day": "2023-12-03",
+      "last_day": "2023-12-05",
+      "points": [
+        {
+          "time": "2023-12-03T00:00Z",
+          "area_mean_accumulation_3h_mm": 6.43,
+          "peak_cell_rate_mm_h": 9.72,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "watch"
+        },
+        {
+          "time": "2023-12-03T06:00Z",
+          "area_mean_accumulation_3h_mm": 2.78,
+          "peak_cell_rate_mm_h": 4.1,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2023-12-03T12:00Z",
+          "area_mean_accumulation_3h_mm": 5.49,
+          "peak_cell_rate_mm_h": 4.1,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2023-12-03T18:00Z",
+          "area_mean_accumulation_3h_mm": 17.2,
+          "peak_cell_rate_mm_h": 21.76,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "active"
+        },
+        {
+          "time": "2023-12-04T00:00Z",
+          "area_mean_accumulation_3h_mm": 39.43,
+          "peak_cell_rate_mm_h": 30.74,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "active"
+        },
+        {
+          "time": "2023-12-04T06:00Z",
+          "area_mean_accumulation_3h_mm": 20.89,
+          "peak_cell_rate_mm_h": 13.73,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "active"
+        },
+        {
+          "time": "2023-12-04T12:00Z",
+          "area_mean_accumulation_3h_mm": 17.41,
+          "peak_cell_rate_mm_h": 12.24,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "active"
+        },
+        {
+          "time": "2023-12-04T18:00Z",
+          "area_mean_accumulation_3h_mm": 12.28,
+          "peak_cell_rate_mm_h": 10.3,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "watch"
+        },
+        {
+          "time": "2023-12-05T00:00Z",
+          "area_mean_accumulation_3h_mm": 4.64,
+          "peak_cell_rate_mm_h": 3.65,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2023-12-05T06:00Z",
+          "area_mean_accumulation_3h_mm": 1.37,
+          "peak_cell_rate_mm_h": 6.5,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2023-12-05T12:00Z",
+          "area_mean_accumulation_3h_mm": 0.01,
+          "peak_cell_rate_mm_h": 0.14,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2023-12-05T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        }
+      ],
+      "highest_instantaneous_level": "active",
+      "times_at_watch_or_higher": 6,
+      "times_total": 12,
+      "expected": "watch or active at least once",
+      "as_expected": true
+    },
+    {
+      "label": "2025-11 north-east monsoon event",
+      "kind": "flood",
+      "first_day": "2025-11-29",
+      "last_day": "2025-12-01",
+      "points": [
+        {
+          "time": "2025-11-29T00:00Z",
+          "area_mean_accumulation_3h_mm": 0.15,
+          "peak_cell_rate_mm_h": 1.3,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-11-29T06:00Z",
+          "area_mean_accumulation_3h_mm": 0.58,
+          "peak_cell_rate_mm_h": 1.63,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-11-29T12:00Z",
+          "area_mean_accumulation_3h_mm": 2.02,
+          "peak_cell_rate_mm_h": 2.74,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-11-29T18:00Z",
+          "area_mean_accumulation_3h_mm": 7.16,
+          "peak_cell_rate_mm_h": 7.72,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "watch"
+        },
+        {
+          "time": "2025-11-30T00:00Z",
+          "area_mean_accumulation_3h_mm": 1.33,
+          "peak_cell_rate_mm_h": 1.73,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-11-30T06:00Z",
+          "area_mean_accumulation_3h_mm": 0.35,
+          "peak_cell_rate_mm_h": 1.45,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-11-30T12:00Z",
+          "area_mean_accumulation_3h_mm": 0.46,
+          "peak_cell_rate_mm_h": 1.45,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-11-30T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.41,
+          "peak_cell_rate_mm_h": 0.82,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-12-01T00:00Z",
+          "area_mean_accumulation_3h_mm": 0.1,
+          "peak_cell_rate_mm_h": 0.39,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-12-01T06:00Z",
+          "area_mean_accumulation_3h_mm": 4.23,
+          "peak_cell_rate_mm_h": 6.13,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-12-01T12:00Z",
+          "area_mean_accumulation_3h_mm": 13.53,
+          "peak_cell_rate_mm_h": 13.73,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "watch"
+        },
+        {
+          "time": "2025-12-01T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.29,
+          "peak_cell_rate_mm_h": 2.74,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        }
+      ],
+      "highest_instantaneous_level": "watch",
+      "times_at_watch_or_higher": 2,
+      "times_total": 12,
+      "expected": "watch or active at least once",
+      "as_expected": true
+    },
+    {
+      "label": "2024-03 dry control",
+      "kind": "control",
+      "first_day": "2024-03-05",
+      "last_day": "2024-03-07",
+      "points": [
+        {
+          "time": "2024-03-05T00:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-05T06:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-05T12:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-05T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-06T00:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-06T06:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-06T12:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-06T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-07T00:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-07T06:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-07T12:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2024-03-07T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        }
+      ],
+      "highest_instantaneous_level": "dry",
+      "times_at_watch_or_higher": 0,
+      "times_total": 12,
+      "expected": "dry at every time",
+      "as_expected": true
+    },
+    {
+      "label": "2025-04 dry control",
+      "kind": "control",
+      "first_day": "2025-04-10",
+      "last_day": "2025-04-12",
+      "points": [
+        {
+          "time": "2025-04-10T00:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-10T06:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-10T12:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-10T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.13,
+          "peak_cell_rate_mm_h": 3.65,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-11T00:00Z",
+          "area_mean_accumulation_3h_mm": 4.77,
+          "peak_cell_rate_mm_h": 23.05,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "watch"
+        },
+        {
+          "time": "2025-04-11T06:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-11T12:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-11T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.24,
+          "peak_cell_rate_mm_h": 3.65,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-12T00:00Z",
+          "area_mean_accumulation_3h_mm": 0.02,
+          "peak_cell_rate_mm_h": 0.55,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-12T06:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-12T12:00Z",
+          "area_mean_accumulation_3h_mm": 0.0,
+          "peak_cell_rate_mm_h": 0.0,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        },
+        {
+          "time": "2025-04-12T18:00Z",
+          "area_mean_accumulation_3h_mm": 0.1,
+          "peak_cell_rate_mm_h": 0.58,
+          "images_read": 6,
+          "images_missing": 0,
+          "unmatched_pixels": 0,
+          "level": "dry"
+        }
+      ],
+      "highest_instantaneous_level": "watch",
+      "times_at_watch_or_higher": 1,
+      "times_total": 12,
+      "expected": "dry at every time",
+      "as_expected": false
+    }
+  ],
+  "summary": {
+    "flood_windows_as_expected": 3,
+    "flood_windows": 3,
+    "control_windows_as_expected": 1,
+    "control_windows": 2
+  }
+}

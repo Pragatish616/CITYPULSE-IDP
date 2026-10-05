@@ -51,7 +51,9 @@ Future<void> main() async {
   );
   // Named places (cities, towns, villages) for search, if the pack has them.
   final placesFile = File(
-    city.placesFile == null ? '$packDir/places.json' : '$repoRoot/${city.placesFile}',
+    city.placesFile == null
+        ? '$packDir/places.json'
+        : '$repoRoot/${city.placesFile}',
   );
   final gazetteer = placesFile.existsSync()
       ? parseGazetteer(placesFile.readAsStringSync())
@@ -106,12 +108,37 @@ Future<void> main() async {
   }
 
   // Reports belong to the engine that carries flood data.
-  final reportEngine = city.hazardLayer || details.isEmpty ? engine : details.first.engine;
+  final reportEngine = city.hazardLayer || details.isEmpty
+      ? engine
+      : details.first.engine;
   final observationsUrl = env['OBSERVATIONS_URL'];
   if (observationsUrl != null && observationsUrl.isNotEmpty) {
     ObservationSync(
       engine: reportEngine,
-      baseUrl: Uri.parse(observationsUrl.endsWith('/') ? observationsUrl : '$observationsUrl/'),
+      baseUrl: Uri.parse(
+        observationsUrl.endsWith('/') ? observationsUrl : '$observationsUrl/',
+      ),
+    ).start();
+  }
+
+  // The event state follows satellite rain by default, with a human override (ADR-027). It needs the report server (which fetches
+  // the rain from NASA), so it is off when OBSERVATIONS_URL is not set, and EVENT_AUTO=0 switches it off on purpose.
+  final rainUrl = (env['EVENT_AUTO'] == '0') ? null : observationsUrl;
+  final hasRainSource = rainUrl != null && rainUrl.isNotEmpty;
+  final events = EventStateController(
+    configured: eventState,
+    hasRainSource: hasRainSource,
+    apply: (state) {
+      engine.eventState = state;
+      for (final d in details) {
+        d.engine.eventState = state;
+      }
+    },
+  );
+  if (hasRainSource) {
+    RainSync(
+      baseUrl: Uri.parse(rainUrl.endsWith('/') ? rainUrl : '$rainUrl/'),
+      controller: events,
     ).start();
   }
 
@@ -129,6 +156,7 @@ Future<void> main() async {
       hazardLayer: city.hazardLayer,
       trustForwardedFor: env['TRUST_FORWARDED_FOR'] == '1',
     ),
+    events: events,
     rewrite: RewriteProxy(
       apiKey: env['GROQ_API_KEY'],
       model: env['GROQ_MODEL'] ?? 'llama-3.1-8b-instant',
@@ -139,6 +167,6 @@ Future<void> main() async {
     'router_api listening on :${server.port} for ${city.id} '
     '(${pack.edgeCount} edges'
     '${details.map((d) => ', ${d.city.id} ${d.engine.pack.edgeCount} edges').join()}, '
-    'event state ${reportEngine.eventState.name})',
+    'event state ${reportEngine.eventState.name}, ${events.status().mode} mode)',
   );
 }

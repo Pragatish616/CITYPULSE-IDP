@@ -48,8 +48,9 @@ What to know before you try it:
 - **Temporary.** It runs on a free host and may be slow, restarted or taken down without notice.
 - **It sleeps.** After about 15 minutes without visitors the first page load can take 30 to 60 seconds.
 - **Reports are not kept.** The report server holds them in memory, so a restart erases them. Please do not report real flooding here.
-- **Not live flood data.** The flood layer is the 2015 Greater Chennai Corporation hazard map, applied as if an event were under way.
-  There is no sensor feed. See the box above: it estimates risk from limited data and never says a road is safe or passable.
+- **Not live flood data.** The flood layer is the 2015 Greater Chennai Corporation hazard map. Whether it is applied follows NASA satellite rain
+  (about 6 hours behind, 10 km grid): on a dry day it is switched off and the app says no flood event is under way; heavy rain switches it on.
+  An operator can override this. There is no sensor feed. See the box above: it estimates risk from limited data and never says a road is safe or passable.
 - **Phones.** The page is laid out for phone-sized screens. The Android app (below) has been installed on a phone and is reported to behave like this web demo.
 
 How it is built and checked: [`docs/DEPLOY.md`](01_code/citypulse-IDP/docs/DEPLOY.md) (one container; the `Dockerfile` at the top of this repository is

@@ -77,3 +77,5 @@ Status words used below:
 **Web demo (4 October 2026).** The web app, router API and report server run as one container on a free Render instance at <https://citypulse-idp.onrender.com>. `scripts/smoke_deploy.py` passes 11 read-only checks against it. Reports are in memory and the host sleeps when idle.
 
 **Android app (5 October 2026).** A GitHub workflow built a 60.9 MB release APK; the team installed it on one Android phone and reports that it behaves exactly like the web app. No timing, memory, battery or airplane-mode result is recorded, so the readiness levels above do not change (the offline claim in particular is still untested). The next step is the measurement table in `01_code/citypulse-IDP/docs/MOBILE_TESTING.md`.
+
+**Event state (5 October 2026, ADR-027).** The router now sets the flood-event state from NASA satellite rain by default, and an operator can override it. It reacts about six hours late and uses placeholder thresholds, so it is context for whether the 2015 hazard map is applied, not a flood measure (F-36). Readiness levels do not change.
