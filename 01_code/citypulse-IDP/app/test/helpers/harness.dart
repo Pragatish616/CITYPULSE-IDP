@@ -1,4 +1,5 @@
 import 'dart:io';
+
 // Shared fakes for widget and unit tests: a scripted routing back end, a fake
 // map that records what the screens ask of it, and a pumped app.
 import 'package:citypulse_app/src/app.dart';
@@ -6,6 +7,7 @@ import 'package:citypulse_app/src/core/city.dart';
 import 'package:citypulse_app/src/core/settings.dart';
 import 'package:citypulse_app/src/disclaimer/disclaimer_store.dart';
 import 'package:citypulse_app/src/domain/models.dart';
+import 'package:citypulse_app/src/domain/rain_status.dart';
 import 'package:citypulse_app/src/features/map/map_screen.dart'
     show watchlistGeoJsonProvider;
 import 'package:citypulse_app/src/features/map/map_surface.dart';
@@ -151,7 +153,10 @@ class FakeBackend implements RoutingBackend {
   }
 
   @override
-  Future<String> riskGeoJson({required TravelType travel, GeoBounds? bounds}) async {
+  Future<String> riskGeoJson({
+    required TravelType travel,
+    GeoBounds? bounds,
+  }) async {
     riskRequests.add(bounds);
     return risk;
   }
@@ -237,6 +242,7 @@ class AppHarness {
     this.disclaimerAccepted = true,
     this.city,
     this.detailCities = const [],
+    this.rainStatus,
   }) : backend = backend ?? FakeBackend(),
        ingest = ingest ?? MockClient((_) async => http.Response('{}', 201));
 
@@ -249,6 +255,9 @@ class AppHarness {
 
   /// Detailed cities served inside the region (ADR-022).
   final List<CityConfig> detailCities;
+
+  /// What the router service says about satellite rain (ADR-027). Null, as in a real unreachable service, shows no rain line.
+  final RainStatus? rainStatus;
   final map = FakeMapHandle();
   late MapSurfaceCallbacks mapCallbacks;
   late SharedPreferences prefs;
@@ -279,6 +288,8 @@ class AppHarness {
         appVersionProvider.overrideWithValue('1.0.0'),
         clockProvider.overrideWithValue(() => kTestNow),
         routingBackendProvider.overrideWithValue(backend),
+        // No real HTTP and no five-minute refresh timer under the widget tester.
+        rainStatusProvider.overrideWith((ref) async => rainStatus),
         reportRepositoryProvider.overrideWith(
           (ref) => ReportRepository(
             ingestUrl: 'http://ingest.test',
@@ -341,7 +352,6 @@ cities:
     bbox: { min_lat: 19.99, max_lat: 20.03, min_lon: 77.99, max_lon: 78.03 }
     pack: data/packs/testville
     hazard_layer: false
-''') as YamlMap)
-      .cast<Object?, Object?>(),
+''') as YamlMap).cast<Object?, Object?>(),
   'testville',
 );

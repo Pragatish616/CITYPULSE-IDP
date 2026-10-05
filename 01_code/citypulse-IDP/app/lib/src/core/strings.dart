@@ -57,6 +57,25 @@ enum Msg {
   eventDry,
   eventWatch,
   eventActive,
+  rainLineNone,
+  rainLineNow,
+  rainLineEarlier,
+  rainLineStale,
+  rainClassLight,
+  rainClassModerate,
+  rainClassHeavy,
+  rainClassViolent,
+  rainClassUnknown,
+  rainSheetTitle,
+  rainRow3h,
+  rainRowPeak,
+  rainRowImage,
+  rainRowState,
+  rainSourceRain,
+  rainSourceManual,
+  rainSourceFallback,
+  rainSourceConfigured,
+  rainCaveat,
   errorOriginOutside,
   errorDestinationOutside,
   errorSameLocation,
@@ -196,6 +215,13 @@ class Strings {
 
   /// Substitutes `{n}` in [key]'s text.
   String withNumber(Msg key, int n) => call(key).replaceAll('{n}', '$n');
+
+  /// Substitutes each `{name}` in [key]'s text with its value.
+  String fill(Msg key, Map<String, String> values) {
+    var text = call(key);
+    values.forEach((name, value) => text = text.replaceAll('{$name}', value));
+    return text;
+  }
 }
 
 /// Every English string, exposed for the tests.
@@ -250,6 +276,27 @@ const Map<Msg, String> _en = {
       'Reports still count.',
   Msg.eventWatch: 'Flood watch: the hazard map is applied to routes.',
   Msg.eventActive: 'Flood event: the hazard map is applied to routes.',
+  Msg.rainLineNone:
+      'Rain by satellite over {area}: none in the last 3 h · image {age} old',
+  Msg.rainLineNow: 'Rain by satellite over {area}: {class} now · {mm} mm in the last 3 h · image {age} old',
+  Msg.rainLineEarlier: 'Rain by satellite over {area}: none now · {mm} mm earlier in the last 3 h · image {age} old',
+  Msg.rainLineStale: 'Rain by satellite over {area}: the data is out of date',
+  Msg.rainClassLight: 'light',
+  Msg.rainClassModerate: 'moderate',
+  Msg.rainClassHeavy: 'heavy',
+  Msg.rainClassViolent: 'very intense',
+  Msg.rainClassUnknown: 'some',
+  Msg.rainSheetTitle: 'Satellite rain and the flood-event state',
+  Msg.rainRow3h: 'Last 3 hours (average over the area)',
+  Msg.rainRowPeak: 'Strongest spot',
+  Msg.rainRowImage: 'Satellite image',
+  Msg.rainRowState: 'Flood-event state',
+  Msg.rainSourceRain: 'Set automatically from satellite rain.',
+  Msg.rainSourceManual: 'Set by an operator.',
+  Msg.rainSourceFallback:
+      'Rain data was missing or out of date, so the default setting is used.',
+  Msg.rainSourceConfigured: 'Fixed by the service setting.',
+  Msg.rainCaveat: 'A satellite estimate in cells of about 10 km, hours behind real time. Rain is not flooding, and this says nothing about any one street.',
   Msg.errorOriginOutside:
       'The start point is outside the mapped {city} road network.',
   Msg.errorDestinationOutside:
@@ -397,6 +444,25 @@ const Map<Msg, String> _ta = {
       'வெள்ளக் கண்காணிப்பு: அபாய வரைபடம் வழிகளுக்குப் பயன்படுத்தப்படுகிறது.',
   Msg.eventActive:
       'வெள்ள நிகழ்வு: அபாய வரைபடம் வழிகளுக்குப் பயன்படுத்தப்படுகிறது.',
+  Msg.rainLineNone: '{area} பகுதியில் செயற்கைக்கோள் மழை: கடந்த 3 மணி நேரத்தில் இல்லை · படம் {age} பழையது',
+  Msg.rainLineNow: '{area} பகுதியில் செயற்கைக்கோள் மழை: இப்போது {class} · கடந்த 3 மணி நேரத்தில் {mm} மி.மீ · படம் {age} பழையது',
+  Msg.rainLineEarlier: '{area} பகுதியில் செயற்கைக்கோள் மழை: இப்போது இல்லை · கடந்த 3 மணி நேரத்தில் {mm} மி.மீ · படம் {age} பழையது',
+  Msg.rainLineStale: '{area} பகுதியில் செயற்கைக்கோள் மழைத் தரவு காலாவதியானது',
+  Msg.rainClassLight: 'லேசான',
+  Msg.rainClassModerate: 'மிதமான',
+  Msg.rainClassHeavy: 'கனமான',
+  Msg.rainClassViolent: 'மிகக் கனமான',
+  Msg.rainClassUnknown: 'சிறிது',
+  Msg.rainSheetTitle: 'செயற்கைக்கோள் மழையும் வெள்ள நிகழ்வு நிலையும்',
+  Msg.rainRow3h: 'கடந்த 3 மணி நேரம் (பகுதி சராசரி)',
+  Msg.rainRowPeak: 'அதிக மழை பெய்யும் இடம்',
+  Msg.rainRowImage: 'செயற்கைக்கோள் படம்',
+  Msg.rainRowState: 'வெள்ள நிகழ்வு நிலை',
+  Msg.rainSourceRain: 'செயற்கைக்கோள் மழையிலிருந்து தானாக அமைக்கப்பட்டது.',
+  Msg.rainSourceManual: 'ஒரு இயக்குநரால் அமைக்கப்பட்டது.',
+  Msg.rainSourceFallback: 'மழைத் தரவு இல்லை அல்லது பழையது; எனவே இயல்புநிலை அமைப்பு பயன்படுத்தப்படுகிறது.',
+  Msg.rainSourceConfigured: 'சேவை அமைப்பால் நிர்ணயிக்கப்பட்டது.',
+  Msg.rainCaveat: 'சுமார் 10 கி.மீ கட்டங்களில் செயற்கைக்கோள் மதிப்பீடு; நேரடி நேரத்தை விட பல மணி நேரம் பின்தங்கியது. மழை என்பது வெள்ளம் அல்ல; எந்த ஒரு தெருவைப் பற்றியும் இது எதுவும் சொல்லாது.',
   Msg.errorOriginOutside: 'தொடக்கப் புள்ளி வரைபடத்தில் உள்ள {city} சாலை வலையமைப்புக்கு வெளியே உள்ளது.',
   Msg.errorDestinationOutside:
       'இலக்கு வரைபடத்தில் உள்ள {city} சாலை வலையமைப்புக்கு வெளியே உள்ளது.',

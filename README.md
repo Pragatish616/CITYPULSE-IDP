@@ -41,7 +41,8 @@ and adds a small on-device advisor that says how much to trust what it found.
 **Web demo, running for now: <https://citypulse-idp.onrender.com>**
 
 Search two places in Chennai (try *Adyar* and *T. Nagar*), pick a travel mode and get a route with the advisor's verdict, or use
-*Report water here* to send a test report. It is the same web app and router that this repository builds.
+*Report water here* to send a test report. The banner at the top shows what NASA's satellite sees over Chennai right now (rain, and how old the
+image is); tap it for the numbers and what they mean. It is the same web app and router that this repository builds.
 
 What to know before you try it:
 

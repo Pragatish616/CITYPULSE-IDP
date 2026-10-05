@@ -14,6 +14,7 @@ import 'package:citypulse_app/src/core/settings.dart';
 import 'package:citypulse_app/src/core/strings.dart';
 import 'package:citypulse_app/src/core/theme.dart';
 import 'package:citypulse_app/src/domain/models.dart';
+import 'package:citypulse_app/src/domain/rain_status.dart';
 import 'package:citypulse_app/src/features/map/map_surface.dart';
 import 'package:citypulse_app/src/features/map/place_field.dart';
 import 'package:citypulse_app/src/features/map/route_card.dart';
@@ -804,25 +805,187 @@ class _EventBanner extends ConsumerWidget {
         Icons.water_outlined,
       ),
     };
+    // Satellite rain over the city, from the same service (ADR-027). Null means "could not be read", which shows nothing: an unknown
+    // is never presented as "no rain".
+    final status = ref.watch(rainStatusProvider).value;
+    final reading = status?.rain;
+    final area = (city.hazardLayer ? city : detail.first).name.forLanguage(
+      s.language == AppLanguage.ta ? 'ta' : 'en',
+    );
+    final textStyle = Theme.of(context).textTheme.bodySmall;
     return Container(
       key: Key('event-banner-${state.name}'),
       margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
+      child: Material(
         color: colour,
         borderRadius: BorderRadius.circular(8),
+        child: InkWell(
+          key: const Key('event-banner-tap'),
+          borderRadius: BorderRadius.circular(8),
+          onTap: status == null
+              ? null
+              : () => showModalBottomSheet<void>(
+                  context: context,
+                  showDragHandle: true,
+                  isScrollControlled: true,
+                  builder: (_) => PointerInterceptor(
+                    child: _RainSheet(status: status, area: area),
+                  ),
+                ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(icon, size: 18),
+                    const SizedBox(width: 8),
+                    Expanded(child: Text('$scope$text', style: textStyle)),
+                  ],
+                ),
+                if (reading != null) ...[
+                  const SizedBox(height: 6),
+                  Row(
+                    key: const Key('rain-line'),
+                    children: [
+                      Icon(_rainIcon(reading), size: 18),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          _rainLine(s, reading, area),
+                          style: textStyle,
+                        ),
+                      ),
+                      const Icon(Icons.info_outline, size: 14),
+                    ],
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
       ),
+    );
+  }
+}
+
+/// One line saying what the satellite sees over [area]. Numbers and the image's age, never "dry" or "clear" (ADR-011).
+String _rainLine(Strings s, RainReading r, String area) {
+  if (r.stale) return s.fill(Msg.rainLineStale, {'area': area});
+  final age = s.minutes(r.dataAgeMinutes);
+  final mm = r.accumulationMm.toStringAsFixed(r.accumulationMm < 10 ? 1 : 0);
+  if (r.intensityClass != 'none') {
+    final cls = switch (r.intensityClass) {
+      'light' => Msg.rainClassLight,
+      'moderate' => Msg.rainClassModerate,
+      'heavy' => Msg.rainClassHeavy,
+      'violent' => Msg.rainClassViolent,
+      _ => Msg.rainClassUnknown,
+    };
+    return s.fill(Msg.rainLineNow, {
+      'area': area,
+      'class': s(cls),
+      'mm': mm,
+      'age': age,
+    });
+  }
+  if (r.accumulationMm >= 0.1) {
+    return s.fill(Msg.rainLineEarlier, {'area': area, 'mm': mm, 'age': age});
+  }
+  return s.fill(Msg.rainLineNone, {'area': area, 'age': age});
+}
+
+IconData _rainIcon(RainReading r) {
+  if (r.stale) return Icons.cloud_off_outlined;
+  return switch (r.intensityClass) {
+    'heavy' || 'violent' => Icons.thunderstorm_outlined,
+    'light' || 'moderate' => Icons.grain,
+    _ => r.accumulationMm >= 0.1 ? Icons.grain : Icons.cloud_outlined,
+  };
+}
+
+/// What the rain line means and where the event state comes from. Opened by tapping the banner.
+class _RainSheet extends ConsumerWidget {
+  const _RainSheet({required this.status, required this.area});
+
+  final RainStatus status;
+  final String area;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final s = ref.watch(stringsProvider);
+    final theme = Theme.of(context);
+    final r = status.rain;
+    final stateText = s(switch (status.state) {
+      EventState.dry => Msg.eventDry,
+      EventState.watch => Msg.eventWatch,
+      EventState.active => Msg.eventActive,
+    });
+    final sourceText = s(switch (status.source) {
+      'rain' => Msg.rainSourceRain,
+      'manual' => Msg.rainSourceManual,
+      'fallback' => Msg.rainSourceFallback,
+      _ => Msg.rainSourceConfigured,
+    });
+    Widget row(String label, String value) => Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: 18),
-          const SizedBox(width: 8),
           Expanded(
+            flex: 5,
+            child: Text(label, style: theme.textTheme.bodySmall),
+          ),
+          Expanded(
+            flex: 4,
             child: Text(
-              '$scope$text',
-              style: Theme.of(context).textTheme.bodySmall,
+              value,
+              style: theme.textTheme.bodyMedium,
+              textAlign: TextAlign.end,
             ),
           ),
         ],
+      ),
+    );
+    final mmUnit = s.language == AppLanguage.ta ? 'மி.மீ' : 'mm';
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        child: SingleChildScrollView(
+          child: Column(
+            key: const Key('rain-sheet'),
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(s(Msg.rainSheetTitle), style: theme.textTheme.titleLarge),
+              const SizedBox(height: 4),
+              Text(area, style: theme.textTheme.bodySmall),
+              const SizedBox(height: 12),
+              if (r != null && !r.stale) ...[
+                row(
+                  s(Msg.rainRow3h),
+                  '${r.accumulationMm.toStringAsFixed(1)} $mmUnit',
+                ),
+                row(
+                  s(Msg.rainRowPeak),
+                  '${r.peakRateMmH.toStringAsFixed(1)} $mmUnit/h',
+                ),
+              ],
+              if (r != null)
+                row(s(Msg.rainRowImage), s.minutes(r.dataAgeMinutes)),
+              row(s(Msg.rainRowState), stateText),
+              const SizedBox(height: 8),
+              Text(
+                sourceText,
+                key: const Key('rain-source'),
+                style: theme.textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 12),
+              Text(s(Msg.rainCaveat), style: theme.textTheme.bodySmall),
+            ],
+          ),
+        ),
       ),
     );
   }

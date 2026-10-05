@@ -46,6 +46,7 @@ Write numbers exactly as you see them. Do not round or guess. A phone result bel
 | Report, online | *Report water here*, send | "Report sent" and the sheet closes |
 | Report, offline | Airplane mode, send a report, then turn it off | "Saved on this device", then whether it is sent later |
 | Memory | Settings -> Apps -> CityPulse -> Memory (or Developer options -> Running services) | MB after a few routes |
+| Rain line | Open the map screen with a network, then tap the banner at the top | A line starting "Rain by satellite over Chennai" with the image's age; a sheet with the numbers and the source of the state. Without a network the line should be absent, not "none" |
 | Language | Settings -> Tamil | Does the text switch and fit |
 | Battery and heat | 10 minutes of use | Percent used, whether the phone warms up |
 | Anything odd | Screenshots of errors | Exact wording |

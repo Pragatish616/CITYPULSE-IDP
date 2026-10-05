@@ -3,11 +3,13 @@
 /// engine -- is a provider here, so tests replace them with fakes.
 library;
 
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:citypulse_app/src/core/app_config.dart';
 import 'package:citypulse_app/src/core/settings.dart';
 import 'package:citypulse_app/src/domain/models.dart';
+import 'package:citypulse_app/src/domain/rain_status.dart';
 import 'package:citypulse_app/src/features/report/report_repository.dart';
 import 'package:citypulse_app/src/platform/in_process_backend.dart';
 import 'package:citypulse_app/src/platform/observation_puller.dart';
@@ -88,6 +90,26 @@ final backendReadyProvider = FutureProvider<void>(
 final eventStateProvider = FutureProvider<EventState>((ref) async {
   await ref.watch(backendReadyProvider.future);
   return ref.watch(routingBackendProvider).eventState();
+});
+
+/// Satellite rain over the city and why the event state is what it is, from the router service's `GET /event-state` (ADR-027).
+///
+/// `null` when the service cannot be reached or answers something unusable (a phone with no network, a service that predates the
+/// rain feed). That is "unknown", never "no rain": the banner shows nothing in that case. Refreshes itself every five minutes.
+final rainStatusProvider = FutureProvider<RainStatus?>((ref) async {
+  final config = ref.watch(appConfigProvider);
+  final client = ref.watch(httpClientProvider);
+  final timer = Timer(const Duration(minutes: 5), ref.invalidateSelf);
+  ref.onDispose(timer.cancel);
+  try {
+    final r = await client
+        .get(AppConfig.join(config.routerApiUrl, 'event-state'))
+        .timeout(const Duration(seconds: 8));
+    if (r.statusCode != 200) return null;
+    return RainStatus.tryParse(jsonDecode(r.body));
+  } on Object {
+    return null;
+  }
 });
 
 /// Bumped when something that changes the hazard picture arrives (a report), so the map fetches the
