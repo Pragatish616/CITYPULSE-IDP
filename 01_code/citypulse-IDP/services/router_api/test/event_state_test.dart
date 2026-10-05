@@ -267,7 +267,7 @@ void main() {
     );
 
     test('apply is called only when the state changes', () {
-      final c = make()
+      make()
         ..onRain(rain())
         ..onRain(rain(asOf: DateTime.utc(2026, 10, 5, 10)))
         ..refresh();
