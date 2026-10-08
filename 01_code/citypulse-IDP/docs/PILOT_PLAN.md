@@ -56,6 +56,20 @@ python scripts/subway_board.py exports/fieldlog-export-<time>.csv --out exports/
 
 `exports/` is git-ignored. The export refuses to write a file whose row count does not match the server's. Keep the printed SHA-256. The board shows the newest observation per subway and its age, flags observers who disagree, and lists subways nobody has logged ("No observation").
 
+## If the server lost entries
+
+A restart, a redeploy or a sleep on the free host erases the server's log (`status` then shows fewer entries than before). Each phone still holds its
+acknowledged entries for **7 days** and all entries that never reached the server. Ask each volunteer to open the page and tap **Save my entries (CSV)**, then:
+
+```bash
+python scripts/fieldlog_merge.py --server exports/<latest>.csv --phone v01=v01-phone.csv --phone v02=v02-phone.csv --out exports/merged-<date>.csv
+python scripts/subway_board.py exports/merged-<date>.csv --out exports/board.html
+```
+
+The merge matches entries by id and labels each row: `server`, `phone_only_synced` (the server had acknowledged it and then lost it) or
+`phone_only_queued` (it never arrived). A disagreement between a phone row and the server's row is reported as a conflict (the tool exits with an error and keeps the server's row).
+It never overwrites a file. Entries older than 7 days that the server lost are gone: export every logging day.
+
 ## On a rain day
 
 - Volunteers log every assigned subway they pass, including "can't tell". Nobody enters water or stands in the road (protocol section 2).

@@ -31,6 +31,7 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - The volunteer field log serves the subways first, lists those without a position by name, and searches GCC's location words, news names and Tamil names. A bug the tests caught: an id over the server's 32-character limit.
 - `scripts/subway_board.py`: an internal one-page board from a field-log export (newest observation and age per subway, observer disagreement, "No observation" kept apart from "Could not tell"; no safety words, no volunteer codes). `data/watchlist/2026-10-09/CHECKSHEET.md` for confirming positions. `docs/PILOT_PLAN.md` and a draft offer (`docs/pilot/OFFER_DRAFT.md`, not sent).
 - The event miner's place list now includes the subways.
+- `scripts/fieldlog_merge.py`: restores entries the server lost from the phones' own CSVs, labelled by where each came from, with conflicts reported and no overwriting.
 - Chennai flood-monitor live-data test: the first of two approved requests got HTTP 404 (wrong path), so it is inconclusive; its layer list has no subway or barrier layer.
 
 ### Added (event miner, 8 October 2026; not evaluated)
