@@ -1,0 +1,6862 @@
+{
+"2024-10-01T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-01T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-01T12:00Z": {
+"acc_3h_mm": 0.004,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.365
+},
+"2024-10-01T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-02T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-02T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-02T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-02T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-03T00:00Z": {
+"acc_3h_mm": 0.523,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.653
+},
+"2024-10-03T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-03T12:00Z": {
+"acc_3h_mm": 1.507,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.79
+},
+"2024-10-03T18:00Z": {
+"acc_3h_mm": 0.002,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.487
+},
+"2024-10-04T00:00Z": {
+"acc_3h_mm": 0.217,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.155
+},
+"2024-10-04T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-04T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-04T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-05T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-05T06:00Z": {
+"acc_3h_mm": 0.036,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.918
+},
+"2024-10-05T12:00Z": {
+"acc_3h_mm": 0.166,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.091
+},
+"2024-10-05T18:00Z": {
+"acc_3h_mm": 0.007,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.307
+},
+"2024-10-06T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-06T06:00Z": {
+"acc_3h_mm": 0.107,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.307
+},
+"2024-10-06T12:00Z": {
+"acc_3h_mm": 0.001,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.194
+},
+"2024-10-06T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-07T00:00Z": {
+"acc_3h_mm": 0.127,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.547
+},
+"2024-10-07T06:00Z": {
+"acc_3h_mm": 0.087,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.74
+},
+"2024-10-07T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-07T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-08T00:00Z": {
+"acc_3h_mm": 2.787,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.466
+},
+"2024-10-08T06:00Z": {
+"acc_3h_mm": 0.023,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.434
+},
+"2024-10-08T12:00Z": {
+"acc_3h_mm": 0.005,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.434
+},
+"2024-10-08T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-09T00:00Z": {
+"acc_3h_mm": 0.695,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2024-10-09T06:00Z": {
+"acc_3h_mm": 0.147,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.632
+},
+"2024-10-09T12:00Z": {
+"acc_3h_mm": 0.112,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.224
+},
+"2024-10-09T18:00Z": {
+"acc_3h_mm": 0.124,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.516
+},
+"2024-10-10T00:00Z": {
+"acc_3h_mm": 4.878,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 6.133
+},
+"2024-10-10T06:00Z": {
+"acc_3h_mm": 3.539,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.653
+},
+"2024-10-10T12:00Z": {
+"acc_3h_mm": 0.066,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.729
+},
+"2024-10-10T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-11T00:00Z": {
+"acc_3h_mm": 0.047,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.205
+},
+"2024-10-11T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-11T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-11T18:00Z": {
+"acc_3h_mm": 0.006,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.307
+},
+"2024-10-12T00:00Z": {
+"acc_3h_mm": 0.178,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.866
+},
+"2024-10-12T06:00Z": {
+"acc_3h_mm": 1.464,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.449
+},
+"2024-10-12T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-12T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-13T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-13T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-13T12:00Z": {
+"acc_3h_mm": 0.627,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.831
+},
+"2024-10-13T18:00Z": {
+"acc_3h_mm": 3.299,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.466
+},
+"2024-10-14T00:00Z": {
+"acc_3h_mm": 15.239,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 23.05
+},
+"2024-10-14T06:00Z": {
+"acc_3h_mm": 2.524,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.586
+},
+"2024-10-14T12:00Z": {
+"acc_3h_mm": 2.601,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.872
+},
+"2024-10-14T18:00Z": {
+"acc_3h_mm": 22.41,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 32.56
+},
+"2024-10-15T00:00Z": {
+"acc_3h_mm": 2.858,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 12.237
+},
+"2024-10-15T06:00Z": {
+"acc_3h_mm": 17.829,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 18.31
+},
+"2024-10-15T12:00Z": {
+"acc_3h_mm": 15.56,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 18.31
+},
+"2024-10-15T18:00Z": {
+"acc_3h_mm": 4.046,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.599
+},
+"2024-10-16T00:00Z": {
+"acc_3h_mm": 9.426,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 6.133
+},
+"2024-10-16T06:00Z": {
+"acc_3h_mm": 2.115,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.305
+},
+"2024-10-16T12:00Z": {
+"acc_3h_mm": 0.392,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.176
+},
+"2024-10-16T18:00Z": {
+"acc_3h_mm": 0.05,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.487
+},
+"2024-10-17T00:00Z": {
+"acc_3h_mm": 0.1,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2024-10-17T06:00Z": {
+"acc_3h_mm": 0.016,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.434
+},
+"2024-10-17T12:00Z": {
+"acc_3h_mm": 0.03,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.41
+},
+"2024-10-17T18:00Z": {
+"acc_3h_mm": 0.031,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.326
+},
+"2024-10-18T00:00Z": {
+"acc_3h_mm": 0.048,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.205
+},
+"2024-10-18T06:00Z": {
+"acc_3h_mm": 0.219,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.541
+},
+"2024-10-18T12:00Z": {
+"acc_3h_mm": 0.208,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.224
+},
+"2024-10-18T18:00Z": {
+"acc_3h_mm": 0.01,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.613
+},
+"2024-10-19T00:00Z": {
+"acc_3h_mm": 3.892,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.599
+},
+"2024-10-19T06:00Z": {
+"acc_3h_mm": 0.037,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.387
+},
+"2024-10-19T12:00Z": {
+"acc_3h_mm": 0.191,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.872
+},
+"2024-10-19T18:00Z": {
+"acc_3h_mm": 0.039,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2024-10-20T00:00Z": {
+"acc_3h_mm": 2.554,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.653
+},
+"2024-10-20T06:00Z": {
+"acc_3h_mm": 0.003,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.307
+},
+"2024-10-20T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-20T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-21T00:00Z": {
+"acc_3h_mm": 0.007,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.154
+},
+"2024-10-21T06:00Z": {
+"acc_3h_mm": 0.007,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.274
+},
+"2024-10-21T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-21T18:00Z": {
+"acc_3h_mm": 0.011,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2024-10-22T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-22T06:00Z": {
+"acc_3h_mm": 0.167,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.305
+},
+"2024-10-22T12:00Z": {
+"acc_3h_mm": 0.11,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.224
+},
+"2024-10-22T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-23T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-23T06:00Z": {
+"acc_3h_mm": 0.09,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.387
+},
+"2024-10-23T12:00Z": {
+"acc_3h_mm": 0.683,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.176
+},
+"2024-10-23T18:00Z": {
+"acc_3h_mm": 0.596,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.442
+},
+"2024-10-24T00:00Z": {
+"acc_3h_mm": 0.568,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.074
+},
+"2024-10-24T06:00Z": {
+"acc_3h_mm": 0.175,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.772
+},
+"2024-10-24T12:00Z": {
+"acc_3h_mm": 0.056,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.155
+},
+"2024-10-24T18:00Z": {
+"acc_3h_mm": 0.069,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.613
+},
+"2024-10-25T00:00Z": {
+"acc_3h_mm": 0.962,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.176
+},
+"2024-10-25T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-25T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-25T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-26T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-26T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-26T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-26T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-27T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-27T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-27T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-27T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-28T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-28T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-28T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-28T18:00Z": {
+"acc_3h_mm": 0.011,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.29
+},
+"2024-10-29T00:00Z": {
+"acc_3h_mm": 0.253,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.091
+},
+"2024-10-29T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-29T12:00Z": {
+"acc_3h_mm": 0.187,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.831
+},
+"2024-10-29T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-30T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-30T06:00Z": {
+"acc_3h_mm": 0.583,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.632
+},
+"2024-10-30T12:00Z": {
+"acc_3h_mm": 0.733,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.902
+},
+"2024-10-30T18:00Z": {
+"acc_3h_mm": 0.132,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2024-10-31T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-31T06:00Z": {
+"acc_3h_mm": 0.059,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.163
+},
+"2024-10-31T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-10-31T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-01T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-01T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-01T12:00Z": {
+"acc_3h_mm": 0.009,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.194
+},
+"2024-11-01T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-02T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-02T06:00Z": {
+"acc_3h_mm": 0.461,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.074
+},
+"2024-11-02T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-02T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-03T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-03T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-03T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-03T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-04T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-04T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-04T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-04T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-05T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-05T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-05T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-05T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-06T00:00Z": {
+"acc_3h_mm": 0.336,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.586
+},
+"2024-11-06T06:00Z": {
+"acc_3h_mm": 0.218,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.305
+},
+"2024-11-06T12:00Z": {
+"acc_3h_mm": 1.071,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.074
+},
+"2024-11-06T18:00Z": {
+"acc_3h_mm": 1.137,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.074
+},
+"2024-11-07T00:00Z": {
+"acc_3h_mm": 0.993,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.342
+},
+"2024-11-07T06:00Z": {
+"acc_3h_mm": 0.552,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.442
+},
+"2024-11-07T12:00Z": {
+"acc_3h_mm": 0.014,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.516
+},
+"2024-11-07T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-08T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-08T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-08T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-08T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-09T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-09T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-09T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-09T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-10T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-10T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-10T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-10T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-11T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-11T06:00Z": {
+"acc_3h_mm": 0.001,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.244
+},
+"2024-11-11T12:00Z": {
+"acc_3h_mm": 0.095,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.772
+},
+"2024-11-11T18:00Z": {
+"acc_3h_mm": 10.471,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 20.544
+},
+"2024-11-12T00:00Z": {
+"acc_3h_mm": 11.262,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 34.489
+},
+"2024-11-12T06:00Z": {
+"acc_3h_mm": 10.751,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 15.406
+},
+"2024-11-12T12:00Z": {
+"acc_3h_mm": 1.862,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.87
+},
+"2024-11-12T18:00Z": {
+"acc_3h_mm": 0.06,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.939
+},
+"2024-11-13T00:00Z": {
+"acc_3h_mm": 4.689,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.16
+},
+"2024-11-13T06:00Z": {
+"acc_3h_mm": 0.842,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.454
+},
+"2024-11-13T12:00Z": {
+"acc_3h_mm": 0.38,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2024-11-13T18:00Z": {
+"acc_3h_mm": 0.94,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.466
+},
+"2024-11-14T00:00Z": {
+"acc_3h_mm": 0.59,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.466
+},
+"2024-11-14T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-14T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-14T18:00Z": {
+"acc_3h_mm": 1.449,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 12.237
+},
+"2024-11-15T00:00Z": {
+"acc_3h_mm": 0.777,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.256
+},
+"2024-11-15T06:00Z": {
+"acc_3h_mm": 0.005,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.205
+},
+"2024-11-15T12:00Z": {
+"acc_3h_mm": 0.002,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.122
+},
+"2024-11-15T18:00Z": {
+"acc_3h_mm": 0.158,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.772
+},
+"2024-11-16T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-16T06:00Z": {
+"acc_3h_mm": 0.005,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.29
+},
+"2024-11-16T12:00Z": {
+"acc_3h_mm": 0.977,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.176
+},
+"2024-11-16T18:00Z": {
+"acc_3h_mm": 0.485,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.599
+},
+"2024-11-17T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-17T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-17T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-17T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-18T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-18T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-18T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-18T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-19T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-19T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-19T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-19T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-20T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-20T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-20T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-20T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-21T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-21T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-21T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-21T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-22T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-22T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-22T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-22T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-23T00:00Z": {
+"acc_3h_mm": 0.153,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.224
+},
+"2024-11-23T06:00Z": {
+"acc_3h_mm": 0.008,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.613
+},
+"2024-11-23T12:00Z": {
+"acc_3h_mm": 0.301,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.87
+},
+"2024-11-23T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-24T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-24T06:00Z": {
+"acc_3h_mm": 0.078,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.972
+},
+"2024-11-24T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-24T18:00Z": {
+"acc_3h_mm": 0.163,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2024-11-25T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-25T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-25T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-11-25T18:00Z": {
+"acc_3h_mm": 1.656,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.902
+},
+"2024-11-26T00:00Z": {
+"acc_3h_mm": 0.046,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.818
+},
+"2024-11-26T06:00Z": {
+"acc_3h_mm": 15.115,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 25.863
+},
+"2024-11-26T12:00Z": {
+"acc_3h_mm": 4.746,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.16
+},
+"2024-11-26T18:00Z": {
+"acc_3h_mm": 2.47,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.87
+},
+"2024-11-27T00:00Z": {
+"acc_3h_mm": 0.72,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.256
+},
+"2024-11-27T06:00Z": {
+"acc_3h_mm": 0.252,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2024-11-27T12:00Z": {
+"acc_3h_mm": 0.117,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.772
+},
+"2024-11-27T18:00Z": {
+"acc_3h_mm": 0.011,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.244
+},
+"2024-11-28T00:00Z": {
+"acc_3h_mm": 0.106,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.65
+},
+"2024-11-28T06:00Z": {
+"acc_3h_mm": 0.898,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.296
+},
+"2024-11-28T12:00Z": {
+"acc_3h_mm": 0.22,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.972
+},
+"2024-11-28T18:00Z": {
+"acc_3h_mm": 0.484,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.224
+},
+"2024-11-29T00:00Z": {
+"acc_3h_mm": 0.734,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.729
+},
+"2024-11-29T06:00Z": {
+"acc_3h_mm": 1.829,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.099
+},
+"2024-11-29T12:00Z": {
+"acc_3h_mm": 11.531,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 11.553
+},
+"2024-11-29T18:00Z": {
+"acc_3h_mm": 13.148,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 14.544
+},
+"2024-11-30T00:00Z": {
+"acc_3h_mm": 34.416,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 25.863
+},
+"2024-11-30T06:00Z": {
+"acc_3h_mm": 15.322,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 13.73
+},
+"2024-11-30T12:00Z": {
+"acc_3h_mm": 3.058,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.074
+},
+"2024-11-30T18:00Z": {
+"acc_3h_mm": 0.264,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.866
+},
+"2024-12-01T00:00Z": {
+"acc_3h_mm": 1.894,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.16
+},
+"2024-12-01T06:00Z": {
+"acc_3h_mm": 0.41,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.256
+},
+"2024-12-01T12:00Z": {
+"acc_3h_mm": 0.743,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.296
+},
+"2024-12-01T18:00Z": {
+"acc_3h_mm": 0.132,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.547
+},
+"2024-12-02T00:00Z": {
+"acc_3h_mm": 0.169,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.274
+},
+"2024-12-02T06:00Z": {
+"acc_3h_mm": 0.009,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.163
+},
+"2024-12-02T12:00Z": {
+"acc_3h_mm": 0.056,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.205
+},
+"2024-12-02T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-03T00:00Z": {
+"acc_3h_mm": 0.032,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.194
+},
+"2024-12-03T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-03T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-03T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-04T00:00Z": {
+"acc_3h_mm": 0.007,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.109
+},
+"2024-12-04T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-04T12:00Z": {
+"acc_3h_mm": 0.161,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.296
+},
+"2024-12-04T18:00Z": {
+"acc_3h_mm": 0.532,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 6.881
+},
+"2024-12-05T00:00Z": {
+"acc_3h_mm": 0.023,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.579
+},
+"2024-12-05T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-05T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-05T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-06T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-06T06:00Z": {
+"acc_3h_mm": 0.011,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.137
+},
+"2024-12-06T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-06T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-07T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-07T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-07T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-07T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-08T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-08T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-08T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-08T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-09T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-09T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-09T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-09T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-10T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-10T06:00Z": {
+"acc_3h_mm": 0.058,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.939
+},
+"2024-12-10T12:00Z": {
+"acc_3h_mm": 0.334,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 6.881
+},
+"2024-12-10T18:00Z": {
+"acc_3h_mm": 0.054,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.972
+},
+"2024-12-11T00:00Z": {
+"acc_3h_mm": 0.183,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.091
+},
+"2024-12-11T06:00Z": {
+"acc_3h_mm": 4.931,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.099
+},
+"2024-12-11T12:00Z": {
+"acc_3h_mm": 7.698,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 9.72
+},
+"2024-12-11T18:00Z": {
+"acc_3h_mm": 14.292,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 21.761
+},
+"2024-12-12T00:00Z": {
+"acc_3h_mm": 7.861,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 14.544
+},
+"2024-12-12T06:00Z": {
+"acc_3h_mm": 6.681,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 13.73
+},
+"2024-12-12T12:00Z": {
+"acc_3h_mm": 0.844,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 8.179
+},
+"2024-12-12T18:00Z": {
+"acc_3h_mm": 0.013,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.579
+},
+"2024-12-13T00:00Z": {
+"acc_3h_mm": 0.009,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.772
+},
+"2024-12-13T06:00Z": {
+"acc_3h_mm": 0.032,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.772
+},
+"2024-12-13T12:00Z": {
+"acc_3h_mm": 0.073,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.03
+},
+"2024-12-13T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-14T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-14T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-14T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-14T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-15T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-15T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-15T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-15T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-16T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-16T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-16T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-16T18:00Z": {
+"acc_3h_mm": 0.031,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.296
+},
+"2024-12-17T00:00Z": {
+"acc_3h_mm": 0.257,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.586
+},
+"2024-12-17T06:00Z": {
+"acc_3h_mm": 0.853,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.074
+},
+"2024-12-17T12:00Z": {
+"acc_3h_mm": 0.878,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.449
+},
+"2024-12-17T18:00Z": {
+"acc_3h_mm": 1.178,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.074
+},
+"2024-12-18T00:00Z": {
+"acc_3h_mm": 0.394,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.818
+},
+"2024-12-18T06:00Z": {
+"acc_3h_mm": 5.426,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 8.179
+},
+"2024-12-18T12:00Z": {
+"acc_3h_mm": 18.276,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 14.544
+},
+"2024-12-18T18:00Z": {
+"acc_3h_mm": 0.662,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.054
+},
+"2024-12-19T00:00Z": {
+"acc_3h_mm": 2.441,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.653
+},
+"2024-12-19T06:00Z": {
+"acc_3h_mm": 0.461,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.972
+},
+"2024-12-19T12:00Z": {
+"acc_3h_mm": 0.461,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.342
+},
+"2024-12-19T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-20T00:00Z": {
+"acc_3h_mm": 10.164,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 23.05
+},
+"2024-12-20T06:00Z": {
+"acc_3h_mm": 0.611,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.466
+},
+"2024-12-20T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-20T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-21T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-21T06:00Z": {
+"acc_3h_mm": 0.002,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.154
+},
+"2024-12-21T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-21T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-22T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-22T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-22T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-22T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-23T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-23T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-23T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-23T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-24T00:00Z": {
+"acc_3h_mm": 0.031,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.03
+},
+"2024-12-24T06:00Z": {
+"acc_3h_mm": 0.163,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.632
+},
+"2024-12-24T12:00Z": {
+"acc_3h_mm": 0.002,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.122
+},
+"2024-12-24T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-25T00:00Z": {
+"acc_3h_mm": 0.04,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.259
+},
+"2024-12-25T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-25T12:00Z": {
+"acc_3h_mm": 0.622,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.918
+},
+"2024-12-25T18:00Z": {
+"acc_3h_mm": 0.039,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.224
+},
+"2024-12-26T00:00Z": {
+"acc_3h_mm": 0.17,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2024-12-26T06:00Z": {
+"acc_3h_mm": 0.005,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.365
+},
+"2024-12-26T12:00Z": {
+"acc_3h_mm": 0.008,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.365
+},
+"2024-12-26T18:00Z": {
+"acc_3h_mm": 0.14,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.054
+},
+"2024-12-27T00:00Z": {
+"acc_3h_mm": 0.915,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 7.289
+},
+"2024-12-27T06:00Z": {
+"acc_3h_mm": 0.028,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.326
+},
+"2024-12-27T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-27T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-28T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-28T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-28T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-28T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-29T00:00Z": {
+"acc_3h_mm": 0.01,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.259
+},
+"2024-12-29T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-29T12:00Z": {
+"acc_3h_mm": 0.003,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.205
+},
+"2024-12-29T18:00Z": {
+"acc_3h_mm": 0.129,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.831
+},
+"2024-12-30T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-30T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-30T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-30T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-31T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-31T06:00Z": {
+"acc_3h_mm": 0.02,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.541
+},
+"2024-12-31T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2024-12-31T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-01T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-01T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-01T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-01T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-02T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-02T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-02T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-02T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-03T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-03T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-03T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-03T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-04T00:00Z": {
+"acc_3h_mm": 0.002,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.23
+},
+"2025-03-04T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-04T12:00Z": {
+"acc_3h_mm": 0.014,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.772
+},
+"2025-03-04T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-05T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-05T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-05T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-05T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-06T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-06T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-06T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-06T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-07T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-07T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-07T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-07T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-08T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-08T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-08T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-08T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-09T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-09T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-09T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-09T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-10T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-10T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-10T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-10T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-11T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-11T06:00Z": {
+"acc_3h_mm": 0.024,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.939
+},
+"2025-03-11T12:00Z": {
+"acc_3h_mm": 1.887,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 13.73
+},
+"2025-03-11T18:00Z": {
+"acc_3h_mm": 0.039,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2025-03-12T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-12T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-12T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-12T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-13T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-13T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-13T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-13T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-14T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-14T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-14T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-14T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-15T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-15T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-15T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-15T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-16T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-16T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-16T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-16T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-17T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-17T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-17T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-17T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-18T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-18T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-18T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-18T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-19T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-19T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-19T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-19T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-20T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-20T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-20T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-20T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-21T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-21T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-21T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-21T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-22T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-22T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-22T12:00Z": {
+"acc_3h_mm": 0.098,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2025-03-22T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-23T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-23T06:00Z": {
+"acc_3h_mm": 0.005,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.183
+},
+"2025-03-23T12:00Z": {
+"acc_3h_mm": 0.171,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.872
+},
+"2025-03-23T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-24T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-24T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-24T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-24T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-25T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-25T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-25T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-25T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-26T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-26T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-26T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-26T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-27T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-27T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-27T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-27T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-28T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-28T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-28T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-28T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-29T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-29T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-29T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-29T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-30T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-30T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-30T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-30T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-31T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-31T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-31T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-03-31T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-01T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-01T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-01T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-01T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-02T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-02T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-02T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-02T18:00Z": {
+"acc_3h_mm": 0.06,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.46
+},
+"2025-04-03T00:00Z": {
+"acc_3h_mm": 0.162,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2025-04-03T06:00Z": {
+"acc_3h_mm": 5.944,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 8.663
+},
+"2025-04-03T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-03T18:00Z": {
+"acc_3h_mm": 0.015,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.516
+},
+"2025-04-04T00:00Z": {
+"acc_3h_mm": 0.011,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.244
+},
+"2025-04-04T06:00Z": {
+"acc_3h_mm": 0.007,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.122
+},
+"2025-04-04T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-04T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-05T00:00Z": {
+"acc_3h_mm": 0.079,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.65
+},
+"2025-04-05T06:00Z": {
+"acc_3h_mm": 0.134,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.176
+},
+"2025-04-05T12:00Z": {
+"acc_3h_mm": 0.015,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2025-04-05T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-06T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-06T06:00Z": {
+"acc_3h_mm": 0.01,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.326
+},
+"2025-04-06T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-06T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-07T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-07T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-07T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-07T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-08T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-08T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-08T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-08T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-09T00:00Z": {
+"acc_3h_mm": 0.001,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.244
+},
+"2025-04-09T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-09T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-09T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-10T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-10T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-10T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-10T18:00Z": {
+"acc_3h_mm": 0.129,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.653
+},
+"2025-04-11T00:00Z": {
+"acc_3h_mm": 4.769,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 23.05
+},
+"2025-04-11T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-11T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-11T18:00Z": {
+"acc_3h_mm": 0.236,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.653
+},
+"2025-04-12T00:00Z": {
+"acc_3h_mm": 0.02,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.547
+},
+"2025-04-12T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-12T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-12T18:00Z": {
+"acc_3h_mm": 0.099,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.579
+},
+"2025-04-13T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-13T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-13T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-13T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-14T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-14T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-14T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-14T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-15T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-15T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-15T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-15T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-16T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-16T06:00Z": {
+"acc_3h_mm": 1.8,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 7.721
+},
+"2025-04-16T12:00Z": {
+"acc_3h_mm": 0.22,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.653
+},
+"2025-04-16T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-17T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-17T06:00Z": {
+"acc_3h_mm": 0.034,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.274
+},
+"2025-04-17T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-17T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-18T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-18T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-18T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-18T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-19T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-19T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-19T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-19T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-20T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-20T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-20T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-20T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-21T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-21T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-21T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-21T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-22T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-22T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-22T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-22T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-23T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-23T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-23T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-23T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-24T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-24T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-24T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-24T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-25T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-25T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-25T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-25T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-26T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-26T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-26T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-26T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-27T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-27T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-27T12:00Z": {
+"acc_3h_mm": 0.08,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.79
+},
+"2025-04-27T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-28T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-28T06:00Z": {
+"acc_3h_mm": 0.104,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.872
+},
+"2025-04-28T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-28T18:00Z": {
+"acc_3h_mm": 0.013,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.29
+},
+"2025-04-29T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-29T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-29T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-29T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-30T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-30T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-30T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-04-30T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-01T00:00Z": {
+"acc_3h_mm": 0.09,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2025-10-01T06:00Z": {
+"acc_3h_mm": 0.073,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.613
+},
+"2025-10-01T12:00Z": {
+"acc_3h_mm": 0.371,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.586
+},
+"2025-10-01T18:00Z": {
+"acc_3h_mm": 0.04,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.387
+},
+"2025-10-02T00:00Z": {
+"acc_3h_mm": 0.257,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.972
+},
+"2025-10-02T06:00Z": {
+"acc_3h_mm": 0.129,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.547
+},
+"2025-10-02T12:00Z": {
+"acc_3h_mm": 0.5,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.729
+},
+"2025-10-02T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-03T00:00Z": {
+"acc_3h_mm": 2.147,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.599
+},
+"2025-10-03T06:00Z": {
+"acc_3h_mm": 1.182,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.74
+},
+"2025-10-03T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-03T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-04T00:00Z": {
+"acc_3h_mm": 0.028,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.613
+},
+"2025-10-04T06:00Z": {
+"acc_3h_mm": 0.227,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.296
+},
+"2025-10-04T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-04T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-05T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-05T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-05T12:00Z": {
+"acc_3h_mm": 0.147,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.541
+},
+"2025-10-05T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-06T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-06T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-06T12:00Z": {
+"acc_3h_mm": 0.471,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.466
+},
+"2025-10-06T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-07T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-07T06:00Z": {
+"acc_3h_mm": 0.006,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.307
+},
+"2025-10-07T12:00Z": {
+"acc_3h_mm": 0.023,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.224
+},
+"2025-10-07T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-08T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-08T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-08T12:00Z": {
+"acc_3h_mm": 0.003,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.154
+},
+"2025-10-08T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-09T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-09T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-09T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-09T18:00Z": {
+"acc_3h_mm": 0.007,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.122
+},
+"2025-10-10T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-10T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-10T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-10T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-11T00:00Z": {
+"acc_3h_mm": 0.695,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.599
+},
+"2025-10-11T06:00Z": {
+"acc_3h_mm": 0.001,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.137
+},
+"2025-10-11T12:00Z": {
+"acc_3h_mm": 0.018,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.866
+},
+"2025-10-11T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-12T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-12T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-12T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-12T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-13T00:00Z": {
+"acc_3h_mm": 0.015,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.23
+},
+"2025-10-13T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-13T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-13T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-14T00:00Z": {
+"acc_3h_mm": 0.077,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.454
+},
+"2025-10-14T06:00Z": {
+"acc_3h_mm": 0.001,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.109
+},
+"2025-10-14T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-14T18:00Z": {
+"acc_3h_mm": 0.19,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.176
+},
+"2025-10-15T00:00Z": {
+"acc_3h_mm": 4.027,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 11.553
+},
+"2025-10-15T06:00Z": {
+"acc_3h_mm": 0.438,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.74
+},
+"2025-10-15T12:00Z": {
+"acc_3h_mm": 0.197,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.831
+},
+"2025-10-15T18:00Z": {
+"acc_3h_mm": 0.169,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.729
+},
+"2025-10-16T00:00Z": {
+"acc_3h_mm": 0.047,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.03
+},
+"2025-10-16T06:00Z": {
+"acc_3h_mm": 0.03,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.259
+},
+"2025-10-16T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-16T18:00Z": {
+"acc_3h_mm": 1.168,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.099
+},
+"2025-10-17T00:00Z": {
+"acc_3h_mm": 10.217,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 14.544
+},
+"2025-10-17T06:00Z": {
+"acc_3h_mm": 2.166,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 6.496
+},
+"2025-10-17T12:00Z": {
+"acc_3h_mm": 0.685,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.342
+},
+"2025-10-17T18:00Z": {
+"acc_3h_mm": 2.694,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.342
+},
+"2025-10-18T00:00Z": {
+"acc_3h_mm": 0.328,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.296
+},
+"2025-10-18T06:00Z": {
+"acc_3h_mm": 10.098,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 16.318
+},
+"2025-10-18T12:00Z": {
+"acc_3h_mm": 1.284,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.729
+},
+"2025-10-18T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-19T00:00Z": {
+"acc_3h_mm": 1.016,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 6.881
+},
+"2025-10-19T06:00Z": {
+"acc_3h_mm": 2.776,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 10.906
+},
+"2025-10-19T12:00Z": {
+"acc_3h_mm": 0.607,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.599
+},
+"2025-10-19T18:00Z": {
+"acc_3h_mm": 0.031,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2025-10-20T00:00Z": {
+"acc_3h_mm": 0.799,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.599
+},
+"2025-10-20T06:00Z": {
+"acc_3h_mm": 1.386,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.099
+},
+"2025-10-20T12:00Z": {
+"acc_3h_mm": 0.966,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 5.466
+},
+"2025-10-20T18:00Z": {
+"acc_3h_mm": 0.214,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2025-10-21T00:00Z": {
+"acc_3h_mm": 0.233,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.939
+},
+"2025-10-21T06:00Z": {
+"acc_3h_mm": 18.381,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 23.05
+},
+"2025-10-21T12:00Z": {
+"acc_3h_mm": 2.238,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 10.906
+},
+"2025-10-21T18:00Z": {
+"acc_3h_mm": 0.503,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.918
+},
+"2025-10-22T00:00Z": {
+"acc_3h_mm": 5.133,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 32.56
+},
+"2025-10-22T06:00Z": {
+"acc_3h_mm": 1.447,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 12.237
+},
+"2025-10-22T12:00Z": {
+"acc_3h_mm": 0.31,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.054
+},
+"2025-10-22T18:00Z": {
+"acc_3h_mm": 0.067,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.03
+},
+"2025-10-23T00:00Z": {
+"acc_3h_mm": 2.433,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.872
+},
+"2025-10-23T06:00Z": {
+"acc_3h_mm": 0.15,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.516
+},
+"2025-10-23T12:00Z": {
+"acc_3h_mm": 0.08,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.307
+},
+"2025-10-23T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-24T00:00Z": {
+"acc_3h_mm": 2.483,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.653
+},
+"2025-10-24T06:00Z": {
+"acc_3h_mm": 3.654,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.449
+},
+"2025-10-24T12:00Z": {
+"acc_3h_mm": 0.923,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.305
+},
+"2025-10-24T18:00Z": {
+"acc_3h_mm": 0.088,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2025-10-25T00:00Z": {
+"acc_3h_mm": 0.058,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.194
+},
+"2025-10-25T06:00Z": {
+"acc_3h_mm": 0.507,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.902
+},
+"2025-10-25T12:00Z": {
+"acc_3h_mm": 0.315,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.442
+},
+"2025-10-25T18:00Z": {
+"acc_3h_mm": 0.203,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.65
+},
+"2025-10-26T00:00Z": {
+"acc_3h_mm": 0.119,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2025-10-26T06:00Z": {
+"acc_3h_mm": 0.007,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.307
+},
+"2025-10-26T12:00Z": {
+"acc_3h_mm": 0.615,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.831
+},
+"2025-10-26T18:00Z": {
+"acc_3h_mm": 0.048,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.307
+},
+"2025-10-27T00:00Z": {
+"acc_3h_mm": 9.434,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 8.663
+},
+"2025-10-27T06:00Z": {
+"acc_3h_mm": 8.181,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 10.906
+},
+"2025-10-27T12:00Z": {
+"acc_3h_mm": 7.515,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.599
+},
+"2025-10-27T18:00Z": {
+"acc_3h_mm": 21.455,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 15.406
+},
+"2025-10-28T00:00Z": {
+"acc_3h_mm": 45.635,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 30.738
+},
+"2025-10-28T06:00Z": {
+"acc_3h_mm": 19.957,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 15.406
+},
+"2025-10-28T12:00Z": {
+"acc_3h_mm": 25.425,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 20.544
+},
+"2025-10-28T18:00Z": {
+"acc_3h_mm": 0.095,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.579
+},
+"2025-10-29T00:00Z": {
+"acc_3h_mm": 0.005,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.13
+},
+"2025-10-29T06:00Z": {
+"acc_3h_mm": 0.01,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.866
+},
+"2025-10-29T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-29T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-30T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-30T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-30T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-30T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-31T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-31T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-31T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-10-31T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-01T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-01T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-01T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-01T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-02T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-02T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-02T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-02T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-03T00:00Z": {
+"acc_3h_mm": 2.84,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 9.72
+},
+"2025-11-03T06:00Z": {
+"acc_3h_mm": 0.064,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.613
+},
+"2025-11-03T12:00Z": {
+"acc_3h_mm": 0.164,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.442
+},
+"2025-11-03T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-04T00:00Z": {
+"acc_3h_mm": 2.073,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.342
+},
+"2025-11-04T06:00Z": {
+"acc_3h_mm": 1.866,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 6.496
+},
+"2025-11-04T12:00Z": {
+"acc_3h_mm": 0.148,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.054
+},
+"2025-11-04T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-05T00:00Z": {
+"acc_3h_mm": 0.052,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.183
+},
+"2025-11-05T06:00Z": {
+"acc_3h_mm": 0.009,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.218
+},
+"2025-11-05T12:00Z": {
+"acc_3h_mm": 0.222,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.099
+},
+"2025-11-05T18:00Z": {
+"acc_3h_mm": 0.108,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.03
+},
+"2025-11-06T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-06T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-06T12:00Z": {
+"acc_3h_mm": 0.009,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.244
+},
+"2025-11-06T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-07T00:00Z": {
+"acc_3h_mm": 0.005,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.154
+},
+"2025-11-07T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-07T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-07T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-08T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-08T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-08T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-08T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-09T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-09T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-09T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-09T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-10T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-10T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-10T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-10T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-11T00:00Z": {
+"acc_3h_mm": 0.01,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.345
+},
+"2025-11-11T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-11T12:00Z": {
+"acc_3h_mm": 0.001,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.122
+},
+"2025-11-11T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-12T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-12T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-12T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-12T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-13T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-13T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-13T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-13T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-14T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-14T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-14T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-14T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-15T00:00Z": {
+"acc_3h_mm": 0.001,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.183
+},
+"2025-11-15T06:00Z": {
+"acc_3h_mm": 0.024,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.194
+},
+"2025-11-15T12:00Z": {
+"acc_3h_mm": 0.645,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.74
+},
+"2025-11-15T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-16T00:00Z": {
+"acc_3h_mm": 0.017,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.244
+},
+"2025-11-16T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-16T12:00Z": {
+"acc_3h_mm": 0.57,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.454
+},
+"2025-11-16T18:00Z": {
+"acc_3h_mm": 5.278,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.599
+},
+"2025-11-17T00:00Z": {
+"acc_3h_mm": 4.319,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.449
+},
+"2025-11-17T06:00Z": {
+"acc_3h_mm": 2.539,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.449
+},
+"2025-11-17T12:00Z": {
+"acc_3h_mm": 1.576,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.831
+},
+"2025-11-17T18:00Z": {
+"acc_3h_mm": 0.004,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.154
+},
+"2025-11-18T00:00Z": {
+"acc_3h_mm": 0.153,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.818
+},
+"2025-11-18T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-18T12:00Z": {
+"acc_3h_mm": 0.117,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2025-11-18T18:00Z": {
+"acc_3h_mm": 0.003,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.122
+},
+"2025-11-19T00:00Z": {
+"acc_3h_mm": 0.002,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.205
+},
+"2025-11-19T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-19T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-19T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-20T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-20T06:00Z": {
+"acc_3h_mm": 0.527,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.442
+},
+"2025-11-20T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-20T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-21T00:00Z": {
+"acc_3h_mm": 0.29,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.74
+},
+"2025-11-21T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-21T12:00Z": {
+"acc_3h_mm": 0.018,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.65
+},
+"2025-11-21T18:00Z": {
+"acc_3h_mm": 0.454,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.74
+},
+"2025-11-22T00:00Z": {
+"acc_3h_mm": 0.258,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.586
+},
+"2025-11-22T06:00Z": {
+"acc_3h_mm": 0.007,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.173
+},
+"2025-11-22T12:00Z": {
+"acc_3h_mm": 0.02,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.65
+},
+"2025-11-22T18:00Z": {
+"acc_3h_mm": 0.188,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.729
+},
+"2025-11-23T00:00Z": {
+"acc_3h_mm": 0.047,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.772
+},
+"2025-11-23T06:00Z": {
+"acc_3h_mm": 0.262,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.729
+},
+"2025-11-23T12:00Z": {
+"acc_3h_mm": 0.029,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.387
+},
+"2025-11-23T18:00Z": {
+"acc_3h_mm": 0.033,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.434
+},
+"2025-11-24T00:00Z": {
+"acc_3h_mm": 0.498,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.586
+},
+"2025-11-24T06:00Z": {
+"acc_3h_mm": 0.278,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.831
+},
+"2025-11-24T12:00Z": {
+"acc_3h_mm": 0.598,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.902
+},
+"2025-11-24T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-25T00:00Z": {
+"acc_3h_mm": 0.017,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.03
+},
+"2025-11-25T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-25T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-25T18:00Z": {
+"acc_3h_mm": 0.002,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.434
+},
+"2025-11-26T00:00Z": {
+"acc_3h_mm": 1.933,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 4.099
+},
+"2025-11-26T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-26T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-26T18:00Z": {
+"acc_3h_mm": 0.01,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.46
+},
+"2025-11-27T00:00Z": {
+"acc_3h_mm": 0.066,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.516
+},
+"2025-11-27T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-27T12:00Z": {
+"acc_3h_mm": 0.03,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.387
+},
+"2025-11-27T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-28T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-28T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-28T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-11-28T18:00Z": {
+"acc_3h_mm": 0.058,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.46
+},
+"2025-11-29T00:00Z": {
+"acc_3h_mm": 0.154,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.296
+},
+"2025-11-29T06:00Z": {
+"acc_3h_mm": 0.578,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.632
+},
+"2025-11-29T12:00Z": {
+"acc_3h_mm": 2.022,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.74
+},
+"2025-11-29T18:00Z": {
+"acc_3h_mm": 7.156,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 7.721
+},
+"2025-11-30T00:00Z": {
+"acc_3h_mm": 1.333,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.729
+},
+"2025-11-30T06:00Z": {
+"acc_3h_mm": 0.355,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.454
+},
+"2025-11-30T12:00Z": {
+"acc_3h_mm": 0.464,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.454
+},
+"2025-11-30T18:00Z": {
+"acc_3h_mm": 0.411,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.818
+},
+"2025-12-01T00:00Z": {
+"acc_3h_mm": 0.096,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.387
+},
+"2025-12-01T06:00Z": {
+"acc_3h_mm": 4.232,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 6.133
+},
+"2025-12-01T12:00Z": {
+"acc_3h_mm": 13.531,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 13.73
+},
+"2025-12-01T18:00Z": {
+"acc_3h_mm": 0.29,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.74
+},
+"2025-12-02T00:00Z": {
+"acc_3h_mm": 0.956,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 6.881
+},
+"2025-12-02T06:00Z": {
+"acc_3h_mm": 5.128,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 8.663
+},
+"2025-12-02T12:00Z": {
+"acc_3h_mm": 0.137,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.831
+},
+"2025-12-02T18:00Z": {
+"acc_3h_mm": 4.254,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 16.318
+},
+"2025-12-03T00:00Z": {
+"acc_3h_mm": 38.376,
+"images_missing": 0,
+"images_read": 6,
+"level": "active",
+"peak_mm_h": 27.395
+},
+"2025-12-03T06:00Z": {
+"acc_3h_mm": 8.55,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 20.544
+},
+"2025-12-03T12:00Z": {
+"acc_3h_mm": 7.129,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 12.962
+},
+"2025-12-03T18:00Z": {
+"acc_3h_mm": 1.457,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.074
+},
+"2025-12-04T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-04T06:00Z": {
+"acc_3h_mm": 0.226,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.373
+},
+"2025-12-04T12:00Z": {
+"acc_3h_mm": 0.232,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 3.256
+},
+"2025-12-04T18:00Z": {
+"acc_3h_mm": 0.055,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.516
+},
+"2025-12-05T00:00Z": {
+"acc_3h_mm": 6.681,
+"images_missing": 0,
+"images_read": 6,
+"level": "watch",
+"peak_mm_h": 7.721
+},
+"2025-12-05T06:00Z": {
+"acc_3h_mm": 0.034,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.154
+},
+"2025-12-05T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-05T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-06T00:00Z": {
+"acc_3h_mm": 0.227,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.939
+},
+"2025-12-06T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-06T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-06T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-07T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-07T06:00Z": {
+"acc_3h_mm": 0.145,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.091
+},
+"2025-12-07T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-07T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-08T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-08T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-08T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-08T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-09T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-09T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-09T12:00Z": {
+"acc_3h_mm": 0.152,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.296
+},
+"2025-12-09T18:00Z": {
+"acc_3h_mm": 0.025,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.972
+},
+"2025-12-10T00:00Z": {
+"acc_3h_mm": 0.328,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.74
+},
+"2025-12-10T06:00Z": {
+"acc_3h_mm": 0.247,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 2.054
+},
+"2025-12-10T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-10T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-11T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-11T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-11T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-11T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-12T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-12T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-12T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-12T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-13T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-13T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-13T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-13T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-14T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-14T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-14T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-14T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-15T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-15T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-15T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-15T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-16T00:00Z": {
+"acc_3h_mm": 0.053,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.729
+},
+"2025-12-16T06:00Z": {
+"acc_3h_mm": 0.153,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.091
+},
+"2025-12-16T12:00Z": {
+"acc_3h_mm": 0.04,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.487
+},
+"2025-12-16T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-17T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-17T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-17T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-17T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-18T00:00Z": {
+"acc_3h_mm": 0.007,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.23
+},
+"2025-12-18T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-18T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-18T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-19T00:00Z": {
+"acc_3h_mm": 0.054,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.65
+},
+"2025-12-19T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-19T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-19T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-20T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-20T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-20T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-20T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-21T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-21T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-21T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-21T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-22T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-22T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-22T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-22T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-23T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-23T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-23T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-23T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-24T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-24T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-24T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-24T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-25T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-25T06:00Z": {
+"acc_3h_mm": 0.106,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 1.729
+},
+"2025-12-25T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-25T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-26T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-26T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-26T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-26T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-27T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-27T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-27T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-27T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-28T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-28T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-28T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-28T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-29T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-29T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-29T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-29T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-30T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-30T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-30T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-30T18:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-31T00:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-31T06:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-31T12:00Z": {
+"acc_3h_mm": 0.0,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.0
+},
+"2025-12-31T18:00Z": {
+"acc_3h_mm": 0.017,
+"images_missing": 0,
+"images_read": 6,
+"level": "dry",
+"peak_mm_h": 0.818
+}
+}

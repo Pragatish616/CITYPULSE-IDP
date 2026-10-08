@@ -39,6 +39,8 @@ stagnation corpus · Open-Meteo forecast + flood APIs (no key, CC-BY) · GDACS R
 
 **Added 5 Oct 2026, keyless and wired:** NASA GPM IMERG satellite rain (30-minute, about 10 km) through NASA GIBS map images and the GIBS colour legend (no key, no login; NASA open data, credit NASA GPM IMERG / GIBS). Served by the report server at `GET /context/rain` (`server/app/ingest/imerg.py`). It ran about 6 hours behind real time at the first check, so it gives context (is it raining hard over Chennai, how much in the last 3 hours), not a live trigger. Be gentle with GIBS: the code caches 15 minutes and sends a User-Agent that names the project. GDELT (news) was tried the same day and rate-limited every request, so it is untested.
 
+**Added 8 Oct 2026, keyless and wired (off by default):** Open-Meteo's forecast API with the ECMWF IFS 0.25 degree model, hourly rain at nine points over Chennai, served at `GET /context/forecast` (`server/app/ingest/forecast.py`, cached 30 minutes, one request every 30 minutes when the router polls it, about 48 a day). The router uses it only with `EVENT_FORECAST=1` (ADR-029). Its validation used Open-Meteo's Previous Runs archive (`previous-runs-api.open-meteo.com`), which keeps the forecast made a day ahead for each hour; for these models it starts in January 2024. Free API for non-commercial use only; data CC BY 4.0.
+
 Tier 1, week 1–2: TomTom traffic (2 500 incident calls + 200 K tiles/month free, self-serve
 key, ~15 min — **read the full TomTom terms on caching/storage before ingesting any incident
 into the permanent hazard log; the pricing page doesn't state them**, per `research/raw/C`) ·

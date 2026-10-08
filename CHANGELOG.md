@@ -26,6 +26,10 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Terrain and past floods as training data: 91 India flood maps and elevation tiles, a nationwide terrain model, Chennai studies and three routing tests, all pre-registered; the nationwide model met its rule, the Chennai and routing rules were not met (ADR-026).
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
+### Added (rain forecast input, 8 October 2026; off by default, not adopted)
+- `GET /context/forecast` on the report server (Open-Meteo, ECMWF IFS 0.25 degree, nine points over Chennai) and an `EVENT_FORECAST=1` switch in the router that lets a forecast raise `dry` to `watch` ahead of rain, never higher. The app's rain sheet names the forecast when it is the source (ADR-029).
+- Pre-registered replay over the 2024 and 2025 north-east monsoons and a dry season against NASA IMERG (`scripts/forecast_rule_replay.py`). **Negative:** at 24 h notice the forecast caught 7 of 46 wet times and warned ahead for 5 of 24 episodes; it never switched on in the dry season. The criteria were not met, so it stays off.
+
 ### Added (field log, 6 October 2026, local commits only, not deployed)
 - A volunteer field log for the missing ground truth: a phone page (English, Tamil draft) where a volunteer records passable / not passable / can't tell at one of 402 candidate sites from the GCC hazard zones, or at another spot, with the time. Entries queue on the phone offline and sync later; the server stores them append-only and fsynced, idempotent by entry id, with per-volunteer tokens, rate limits and a checked, formula-safe CSV export. Kept apart from the router: it changes no route and is shown to no traveller (ADR-028).
 - `docs/FIELD_PROTOCOL.md`: safety rules, what to tap, the sampling plan, volunteer notice, and the analysis pre-registered before any data. `scripts/fieldlog_ops.py`: token generation, status and a verified export.

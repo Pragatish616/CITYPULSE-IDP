@@ -1028,7 +1028,7 @@ Three of three flood windows and one of two controls met the criterion written i
 
 ## ADR-029: A rain forecast may raise the event state from `dry` to `watch`, if a pre-registered replay supports it (8 October 2026)
 
-**Status:** pre-registration. Written and committed **before** any forecast value for the test periods was read. The implementation and the replay come after this commit; their results are appended below, whatever they are. Task M3.7.
+**Status:** built, replayed, and **not adopted**: the pre-registered criteria were not met (result at the end of this record), so the forecast stays off by default. The rule and validation below were committed before any forecast value for the test periods was read. Task M3.7.
 
 **Context.** ADR-027 switches the event state from NASA IMERG satellite rain. The newest image is about six hours old (F-36), so the state changes hours after rain starts and cannot warn ahead. The router already defines `watch` as "a forecast or alert is in force" (`EventState` in `routing_engine.dart`); nothing sets it from a forecast. A numerical weather forecast is the only free input that looks ahead.
 
@@ -1064,3 +1064,36 @@ Three of three flood windows and one of two controls met the criterion written i
 - **The archive is not the live feed.** The live service sees the newest run, published some hours after it starts; `day1` (24 h notice) understates and `day0` overstates what it would have had.
 - **Licence.** Open-Meteo's free API is for non-commercial use (`docs/LICENCE_AUDIT.md`, row 2); its data is CC BY 4.0, and ECMWF open data is CC BY 4.0. Fine for this research project; a commercial deployment would need Open-Meteo's paid plan, a self-hosted Open-Meteo, or ECMWF open data read directly.
 - **Small sample.** Two monsoon seasons will hold tens of wet times, not hundreds. The intervals will be wide and are reported as they are.
+
+
+### Validation result (run 8 October 2026, 22:09 to 22:41 IST; `data/results/2026-10-08-forecast-rule-replay/result.json`)
+
+Run exactly as registered above (pre-registration commit `0c9c6d0`, code commit `25c8d51`). All 980 times had IMERG truth (no image missing). Wet times: 23 in P1, 23 in P2, 4 in P3 (all four in the dry season from the single-cell condition); 24 wet episodes in P1 + P2.
+
+**Primary (ECMWF, forecast made 24 h ahead, truth = ADR-027 level): the adoption criteria were NOT met.**
+
+| Measure | Result | Criterion | Met? |
+|---|---|---|---|
+| M1 same-time detection (P1 + P2) | 7 hits, 39 misses, 5 false alarms, 685 correct negatives. POD **0.15** (95% day-bootstrap 0.05 to 0.28); FAR **0.42** (0.17 to 0.73) | POD at least 0.5 and FAR at most 0.5 | **no** (POD) |
+| M2 warned ahead | **5 of 24** wet episodes (21%) | at least half | **no** |
+| M3 false switching, dry season | 0 of 244 times | at most 5% | yes |
+| M3 monsoon `watch` times not followed by a wet reading within 12 h | 13 of 29 (45%) | (reported, no criterion) | |
+
+**Decision: the forecast stays off by default** (`EVENT_FORECAST` unset). The code stays, tested, so the owner can switch it on knowingly; it is not recommended.
+
+Secondary results, reported as registered, **not** used for the decision:
+
+| Forecast | Truth | POD (95%) | FAR (95%) | Episodes warned | Dry-season switching |
+|---|---|---|---|---|---|
+| ECMWF, current run (`day0`, optimistic) | ADR-027 level | 0.26 (0.13 to 0.40) | 0.33 (0.13 to 0.55) | 13 of 24 | 0 of 244 |
+| ECMWF, 24 h ahead | 3 h area mean at least 8 mm | 0.25 (0.09 to 0.42) | 0.42 (0.17 to 0.73) | 6 of 17 | 0 of 244 |
+| ECMWF, current run | 3 h area mean at least 8 mm | 0.32 (0.14 to 0.50) | 0.50 (0.29 to 0.75) | 9 of 17 | 0 of 244 |
+| GFS, 24 h ahead | ADR-027 level | 0.11 (0.02 to 0.22) | 0.55 (0.27 to 0.88) | 4 of 24 | 0 of 244 |
+| GFS, current run | ADR-027 level | 0.15 (0.03 to 0.29) | 0.50 (0.21 to 0.83) | 5 of 24 | 0 of 244 |
+
+How to read it:
+- **The forecast is quiet, not noisy.** It never switched on in the dry season, and when it did switch on in the monsoon it was right a little over half the time. Its failure is the other way: **it misses most of the rain the satellite later sees** (85% of wet times at 24 h notice). A three-hour, 8 mm area-mean threshold on a 25 km model mostly does not fire for Chennai's rain.
+- **Even the optimistic case does not pass.** With the current run, half the episodes (13 of 24) would have been warned ahead, which would meet criterion 2, but detection is still 0.26. The registered decision rests on the 24-hour-ahead case and is not revisited.
+- **The obvious next idea is a lower threshold. It is not tried here.** Lowering it after seeing these numbers would be tuning on the test data; it would need a new ADR and periods not used here (for example the 2026 north-east monsoon, scored after it ends).
+- **Small sample.** 46 wet times and 24 episodes in two seasons; the intervals are wide. The result is "no evidence that this rule helps", not "forecasts cannot help".
+- **The truth is satellite rain, not flooding,** as stated above. Nothing here says anything about streets.

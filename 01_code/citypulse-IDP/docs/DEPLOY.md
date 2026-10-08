@@ -44,7 +44,7 @@ first; its "re-check before launch" list applies.
 
 The router sets the event state from NASA satellite rain, polled every 15 minutes: `watch` after about 8 mm in three hours (or a heavy cell), `active` after about 15 mm (or a violent cell), held for hours after, `dry` otherwise. The numbers are placeholders (ADR-027). The data runs about six hours behind, so it cannot warn ahead.
 
-See what it decided and why (no token needed): `GET /api/event-state` returns the state, `mode` (`auto`, `manual` or `fixed`), `source` (`rain`, `manual`, `fallback` or `configured`), a sentence of reasons with the numbers, and the rain reading.
+See what it decided and why (no token needed): `GET /api/event-state` returns the state, `mode` (`auto`, `manual` or `fixed`), `source` (`rain`, `forecast`, `manual`, `fallback` or `configured`), a sentence of reasons with the numbers, and the rain reading.
 
 Override it (admin token in the `x-admin-token` header; set `ADMIN_TOKEN` in the host's environment settings or this is disabled):
 
@@ -56,6 +56,8 @@ curl -X PUT https://YOUR-SITE/api/event-state -H "x-admin-token: $ADMIN_TOKEN" -
 # give the decision back to the rain rule
 curl -X PUT https://YOUR-SITE/api/event-state -H "x-admin-token: $ADMIN_TOKEN" -H "content-type: application/json" -d '{"mode":"auto"}'
 ```
+
+**Optional: a rain forecast (ADR-029, off by default).** With `EVENT_FORECAST=1` the router also reads `GET /context/forecast` from the report server (Open-Meteo, ECMWF IFS 0.25 degree, nine points over Chennai, every 30 minutes). If 8 mm or more (area mean, three hours) is forecast within the next 12 hours, a `dry` state is raised to `watch` and the answer says `source: forecast` with the numbers. It never gives `active` and never lowers anything; a forecast older than 6 hours is ignored; an override still wins. **Not recommended:** in the pre-registered replay (ADR-029) it caught 7 of 46 wet satellite times a day ahead and warned ahead for 5 of 24 rain episodes, so it is off by default. Open-Meteo's free API is for non-commercial use (`docs/LICENCE_AUDIT.md`, row 2).
 
 If the rain data is missing, older than 12 hours, or flagged stale, the configured `EVENT_STATE` (default `active`) applies and the answer says `source: fallback`. Holds are kept in memory, so a restart (a free host sleeping) forgets them. On a dry day the demo now shows `dry`: the 2015 hazard map is off and the advice card says no flood event is under way.
 
@@ -71,6 +73,7 @@ If the rain data is missing, older than 12 hours, or flagged stale, the configur
 | `EVENT_STATE` | router | `dry`, `watch` or `active`; decides whether the static hazard prior counts (ADR-015). With a rain source (below) it is the **fallback** used when the rain data is missing or older than 12 hours; default `active`. Without one, it is the state. |
 | `OBSERVATIONS_URL` | router | The report server root. It also supplies the satellite rain (`/context/rain`), so with it set the event state is **automatic** (ADR-027). In the one-container image it is `http://127.0.0.1:8000`. |
 | `EVENT_AUTO` | router | Set to `0` to turn the automatic state off and use `EVENT_STATE` as a fixed value, as before ADR-027. |
+| `EVENT_FORECAST` | router | Set to `1` to let a rain forecast raise `dry` to `watch` ahead of rain (ADR-029). Default off. Needs the automatic state (`OBSERVATIONS_URL` set, `EVENT_AUTO` not `0`). |
 | `CORS_ALLOWED_ORIGINS` | ingest | Leave empty for single-origin. |
 | `FIELDLOG_TOKENS` | ingest | `code:token,code:token`, one pair per volunteer (make them with `scripts/fieldlog_ops.py token`). **Unset means field logging is off**, not open. A token under 16 characters is refused. ADR-028. |
 | `FIELDLOG_ADMIN_TOKEN` | ingest | Lets an operator read and export the field log. Unset means reading is off. Use a different value from every volunteer token. |
