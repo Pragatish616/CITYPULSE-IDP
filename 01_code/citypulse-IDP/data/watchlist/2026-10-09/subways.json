@@ -1,0 +1,1694 @@
+{
+ "version": 1,
+ "kind": "subway_watchlist_candidates",
+ "date": "2026-10-09",
+ "note": "Candidates, not a verified list. The Greater Chennai Corporation's table is the backbone; positions come from OpenStreetMap where it has the subway and are labelled by how sure the match is. NOTHING is verified on the ground. News reports of '22 subways' do not give names, so this list makes no claim to equal them.",
+ "sources": {
+  "gcc_bridges": {
+   "title": "Greater Chennai Corporation, Bridges Department: Road Under Bridge/Subway (16 Nos) and Pedestrian Subway (5 Nos) tables",
+   "url": "https://chennaicorporation.gov.in/gcc/department/bridges/",
+   "read_on": "2026-10-09",
+   "licence": "Government of Tamil Nadu public web page; facts (names, wards) transcribed, no text copied beyond the location phrases"
+  },
+  "tnm_2023_12_06": {
+   "title": "The News Minute, Chennai Floods: Traffic, Subways, and Train Updates for Dec 6 (2023)",
+   "url": "https://www.thenewsminute.com/tamil-nadu/chennai-floods-traffic-subways-and-train-updates-for-dec-6",
+   "read_on": "2026-10-09",
+   "licence": "News article; only the subway names it lists as closed or partly open are used"
+  },
+  "dtnext_2025_11_29": {
+   "title": "DT Next, Advanced warning system, subway barriers in place to mitigate Ditwah damage (29 November 2025)",
+   "url": "https://www.dtnext.in/news/chennai/advanced-warning-system-subway-barriers-in-place-to-mitigate-ditwah-damage-854965",
+   "read_on": "2026-10-09",
+   "licence": "News article; only the subway names it gives as examples are used"
+  },
+  "openstreetmap": {
+   "title": "OpenStreetMap extract southern-zone-260911, subway candidates",
+   "licence": "OpenStreetMap contributors, ODbL 1.0",
+   "file": "osm-subways-2026-10-09.json",
+   "sha256": "4286cb40bdbc249e96779ee28b42564f4d052933b1e817b4a7c27789cbd4a401"
+  }
+ },
+ "source_sha256": {
+  "gcc_subways_source.json": "38c0e10bccd7461b63c573322e181a66c880cd2fb4ca9abb737e78efd6a3eafb",
+  "places.json": "47209543bf188c9961aae29d794433fe5e2ebd794cdb507d49ca62f1126158dc"
+ },
+ "counts": {
+  "gcc_road_rail": 16,
+  "gcc_pedestrian": 5,
+  "news_only": 3,
+  "osm_only": 7
+ },
+ "position_quality": {
+  "none": 10,
+  "osm_hint": 2,
+  "osm_named": 16,
+  "osm_road_tunnel": 3
+ },
+ "entries_total": 31,
+ "entries": [
+  {
+   "id": "sub-gcc-rr-01",
+   "name": "Ganesapuram subway",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 1,
+   "zone_ward": "IV&VI/45&70",
+   "gcc_location": "Ganesapuram subway at Dr. Ambedkar College Road to the East of Vyasarpadi Jeeva Railway Station.",
+   "names_in_news": [
+    {
+     "name": "Ganesapuram subway",
+     "source": "tnm_2023_12_06",
+     "relation": null
+    }
+   ],
+   "lat": 13.10934,
+   "lon": 80.25975,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 1111235224,
+      "name": "Ganeshpuram Subway",
+      "highway": "construction",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 0,
+    "note": "OSM spells it 'Ganeshpuram Subway' and tags the way highway=construction; GCC places it east of Vyasarpadi Jeeva station"
+   },
+   "area_hint": {
+    "place": "Vyasarpadi",
+    "kind": "suburb",
+    "lat": 13.11305,
+    "lon": 80.25872,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Vyasarpadi",
+   "nearest_area_m": 427
+  },
+  {
+   "id": "sub-gcc-rr-02",
+   "name": "Monegar Choultry Road subway (near Stanley Hospital)",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 2,
+   "zone_ward": "V/52",
+   "gcc_location": "In Monegar Choultry Road near stanley hospital",
+   "names_in_news": [],
+   "lat": 13.10741,
+   "lon": 80.28625,
+   "position": {
+    "quality": "osm_road_tunnel",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 666393460,
+      "name": "Monegar Choultry Road",
+      "highway": "tertiary",
+      "tunnel": "yes",
+      "layer": "-1"
+     }
+    ],
+    "span_m": 0,
+    "note": "the tunnel=yes way named Monegar Choultry Road, the road GCC row 2 names"
+   },
+   "area_hint": {
+    "place": "Old Washermanpet",
+    "kind": "neighbourhood",
+    "lat": 13.11228,
+    "lon": 80.28938,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Washermanpet",
+   "nearest_area_m": 863
+  },
+  {
+   "id": "sub-gcc-rr-03",
+   "name": "Stanley Nagar subways 1 and 2 (Cochrane Basin Bridge Road)",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 3,
+   "zone_ward": "V/53",
+   "gcc_location": "Stanley Nagar Subway 1 & 2 along Cochrane Basin Bridge Road South of Stanley Nagar near Post Office.",
+   "names_in_news": [
+    {
+     "name": "CB road subway",
+     "source": "tnm_2023_12_06",
+     "relation": "probable: Cochrane Basin (C.B.) Road is the road in GCC row 3; not asserted"
+    },
+    {
+     "name": "Stanley Nagar",
+     "source": "dtnext_2025_11_29",
+     "relation": null
+    }
+   ],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "no OSM feature carries this name; the area is only a hint (GCC: south of Stanley Nagar near the post office)"
+   },
+   "area_hint": {
+    "place": "Stanley Nagar",
+    "kind": "neighbourhood",
+    "lat": 13.10927,
+    "lon": 80.27219,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Stanley Nagar",
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-gcc-rr-04",
+   "name": "Reserve Bank (RBI) subway, Rajaji Salai",
+   "name_ta": "இந்தியா ரிசர்வ் வங்கி சுரங்கப்பாதை",
+   "list": "gcc_road_rail",
+   "gcc_no": 4,
+   "zone_ward": "V/60",
+   "gcc_location": "Reserve Bank Subway at Rajaji Salai Near Reserve Bank of India.",
+   "names_in_news": [],
+   "lat": 13.0853,
+   "lon": 80.28923,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 23893951,
+      "name": "RBI Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 840532260,
+      "name": "RBI Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 840532261,
+      "name": "RBI Subway",
+      "highway": "primary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 840532262,
+      "name": "RBI Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 840532263,
+      "name": "RBI Subway",
+      "highway": "primary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1323798336,
+      "name": "RBI Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1323798337,
+      "name": "RBI Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 287,
+    "note": null
+   },
+   "area_hint": {
+    "place": "George Town",
+    "kind": "suburb",
+    "lat": 13.09209,
+    "lon": 80.28224,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "George Town",
+   "nearest_area_m": 1069
+  },
+  {
+   "id": "sub-gcc-rr-05",
+   "name": "Gengu Reddy Road subway, Egmore",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 5,
+   "zone_ward": "V&VIII/61&104",
+   "gcc_location": "Gengu- Reddy Road Subway at Egmore near Nehru Park",
+   "names_in_news": [
+    {
+     "name": "Gengu Reddy Road",
+     "source": "dtnext_2025_11_29",
+     "relation": null
+    }
+   ],
+   "lat": 13.07653,
+   "lon": 80.25204,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 29115467,
+      "name": "Gengu Reddy Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 102030553,
+      "name": "Gengu Reddy Subway",
+      "highway": "secondary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 566573623,
+      "name": "Gengu Reddy Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 114,
+    "note": null
+   },
+   "area_hint": {
+    "place": "Egmore",
+    "kind": "suburb",
+    "lat": 13.07283,
+    "lon": 80.25769,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Egmore",
+   "nearest_area_m": 737
+  },
+  {
+   "id": "sub-gcc-rr-06",
+   "name": "Manickam Nagar subway",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 6,
+   "zone_ward": "I/5",
+   "gcc_location": "Mancikam Nagar Subway",
+   "names_in_news": [
+    {
+     "name": "Thiruvotriyur, Manickam Nagar subway",
+     "source": "tnm_2023_12_06",
+     "relation": null
+    }
+   ],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "no OSM feature carries this name; GCC lists it in zone I (Tiruvottiyur); the area is only a hint"
+   },
+   "area_hint": {
+    "place": "Tiruvottiyur",
+    "kind": "town",
+    "lat": 13.15657,
+    "lon": 80.30065,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Tiruvottiyur",
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-gcc-rr-07",
+   "name": "Perambur subway, Perambur High Road",
+   "name_ta": "பெரம்பூர் சுரங்கப்பாதை",
+   "list": "gcc_road_rail",
+   "gcc_no": 7,
+   "zone_ward": "VI/70&71",
+   "gcc_location": "Perambur Subway at Perambur High Road to the West of Perambur Railway Station.",
+   "names_in_news": [
+    {
+     "name": "Sembium (Perambur) subway",
+     "source": "tnm_2023_12_06",
+     "relation": "probable; not asserted"
+    }
+   ],
+   "lat": 13.10743,
+   "lon": 80.24224,
+   "position": {
+    "quality": "osm_hint",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 457176568,
+      "name": "Perambur Subway",
+      "highway": "pedestrian",
+      "tunnel": "yes",
+      "layer": "-1"
+     }
+    ],
+    "span_m": 0,
+    "note": "the only OSM 'Perambur Subway' is a pedestrian tunnel near Perambur station; GCC row 7 is a road subway west of the station, so this is a hint, not the subway itself"
+   },
+   "area_hint": {
+    "place": "Perambur",
+    "kind": "suburb",
+    "lat": 13.11212,
+    "lon": 80.24502,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Perambur",
+   "nearest_area_m": 602
+  },
+  {
+   "id": "sub-gcc-rr-08",
+   "name": "Villivakkam subway (Redhills Road, LC-2)",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 8,
+   "zone_ward": "VIII/94",
+   "gcc_location": "In Redhills Road at Villivakkam LC-2",
+   "names_in_news": [
+    {
+     "name": "Villivakkam subway",
+     "source": "tnm_2023_12_06",
+     "relation": null
+    }
+   ],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "no OSM feature carries this name; the area is only a hint"
+   },
+   "area_hint": {
+    "place": "Villivakkam",
+    "kind": "suburb",
+    "lat": 13.11259,
+    "lon": 80.20814,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Villivakkam",
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-gcc-rr-09",
+   "name": "Nungambakkam subway",
+   "name_ta": "நுங்கம்பாக்கம் சுரங்கப்பாதை",
+   "list": "gcc_road_rail",
+   "gcc_no": 9,
+   "zone_ward": "IX/109&110",
+   "gcc_location": "Nungambakkam Subway near Nungambakkam Rly. station.",
+   "names_in_news": [],
+   "lat": 13.06603,
+   "lon": 80.23294,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 26748560,
+      "name": "Nungambakkam Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 275459532,
+      "name": "Nungambakkam Subway",
+      "highway": "secondary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 275459533,
+      "name": "Nungambakkam Subway",
+      "highway": "secondary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 275459534,
+      "name": "Nungambakkam Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1091003763,
+      "name": "Nungambakkam Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1192032383,
+      "name": "Nungambakkam Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1323787516,
+      "name": "Nungambakkam Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1476411677,
+      "name": "Nungambakkam Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 170,
+    "note": null
+   },
+   "area_hint": {
+    "place": "Nungambakkam",
+    "kind": "suburb",
+    "lat": 13.06206,
+    "lon": 80.24049,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Nungambakkam",
+   "nearest_area_m": 929
+  },
+  {
+   "id": "sub-gcc-rr-10",
+   "name": "Harrington Road subway (Pachaiyappa's College)",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 10,
+   "zone_ward": "IX/110",
+   "gcc_location": "Harrington Road Subway near Pachaiyappa's College",
+   "names_in_news": [],
+   "lat": 13.06988,
+   "lon": 80.23362,
+   "position": {
+    "quality": "osm_road_tunnel",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 240340223,
+      "name": "Harrington Road",
+      "highway": "tertiary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 240340224,
+      "name": "Harrington Road",
+      "highway": "tertiary",
+      "tunnel": "yes",
+      "layer": "-1"
+     }
+    ],
+    "span_m": 2,
+    "note": "the tunnel=yes ways named Harrington Road, the road GCC row 10 names"
+   },
+   "area_hint": {
+    "place": "Chetpet",
+    "kind": "village",
+    "lat": 12.92243,
+    "lon": 80.02005,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Chetpet",
+   "nearest_area_m": 1122
+  },
+  {
+   "id": "sub-gcc-rr-11",
+   "name": "Dheeran Sivalingam (Doraisamy) subway",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 11,
+   "zone_ward": "X/135&137",
+   "gcc_location": "Dheeran Sivalingam Subway connecting Doraisamy road and Brindavan Road.",
+   "names_in_news": [
+    {
+     "name": "Duraisamy subway",
+     "source": "tnm_2023_12_06",
+     "relation": null
+    }
+   ],
+   "lat": 13.04128,
+   "lon": 80.22867,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 209513213,
+      "name": "Doraiswamy Subway",
+      "highway": "secondary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1267322167,
+      "name": "Doraiswamy Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1323786814,
+      "name": "Doraiswamy Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1323786815,
+      "name": "Doraiswamy Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 160,
+    "note": "GCC: Dheeran Sivalingam Subway connecting Doraisamy road and Brindavan Road; OSM and news call it Doraiswamy/Duraisamy"
+   },
+   "area_hint": {
+    "place": "West Mambalam",
+    "kind": "suburb",
+    "lat": 13.04359,
+    "lon": 80.22081,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Thiyagaraya Nagar",
+   "nearest_area_m": 515
+  },
+  {
+   "id": "sub-gcc-rr-12",
+   "name": "Madley subway",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 12,
+   "zone_ward": "X/135&137",
+   "gcc_location": "Madley Subway connecting Madley road and Easwaran Koil Street on Southern Side of Mambalam Railway Station.",
+   "names_in_news": [],
+   "lat": 13.03537,
+   "lon": 80.22704,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 23186320,
+      "name": "Madley subway",
+      "highway": "tertiary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 214202908,
+      "name": "Madley subway",
+      "highway": "tertiary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 214202909,
+      "name": "Madley subway",
+      "highway": "tertiary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1251974975,
+      "name": "Madley subway",
+      "highway": "tertiary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1286834229,
+      "name": "Madley subway",
+      "highway": "tertiary",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 53,
+    "note": null
+   },
+   "area_hint": {
+    "place": "West Mambalam",
+    "kind": "suburb",
+    "lat": 13.04359,
+    "lon": 80.22081,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Thiyagaraya Nagar",
+   "nearest_area_m": 588
+  },
+  {
+   "id": "sub-gcc-rr-13",
+   "name": "Thyagi Aranganathan subway",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 13,
+   "zone_ward": "X&XIII/140/171",
+   "gcc_location": "Thyagi Aranganathan Subway connecting Kannammapet and Reddikuppam Road.",
+   "names_in_news": [
+    {
+     "name": "Aranganathan Subway",
+     "source": "tnm_2023_12_06",
+     "relation": null
+    }
+   ],
+   "lat": 13.02822,
+   "lon": 80.22527,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 23186322,
+      "name": "Aranganathan Subway",
+      "highway": "secondary",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 0,
+    "note": null
+   },
+   "area_hint": {
+    "place": "West Mambalam",
+    "kind": "suburb",
+    "lat": 13.04359,
+    "lon": 80.22081,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Saidapet",
+   "nearest_area_m": 835
+  },
+  {
+   "id": "sub-gcc-rr-14",
+   "name": "Saidapet Bazaar Road subway",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 14,
+   "zone_ward": "X/142",
+   "gcc_location": "Saidapet Bazaar Road Subway",
+   "names_in_news": [],
+   "lat": 13.02124,
+   "lon": 80.22307,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 29882204,
+      "name": "Bazaar Road Subway",
+      "highway": "tertiary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 214180580,
+      "name": "Bazaar Road Subway",
+      "highway": "tertiary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 214180583,
+      "name": "Bazaar Road Subway",
+      "highway": "tertiary",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 81,
+    "note": null
+   },
+   "area_hint": {
+    "place": "Saidapet",
+    "kind": "suburb",
+    "lat": 13.02082,
+    "lon": 80.22395,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Saidapet",
+   "nearest_area_m": 106
+  },
+  {
+   "id": "sub-gcc-rr-15",
+   "name": "C.P. Pavalavannan Bridge subway, Jones Road",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 15,
+   "zone_ward": "X/142",
+   "gcc_location": "C.P. Pavalavannan Bridge in Jones Road",
+   "names_in_news": [
+    {
+     "name": "Jones Road",
+     "source": "dtnext_2025_11_29",
+     "relation": null
+    }
+   ],
+   "lat": 13.02529,
+   "lon": 80.22436,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 51541605,
+      "name": "Jones Subway",
+      "highway": "tertiary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 51541652,
+      "name": "Jones Subway",
+      "highway": "tertiary",
+      "tunnel": "yes",
+      "layer": "-1"
+     }
+    ],
+    "span_m": 64,
+    "note": "GCC calls it C.P. Pavalavannan Bridge in Jones Road; OSM calls it Jones Subway"
+   },
+   "area_hint": {
+    "place": "Saidapet",
+    "kind": "suburb",
+    "lat": 13.02082,
+    "lon": 80.22395,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Saidapet",
+   "nearest_area_m": 499
+  },
+  {
+   "id": "sub-gcc-rr-16",
+   "name": "Rangarajapuram level crossing subway (pedestrian and two-wheeler)",
+   "name_ta": null,
+   "list": "gcc_road_rail",
+   "gcc_no": 16,
+   "zone_ward": "X/134&136",
+   "gcc_location": "Pedestrian cum two wheeler subway at Rangarajapuram level crossing",
+   "names_in_news": [
+    {
+     "name": "Rangarajapuram",
+     "source": "tnm_2023_12_06",
+     "relation": null
+    }
+   ],
+   "lat": 13.04578,
+   "lon": 80.22995,
+   "position": {
+    "quality": "osm_road_tunnel",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 723477928,
+      "name": "Rangarajapuram Main Road",
+      "highway": "residential",
+      "tunnel": "yes",
+      "layer": "-1"
+     }
+    ],
+    "span_m": 0,
+    "note": "the tunnel=yes way named Rangarajapuram Main Road; GCC row 16 is at the Rangarajapuram level crossing"
+   },
+   "area_hint": {
+    "place": "Kodambakkam",
+    "kind": "suburb",
+    "lat": 13.04921,
+    "lon": 80.22428,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Kodambakkam",
+   "nearest_area_m": 723
+  },
+  {
+   "id": "sub-gcc-ped-01",
+   "name": "Rajaji Salai pedestrian subway (Beach Railway Station)",
+   "name_ta": null,
+   "list": "gcc_pedestrian",
+   "gcc_no": 1,
+   "zone_ward": "V/60",
+   "gcc_location": "Rajaji Salai Subway near Beach Railway station.",
+   "names_in_news": [],
+   "lat": 13.0939,
+   "lon": 80.29216,
+   "position": {
+    "quality": "osm_hint",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 1103973186,
+      "name": "Beach Railway Station Pedestrians Subway",
+      "highway": "steps",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1103973187,
+      "name": "Beach Railway Station Pedestrians Subway",
+      "highway": "steps",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1103973188,
+      "name": "Beach Railway Station Pedestrians Subway",
+      "highway": "footway",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1103973192,
+      "name": "Beach Railway Station Pedestrians Subway",
+      "highway": "steps",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1103973193,
+      "name": "Beach Railway Station Pedestrians Subway",
+      "highway": "footway",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1103973194,
+      "name": "Beach Railway Station Pedestrians Subway",
+      "highway": "steps",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1103973195,
+      "name": "Beach Railway Station Pedestrians Subway",
+      "highway": "footway",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1103973196,
+      "name": "Beach Railway Station Pedestrians Subway",
+      "highway": "footway",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1103973197,
+      "name": "Beach Railway Station Pedestrians Subway",
+      "highway": "footway",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 15,
+    "note": "OSM's 'Beach Railway Station Pedestrians Subway' is at the station GCC names; the names differ"
+   },
+   "area_hint": {
+    "place": "George Town",
+    "kind": "suburb",
+    "lat": 13.09209,
+    "lon": 80.28224,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "George Town",
+   "nearest_area_m": 1093
+  },
+  {
+   "id": "sub-gcc-ped-02",
+   "name": "Jamaliah pedestrian subway (Perambur Bus Terminus)",
+   "name_ta": null,
+   "list": "gcc_pedestrian",
+   "gcc_no": 2,
+   "zone_ward": "VI/71",
+   "gcc_location": "Jamaliah Subway near Perambur Bus Terminus.",
+   "names_in_news": [],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "no OSM feature found"
+   },
+   "area_hint": {
+    "place": "Perambur",
+    "kind": "suburb",
+    "lat": 13.11212,
+    "lon": 80.24502,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Perambur",
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-gcc-ped-03",
+   "name": "Perambur raised tunnels (railway lines, pedestrian)",
+   "name_ta": null,
+   "list": "gcc_pedestrian",
+   "gcc_no": 3,
+   "zone_ward": "VI/71",
+   "gcc_location": "Raised Tunnels on either side of existing Perambur Subway. (Railway Lines)",
+   "names_in_news": [],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "no OSM feature found"
+   },
+   "area_hint": {
+    "place": "Perambur",
+    "kind": "suburb",
+    "lat": 13.11212,
+    "lon": 80.24502,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Perambur",
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-gcc-ped-04",
+   "name": "Ezhilagam pedestrian subway (near MGR Samadhi)",
+   "name_ta": null,
+   "list": "gcc_pedestrian",
+   "gcc_no": 4,
+   "zone_ward": "IX/114",
+   "gcc_location": "Ezhilagam Subway near M.G.R.Samathi",
+   "names_in_news": [],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "no OSM feature found"
+   },
+   "area_hint": {
+    "place": "Chepauk",
+    "kind": "suburb",
+    "lat": 13.06451,
+    "lon": 80.28312,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Chepauk",
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-gcc-ped-05",
+   "name": "Kamarajar Salai pedestrian subway (Bharathi Salai, Triplicane)",
+   "name_ta": null,
+   "list": "gcc_pedestrian",
+   "gcc_no": 5,
+   "zone_ward": "IX/114",
+   "gcc_location": "Kamarajar Salai Subway at the junction of Bharathi Salai, Triplicane",
+   "names_in_news": [],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "no OSM feature found"
+   },
+   "area_hint": {
+    "place": "Triplicane",
+    "kind": "suburb",
+    "lat": 13.06043,
+    "lon": 80.27507,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Triplicane",
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-news-choolaimedu-loyola",
+   "name": "Choolaimedu (Loyola) subway",
+   "name_ta": null,
+   "list": "news_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [
+    {
+     "name": "Choolaimedu, Loyola Subway",
+     "source": "tnm_2023_12_06",
+     "relation": "closed due to waterlogging (Dec 2023)"
+    }
+   ],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "named in the news; no OSM feature found"
+   },
+   "area_hint": null,
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": null,
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-news-kathirvedu",
+   "name": "Kathirvedu subway",
+   "name_ta": null,
+   "list": "news_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [
+    {
+     "name": "Kathirvedu Subway",
+     "source": "tnm_2023_12_06",
+     "relation": "closed due to waterlogging (Dec 2023)"
+    }
+   ],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "named in the news; no OSM feature found"
+   },
+   "area_hint": {
+    "place": "Kathirvedu",
+    "kind": "suburb",
+    "lat": 13.14931,
+    "lon": 80.20099,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Kathirvedu",
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-news-vyasarpadi",
+   "name": "Vyasarpadi subway",
+   "name_ta": null,
+   "list": "news_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [
+    {
+     "name": "Vyasarpadi subway",
+     "source": "tnm_2023_12_06",
+     "relation": "closed due to waterlogging (Dec 2023); may or may not be GCC row 1 (the Ganesapuram subway lies beside Vyasarpadi Jeeva station), unresolved"
+    }
+   ],
+   "lat": null,
+   "lon": null,
+   "position": {
+    "quality": "none",
+    "osm_features": [],
+    "span_m": null,
+    "note": "named in the news; no OSM feature found"
+   },
+   "area_hint": {
+    "place": "Vyasarpadi",
+    "kind": "suburb",
+    "lat": 13.11305,
+    "lon": 80.25872,
+    "note": "the AREA the subway lies in or beside; not the subway's position"
+   },
+   "verified_on_ground": false,
+   "notes": "not on GCC's Bridges Department table; identity relative to that table unresolved",
+   "nearest_area": "Vyasarpadi",
+   "nearest_area_m": null
+  },
+  {
+   "id": "sub-osm-thillaiganga-nagar",
+   "name": "Thillaiganga Nagar subway",
+   "name_ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+   "list": "osm_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [],
+   "lat": 12.99264,
+   "lon": 80.19341,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 31336519,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 84100986,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 103716673,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 103716675,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 103716681,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 103716688,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1323785281,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1323785282,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1323785283,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1323785284,
+      "name": "Thillaiganga Nagar Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 226,
+    "note": "named by OpenStreetMap; not on GCC's Bridges Department table"
+   },
+   "area_hint": null,
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Pazhavanthangal",
+   "nearest_area_m": 665
+  },
+  {
+   "id": "sub-osm-st-thomas-mount",
+   "name": "St Thomas Mount subway",
+   "name_ta": null,
+   "list": "osm_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [],
+   "lat": 12.99564,
+   "lon": 80.20112,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 29973071,
+      "name": "St Thomas Mount Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 29973073,
+      "name": "St Thomas Mount Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 103716703,
+      "name": "St Thomas Mount Subway",
+      "highway": "primary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1039834696,
+      "name": "St Thomas Mount Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1189151046,
+      "name": "St Thomas Mount Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1324385026,
+      "name": "St Thomas Mount Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1324385027,
+      "name": "St Thomas Mount Subway",
+      "highway": "primary",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1324835389,
+      "name": "St Thomas Mount Subway",
+      "highway": "primary",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1324835390,
+      "name": "St Thomas Mount Subway",
+      "highway": "primary",
+      "tunnel": "yes",
+      "layer": "-1"
+     }
+    ],
+    "span_m": 176,
+    "note": "named by OpenStreetMap; not on GCC's Bridges Department table"
+   },
+   "area_hint": null,
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Alandur",
+   "nearest_area_m": 770
+  },
+  {
+   "id": "sub-osm-radha-nagar",
+   "name": "Radha Nagar subway",
+   "name_ta": null,
+   "list": "osm_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [],
+   "lat": 12.95261,
+   "lon": 80.14198,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 1540906815,
+      "name": "Radha Nagar Subway",
+      "highway": "residential",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1540906816,
+      "name": "Radha Nagar Subway",
+      "highway": "residential",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1540906817,
+      "name": "Radha Nagar subway",
+      "highway": "residential",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1545831770,
+      "name": "Radha Nagar Subway",
+      "highway": "residential",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1545831771,
+      "name": "Radha Nagar subway",
+      "highway": "residential",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1545831772,
+      "name": "Radha Nagar Subway",
+      "highway": "residential",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1548567274,
+      "name": "Radha Nagar Subway",
+      "highway": "residential",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1548567275,
+      "name": "Radha Nagar Subway",
+      "highway": "residential",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 209,
+    "note": "named by OpenStreetMap; not on GCC's Bridges Department table"
+   },
+   "area_hint": null,
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Radha Nagar",
+   "nearest_area_m": 562
+  },
+  {
+   "id": "sub-osm-easwari-nagar",
+   "name": "Easwari Nagar subway",
+   "name_ta": null,
+   "list": "osm_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [],
+   "lat": 12.97012,
+   "lon": 80.15425,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 1080320449,
+      "name": "Easwari Nagar Subway",
+      "highway": "residential",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1452288254,
+      "name": "Easwari Nagar Subway",
+      "highway": "residential",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 369956394,
+      "name": "Easwari Nagar Subway Underpass",
+      "highway": "residential",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 446253108,
+      "name": "Easwari Nagar Subway Underpass",
+      "highway": "residential",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 510442614,
+      "name": "Easwari Nagar Subway Underpass",
+      "highway": "residential",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 92,
+    "note": "named by OpenStreetMap; not on GCC's Bridges Department table"
+   },
+   "area_hint": null,
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Pallavaram",
+   "nearest_area_m": 1116
+  },
+  {
+   "id": "sub-osm-chennai-central-square",
+   "name": "Chennai Central Square pedestrian subway",
+   "name_ta": null,
+   "list": "osm_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [],
+   "lat": 13.08162,
+   "lon": 80.27524,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 23912141,
+      "name": "Chennai Central Square Subway",
+      "highway": "footway",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1188902779,
+      "name": "Chennai Central Square Subway",
+      "highway": "footway",
+      "tunnel": "yes",
+      "layer": "-1"
+     }
+    ],
+    "span_m": 22,
+    "note": "named by OpenStreetMap; not on GCC's Bridges Department table"
+   },
+   "area_hint": null,
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Park Town",
+   "nearest_area_m": 592
+  },
+  {
+   "id": "sub-osm-guindy",
+   "name": "Guindy pedestrian subway",
+   "name_ta": null,
+   "list": "osm_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [],
+   "lat": 13.00916,
+   "lon": 80.21228,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 1547936088,
+      "name": "guindy subway",
+      "highway": "pedestrian",
+      "tunnel": "yes",
+      "layer": "-1"
+     }
+    ],
+    "span_m": 0,
+    "note": "named by OpenStreetMap; not on GCC's Bridges Department table"
+   },
+   "area_hint": null,
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "SIDCO Industrial Estate",
+   "nearest_area_m": 644
+  },
+  {
+   "id": "sub-osm-ambattur-underpass",
+   "name": "Ambattur railway underpass (under construction in OSM)",
+   "name_ta": null,
+   "list": "osm_only",
+   "gcc_no": null,
+   "zone_ward": null,
+   "gcc_location": null,
+   "names_in_news": [],
+   "lat": 13.11425,
+   "lon": 80.15439,
+   "position": {
+    "quality": "osm_named",
+    "osm_features": [
+     {
+      "type": "way",
+      "id": 1536599929,
+      "name": "Ambattur railway Underpass",
+      "highway": "construction",
+      "tunnel": "yes",
+      "layer": "-1"
+     },
+     {
+      "type": "way",
+      "id": 1545831773,
+      "name": "Ambattur railway Underpass",
+      "highway": "construction",
+      "tunnel": null,
+      "layer": null
+     },
+     {
+      "type": "way",
+      "id": 1545831774,
+      "name": "Ambattur railway underpass",
+      "highway": "construction",
+      "tunnel": null,
+      "layer": null
+     }
+    ],
+    "span_m": 118,
+    "note": "named by OpenStreetMap; not on GCC's Bridges Department table"
+   },
+   "area_hint": null,
+   "verified_on_ground": false,
+   "notes": null,
+   "nearest_area": "Ambattur OT",
+   "nearest_area_m": 743
+  }
+ ]
+}

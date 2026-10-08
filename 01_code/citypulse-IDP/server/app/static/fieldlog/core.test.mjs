@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
-  ADHOC, Outbox, buildEntry, cleanToken, clockSkewWarning, formatDistance, haversineM, nearest, newId, normalise, searchSites, syncAll, toCsv, validateEntry,
+  ADHOC, Outbox, buildEntry, cleanToken, clockSkewWarning, defaultSites, formatDistance, haversineM, nearest, newId, normalise, searchSites, syncAll, toCsv, validateEntry,
 } from './core.js';
 import { TEXT, t } from './i18n.js';
 
@@ -246,3 +246,32 @@ test('the page never tells anyone a road is safe, dry, clear or fine to go', () 
   const stems = ['பாதுகாப்', 'வறண்', 'காய்ந்', 'செல்லலாம்', 'போகலாம்', 'கடக்கலாம்', 'தொடரலாம்', 'திறந்', 'தெளிவாக'];
   for (const s of flat(TEXT.ta)) for (const stem of stems) assert.ok(!s.includes(stem), `${stem} in ${s}`);
 });
+
+// ---- subways (ADR-031) -------------------------------------------------------------------------------------------------------
+const SUBWAYS = [
+  { id: 'sub-gcc-rr-12', site_kind: 'subway', label: 'Madley subway (GCC road/rail subway 12) [sub-gcc-rr-12]', lat: 13.035, lon: 80.227, near: 'Thiyagaraya Nagar', aliases: ['Madley road and Easwaran Koil Street'] },
+  { id: 'sub-gcc-rr-03', site_kind: 'subway', label: 'Stanley Nagar subways (GCC road/rail subway 3) [sub-gcc-rr-03]', lat: null, lon: null, near: 'Stanley Nagar', aliases: ['CB road subway', 'Cochrane Basin Bridge Road'] },
+  { id: 'sub-gcc-rr-04', site_kind: 'subway', label: 'Reserve Bank (RBI) subway (GCC road/rail subway 4) [sub-gcc-rr-04]', lat: 13.085, lon: 80.289, near: 'George Town', aliases: ['இந்தியா ரிசர்வ் வங்கி சுரங்கப்பாதை'] },
+];
+const MIXED = [...SUBWAYS, ...SITES.map((s) => ({ ...s, site_kind: 'hazard_zone' }))];
+
+test('a subway with no known position is left out of distances, never given NaN', () => {
+  const out = nearest(SUBWAYS, { lat: 13.03, lon: 80.22 }, 12);
+  assert.deepEqual(out.map((s) => s.id), ['sub-gcc-rr-12', 'sub-gcc-rr-04']);
+  assert.ok(out.every((s) => Number.isFinite(s.distance_m)));
+});
+
+test('search finds a subway by an alias, by its area, or by Tamil text', () => {
+  assert.deepEqual(searchSites(SUBWAYS, 'CB road').map((s) => s.id), ['sub-gcc-rr-03']);
+  assert.deepEqual(searchSites(SUBWAYS, 'stanley nagar').map((s) => s.id), ['sub-gcc-rr-03']);
+  assert.deepEqual(searchSites(SUBWAYS, 'ரிசர்வ் வங்கி').map((s) => s.id), ['sub-gcc-rr-04']);
+  assert.deepEqual(searchSites(SUBWAYS, 'Easwaran Koil').map((s) => s.id), ['sub-gcc-rr-12']);
+});
+
+test('before any search the subways are listed first; with a position the placed ones go by distance, none is lost', () => {
+  assert.deepEqual(defaultSites(MIXED, null).map((s) => s.id), ['sub-gcc-rr-12', 'sub-gcc-rr-03', 'sub-gcc-rr-04']);
+  const withPos = defaultSites(MIXED, { lat: 13.085, lon: 80.289 }).map((s) => s.id);
+  assert.deepEqual(withPos.slice(0, 3), ['sub-gcc-rr-04', 'sub-gcc-rr-12', 'sub-gcc-rr-03']);
+  assert.ok(withPos.includes('tw1-0002'), 'hazard-zone points follow the subways');
+});
+

@@ -25,6 +25,8 @@ from app.fieldlog.models import ADHOC_SITE, VOLUNTEER
 from app.fieldlog.store import FieldLogStore
 
 SITES_FILE = Path(__file__).with_name("sites.json")
+# Subways from the GCC Bridges Department table, news and OpenStreetMap (scripts/build_subway_list.py, ADR-031).
+SUBWAY_SITES_FILE = Path(__file__).with_name("subway_sites.json")
 MIN_TOKEN_LENGTH = 16
 
 
@@ -106,6 +108,7 @@ class FieldLogService:
         durable: bool = False,
         now: Callable[[], datetime] | None = None,
         sites_file: Path = SITES_FILE,
+        subway_sites_file: Path | None = SUBWAY_SITES_FILE,
     ) -> None:
         self.now = now or (lambda: datetime.now(timezone.utc))
         self.tokens = TokenBook(tokens)
@@ -120,8 +123,25 @@ class FieldLogService:
             directory or Path(tempfile.gettempdir()) / "citypulse-fieldlog"
         )
         doc = json.loads(sites_file.read_text(encoding="utf-8"))
-        self.sites_doc = doc
-        self.site_ids = {s["id"] for s in doc["sites"]}
+        hazard_sites = [{**s, "site_kind": "hazard_zone"} for s in doc["sites"]]
+        subway_sites: list[dict] = []
+        if subway_sites_file is not None:
+            subway_sites = json.loads(subway_sites_file.read_text(encoding="utf-8"))[
+                "sites"
+            ]
+        ids = [s["id"] for s in subway_sites + hazard_sites]
+        if len(ids) != len(set(ids)):
+            raise ValueError(
+                "site ids must be unique across the subway and hazard-zone lists"
+            )
+        # Subways first: they are the places the pilot asks volunteers to look at (docs/FIELD_PROTOCOL.md).
+        self.sites_doc = {
+            **doc,
+            "lists": {"subway": len(subway_sites), "hazard_zone": len(hazard_sites)},
+            "sites": subway_sites + hazard_sites,
+        }
+        self.site_ids = set(ids)
+        self.subway_count = len(subway_sites)
         # per volunteer: bursts of a queue syncing, but not a script; per address: wrong tokens
         self.by_volunteer_hour = Window(300, 3600)
         self.by_volunteer_day = Window(2000, 86400)
@@ -160,6 +180,7 @@ class FieldLogService:
             "tokens_refused_as_too_weak_or_malformed": self.tokens.refused,
             "admin_token_configured": self.admin_token is not None,
             "sites": len(self.site_ids),
+            "subway_sites": self.subway_count,
             "entries": len(self.store),
             "corrupt_lines_skipped": self.store.corrupt_lines,
             "durable": self.durable,

@@ -1,0 +1,1657 @@
+{
+ "kind": "osm_subway_candidates",
+ "source": {
+  "file": "southern-zone-260911.osm.pbf",
+  "bytes": 557263963,
+  "fingerprint": "cbc5aa3f21ace6c64044cbc0a1d85d0304294c2691919e672406a82156a696a1"
+ },
+ "licence": "OpenStreetMap contributors, ODbL 1.0",
+ "box_min_lat_max_lat_min_lon_max_lon": [
+  12.75,
+  13.25,
+  79.95,
+  80.35
+ ],
+ "selection": "name tags with subway/underpass/under bridge/culvert/tunnel/Tamil சுரங்க, or highway with tunnel=yes|culvert and a name",
+ "count": 119,
+ "features": [
+  {
+   "type": "node",
+   "id": 360806713,
+   "lat": 13.061409,
+   "lon": 80.248716,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "node",
+   "id": 375668364,
+   "lat": 13.026638,
+   "lon": 80.232676,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "node",
+   "id": 653151700,
+   "lat": 12.926938,
+   "lon": 80.251576,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1993242743,
+   "lat": 13.021878,
+   "lon": 80.173846,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4788407922,
+   "lat": 13.108893,
+   "lon": 80.286793,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name:en": "Stanley Subway",
+    "highway": "bus_stop"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4789389223,
+   "lat": 13.104527,
+   "lon": 80.286725,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name:en": "Stanley - Mint Subway",
+    "highway": "bus_stop"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5444376204,
+   "lat": 13.049472,
+   "lon": 80.211908,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Vadapalani Underpass",
+    "highway": "mini_roundabout"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5653260421,
+   "lat": 13.029707,
+   "lon": 80.245458,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5737223333,
+   "lat": 13.074189,
+   "lon": 80.262116,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6026311315,
+   "lat": 12.83341,
+   "lon": 80.228748,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "node",
+   "id": 9994157075,
+   "lat": 12.900665,
+   "lon": 80.092912,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13092337126,
+   "lat": 12.980665,
+   "lon": 80.162501,
+   "length_m": 0.0,
+   "nodes": 1,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 23186320,
+   "lat": 13.035486,
+   "lon": 80.226579,
+   "length_m": 70.5,
+   "nodes": 2,
+   "tags": {
+    "name": "Madley subway",
+    "highway": "tertiary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 23186322,
+   "lat": 13.028219,
+   "lon": 80.225266,
+   "length_m": 199.8,
+   "nodes": 2,
+   "tags": {
+    "name": "Aranganathan Subway",
+    "highway": "secondary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 23893951,
+   "lat": 13.086454,
+   "lon": 80.289541,
+   "length_m": 178.1,
+   "nodes": 5,
+   "tags": {
+    "name": "RBI Subway",
+    "name:ta": "இந்தியா ரிசர்வ் வங்கி சுரங்கப்பாதை",
+    "alt_name": "Rajaji Salai",
+    "highway": "primary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 23912141,
+   "lat": 13.08151,
+   "lon": 80.275401,
+   "length_m": 113.5,
+   "nodes": 6,
+   "tags": {
+    "name": "Chennai Central Square Subway",
+    "highway": "footway",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 23954894,
+   "lat": 13.052723,
+   "lon": 80.264502,
+   "length_m": 139.1,
+   "nodes": 2,
+   "tags": {
+    "name": "Kasim Street",
+    "highway": "residential",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 26748560,
+   "lat": 13.065544,
+   "lon": 80.234025,
+   "length_m": 139.8,
+   "nodes": 5,
+   "tags": {
+    "name": "Nungambakkam Subway",
+    "name:ta": "நுங்கம்பாக்கம் சுரங்கப்பாதை",
+    "alt_name": "Nelson Manickam Road",
+    "highway": "secondary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 28534270,
+   "lat": 12.989134,
+   "lon": 80.185211,
+   "length_m": 238.0,
+   "nodes": 6,
+   "tags": {
+    "name": "Nanganallur Road",
+    "alt_name": "Pazhavanthangal Subway",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "ref": "O4318"
+   }
+  },
+  {
+   "type": "way",
+   "id": 29115467,
+   "lat": 13.075577,
+   "lon": 80.252146,
+   "length_m": 137.1,
+   "nodes": 2,
+   "tags": {
+    "name": "Gengu Reddy Subway",
+    "highway": "secondary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 29882204,
+   "lat": 13.021595,
+   "lon": 80.22372,
+   "length_m": 89.3,
+   "nodes": 2,
+   "tags": {
+    "name": "Bazaar Road Subway",
+    "highway": "tertiary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 29973071,
+   "lat": 12.996631,
+   "lon": 80.20094,
+   "length_m": 66.4,
+   "nodes": 3,
+   "tags": {
+    "name": "St Thomas Mount Subway",
+    "alt_name": "Mount - Medavakkam Road",
+    "highway": "primary",
+    "ref": "SH48A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 29973073,
+   "lat": 12.994059,
+   "lon": 80.201228,
+   "length_m": 37.0,
+   "nodes": 2,
+   "tags": {
+    "name": "St Thomas Mount Subway",
+    "alt_name": "Mount - Medavakkam Road",
+    "highway": "primary",
+    "ref": "SH48A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 31336519,
+   "lat": 12.993536,
+   "lon": 80.193446,
+   "length_m": 191.6,
+   "nodes": 3,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 51541605,
+   "lat": 13.025241,
+   "lon": 80.223765,
+   "length_m": 72.8,
+   "nodes": 2,
+   "tags": {
+    "name": "Jones Subway",
+    "highway": "tertiary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 51541652,
+   "lat": 13.025286,
+   "lon": 80.224355,
+   "length_m": 55.6,
+   "nodes": 2,
+   "tags": {
+    "name": "Jones Subway",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 84100986,
+   "lat": 12.99208,
+   "lon": 80.193473,
+   "length_m": 102.0,
+   "nodes": 5,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 97000446,
+   "lat": 12.91304,
+   "lon": 80.101522,
+   "length_m": 42.8,
+   "nodes": 3,
+   "tags": {
+    "name": "Chennai Bypass Entry",
+    "highway": "trunk_link",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 102030553,
+   "lat": 13.076531,
+   "lon": 80.252041,
+   "length_m": 76.2,
+   "nodes": 2,
+   "tags": {
+    "name": "Gengu Reddy Subway",
+    "highway": "secondary",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 102032962,
+   "lat": 12.965193,
+   "lon": 80.15057,
+   "length_m": 35.5,
+   "nodes": 2,
+   "tags": {
+    "name": "Darga Road",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "ref": "O1070"
+   }
+  },
+  {
+   "type": "way",
+   "id": 103716673,
+   "lat": 12.992103,
+   "lon": 80.193561,
+   "length_m": 100.0,
+   "nodes": 5,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 103716675,
+   "lat": 12.993647,
+   "lon": 80.193332,
+   "length_m": 195.0,
+   "nodes": 2,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 103716681,
+   "lat": 12.99266,
+   "lon": 80.193462,
+   "length_m": 31.2,
+   "nodes": 2,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 103716688,
+   "lat": 12.992626,
+   "lon": 80.193367,
+   "length_m": 32.3,
+   "nodes": 2,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 103716703,
+   "lat": 12.995627,
+   "lon": 80.201135,
+   "length_m": 46.1,
+   "nodes": 2,
+   "tags": {
+    "name": "St Thomas Mount Subway",
+    "alt_name": "Mount - Medavakkam Road",
+    "highway": "primary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "ref": "SH48A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 209513213,
+   "lat": 13.041276,
+   "lon": 80.228674,
+   "length_m": 284.8,
+   "nodes": 4,
+   "tags": {
+    "name": "Doraiswamy Subway",
+    "alt_name": "Brindavan Street",
+    "highway": "secondary",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 214180580,
+   "lat": 13.02124,
+   "lon": 80.223065,
+   "length_m": 73.2,
+   "nodes": 2,
+   "tags": {
+    "name": "Bazaar Road Subway",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 214180583,
+   "lat": 13.0209,
+   "lon": 80.222459,
+   "length_m": 78.3,
+   "nodes": 2,
+   "tags": {
+    "name": "Bazaar Road Subway",
+    "highway": "tertiary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 214202908,
+   "lat": 13.035343,
+   "lon": 80.227166,
+   "length_m": 42.4,
+   "nodes": 2,
+   "tags": {
+    "name": "Madley subway",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 214202909,
+   "lat": 13.035278,
+   "lon": 80.227519,
+   "length_m": 42.2,
+   "nodes": 4,
+   "tags": {
+    "name": "Madley subway",
+    "highway": "tertiary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 240340223,
+   "lat": 13.06989,
+   "lon": 80.23363,
+   "length_m": 99.1,
+   "nodes": 2,
+   "tags": {
+    "name": "Harrington Road",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 240340224,
+   "lat": 13.069864,
+   "lon": 80.233618,
+   "length_m": 98.2,
+   "nodes": 2,
+   "tags": {
+    "name": "Harrington Road",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 275459532,
+   "lat": 13.066068,
+   "lon": 80.232949,
+   "length_m": 83.3,
+   "nodes": 2,
+   "tags": {
+    "name": "Nungambakkam Subway",
+    "name:ta": "நுங்கம்பாக்கம் சுரங்கப்பாதை",
+    "alt_name": "Nelson Manickam Road",
+    "highway": "secondary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 275459533,
+   "lat": 13.066001,
+   "lon": 80.232923,
+   "length_m": 82.6,
+   "nodes": 2,
+   "tags": {
+    "name": "Nungambakkam Subway",
+    "name:ta": "நுங்கம்பாக்கம் சுரங்கப்பாதை",
+    "alt_name": "Nelson Manickam Road",
+    "highway": "secondary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 275459534,
+   "lat": 13.066279,
+   "lon": 80.232059,
+   "length_m": 118.9,
+   "nodes": 4,
+   "tags": {
+    "name": "Nungambakkam Subway",
+    "name:ta": "நுங்கம்பாக்கம் சுரங்கப்பாதை",
+    "alt_name": "Nelson Manickam Road",
+    "highway": "secondary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 314768307,
+   "lat": 13.141652,
+   "lon": 80.194848,
+   "length_m": 37.4,
+   "nodes": 2,
+   "tags": {
+    "name": "Underpass",
+    "highway": "secondary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 331901996,
+   "lat": 12.967376,
+   "lon": 80.221519,
+   "length_m": 28.0,
+   "nodes": 3,
+   "tags": {
+    "name": "Velachery MRTS",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "bicycle": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 354746190,
+   "lat": 13.046843,
+   "lon": 80.235847,
+   "length_m": 54.3,
+   "nodes": 5,
+   "tags": {
+    "name": "Subway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 369956394,
+   "lat": 12.969766,
+   "lon": 80.154322,
+   "length_m": 70.9,
+   "nodes": 5,
+   "tags": {
+    "name": "Easwari Nagar Subway Underpass",
+    "highway": "residential"
+   }
+  },
+  {
+   "type": "way",
+   "id": 386500119,
+   "lat": 13.138868,
+   "lon": 80.187791,
+   "length_m": 32.9,
+   "nodes": 2,
+   "tags": {
+    "name": "Underpass",
+    "tunnel": "culvert",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 392200416,
+   "lat": 13.068524,
+   "lon": 80.27174,
+   "length_m": 65.1,
+   "nodes": 5,
+   "tags": {
+    "name": "Subway",
+    "layer": "1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 392200417,
+   "lat": 13.068432,
+   "lon": 80.272188,
+   "length_m": 65.0,
+   "nodes": 5,
+   "tags": {
+    "name": "Subway",
+    "layer": "1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 392200418,
+   "lat": 13.068087,
+   "lon": 80.271779,
+   "length_m": 57.5,
+   "nodes": 5,
+   "tags": {
+    "name": "Subway",
+    "layer": "1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 446253108,
+   "lat": 12.970116,
+   "lon": 80.154253,
+   "length_m": 56.7,
+   "nodes": 3,
+   "tags": {
+    "name": "Easwari Nagar Subway Underpass",
+    "highway": "residential",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 457176568,
+   "lat": 13.107432,
+   "lon": 80.242241,
+   "length_m": 44.6,
+   "nodes": 3,
+   "tags": {
+    "name": "Perambur Subway",
+    "name:ta": "பெரம்பூர் சுரங்கப்பாதை",
+    "highway": "pedestrian",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 496847201,
+   "lat": 12.985377,
+   "lon": 80.176775,
+   "length_m": 78.8,
+   "nodes": 4,
+   "tags": {
+    "name": "3rd Main Road",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 510442614,
+   "lat": 12.970396,
+   "lon": 80.153961,
+   "length_m": 23.5,
+   "nodes": 2,
+   "tags": {
+    "name": "Easwari Nagar Subway Underpass",
+    "highway": "residential"
+   }
+  },
+  {
+   "type": "way",
+   "id": 566573623,
+   "lat": 13.077548,
+   "lon": 80.251882,
+   "length_m": 162.7,
+   "nodes": 4,
+   "tags": {
+    "name": "Gengu Reddy Subway",
+    "highway": "secondary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 666393460,
+   "lat": 13.107407,
+   "lon": 80.286255,
+   "length_m": 33.7,
+   "nodes": 2,
+   "tags": {
+    "name": "Monegar Choultry Road",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 723477928,
+   "lat": 13.04578,
+   "lon": 80.229953,
+   "length_m": 53.6,
+   "nodes": 6,
+   "tags": {
+    "name": "Rangarajapuram Main Road",
+    "highway": "residential",
+    "tunnel": "yes",
+    "layer": "-1",
+    "foot": "yes",
+    "bicycle": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 827713682,
+   "lat": 13.222431,
+   "lon": 80.319739,
+   "length_m": 66.9,
+   "nodes": 5,
+   "tags": {
+    "name": "Chennai - Ennore Road Tunnel",
+    "alt_name": "Chennai - Ennore Road",
+    "highway": "primary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "ref": "SH114"
+   }
+  },
+  {
+   "type": "way",
+   "id": 840532260,
+   "lat": 13.086725,
+   "lon": 80.289538,
+   "length_m": 233.3,
+   "nodes": 5,
+   "tags": {
+    "name": "RBI Subway",
+    "name:ta": "இந்தியா ரிசர்வ் வங்கி சுரங்கப்பாதை",
+    "alt_name": "Rajaji Salai",
+    "highway": "primary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 840532261,
+   "lat": 13.085276,
+   "lon": 80.289189,
+   "length_m": 104.4,
+   "nodes": 3,
+   "tags": {
+    "name": "RBI Subway",
+    "name:ta": "இந்தியா ரிசர்வ் வங்கி சுரங்கப்பாதை",
+    "alt_name": "Rajaji Salai",
+    "highway": "primary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 840532262,
+   "lat": 13.083818,
+   "lon": 80.289222,
+   "length_m": 229.0,
+   "nodes": 6,
+   "tags": {
+    "name": "RBI Subway",
+    "name:ta": "இந்தியா ரிசர்வ் வங்கி சுரங்கப்பாதை",
+    "alt_name": "Rajaji Salai",
+    "highway": "primary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 840532263,
+   "lat": 13.08532,
+   "lon": 80.289279,
+   "length_m": 107.9,
+   "nodes": 2,
+   "tags": {
+    "name": "RBI Subway",
+    "name:ta": "இந்தியா ரிசர்வ் வங்கி சுரங்கப்பாதை",
+    "alt_name": "Rajaji Salai",
+    "highway": "primary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1039834696,
+   "lat": 12.994664,
+   "lon": 80.201219,
+   "length_m": 64.4,
+   "nodes": 2,
+   "tags": {
+    "name": "St Thomas Mount Subway",
+    "alt_name": "Mount - Medavakkam Road",
+    "highway": "primary",
+    "ref": "SH48A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1080320449,
+   "lat": 12.970576,
+   "lon": 80.153776,
+   "length_m": 35.5,
+   "nodes": 3,
+   "tags": {
+    "name": "Easwari Nagar Subway",
+    "highway": "residential"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1091003763,
+   "lat": 13.066348,
+   "lon": 80.232072,
+   "length_m": 123.0,
+   "nodes": 4,
+   "tags": {
+    "name": "Nungambakkam Subway",
+    "name:ta": "நுங்கம்பாக்கம் சுரங்கப்பாதை",
+    "alt_name": "Nelson Manickam Road",
+    "highway": "secondary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1103973186,
+   "lat": 13.093863,
+   "lon": 80.292029,
+   "length_m": 10.0,
+   "nodes": 2,
+   "tags": {
+    "name": "Beach Railway Station Pedestrians Subway",
+    "highway": "steps"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1103973187,
+   "lat": 13.093994,
+   "lon": 80.292069,
+   "length_m": 10.6,
+   "nodes": 2,
+   "tags": {
+    "name": "Beach Railway Station Pedestrians Subway",
+    "highway": "steps"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1103973188,
+   "lat": 13.093928,
+   "lon": 80.292049,
+   "length_m": 5.0,
+   "nodes": 3,
+   "tags": {
+    "name": "Beach Railway Station Pedestrians Subway",
+    "highway": "footway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1103973192,
+   "lat": 13.093803,
+   "lon": 80.29225,
+   "length_m": 10.0,
+   "nodes": 2,
+   "tags": {
+    "name": "Beach Railway Station Pedestrians Subway",
+    "highway": "steps"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1103973193,
+   "lat": 13.093868,
+   "lon": 80.292269,
+   "length_m": 5.0,
+   "nodes": 3,
+   "tags": {
+    "name": "Beach Railway Station Pedestrians Subway",
+    "highway": "footway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1103973194,
+   "lat": 13.093935,
+   "lon": 80.29229,
+   "length_m": 10.6,
+   "nodes": 2,
+   "tags": {
+    "name": "Beach Railway Station Pedestrians Subway",
+    "highway": "steps"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1103973195,
+   "lat": 13.093898,
+   "lon": 80.292158,
+   "length_m": 23.2,
+   "nodes": 2,
+   "tags": {
+    "name": "Beach Railway Station Pedestrians Subway",
+    "highway": "footway",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1103973196,
+   "lat": 13.093928,
+   "lon": 80.292052,
+   "length_m": 0.7,
+   "nodes": 2,
+   "tags": {
+    "name": "Beach Railway Station Pedestrians Subway",
+    "highway": "footway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1103973197,
+   "lat": 13.093868,
+   "lon": 80.292265,
+   "length_m": 0.9,
+   "nodes": 2,
+   "tags": {
+    "name": "Beach Railway Station Pedestrians Subway",
+    "highway": "footway"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1111235224,
+   "lat": 13.10934,
+   "lon": 80.259749,
+   "length_m": 52.0,
+   "nodes": 4,
+   "tags": {
+    "name": "Ganeshpuram Subway",
+    "highway": "construction",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1188902779,
+   "lat": 13.081731,
+   "lon": 80.275069,
+   "length_m": 38.2,
+   "nodes": 3,
+   "tags": {
+    "name": "Chennai Central Square Subway",
+    "highway": "footway",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1189151046,
+   "lat": 12.9943,
+   "lon": 80.201226,
+   "length_m": 16.6,
+   "nodes": 2,
+   "tags": {
+    "name": "St Thomas Mount Subway",
+    "alt_name": "Mount - Medavakkam Road",
+    "highway": "primary",
+    "ref": "SH48A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1192032383,
+   "lat": 13.066458,
+   "lon": 80.231441,
+   "length_m": 15.5,
+   "nodes": 3,
+   "tags": {
+    "name": "Nungambakkam Subway",
+    "highway": "secondary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1251974975,
+   "lat": 13.035391,
+   "lon": 80.226908,
+   "length_m": 3.9,
+   "nodes": 2,
+   "tags": {
+    "name": "Madley subway",
+    "highway": "tertiary",
+    "tunnel": "yes",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1267322167,
+   "lat": 13.040954,
+   "lon": 80.230118,
+   "length_m": 20.0,
+   "nodes": 2,
+   "tags": {
+    "name": "Doraiswamy Subway",
+    "highway": "secondary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1286834229,
+   "lat": 13.035386,
+   "lon": 80.22695,
+   "length_m": 5.3,
+   "nodes": 2,
+   "tags": {
+    "name": "Madley subway",
+    "highway": "tertiary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1289631729,
+   "lat": 13.139144,
+   "lon": 80.187648,
+   "length_m": 17.7,
+   "nodes": 2,
+   "tags": {
+    "name": "Underpass",
+    "tunnel": "culvert",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1289631730,
+   "lat": 13.139036,
+   "lon": 80.187704,
+   "length_m": 9.0,
+   "nodes": 2,
+   "tags": {
+    "name": "Underpass",
+    "tunnel": "culvert",
+    "layer": "-1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1323785281,
+   "lat": 12.991458,
+   "lon": 80.194073,
+   "length_m": 91.6,
+   "nodes": 2,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1323785282,
+   "lat": 12.991552,
+   "lon": 80.194115,
+   "length_m": 80.8,
+   "nodes": 2,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1323785283,
+   "lat": 12.994645,
+   "lon": 80.193306,
+   "length_m": 26.8,
+   "nodes": 2,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1323785284,
+   "lat": 12.994672,
+   "lon": 80.193423,
+   "length_m": 26.9,
+   "nodes": 3,
+   "tags": {
+    "name": "Thillaiganga Nagar Subway",
+    "name:ta": "தில்லைகங்கா நகர் சுரங்கப்பாதை",
+    "alt_name": "Inner Ring Road (Southern Sector)",
+    "highway": "primary",
+    "oneway": "yes",
+    "ref": "SH2A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1323786814,
+   "lat": 13.04161,
+   "lon": 80.227318,
+   "length_m": 11.8,
+   "nodes": 2,
+   "tags": {
+    "name": "Doraiswamy Subway",
+    "alt_name": "Brindavan Street",
+    "highway": "secondary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1323786815,
+   "lat": 13.040982,
+   "lon": 80.229977,
+   "length_m": 11.3,
+   "nodes": 2,
+   "tags": {
+    "name": "Doraiswamy Subway",
+    "alt_name": "Brindavan Street",
+    "highway": "secondary"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1323787516,
+   "lat": 13.0656,
+   "lon": 80.234069,
+   "length_m": 143.4,
+   "nodes": 5,
+   "tags": {
+    "name": "Nungambakkam Subway",
+    "name:ta": "நுங்கம்பாக்கம் சுரங்கப்பாதை",
+    "alt_name": "Nelson Manickam Road",
+    "highway": "secondary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1323798336,
+   "lat": 13.083599,
+   "lon": 80.289124,
+   "length_m": 248.9,
+   "nodes": 6,
+   "tags": {
+    "name": "RBI Subway",
+    "name:ta": "இந்தியா ரிசர்வ் வங்கி சுரங்கப்பாதை",
+    "alt_name": "Rajaji Salai",
+    "highway": "primary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1323798337,
+   "lat": 13.087747,
+   "lon": 80.290066,
+   "length_m": 100.1,
+   "nodes": 3,
+   "tags": {
+    "name": "RBI Subway",
+    "name:ta": "இந்தியா ரிசர்வ் வங்கி சுரங்கப்பாதை",
+    "highway": "primary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1324385026,
+   "lat": 12.995269,
+   "lon": 80.20119,
+   "length_m": 34.6,
+   "nodes": 2,
+   "tags": {
+    "name": "St Thomas Mount Subway",
+    "alt_name": "Mount - Medavakkam Road",
+    "highway": "primary",
+    "ref": "SH48A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1324385027,
+   "lat": 12.995034,
+   "lon": 80.201209,
+   "length_m": 17.9,
+   "nodes": 2,
+   "tags": {
+    "name": "St Thomas Mount Subway",
+    "alt_name": "Mount - Medavakkam Road",
+    "highway": "primary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "ref": "SH48A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1324835389,
+   "lat": 12.99601,
+   "lon": 80.201056,
+   "length_m": 40.9,
+   "nodes": 2,
+   "tags": {
+    "name": "St Thomas Mount Subway",
+    "alt_name": "Mount - Medavakkam Road",
+    "highway": "primary",
+    "ref": "SH48A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1324835390,
+   "lat": 12.996247,
+   "lon": 80.201005,
+   "length_m": 12.8,
+   "nodes": 2,
+   "tags": {
+    "name": "St Thomas Mount Subway",
+    "alt_name": "Mount - Medavakkam Road",
+    "highway": "primary",
+    "tunnel": "yes",
+    "layer": "-1",
+    "ref": "SH48A"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1396540947,
+   "lat": 13.081229,
+   "lon": 80.273297,
+   "length_m": 54.6,
+   "nodes": 5,
+   "tags": {
+    "name": "Metro Subway",
+    "description": "MGR CENTRAL METRO SUBWAY",
+    "tunnel": "yes",
+    "access": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1452288254,
+   "lat": 12.969334,
+   "lon": 80.153969,
+   "length_m": 35.0,
+   "nodes": 3,
+   "tags": {
+    "name": "Easwari Nagar Subway",
+    "highway": "residential"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1476411677,
+   "lat": 13.066531,
+   "lon": 80.23145,
+   "length_m": 11.5,
+   "nodes": 2,
+   "tags": {
+    "name": "Nungambakkam Subway",
+    "name:ta": "நுங்கம்பாக்கம் சுரங்கப்பாதை",
+    "alt_name": "Nelson Manickam Road",
+    "highway": "secondary",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1501519010,
+   "lat": 13.081504,
+   "lon": 80.275029,
+   "length_m": 13.2,
+   "nodes": 2,
+   "tags": {
+    "name": "E4",
+    "highway": "steps",
+    "tunnel": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1536438381,
+   "lat": 12.987995,
+   "lon": 80.185321,
+   "length_m": 7.6,
+   "nodes": 2,
+   "tags": {
+    "name": "Nanganallur Road",
+    "alt_name": "Pazhavanthangal Subway",
+    "highway": "tertiary",
+    "ref": "O4318"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1536438382,
+   "lat": 12.98795,
+   "lon": 80.185342,
+   "length_m": 3.4,
+   "nodes": 2,
+   "tags": {
+    "name": "Nanganallur Road",
+    "alt_name": "Pazhavanthangal Subway",
+    "highway": "tertiary",
+    "ref": "O4318"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1536599929,
+   "lat": 13.114245,
+   "lon": 80.154394,
+   "length_m": 205.6,
+   "nodes": 7,
+   "tags": {
+    "name": "Ambattur railway Underpass",
+    "highway": "construction",
+    "tunnel": "yes",
+    "layer": "-1",
+    "foot": "yes",
+    "bicycle": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1540906815,
+   "lat": 12.952632,
+   "lon": 80.142869,
+   "length_m": 163.2,
+   "nodes": 4,
+   "tags": {
+    "name": "Radha Nagar Subway",
+    "highway": "residential",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1540906816,
+   "lat": 12.952467,
+   "lon": 80.141292,
+   "length_m": 178.7,
+   "nodes": 7,
+   "tags": {
+    "name": "Radha Nagar Subway",
+    "highway": "residential",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1540906817,
+   "lat": 12.952807,
+   "lon": 80.141825,
+   "length_m": 9.1,
+   "nodes": 2,
+   "tags": {
+    "name": "Radha Nagar subway",
+    "highway": "residential",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1542809258,
+   "lat": 12.990711,
+   "lon": 80.184998,
+   "length_m": 64.8,
+   "nodes": 3,
+   "tags": {
+    "name": "Nanganallur Road",
+    "alt_name": "Pazhavanthangal Subway",
+    "highway": "tertiary",
+    "ref": "O4318"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1542809259,
+   "lat": 12.988142,
+   "lon": 80.185265,
+   "length_m": 28.3,
+   "nodes": 5,
+   "tags": {
+    "name": "Nanganallur Road",
+    "alt_name": "Pazhavanthangal Subway",
+    "highway": "tertiary",
+    "ref": "O4318"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1545831770,
+   "lat": 12.952617,
+   "lon": 80.14286,
+   "length_m": 163.6,
+   "nodes": 4,
+   "tags": {
+    "name": "Radha Nagar Subway",
+    "highway": "residential",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1545831771,
+   "lat": 12.952789,
+   "lon": 80.14182,
+   "length_m": 8.7,
+   "nodes": 2,
+   "tags": {
+    "name": "Radha Nagar subway",
+    "highway": "residential",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1545831772,
+   "lat": 12.952365,
+   "lon": 80.14122,
+   "length_m": 176.4,
+   "nodes": 9,
+   "tags": {
+    "name": "Radha Nagar Subway",
+    "highway": "residential",
+    "tunnel": "yes",
+    "layer": "-1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1545831773,
+   "lat": 13.115303,
+   "lon": 80.154439,
+   "length_m": 25.5,
+   "nodes": 2,
+   "tags": {
+    "name": "Ambattur railway Underpass",
+    "highway": "construction"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1545831774,
+   "lat": 13.113342,
+   "lon": 80.15414,
+   "length_m": 12.7,
+   "nodes": 2,
+   "tags": {
+    "name": "Ambattur railway underpass",
+    "highway": "construction"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1547936088,
+   "lat": 13.009165,
+   "lon": 80.212283,
+   "length_m": 13.5,
+   "nodes": 2,
+   "tags": {
+    "name": "guindy subway",
+    "highway": "pedestrian",
+    "tunnel": "yes",
+    "layer": "-1",
+    "foot": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1548567274,
+   "lat": 12.951428,
+   "lon": 80.140483,
+   "length_m": 85.3,
+   "nodes": 14,
+   "tags": {
+    "name": "Radha Nagar Subway",
+    "highway": "residential",
+    "oneway": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1548567275,
+   "lat": 12.951539,
+   "lon": 80.140521,
+   "length_m": 45.1,
+   "nodes": 10,
+   "tags": {
+    "name": "Radha Nagar Subway",
+    "highway": "residential",
+    "oneway": "yes"
+   }
+  }
+ ]
+}

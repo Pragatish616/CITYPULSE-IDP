@@ -1,0 +1,15 @@
+{
+ "task": "NEXT_STEPS data test: do the CFM-DSS public layers carry live, timestamped readings?",
+ "approved": "owner, 9 October 2026: exactly two read-only requests",
+ "run_at": "2026-10-08T19:40:11Z",
+ "endpoint": "https://chennaifloodmonitor.tn.gov.in/geoserver/ows",
+ "requests_made": 1,
+ "request_1_capabilities": {
+  "http_status": 404,
+  "content_type": "text/html; charset=utf-8",
+  "bytes": 2000,
+  "error_start": "<!DOCTYPE html>\r\n<html>\r\n    <head>\r\n        <title>The resource cannot be found.</title>\r\n        <meta name=\"viewport\" content=\"width=device-width\" />\r\n        <style>\r\n         body {font-family:\"Verdana\";font-weight:normal;font-size: .7em;color:black;} \r\n         p {font-family:\"Verdana\";font-we"
+ },
+ "layer_read": null,
+ "request_2_feature": "not made: no preferred layer was listed (or request 1 failed); no other path was tried"
+}

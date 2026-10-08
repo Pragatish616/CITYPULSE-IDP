@@ -1,6 +1,6 @@
 // Field-log page: wires core.js to the DOM (ADR-028). No innerHTML anywhere: every string goes in through textContent.
 import {
-  ADHOC, Outbox, buildEntry, cleanToken, clockSkewWarning, formatDistance, nearest, searchSites, syncAll, toCsv, validateEntry,
+  ADHOC, Outbox, buildEntry, cleanToken, clockSkewWarning, defaultSites, formatDistance, searchSites, syncAll, toCsv, validateEntry,
 } from './core.js';
 import { t } from './i18n.js';
 
@@ -97,11 +97,12 @@ function renderSites() {
   const q = $('search').value;
   let list = [];
   if (q.trim()) list = searchSites(sites, q);
-  else if (pos) list = nearest(sites, pos, 12);
+  else list = defaultSites(sites, pos);
   const ul = $('site-list');
   ul.replaceChildren();
   for (const s of list) {
-    const meta = [s.distance_m != null ? formatDistance(s.distance_m) : null, s.hazard_category, s.basin_hint ? `${s.basin_hint}?` : null].filter(Boolean).join(' · ');
+    const unplaced = s.site_kind === 'subway' && typeof s.lat !== 'number';
+    const meta = [s.distance_m != null ? formatDistance(s.distance_m) : null, unplaced ? tt('position_unknown') : null, unplaced ? s.near : null, s.hazard_category, s.basin_hint ? `${s.basin_hint}?` : null].filter(Boolean).join(' · ');
     ul.append(el('li', {}, el('button', { type: 'button', class: 'site', onclick: () => chooseSite({ id: s.id, label: s.label }) }, el('span', { text: s.label }), el('span', { class: 'meta', text: meta }))));
   }
   $('site-none').hidden = !(q.trim() && list.length === 0);

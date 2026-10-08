@@ -34,6 +34,7 @@ export function haversineM(lat1, lon1, lat2, lon2) {
 /** The `n` sites closest to `pos` ({lat, lon}), each with `distance_m`. The position stays on the phone. */
 export function nearest(sites, pos, n = 12) {
   return sites
+    .filter((s) => typeof s.lat === 'number' && typeof s.lon === 'number') // a subway whose position is not known cannot be placed
     .map((s) => ({ ...s, distance_m: haversineM(pos.lat, pos.lon, s.lat, s.lon) }))
     .sort((a, b) => a.distance_m - b.distance_m || a.id.localeCompare(b.id))
     .slice(0, n);
@@ -54,11 +55,24 @@ export function searchSites(sites, query, limit = 30) {
   if (!words.length) return [];
   const scored = [];
   for (const s of sites) {
-    const hay = normalise(`${s.label} ${s.id} ${s.near ?? ''} ${s.basin_hint ?? ''}`);
+    const hay = normalise(`${s.label} ${s.id} ${s.near ?? ''} ${s.basin_hint ?? ''} ${(s.aliases ?? []).join(' ')}`);
     if (words.every((w) => hay.includes(w))) scored.push({ s, rank: normalise(s.label).startsWith(words[0]) ? 0 : 1 });
   }
   scored.sort((a, b) => a.rank - b.rank || a.s.id.localeCompare(b.s.id));
   return scored.slice(0, limit).map((x) => x.s);
+}
+
+/**
+ * What to list before anyone has searched: the subways (the places the pilot asks volunteers about). With the phone's position,
+ * the nearest placed subways, then those whose position is unknown (so none is lost), then the closest hazard-zone points.
+ */
+export function defaultSites(sites, pos, limit = 12) {
+  const subways = sites.filter((s) => s.site_kind === 'subway');
+  if (!pos) return subways;
+  const near = nearest(subways, pos, limit);
+  const unplaced = subways.filter((s) => typeof s.lat !== 'number' || typeof s.lon !== 'number');
+  const rest = nearest(sites.filter((s) => s.site_kind !== 'subway'), pos, 6);
+  return [...near, ...unplaced, ...rest];
 }
 
 export function formatDistance(m) {

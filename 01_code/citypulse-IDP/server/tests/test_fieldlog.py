@@ -12,7 +12,7 @@ from uuid import uuid4
 import pytest
 from pydantic import ValidationError
 
-from app.fieldlog.models import FieldLogEntry, PassState, StoredEntry
+from app.fieldlog.models import SITE_ID, FieldLogEntry, PassState, StoredEntry
 from app.fieldlog.service import FieldLogService, TokenBook, Window
 from app.fieldlog.store import CSV_HEADER, Conflict, FieldLogStore, to_csv_row
 
@@ -21,6 +21,13 @@ TOKEN_A = "tok-alice-0123456789"
 TOKEN_B = "tok-bob---0123456789"
 ADMIN = "admin-token-0123456789"
 KNOWN_SITE = "tw1-0004"
+SUBWAY_SITE = "sub-gcc-rr-12"  # Madley subway
+NO_POSITION_SUBWAY = (
+    "sub-gcc-rr-03"  # Stanley Nagar: no OSM geometry, so lat/lon are null
+)
+from pathlib import Path
+
+SUBWAYS = Path(__file__).resolve().parents[1] / "app" / "fieldlog" / "subway_sites.json"
 
 
 def payload(**kw) -> dict:
@@ -237,7 +244,11 @@ def test_window_counts_and_forgets() -> None:
 
 
 def test_sites_file_ships_with_the_server(svc) -> None:
-    assert len(svc.site_ids) == 402 and KNOWN_SITE in svc.site_ids
+    subway_ids = {
+        s["id"] for s in json.loads(SUBWAYS.read_text(encoding="utf-8"))["sites"]
+    }
+    assert len(subway_ids) == 31 and subway_ids <= svc.site_ids
+    assert len(svc.site_ids) == 402 + 31 and KNOWN_SITE in svc.site_ids
     assert svc.known_site("adhoc") and not svc.known_site("tw9-9999")
 
 
@@ -427,9 +438,14 @@ def test_public_sites_and_health(api) -> None:
     sites = api.get("/fieldlog/sites")
     assert (
         sites.status_code == 200
-        and len(sites.json()["sites"]) == 402
+        and len(sites.json()["sites"]) == 402 + 31
         and sites.json()["kind"] == "candidate"
+        and sites.json()["lists"] == {"subway": 31, "hazard_zone": 402}
     )
+    kinds = [s["site_kind"] for s in sites.json()["sites"]]
+    assert kinds[:31] == ["subway"] * 31 and set(kinds[31:]) == {
+        "hazard_zone"
+    }, "subways are served first"
     assert all(s["verified_on_ground"] is False for s in sites.json()["sites"])
     h = api.get("/fieldlog/health").json()
     assert (
@@ -571,3 +587,60 @@ def test_the_admin_endpoints_slow_wrong_guesses_but_never_refuse_the_right_token
         api.get("/fieldlog/summary", headers={"x-admin-token": ADMIN}).status_code
         == 200
     )
+
+
+# ---------------------------------------------------------------------------------------------- subways (ADR-031)
+
+
+def test_a_volunteer_can_log_a_subway_including_one_whose_position_is_unknown(
+    api,
+) -> None:
+    for site in (SUBWAY_SITE, NO_POSITION_SUBWAY):
+        r = post(api, payload(site_id=site, state="passable", depth_band=None))
+        assert r.status_code == 201, r.text
+    # a listed site never carries a position, a subway included
+    bad = post(
+        api,
+        payload(
+            site_id=SUBWAY_SITE, state="passable", depth_band=None, lat=13.0, lon=80.2
+        ),
+    )
+    assert bad.status_code == 422
+
+
+def test_subway_sites_are_labelled_unverified_and_say_what_they_are() -> None:
+    doc = json.loads(SUBWAYS.read_text(encoding="utf-8"))
+    assert (
+        doc["kind"] == "subway_candidates" and doc["count"] == len(doc["sites"]) == 31
+    )
+    assert len({s["id"] for s in doc["sites"]}) == 31
+    by_id = {s["id"]: s for s in doc["sites"]}
+    for s in doc["sites"]:
+        assert s["site_kind"] == "subway" and s["verified_on_ground"] is False
+        assert SITE_ID.match(
+            s["id"]
+        ), f"{s['id']} would be refused by the server (2 to 32 characters of a-z, 0-9, _ or -)"
+        assert s["id"] in s["label"] and any(
+            w in s["label"].lower() for w in ("subway", "underpass")
+        )
+        assert (
+            (s["lat"] is None)
+            == (s["lon"] is None)
+            == (s["position_quality"] == "none")
+        )
+        if s["lat"] is not None:
+            assert 12.7 <= s["lat"] <= 13.3 and 79.9 <= s["lon"] <= 80.4
+    assert (
+        by_id[NO_POSITION_SUBWAY]["lat"] is None
+        and by_id[NO_POSITION_SUBWAY]["near"] == "Stanley Nagar"
+    )
+    assert by_id[SUBWAY_SITE]["position_quality"] == "osm_named"
+
+
+def test_duplicate_site_ids_across_the_lists_are_refused(tmp_path) -> None:
+    sub = tmp_path / "subs.json"
+    sub.write_text(
+        json.dumps({"sites": [{"id": KNOWN_SITE, "label": "x"}]}), encoding="utf-8"
+    )
+    with pytest.raises(ValueError, match="unique"):
+        FieldLogService(directory=tmp_path / "d", subway_sites_file=sub)

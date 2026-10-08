@@ -1,0 +1,67 @@
+{
+  "kind": "gcc_subways_source",
+  "note": "Transcribed by hand, row for row, from the Greater Chennai Corporation Bridges Department page. The page states no date for the inventory. Zone/Ward and Location are copied exactly as written; nothing is added or corrected here (corrections and matches are made in build_subway_list.py with a recorded reason).",
+  "sources": {
+    "gcc_bridges": {
+      "title": "Greater Chennai Corporation, Bridges Department: Road Under Bridge/Subway (16 Nos) and Pedestrian Subway (5 Nos) tables",
+      "url": "https://chennaicorporation.gov.in/gcc/department/bridges/",
+      "read_on": "2026-10-09",
+      "licence": "Government of Tamil Nadu public web page; facts (names, wards) transcribed, no text copied beyond the location phrases"
+    },
+    "tnm_2023_12_06": {
+      "title": "The News Minute, Chennai Floods: Traffic, Subways, and Train Updates for Dec 6 (2023)",
+      "url": "https://www.thenewsminute.com/tamil-nadu/chennai-floods-traffic-subways-and-train-updates-for-dec-6",
+      "read_on": "2026-10-09",
+      "licence": "News article; only the subway names it lists as closed or partly open are used"
+    },
+    "dtnext_2025_11_29": {
+      "title": "DT Next, Advanced warning system, subway barriers in place to mitigate Ditwah damage (29 November 2025)",
+      "url": "https://www.dtnext.in/news/chennai/advanced-warning-system-subway-barriers-in-place-to-mitigate-ditwah-damage-854965",
+      "read_on": "2026-10-09",
+      "licence": "News article; only the subway names it gives as examples are used"
+    }
+  },
+  "road_rail_subways": [
+    {"gcc_no": 1, "zone_ward": "IV&VI/45&70", "location": "Ganesapuram subway at Dr. Ambedkar College Road to the East of Vyasarpadi Jeeva Railway Station."},
+    {"gcc_no": 2, "zone_ward": "V/52", "location": "In Monegar Choultry Road near stanley hospital"},
+    {"gcc_no": 3, "zone_ward": "V/53", "location": "Stanley Nagar Subway 1 & 2 along Cochrane Basin Bridge Road South of Stanley Nagar near Post Office."},
+    {"gcc_no": 4, "zone_ward": "V/60", "location": "Reserve Bank Subway at Rajaji Salai Near Reserve Bank of India."},
+    {"gcc_no": 5, "zone_ward": "V&VIII/61&104", "location": "Gengu- Reddy Road Subway at Egmore near Nehru Park"},
+    {"gcc_no": 6, "zone_ward": "I/5", "location": "Mancikam Nagar Subway"},
+    {"gcc_no": 7, "zone_ward": "VI/70&71", "location": "Perambur Subway at Perambur High Road to the West of Perambur Railway Station."},
+    {"gcc_no": 8, "zone_ward": "VIII/94", "location": "In Redhills Road at Villivakkam LC-2"},
+    {"gcc_no": 9, "zone_ward": "IX/109&110", "location": "Nungambakkam Subway near Nungambakkam Rly. station."},
+    {"gcc_no": 10, "zone_ward": "IX/110", "location": "Harrington Road Subway near Pachaiyappa's College"},
+    {"gcc_no": 11, "zone_ward": "X/135&137", "location": "Dheeran Sivalingam Subway connecting Doraisamy road and Brindavan Road."},
+    {"gcc_no": 12, "zone_ward": "X/135&137", "location": "Madley Subway connecting Madley road and Easwaran Koil Street on Southern Side of Mambalam Railway Station."},
+    {"gcc_no": 13, "zone_ward": "X&XIII/140/171", "location": "Thyagi Aranganathan Subway connecting Kannammapet and Reddikuppam Road."},
+    {"gcc_no": 14, "zone_ward": "X/142", "location": "Saidapet Bazaar Road Subway"},
+    {"gcc_no": 15, "zone_ward": "X/142", "location": "C.P. Pavalavannan Bridge in Jones Road"},
+    {"gcc_no": 16, "zone_ward": "X/134&136", "location": "Pedestrian cum two wheeler subway at Rangarajapuram level crossing"}
+  ],
+  "pedestrian_subways": [
+    {"gcc_no": 1, "zone_ward": "V/60", "location": "Rajaji Salai Subway near Beach Railway station."},
+    {"gcc_no": 2, "zone_ward": "VI/71", "location": "Jamaliah Subway near Perambur Bus Terminus."},
+    {"gcc_no": 3, "zone_ward": "VI/71", "location": "Raised Tunnels on either side of existing Perambur Subway. (Railway Lines)"},
+    {"gcc_no": 4, "zone_ward": "IX/114", "location": "Ezhilagam Subway near M.G.R.Samathi"},
+    {"gcc_no": 5, "zone_ward": "IX/114", "location": "Kamarajar Salai Subway at the junction of Bharathi Salai, Triplicane"}
+  ],
+  "named_in_news_not_on_gcc_table": [
+    {"name": "Choolaimedu, Loyola Subway", "source": "tnm_2023_12_06", "stated": "closed due to waterlogging (Dec 2023)"},
+    {"name": "Kathirvedu Subway", "source": "tnm_2023_12_06", "stated": "closed due to waterlogging (Dec 2023)"},
+    {"name": "Vyasarpadi subway", "source": "tnm_2023_12_06", "stated": "closed due to waterlogging (Dec 2023); may or may not be GCC row 1 (the Ganesapuram subway lies beside Vyasarpadi Jeeva station), unresolved"}
+  ],
+  "news_name_forms_for_gcc_rows": [
+    {"gcc_row": "road_rail:1", "name_in_news": "Ganesapuram subway", "source": "tnm_2023_12_06"},
+    {"gcc_row": "road_rail:3", "name_in_news": "CB road subway", "source": "tnm_2023_12_06", "relation": "probable: Cochrane Basin (C.B.) Road is the road in GCC row 3; not asserted"},
+    {"gcc_row": "road_rail:3", "name_in_news": "Stanley Nagar", "source": "dtnext_2025_11_29"},
+    {"gcc_row": "road_rail:5", "name_in_news": "Gengu Reddy Road", "source": "dtnext_2025_11_29"},
+    {"gcc_row": "road_rail:6", "name_in_news": "Thiruvotriyur, Manickam Nagar subway", "source": "tnm_2023_12_06"},
+    {"gcc_row": "road_rail:7", "name_in_news": "Sembium (Perambur) subway", "source": "tnm_2023_12_06", "relation": "probable; not asserted"},
+    {"gcc_row": "road_rail:8", "name_in_news": "Villivakkam subway", "source": "tnm_2023_12_06"},
+    {"gcc_row": "road_rail:11", "name_in_news": "Duraisamy subway", "source": "tnm_2023_12_06"},
+    {"gcc_row": "road_rail:13", "name_in_news": "Aranganathan Subway", "source": "tnm_2023_12_06"},
+    {"gcc_row": "road_rail:15", "name_in_news": "Jones Road", "source": "dtnext_2025_11_29"},
+    {"gcc_row": "road_rail:16", "name_in_news": "Rangarajapuram", "source": "tnm_2023_12_06"}
+  ]
+}
