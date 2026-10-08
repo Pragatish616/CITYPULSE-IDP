@@ -38,7 +38,7 @@ jobs:
           distribution: temurin
           # The maplibre_gl plugin compiles its Java as release 21 ("invalid source release: 21" on JDK 17).
           java-version: "21"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: pip install pyyaml
