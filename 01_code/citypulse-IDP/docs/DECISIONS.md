@@ -1024,3 +1024,43 @@ Three of three flood windows and one of two controls met the criterion written i
 3. Whether field data may ever feed the belief, and if so at what reliability α.
 4. Whether to ask for institutional ethics review before outside volunteers.
 5. Whether to deploy now. The local commits are not pushed.
+
+
+## ADR-029: A rain forecast may raise the event state from `dry` to `watch`, if a pre-registered replay supports it (8 October 2026)
+
+**Status:** pre-registration. Written and committed **before** any forecast value for the test periods was read. The implementation and the replay come after this commit; their results are appended below, whatever they are. Task M3.7.
+
+**Context.** ADR-027 switches the event state from NASA IMERG satellite rain. The newest image is about six hours old (F-36), so the state changes hours after rain starts and cannot warn ahead. The router already defines `watch` as "a forecast or alert is in force" (`EventState` in `routing_engine.dart`); nothing sets it from a forecast. A numerical weather forecast is the only free input that looks ahead.
+
+**Decision (the rule, fixed now).**
+- **Source.** Open-Meteo's forecast API, model `ecmwf_ifs025` (ECMWF IFS 0.25°, ECMWF open data), hourly `precipitation` (mm in the preceding hour), at nine points: latitudes 12.80, 13.00, 13.20 by longitudes 80.00, 80.15, 80.30 (inside the Chennai box of `config/cities.yaml`). No other model, variable or point set.
+- **Numbers.** Per hourly stamp, the area mean is the mean over the nine points. A three-hour accumulation ending at stamp H is the sum of the area means at H-2, H-1 and H.
+- **Level.** At time t, take the stamps H with t < H <= t + 12 h and every three-hour window whose three stamps all lie there (ten windows). The forecast level is `watch` if the largest of those accumulations is **at least 8.0 mm**, otherwise `dry`. **A forecast never gives `active`.** The 8.0 mm is ADR-027's own `watch` accumulation, reused, not chosen for this rule. There is no single-point rate condition: model fields are smooth, and ADR-027's single-cell condition is what produced its April 2025 false alarm.
+- **How it combines.** Only in automatic mode. The state in force is the higher of the ADR-027 state and the forecast level, so the forecast can raise `dry` to `watch` and can never lower anything. An operator override still wins. The status says `source: forecast` and gives the number when the forecast is what raised it.
+- **When it is not trusted.** If the last successful forecast fetch is more than 6 hours old, or fewer than 9 of the 12 future stamps are present, the forecast is ignored and the ADR-027 rule runs alone. A failed forecast never triggers the configured fallback; only the rain rule does that.
+- **Switch.** The router uses the forecast only when `EVENT_FORECAST=1`. **Default off.** It stays off by default unless the adoption criteria below are met and the owner agrees.
+- **Load.** One request (nine points) every 30 minutes, about 48 a day.
+
+**Validation (fixed now; run after the implementation).**
+- *Periods.* P1 = 1 October to 31 December 2024 and P2 = 1 October to 31 December 2025 (north-east monsoons); P3 = 1 March to 30 April 2025 (dry season). The 2015 flood and Michaung (December 2023) are not testable: the forecast archive starts in January 2024 for these models.
+- *Times.* T = 00, 06, 12 and 18 UTC of every day: 368 + 368 + 244 = 980 times.
+- *Truth.* The ADR-027 instantaneous level from IMERG at T, computed exactly as `scripts/imerg_rule_replay.py` does (six half-hour images ending at T, no holds). **Wet** means that level is `watch` or `active`. Secondary truth, reported beside it: the IMERG three-hour area mean alone is at least 8 mm (no cell condition).
+- *Forecasts.* Open-Meteo's Previous Runs archive for the same model and points. **Primary: `precipitation_previous_day1`**, the value forecast 24 hours before its valid time (this is longer notice than the live service uses, so it is the cautious case). Secondary: `precipitation` (the current run, `day0`; the optimistic case). Secondary model for context only, not for the decision: `gfs_seamless`.
+- *Measures.*
+  - **M1, same-time agreement (P1 + P2).** F(T) = `watch` if the forecast three-hour accumulation over the stamps T-2h, T-1h, T is at least 8 mm. Table of F(T) against wet(T); probability of detection (POD = hits / wet times) and false alarm ratio (FAR = false alarms / forecast-wet times). 95% intervals by bootstrap over calendar days, 10,000 resamples, seed 20260918.
+  - **M2, warning ahead (P1 + P2).** A wet episode is a maximal run of consecutive wet times. It is *warned ahead* if the live rule above, evaluated at T0 - 6 h (T0 = the episode's first wet time), gives `watch`. The live satellite rule would see T0 only about six hours after T0, so a warned episode means at least about 12 hours' more notice. Report the share of episodes warned ahead.
+  - **M3, false switching.** In P3, the share of times at which the live rule gives `watch`. In P1 + P2, the share of the live rule's `watch` times followed by no wet time at T + 6 h or T + 12 h.
+- *Adoption criteria (all on ECMWF, `day1`, primary truth; choices made here, not derived from data):*
+  1. POD at least 0.5 and FAR at most 0.5 (point estimates);
+  2. at least half of the wet episodes warned ahead; if P1 + P2 hold fewer than 10 wet episodes, this criterion is "not testable" and adoption is not recommended;
+  3. false switching in P3 at most 5% of times.
+  If all three hold, the recommendation is to turn the forecast on by default (the owner decides). If any fails, it stays off by default and the result is reported as negative. A change of threshold, horizon, model or points after seeing these results is a new ADR, and it could not be validated on the same periods.
+
+**Disclosure about independence.** IMERG values for 29 November to 1 December 2025 and 10 to 12 April 2025 were seen in the ADR-027 replay; both windows lie inside P2 and P3. No forecast value for any period was seen before this record was committed: the availability check printed only how many hourly values exist (all complete for all four models probed). The 12-hour horizon and the nine points were chosen here without data.
+
+**Limits, stated plainly.**
+- **The truth is satellite rain, not flooding.** The replay asks whether the forecast tells earlier what the satellite will say later. It says nothing about streets.
+- **Six-hourly truth.** Short showers between the four daily times are invisible to both sides. IMERG images ending at T cover roughly T - 2.5 h to T + 0.5 h; the forecast stamps cover T - 3 h to T. The half-hour offset is kept, not corrected.
+- **The archive is not the live feed.** The live service sees the newest run, published some hours after it starts; `day1` (24 h notice) understates and `day0` overstates what it would have had.
+- **Licence.** Open-Meteo's free API is for non-commercial use (`docs/LICENCE_AUDIT.md`, row 2); its data is CC BY 4.0, and ECMWF open data is CC BY 4.0. Fine for this research project; a commercial deployment would need Open-Meteo's paid plan, a self-hosted Open-Meteo, or ECMWF open data read directly.
+- **Small sample.** Two monsoon seasons will hold tens of wet times, not hundreds. The intervals will be wide and are reported as they are.

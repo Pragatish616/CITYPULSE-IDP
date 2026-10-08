@@ -629,6 +629,11 @@ All tasks follow `CLAUDE.md` §9. Each adds a failing test first.
 - Steps: an Earth Engine script that, for any Sentinel-1 (and, where available, NISAR) pass during an event, produces a flood-extent mask over Chennai and intersects it with hazard edges. Store as labels with `method = sar`. Document the resolution limits (10 m pixels, revisit gaps).
 - Done when: the script runs on at least one historical event (2015 or a recent one) and its edge labels are stored with metadata.
 
+**M3.7 Rain forecast input to the event state (ADR-029)**
+- Status: IN PROGRESS (2026-10-08) · Owner: Agent · Depends on: ADR-027 (done)
+- Steps: write the forecast rule and its validation into ADR-029 and commit it before any forecast value for the test periods is read; `GET /context/forecast` on the report server (Open-Meteo, ECMWF IFS 0.25°); the router reads it when `EVENT_FORECAST=1` and lets it raise `dry` to `watch`, never higher; replay over the 2024 and 2025 north-east monsoons and a dry season against NASA IMERG; record the result in ADR-029 whatever it is.
+- Done when: the service and router tests pass, `data/results/<date>-forecast-rule-replay/result.json` exists, and ADR-029 says whether the pre-registered adoption criteria were met. The forecast stays off by default unless they were and the owner agrees.
+
 ---
 
 ### M4. Mobile app (Android)
