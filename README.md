@@ -90,7 +90,7 @@ evaluation, including the results that did **not** go our way (see [below](#what
 | **Checked explanations** | A template turns the structured decision record into text, and a symbolic verifier gates it. A language model never produces route geometry. |
 | **Chennai + Tamil Nadu in one app** | A route with both ends in Chennai uses the detailed Chennai map, its flood layer and the advisor. Anything else uses a Tamil Nadu main-road map and shows only the best route. See [ADR-022](01_code/citypulse-IDP/docs/DECISIONS.md). |
 | **Rain context, with a human override** | The flood-event state follows NASA satellite rain (about 6 hours behind) unless an operator overrides it ([ADR-027](01_code/citypulse-IDP/docs/DECISIONS.md)). A rain forecast input exists but is **off by default** because it failed its pre-registered test (see results). |
-| **Volunteer field log** | A phone page where volunteers record *passable / not passable / can't tell* at a road point, with the time, offline-first, to build the missing street-level ground truth ([ADR-028](01_code/citypulse-IDP/docs/DECISIONS.md), [protocol](01_code/citypulse-IDP/docs/FIELD_PROTOCOL.md)). Research data only: it changes no route and is shown to no traveller. Built and tested; no volunteer has used it, and it is off until tokens are set. |
+| **Volunteer field log** | A phone page where volunteers record *passable / not passable / can't tell* at a road point, with the time, offline-first, to build the missing street-level ground truth ([ADR-028](01_code/citypulse-IDP/docs/DECISIONS.md), [protocol](01_code/citypulse-IDP/docs/FIELD_PROTOCOL.md)). It starts with **31 candidate subways** from the Greater Chennai Corporation's own table ([ADR-031](01_code/citypulse-IDP/docs/DECISIONS.md); positions unconfirmed, 10 have none). Research data only: it changes no route and is shown to no traveller. Built and tested; no volunteer has used it, and it is off until tokens are set. |
 | **Event miner** | A small local model (`qwen3.5:0.8b` through Ollama) reads pasted official posts and news in English or Tamil and suggests quoted street events for a person to review ([ADR-030](01_code/citypulse-IDP/docs/DECISIONS.md), [guide](01_code/citypulse-IDP/docs/EVENT_MINER.md)). **Not evaluated yet.** It runs on a laptop, not in the app, and its output never reaches routes. |
 | **Search** | Streets, highway numbers (`NH 44`, `NH-44`, `NH44`) and 25,144 places, in English and Tamil. |
 | **Bilingual UI** | English and Tamil. The Tamil text is a first draft and needs a native speaker's review. |
@@ -243,6 +243,8 @@ The full plan is [`PLAN.md`](PLAN.md); the gated next steps are in
 - [x] Event miner built with a local model (8 October 2026; accuracy not measured)
 - [ ] Measure latency, memory, battery and offline routing on the phone
 - [ ] Independent, time-stamped passability data (the 15 October 2026 gate): run the field log with volunteers, with durable storage
+- [x] Subway watchlist from GCC's own table, with an internal board and a pilot plan (9 October 2026; positions unconfirmed)
+- [ ] Confirm the subway positions on a map (a check sheet exists) and run the pilot with volunteers
 - [ ] Label 100 real posts and run the event-miner evaluation
 - [ ] Pack format v2 (32-bit name index), then detailed district packs
 - [ ] Native-speaker review of the Tamil text

@@ -24,7 +24,7 @@ def server(entries_over_time, csv_rows=None):
     def fetch(url, headers):
         if url.endswith("/fieldlog/health"):
             return 200, json.dumps({"enabled": True, "volunteers_configured": 2, "tokens_refused_as_too_weak_or_malformed": 0,
-                                    "admin_token_configured": True, "sites": 402, "entries": last["n"], "corrupt_lines_skipped": 0,
+                                    "admin_token_configured": True, "sites": 433, "subway_sites": 31, "entries": last["n"], "corrupt_lines_skipped": 0,
                                     "durable": False, "durability_note": "NOT known to be persistent"}).encode()
         if headers.get("x-admin-token") != "admin-secret-0123456789":
             return 401, b"{}"
@@ -69,7 +69,8 @@ def test_token_command_prints_each_line_once_and_stores_nothing(capsys, tmp_path
 def test_status_prints_the_facts_and_warns_when_the_disk_is_not_durable(capsys) -> None:
     code = ops.cmd_status(argparse.Namespace(url="https://x/ingest"), fetch=server([3]))
     out = capsys.readouterr().out
-    assert code == 0 and "entries stored            : 3" in out and "WARNING" in out and "NOT known to be persistent" in out
+    assert code == 0 and "entries stored            : 3" in out and "sites                     : 433 (31 subways)" in out
+    assert "WARNING" in out and "NOT known to be persistent" in out
 
 
 def test_status_fails_clearly_when_the_server_cannot_be_read(capsys) -> None:

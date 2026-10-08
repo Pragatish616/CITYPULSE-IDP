@@ -599,7 +599,7 @@ All tasks follow `CLAUDE.md` §9. Each adds a failing test first.
 ### M3. Data engine
 
 **M3.1 Watchlist: 22 subways and 290 waterlogging points**
-- Status: TODO · Owner: Agent drafts, Human verifies · Depends on: M2.4
+- Status: PARTLY DONE (2026-10-09; the subway part: 31 candidates from GCC's own table of 16 road/rail and 5 pedestrian subways plus news and OSM names, 21 with an OSM position and 10 without, ADR-031. NOT done: the 290 waterlogging points (no source found), snapping to edges, the human check of 30 positions (a check sheet exists), `config/watchlist.yaml`, the `watchpoints` table. No source gives "22" names) · Owner: Agent drafts, Human verifies · Depends on: M2.4
 - Steps: compile the list of GCC subways and the 290 waterlogging points from GCC publications and news (record each source); geocode with the gazetteer; snap to edges (both directions); Human checks a sample of 30 on the map. Store in `config/watchlist.yaml` and the `watchpoints` table.
 - Done when: every point has a source, coordinates and edges, and the 30-point check found no error over 100 m (or errors are fixed).
 

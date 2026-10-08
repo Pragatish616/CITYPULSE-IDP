@@ -118,3 +118,12 @@ def test_the_osm_extract_is_recorded_with_its_licence_and_source() -> None:
     assert raw["licence"] == "OpenStreetMap contributors, ODbL 1.0"
     assert raw["source"]["file"] == "southern-zone-260911.osm.pbf" and raw["count"] == len(raw["features"]) > 100
     assert LIST["sources"]["openstreetmap"]["sha256"] == builder.sha256(builder.OSM)
+
+
+def test_the_check_sheet_is_generated_and_has_a_row_and_a_map_link_per_positioned_subway() -> None:
+    sheet = builder.OUT_SHEET.read_text(encoding="utf-8")
+    assert sheet == builder.build_checksheet(LIST)
+    rows = [line for line in sheet.splitlines() if line.startswith("| | sub-")]
+    assert len(rows) == 31
+    assert sheet.count("[open map](https://www.openstreetmap.org/?mlat=") == sum(1 for e in LIST["entries"] if e["lat"] is not None)
+    assert "None is verified on the ground" in sheet and "more than 100 m" in sheet

@@ -7,8 +7,8 @@ Nothing it produces reaches routes, the belief or travellers.
 
 You paste a post or a news paragraph about Chennai rain (English or Tamil). A small model running on this laptop lists the
 street-level events it states, each with a word-for-word quote. The code drops any event whose quote is not in the text, or whose
-place is not in the quoted sentence. The place is then matched only to the project's gazetteer (661 OSM places and 186 named
-candidate sites), or left as "no match". Every event waits for a person to accept, reject or correct it. Accepted events can be
+place is not in the quoted sentence. The place is then matched only to the project's gazetteer (661 OSM places, 186 named
+candidate sites and the subway watchlist of ADR-031), or left as "no match". Every event waits for a person to accept, reject or correct it. Accepted events can be
 exported as a CSV dataset.
 
 | Condition | Means |

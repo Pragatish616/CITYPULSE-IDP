@@ -33,13 +33,15 @@ The three answers describe **what you saw, not whether anyone should go there.**
 *Depth band* (only with Not passable; your estimate against your own body; this is not a measurement):
 **Ankle**, **Knee**, **Above the knee**, **Not sure**.
 
-*Site.* The list holds 402 candidate points taken from the GCC flood-hazard zones. **None is verified**; some sit at a field edge, a flyover or an unnamed road. Log what you see at or near the point. If the site is plainly not on a road, or you are at a different flooded spot, use **Another place**, which sends that spot's position rounded to about 10 m. Do not use it for your home or for anywhere you would not want recorded.
+*Site.* The list holds **31 subways first** (the Greater Chennai Corporation's own table of 16 road/rail and 5 pedestrian subways, plus names from news and OpenStreetMap), then 402 candidate points taken from the GCC flood-hazard zones. **None is verified**; some hazard-zone points sit at a field edge, a flyover or an unnamed road. Log what you see at or near the point.
+
+*A subway with no position.* Ten of the 31 subways have no position on the map (the list says "Position not known. Find it by name."). Find the subway on the ground from its name and the GCC description shown in the list, and log it as usual. If you cannot find it, log "can't tell" and tell the operator, who then fixes the entry. Do not log a different subway in its place. If the site is plainly not on a road, or you are at a different flooded spot, use **Another place**, which sends that spot's position rounded to about 10 m. Do not use it for your home or for anywhere you would not want recorded.
 
 ## 4. When to log (the sampling plan)
 
 The data is useful only if "nothing happened" is recorded as carefully as "it flooded".
 
-- **Assigned sites.** Each volunteer gets 3 to 5 sites near where they already travel. Volunteers log their own sites only on days they pass them.
+- **Assigned sites.** Each volunteer gets 3 to 5 sites near where they already travel, **subways first**. Volunteers log their own sites only on days they pass them.
 - **Rain days.** On any day it has rained heavily where you are, log every assigned site you pass.
 - **Dry-day controls.** Once a week, on a day with no rain for the previous 24 hours, log each assigned site once. These are needed to know how often the answer is "passable" without rain.
 - **Pairs.** Twice a month, two volunteers visit the same site within 30 minutes and each logs without seeing the other's answer. This measures how often two people disagree.
@@ -122,3 +124,15 @@ Fixed on 6 October 2026, **before any field data exists and before any analysis 
 **Not done in this analysis (each would be a new ADR with a new pre-registration):** mapping sites to router edges; judging or fitting the belief, the prior or any threshold; using field data to change ADR-027; training anything on it.
 
 **Known biases to state beside every result:** volunteers log when and where they choose, rain days and reachable places are over-represented, observers differ, the clock is the phone's, sites are unverified candidates, and the candidate list comes from the same 2015 map whose usefulness is being asked about.
+
+### 8a. Addendum of 9 October 2026 (before any field data exists): subway sites
+
+Added when the 31 subway sites joined the list (ADR-031). Nothing in section 8 above is changed; this says how subways fit it.
+
+- **Exclusions and definitions** are unchanged. A subway is a *listed site*; its entries count in A1 and A5 (agreement) and in the pilot criterion A6.
+- **A2 (how often is a site not passable) is reported separately for subways and for hazard-zone points**, never pooled: the two lists were chosen differently (a municipal inventory against a flood-hazard map) and a subway is a single known structure while a hazard-zone point is a guess at a place. Overall figures that mix them are not reported.
+- **A3 (High against Very High) applies to hazard-zone points only**; subways have no hazard category.
+- **A4 (satellite rain level against the street)** is run for subways and for hazard-zone points separately, with the same definitions.
+- **Reporting threshold** applies to each list separately: at least 5 distinct calendar days with a resolved entry, at least 100 site-days and at least 3 volunteers on that list. With 31 subways and a few volunteers, the subway list may not reach 100 site-days in the first season. In that case only counts are reported for subways, and **no rate or comparison is claimed**; this is expected and acceptable.
+- **Position quality** (`osm_named`, `osm_road_tunnel`, `osm_hint`, `none`) is reported beside every subway result. A subway whose entries were logged under a position that the check sheet later corrects is reported under the corrected position; nothing is dropped.
+- **Descriptive extra, not a test:** for each subway, the number of days with a resolved entry and the share of those days logged `not_passable`.

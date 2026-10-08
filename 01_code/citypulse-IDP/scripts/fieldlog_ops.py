@@ -79,7 +79,8 @@ def cmd_status(args: argparse.Namespace, fetch: Fetch = http_fetch) -> int:
     if h.get("tokens_refused_as_too_weak_or_malformed"):
         print(f"  WARNING: {h['tokens_refused_as_too_weak_or_malformed']} token entries were refused as too short or malformed")
     print(f"admin token configured    : {h['admin_token_configured']}")
-    print(f"sites                     : {h['sites']}")
+    subways = f" ({h['subway_sites']} subways)" if "subway_sites" in h else ""
+    print(f"sites                     : {h['sites']}{subways}")
     print(f"entries stored            : {h['entries']}")
     print(f"log durable               : {h['durable']}")
     if not h["durable"]:

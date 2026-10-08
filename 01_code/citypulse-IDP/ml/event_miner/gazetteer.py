@@ -1,4 +1,5 @@
-"""The only places the miner may choose (ADR-030): OSM place names and the named field-log candidate sites.
+"""The only places the miner may choose (ADR-030, ADR-031): OSM place names, the named field-log candidate sites, and the 31
+subways of the subway watchlist (so a post about "Madley subway" can be matched to the subway, not just its area).
 
 Retrieval combines a lexical match (any script) with an embedding match (`nomic-embed-text`, when Ollama is reachable), fused by
 reciprocal rank. The model then picks one of the top five or `none`; it never supplies a coordinate.
@@ -21,6 +22,7 @@ from ml.event_miner.text import name_key
 ROOT = Path(__file__).resolve().parents[2]
 PLACES_FILE = ROOT / "data" / "places" / "chennai-2026-10-04" / "places.json"
 SITES_FILE = ROOT / "server" / "app" / "fieldlog" / "sites.json"
+SUBWAYS_FILE = ROOT / "data" / "watchlist" / "2026-10-09" / "subways.json"
 RRF_K = 60
 POOL = 20
 
@@ -53,7 +55,9 @@ def _strip_generic(key: str) -> str:
     return " ".join(w for w in key.split() if w not in GENERIC)
 
 
-def load_places(places_file: Path = PLACES_FILE, sites_file: Path = SITES_FILE) -> list[Place]:
+def load_places(
+    places_file: Path = PLACES_FILE, sites_file: Path = SITES_FILE, subways_file: Path | None = SUBWAYS_FILE
+) -> list[Place]:
     out: list[Place] = []
     seen: dict[str, int] = {}
     for row in json.loads(places_file.read_text(encoding="utf-8"))["places"]:
@@ -69,6 +73,17 @@ def load_places(places_file: Path = PLACES_FILE, sites_file: Path = SITES_FILE) 
         near = s.get("near")
         out.append(Place(s["id"], street, "candidate site (street)", float(s["lat"]), float(s["lon"]),
                          (f"{street} near {near}",) if near else ()))
+    if subways_file is not None:
+        for e in json.loads(subways_file.read_text(encoding="utf-8"))["entries"]:
+            alts = [a for a in [e.get("name_ta"), *[n["name"] for n in e.get("names_in_news", [])], e.get("gcc_location")] if a]
+            if e["lat"] is not None:
+                lat, lon, kind = e["lat"], e["lon"], f"subway ({e['list'].replace('_', ' ')})"
+            elif e.get("area_hint"):
+                # No position is known: the AREA's point stands in so the entry can be matched by name; the kind says so.
+                lat, lon, kind = e["area_hint"]["lat"], e["area_hint"]["lon"], "subway (position not known; area point)"
+            else:
+                continue  # a name with neither a position nor an area cannot be placed
+            out.append(Place(e["id"], e["name"], kind, float(lat), float(lon), tuple(alts)))
     return out
 
 

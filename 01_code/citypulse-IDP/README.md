@@ -71,3 +71,4 @@ Details: [`docs/ADDING_A_CITY.md`](docs/ADDING_A_CITY.md).
 - Schemas that components share: [`docs/CONTRACTS.md`](docs/CONTRACTS.md)
 - Known flaws: [`../../00_START_HERE/KNOWN_FLAWS.md`](../../00_START_HERE/KNOWN_FLAWS.md)
 - The build plan: [`../../PLAN.md`](../../PLAN.md)
+- The subway pilot: [`docs/PILOT_PLAN.md`](docs/PILOT_PLAN.md), the field protocol [`docs/FIELD_PROTOCOL.md`](docs/FIELD_PROTOCOL.md) and the event miner [`docs/EVENT_MINER.md`](docs/EVENT_MINER.md)

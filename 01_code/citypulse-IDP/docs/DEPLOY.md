@@ -84,7 +84,7 @@ If the rain data is missing, older than 12 hours, or flagged stale, the configur
 
 The image already contains the field-log page and API. At `<site>/ingest/fieldlog/` there is a page for volunteers to record what they see at a road point (passable, not passable, can't tell). It is research data and is kept apart from the router: it does not change any route. The protocol, safety rules, notice and the pre-registered analysis are in `docs/FIELD_PROTOCOL.md`.
 
-To switch it on: make tokens (`python scripts/fieldlog_ops.py token v01 v02`), set `FIELDLOG_TOKENS` and `FIELDLOG_ADMIN_TOKEN` in the host's environment, and redeploy. Check with `python scripts/fieldlog_ops.py status https://<site>/ingest`.
+To switch it on: make tokens (`python scripts/fieldlog_ops.py token v01 v02`), set `FIELDLOG_TOKENS` and `FIELDLOG_ADMIN_TOKEN` in the host's environment, and redeploy. Check with `python scripts/fieldlog_ops.py status https://<site>/ingest`; it should report 433 sites (31 subways). The pilot steps are in `docs/PILOT_PLAN.md`.
 
 **Storage is the weak point.** The log is files on the container's disk. On Render's free tier that disk is wiped by a restart or a redeploy and probably when the service sleeps, so every entry made since the last export can vanish. Until a persistent disk or a database is attached, export after every logging day: `FIELDLOG_ADMIN_TOKEN=... python scripts/fieldlog_ops.py export https://<site>/ingest`. The export refuses to write a file whose row count does not match the server's and prints a SHA-256. `/ingest/fieldlog/health` reports `durable: false` until `FIELDLOG_DURABLE=1`.
 

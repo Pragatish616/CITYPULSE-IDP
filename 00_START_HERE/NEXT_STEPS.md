@@ -8,9 +8,9 @@ There are two tracks, with different bars:
 
 | Test | Cost | Pass | Fail |
 |---|---|---|---|
-| **Data test (10 min).** Open the CFM-DSS public WFS GetCapabilities, then pull one GetFeature from any subway-barrier, flood-meter or sensor layer. | 10 min | Per-location readings carry today's timestamp. | Static polygons or old snapshots only. Email GCC ICCC and GCTP the same day: "Can we poll barrier and sensor state this monsoon?" |
+| **Data test (10 min).** Open the CFM-DSS public WFS GetCapabilities, then pull one GetFeature from any subway-barrier, flood-meter or sensor layer. | 10 min | Per-location readings carry today's timestamp. | Static polygons or old snapshots only. Email GCC ICCC and GCTP the same day: "Can we poll barrier and sensor state this monsoon?" (Run 8 Oct: the first of two approved requests got HTTP 404, wrong path, so it is **inconclusive**; the layer catalogue has no subway or barrier layer; nothing was sent to GCC or the police; ADR-031.) |
 | **Demand test.** Send a one-page offer for a season pilot (the council suggested about Rs 25,000) to 20 named buyers: fleets and dark stores, 5 insurer claims heads, and the two traffic-data vendors that serve GCTP. | Rs 0 | At least 2 signed LOIs naming a rupee figure | Compliments only |
-| **Field-label pilot.** Pick 10 GCC subways. On every rain day, log a timestamped photo plus a passable / not passable / unknown flag. (Tool built 6 Oct, not deployed, no photos: `01_code/citypulse-IDP/docs/FIELD_PROTOCOL.md`.) | Rs 0 | 3 people can log 10 sites within 24 h of rain | Logging lags by more than a day |
+| **Field-label pilot.** Pick 10 GCC subways. On every rain day, log a timestamped photo plus a passable / not passable / unknown flag. (Tool built 6 Oct, not deployed, no photos: `01_code/citypulse-IDP/docs/FIELD_PROTOCOL.md`. 9 Oct: 31 candidate subways from GCC's own table are in the tool, with an internal board and a plan: `01_code/citypulse-IDP/docs/PILOT_PLAN.md`.) | Rs 0 | 3 people can log 10 sites within 24 h of rain | Logging lags by more than a day |
 
 ## Gate on 15 October 2026
 

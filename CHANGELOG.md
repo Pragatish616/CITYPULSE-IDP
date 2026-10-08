@@ -26,6 +26,13 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Terrain and past floods as training data: 91 India flood maps and elevation tiles, a nationwide terrain model, Chennai studies and three routing tests, all pre-registered; the nationwide model met its rule, the Chennai and routing rules were not met (ADR-026).
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
+### Added (subway watchlist and pilot kit, 9 October 2026; nothing verified, nothing deployed)
+- A subway watchlist from the Greater Chennai Corporation's own table (16 road/rail and 5 pedestrian subways, transcribed row for row) plus news and OpenStreetMap names: 31 candidates, 21 with an OSM position (labelled by how sure the match is) and 10 with none, which carry a labelled area hint instead of an invented point. No source gives "22" names or the 290 waterlogging points (ADR-031).
+- The volunteer field log serves the subways first, lists those without a position by name, and searches GCC's location words, news names and Tamil names. A bug the tests caught: an id over the server's 32-character limit.
+- `scripts/subway_board.py`: an internal one-page board from a field-log export (newest observation and age per subway, observer disagreement, "No observation" kept apart from "Could not tell"; no safety words, no volunteer codes). `data/watchlist/2026-10-09/CHECKSHEET.md` for confirming positions. `docs/PILOT_PLAN.md` and a draft offer (`docs/pilot/OFFER_DRAFT.md`, not sent).
+- The event miner's place list now includes the subways.
+- Chennai flood-monitor live-data test: the first of two approved requests got HTTP 404 (wrong path), so it is inconclusive; its layer list has no subway or barrier layer.
+
 ### Added (event miner, 8 October 2026; not evaluated)
 - `ml/event_miner/`: a local model (`qwen3.5:0.8b` through Ollama, Apache 2.0, small enough to consider for phones) reads pasted official posts and news in English or Tamil and lists street events (`closed`, `flooded`, `cleared`, `unknown`) with a word-for-word quote. Events whose quote is not in the text are dropped; places are matched only to the project's gazetteer (lexical plus `nomic-embed-text` embeddings), or left unmatched. Everything waits in an append-only review queue; accepted events export as CSV and never reach routes (ADR-030).
 - The evaluation (at least 100 real items labelled before mining, precision and recall per language) is pre-registered and not yet run. `docs/EVENT_MINER.md` explains running, reviewing and labelling.

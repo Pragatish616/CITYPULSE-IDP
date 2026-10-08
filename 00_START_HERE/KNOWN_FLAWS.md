@@ -310,3 +310,10 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 - **Sources:** paste-in only; no feed is fetched. Copying posts for research is believed to be fair dealing and the DPDP status of names in posts is not established.
 - **Fix:** label the test set and run `python -m ml.event_miner evaluate`; build the subway list (M3.1). Feeding accepted events to the router needs a new ADR.
 
+### F-39 · The subway watchlist is unverified: ten of 31 have no position, GCC's page is undated, and nothing reaches routes · OPEN (ADR-031)
+- **What:** built 9 October 2026 from GCC's Bridges Department table (16 road/rail and 5 pedestrian subways) plus names from news and OpenStreetMap. **No position has been checked on the ground or on a map by a person.** The check sheet (`data/watchlist/2026-10-09/CHECKSHEET.md`) exists; the check has not been done.
+- **Positions:** 16 `osm_named`, 3 `osm_road_tunnel`, 2 `osm_hint` (including a pedestrian tunnel standing in for the road subway at Perambur), 10 none (three road/rail rows, four pedestrian, three news-only). OSM's "Ganeshpuram Subway" is tagged `highway=construction`. The OSM extract is dated 11 September 2026; GCC's page states no date.
+- **Counts:** no source gives 22 names; the 290 waterlogging points were not found; the list makes no claim to equal either number.
+- **Not done:** snapping to the router's graph, `config/watchlist.yaml`, the `watchpoints` table.
+- **Live-data test:** inconclusive (HTTP 404 on a guessed path; one approved request left). The public flood-monitor layer list has no subway or barrier layer.
+- **Fix:** the check sheet by two people; the correct endpoint path for the one remaining request; email GCC's control centre and the police (nothing sent).

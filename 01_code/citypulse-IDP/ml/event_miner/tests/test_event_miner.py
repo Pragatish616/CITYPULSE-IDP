@@ -138,8 +138,11 @@ def test_the_real_gazetteer_loads_with_unique_ids_and_no_unnamed_sites() -> None
     ids = [p.id for p in places]
     assert len(ids) == len(set(ids))
     osm = [p for p in places if p.id.startswith("place:")]
-    sites = [p for p in places if not p.id.startswith("place:")]
+    subways = [p for p in places if p.id.startswith("sub-")]
+    sites = [p for p in places if not p.id.startswith(("place:", "sub-"))]
     assert len(osm) == 661 and len(sites) == 186
+    # 30 of the 31 subways can be placed: the news-only Choolaimedu one has neither a position nor an area
+    assert len(subways) == 30 and "sub-news-choolaimedu-loyola" not in {p.id for p in subways}
     assert not any(p.name.lower().startswith("unnamed") for p in sites)
     kolathur = [p for p in osm if p.name == "Kolathur"]
     assert len(kolathur) == 2 and {p.id for p in kolathur} == {"place:kolathur", "place:kolathur-2"}
