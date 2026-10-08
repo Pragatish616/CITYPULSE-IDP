@@ -1097,3 +1097,40 @@ How to read it:
 - **The obvious next idea is a lower threshold. It is not tried here.** Lowering it after seeing these numbers would be tuning on the test data; it would need a new ADR and periods not used here (for example the 2026 north-east monsoon, scored after it ends).
 - **Small sample.** 46 wet times and 24 episodes in two seasons; the intervals are wide. The result is "no evidence that this rule helps", not "forecasts cannot help".
 - **The truth is satellite rain, not flooding,** as stated above. Nothing here says anything about streets.
+
+
+## ADR-030: A local event miner that turns official posts and news into reviewed, quoted, place-matched street events (8 October 2026)
+
+**Status:** accepted for building; evaluation pre-registered here **before** any real item is labelled or mined. Task M3.4 (first part). The owner chose this feature and the model (8 October 2026).
+
+**Context.** The project lacks time-stamped, street-level evidence (CLAUDE.md §0 item 9). Official accounts and news already publish it in words: "traffic diverted at the Ganesapuram subway", "water receded, traffic restored on 100 Feet Road". Nobody turns those words into records with a place, a time, a condition and a source. A language model can read them; it can also invent places, misread conditions and drop negations. In the first trial on this laptop (8 October), Gemma 4 E4B read a made-up sentence "Traffic diverted at Ganesapuram subway due to waterlogging" as `passable`. That one wrong answer is why everything below is checked and reviewed.
+
+**Decision.**
+- **Where it runs.** An operator tool in `ml/event_miner/`, on a laptop with Ollama. It does not run on the free host (512 MB) and is not shown to travellers.
+- **Model.** `qwen3.5:0.8b` through Ollama (Qwen, Apache 2.0, February 2026; text and images; 201 languages, Tamil not named in its documentation). Chosen by the owner because it is small enough to consider for a phone later. Gemma 4 E4B (installed) was measured on this laptop at 0.73 tokens/s reading and 3.6 tokens/s writing, too slow to use. Places are retrieved with `nomic-embed-text` (Apache 2.0, already installed). The model's Ollama digest is recorded with every output.
+- **Input.** Text pasted or loaded from a file by an operator, with the source link, the source name and the publication time. **No automatic fetching**: each feed (a newspaper's RSS, an official account) needs the owner's go-ahead and a check of its terms first. Posts on platforms whose terms forbid automated collection are pasted by a person, never scraped.
+- **Extraction (step 2 of PLAN §8.3).** Strict JSON constrained by a schema: per event `place_text`, `condition` (`flooded`, `closed`, `cleared`, `unknown`), `time_text`, `depth_words`, `quote`. Temperature 0, fixed seed 20260918, thinking off.
+  - **Quote rule.** Every event must carry a quote that appears word for word in the source (after normalising spaces and quote marks). An event whose quote is not found is dropped and counted. The model cannot add a claim the text does not contain.
+  - `cleared` matters: "water receded", "traffic restored" are the negative evidence the 2015 corpus never had (§4.4).
+- **Places (step 3).** Candidates come from the project's gazetteer only: 661 OSM places (ODbL, 396 with Tamil names) and the 402 field-log candidate sites. Retrieval combines a lexical match and an embedding match; the model then chooses one of at most five listed candidates or `none`, through a schema that allows only those ids. **It never supplies a coordinate.** The 22 GCC subways are not in the gazetteer yet (M3.1); an event at a subway that is not listed is expected to come out `none`, and that is counted, not hidden.
+- **Duplicates (step 4).** Same place id, same condition, same source and publication times within 6 hours: flagged as a duplicate, kept.
+- **Review (step 5).** Every event waits for a person: accept, reject, or correct the place or the condition. Decisions are appended, never edited, with a reviewer code and time. **Accepted events are exported as a reviewed dataset; they do not enter the router's observations, the belief, or any route.** Feeding them anywhere is a new ADR (it needs a source class, a reliability and a decay that do not exist today, and `docs/CONTRACTS.md` is the owner's).
+- **Storage.** Source text, extractions and decisions live in `data/miner/`, git-ignored: news text is copyrighted and posts can name people. Only aggregate results are committed.
+
+**Evaluation (pre-registered; step 6).**
+- *Test set.* At least 100 real items about Chennai rain (posts or news paragraphs, any year), collected by a team member from sources they may read, **labelled before the miner is run on them**, and never used in prompts or examples. Aim for at least 30 in Tamil and at least 20 with no street event at all.
+- *Labels per item.* Every street event the text states: the gazetteer id of the most specific matching entry, or `none` with the place text; the condition; whether a time is stated. A second person labels a fifth of the items independently; agreement is reported.
+- *Measures* (reported overall and separately for English and Tamil, as counts and shares):
+  - event precision and recall: a mined event matches a gold event when the place id is the same (or both are `none` with the same place text, judged by the labeller) and the condition is the same;
+  - place accuracy: among gold events that have a gazetteer id, the share the miner gave the same id; and within 200 m;
+  - condition accuracy among place-matched events;
+  - the share of events dropped by the quote rule; the share of gold events whose place is not in the gazetteer;
+  - time per item on this laptop.
+- *Bar, fixed now.* The miner is called **useful for suggestions** in a language if event precision is at least 0.7 and recall at least 0.6 there. Whatever the result, nothing skips review under this ADR. If the bar is not met, the result is reported as negative; trying a larger model (for example `qwen3.5:2b`) is a new ADR with a new test set or the same set re-run and reported as a second, not independent, attempt.
+- *Prompts and examples* are fixed in code before labelling; the examples in the prompt are made-up sentences, written for the prompt, not taken from any source. Changing the prompt after seeing test results makes the next run a second attempt, reported as such.
+
+**Limits.**
+- A 0.8-billion-parameter model is small. It may miss events, confuse `closed` with `flooded`, and handle Tamil poorly. Measurement, not hope, decides.
+- The gazetteer is areas and candidate sites, not streets or subways. Many events will map only to an area, which is coarse.
+- Unit tests use a fake model; they prove the checks work, not that the model is accurate.
+- Legal: copying a post into a local file for research is believed to be fair dealing; this is **not established**. Whether names in posts make this personal data processing under the DPDP Act is **not established**.

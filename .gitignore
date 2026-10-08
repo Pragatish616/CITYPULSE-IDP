@@ -51,3 +51,6 @@ Thumbs.db
 fieldlog-export-*.csv
 **/exports/
 **/citypulse-fieldlog/
+
+# Event miner (ADR-030): source texts (copyrighted news, posts that can name people), extractions and review decisions. Local only.
+01_code/citypulse-IDP/data/miner/

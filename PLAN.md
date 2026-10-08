@@ -614,7 +614,7 @@ All tasks follow `CLAUDE.md` §9. Each adds a failing test first.
 - Done when: the adapter has a test with a recorded response and runs on the worker schedule.
 
 **M3.4 Event miner**
-- Status: TODO · Owner: Agent · Depends on: M2.8, M3.1
+- Status: IN PROGRESS (2026-10-08; operator tool with paste-in input, local `qwen3.5:0.8b`, quote rule, gazetteer-constrained places and a review queue, ADR-030; automatic fetching, the 200-item evaluation and feeding observations are not done) · Owner: Agent · Depends on: M2.8, M3.1
 - Read first: Section 8.3.
 - Steps: implement the six steps in Section 8.3 in `ml/event_miner/` and the worker; JSON-schema-constrained extraction; gazetteer retrieval; review queue; evaluation on 200 hand-labelled items.
 - Done when: precision, recall and geocoding accuracy are in `result.json`, and only reviewed items enter `observations` until precision on new sources exceeds a threshold set in the ADR.
