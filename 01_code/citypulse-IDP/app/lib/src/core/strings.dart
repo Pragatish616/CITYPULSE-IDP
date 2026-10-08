@@ -75,7 +75,10 @@ enum Msg {
   rainSourceManual,
   rainSourceFallback,
   rainSourceConfigured,
+  rainSourceForecast,
   rainCaveat,
+  forecastRow,
+  forecastCaveat,
   errorOriginOutside,
   errorDestinationOutside,
   errorSameLocation,
@@ -296,6 +299,11 @@ const Map<Msg, String> _en = {
   Msg.rainSourceFallback:
       'Rain data was missing or out of date, so the default setting is used.',
   Msg.rainSourceConfigured: 'Fixed by the service setting.',
+  Msg.rainSourceForecast:
+      'Raised to flood watch by a rain forecast for the next 12 hours.',
+  Msg.forecastRow: 'Forecast, next 12 hours (most in 3 hours)',
+  Msg.forecastCaveat:
+      'The forecast is a weather model\'s estimate over cells of about 25 km. It can be wrong either way, and it says nothing about any one street.',
   Msg.rainCaveat: 'A satellite estimate in cells of about 10 km, hours behind real time. Rain is not flooding, and this says nothing about any one street.',
   Msg.errorOriginOutside:
       'The start point is outside the mapped {city} road network.',
@@ -462,6 +470,11 @@ const Map<Msg, String> _ta = {
   Msg.rainSourceManual: 'ஒரு இயக்குநரால் அமைக்கப்பட்டது.',
   Msg.rainSourceFallback: 'மழைத் தரவு இல்லை அல்லது பழையது; எனவே இயல்புநிலை அமைப்பு பயன்படுத்தப்படுகிறது.',
   Msg.rainSourceConfigured: 'சேவை அமைப்பால் நிர்ணயிக்கப்பட்டது.',
+  Msg.rainSourceForecast:
+      'அடுத்த 12 மணி நேரத்துக்கான மழை முன்னறிவிப்பால் வெள்ளக் கண்காணிப்பு நிலைக்கு உயர்த்தப்பட்டது.',
+  Msg.forecastRow: 'முன்னறிவிப்பு, அடுத்த 12 மணி நேரம் (3 மணி நேரத்தில் அதிகபட்சம்)',
+  Msg.forecastCaveat:
+      'முன்னறிவிப்பு என்பது சுமார் 25 கி.மீ கட்டங்களுக்கான வானிலை மாதிரியின் மதிப்பீடு. இது எந்தப் பக்கமும் தவறாக இருக்கலாம்; எந்த ஒரு தெருவைப் பற்றியும் இது எதுவும் சொல்லாது.',
   Msg.rainCaveat: 'சுமார் 10 கி.மீ கட்டங்களில் செயற்கைக்கோள் மதிப்பீடு; நேரடி நேரத்தை விட பல மணி நேரம் பின்தங்கியது. மழை என்பது வெள்ளம் அல்ல; எந்த ஒரு தெருவைப் பற்றியும் இது எதுவும் சொல்லாது.',
   Msg.errorOriginOutside: 'தொடக்கப் புள்ளி வரைபடத்தில் உள்ள {city} சாலை வலையமைப்புக்கு வெளியே உள்ளது.',
   Msg.errorDestinationOutside:

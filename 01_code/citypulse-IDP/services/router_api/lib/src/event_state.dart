@@ -8,6 +8,8 @@
 /// - `manual`: an operator set the state; it wins until cleared or until its optional time is up.
 /// - `fixed`: no rain source is configured, so the configured `EVENT_STATE` applies (the behaviour before ADR-027).
 ///
+/// With `EVENT_FORECAST=1` a rain forecast may also raise `dry` to `watch` in `auto` mode, and never higher (ADR-029).
+///
 /// The numbers in [EventRule] are placeholders fixed in ADR-027 before any trial. They are not fitted to Chennai floods.
 library;
 
@@ -104,6 +106,77 @@ class RainSignal {
   };
 }
 
+/// The rain forecast as the rule needs it (ADR-029). Built from the report server's `GET /context/forecast`: the hourly rain forecast,
+/// averaged over nine points in the Chennai box.
+class ForecastSignal {
+  /// Creates a signal. [hourly] is sorted by time.
+  ForecastSignal({
+    required this.fetchedAt,
+    required List<({DateTime time, double mm})> hourly,
+    required this.model,
+    this.stale = false,
+  }) : hourly = List<({DateTime time, double mm})>.unmodifiable(
+         <({DateTime time, double mm})>[...hourly]
+           ..sort((a, b) => a.time.compareTo(b.time)),
+       );
+
+  /// Reads the report server's JSON. Throws [FormatException] if a needed field is missing or not sensible, so a changed or broken
+  /// feed is a failure, never a silent zero.
+  factory ForecastSignal.fromJson(Map<String, Object?> json) {
+    final fetched = json['fetched_at'];
+    final fetchedAt = fetched is String ? DateTime.tryParse(fetched) : null;
+    if (fetchedAt == null) {
+      throw const FormatException(
+        'forecast context: "fetched_at" is missing or not a time',
+      );
+    }
+    final list = json['hourly'];
+    if (list is! List || list.isEmpty) {
+      throw const FormatException('forecast context: "hourly" is missing');
+    }
+    final hourly = <({DateTime time, double mm})>[];
+    for (final item in list) {
+      final t = item is Map && item['time'] is String
+          ? DateTime.tryParse(item['time'] as String)
+          : null;
+      final v = item is Map ? item['area_mean_mm'] : null;
+      if (t == null || v is! num || !v.isFinite || v < 0) {
+        throw const FormatException(
+          'forecast context: an hour without a time or a non-negative amount',
+        );
+      }
+      hourly.add((time: t.toUtc(), mm: v.toDouble()));
+    }
+    final model = json['model'];
+    return ForecastSignal(
+      fetchedAt: fetchedAt.toUtc(),
+      hourly: hourly,
+      model: model is String ? model : 'unknown',
+      stale: json['stale'] == true,
+    );
+  }
+
+  /// When the report server fetched this forecast.
+  final DateTime fetchedAt;
+
+  /// Area-mean rain per hourly stamp (the amount in the hour ending at the stamp), mm.
+  final List<({DateTime time, double mm})> hourly;
+
+  /// The weather model, for the status.
+  final String model;
+
+  /// The report server's own flag: the forecast is old or a refresh failed.
+  final bool stale;
+}
+
+/// What the forecast says about the next hours, at one moment.
+typedef ForecastLook = ({
+  int stamps,
+  double? maxMm,
+  DateTime? windowEnd,
+  EventState? level,
+});
+
 /// The rule of ADR-027. Placeholders, fixed before any trial.
 abstract final class EventRule {
   /// `active` when the three-hour area-mean rain reaches this (about IMD's "very heavy" daily rate held for three hours).
@@ -137,6 +210,54 @@ abstract final class EventRule {
       return EventState.watch;
     return EventState.dry;
   }
+
+  // ---- ADR-029: the forecast. Fixed before any forecast value for the test periods was read. A Python copy lives in
+  // server/app/ingest/forecast.py for the replay; both are pinned by services/router_api/test/fixtures/forecast_rule_vectors.json.
+
+  /// The forecast gives `watch` when a three-hour area-mean accumulation ahead reaches this (ADR-027's own `watch` number).
+  static const double forecastWatchAccumulationMm = 8;
+
+  /// How far ahead the forecast is read.
+  static const Duration forecastHorizon = Duration(hours: 12);
+
+  /// A forecast fetched longer ago than this is ignored.
+  static const Duration forecastStaleAfter = Duration(hours: 6);
+
+  /// Fewer future hourly stamps than this in the horizon and the forecast gives no answer.
+  static const int forecastMinStamps = 9;
+
+  /// The largest three-hour area-mean sum among windows whose three stamps lie in (t, t + 12 h], and the level it gives
+  /// (`watch` or `dry`; never `active`), or a `null` level when too few hours are present.
+  static ForecastLook forecastAhead(ForecastSignal f, DateTime t) {
+    final end = t.add(forecastHorizon);
+    final future = {
+      for (final h in f.hourly)
+        if (h.time.isAfter(t) && !h.time.isAfter(end)) h.time: h.mm,
+    };
+    double? best;
+    DateTime? bestEnd;
+    for (final h in future.keys) {
+      final a = future[h.subtract(const Duration(hours: 2))];
+      final b = future[h.subtract(const Duration(hours: 1))];
+      if (a == null || b == null) continue;
+      final sum = a + b + future[h]!;
+      if (best == null || sum > best) {
+        best = sum;
+        bestEnd = h;
+      }
+    }
+    final level = future.length < forecastMinStamps || best == null
+        ? null
+        : (best >= forecastWatchAccumulationMm
+              ? EventState.watch
+              : EventState.dry);
+    return (
+      stamps: future.length,
+      maxMm: best,
+      windowEnd: bestEnd,
+      level: level,
+    );
+  }
 }
 
 /// What `GET /event-state` reports.
@@ -150,6 +271,7 @@ class EventStatus {
     required this.since,
     this.rain,
     this.manualUntil,
+    this.forecast,
   });
 
   /// The state in force.
@@ -158,7 +280,7 @@ class EventStatus {
   /// `auto`, `manual` or `fixed`.
   final String mode;
 
-  /// Where the state came from: `rain`, `manual`, `fallback` or `configured`.
+  /// Where the state came from: `rain`, `forecast`, `manual`, `fallback` or `configured`.
   final String source;
 
   /// A sentence saying why, with the numbers.
@@ -173,6 +295,9 @@ class EventStatus {
   /// When a time-limited override ends, if one is set.
   final DateTime? manualUntil;
 
+  /// What the forecast says, when the forecast input is switched on (ADR-029); absent otherwise.
+  final Map<String, Object?>? forecast;
+
   /// JSON for the API. `event_state` is the field existing clients read.
   Map<String, Object?> toJson() => {
     'event_state': state.name,
@@ -183,6 +308,7 @@ class EventStatus {
     if (manualUntil != null)
       'override_until': manualUntil!.toUtc().toIso8601String(),
     'rain': rain?.toJson(),
+    if (forecast != null) 'forecast': forecast,
   };
 }
 
@@ -194,6 +320,7 @@ class EventStateController {
     required this.configured,
     required this.hasRainSource,
     required void Function(EventState) apply,
+    this.hasForecastSource = false,
     DateTime Function()? now,
   }) : _apply = apply,
        _now = now ?? (() => DateTime.now().toUtc()) {
@@ -206,6 +333,9 @@ class EventStateController {
 
   /// Whether a rain source is configured (otherwise the mode is `fixed`).
   final bool hasRainSource;
+
+  /// Whether the forecast input is switched on (`EVENT_FORECAST=1`, ADR-029). It only acts in automatic mode.
+  final bool hasForecastSource;
 
   final void Function(EventState) _apply;
   final DateTime Function() _now;
@@ -224,6 +354,9 @@ class EventStateController {
   String? _lastFailureNote;
   DateTime? _seenActive;
   DateTime? _seenWatch;
+
+  ForecastSignal? _forecast;
+  String? _forecastFailureNote;
 
   /// A poll succeeded. Holds are only extended by a reading with a NEW satellite time, so polling the same old image again does not
   /// keep an old reading alive.
@@ -249,6 +382,19 @@ class EventStateController {
   void onRainFailure(Object error) {
     _lastFailure = _now();
     _lastFailureNote = error.runtimeType.toString();
+    _recompute();
+  }
+
+  /// A forecast poll succeeded (ADR-029).
+  void onForecast(ForecastSignal f) {
+    _forecast = f;
+    _forecastFailureNote = null;
+    _recompute();
+  }
+
+  /// A forecast poll failed. The last forecast is kept until it is too old to trust; the rain rule is not affected.
+  void onForecastFailure(Object error) {
+    _forecastFailureNote = error.runtimeType.toString();
     _recompute();
   }
 
@@ -289,10 +435,10 @@ class EventStateController {
       _manualUntil = null;
       _manualSetAt = null;
     }
-    final EventState state;
+    EventState state;
     final String mode;
-    final String source;
-    final String reason;
+    String source;
+    String reason;
     if (_manual != null) {
       state = _manual!;
       mode = 'manual';
@@ -346,6 +492,19 @@ class EventStateController {
           'below the watch level, and none at that level in the last ${EventRule.watchHold.inHours} hours',
         );
       }
+      // ADR-029: a trusted forecast may raise dry to watch, never higher, and never lowers anything.
+      final look = _trustedForecastLook(now);
+      if (state == EventState.dry && look?.level == EventState.watch) {
+        final f = _forecast!;
+        final age = (now.difference(f.fetchedAt).inMinutes / 60)
+            .toStringAsFixed(1);
+        state = EventState.watch;
+        source = 'forecast';
+        reason =
+            'Raised to watch by the rain forecast (${f.model}, fetched $age h ago): '
+            '${look!.maxMm!.toStringAsFixed(1)} mm expected in the 3 hours to ${_hhmm(look.windowEnd!)} UTC (area mean), '
+            'at or above ${EventRule.forecastWatchAccumulationMm.toStringAsFixed(0)} mm. Without the forecast: $reason';
+      }
     }
     if (_applied != state) {
       _applied = state;
@@ -360,7 +519,48 @@ class EventStateController {
       since: _since,
       rain: _signal,
       manualUntil: _manualUntil,
+      forecast: _forecastSummary(now),
     );
+  }
+
+  /// The forecast's look-ahead if a forecast is switched on, recent enough and complete enough; otherwise null.
+  ForecastLook? _trustedForecastLook(DateTime now) {
+    final f = _forecast;
+    if (!hasForecastSource || f == null || f.stale) return null;
+    if (now.difference(f.fetchedAt) > EventRule.forecastStaleAfter) return null;
+    final look = EventRule.forecastAhead(f, now);
+    return look.level == null ? null : look;
+  }
+
+  Map<String, Object?>? _forecastSummary(DateTime now) {
+    if (!hasForecastSource) return null;
+    final failed = _forecastFailureNote == null
+        ? const <String, Object?>{}
+        : {'last_poll_failed': _forecastFailureNote};
+    final f = _forecast;
+    if (f == null) {
+      return {'trusted': false, 'note': 'No forecast received yet.', ...failed};
+    }
+    final look = EventRule.forecastAhead(f, now);
+    final max = look.maxMm;
+    return {
+      'model': f.model,
+      'fetched_at': f.fetchedAt.toUtc().toIso8601String(),
+      'trusted': _trustedForecastLook(now) != null,
+      'hours_present_next_12h': look.stamps,
+      'max_3h_area_mean_mm_next_12h': max == null
+          ? null
+          : (max * 100).round() / 100,
+      'window_end': look.windowEnd?.toUtc().toIso8601String(),
+      'level': look.level?.name,
+      ...failed,
+    };
+  }
+
+  static String _hhmm(DateTime t) {
+    final u = t.toUtc();
+    String two(int v) => v.toString().padLeft(2, '0');
+    return '${u.year}-${two(u.month)}-${two(u.day)} ${two(u.hour)}:${two(u.minute)}';
   }
 
   String _failureSuffix() =>

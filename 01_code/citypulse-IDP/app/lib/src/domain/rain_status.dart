@@ -40,6 +40,21 @@ class RainReading {
   bool get isWet => intensityClass != 'none' || accumulationMm >= 0.1;
 }
 
+/// What the rain forecast says about the next 12 hours (ADR-029). Present only when the service has the forecast switched on.
+class ForecastReading {
+  /// Creates a reading.
+  const ForecastReading({required this.trusted, this.maxMm, this.windowEnd});
+
+  /// Whether the service is using the forecast now (recent and complete enough).
+  final bool trusted;
+
+  /// The largest three-hour area-mean amount expected in the next 12 hours, mm.
+  final double? maxMm;
+
+  /// When that three-hour window ends.
+  final DateTime? windowEnd;
+}
+
 /// The event state with its mode, source and rain reading.
 class RainStatus {
   /// Creates a status.
@@ -49,6 +64,7 @@ class RainStatus {
     required this.source,
     required this.reason,
     this.rain,
+    this.forecast,
   });
 
   /// Reads the service's JSON. Returns `null` for anything that is not a usable status, so a changed or broken answer shows nothing
@@ -88,6 +104,16 @@ class RainStatus {
         );
       }
     }
+    ForecastReading? forecast;
+    final f = json['forecast'];
+    if (f is Map && f['trusted'] is bool) {
+      final max = f['max_3h_area_mean_mm_next_12h'];
+      forecast = ForecastReading(
+        trusted: f['trusted'] as bool,
+        maxMm: max is num && max.isFinite && max >= 0 ? max.toDouble() : null,
+        windowEnd: DateTime.tryParse('${f['window_end']}')?.toUtc(),
+      );
+    }
     String text(String key, String fallback) =>
         json[key] is String ? json[key] as String : fallback;
     return RainStatus(
@@ -96,6 +122,7 @@ class RainStatus {
       source: text('source', 'unknown'),
       reason: text('reason', ''),
       rain: rain,
+      forecast: forecast,
     );
   }
 
@@ -105,7 +132,7 @@ class RainStatus {
   /// `auto`, `manual` or `fixed`.
   final String mode;
 
-  /// `rain`, `manual`, `fallback` or `configured`.
+  /// `rain`, `forecast`, `manual`, `fallback` or `configured`.
   final String source;
 
   /// The service's own sentence (English only; the app builds its own words from the fields).
@@ -113,4 +140,7 @@ class RainStatus {
 
   /// The rain reading, if the service has one.
   final RainReading? rain;
+
+  /// The forecast, if the service has the forecast input switched on (ADR-029).
+  final ForecastReading? forecast;
 }

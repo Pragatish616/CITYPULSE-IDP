@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.events import ObservationBroadcaster
 from app.fieldlog.service import FieldLogService
+from app.ingest.forecast import ForecastContextService
 from app.ingest.imerg import RainContextService
 from app.routers import context, events, fieldlog, health, observations
 from app.storage.factory import get_repository
@@ -26,6 +27,8 @@ def create_app() -> FastAPI:
     app.state.broadcaster = ObservationBroadcaster()
     # Rain context is fetched on demand and cached; nothing runs in the background (free hosts sleep).
     app.state.rain_service = RainContextService()
+    # Rain forecast (ADR-029): also on demand; the router uses it only when EVENT_FORECAST=1.
+    app.state.forecast_service = ForecastContextService()
     # Volunteer field log (ADR-028): off until FIELDLOG_TOKENS is set; separate from the observations the router reads.
     app.state.fieldlog = FieldLogService.from_env()
 

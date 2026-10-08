@@ -125,9 +125,12 @@ Future<void> main() async {
   // the rain from NASA), so it is off when OBSERVATIONS_URL is not set, and EVENT_AUTO=0 switches it off on purpose.
   final rainUrl = (env['EVENT_AUTO'] == '0') ? null : observationsUrl;
   final hasRainSource = rainUrl != null && rainUrl.isNotEmpty;
+  // ADR-029: a rain forecast may raise dry to watch. Off unless EVENT_FORECAST=1, and only with the automatic rain rule.
+  final hasForecastSource = hasRainSource && env['EVENT_FORECAST'] == '1';
   final events = EventStateController(
     configured: eventState,
     hasRainSource: hasRainSource,
+    hasForecastSource: hasForecastSource,
     apply: (state) {
       engine.eventState = state;
       for (final d in details) {
@@ -137,6 +140,12 @@ Future<void> main() async {
   );
   if (hasRainSource) {
     RainSync(
+      baseUrl: Uri.parse(rainUrl.endsWith('/') ? rainUrl : '$rainUrl/'),
+      controller: events,
+    ).start();
+  }
+  if (hasForecastSource) {
+    ForecastSync(
       baseUrl: Uri.parse(rainUrl.endsWith('/') ? rainUrl : '$rainUrl/'),
       controller: events,
     ).start();

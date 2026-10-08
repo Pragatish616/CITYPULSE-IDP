@@ -924,6 +924,7 @@ class _RainSheet extends ConsumerWidget {
     });
     final sourceText = s(switch (status.source) {
       'rain' => Msg.rainSourceRain,
+      'forecast' => Msg.rainSourceForecast,
       'manual' => Msg.rainSourceManual,
       'fallback' => Msg.rainSourceFallback,
       _ => Msg.rainSourceConfigured,
@@ -975,6 +976,12 @@ class _RainSheet extends ConsumerWidget {
               if (r != null)
                 row(s(Msg.rainRowImage), s.minutes(r.dataAgeMinutes)),
               row(s(Msg.rainRowState), stateText),
+              if (status.forecast?.trusted == true &&
+                  status.forecast!.maxMm != null)
+                row(
+                  s(Msg.forecastRow),
+                  '${status.forecast!.maxMm!.toStringAsFixed(1)} $mmUnit',
+                ),
               const SizedBox(height: 8),
               Text(
                 sourceText,
@@ -983,6 +990,14 @@ class _RainSheet extends ConsumerWidget {
               ),
               const SizedBox(height: 12),
               Text(s(Msg.rainCaveat), style: theme.textTheme.bodySmall),
+              if (status.forecast?.trusted == true) ...[
+                const SizedBox(height: 6),
+                Text(
+                  s(Msg.forecastCaveat),
+                  key: const Key('forecast-caveat'),
+                  style: theme.textTheme.bodySmall,
+                ),
+              ],
             ],
           ),
         ),

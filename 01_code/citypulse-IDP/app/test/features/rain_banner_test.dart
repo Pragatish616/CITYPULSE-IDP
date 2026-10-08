@@ -209,6 +209,66 @@ void main() {
       });
     }
 
+    testWidgets(
+      'a state raised by the forecast says so, with the expected amount and its limits (ADR-029)',
+      (tester) async {
+        final s = RainStatus.tryParse({
+          'event_state': 'watch',
+          'mode': 'auto',
+          'source': 'forecast',
+          'reason': 'x',
+          'forecast': {
+            'trusted': true,
+            'max_3h_area_mean_mm_next_12h': 9.25,
+            'window_end': '2026-10-08T17:00:00.000Z',
+            'level': 'watch',
+          },
+        })!;
+        expect(s.forecast!.maxMm, 9.25);
+        expect(s.forecast!.windowEnd, DateTime.utc(2026, 10, 8, 17));
+        await AppHarness(rainStatus: s).pump(tester, size: _desktop);
+        await tester.tap(find.byKey(const Key('event-banner-tap')));
+        await tester.pumpAndSettle();
+        expect(
+          find.text(
+            'Raised to flood watch by a rain forecast for the next 12 hours.',
+          ),
+          findsOneWidget,
+        );
+        expect(find.text('9.3 mm'), findsOneWidget);
+        expect(find.byKey(const Key('forecast-caveat')), findsOneWidget);
+        expect(find.textContaining('wrong either way'), findsOneWidget);
+      },
+    );
+
+    testWidgets('a forecast the service does not trust shows no amount', (
+      tester,
+    ) async {
+      final s = RainStatus.tryParse({
+        'event_state': 'dry',
+        'source': 'rain',
+        'forecast': {'trusted': false, 'max_3h_area_mean_mm_next_12h': 12.0},
+      })!;
+      await AppHarness(rainStatus: s).pump(tester, size: _desktop);
+      await tester.tap(find.byKey(const Key('event-banner-tap')));
+      await tester.pumpAndSettle();
+      expect(find.text('12.0 mm'), findsNothing);
+      expect(find.byKey(const Key('forecast-caveat')), findsNothing);
+    });
+
+    test('a broken forecast part is dropped, not guessed', () {
+      final s = RainStatus.tryParse({
+        'event_state': 'dry',
+        'forecast': {'trusted': 'yes', 'max_3h_area_mean_mm_next_12h': 3},
+      })!;
+      expect(s.forecast, isNull);
+      final t = RainStatus.tryParse({
+        'event_state': 'dry',
+        'forecast': {'trusted': true, 'max_3h_area_mean_mm_next_12h': -1},
+      })!;
+      expect((t.forecast!.trusted, t.forecast!.maxMm), (true, null));
+    });
+
     testWidgets('with no readable answer there is nothing to open', (
       tester,
     ) async {
