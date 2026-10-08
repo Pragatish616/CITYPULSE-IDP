@@ -32,7 +32,7 @@ and adds a small on-device advisor that says how much to trust what it found.
 > **CityPulse is a research prototype.** It estimates flood risk from limited data. It never says a road is
 > safe or passable, and nothing here is a substitute for your own judgement or for official warnings.
 > Flood data exists for **Chennai only**, built from 2015 records. There is no live sensor feed yet.
-> The Android app has been installed and run on one phone (5 October 2026) and is reported to behave like the web app; no timings, memory figures or offline tests are recorded yet.
+> The Android app has been installed and run on one phone (first on 5 October 2026; the 9 October build installed over it and is reported to work, like the web app); no timings, memory figures or offline tests are recorded yet.
 
 ---
 
@@ -52,17 +52,17 @@ What to know before you try it:
 - **Not live flood data.** The flood layer is the 2015 Greater Chennai Corporation hazard map. Whether it is applied follows NASA satellite rain
   (about 6 hours behind, 10 km grid): on a dry day it is switched off and the app says no flood event is under way; heavy rain switches it on.
   An operator can override this. There is no sensor feed. See the box above: it estimates risk from limited data and never says a road is safe or passable.
-- **Phones.** The page is laid out for phone-sized screens. The Android app (below) has been installed on a phone and is reported to behave like this web demo.
+- **Phones.** The page is laid out for phone-sized screens. The Android app (below) has been installed on a phone and is reported to work like this web demo.
 
 How it is built and checked: [`docs/DEPLOY.md`](01_code/citypulse-IDP/docs/DEPLOY.md) (one container; the `Dockerfile` at the top of this repository is
 generated from it). `python 01_code/citypulse-IDP/scripts/smoke_deploy.py https://citypulse-idp.onrender.com` runs 12 read-only checks against the demo.
 
 ### Android app
 
-A manual GitHub workflow, [Android APK](.github/workflows/android-apk.yml), builds an installable app for 64-bit ARM phones (about 61 MB, signed with a debug key: for
+A manual GitHub workflow, [Android APK](.github/workflows/android-apk.yml), builds an installable app for 64-bit ARM phones (the 9 October build downloads as a zip of about 29 MB; signed with a debug key: for
 your own phone, not the Play Store). Steps and a checklist of what to measure are in [`docs/MOBILE_TESTING.md`](01_code/citypulse-IDP/docs/MOBILE_TESTING.md).
 
-- **Status:** built on 4 October 2026 and installed on one Android phone on 5 October 2026, where it is reported to behave like the web demo.
+- **Status:** first installed on one Android phone on 5 October 2026. The build of 9 October 2026 (commit `681e417`) was installed over it and is reported to work, like the web demo. The only visible difference is wording in the rain sheet when a rain forecast is switched on (off by default, see below).
 - **Not recorded yet:** start-up and route timings, memory, battery, and behaviour in airplane mode. In this build the router runs on the phone,
   so the offline claim is still untested. The base map needs a network for its tiles.
 - Reports sent from the app go to the public demo server and are lost on its restart.
@@ -89,6 +89,9 @@ evaluation, including the results that did **not** go our way (see [below](#what
 | **On-device route advisor** | A transparent scoring model reads the route's own facts and returns a risk level, a *proceed with care / wait / avoid* verdict, an evidence level and a route-choice check, in about 1.5 microseconds per call. See [ADR-021](01_code/citypulse-IDP/docs/DECISIONS.md). |
 | **Checked explanations** | A template turns the structured decision record into text, and a symbolic verifier gates it. A language model never produces route geometry. |
 | **Chennai + Tamil Nadu in one app** | A route with both ends in Chennai uses the detailed Chennai map, its flood layer and the advisor. Anything else uses a Tamil Nadu main-road map and shows only the best route. See [ADR-022](01_code/citypulse-IDP/docs/DECISIONS.md). |
+| **Rain context, with a human override** | The flood-event state follows NASA satellite rain (about 6 hours behind) unless an operator overrides it ([ADR-027](01_code/citypulse-IDP/docs/DECISIONS.md)). A rain forecast input exists but is **off by default** because it failed its pre-registered test (see results). |
+| **Volunteer field log** | A phone page where volunteers record *passable / not passable / can't tell* at a road point, with the time, offline-first, to build the missing street-level ground truth ([ADR-028](01_code/citypulse-IDP/docs/DECISIONS.md), [protocol](01_code/citypulse-IDP/docs/FIELD_PROTOCOL.md)). Research data only: it changes no route and is shown to no traveller. Built and tested; no volunteer has used it, and it is off until tokens are set. |
+| **Event miner** | A small local model (`qwen3.5:0.8b` through Ollama) reads pasted official posts and news in English or Tamil and suggests quoted street events for a person to review ([ADR-030](01_code/citypulse-IDP/docs/DECISIONS.md), [guide](01_code/citypulse-IDP/docs/EVENT_MINER.md)). **Not evaluated yet.** It runs on a laptop, not in the app, and its output never reaches routes. |
 | **Search** | Streets, highway numbers (`NH 44`, `NH-44`, `NH44`) and 25,144 places, in English and Tamil. |
 | **Bilingual UI** | English and Tamil. The Tamil text is a first draft and needs a native speaker's review. |
 | **Any city** | A pipeline builds a routing-only pack for a new city from OpenStreetMap. A hazard layer needs its own verified data source. See [Adding a city](01_code/citypulse-IDP/docs/ADDING_A_CITY.md). |
@@ -157,11 +160,13 @@ The point of this repository is defensible measurement, so the negative results 
 - **Crowd reports added nothing measurable** over the static hazard map on the 2015 Chennai replay. The default commuter setting changed 7 of 100 routes.
 - **The first pessimistic index was broken**: it lowered caution after one weak report. It was replaced by a Beta-posterior upper quantile (ADR-015).
 - **The belief is not calibrated.** The earlier model scored a *negative* Brier skill against climatology. The advisor's weights are hand-set placeholders; its outputs are scores, not measured frequencies, and there are no outcome labels to calibrate them against.
+- **A rain forecast did not help** (ADR-029, run 8 October 2026). Over two north-east monsoons the forecast made a day ahead caught 7 of 46 rainy satellite readings and warned ahead for 5 of 24 rain episodes, against pre-registered bars of half. It stays off.
+- **Terrain models do not locate flooded streets inside Chennai** (ADR-026): they work at state or river-basin scale, but no learned prior kept routes out of the 2015 flood. Given the true flood, the router avoids 61 to 84% of it, so the limit is the information, not the search.
 - **The scarce resource is data, not modelling.** What is missing is independent, time-stamped, street-level passability evidence.
 
 Read the details in [`00_START_HERE/KNOWN_FLAWS.md`](00_START_HERE/KNOWN_FLAWS.md),
 [`00_START_HERE/KEY_NUMBERS.md`](00_START_HERE/KEY_NUMBERS.md) and the
-[decision records](01_code/citypulse-IDP/docs/DECISIONS.md) (ADR-001 to ADR-022).
+[decision records](01_code/citypulse-IDP/docs/DECISIONS.md) (ADR-001 to ADR-030).
 
 ## Quick start
 
@@ -203,7 +208,8 @@ More: [Deploying](01_code/citypulse-IDP/docs/DEPLOY.md) ·
 │       ├── packages/       pulse_router · pulse_belief · pulse_explain   (Dart)
 │       ├── app/            Flutter app: Android + web
 │       ├── services/       router_api: Chennai + Tamil Nadu HTTP service  (Dart)
-│       ├── server/         Report-ingest service                          (FastAPI)
+│       ├── server/         Report-ingest service and volunteer field log   (FastAPI)
+│       ├── ml/             Event miner: local model + review queue         (Python)
 │       ├── scripts/        Pack builders, replay engine, Study 1 and 2    (Python)
 │       ├── config/         cities.yaml · hazard_classes.yaml
 │       ├── data/           Pinned snapshots, map packs, results
@@ -231,9 +237,13 @@ The full plan is [`PLAN.md`](PLAN.md); the gated next steps are in
 - [x] City-agnostic pack pipeline; Tamil Nadu main-road region
 - [x] On-device route advisor; Chennai + Tamil Nadu in one app
 - [x] Web demo on a free Render instance (4 October 2026); the container image is built by the host, not yet tested locally
-- [x] Install and run the Android app on a real phone (5 October 2026; reported to behave like the web app)
+- [x] Install and run the Android app on a real phone (5 October 2026; the 9 October build installed over it and is reported to work)
+- [x] Volunteer field log built and tested (6 October 2026; not deployed, no data yet)
+- [x] Rain forecast input built and tested; failed its pre-registered test, so off by default (8 October 2026)
+- [x] Event miner built with a local model (8 October 2026; accuracy not measured)
 - [ ] Measure latency, memory, battery and offline routing on the phone
-- [ ] Independent, time-stamped passability data (the 15 October 2026 gate)
+- [ ] Independent, time-stamped passability data (the 15 October 2026 gate): run the field log with volunteers, with durable storage
+- [ ] Label 100 real posts and run the event-miner evaluation
 - [ ] Pack format v2 (32-bit name index), then detailed district packs
 - [ ] Native-speaker review of the Tamil text
 - [ ] Other states, one phase at a time
