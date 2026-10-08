@@ -1,0 +1,6 @@
+# ml/event_miner (ADR-030). The same versions are already pinned by scripts/ and server/ requirements; listed here so the
+# miner can be installed on its own. The models themselves come from Ollama (docs/EVENT_MINER.md), not from pip.
+httpx>=0.27
+numpy>=1.26
+pydantic>=2.9
+pytest>=8

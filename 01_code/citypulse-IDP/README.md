@@ -18,6 +18,7 @@ The code behind CityPulse AI. For the project overview, results and status start
 | [`app/`](app) | Flutter | Android and web client |
 | [`server/`](server) | Python (FastAPI) | Citizen-report ingest, the source adapters, and the volunteer field log (ADR-028; off until tokens are set) |
 | [`scripts/`](scripts) | Python | Pack builders, replay engine, Study 1 and Study 2, tests |
+| [`ml/event_miner/`](ml/event_miner) | Python + local model (Ollama) | Turns pasted official posts and news into quoted, place-matched street events for human review (ADR-030, [`docs/EVENT_MINER.md`](docs/EVENT_MINER.md)); not evaluated yet, never feeds routes |
 | [`config/`](config) | YAML | `cities.yaml` (regions) and `hazard_classes.yaml` (reliabilities, traveller classes, travel profiles) |
 | [`data/`](data) | | Pinned snapshots, map packs, results; provenance in [`data/MANIFEST.md`](data/MANIFEST.md) |
 | [`docs/`](docs) | Markdown | Decision records, contracts, architecture, deployment |

@@ -1134,3 +1134,19 @@ How to read it:
 - The gazetteer is areas and candidate sites, not streets or subways. Many events will map only to an area, which is coarse.
 - Unit tests use a fake model; they prove the checks work, not that the model is accurate.
 - Legal: copying a post into a local file for research is believed to be fair dealing; this is **not established**. Whether names in posts make this personal data processing under the DPDP Act is **not established**.
+
+
+### Development record (8 October 2026, before any labelling)
+
+Built in `ml/event_miner/` (27 tests with a fake model server; operator guide `docs/EVENT_MINER.md`). Changes made during development, all **before** any test item exists, so they are allowed by the rule above; they are listed so the evaluation can be read against them:
+
+- **Four development sentences** were written and run live; they are excluded from any test set:
+  1. "Traffic was diverted at the Ganesapuram subway after heavy rain on Tuesday evening."
+  2. "Water receded on Velachery Main Road by 5 pm and vehicles are moving normally."
+  3. "பெரம்பூர் சுரங்கப்பாதையில் மழைநீர் தேங்கியதால் போக்குவரத்து நிறுத்தப்பட்டது."
+  4. "Nungambakkam recorded 9 cm of rain till 8.30 am on Wednesday."
+- **Prompt v1 → v2.** With the examples in the user message, the model returned no event for sentences 1 and 2: it read the examples as part of the text. Moving them into the system message fixed both. The place-choice prompt said an area is not the place; it now asks for the place or the area that contains it, matching the labelling rule above.
+- **Quote rule refined.** v1 required the place name inside the quote. On sentence 3 the model's quote was exact but omitted the place, so a correct event was dropped. The rule is now: the quote must be word for word in the source, and the place must be in the same source sentence as the quote.
+- **State after these changes (prompt v2), development sentences only, not evidence of accuracy:** sentence 1 `closed` at the area Ganesapuram; sentence 2 `cleared` with no place chosen (Velachery was the top candidate, and a road named after an area is not always in it, so the reviewer decides); sentence 3 `closed` at the area Perambur; sentence 4 no event. Warm calls took 2 to 7 seconds.
+- **Model on this laptop:** `qwen3.5:0.8b` (Ollama digest `de63045f2975`, Q8_0, 752 M parameters plus a 101 M image projector) runs fully on the GPU in 560 MB, writing about 40 tokens per second.
+- **This replaces one sentence above.** The decision said an event at a subway missing from the gazetteer "is expected to come out `none`". With prompt v2 it maps to the area that contains it, when that area is listed, which is what the labelling rule asks for. `none` remains the answer when the area is not listed either.

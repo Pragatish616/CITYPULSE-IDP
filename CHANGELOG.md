@@ -26,6 +26,10 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Terrain and past floods as training data: 91 India flood maps and elevation tiles, a nationwide terrain model, Chennai studies and three routing tests, all pre-registered; the nationwide model met its rule, the Chennai and routing rules were not met (ADR-026).
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
+### Added (event miner, 8 October 2026; not evaluated)
+- `ml/event_miner/`: a local model (`qwen3.5:0.8b` through Ollama, Apache 2.0, small enough to consider for phones) reads pasted official posts and news in English or Tamil and lists street events (`closed`, `flooded`, `cleared`, `unknown`) with a word-for-word quote. Events whose quote is not in the text are dropped; places are matched only to the project's gazetteer (lexical plus `nomic-embed-text` embeddings), or left unmatched. Everything waits in an append-only review queue; accepted events export as CSV and never reach routes (ADR-030).
+- The evaluation (at least 100 real items labelled before mining, precision and recall per language) is pre-registered and not yet run. `docs/EVENT_MINER.md` explains running, reviewing and labelling.
+
 ### Added (rain forecast input, 8 October 2026; off by default, not adopted)
 - `GET /context/forecast` on the report server (Open-Meteo, ECMWF IFS 0.25 degree, nine points over Chennai) and an `EVENT_FORECAST=1` switch in the router that lets a forecast raise `dry` to `watch` ahead of rain, never higher. The app's rain sheet names the forecast when it is the source (ADR-029).
 - Pre-registered replay over the 2024 and 2025 north-east monsoons and a dry season against NASA IMERG (`scripts/forecast_rule_replay.py`). **Negative:** at 24 h notice the forecast caught 7 of 46 wet times and warned ahead for 5 of 24 episodes; it never switched on in the dry season. The criteria were not met, so it stays off.

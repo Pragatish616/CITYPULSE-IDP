@@ -302,3 +302,11 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 - **Privacy and ethics.** A volunteer code with a time and place is personal data about the volunteer. DPDP compliance is not established, and whether outside volunteers need institutional ethics approval is for the owner to check.
 - **No photos** (the pilot in `NEXT_STEPS.md` mentions one): a consent and storage decision comes first.
 - **Fix:** none beyond the protocol. Needs the owner: who issues tokens, a persistent store, an ethics answer, and a decision on whether field data may ever feed the belief (a new ADR).
+
+### F-38 · The event miner is unevaluated, small, and matches places only to areas and candidate sites · OPEN (ADR-030)
+- **What:** built 8 October 2026; a 0.8-billion-parameter local model extracts street events from pasted text for human review. Its accuracy is **unknown**: the pre-registered test (at least 100 real items labelled by the team before mining) has not been done.
+- **Seen in development (four made-up sentences, not evidence):** the first prompt layout returned no event for two clear English sentences; the place choice declined a correct top candidate once; a Tamil quote left out the place and was dropped by the first quote rule. Each was changed before labelling (ADR-030 development record).
+- **Places:** the gazetteer has OSM areas and 186 named candidate sites, not streets or the 22 GCC subways (M3.1). Most events will map only to an area.
+- **Sources:** paste-in only; no feed is fetched. Copying posts for research is believed to be fair dealing and the DPDP status of names in posts is not established.
+- **Fix:** label the test set and run `python -m ml.event_miner evaluate`; build the subway list (M3.1). Feeding accepted events to the router needs a new ADR.
+
