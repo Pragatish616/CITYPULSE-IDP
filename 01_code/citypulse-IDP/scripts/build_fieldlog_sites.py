@@ -53,7 +53,9 @@ def label(row: dict, near: str | None) -> str:
 
 
 def build() -> dict:
-    raw = SOURCE.read_bytes()
+    # Line endings normalised: Git stores the file with LF but a Windows checkout has CRLF, and the hash must be the same
+    # on every machine (CI on Linux failed on this, 6 to 8 Oct 2026).
+    raw = SOURCE.read_bytes().replace(b"\r\n", b"\n")
     rows = json.loads(raw.decode("utf-8"))
     sites = []
     seen = set()
