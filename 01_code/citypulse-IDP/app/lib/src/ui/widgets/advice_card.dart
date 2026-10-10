@@ -63,6 +63,9 @@ class AdviceCard extends StatelessWidget {
     AdviceReason.staleData => Msg.reasonStaleData,
     AdviceReason.noEvent => Msg.reasonNoEvent,
     AdviceReason.noHazardFound => Msg.reasonNoHazardFound,
+    AdviceReason.limitsNotMet => Msg.reasonLimitsNotMet,
+    AdviceReason.accidentOnRoute => Msg.reasonAccidentOnRoute,
+    AdviceReason.restrictedAvoided => Msg.reasonRestrictedAvoided,
   });
 
   @override

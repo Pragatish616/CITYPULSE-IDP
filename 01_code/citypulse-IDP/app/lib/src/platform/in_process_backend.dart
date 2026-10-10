@@ -129,6 +129,7 @@ class InProcessBackend implements RoutingBackend {
     required GeoPoint to,
     required TravelType travel,
     DateTime? at,
+    Set<String> avoid = const {},
   }) async {
     final engine = await _engine;
     await _refresh(engine);
@@ -140,6 +141,7 @@ class InProcessBackend implements RoutingBackend {
       userClass: travel.wire,
       at: at ?? _clock(),
       queryId: 'q-${_clock().microsecondsSinceEpoch}',
+      avoid: avoid,
     );
     switch (outcome) {
       case RouteNotFound(:final reason):

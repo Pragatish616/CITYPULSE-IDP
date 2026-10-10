@@ -139,6 +139,40 @@ void main() {
       );
       await bad({...routeBody(), 'user_class': 'astronaut'}, 'bad_user_class');
       await bad({...routeBody(), 'at': 'yesterday'}, 'bad_time');
+      await bad({...routeBody(), 'avoid': 'accident'}, 'bad_avoid');
+      await bad({...routeBody(), 'avoid': ['meteor']}, 'bad_avoid');
+      await bad({...routeBody(), 'avoid': [1]}, 'bad_avoid');
+    });
+
+    test('ADR-032: "avoid": ["accident"] keeps the route off a reported accident and says so in the trace', () async {
+      final engine = newEngine(state: EventState.dry);
+      final h = handlerFor(engine);
+      Future<Map<String, Object?>> route(Object? avoid) async {
+        final r = await call(h, 'POST', '/route', body: {...routeBody(), if (avoid != null) 'avoid': avoid});
+        expect(r.statusCode, 200);
+        return jsonDecode(await r.readAsString()) as Map<String, Object?>;
+      }
+
+      final base = DecisionTrace.fromJson((await route(null))['trace']! as Map<String, Object?>);
+      final nodes = base.chosen.geometryRef.substring('nodes:'.length).split(',').map(int.parse).toList();
+      final mid = nodes[nodes.length ~/ 2];
+      engine.addObservation(
+        EngineObservation(
+          id: 'acc-1',
+          hazardClass: 'accident',
+          polarity: 1,
+          lat: pack.nodeLat[mid],
+          lon: pack.nodeLon[mid],
+          observedAt: fixedNow.subtract(const Duration(minutes: 5)),
+          sourceClass: 'crowd',
+        ),
+      );
+      final j = await route(['accident']);
+      final trace = DecisionTrace.fromJson(j['trace']! as Map<String, Object?>);
+      expect(trace.alternatives.first.rejectedBecause, RejectedBecause.restricted);
+      expect(trace.contextFacts.map((f) => f.key), containsAll(['traveller_avoids', 'restricted_segments']));
+      expect((j['avoided_hazards']! as List), isNotEmpty);
+      expect(trace.chosen.geometryRef.split(',').contains('$mid'), isFalse);
     });
 
     test('413 when the body exceeds the limit', () async {

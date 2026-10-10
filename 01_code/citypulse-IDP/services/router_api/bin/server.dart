@@ -71,6 +71,7 @@ Future<void> main() async {
     userClasses: config.userClasses,
     sourceReliability: config.sourceReliability,
     travelProfiles: config.travelProfiles,
+    restrictionConfig: config.restrictions,
     eventState: EventState.parse(env['EVENT_STATE'] ?? 'active'),
   );
 
@@ -95,6 +96,7 @@ Future<void> main() async {
           userClasses: config.userClasses,
           sourceReliability: config.sourceReliability,
           travelProfiles: config.travelProfiles,
+          restrictionConfig: config.restrictions,
           eventState: eventState,
         ),
         places: PlaceIndex(

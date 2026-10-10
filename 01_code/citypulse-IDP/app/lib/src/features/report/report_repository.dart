@@ -37,6 +37,9 @@ enum ReportKind {
 
   /// The water has gone.
   cleared,
+
+  /// An accident on the road (ADR-032). No depth; it fades within about an hour (twice the class's `T_c`).
+  accident,
 }
 
 /// The traveller's depth estimate.
@@ -141,10 +144,13 @@ class ReportRepository {
   /// Builds the wire JSON (`docs/CONTRACTS.md` §1) for [draft].
   Map<String, Object?> toWire(ReportDraft draft) {
     final cleared = draft.kind == ReportKind.cleared;
-    final hazardClass = draft.kind == ReportKind.standing
-        ? 'waterlogging'
-        : 'flood';
-    final depth = cleared ? null : draft.depth.millimetres;
+    final hazardClass = switch (draft.kind) {
+      ReportKind.standing => 'waterlogging',
+      ReportKind.accident => 'accident',
+      ReportKind.flooded || ReportKind.cleared => 'flood',
+    };
+    // A depth belongs to water only; an accident carries none.
+    final depth = cleared || draft.kind == ReportKind.accident ? null : draft.depth.millimetres;
     return {
       'id': const Uuid().v7(),
       'hazard_class': hazardClass,

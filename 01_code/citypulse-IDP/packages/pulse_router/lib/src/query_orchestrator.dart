@@ -4,6 +4,7 @@ import 'package:pulse_router/src/bidirectional_dijkstra.dart';
 import 'package:pulse_router/src/csr_graph.dart';
 import 'package:pulse_router/src/decision_trace.dart';
 import 'package:pulse_router/src/edge_cost.dart' as cost;
+import 'package:pulse_router/src/restrictions.dart';
 
 /// Per-edge hazard configuration needed to cost and explain one edge —
 /// everything `edgeCost` and `fuse` need that isn't the observations
@@ -111,8 +112,13 @@ List<RouteEdge> _pathEdges(CsrGraph graph, RouteResult route) => [
 /// number, `α_c`), so a `blocking_edges[].source_class` has to be recovered
 /// from here rather than guessed.
 ///
+/// [restrictedEdges] are segments closed by a hard limit (ADR-032): the search may not use them, and a faster route
+/// that does is reported as `restricted` with them as its blocking edges. [contextFactsFor] adds context facts that
+/// depend on the chosen route (it receives the chosen route's edge ids).
+///
 /// Returns `null` if [target] is unreachable from [source] even ignoring
-/// all hazard cost (i.e. the graph itself is disconnected between them).
+/// all hazard cost (i.e. the graph itself is disconnected between them), or
+/// if the restricted segments cut it off (the caller decides what to do then).
 PlannedRoute? planRouteDetailed({
   required CsrGraph graph,
   required int source,
@@ -128,6 +134,8 @@ PlannedRoute? planRouteDetailed({
   String Function(int edgeId)? edgeLabel,
   String mode = 'offline',
   BeliefParams? beliefParams,
+  Map<int, RestrictedEdge> restrictedEdges = const {},
+  List<ContextFact> Function(List<int> chosenEdgeIds)? contextFactsFor,
 }) {
   if (source < 0 ||
       source >= graph.nodeCount ||
@@ -163,6 +171,8 @@ PlannedRoute? planRouteDetailed({
   );
 
   double? hazardAwareCost(RouteEdge edge) {
+    if (restrictedEdges.containsKey(edge.edgeId))
+      return null; // ADR-032: removed, not penalised
     final config = hazardConfigByEdge[edge.edgeId];
     if (config == null) return edge.freeFlowSeconds;
     return cost
@@ -194,7 +204,7 @@ PlannedRoute? planRouteDetailed({
     source: source,
     target: target,
     edgeCost: freeFlowOnlyCost,
-  )!; // never null: hazardAwareCost never removes more than freeFlowOnlyCost
+  )!; // never null: freeFlowOnlyCost removes nothing, and the chosen search already found a path
 
   final chosenEdges = _pathEdges(graph, chosenResult);
   final freeFlowDurationSeconds = chosenEdges.fold(
@@ -244,6 +254,12 @@ PlannedRoute? planRouteDetailed({
   final alternatives = <AlternativeRoute>[];
   if (!_samePath(chosenResult, altResult)) {
     final altEdges = _pathEdges(graph, altResult);
+    // ADR-032: a hard limit outranks the soft explanations below. Every restricted segment on the faster route is
+    // one the chosen route avoids (the search could not use it), and its record comes from the reports themselves.
+    final restrictedOnAlt = [
+      for (final e in altEdges)
+        if (restrictedEdges.containsKey(e.edgeId)) e,
+    ];
     final removedEdges = <RouteEdge>[];
     for (final e in altEdges) {
       final config = hazardConfigByEdge[e.edgeId];
@@ -263,7 +279,28 @@ PlannedRoute? planRouteDetailed({
 
     final blockingEdges = <BlockingEdge>[];
     RejectedBecause rejectedBecause;
-    if (removedEdges.isNotEmpty) {
+    if (restrictedOnAlt.isNotEmpty) {
+      rejectedBecause = RejectedBecause.restricted;
+      for (final e in restrictedOnAlt) {
+        final r = restrictedEdges[e.edgeId]!;
+        blockingEdges.add(
+          BlockingEdge(
+            edgeId: e.edgeId,
+            streetName: label(e.edgeId),
+            hazardClass: r.hazardClass,
+            pMean: r.pMean,
+            pPessimistic: r.pPessimistic,
+            nEff: r.nEff,
+            newestObservationAgeSeconds: r.newestReportAgeSeconds,
+            sourceClass: r.sourceClass,
+            depthMm: null,
+            timePenaltySeconds: 0,
+            removedByChanceConstraint: false,
+            hasObservation: true,
+          ),
+        );
+      }
+    } else if (removedEdges.isNotEmpty) {
       rejectedBecause = RejectedBecause.chanceConstraint;
       for (final e in removedEdges.where(avoidedByChosen)) {
         blockingEdges.add(
@@ -365,7 +402,9 @@ PlannedRoute? planRouteDetailed({
     lambda: lambda,
     chosen: chosen,
     alternatives: alternatives,
-    contextFacts: const [],
+    contextFacts:
+        contextFactsFor?.call([for (final e in chosenEdges) e.edgeId]) ??
+        const [],
     dataGaps: dataGaps,
     confidenceBand: confidenceBand,
   );
@@ -420,6 +459,7 @@ DecisionTrace? planRoute({
   String Function(int edgeId)? edgeLabel,
   String mode = 'offline',
   BeliefParams? beliefParams,
+  Map<int, RestrictedEdge> restrictedEdges = const {},
 }) => planRouteDetailed(
   graph: graph,
   source: source,
@@ -435,6 +475,7 @@ DecisionTrace? planRoute({
   edgeLabel: edgeLabel,
   mode: mode,
   beliefParams: beliefParams,
+  restrictedEdges: restrictedEdges,
 )?.trace;
 
 bool _samePath(RouteResult a, RouteResult b) {

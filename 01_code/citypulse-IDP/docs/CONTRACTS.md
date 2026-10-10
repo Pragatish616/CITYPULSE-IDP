@@ -107,7 +107,7 @@ If a fact is not in this object, no explanation may state it.
     {
       "route_id": "B",
       "duration_s": 907,
-      "rejected_because": "chance_constraint | higher_cost",
+      "rejected_because": "chance_constraint | higher_cost | restricted",
       "blocking_edges": [
         {
           "edge_id": 184223,
@@ -143,7 +143,12 @@ Notes that matter:
 - **`has_observation` (added 2026-10-02, ADR-016)** is an optional boolean on a blocking edge, serialised only when
   `false`: the hazard map flags the edge but nobody has reported it, so `newest_observation_age_s` is `0` and
   meaningless and no text may say it was reported.
-- `rejected_because` is what makes contrastive explanation possible ("why not B").
+- `rejected_because` is what makes contrastive explanation possible ("why not B"). **`restricted` (added
+  2026-10-11, ADR-032):** the alternative uses a segment closed by a hard limit (the travel mode's, or the
+  traveller's own "Avoid accidents"); its `blocking_edges` are those segments, with the class and age of the
+  reports that closed them, `removed_by_chance_constraint: false` and `time_penalty_s: 0`. ADR-032 also adds the
+  context-fact keys `mode_limits`, `traveller_avoids`, `restricted_segments`, `limits_not_met` and
+  `accident_reports_on_route`, and `POST /route` accepts `"avoid": [hazard_class, ...]`.
 - `context_facts` is the only channel for extra colour (reservoir levels, rainfall). Anything
   the explanation mentions must be here or in `alternatives`.
 - `free_flow_duration_s` lets the explanation say "2 minutes slower" truthfully — it is

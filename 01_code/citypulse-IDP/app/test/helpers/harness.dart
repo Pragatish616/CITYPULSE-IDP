@@ -131,6 +131,9 @@ class FakeBackend implements RoutingBackend {
   ];
   String risk = '{"type":"FeatureCollection","features":[]}';
   final routeCalls = <({GeoPoint from, GeoPoint to, TravelType travel})>[];
+
+  /// What each route request asked to avoid (ADR-032), in the same order as [routeCalls].
+  final routeAvoid = <Set<String>>[];
   final searched = <String>[];
   final observations = <EngineObservation>[];
   var warmUps = 0;
@@ -144,8 +147,10 @@ class FakeBackend implements RoutingBackend {
     required GeoPoint to,
     required TravelType travel,
     DateTime? at,
+    Set<String> avoid = const {},
   }) async {
     routeCalls.add((from: from, to: to, travel: travel));
+    routeAvoid.add(avoid);
     if (routeDelay > Duration.zero) await Future<void>.delayed(routeDelay);
     final error = routeError;
     if (error != null) throw error;

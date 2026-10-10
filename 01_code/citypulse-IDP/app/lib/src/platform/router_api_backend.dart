@@ -60,6 +60,7 @@ class RouterApiBackend implements RoutingBackend {
     required GeoPoint to,
     required TravelType travel,
     DateTime? at,
+    Set<String> avoid = const {},
   }) async {
     final response = await _send(
       () => _client.post(
@@ -70,6 +71,7 @@ class RouterApiBackend implements RoutingBackend {
           'to': {'lat': to.lat, 'lon': to.lon},
           'user_class': travel.wire,
           if (at != null) 'at': at.toUtc().toIso8601String(),
+          if (avoid.isNotEmpty) 'avoid': (avoid.toList()..sort()),
         }),
       ),
     );

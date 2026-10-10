@@ -79,7 +79,7 @@ class _ReportSheetState extends ConsumerState<ReportSheet> {
   Widget build(BuildContext context) {
     final s = ref.watch(stringsProvider);
     final theme = Theme.of(context);
-    final showDepth = _kind != ReportKind.cleared;
+    final showDepth = _kind != ReportKind.cleared && _kind != ReportKind.accident;
     // On the web the map is a platform view that would otherwise receive
     // taps meant for this sheet.
     return PointerInterceptor(
@@ -124,6 +124,7 @@ class _ReportSheetState extends ConsumerState<ReportSheet> {
                       (ReportKind.flooded, s(Msg.reportFlooded)),
                       (ReportKind.standing, s(Msg.reportStanding)),
                       (ReportKind.cleared, s(Msg.reportCleared)),
+                      (ReportKind.accident, s(Msg.reportAccident)),
                     ])
                       ChoiceChip(
                         key: Key('kind-${kind.name}'),

@@ -101,6 +101,12 @@ enum Msg {
   reasonStaleData,
   reasonNoEvent,
   reasonNoHazardFound,
+  reasonLimitsNotMet,
+  reasonAccidentOnRoute,
+  reasonRestrictedAvoided,
+  avoidAccidents,
+  avoidAccidentsHint,
+  reportAccident,
   choiceClose,
   adviceHedge,
   errorNetwork,
@@ -330,6 +336,16 @@ const Map<Msg, String> _en = {
       'No flood event is under way, so the flood map is not applied.',
   Msg.reasonNoHazardFound:
       'No flood hazard was found on this route in the data we have.',
+  Msg.reasonLimitsNotMet:
+      'No route avoids everything you asked to avoid, so the usual route is shown.',
+  Msg.reasonAccidentOnRoute:
+      'An accident was reported on this route recently.',
+  Msg.reasonRestrictedAvoided:
+      'A faster route was left out: it crosses a reported accident or a road your travel mode avoids.',
+  Msg.avoidAccidents: 'Avoid reported accidents',
+  Msg.avoidAccidentsHint:
+      'Even if the trip takes longer. Uses recent reports from other travellers.',
+  Msg.reportAccident: 'Accident here',
   Msg.choiceClose: 'Another route is a close call.',
   Msg.adviceHedge: 'A guide from the data we have, not a guarantee.',
   Msg.startFarFromRoad: 'Your start is {km} km from the nearest road on this map. The route begins there.',
@@ -502,6 +518,16 @@ const Map<Msg, String> _ta = {
       'வெள்ள நிகழ்வு இல்லாததால் வெள்ள வரைபடம் பயன்படுத்தப்படவில்லை.',
   Msg.reasonNoHazardFound:
       'எங்களிடம் உள்ள தரவில் இந்த வழியில் வெள்ள ஆபத்து எதுவும் காணப்படவில்லை.',
+  Msg.reasonLimitsNotMet:
+      'நீங்கள் தவிர்க்கச் சொன்ன அனைத்தையும் தவிர்க்கும் வழி இல்லை; எனவே வழக்கமான வழி காட்டப்படுகிறது.',
+  Msg.reasonAccidentOnRoute:
+      'இந்த வழியில் சமீபத்தில் ஒரு விபத்து புகாரளிக்கப்பட்டது.',
+  Msg.reasonRestrictedAvoided:
+      'விரைவான வழி விடப்பட்டது: அது புகாரளிக்கப்பட்ட விபத்தையோ உங்கள் பயண முறை தவிர்க்கும் சாலையையோ கடக்கிறது.',
+  Msg.avoidAccidents: 'புகாரளிக்கப்பட்ட விபத்துகளைத் தவிர்',
+  Msg.avoidAccidentsHint:
+      'பயணம் நீண்டாலும். மற்ற பயணிகளின் சமீபத்திய புகார்களைப் பயன்படுத்துகிறது.',
+  Msg.reportAccident: 'இங்கே விபத்து',
   Msg.choiceClose: 'மற்றொரு வழி கிட்டத்தட்ட சமமாக உள்ளது.',
   Msg.adviceHedge:
       'எங்களிடம் உள்ள தரவின் அடிப்படையிலான வழிகாட்டி; உத்தரவாதம் அல்ல.',

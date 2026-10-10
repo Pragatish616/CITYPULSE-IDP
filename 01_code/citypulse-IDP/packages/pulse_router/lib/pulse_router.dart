@@ -20,6 +20,7 @@ export 'src/edge_snapper.dart';
 export 'src/map_pack.dart';
 export 'src/place_index.dart';
 export 'src/query_orchestrator.dart';
+export 'src/restrictions.dart';
 export 'src/route_advisor.dart';
 export 'src/routing_engine.dart';
 export 'src/travel_profile.dart';

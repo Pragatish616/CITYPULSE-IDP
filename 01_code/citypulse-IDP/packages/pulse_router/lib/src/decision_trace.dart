@@ -93,12 +93,17 @@ enum RejectedBecause {
   chanceConstraint,
 
   /// The route survived costing but lost to the chosen route on total cost.
-  higherCost;
+  higherCost,
+
+  /// The route uses a segment closed by a hard limit (ADR-032): a limit of the travel mode, or the traveller's
+  /// own choice such as "Avoid accidents". Removal, like the chance constraint, not a large finite weight.
+  restricted;
 
   /// The exact string this enum serialises as in `rejected_because`.
   String get wireValue => switch (this) {
     RejectedBecause.chanceConstraint => 'chance_constraint',
     RejectedBecause.higherCost => 'higher_cost',
+    RejectedBecause.restricted => 'restricted',
   };
 }
 

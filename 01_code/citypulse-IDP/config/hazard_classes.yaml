@@ -97,3 +97,24 @@ classes:
     T_c_seconds: 10800
     severity: 0.2
     display_noun: "poor air quality"
+
+# Hard limits per travel mode (ADR-032). A segment that breaks a limit is REMOVED from the search, whatever the extra
+# time (like the chance constraint), and the route card says so; if the limits leave no route at all, the usual route
+# is shown with "the limits could not be met". EVERY NUMBER IS A PLACEHOLDER, chosen, not fitted.
+# A mode limit applies to everyone using that mode, so one anonymous report must not trigger it (PLAN.md section 12):
+# it needs a report from a source at least `reliable_source_at` reliable, or `min_reports` separate reports. The
+# traveller's own "Avoid accidents" switch on the route screen needs one report, because it is their choice.
+# An emergency vehicle heading TO an accident still gets a route: the limit closes the destination, and the
+# fallback above shows the usual route.
+restrictions:
+  report_window_factor: 2      # a report counts while its age <= 2 x T_c of its class (the data-gap window)
+  reliable_source_at: 0.85     # sensors, official feeds and responders are enough on their own; crowd is not
+  profiles:
+    foot:
+      avoid_reported: [accident, closure]
+      max_flood_index: 0.6     # only on segments with a live flood/waterlogging report; the 2015 map alone never closes a road
+      min_reports: 2
+    emergency:
+      avoid_reported: [accident, closure]
+      max_flood_index: 0.6
+      min_reports: 2

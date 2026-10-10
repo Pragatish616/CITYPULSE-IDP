@@ -26,6 +26,7 @@ import 'package:pulse_router/src/edge_snapper.dart';
 import 'package:pulse_router/src/map_pack.dart';
 import 'package:pulse_router/src/path_simplify.dart';
 import 'package:pulse_router/src/query_orchestrator.dart';
+import 'package:pulse_router/src/restrictions.dart';
 import 'package:pulse_router/src/travel_profile.dart';
 
 /// A latitude/longitude pair in degrees.
@@ -57,7 +58,11 @@ class HazardClassParams {
 /// A user class's pessimism and harm weight.
 class UserClassParams {
   /// Creates the parameters for one user class.
-  const UserClassParams({required this.z, required this.lambda, this.profile = 'car'});
+  const UserClassParams({
+    required this.z,
+    required this.lambda,
+    this.profile = 'car',
+  });
 
   /// `z`.
   final double z;
@@ -326,10 +331,12 @@ class RoutingEngine {
     this.eventState = EventState.active,
     this.travelProfiles = const {},
     this.maxPathPoints = 1500,
+    this.restrictionConfig = const RestrictionConfig(),
     EdgeSnapper? snapper,
   }) : snapper = snapper ?? EdgeSnapper(pack) {
     for (final u in userClasses.entries) {
-      if (u.value.profile != 'car' && !travelProfiles.containsKey(u.value.profile)) {
+      if (u.value.profile != 'car' &&
+          !travelProfiles.containsKey(u.value.profile)) {
         throw ArgumentError.value(
           u.value.profile,
           'userClasses.${u.key}.profile',
@@ -394,6 +401,146 @@ class RoutingEngine {
 
   /// The default event state for queries that do not pass one.
   EventState eventState;
+
+  /// Hard limits per travel mode (ADR-032). Default: none, which is the behaviour before ADR-032.
+  final RestrictionConfig restrictionConfig;
+
+  /// The class the route advisor counts on the chosen route (`accident_reports_on_route`).
+  static const String accidentClass = 'accident';
+
+  // ---- ADR-032: hard limits ---------------------------------------------------------------------------------------
+
+  /// Reports of [hazardClass] on [edge] that are live at [at]: within the window, and newer than the newest report
+  /// of the same class that says it has cleared. Positive reports only.
+  List<EngineObservation> _livePositive(
+    int edge,
+    String hazardClass,
+    DateTime at,
+  ) {
+    final params = hazardClasses[hazardClass];
+    if (params == null) return const [];
+    final windowS = restrictionConfig.windowFactor * params.decayTauSeconds;
+    final same = [
+      for (final a in _byEdge[edge] ?? const <_Attached>[])
+        if (a.observation.hazardClass == hazardClass &&
+            !a.observation.observedAt.isAfter(at) &&
+            at.difference(a.observation.observedAt).inMilliseconds / 1000 <=
+                windowS)
+          a.observation,
+    ];
+    DateTime? cleared;
+    for (final o in same) {
+      if (o.polarity == -1 &&
+          (cleared == null || o.observedAt.isAfter(cleared)))
+        cleared = o.observedAt;
+    }
+    return [
+      for (final o in same)
+        if (o.polarity == 1 &&
+            (cleared == null || o.observedAt.isAfter(cleared)))
+          o,
+    ];
+  }
+
+  bool _enough(List<EngineObservation> live, RestrictionRules rules) =>
+      live.length >= rules.minReports ||
+      live.any(
+        (o) =>
+            (sourceReliability[o.sourceClass] ?? 0) >=
+            restrictionConfig.reliableAt,
+      );
+
+  RestrictedEdge _record(
+    String rule,
+    String hazardClass,
+    int edge,
+    List<EngineObservation> live,
+    DateTime at,
+    double z,
+  ) {
+    final params = hazardClasses[hazardClass]!;
+    final windowS = restrictionConfig.windowFactor * params.decayTauSeconds;
+    // The belief of that class on the segment, computed exactly as _assemble would if it were the edge's class.
+    final belief = fuseBeta(
+      observations: [
+        for (final a in _byEdge[edge] ?? const <_Attached>[])
+          if (a.observation.hazardClass == hazardClass &&
+              !a.observation.observedAt.isAfter(at) &&
+              at.difference(a.observation.observedAt).inMilliseconds / 1000 <=
+                  windowS)
+            WeightedObservation(
+              id: a.observation.id,
+              polarity: a.observation.polarity,
+              distanceM: a.distanceM,
+              observedAt: a.observation.observedAt,
+              sourceReliability: sourceReliability[a.observation.sourceClass]!,
+            ),
+      ],
+      priorLogOdds: pack.priorLogOdds(edge),
+      t: at,
+      decayTauSeconds: params.decayTauSeconds,
+      params: beliefParams,
+    );
+    final newest = live.reduce(
+      (a, b) => b.observedAt.isAfter(a.observedAt) ? b : a,
+    );
+    return RestrictedEdge(
+      rule: rule,
+      hazardClass: hazardClass,
+      pMean: belief.pMean,
+      pPessimistic: pessimisticBeta(belief: belief, z: z),
+      nEff: belief.nEff,
+      newestReportAgeSeconds: math.max(
+        0,
+        at.difference(newest.observedAt).inSeconds.toDouble(),
+      ),
+      sourceClass: newest.sourceClass,
+      reportCount: live.length,
+    );
+  }
+
+  /// Segments closed at [at] by any of [ruleSets] (first matching set wins for the record).
+  Map<int, RestrictedEdge> restrictedEdges({
+    required DateTime at,
+    required double z,
+    required List<RestrictionRules> ruleSets,
+  }) {
+    final sets = [
+      for (final r in ruleSets)
+        if (!r.isEmpty) r,
+    ];
+    final out = <int, RestrictedEdge>{};
+    if (sets.isEmpty) return out;
+    for (final edge in _byEdge.keys) {
+      for (final rules in sets) {
+        RestrictedEdge? hit;
+        for (final cls in (rules.avoidReported.toList()..sort())) {
+          final live = _livePositive(edge, cls, at);
+          if (live.isNotEmpty && _enough(live, rules)) {
+            hit = _record('avoid_reported', cls, edge, live, at, z);
+            break;
+          }
+        }
+        final maxIndex = rules.maxFloodIndex;
+        if (hit == null && maxIndex != null) {
+          for (final cls in const ['flood', 'waterlogging']) {
+            final live = _livePositive(edge, cls, at);
+            if (live.isEmpty || !_enough(live, rules)) continue;
+            final rec = _record('max_flood_index', cls, edge, live, at, z);
+            if (rec.pPessimistic >= maxIndex) {
+              hit = rec;
+              break;
+            }
+          }
+        }
+        if (hit != null) {
+          out[edge] = hit;
+          break;
+        }
+      }
+    }
+    return out;
+  }
 
   // One routing graph per non-car profile, built the first time it is needed
   // (about 20 MB each for the Chennai pack).
@@ -626,7 +773,6 @@ class RoutingEngine {
     return (lat: (a.lat + b.lat) / 2, lon: (a.lon + b.lon) / 2);
   }
 
-
   /// Plans a route between two coordinates.
   RouteOutcome route({
     required double fromLat,
@@ -638,10 +784,16 @@ class RoutingEngine {
     EventState? eventState,
     String queryId = 'engine-query',
     double maxSnapMetres = 1500,
+    Set<String> avoidReported = const {},
   }) {
     final user = userClasses[userClass];
     if (user == null) {
       throw ArgumentError.value(userClass, 'userClass', 'unknown user class');
+    }
+    for (final c in avoidReported) {
+      if (!hazardClasses.containsKey(c)) {
+        throw ArgumentError.value(c, 'avoidReported', 'unknown hazard class');
+      }
     }
     final stopwatch = Stopwatch()..start();
     final state = eventState ?? this.eventState;
@@ -668,7 +820,70 @@ class RoutingEngine {
     if (source == target) return const RouteNotFound(RouteFailure.sameLocation);
 
     final world = _assemble(at.toUtc(), state);
-    final planned = planRouteDetailed(
+    // ADR-032: the traveller's own choice (one report is enough) and the travel mode's limits (need a reliable
+    // source or several reports, because they apply to everyone using the mode).
+    final traveller = RestrictionRules(avoidReported: avoidReported);
+    final modeRules =
+        restrictionConfig.byProfile[user.profile] ?? const RestrictionRules();
+    final restricted = restrictedEdges(
+      at: at.toUtc(),
+      z: user.z,
+      ruleSets: [traveller, modeRules],
+    );
+    List<ContextFact> facts(
+      List<int> chosenEdgeIds, {
+      required bool limitsNotMet,
+    }) {
+      final asOf = at.toUtc();
+      final accidentEdges = hazardClasses.containsKey(accidentClass)
+          ? chosenEdgeIds
+                .where((e) => _livePositive(e, accidentClass, asOf).isNotEmpty)
+                .toSet()
+                .length
+          : 0;
+      return [
+        if (!modeRules.isEmpty)
+          ContextFact(
+            key: 'mode_limits',
+            value: modeRules.describe(),
+            label: 'limits of the ${user.profile} travel mode',
+            asOf: asOf,
+          ),
+        if (avoidReported.isNotEmpty)
+          ContextFact(
+            key: 'traveller_avoids',
+            value: (avoidReported.toList()..sort()).join('+'),
+            label: "the traveller's choice",
+            asOf: asOf,
+          ),
+        if (restricted.isNotEmpty)
+          ContextFact(
+            key: 'restricted_segments',
+            value: restricted.length,
+            label: 'segments closed by these limits',
+            asOf: asOf,
+          ),
+        if (limitsNotMet)
+          ContextFact(
+            key: 'limits_not_met',
+            value: true,
+            label: 'no route meets the limits; the usual route is shown',
+            asOf: asOf,
+          ),
+        if (hazardClasses.containsKey(accidentClass))
+          ContextFact(
+            key: 'accident_reports_on_route',
+            value: accidentEdges,
+            label: 'segments of this route with a live accident report',
+            asOf: asOf,
+          ),
+      ];
+    }
+
+    PlannedRoute? plan(
+      Map<int, RestrictedEdge> closed, {
+      required bool limitsNotMet,
+    }) => planRouteDetailed(
       graph: view.graph,
       source: source,
       target: target,
@@ -682,7 +897,15 @@ class RoutingEngine {
       queryId: queryId,
       edgeLabel: (id) => pack.streetName(id) ?? 'an unnamed stretch',
       beliefParams: beliefParams,
+      restrictedEdges: closed,
+      contextFactsFor: (ids) => facts(ids, limitsNotMet: limitsNotMet),
     );
+
+    var planned = plan(restricted, limitsNotMet: false);
+    // The limits cut the trip off (for example a reported accident at the destination itself): show the usual route
+    // and say plainly that the limits could not be met, rather than no route at all.
+    if (planned == null && restricted.isNotEmpty)
+      planned = plan(const {}, limitsNotMet: true);
     if (planned == null) return const RouteNotFound(RouteFailure.noRoute);
 
     final avoided = <GeoPoint>[
@@ -693,14 +916,12 @@ class RoutingEngine {
     return RouteFound(
       RoutePlan(
         trace: planned.trace,
-        path: simplifyPath(
-          [for (final n in planned.chosenNodes) _node(n)],
-          maxPoints: maxPathPoints,
-        ),
-        fastestPath: simplifyPath(
-          [for (final n in planned.fastestNodes) _node(n)],
-          maxPoints: maxPathPoints,
-        ),
+        path: simplifyPath([
+          for (final n in planned.chosenNodes) _node(n),
+        ], maxPoints: maxPathPoints),
+        fastestPath: simplifyPath([
+          for (final n in planned.fastestNodes) _node(n),
+        ], maxPoints: maxPathPoints),
         detours: planned.detours,
         origin: _node(source),
         destination: _node(target),
@@ -798,7 +1019,8 @@ class _ProfileView {
 
   final CsrGraph graph;
 
-  bool usable(int node) => graph.outDegree(node) > 0 && graph.inDegree(node) > 0;
+  bool usable(int node) =>
+      graph.outDegree(node) > 0 && graph.inDegree(node) > 0;
 }
 
 double _round6(double v) => (v * 1e6).roundToDouble() / 1e6;
@@ -840,19 +1062,23 @@ Map<String, Object?> riskEdgesToGeoJson(
         'properties': compact
             ? {
                 'id': e.edgeId,
-                'p_pessimistic': double.parse(e.pPessimistic.toStringAsFixed(3)),
+                'p_pessimistic': double.parse(
+                  e.pPessimistic.toStringAsFixed(3),
+                ),
                 'has_observation': e.hasObservation,
               }
             : {
-          'id': e.edgeId,
-          'p_mean': double.parse(e.pMean.toStringAsFixed(4)),
-          'p_pessimistic': double.parse(e.pPessimistic.toStringAsFixed(4)),
-          'n_eff': double.parse(e.nEff.toStringAsFixed(3)),
-          'has_observation': e.hasObservation,
-          'age_s': e.newestObservationAgeSeconds?.round(),
-          'hazard_class': e.hazardClass,
-          'name': e.streetName,
-        },
+                'id': e.edgeId,
+                'p_mean': double.parse(e.pMean.toStringAsFixed(4)),
+                'p_pessimistic': double.parse(
+                  e.pPessimistic.toStringAsFixed(4),
+                ),
+                'n_eff': double.parse(e.nEff.toStringAsFixed(3)),
+                'has_observation': e.hasObservation,
+                'age_s': e.newestObservationAgeSeconds?.round(),
+                'hazard_class': e.hazardClass,
+                'name': e.streetName,
+              },
       },
   ],
 };

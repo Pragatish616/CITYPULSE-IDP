@@ -72,6 +72,46 @@ void main() {
     expect(find.textContaining('Little recent data'), findsNothing);
   });
 
+  testWidgets('ADR-032 reasons are worded, in English and Tamil, without safety words', (tester) async {
+    const accident = RouteFacts(
+      worstEdgeP: 0.01,
+      hazardPenaltyRatio: 0,
+      confidence: ConfidenceBand.moderate,
+      dataGapCount: 0,
+      userClass: UserClass.commuter,
+      eventState: EventState.active,
+      accidentReportsOnRoute: 1,
+      restrictedAlternatives: 1,
+    );
+    await _show(tester, advise(accident), AppLanguage.en);
+    await tester.pumpAndSettle();
+    expect(find.text('An accident was reported on this route recently.'), findsOneWidget);
+    expect(
+      find.text('A faster route was left out: it crosses a reported accident or a road your travel mode avoids.'),
+      findsOneWidget,
+    );
+    const notMet = RouteFacts(
+      worstEdgeP: 0.01,
+      hazardPenaltyRatio: 0,
+      confidence: ConfidenceBand.moderate,
+      dataGapCount: 0,
+      userClass: UserClass.commuter,
+      eventState: EventState.active,
+      limitsNotMet: true,
+    );
+    await _show(tester, advise(notMet), AppLanguage.ta);
+    await tester.pumpAndSettle();
+    expect(find.textContaining('வழக்கமான வழி காட்டப்படுகிறது'), findsOneWidget);
+    for (final m in [Msg.reasonLimitsNotMet, Msg.reasonAccidentOnRoute, Msg.reasonRestrictedAvoided, Msg.avoidAccidents,
+        Msg.avoidAccidentsHint, Msg.reportAccident]) {
+      final en = const Strings(AppLanguage.en)(m).toLowerCase();
+      for (final banned in ['safe', 'clear', 'open', 'fine', 'go ahead']) {
+        expect(en.contains(banned), isFalse, reason: '"$banned" in $m');
+      }
+      expect(const Strings(AppLanguage.ta)(m), isNotEmpty);
+    }
+  });
+
   testWidgets('it speaks Tamil', (tester) async {
     await _show(tester, advise(_facts(0.4)), AppLanguage.ta);
     await tester.pumpAndSettle();

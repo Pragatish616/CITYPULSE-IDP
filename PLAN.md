@@ -694,6 +694,10 @@ Budgets to measure against (targets, not claims): cold start under 4 s; offline 
 - Owner: Agent · Depends on: M4.3 · Fixes: F-24
 - Done when: the same trip gives a different route and time per mode; a walker's time is a walker's; a mode's closed roads are never used.
 
+**M4.11 Accident reports, "Avoid accidents" and hard limits per travel mode** (added 2026-10-11)
+- Status: BUILT (2026-10-11; ADR-032. Router limits with fallback, `restricted` in the trace, three advisor inputs, `avoid` on `POST /route`, the app's switch and "Accident here" report. Not on a phone build or the live site yet. Elevation limits and a safety rating from accident history are not built: no verified accident locations, and terrain does not locate street flooding, ADR-026) · Owner: Agent · Depends on: M4.10
+- Done when: with the switch on, a route never uses a segment with a live accident report unless nothing else reaches the destination, and then says so; a mode limit needs a reliable source or two reports; the explanation names the avoided accident and its age.
+
 ### M5. Responsive web app
 
 **M5.1 Web build and platform split**

@@ -15,12 +15,14 @@ abstract class RoutingBackend {
   /// the backend can answer. Throws [RoutingException] (`notReady`) on failure.
   Future<void> warmUp();
 
-  /// Plans a route. Throws [RoutingException].
+  /// Plans a route. Throws [RoutingException]. [avoid] lists report types the traveller chose to avoid
+  /// whatever the extra time (ADR-032), for example `{'accident'}`.
   Future<RouteView> route({
     required GeoPoint from,
     required GeoPoint to,
     required TravelType travel,
     DateTime? at,
+    Set<String> avoid = const {},
   });
 
   /// The risk overlay as a GeoJSON `FeatureCollection` string, for [bounds] only when given (the

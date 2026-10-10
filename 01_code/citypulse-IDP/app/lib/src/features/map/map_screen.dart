@@ -573,6 +573,17 @@ class _PlannerFields extends ConsumerWidget {
             ),
           ],
         ),
+        // ADR-032: a per-trip choice, off by default and not saved.
+        SwitchListTile(
+          key: const Key('avoid-accidents'),
+          dense: true,
+          contentPadding: EdgeInsets.zero,
+          secondary: const Icon(Icons.car_crash_outlined),
+          title: Text(s(Msg.avoidAccidents)),
+          subtitle: Text(s(Msg.avoidAccidentsHint)),
+          value: planner.avoidAccidents,
+          onChanged: notifier.setAvoidAccidents,
+        ),
       ],
     );
   }

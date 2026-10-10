@@ -592,4 +592,39 @@ void main() {
       },
     );
   });
+
+  group('a faster route closed by a limit (ADR-032)', () {
+    test('names the reported accident and its age, uses no new wording, and passes verify()', () {
+      final explanation = renderTemplate(
+        trace: buildTrace(
+          alternatives: const [
+            AlternativeRoute(
+              routeId: 'B',
+              durationSeconds: 907,
+              rejectedBecause: RejectedBecause.restricted,
+              blockingEdges: [
+                BlockingEdge(
+                  edgeId: 1001,
+                  streetName: 'Arcot Road',
+                  hazardClass: 'accident',
+                  pMean: 0.4,
+                  pPessimistic: 0.4,
+                  nEff: 1,
+                  newestObservationAgeSeconds: 420,
+                  sourceClass: 'crowd',
+                  depthMm: null,
+                  timePenaltySeconds: 0,
+                  removedByChanceConstraint: false,
+                ),
+              ],
+            ),
+          ],
+        ),
+        hazardDisplayNouns: testHazardDisplayNouns,
+      );
+      expect(explanation.text, contains('It avoids a stretch of Arcot Road where an accident was reported 7 minutes ago.'));
+      expect(explanation.verification.fallbackUsed, isFalse);
+      expect(explanation.verification.unsupportedClaims, isEmpty);
+    });
+  });
 }

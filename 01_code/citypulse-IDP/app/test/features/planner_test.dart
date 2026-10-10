@@ -171,4 +171,31 @@ void main() {
     expect(v.extraMinutes, closeTo((1023 - 907) / 60, 1e-9));
     expect(sampleRoute(withAlternative: false).extraMinutes, 0);
   });
+
+  test('ADR-032: "Avoid accidents" is off by default, re-plans when switched, survives a swap, and is cleared by clear',
+      () async {
+    final backend = FakeBackend();
+    final c = await _container(backend);
+    final planner = c.read(plannerProvider.notifier)
+      ..setOrigin(_a)
+      ..setDestination(_b);
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    expect(c.read(plannerProvider).avoidAccidents, isFalse);
+    planner.setAvoidAccidents(true);
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    planner.setAvoidAccidents(true); // no change, no extra request
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    planner.swap();
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    planner.setAvoidAccidents(false);
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+    expect(backend.routeAvoid, [
+      <String>{},
+      {'accident'},
+      {'accident'},
+      <String>{},
+    ]);
+    planner.clear();
+    expect(c.read(plannerProvider).avoidAccidents, isFalse);
+  });
 }

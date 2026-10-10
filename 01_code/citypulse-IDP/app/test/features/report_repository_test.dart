@@ -99,6 +99,16 @@ void main() {
       );
     });
 
+    test('ADR-032: an accident report is class "accident", positive, with no depth even if one was picked', () {
+      final wire = repo.toWire(
+        const ReportDraft(kind: ReportKind.accident, depth: DepthBand.knee, point: _point),
+      );
+      expect((wire['hazard_class'], wire['polarity']), ('accident', 1));
+      expect(wire.containsKey('intensity'), isFalse);
+      final obs = EngineObservation.tryParseWire(jsonDecode(jsonEncode(wire)));
+      expect((obs!.hazardClass, obs.depthMm), ('accident', null));
+    });
+
     test('every id is unique', () {
       const d = ReportDraft(
         kind: ReportKind.flooded,

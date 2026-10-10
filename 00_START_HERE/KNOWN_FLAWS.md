@@ -319,3 +319,12 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 - **Not done:** snapping to the router's graph, `config/watchlist.yaml`, the `watchpoints` table.
 - **Live-data test:** inconclusive (HTTP 404 on a guessed path; one approved request left). The public flood-monitor layer list has no subway or barrier layer.
 - **Fix:** the check sheet by two people; the correct endpoint path for the one remaining request; email GCC's control centre and the police (nothing sent).
+
+### F-40 · Accident avoidance and mode limits rest on unverified reports and placeholder numbers · OPEN (ADR-032)
+- **What:** built 11 October 2026. A traveller can avoid reported accidents per trip; walking and emergency vehicles avoid live accident and closure reports and reported flooding above an index of 0.6, when a reliable source or two reports agree.
+- **Reports, not people:** the engine counts report ids, not submitters, so "two reports" can be one person reporting twice.
+- **Unverified:** a crowd accident report is not checked by anyone. One report within 75 m closes up to 24 nearby segments for a traveller who switched avoidance on.
+- **Placeholders:** accident `T_c` (30 min, so a report lives 60 min), the 2x window, 0.85, two reports, the 0.6 index, the 0.6 advisor floor.
+- **Not built:** elevation limits (terrain does not locate street flooding, ADR-026) and a safety rating from accident history (no verified accident locations found; RTI or the state's RADMS is the route).
+- **Not tested on a phone**, not on the live site; the Tamil strings are a draft.
+- **Fix:** an outcome dataset (field log, accident reports with "cleared" follow-ups) and a pre-registered test before any number is tuned.

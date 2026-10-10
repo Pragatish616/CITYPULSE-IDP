@@ -86,6 +86,7 @@ RoutingEngine _buildEngine(EngineInputs inputs) {
     userClasses: config.userClasses,
     sourceReliability: config.sourceReliability,
     travelProfiles: config.travelProfiles,
+    restrictionConfig: config.restrictions,
   );
 }
 
@@ -101,6 +102,7 @@ abstract class EngineHost {
     required String userClass,
     required DateTime at,
     required String queryId,
+    Set<String> avoid = const {},
   });
 
   /// The risk overlay as a compact GeoJSON string, for [bounds] only when given (ADR-020).
@@ -143,6 +145,7 @@ class LocalEngineHost implements EngineHost {
     required String userClass,
     required DateTime at,
     required String queryId,
+    Set<String> avoid = const {},
   }) async => _engine.route(
     fromLat: fromLat,
     fromLon: fromLon,
@@ -151,6 +154,7 @@ class LocalEngineHost implements EngineHost {
     userClass: userClass,
     at: at,
     queryId: queryId,
+    avoidReported: avoid,
   );
 
   @override
@@ -203,6 +207,7 @@ class _Route extends _Command {
     this.userClass,
     this.at,
     this.queryId,
+    this.avoid,
   );
   final double fromLat;
   final double fromLon;
@@ -211,6 +216,7 @@ class _Route extends _Command {
   final String userClass;
   final DateTime at;
   final String queryId;
+  final List<String> avoid;
 }
 
 class _Risk extends _Command {
@@ -293,6 +299,7 @@ void _workerMain(_Boot boot) {
           userClass: c.userClass,
           at: c.at,
           queryId: c.queryId,
+          avoidReported: c.avoid.toSet(),
         ),
         _Risk c => _riskJson(engine, c.at, c.userClass, c.bounds),
         _Search c => (places ??= PlaceIndex(
@@ -402,7 +409,10 @@ class IsolateEngineHost implements EngineHost {
     required String userClass,
     required DateTime at,
     required String queryId,
-  }) => _call(_Route(fromLat, fromLon, toLat, toLon, userClass, at, queryId));
+    Set<String> avoid = const {},
+  }) => _call(
+    _Route(fromLat, fromLon, toLat, toLon, userClass, at, queryId, avoid.toList()),
+  );
 
   @override
   Future<String> riskGeoJson({

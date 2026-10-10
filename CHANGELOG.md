@@ -26,6 +26,11 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Terrain and past floods as training data: 91 India flood maps and elevation tiles, a nationwide terrain model, Chennai studies and three routing tests, all pre-registered; the nationwide model met its rule, the Chennai and routing rules were not met (ADR-026).
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
+### Added (accident avoidance and mode limits, 11 October 2026; not on a phone or the live site yet)
+- "Avoid reported accidents" switch on the route screen (per trip, off by default): the route keeps off every segment with a live accident report, whatever the extra time; if nothing else reaches the destination, the usual route is shown and says so (ADR-032).
+- Hard limits per travel mode in `config/hazard_classes.yaml`: walking and emergency vehicles avoid live accident and closure reports and reported flooding above an index of 0.6, when a reliable source or two reports agree.
+- "Accident here" in the report sheet; `rejected_because: "restricted"` in the trace; `"avoid"` on `POST /route`; three new advice reasons (English and a Tamil draft). No trained model: no outcome labels exist. No safety rating: no verified accident locations found.
+
 ### Added (subway watchlist and pilot kit, 9 October 2026; nothing verified, nothing deployed)
 - A subway watchlist from the Greater Chennai Corporation's own table (16 road/rail and 5 pedestrian subways, transcribed row for row) plus news and OpenStreetMap names: 31 candidates, 21 with an OSM position (labelled by how sure the match is) and 10 with none, which carry a labelled area hint instead of an invented point. No source gives "22" names or the 290 waterlogging points (ADR-031).
 - The volunteer field log serves the subways first, lists those without a position by name, and searches GCC's location words, news names and Tamil names. A bug the tests caught: an id over the server's 32-character limit.

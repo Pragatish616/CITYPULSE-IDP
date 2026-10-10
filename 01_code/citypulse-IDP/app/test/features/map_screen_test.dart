@@ -261,6 +261,27 @@ void main() {
       expect(find.byKey(const Key('report-submit')), findsOneWidget);
     });
 
+    testWidgets('ADR-032: the "Avoid reported accidents" switch is on the planner, off by default, and re-plans '
+        'asking to avoid accidents', (tester) async {
+      for (final size in [_phone, _desktop]) {
+        final h = AppHarness();
+        await h.pump(tester, size: size);
+        h.container.read(plannerProvider.notifier)
+          ..setOrigin(Place.dropped((lat: 13.04, lon: 80.23)))
+          ..setDestination(Place.dropped((lat: 12.98, lon: 80.22)));
+        await tester.pumpAndSettle();
+        final toggle = find.byKey(const Key('avoid-accidents'));
+        expect(toggle, findsOneWidget, reason: '$size');
+        expect(find.text('Avoid reported accidents'), findsOneWidget);
+        await tester.ensureVisible(toggle);
+        await tester.tap(toggle);
+        await tester.pumpAndSettle();
+        expect(h.container.read(plannerProvider).avoidAccidents, isTrue);
+        expect(h.backend.routeAvoid.last, {'accident'});
+        expect(h.backend.routeAvoid.first, isEmpty);
+      }
+    });
+
     testWidgets('a shared link pre-fills both ends and plans', (tester) async {
       final h = AppHarness();
       await h.pump(tester, size: _desktop);

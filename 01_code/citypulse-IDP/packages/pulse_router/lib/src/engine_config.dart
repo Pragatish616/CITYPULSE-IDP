@@ -7,6 +7,7 @@
 /// decode with `package:yaml` (a `YamlMap` is a `Map`) or `dart:convert`.
 library;
 
+import 'package:pulse_router/src/restrictions.dart';
 import 'package:pulse_router/src/routing_engine.dart';
 import 'package:pulse_router/src/travel_profile.dart';
 
@@ -19,6 +20,7 @@ class EngineConfig {
     required this.sourceReliability,
     required this.displayNouns,
     this.travelProfiles = const {},
+    this.restrictions = const RestrictionConfig(),
   });
 
   /// Parses a decoded config document. Missing optional per-class values fall
@@ -64,7 +66,9 @@ class EngineConfig {
     final rawProfiles = doc['travel_profiles'];
     if (rawProfiles != null) {
       if (rawProfiles is! Map) {
-        throw const FormatException('hazard config: travel_profiles must be a map');
+        throw const FormatException(
+          'hazard config: travel_profiles must be a map',
+        );
       }
       rawProfiles.forEach((name, raw) {
         final id = name! as String;
@@ -98,12 +102,35 @@ class EngineConfig {
       reliability[name! as String] = number(raw, 'source_reliability.$name');
     });
 
+    final rawRestrictions = doc['restrictions'];
+    if (rawRestrictions != null && rawRestrictions is! Map) {
+      throw const FormatException('hazard config: restrictions must be a map');
+    }
+    final restrictions = RestrictionConfig.fromMap(
+      (rawRestrictions as Map?)?.cast<Object?, Object?>(),
+    );
+    restrictions.byProfile.forEach((profile, rules) {
+      if (profile != 'car' && !profiles.containsKey(profile)) {
+        throw FormatException(
+          'hazard config: restrictions.profiles.$profile is not a travel profile',
+        );
+      }
+      for (final c in rules.avoidReported) {
+        if (!classes.containsKey(c)) {
+          throw FormatException(
+            'hazard config: restrictions.profiles.$profile.avoid_reported: unknown class "$c"',
+          );
+        }
+      }
+    });
+
     return EngineConfig(
       hazardClasses: Map.unmodifiable(classes),
       userClasses: Map.unmodifiable(users),
       sourceReliability: Map.unmodifiable(reliability),
       displayNouns: Map.unmodifiable(nouns),
       travelProfiles: Map.unmodifiable(profiles),
+      restrictions: restrictions,
     );
   }
 
@@ -121,4 +148,7 @@ class EngineConfig {
 
   /// Movement profiles by name (`travel_profiles`, ADR-019).
   final Map<String, TravelProfile> travelProfiles;
+
+  /// Hard limits per travel mode (`restrictions`, ADR-032). Default: none.
+  final RestrictionConfig restrictions;
 }

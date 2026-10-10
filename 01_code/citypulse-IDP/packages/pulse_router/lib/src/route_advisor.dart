@@ -82,6 +82,15 @@ enum AdviceReason {
   /// The route's riskiest street has almost no flood risk in the data held. This says what the data shows;
   /// it is not a statement that the route is safe (ADR-011), and it is shown beside the evidence level.
   noHazardFound,
+
+  /// No route meets the limits (the travel mode's or the traveller's own, ADR-032); the usual route is shown.
+  limitsNotMet,
+
+  /// A live accident report lies on this route.
+  accidentOnRoute,
+
+  /// A faster route was left out because it uses a segment the limits close (for example a reported accident).
+  restrictedAvoided,
 }
 
 /// The facts the advisor reads. Plain numbers, so the model can be tested without a router.
@@ -96,6 +105,9 @@ class RouteFacts {
     required this.eventState,
     this.blockedAlternatives = 0,
     this.candidates = const [],
+    this.accidentReportsOnRoute = 0,
+    this.restrictedAlternatives = 0,
+    this.limitsNotMet = false,
   });
 
   /// Builds the facts from a trace. [eventState] is the state the query ran under (not in the trace).
@@ -115,6 +127,13 @@ class RouteFacts {
       blockedAlternatives: trace.alternatives
           .where((a) => a.rejectedBecause == RejectedBecause.chanceConstraint)
           .length,
+      restrictedAlternatives: trace.alternatives
+          .where((a) => a.rejectedBecause == RejectedBecause.restricted)
+          .length,
+      accidentReportsOnRoute: _factInt(trace, 'accident_reports_on_route'),
+      limitsNotMet: trace.contextFacts.any(
+        (f) => f.key == 'limits_not_met' && f.value == true,
+      ),
       candidates: [
         CandidateFacts(
           routeId: chosen.routeId,
@@ -128,7 +147,9 @@ class RouteFacts {
           CandidateFacts(
             routeId: a.routeId,
             durationSeconds: a.durationSeconds,
-            riskScore: a.rejectedBecause == RejectedBecause.chanceConstraint
+            riskScore:
+                a.rejectedBecause == RejectedBecause.chanceConstraint ||
+                    a.rejectedBecause == RejectedBecause.restricted
                 ? 1
                 : a.blockingEdges
                       .fold<double>(0, (m, e) => math.max(m, e.pPessimistic))
@@ -158,6 +179,15 @@ class RouteFacts {
 
   /// Alternatives the router removed outright (chance constraint).
   final int blockedAlternatives;
+
+  /// Segments of the chosen route with a live accident report (ADR-032).
+  final int accidentReportsOnRoute;
+
+  /// Alternatives left out because they use a segment closed by a limit (ADR-032).
+  final int restrictedAlternatives;
+
+  /// Whether no route met the limits, so the usual route is shown (ADR-032).
+  final bool limitsNotMet;
 
   /// The chosen route first, then up to three alternatives.
   final List<CandidateFacts> candidates;
@@ -247,6 +277,17 @@ T _argmax<T extends Enum>(Map<T, double> m) {
   return best!;
 }
 
+int _factInt(DecisionTrace trace, String key) {
+  for (final f in trace.contextFacts) {
+    if (f.key == key && f.value is num) return (f.value! as num).toInt();
+  }
+  return 0;
+}
+
+/// ADR-032: a live accident report on the route, or limits that could not be met, lift the risk score to at least
+/// this. A hand-set placeholder like every weight here, chosen so that such a route is never "lower" risk; not fitted.
+const double accidentRiskFloor = 0.6;
+
 double _riskScore(double p, double penaltyRatio) {
   final pp = p.isFinite ? p.clamp(0.0, 1.0) : 1.0;
   final ratio = penaltyRatio.isFinite
@@ -282,7 +323,9 @@ const double _beta = 4.0;
 /// Turns [facts] into [Advice].
 Advice advise(RouteFacts facts) {
   final evidenceScore = _evidenceScore(facts);
-  final r = _riskScore(facts.worstEdgeP, facts.hazardPenaltyRatio);
+  var r = _riskScore(facts.worstEdgeP, facts.hazardPenaltyRatio);
+  if (facts.accidentReportsOnRoute > 0 || facts.limitsNotMet)
+    r = math.max(r, accidentRiskFloor);
 
   // Risk: soft assignment of the score to the three levels, blended toward the no-evidence prior
   // as evidence thins.
@@ -343,12 +386,19 @@ double _evidenceScore(RouteFacts f) {
 
 List<AdviceReason> _reasons(RouteFacts f, double r) {
   final out = <AdviceReason>[];
+  // ADR-032 reasons first: they are what the traveller can act on.
+  if (f.limitsNotMet) out.add(AdviceReason.limitsNotMet);
+  if (f.accidentReportsOnRoute > 0) out.add(AdviceReason.accidentOnRoute);
+  if (f.restrictedAlternatives > 0 && !f.limitsNotMet)
+    out.add(AdviceReason.restrictedAvoided);
   if (f.worstEdgeP >= 0.5) {
     out.add(AdviceReason.highRiskStreet);
   } else if (f.worstEdgeP >= 0.2) {
     out.add(AdviceReason.someRiskStreets);
   } else if (f.worstEdgeP < 0.05 &&
       f.hazardPenaltyRatio < 0.01 &&
+      f.accidentReportsOnRoute == 0 &&
+      !f.limitsNotMet &&
       f.eventState != EventState.dry) {
     // Without this line a verdict of "moderate" on a route with nothing found reads as if the numbers were
     // missing: the verdict comes from thin evidence, and the card should say what was and was not found. Not on

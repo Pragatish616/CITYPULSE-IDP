@@ -30,7 +30,12 @@ class PlannerState {
     this.status = PlanStatus.idle,
     this.route,
     this.failure,
+    this.avoidAccidents = false,
   });
+
+  /// Whether the traveller chose to avoid reported accidents on this trip, whatever the extra time (ADR-032).
+  /// Off by default and not saved: it is a per-trip choice.
+  final bool avoidAccidents;
 
   /// Chosen start.
   final Place? origin;
@@ -60,12 +65,14 @@ class PlannerState {
     RouteView? route,
     RoutingFailure? failure,
     bool clearResult = false,
+    bool? avoidAccidents,
   }) => PlannerState(
     origin: clearOrigin ? null : (origin ?? this.origin),
     destination: clearDestination ? null : (destination ?? this.destination),
     status: status ?? this.status,
     route: clearResult ? null : (route ?? this.route),
     failure: clearResult ? null : (failure ?? this.failure),
+    avoidAccidents: avoidAccidents ?? this.avoidAccidents,
   );
 }
 
@@ -106,7 +113,14 @@ class PlannerNotifier extends Notifier<PlannerState> {
   void swap() {
     final o = state.origin;
     final d = state.destination;
-    state = PlannerState(origin: d, destination: o);
+    state = PlannerState(origin: d, destination: o, avoidAccidents: state.avoidAccidents);
+    if (state.ready) plan();
+  }
+
+  /// Turns "Avoid accidents" on or off for this trip and re-plans (ADR-032).
+  void setAvoidAccidents(bool on) {
+    if (on == state.avoidAccidents) return;
+    state = state.copyWith(avoidAccidents: on);
     if (state.ready) plan();
   }
 
@@ -133,6 +147,7 @@ class PlannerNotifier extends Notifier<PlannerState> {
         to: destination.point,
         travel: travel,
         at: ref.read(clockProvider)(),
+        avoid: state.avoidAccidents ? const {'accident'} : const {},
       );
       if (mine != _generation) return;
       state = state.copyWith(status: PlanStatus.done, route: view);

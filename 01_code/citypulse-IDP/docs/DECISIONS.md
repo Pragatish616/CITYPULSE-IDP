@@ -1190,3 +1190,37 @@ Built in `ml/event_miner/` (27 tests with a fake model server; operator guide `d
 The miner's place list is now the 661 OSM places, the 186 named candidate sites **and the subway watchlist of ADR-031** (30 of its 31 entries: the news-only Choolaimedu one has neither a position nor an area). A post about "Madley subway" can now be matched to the subway (`sub-gcc-rr-12`) instead of only to its area. An entry with no known position is matched through its **area's** coordinates and its kind says so (`subway (position not known; area point)`); the 200-metre place measure is therefore meaningless for those entries and is reported with them apart. Prompts are unchanged (still `miner-prompt-v2`). No labels exist, so the evaluation is not affected, but anyone labelling must use these ids.
 
 Five more made-up sentences were run live as development (excluded from any test set): "Traffic was diverted at the Ganesapuram subway after heavy rain on Tuesday evening." (closed, `sub-gcc-rr-01`); "Madley subway was closed to vehicles on Monday night after water collected inside." (closed, `sub-gcc-rr-12`); the Tamil Perambur sentence (closed, `sub-gcc-rr-07`); "Water has drained from the Gengu Reddy Road subway and it has been reopened, officials said." (cleared, `sub-gcc-rr-05`); and "Water receded on Velachery Main Road by 5 pm..." (cleared, no gazetteer match, as before). These show the plumbing works; they are not evidence of accuracy.
+
+
+## ADR-032: Accident reports, an "Avoid accidents" switch, and hard limits per travel mode (11 October 2026)
+
+**Status:** built and tested on the laptop; the owner chose the three design options below (11 October 2026). **Not on any phone yet** (the APK must be rebuilt) and **not on the live site** (it must be redeployed). Task M4.11.
+
+**Context.** The owner asked for the app to collect accidents on a route and avoid them even at a cost in time; for limits on each road segment from safety ratings, elevation and flood readings; and for a model to process them. What the code already had: `accident` was a hazard class in the contract and the config (`T_c` 1800 s, severity 0.4), the server and router accepted such reports, and the belief folded them in. What it lacked: the app could only report water, and the commuter setting (`λ` = 0.3) accepts at most about a 12% penalty on an accident segment, so it rarely detours.
+
+What is not available (searched 11 October 2026): **no public, location-level accident data for Chennai.** OpenCity holds yearly crash counts for Chennai and district counts for Tamil Nadu, without coordinates in the listings; the state's GIS accident system (RADMS / e-PATHAI) has black spots but no public download; a Kaggle "Indian Road Accident Dataset" has coordinates but no verifiable source; a GitHub Tamil Nadu dataset has plainly wrong coordinates. **No outcome labels** exist either (which routes had an accident, which got stuck), so no trained model could be checked.
+
+**Decision (the owner's choices, then the design).**
+1. **"Avoid accidents" is the traveller's choice, per trip, off by default.** When on, every segment with a live accident report is removed from the search, whatever the extra time. One report is enough, because it is that traveller's own choice for that one trip.
+2. **Hard limits per travel mode**, in `config/hazard_classes.yaml` under `restrictions`. Shipped: walking and emergency vehicles avoid segments with live `accident` or `closure` reports, and segments with a live flood or waterlogging report whose pessimistic index is at least 0.6. The 2015 map alone never closes a road. Because these apply to **everyone** using the mode, one anonymous report must not trigger them (PLAN.md section 12): they need a report from a source at least 0.85 reliable (sensor, official feed, responder) **or two separate reports**. Car and bicycle have no mode limits; the switch is their tool.
+3. **No trained model.** The on-device advisor (ADR-021) gains three inputs: an accident report on the chosen route, limits that could not be met, and faster routes left out by a limit. An accident on the route, or limits not met, lift the risk score to at least 0.6, so such a route is never "lower" risk. The 0.6 is a hand-set placeholder like every advisor weight.
+
+How it works:
+- **Live report:** a report counts while its age is at most 2 × `T_c` of its class (the data-gap window: 60 minutes for an accident, 8 hours for a closure). A newer report of the same class on the same segment saying it has cleared (polarity −1) cancels it.
+- **Removal, not penalty:** a limited segment is removed like the chance constraint (ADR-003). If the limits leave **no route at all** (for example an accident at the destination, or an ambulance heading to it), the usual route is shown and the advisor's first reason says the limits could not be met. The traveller is never left with no answer.
+- **Trace:** a faster route that uses a limited segment is reported with `rejected_because: "restricted"` (new wire value, `docs/CONTRACTS.md` §3), with the limited segments as its blocking edges, carrying their real class and report age. The Tier 0 template needs no new wording: "It avoids a stretch of Arcot Road where an accident was reported 7 minutes ago." passes the verifier (tested). Context facts: `mode_limits`, `traveller_avoids`, `restricted_segments`, `limits_not_met`, `accident_reports_on_route`.
+- **Router API:** `POST /route` accepts `"avoid": ["accident"]` (known classes only, at most 8).
+- **App:** an "Accident here" report (no depth); the switch under the travel modes; three advice reasons in English and a Tamil draft.
+
+**Not done, and why.**
+- **Elevation limits:** not chosen now. The Copernicus 90 m tiles are on the authoring laptop, but ADR-026 found terrain does not predict which Chennai streets flood, so a "low-lying road" limit would be a preference, not a prediction.
+- **Safety rating from accident history:** no verified location-level data (above). An RTI request to the police or the state's RADMS layer is the route; nothing was requested.
+- **A trained model:** no labels. The field log (ADR-028) and accident reports will produce outcomes; a model then needs its own pre-registered test.
+
+**Limits, stated plainly.**
+- **Reports, not people.** The engine sees report ids, not submitters (the server keeps `source_id`; the engine does not), so "two reports" could be one person reporting twice. The mode limits are therefore weaker against abuse than they look.
+- **Crowd accident reports are unverified.** Nothing checks that an accident happened.
+- **A report closes everything within 75 m** (the attach radius, F-02, up to 24 segments), cross streets included. That is how all reports attach; for accidents it can close more than the one carriageway.
+- **The accident class shares the flood prior** in the engine's belief (the engine applies the 2015 prior to whatever class an edge carries, a pre-existing simplification). It changes the probabilities printed on a blocking edge, not which segments are closed.
+- **Every number is a placeholder:** `T_c` for accidents (30 minutes, so a report lasts an hour), the 2× window, 0.85, two reports, the 0.6 index, the 0.6 risk floor.
+- **Not measured:** how often travellers would use the switch, how much time it costs on real trips, behaviour on a phone. The Tamil text is an unreviewed draft.

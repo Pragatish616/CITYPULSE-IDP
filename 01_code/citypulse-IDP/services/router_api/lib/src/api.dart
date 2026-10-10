@@ -183,6 +183,20 @@ Handler buildHandler(
         'user_class must be one of ${engine.userClasses.keys.join(", ")}.',
       );
     }
+    // ADR-032: the traveller's own limits, for example ["accident"] from the "Avoid accidents" switch.
+    final rawAvoid = body['avoid'] ?? const <Object?>[];
+    if (rawAvoid is! List ||
+        rawAvoid.length > 8 ||
+        rawAvoid.any(
+          (c) => c is! String || !engine.hazardClasses.containsKey(c),
+        )) {
+      return _error(
+        400,
+        'bad_avoid',
+        '"avoid" must be a list of report types: ${engine.hazardClasses.keys.join(", ")}.',
+      );
+    }
+    final avoid = {for (final c in rawAvoid) c as String};
     DateTime at = now();
     final rawAt = body['at'];
     if (rawAt != null) {
@@ -211,6 +225,7 @@ Handler buildHandler(
           at: at,
           queryId: queryId,
           maxSnapMetres: d.city.maxSnapMetres,
+          avoidReported: avoid,
         );
         if (detailed is RouteFound) {
           outcome = detailed;
@@ -229,6 +244,7 @@ Handler buildHandler(
       at: at,
       queryId: queryId,
       maxSnapMetres: config.maxSnapMetres,
+      avoidReported: avoid,
     );
     switch (outcome) {
       case RouteNotFound(:final reason):
