@@ -5,4 +5,4 @@ nothing leaves the review queue without a person. Accepted events are a dataset;
 See docs/EVENT_MINER.md for how to run it.
 """
 
-PROMPT_VERSION = "miner-prompt-v2"
+PROMPT_VERSION = "miner-prompt-v3"

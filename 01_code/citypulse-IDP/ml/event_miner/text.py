@@ -64,3 +64,25 @@ def ground(event: ModelEvent, source_text: str) -> str | None:
     if name_key(event.place_text) not in name_key(sentence):
         return "place not in the quoted sentence"
     return None
+
+
+MIN_SNAP_WORDS = 4
+
+
+def snap(event: ModelEvent, source_text: str) -> str | None:
+    """The real source sentence a not-quite-verbatim quote comes from, or None.
+
+    Small models often tidy a quote (drop "speeding", "on the spot"). The strict rule above then loses a correct event. This keeps
+    it only when EVERY word of the model's quote (at least four words) is found in ONE source sentence that also contains the
+    place: nothing the model invented can pass. The caller replaces the quote with that sentence, so the stored words are always
+    the source's own (ADR-030 addendum of 11 October 2026).
+    """
+    words = name_key(_strip_wrapping(event.quote)).split()
+    if len(words) < MIN_SNAP_WORDS:
+        return None
+    place = name_key(event.place_text)
+    for sentence in _SENTENCE_END.split(source_text):
+        key = name_key(sentence)
+        if place in key and set(words) <= set(key.split()):
+            return sentence.strip()
+    return None

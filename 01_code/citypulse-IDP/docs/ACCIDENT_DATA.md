@@ -19,6 +19,10 @@ Pages were read through a web fetch tool; **no data file has been downloaded**. 
 | GitHub Tamil Nadu accidents CSV | District points | One point per district, with an obvious error (Salem at longitude -123) | n/a | Not used |
 | [TomTom Traffic Incidents API](https://developer.tomtom.com/traffic-api/documentation/tomtom-maps/traffic-incidents/incident-details) | **Live** incidents with coordinates and an "accident" category; India is covered | Live only, no archive | Free tier needs the team's own account; **whether incident records may be stored over time was not found in its terms** and must be asked | A possible live feed, not a history |
 
+## What was downloaded (11 October 2026, with the owner's approval)
+
+Two files from OpenCity, public domain, in `data/accidents/chennai-2026-10-11/` (log: `fetch_log.json`; checks: `summary.json`, `scripts/accident_yearly_summary.py`): the Chennai file (1,534 bytes) and the Tamil Nadu file (1,831 bytes). The Chennai file holds 28 yearly rows, 1998 to 2025. Checks: years are consecutive; killed is at least the number of fatal accidents every year; the four severity counts add up to the total in 27 of 28 years (**2013 is off by 5**: 9,705 against 9,710). Its 2021 row (5,035 accidents, 999 killed) agrees with the NCRB 2021 figures a news report quoted (5,034 and 998). Recent totals as in the file: 3,453 (2022), 3,654 (2023), 3,763 (2024), 4,104 (2025), an increase of 18.9% from 2022 to 2025; fatal accidents 499, 499, 533, 493. **The grievous and minor splits swing by thousands between some neighbouring years (1998 to 1999, 2014 to 2017, 2024 to 2025), which looks like a change in how injuries were classified, so only totals should be compared across years.** These are the city's official yearly numbers; they say nothing about which road.
+
 ## What this means for a model
 
 - **There is no accident model today.** The advice model (ADR-021) is hand-set; ADR-032 added accident inputs to it with placeholder weights. Nothing was ever trained on accidents, so there is nothing to "retrain".
@@ -28,5 +32,5 @@ Pages were read through a web fetch tool; **no data file has been downloaded**. 
 ## What would change the answer
 
 1. **A data request** to Greater Chennai Traffic Police, the Tamil Nadu Highways Department (RADMS) or IIT Madras's road-safety centre, asking for crash locations with dates, with personal details removed. Only the team can send it (nothing was sent).
-2. **Our own dated record.** Accident reports from the app, and accident events reviewed from public news and police posts through the event miner (ADR-030, which today extracts flooding, closure and "cleared" events and would need an accident condition). Small and biased toward what is reported, but real, dated and ours.
+2. **Our own dated record.** Accident reports from the app, and accident events reviewed from public news and police posts through the event miner (ADR-030 addendum 2, 11 October 2026: the miner now has an `accident` condition with a severity, withholds accident quotes from the saved dataset, and has never been measured). Small and biased toward what is reported, but real, dated and ours.
 3. **TomTom's live incidents**, if the team opens an account and TomTom confirms in writing that stored records are allowed.

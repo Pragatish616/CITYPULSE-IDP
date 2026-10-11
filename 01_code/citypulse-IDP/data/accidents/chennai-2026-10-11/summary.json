@@ -1,0 +1,64 @@
+{
+ "task": "check and summarise the Greater Chennai Police yearly crash totals",
+ "run_at": "2026-10-11T03:15:42Z",
+ "source": "https://data.opencity.in/dataset/chennai-road-crashes-data (publisher: Greater Chennai Police; source given as tnsta.gov.in; licence: Other (Public Domain))",
+ "files": {
+  "chennai-road-crashes-1998-2025.csv": {
+   "bytes": 1534,
+   "sha256": "e37e1e7bd8e25281aa7f1fc69c8d554bf6fd02aad8b14a9aed0e6cf77e2799a7"
+  },
+  "tn-road-crashes-1993-2025.csv": {
+   "bytes": 1831,
+   "sha256": "acd406cfb1515c6316c4ea12afb05dba55dcc9439cb4326759f7c8d80a93cd7d"
+  }
+ },
+ "scope": "yearly totals for the city; no location, no date within a year; says nothing about which road",
+ "checks": {
+  "years": [
+   1998,
+   2025
+  ],
+  "rows": 28,
+  "years_consecutive": true,
+  "years_where_the_four_severity_counts_add_up_to_the_total": 27,
+  "years_where_they_do_not": [
+   2013
+  ],
+  "killed_at_least_fatal_accidents_every_year": true,
+  "no_negative_values": true
+ },
+ "recent_years_as_in_the_file": {
+  "2021": {
+   "total": 5035,
+   "fatal": 976,
+   "killed": 999,
+   "persons": 6019
+  },
+  "2022": {
+   "total": 3453,
+   "fatal": 499,
+   "killed": 507,
+   "persons": 4232
+  },
+  "2023": {
+   "total": 3654,
+   "fatal": 499,
+   "killed": 504,
+   "persons": 4464
+  },
+  "2024": {
+   "total": 3763,
+   "fatal": 533,
+   "killed": 543,
+   "persons": 4513
+  },
+  "2025": {
+   "total": 4104,
+   "fatal": 493,
+   "killed": 500,
+   "persons": 4892
+  }
+ },
+ "change_in_total_accidents_2022_to_2025_percent": 18.9,
+ "caution": "The grievous-injury and minor-injury columns swing by thousands between some neighbouring years (1998-1999, 2014-2017, 2024-2025), which looks like a change in classification; compare totals, not the severity split."
+}

@@ -51,8 +51,9 @@ def _print_item(item, places_by_id) -> None:
         chosen = places_by_id.get(e.chosen_place_id) if e.chosen_place_id else None
         where = f"{chosen.name} ({e.chosen_place_id})" if chosen else "no gazetteer match"
         dup = f"  DUPLICATE of {e.duplicate_of}" if e.duplicate_of else ""
-        print(f"  [{e.index}] {e.condition:8s} {e.place_text!r} -> {where}{dup}")
-        print(f"      quote: {e.quote!r}")
+        sev = f" ({e.severity})" if e.condition == "accident" else ""
+        print(f"  [{e.index}] {e.condition:8s}{sev} {e.place_text!r} -> {where}{dup}")
+        print(f"      quote: {e.quote!r}" + ("   (the model's quote was tidied; this is the source sentence)" if e.quote_snapped else ""))
         if e.time_text or e.depth_words:
             print(f"      time: {e.time_text!r}  depth: {e.depth_words!r}")
         print("      candidates: " + "; ".join(f"{c.name} [{c.id}]" for c in e.candidates))
@@ -107,7 +108,8 @@ def cmd_decide(args: argparse.Namespace, client: OllamaClient) -> int:
     places = {p.id: p for p in load_places()}
     try:
         d = MinerStore().decide(args.item_id, args.index, args.action, args.reviewer, places,
-                                place_id=args.place, condition=args.condition, note=args.note or "")
+                                place_id=args.place, condition=args.condition,
+                                severity=args.severity, note=args.note or "")
     except (KeyError, ValueError) as exc:
         print(f"refused: {exc}")
         return 1
@@ -120,7 +122,7 @@ def cmd_export(args: argparse.Namespace, client: OllamaClient) -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     text = MinerStore().export_csv({p.id: p for p in load_places()})
     out.write_text(text, encoding="utf-8")
-    print(f"wrote {out} ({len(text.splitlines()) - 1} reviewed event(s)). It holds quotes from the sources: keep it out of Git.")
+    print(f"wrote {out} ({len(text.splitlines()) - 1} reviewed event(s)). It holds quotes from the sources (withheld for accidents): keep it out of Git.")
     return 0
 
 
@@ -154,7 +156,8 @@ def main(argv: list[str] | None = None) -> int:
     d.add_argument("action", choices=["accept", "reject", "correct"])
     d.add_argument("--reviewer", required=True)
     d.add_argument("--place", help="corrected place id (see `places`), or none")
-    d.add_argument("--condition", choices=["flooded", "closed", "cleared", "unknown"])
+    d.add_argument("--condition", choices=["flooded", "closed", "cleared", "accident", "unknown"])
+    d.add_argument("--severity", choices=["fatal", "injury", "no_injury", "unknown"], help="only for an accident")
     d.add_argument("--note")
     e = sub.add_parser("export", help="reviewed events as CSV")
     e.add_argument("--out", required=True)

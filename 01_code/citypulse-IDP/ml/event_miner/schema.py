@@ -8,8 +8,11 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-Condition = Literal["flooded", "closed", "cleared", "unknown"]
-CONDITIONS: tuple[str, ...] = ("flooded", "closed", "cleared", "unknown")
+Condition = Literal["flooded", "closed", "cleared", "accident", "unknown"]
+CONDITIONS: tuple[str, ...] = ("flooded", "closed", "cleared", "accident", "unknown")
+# Only an accident carries a severity (ADR-030 addendum of 11 October 2026); every other condition has "unknown".
+Severity = Literal["fatal", "injury", "no_injury", "unknown"]
+SEVERITIES: tuple[str, ...] = ("fatal", "injury", "no_injury", "unknown")
 MAX_EVENTS = 10
 
 
@@ -22,7 +25,10 @@ class ModelEvent(BaseModel):
     condition: Condition
     time_text: str = Field(default="", max_length=120)
     depth_words: str = Field(default="", max_length=120)
+    severity: Severity = "unknown"
     quote: str = Field(min_length=1, max_length=500)
+    # Set by the pipeline, never by the model: the quote was replaced by the source sentence it came from (text.snap).
+    snapped: bool = False
 
 
 class ModelExtraction(BaseModel):
@@ -46,9 +52,10 @@ def extraction_schema() -> dict:
                         "condition": {"type": "string", "enum": list(CONDITIONS)},
                         "time_text": {"type": "string"},
                         "depth_words": {"type": "string"},
+                        "severity": {"type": "string", "enum": list(SEVERITIES)},
                         "quote": {"type": "string"},
                     },
-                    "required": ["place_text", "condition", "time_text", "depth_words", "quote"],
+                    "required": ["place_text", "condition", "time_text", "depth_words", "severity", "quote"],
                 },
             }
         },
@@ -109,7 +116,9 @@ class MinedEvent(BaseModel):
     condition: Condition
     time_text: str
     depth_words: str
+    severity: Severity = "unknown"
     quote: str
+    quote_snapped: bool = False
     candidates: list[Candidate]
     chosen_place_id: str | None
     duplicate_of: str | None = None

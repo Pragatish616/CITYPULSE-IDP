@@ -16,12 +16,13 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from ml.event_miner.gazetteer import Place
-from ml.event_miner.schema import CONDITIONS, MinedItem
+from ml.event_miner.schema import CONDITIONS, SEVERITIES, MinedItem
 
 # MINER_DIR moves the store (for example for trial runs that must not enter the real review queue).
 DEFAULT_DIR = Path(os.environ.get("MINER_DIR") or Path(__file__).resolve().parents[2] / "data" / "miner")
 DUPLICATE_WINDOW = timedelta(hours=6)
 Action = Literal["accept", "reject", "correct"]
+ACCIDENT_QUOTE_WITHHELD = "[withheld: accident report]"
 
 
 class Decision(BaseModel):
@@ -31,6 +32,7 @@ class Decision(BaseModel):
     reviewer: str = Field(pattern=r"^[A-Za-z0-9_-]{2,24}$")
     place_id: str | None = None
     condition: str | None = None
+    severity: str | None = None
     note: str = Field(default="", max_length=300)
     decided_at: datetime
 
@@ -104,6 +106,7 @@ class MinerStore:
         places: dict[str, Place],
         place_id: str | None = None,
         condition: str | None = None,
+        severity: str | None = None,
         note: str = "",
         now: datetime | None = None,
     ) -> Decision:
@@ -111,17 +114,19 @@ class MinerStore:
         if item is None or not any(e.index == index for e in item.events):
             raise KeyError(f"no event {item_id}:{index}")
         if action == "correct":
-            if place_id is None and condition is None:
-                raise ValueError("a correction needs a place id, a condition, or both")
+            if place_id is None and condition is None and severity is None:
+                raise ValueError("a correction needs a place id, a condition, a severity, or several of them")
             if place_id is not None and place_id != "none" and place_id not in places:
                 raise ValueError(f"{place_id} is not in the gazetteer")
             if condition is not None and condition not in CONDITIONS:
                 raise ValueError(f"condition must be one of {', '.join(CONDITIONS)}")
-        elif place_id is not None or condition is not None:
-            raise ValueError("only a correction carries a place or a condition")
+            if severity is not None and severity not in SEVERITIES:
+                raise ValueError(f"severity must be one of {', '.join(SEVERITIES)}")
+        elif place_id is not None or condition is not None or severity is not None:
+            raise ValueError("only a correction carries a place, a condition or a severity")
         d = Decision(
             item_id=item_id, index=index, action=action, reviewer=reviewer, place_id=place_id, condition=condition,
-            note=note, decided_at=now or datetime.now(timezone.utc),
+            severity=severity, note=note, decided_at=now or datetime.now(timezone.utc),
         )
         self._append(self.decisions_file, d.model_dump_json())
         return d
@@ -136,7 +141,8 @@ class MinerStore:
         """Accepted and corrected events, with the reviewer's place and condition where corrected. Formula-safe."""
         header = [
             "item_id", "index", "source_name", "source_url", "published_at_utc", "language", "place_text", "place_id",
-            "place_name", "lat", "lon", "condition", "time_text", "depth_words", "quote", "decision", "reviewer",
+            "place_name", "place_kind", "lat", "lon", "condition", "severity", "time_text", "depth_words", "quote", "decision",
+            "reviewer",
             "decided_at_utc", "duplicate_of", "model", "model_digest", "prompt_version",
         ]
         buf = io.StringIO()
@@ -152,11 +158,17 @@ class MinerStore:
                 pid = None if pid == "none" else pid
                 place = places.get(pid) if pid else None
                 cond = d.condition if d.action == "correct" and d.condition else ev.condition
+                sev = d.severity if d.action == "correct" and d.severity else ev.severity
+                if cond != "accident":
+                    sev = "unknown"
+                # An accident report can name the people involved and their vehicles, so the saved dataset keeps the event
+                # (place, time, severity) and withholds the quoted words; the reviewer read them in the local store.
+                quote, depth = (ACCIDENT_QUOTE_WITHHELD, "") if cond == "accident" else (ev.quote, ev.depth_words)
                 row = [
                     item.item_id, ev.index, item.source.source_name, item.source.source_url,
                     item.source.published_at.isoformat(), item.language, ev.place_text, pid or "",
-                    place.name if place else "", place.lat if place else "", place.lon if place else "", cond,
-                    ev.time_text, ev.depth_words, ev.quote, d.action, d.reviewer, d.decided_at.isoformat(),
+                    place.name if place else "", place.kind if place else "", place.lat if place else "",
+                    place.lon if place else "", cond, sev, ev.time_text, depth, quote, d.action, d.reviewer, d.decided_at.isoformat(),
                     ev.duplicate_of or "", item.model, item.model_digest or "", item.prompt_version,
                 ]
                 w.writerow([_safe(v) for v in row])

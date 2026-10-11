@@ -229,7 +229,7 @@ def test_mining_keeps_grounded_events_drops_invented_ones_and_maps_only_to_liste
     assert mined.events[1].condition == "cleared"
     choice_formats = [r["format"] for r in fake.requests if "choice" in r["format"]["properties"]]
     assert choice_formats[0]["properties"]["choice"]["enum"][-1] == "none"
-    assert mined.model_digest == "abc" and mined.prompt_version == "miner-prompt-v2"
+    assert mined.model_digest == "abc" and mined.prompt_version == "miner-prompt-v3"
 
 
 def test_an_item_with_no_street_event_gives_none() -> None:
@@ -381,3 +381,161 @@ def test_an_evaluation_run_writes_numbers_but_no_source_text_to_the_committed_re
     committed = (out / "result.json").read_text(encoding="utf-8")
     assert "SECRET-TEXT" not in committed and "Traffic was diverted" not in committed
     assert "SECRET-TEXT" in (detail / "2026-10-08.jsonl").read_text(encoding="utf-8")
+
+
+# ---------------------------------------------------------------------------------------------- accidents (ADR-030 addendum 2)
+
+ACCIDENT_TEXT = "A lorry hit a two-wheeler near the Perambur subway on Friday night and the rider, a 34-year-old man, died."
+
+
+def accident_event(severity: str = "fatal", condition: str = "accident") -> dict:
+    return {**event("Perambur subway", condition, "A lorry hit a two-wheeler near the Perambur subway on Friday night",
+                    "Friday night"), "severity": severity}
+
+
+def mined_accident(severity: str = "fatal", condition: str = "accident", source: str = "Feed A"):
+    fake = FakeOllama(extractions=[{"events": [accident_event(severity, condition)]}], choices=[{"choice": "c1"}])
+    return mine_item(fake.client(), Retriever(SMALL), item(ACCIDENT_TEXT, source=source))
+
+
+def test_the_schema_offers_accident_and_a_severity_only_the_model_can_fill_from_the_text() -> None:
+    from ml.event_miner.schema import CONDITIONS, SEVERITIES, extraction_schema
+
+    props = extraction_schema()["properties"]["events"]["items"]
+    assert "accident" in CONDITIONS and props["properties"]["condition"]["enum"] == list(CONDITIONS)
+    assert props["properties"]["severity"]["enum"] == list(SEVERITIES) == ["fatal", "injury", "no_injury", "unknown"]
+    assert "severity" in props["required"]
+
+
+def test_an_accident_keeps_its_severity_and_any_other_condition_forces_unknown() -> None:
+    m = mined_accident("fatal")
+    assert (m.events[0].condition, m.events[0].severity, m.events[0].chosen_place_id) == ("accident", "fatal", "place:perambur")
+    other = mined_accident("fatal", condition="closed")
+    assert other.events[0].severity == "unknown", "a severity on a road-condition event is dropped"
+
+
+def test_the_prompt_asks_for_accidents_and_keeps_names_and_plate_numbers_out() -> None:
+    from ml.event_miner.miner import EXAMPLES, EXTRACT_SYSTEM
+
+    assert '"accident"' in EXTRACT_SYSTEM and "severity" in EXTRACT_SYSTEM
+    assert "registration number" in EXTRACT_SYSTEM and "totals or counts of accidents" in EXTRACT_SYSTEM
+    assert '"condition":"accident"' in EXAMPLES and '"events":[]' in EXAMPLES
+
+
+def test_an_exported_accident_keeps_place_time_and_severity_but_withholds_the_quote(tmp_path: Path) -> None:
+    store = MinerStore(tmp_path)
+    places = {p.id: p for p in SMALL}
+    m = store.add(mined_accident("injury"))
+    store.decide(m.item_id, 0, "accept", "v01", places)
+    csv_text = store.export_csv(places)
+    header, row = csv_text.splitlines()
+    cols = header.split(",")
+    cells = dict(zip(cols, next(__import__("csv").reader([row])), strict=True))
+    assert cells["condition"] == "accident" and cells["severity"] == "injury" and cells["time_text"] == "Friday night"
+    assert cells["quote"] == "[withheld: accident report]" and cells["depth_words"] == ""
+    assert "lorry" not in csv_text and "34-year-old" not in csv_text
+    assert cells["place_id"] == "place:perambur" and cells["place_kind"] == "suburb", "the coordinate is the place's point, and its kind says so"
+    # the reviewer's own store still has the words, for reading in context
+    assert "lorry" in store.items_file.read_text(encoding="utf-8")
+
+
+def test_a_road_condition_event_still_exports_its_quote_and_has_severity_unknown(tmp_path: Path) -> None:
+    store = MinerStore(tmp_path)
+    places = {p.id: p for p in SMALL}
+    m = store.add(mined_one("Traffic was diverted at the Perambur subway today."))
+    store.decide(m.item_id, 0, "accept", "v01", places)
+    _h, row = store.export_csv(places).splitlines()
+    assert "Traffic was diverted at the Perambur subway" in row and ",unknown," in row
+
+
+def test_a_reviewer_can_correct_the_severity_or_turn_an_event_into_an_accident(tmp_path: Path) -> None:
+    store = MinerStore(tmp_path)
+    places = {p.id: p for p in SMALL}
+    m = store.add(mined_accident("unknown"))
+    store.decide(m.item_id, 0, "correct", "v01", places, severity="fatal", note="the text says the rider died")
+    assert "fatal" in store.export_csv(places)
+    with pytest.raises(ValueError, match="severity must be one of"):
+        store.decide(m.item_id, 0, "correct", "v01", places, severity="slight")
+    with pytest.raises(ValueError, match="only a correction"):
+        store.decide(m.item_id, 0, "accept", "v01", places, severity="fatal")
+    with pytest.raises(ValueError, match="needs a place id, a condition, a severity"):
+        store.decide(m.item_id, 0, "correct", "v01", places)
+    road = store.add(mined_one("Traffic was diverted at the Perambur subway today.", source="Feed B"))
+    store.decide(road.item_id, 0, "correct", "v01", places, condition="accident", severity="injury")
+    out = store.export_csv(places)
+    assert out.count("[withheld: accident report]") == 2, "a corrected accident is withheld too"
+
+
+def test_a_severity_on_a_non_accident_correction_is_not_exported(tmp_path: Path) -> None:
+    store = MinerStore(tmp_path)
+    places = {p.id: p for p in SMALL}
+    m = store.add(mined_one("Traffic was diverted at the Perambur subway today."))
+    store.decide(m.item_id, 0, "correct", "v01", places, severity="fatal")
+    header, row = store.export_csv(places).splitlines()
+    cells = dict(zip(header.split(","), next(__import__("csv").reader([row])), strict=True))
+    assert cells["condition"] == "closed" and cells["severity"] == "unknown"
+
+
+def test_labels_may_use_accident_and_the_evaluation_counts_it() -> None:
+    places = {p.id: p for p in SMALL}
+    ev.validate_labels([{"events": [{"place_id": "place:perambur", "condition": "accident"}]}], places)
+    gold = [{"place_id": "place:perambur", "condition": "accident"}]
+    mined = [{"place_id": "place:perambur", "place_text": "Perambur", "condition": "accident"}]
+    assert ev.match_events(gold, mined)[0] == 1
+    s = ev.score([{"gold": gold, "mined": mined, "tp": 1, "dropped": 0, "seconds": 1.0}], places)
+    assert s["gold_conditions"] == {"accident": 1} and s["mined_conditions"] == {"accident": 1}
+
+
+# ---------------------------------------------------------------------------------------------- quote snapping (ADR-030 addendum 2)
+
+KOYAMBEDU = "A speeding lorry hit a two-wheeler near the Koyambedu junction on Tuesday night and the rider died on the spot."
+KOYAMBEDU_MODEL = {"place_text": "Koyambedu junction", "condition": "accident", "time_text": "Tuesday night", "depth_words": "",
+                   "severity": "fatal", "quote": "A lorry hit a two-wheeler near the Koyambedu junction on Tuesday night and the rider died."}
+
+
+def mine_with(source: str, ev: dict):
+    fake = FakeOllama(extractions=[{"events": [ev]}], choices=[{"choice": "c1"}])
+    places = [*SMALL, Place("place:koyambedu", "Koyambedu", "suburb", 13.07, 80.19)]
+    return mine_item(fake.client(), Retriever(places), item(source))
+
+
+def test_a_tidied_quote_is_replaced_by_the_real_sentence_and_flagged() -> None:
+    m = mine_with(KOYAMBEDU, KOYAMBEDU_MODEL)
+    e = m.events[0]
+    assert e.quote == KOYAMBEDU and e.quote_snapped is True and m.dropped == []
+    assert (e.condition, e.severity, e.chosen_place_id) == ("accident", "fatal", "place:koyambedu")
+
+
+def test_a_verbatim_quote_is_not_flagged_as_snapped() -> None:
+    ev = {**KOYAMBEDU_MODEL, "quote": "A speeding lorry hit a two-wheeler near the Koyambedu junction"}
+    assert mine_with(KOYAMBEDU, ev).events[0].quote_snapped is False
+
+
+@pytest.mark.parametrize(
+    ("quote", "why"),
+    [
+        ("A lorry hit a two-wheeler near the Koyambedu junction on Tuesday night and two people died.", "a word the source does not have"),
+        ("A lorry hit a two-wheeler near the Koyambedu junction on Tuesday night, police said.", "an invented clause"),
+        ("lorry hit rider", "fewer than four words"),
+    ],
+)
+def test_a_quote_with_anything_the_source_lacks_still_drops_the_event(quote, why) -> None:
+    m = mine_with(KOYAMBEDU, {**KOYAMBEDU_MODEL, "quote": quote})
+    assert m.events == [] and [d.reason for d in m.dropped] == ["quote not found in the source"], why
+
+
+def test_the_words_must_come_from_one_sentence_that_has_the_place() -> None:
+    two = "A lorry hit a two-wheeler on Tuesday night. The rider died near the Koyambedu junction."
+    ev = {**KOYAMBEDU_MODEL, "quote": "A lorry hit a two-wheeler near the Koyambedu junction and the rider died"}
+    assert mine_with(two, ev).events == [], "words spread over two sentences are not one claim"
+    elsewhere = "A lorry hit a two-wheeler on Tuesday night near Perambur. Koyambedu junction was busy."
+    ev2 = {**KOYAMBEDU_MODEL, "quote": "A lorry hit a two-wheeler on Tuesday night near Perambur"}
+    assert mine_with(elsewhere, ev2).events == [], "the place the model names must be in the same sentence"
+
+
+def test_a_snapped_event_is_shown_to_the_reviewer_as_such(tmp_path: Path, capsys) -> None:
+    from ml.event_miner.__main__ import _print_item
+
+    _print_item(mine_with(KOYAMBEDU, KOYAMBEDU_MODEL), {p.id: p for p in SMALL})
+    out = capsys.readouterr().out
+    assert "the model's quote was tidied; this is the source sentence" in out and "accident (fatal)" in out

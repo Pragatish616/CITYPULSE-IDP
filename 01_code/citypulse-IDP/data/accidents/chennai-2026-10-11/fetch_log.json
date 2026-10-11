@@ -1,0 +1,27 @@
+{
+  "kind": "accident_yearly_totals_fetch_log",
+  "fetched_on": "2026-10-11",
+  "approved_by": "owner, in chat, 11 October 2026 (file names, source and sizes were stated before download)",
+  "method": "curl, one GET per file, User-Agent naming the project",
+  "dataset_page": "https://data.opencity.in/dataset/chennai-road-crashes-data",
+  "publisher": "Greater Chennai Police (as listed on OpenCity); source given on the page as https://tnsta.gov.in",
+  "licence": "Other (Public Domain), marked on the dataset page as satisfying the Open Definition",
+  "dataset_updated": "2026-02-09",
+  "files": [
+    {
+      "name": "chennai-road-crashes-1998-2025.csv",
+      "url": "https://data.opencity.in/dataset/2c742a2c-c559-4d9c-9987-8566aadb933c/resource/29162b87-f1a7-4011-b309-b14d904f9a7d/download/chennai-road-crashes-1998-2025.csv",
+      "bytes": 1534,
+      "sha256": "e37e1e7bd8e25281aa7f1fc69c8d554bf6fd02aad8b14a9aed0e6cf77e2799a7",
+      "content": "one row per year 1998 to 2025: accidents by severity and persons killed or injured, for Chennai"
+    },
+    {
+      "name": "tn-road-crashes-1993-2025.csv",
+      "url": "https://data.opencity.in/dataset/2c742a2c-c559-4d9c-9987-8566aadb933c/resource/c1fe08c4-9871-4c0b-b79b-c446f24f2c03/download/tn-road-crashes-1993-2025.csv",
+      "bytes": 1831,
+      "sha256": "acd406cfb1515c6316c4ea12afb05dba55dcc9439cb4326759f7c8d80a93cd7d",
+      "content": "one row per year 1993 to 2025 for Tamil Nadu; read for context only, not analysed here"
+    }
+  ],
+  "limits": "yearly totals only: no location, no date within a year; the severity split looks reclassified between some years (see summary.json)"
+}

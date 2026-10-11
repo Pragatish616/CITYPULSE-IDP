@@ -26,6 +26,11 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 - Terrain and past floods as training data: 91 India flood maps and elevation tiles, a nationwide terrain model, Chennai studies and three routing tests, all pre-registered; the nationwide model met its rule, the Chennai and routing rules were not met (ADR-026).
 - Tested terrain-hydrology code (`scripts/hydrology.py`).
 
+### Added (accident data and the miner, 11 October 2026)
+- A search for Chennai accident data (`docs/ACCIDENT_DATA.md`): **no public, real, location-level and dated dataset exists**; the Greater Chennai Police publish yearly totals only, iRAD/eDAR and RADMS are not public, and the geocoded Kaggle file is partly synthetic. Nothing was trained on invented data.
+- The two official yearly-totals files were downloaded (public domain, 3 KB) and checked: 27 of 28 years add up (2013 is off by 5), and 2022 to 2025 totals rose 18.9%.
+- The event miner finds road accidents (new `accident` condition with a severity), keeps a model's tidied quote only when every word comes from one source sentence (it then stores that sentence), and the saved dataset withholds accident quotes (ADR-030 addendum 2). Not evaluated.
+
 ### Added (accident avoidance and mode limits, 11 October 2026; not on a phone or the live site yet)
 - "Avoid reported accidents" switch on the route screen (per trip, off by default): the route keeps off every segment with a live accident report, whatever the extra time; if nothing else reaches the destination, the usual route is shown and says so (ADR-032).
 - Hard limits per travel mode in `config/hazard_classes.yaml`: walking and emergency vehicles avoid live accident and closure reports and reported flooding above an index of 0.6, when a reliable source or two reports agree.

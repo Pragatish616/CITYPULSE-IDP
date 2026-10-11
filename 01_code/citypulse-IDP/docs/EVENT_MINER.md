@@ -16,6 +16,7 @@ exported as a CSV dataset.
 | `closed` | traffic stopped, diverted, barricaded; road or subway closed or not motorable |
 | `cleared` | water drained or receded; traffic restored; reopened |
 | `flooded` | water on the road, without saying traffic is stopped |
+| `accident` | a crash or collision at the place (added 11 October 2026). It carries a `severity`: `fatal`, `injury`, `no_injury` or `unknown`. The exported dataset **withholds the quote** of accidents (victims may be named) and its coordinate is the matched place's point, not the crash |
 | `unknown` | the place is mentioned in a rain context but its condition is not stated |
 
 Rainfall readings at a station ("Nungambakkam recorded 9 cm") are not events.

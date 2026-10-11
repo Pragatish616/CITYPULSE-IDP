@@ -24,37 +24,43 @@ from ml.event_miner.schema import (
     choice_schema,
     extraction_schema,
 )
-from ml.event_miner.text import ground
+from ml.event_miner.text import ground, snap
 
 EXTRACT_SYSTEM = """You read short Chennai news items and official posts (English or Tamil) and list what they say about \
-specific roads, streets, subways, bridges or junctions during rain. Answer only JSON in the given schema.
+specific roads, streets, subways, bridges or junctions: water on them during rain, closures, and road accidents. Answer only \
+JSON in the given schema.
 
 For each street-level event give:
 - place_text: the place exactly as written in the text (keep the text's own language and spelling);
 - condition, choosing the first that applies:
-  "closed"  = traffic stopped, diverted, barricaded, or the road or subway is closed or not motorable;
-  "cleared" = water drained or receded, traffic restored, road or subway reopened or motorable again;
-  "flooded" = water, waterlogging or inundation on the road, without saying traffic is stopped;
-  "unknown" = the place is mentioned in a rain context but its condition is not stated;
+  "accident" = a crash, collision, or a vehicle overturning or a person being hit on the road at that place;
+  "closed"   = traffic stopped, diverted, barricaded, or the road or subway is closed or not motorable;
+  "cleared"  = water drained or receded, traffic restored, road or subway reopened or motorable again;
+  "flooded"  = water, waterlogging or inundation on the road, without saying traffic is stopped;
+  "unknown"  = the place is mentioned in a rain context but its condition is not stated;
 - time_text: the time or date as written, or "" if none;
-- depth_words: any words about depth ("knee-deep", "2 feet"), or "";
+- depth_words: any words about water depth ("knee-deep", "2 feet"), or "";
+- severity: only for an accident: "fatal" if the text says someone died, "injury" if people were hurt, "no_injury" if it says \
+nobody was hurt, "unknown" if it does not say. For every other condition write "unknown";
 - quote: the shortest exact words copied from the text that state this event, including the place name.
 
-Do NOT list: rainfall amounts at a station or area ("Nungambakkam recorded 12 cm"), general advice, forecasts, or places \
-named without a road condition. If the text states no street-level event, return {"events": []}. Never add anything the text \
-does not say."""
+Never write a person's name, age, phone number or a vehicle registration number in place_text, time_text or depth_words.
+
+Do NOT list: rainfall amounts at a station or area ("Nungambakkam recorded 12 cm"), totals or counts of accidents over a period or \
+for a district, general advice, forecasts, court or police procedure, or accidents with no place named. If the text states no \
+street-level event, return {"events": []}. Never add anything the text does not say."""
 
 EXAMPLES = """Example (made up): "Traffic was diverted at the Duraisamy subway on Monday morning after rainwater stagnated."
--> {"events":[{"place_text":"Duraisamy subway","condition":"closed","time_text":"Monday morning","depth_words":"",\
-"quote":"Traffic was diverted at the Duraisamy subway"}]}
+-> {"events":[{"place_text":"Duraisamy subway","condition":"closed","time_text":"Monday morning","depth_words":"","severity":"unknown","quote":"Traffic was diverted at the Duraisamy subway"}]}
 
 Example (made up): "Water receded in the Madley subway by 4 pm and vehicles are moving again. Meenambakkam recorded 9 cm."
--> {"events":[{"place_text":"Madley subway","condition":"cleared","time_text":"by 4 pm","depth_words":"",\
-"quote":"Water receded in the Madley subway by 4 pm"}]}
+-> {"events":[{"place_text":"Madley subway","condition":"cleared","time_text":"by 4 pm","depth_words":"","severity":"unknown","quote":"Water receded in the Madley subway by 4 pm"}]}
 
 Example (made up): "வேளச்சேரி பிரதான சாலையில் முழங்கால் அளவு தண்ணீர் தேங்கியுள்ளது."
--> {"events":[{"place_text":"வேளச்சேரி பிரதான சாலை","condition":"flooded","time_text":"",\
-"depth_words":"முழங்கால் அளவு","quote":"வேளச்சேரி பிரதான சாலையில் முழங்கால் அளவு தண்ணீர் தேங்கியுள்ளது"}]}
+-> {"events":[{"place_text":"வேளச்சேரி பிரதான சாலை","condition":"flooded","time_text":"","depth_words":"முழங்கால் அளவு","severity":"unknown","quote":"வேளச்சேரி பிரதான சாலையில் முழங்கால் அளவு தண்ணீர் தேங்கியுள்ளது"}]}
+
+Example (made up): "A lorry hit a two-wheeler near the Perungudi junction on Friday night and the rider died. Chennai recorded 4,000 accidents last year."
+-> {"events":[{"place_text":"Perungudi junction","condition":"accident","time_text":"Friday night","depth_words":"","severity":"fatal","quote":"A lorry hit a two-wheeler near the Perungudi junction on Friday night"}]}
 
 Example (made up): "Residents are advised to stay indoors as heavy rain is likely tonight."
 -> {"events":[]}"""
@@ -77,6 +83,10 @@ def extract(client: OllamaClient, item: SourceItem) -> tuple[list[ModelEvent], l
             dropped.append(DroppedEvent(reason="not in the schema", event=e if isinstance(e, dict) else {"value": e}))
             continue
         why = ground(ev, item.text)
+        if why == "quote not found in the source":
+            sentence = snap(ev, item.text)
+            if sentence is not None and len(sentence) <= 500 and ground(ev.model_copy(update={"quote": sentence}), item.text) is None:
+                ev, why = ev.model_copy(update={"quote": sentence, "snapped": True}), None
         if why:
             dropped.append(DroppedEvent(reason=why, event=ev.model_dump()))
         else:
@@ -115,7 +125,9 @@ def mine_item(client: OllamaClient, retriever: Retriever, item: SourceItem, dige
                 condition=ev.condition,
                 time_text=ev.time_text,
                 depth_words=ev.depth_words,
+                severity=ev.severity if ev.condition == "accident" else "unknown",
                 quote=ev.quote,
+                quote_snapped=ev.snapped,
                 candidates=candidates,
                 chosen_place_id=chosen,
             )
