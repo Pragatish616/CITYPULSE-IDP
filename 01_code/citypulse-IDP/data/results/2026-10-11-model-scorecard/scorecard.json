@@ -1,0 +1,176 @@
+{
+  "task": "scorecard of the trained flood models",
+  "score_definition": "skill = (M - B) / (1 - B); bands: >=0.30 useful, 0.10-0.30 modest, 0-0.10 marginal, <0 or interval including 0 no evidence",
+  "preregistration": "data/susceptibility/2026-10-04/PREREGISTRATION_SCORECARD.md",
+  "rows": [
+    {
+      "model": "N nationwide district flood-event model",
+      "task": "will a district report a flood event today (rain features), test 2016-2023",
+      "metric": "average precision",
+      "model_value": 0.08975899392233994,
+      "baseline": "district-and-month event rate",
+      "baseline_value": 0.0972400664081129,
+      "skill_vs_baseline": -0.008286890243353396,
+      "difference_ci95": [
+        -0.020498746851815196,
+        0.004788947399901762
+      ],
+      "verdict": "no evidence of skill (interval for the difference includes 0)",
+      "note": "ranks below the plain event-rate table on AP",
+      "prevalence": 0.04451435521764064,
+      "lift_over_prevalence": 2.016405572617825
+    },
+    {
+      "model": "N nationwide district flood-event model",
+      "task": "same, event recall at a 2% alert budget",
+      "metric": "recall at 2%",
+      "model_value": 0.3259088043706661,
+      "baseline": "3-day rain above its 95th percentile",
+      "baseline_value": 0.3563773902080269,
+      "skill_vs_baseline": -0.04733920992491021,
+      "difference_ci95": [
+        -0.10621524351352979,
+        0.0230361667818475
+      ],
+      "verdict": "no evidence of skill (interval for the difference includes 0)",
+      "note": "a one-line rain rule recovers as many events"
+    },
+    {
+      "model": "T nationwide terrain model",
+      "task": "which cells of an Indian flood map are flooded, 2-degree blocks held out (registered)",
+      "metric": "average precision",
+      "model_value": 0.31077866773213014,
+      "baseline": "relief within 5 km (best single terrain feature)",
+      "baseline_value": 0.1879564335862647,
+      "skill_vs_baseline": 0.1512507939546776,
+      "difference_ci95": [
+        0.09131339735600129,
+        0.15009490706611445
+      ],
+      "verdict": "modest",
+      "note": "AUC 0.930 vs 0.866"
+    },
+    {
+      "model": "T nationwide terrain model",
+      "task": "same, 5-degree blocks held out (stress test)",
+      "metric": "average precision",
+      "model_value": 0.30933788239548377,
+      "baseline": "best single terrain feature",
+      "baseline_value": 0.18795643358626474,
+      "skill_vs_baseline": 0.14947652297189104,
+      "difference_ci95": [
+        0.08273546687372953,
+        0.15308590353820667
+      ],
+      "verdict": "modest",
+      "note": "AUC 0.931 vs 0.866",
+      "prevalence": 0.023041302641470685,
+      "lift_over_prevalence": 13.425364321144096
+    },
+    {
+      "model": "T nationwide terrain model",
+      "task": "same, 10-degree blocks held out (stress test)",
+      "metric": "average precision",
+      "model_value": 0.3073888265097648,
+      "baseline": "best single terrain feature",
+      "baseline_value": 0.1590151204265972,
+      "skill_vs_baseline": 0.17642850625142215,
+      "difference_ci95": [
+        0.0812344296803486,
+        0.19126818177174196
+      ],
+      "verdict": "modest",
+      "note": "AUC 0.929 vs 0.828",
+      "prevalence": 0.023041302641470685,
+      "lift_over_prevalence": 13.340774664211636
+    },
+    {
+      "model": "T nationwide terrain model",
+      "task": "same, 40% of 5-degree blocks never used in any decision (lock blocks)",
+      "metric": "average precision",
+      "model_value": 0.21725894745523408,
+      "baseline": "best single terrain feature",
+      "baseline_value": 0.12118356757884621,
+      "skill_vs_baseline": 0.10932360426135707,
+      "difference_ci95": [
+        0.06375595541012288,
+        0.15091339557412714
+      ],
+      "verdict": "modest",
+      "note": "single evaluation on blocks no decision used",
+      "prevalence": 0.007118119334611782,
+      "lift_over_prevalence": 30.52195913586538
+    },
+    {
+      "model": "C Chennai-local terrain model (A)",
+      "task": "which cells flooded in Dec 2015, blocks held out across the Chennai area",
+      "metric": "average precision",
+      "model_value": 0.23776510477192633,
+      "baseline": "best single feature (elevation)",
+      "baseline_value": 0.10943369967821279,
+      "skill_vs_baseline": 0.14410089967175238,
+      "difference_ci95": [
+        0.09290638967492788,
+        0.16724937757341488
+      ],
+      "verdict": "modest",
+      "note": "",
+      "prevalence": 0.029147363301125603,
+      "lift_over_prevalence": 8.157345222466294
+    },
+    {
+      "model": "C Chennai-local terrain model (A)",
+      "task": "train on the 2005 flood, test on 2015, inside the 2005 area (the city core)",
+      "metric": "average precision",
+      "model_value": 0.23966322641074478,
+      "baseline": "best single feature",
+      "baseline_value": 0.17294595172872596,
+      "skill_vs_baseline": 0.08066857882078286,
+      "difference_ci95": [
+        0.003548227775100362,
+        0.1415834347462152
+      ],
+      "verdict": "marginal",
+      "note": "AUC 0.614 vs 0.564 (interval for the AUC difference: [-0.008174957550895277, 0.11595916391376136])",
+      "prevalence": 0.14929673348812897,
+      "lift_over_prevalence": 1.6052811123948745
+    },
+    {
+      "model": "T applied to Chennai (C3)",
+      "task": "nationwide model, Chennai area removed from training, scored on the 2015 flood",
+      "metric": "average precision",
+      "model_value": 0.07332013317170624,
+      "baseline": "relief within 5 km",
+      "baseline_value": 0.06405021622868559,
+      "skill_vs_baseline": 0.009904288781037444,
+      "difference_ci95": [
+        8.24483058345965e-05,
+        0.018275689825580126
+      ],
+      "verdict": "marginal",
+      "note": "AUC 0.759 vs 0.701; single-feature elevation alone had AP 0.104 and distance-to-sea 0.119 on Chennai",
+      "prevalence": 0.028505033906826738,
+      "lift_over_prevalence": 2.5721819314919894
+    },
+    {
+      "model": "T prior used in the router (C3 routing)",
+      "task": "share of a walker's route inside the 2015 flood, reduction vs a flat prior (risk weight 20)",
+      "metric": "reduction in exposure share",
+      "model_value": 0.0008569214848456781,
+      "baseline": "flat prior",
+      "baseline_value": 0.0,
+      "difference_ci95": [
+        -0.002411054518535959,
+        0.004413497035682238
+      ],
+      "oracle_value": 0.09106962879560321,
+      "oracle_ci95": [
+        0.07987704589877116,
+        0.10249118887791582
+      ],
+      "verdict": "no evidence of skill (interval for the difference includes 0)",
+      "note": "an oracle prior built from the flood itself removes 83.5% of the walker's exposure; this prior removes 0.79%"
+    }
+  ],
+  "not_scored": "advisor (hand-set), event miner (no labelled set), accident logic (no data); there is no trained model for any of them"
+}

@@ -6,6 +6,7 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 ## [Unreleased]
 
 ### Added
+- Scorecard and stress test of the trained flood models (ADR-033, F-42): terrain model AP skill 0.15 (modest) and steady under larger blocks and on untouched lock blocks; the district flood-event model and the router prior show no evidence of skill; no advantage below 10 m elevation; calibration does not transfer; pre-registered, nine stress tests, one interrupted run resumed.
 - Combined Chennai + Tamil Nadu serving: routes with both ends in Chennai use the detailed pack, flood layer
   and advisor; all other routes use the Tamil Nadu main-road pack (ADR-022).
 - On-device route advisor: risk level, proceed / wait / avoid verdict, evidence level, route-choice check

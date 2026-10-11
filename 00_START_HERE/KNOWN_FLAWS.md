@@ -334,3 +334,9 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 - **Consequence:** the accident part of the advice model (ADR-032) has hand-set weights; there is no accident model to retrain and none could be validated.
 - **Own record, started:** the event miner now extracts accidents from reviewed news (unmeasured, small and biased toward what is reported; its coordinates are place points, not crash sites; accident quotes are withheld from the dataset). App reports of accidents also accumulate.
 - **Fix:** a data request to Greater Chennai Traffic Police, the Highways Department (RADMS) or IIT Madras's road-safety centre (nothing has been sent), then a pre-registered test before any model is trained.
+
+### F-42 · No trained model is efficient for ranking streets inside Chennai; the terrain model works only at regional scale and its scores are not probabilities · OPEN (ADR-033)
+- **What:** pre-registered scorecard, 11 October 2026. The nationwide district flood-event model shows no evidence of skill (AP skill -0.008). The nationwide terrain model has an AP skill of 0.15 ("modest") on regions it never saw, steady at 5 and 10 degree blocks and on untouched lock blocks (0.109), but shows no advantage over one terrain feature below 10 m elevation (AUC 0.73), is marginal inside the city core (AP skill 0.08), and its router prior cuts a walker's flood exposure by 0.79% against 83.5% for an oracle.
+- **Consequence:** no trained flood prior should be described as improving routes. Calibrated probabilities fitted on one region did not carry to another (Brier skill 0.18 in cross-validation, 0.01 on lock blocks), so T's output is a ranking only.
+- **Fix:** street-scale labels (radar flood extents for Chennai 2015 and 2023 if openly available, the project's own timestamped field log), event rainfall as an input, then a new pre-registered test. More satellite maps of the same kind will not help (learning curve flat).
+

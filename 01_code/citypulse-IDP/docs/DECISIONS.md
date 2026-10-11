@@ -1239,3 +1239,54 @@ Changes (prompt `miner-prompt-v3`):
 Development sentences run live after the change (made up, excluded from any test set): a lorry and two-wheeler near the Koyambedu junction (fatal; matched to the candidate site `tw1-0255` "Jawaharlal Nehru Road (100 Feet Road)", plausible but a guess, and only possible after snapping); a car at Guindy with three injured (injury, `place:guindy`); two buses on the Kathipara flyover (accident, no gazetteer match; its "nobody was injured" is in the next sentence, so severity came out `unknown`); a Tamil sentence about a bus collision near the Guindy bridge (**no event: missed**); and a yearly-totals sentence (correctly no event). Before the snapping rule, the Koyambedu sentence was dropped. These show the plumbing; they are not evidence of accuracy.
 
 Limits: the model is small and missed the Tamil accident; recall for accidents in Tamil is likely poor until measured. News coverage is not a census: the records will be biased toward what is reported, and a person must review each one. Nothing here feeds the router (ADR-030).
+
+---
+
+## ADR-033: Scorecard and stress test of the trained flood models: one model is modest, the rest show no evidence (11 October 2026)
+
+**Status:** accepted. The scoring rule, the stress tests, the candidate techniques and the way a candidate would be chosen were committed in `data/susceptibility/2026-10-04/PREREGISTRATION_SCORECARD.md` (commits `ade94ea` and `53e52e7`) before `scripts/sus_stress.py` was run. Results: `data/results/2026-10-11-model-scorecard/` (`stress.json`, `scorecard.json`, built by `scripts/model_scorecard.py`; a test checks that every scorecard number equals the number in its source file).
+
+**Context.** The owner asked for a rigorous test of "the ml model", a score, and, if it is not efficient, a better training set or a better regression technique. The project has three trained models: **N**, the nationwide district flood-event model (ADR-025); **T**, the nationwide terrain model on 91 satellite flood maps (ADR-026 B2); **C**, the Chennai-local terrain models and the routing tests (ADR-026 A, A2, C3). The advice model, the event miner and the accident logic are hand-set or unmeasured; no model was ever trained for accidents (`docs/ACCIDENT_DATA.md`), so they are **not scored**.
+
+**The score (fixed in advance).** skill = (M − B) / (1 − B), where M is the model's average precision (AP) and B the best trivial baseline's, on the model's own held-out test. Bands: 0.30 or more *useful*; 0.10 to 0.30 *modest*; 0 to 0.10 *marginal*; below 0, or a 95% interval for the difference that includes 0, *no evidence of skill*. AUC skill is given beside it.
+
+### Scorecard (all intervals are block or year bootstrap, 95%)
+
+| Model | Held-out test | Model | Best trivial baseline | AP skill | Verdict |
+|---|---|---|---|---|---|
+| N district flood-event | 2016-2023 test years (used once, not re-used) | AP 0.090 | 0.097 (district-month event rate); difference -0.007 (-0.020, +0.005) | -0.008 | **no evidence** |
+| N, recall at a 2% alert budget | same | 0.326 | 0.356 (3-day rain above its 95th percentile); difference -0.030 (-0.106, +0.023) | -0.047 | **no evidence** |
+| T terrain, 2-degree blocks (registered) | 91 maps, blocks held out | AP 0.311 (0.256, 0.364); AUC 0.930 | 0.188 (relief within 5 km); AUC 0.866 | **+0.151** (AUC +0.480) | **modest** |
+| T, 5-degree blocks | same | AP 0.309; AUC 0.931 | 0.188; 0.866 | +0.149 | modest |
+| T, 10-degree blocks | same | AP 0.307; AUC 0.929 | 0.159; 0.828 | +0.176 (AUC +0.591) | modest |
+| T, lock blocks (40% of 5-degree blocks, never used in any decision) | one evaluation | AP 0.217 (0.158, 0.334); AUC 0.942 | 0.121 (0.073, 0.214); AUC 0.868; difference +0.096 (+0.064, +0.151) | +0.109 | modest |
+| C Chennai-local, blocks held out | Dec 2015 flood | AP 0.238 | 0.109 (elevation); difference +0.128 (+0.093, +0.167) | +0.144 | modest |
+| C Chennai-local, inside the city core | train 2005, test 2015 | AP 0.240; AUC 0.614 | 0.173; AUC 0.564 (AUC difference -0.008 to +0.116) | +0.081 | **marginal** |
+| T applied to Chennai (C3) | Chennai removed from training | AP 0.073; AUC 0.759 | 0.064 (relief); difference +0.009 (+0.0001, +0.018) | +0.010 | marginal |
+| T's prior inside the router | 246 pairs, walker, risk weight 20 | exposure cut +0.0009 (-0.0024, +0.0044) | oracle prior cut 0.0911 | none | **no evidence** |
+
+**The score, in one line: the terrain model T has an AP skill of 0.15 ("modest") and an AUC skill of 0.48 on regions it never saw, and it is the only trained model with any measurable value. Nothing trained is efficient for what the product needs: ranking streets inside Chennai.**
+
+### Stress tests of T (new compute, same 2.61 million cells, nothing tuned)
+
+1. **Reproduction.** The registered 2-degree CV reproduces to three decimals (AP 0.3108, AUC 0.9303).
+2. **Larger blocks.** AP 0.311, 0.309, 0.307 and AUC 0.930, 0.931, 0.929 at 2, 5 and 10 degrees: the score does **not** collapse when whole regions are held out. The best-single-feature baseline gets worse (AP 0.188, 0.188, 0.159), so the gain over it grows.
+3. **Negative control** (labels shuffled inside each event). Pooled AUC 0.526, inside the pre-registered 0.45 to 0.55. A diagnostic added afterwards, **not pre-registered**, shows within-event AUC 0.4997 (range 0.492 to 0.539 over 91 events), so the pooled excess is a difference between events, not a leak.
+4. **Calibration.** Within the cross-validation, isotonic-calibrated probabilities have a Brier skill of 0.183 (0.142, 0.223) against the base rate, expected calibration error 0.001, slope 0.97. **On the lock blocks the same step gives 0.010**: the lock blocks' flood prevalence is 0.007 against 0.023 overall, and a map from score to probability fitted elsewhere does not carry over. T's output is a ranking; it is not a probability you can read off in a new region.
+5. **Spread over the 91 maps.** Median AUC 0.948 and AP 0.337; AUC above 0.5 on all 91 maps, above 0.8 on 97.8%; the model beats the best single feature on AUC in 97.8% of maps and on AP in 89.0%. The weakest map has AUC 0.63.
+6. **Slices.** Where cells are at most 10 m above sea level (86 maps, the elevation band of most of Chennai): AUC **0.732**, AP 0.366 against 0.325 for the best single feature, difference -0.037 to +0.077: **no evidence of an advantage in the low coast and delta.** Peninsular India (28 maps): AUC 0.974, AP 0.327 against 0.225. Gangetic plain (76 maps): AUC 0.893, AP 0.132 against 0.092.
+7. **Learning curve.** AP 0.297 with a quarter of the training maps, 0.302 with half, 0.309 with all: **four times the maps buys 0.012 of AP.** More flood maps of this kind will not help.
+8. **Ablation.** One feature carries the model: dropping distance to permanent water costs 0.048 of AP; relief and elevation range cost 0.009 and 0.008; dropping elevation, TPI, distance to the sea or height above water leaves AP the same or higher (+0.002 to +0.005).
+9. **Other techniques** (dev blocks only; selection rule fixed first): boosting as used 0.314; boosting with physical monotone constraints 0.307; spline logistic regression 0.317 (AUC 0.926); random forest on 400,000 rows 0.332 (AUC 0.934). The forest's advantage over boosting is +0.018 AP with a 95% interval of -0.002 to +0.035, which includes 0, so the rule **kept boosting** and the forest was not evaluated on the lock blocks. It is a lead, not a result.
+
+### What is wrong, and what would be better
+
+The weak point is the information, not the learner. Evidence for that: a spline logistic regression matches boosting; four times the maps adds almost nothing; the oracle prior in ADR-026 removes 61 to 84% of exposure while every learned prior removes about none (so the information is missing from the prior, not from the router); and the model is weakest exactly where Chennai is (low, flat, built-up).
+
+1. **A better training set: labels at street scale, not more satellite maps.** The labels are 250 m MODIS extents that see river and coastal floods, not a flooded underpass. What would fit the product: (a) 10 m radar flood extents for Chennai in December 2015 and December 2023 where an open source exists (Copernicus emergency mapping, UNOSAT; availability and licence **not checked**); (b) the project's own timestamped passable / not passable reports (ADR-028), the only label that matches the claim; (c) dated complaint logs from the city, which would need a request. Each needs its own pre-registration. *Not tested.*
+2. **Better inputs for a flat city.** The 90 m elevation grid cannot see street drains. Drainage-network distance, building and paved-surface share, and a finer elevation model are the candidates; hydrology features computed from the 90 m grid already gave no gain (ADR-026 A2). *Not tested.*
+3. **Add the event's own rainfall and an event-level term.** Terrain ranks cells within a flood; it cannot say how much of a region floods. Flood prevalence differs a lot between maps (the median map's AP is 18 times its own prevalence, pooled 13 times) and the calibration failed on a new region (point 4). Per-event rainfall (the project already reads NASA IMERG) as an input, or a model with a separate level for each event, is the natural fix. *Not tested.*
+4. **A different regression technique is not the first lever.** Within what was tested, only the random forest looks better, and not reliably (point 9). If depth or duration labels become available, an ordinal or quantile model would be the right family. *Forest not confirmed; others not tested.*
+5. **For N, change the information, not the learner.** Validation AP was flat across eight boosting settings. The test years' flood-report rate was 4.45% against 1.35% in training. Candidates: gridded daily rain at 0.25 degrees, river discharge or soil wetness as inputs, and labels normalised for the reporting rate. The test years were used once; a new test needs new years of labels. *Not tested.*
+
+**Limits.** The 91 maps are one source (MODIS; negatives mean "not detected as flooded"); the lock blocks are a spatial hold-out of the same maps, not new floods. N and C were scored from results already on file, not re-run. The negative-control diagnostic was added after the pre-registered check. The stress run was interrupted once when the laptop's disk filled; it resumed from its own saved scores with no setting changed. `scripts/sus_stress.py` was edited between the pieces of the run only in how stages are resumed and saved and to add the lock-block difference intervals; no model setting, split or rule was touched. The pooled score over 91 maps gives each map equal weight; a different weighting would change the numbers.
