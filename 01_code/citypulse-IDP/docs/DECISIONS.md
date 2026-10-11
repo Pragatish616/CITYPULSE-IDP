@@ -1214,7 +1214,7 @@ How it works:
 
 **Not done, and why.**
 - **Elevation limits:** not chosen now. The Copernicus 90 m tiles are on the authoring laptop, but ADR-026 found terrain does not predict which Chennai streets flood, so a "low-lying road" limit would be a preference, not a prediction.
-- **Safety rating from accident history:** no verified location-level data (above). An RTI request to the police or the state's RADMS layer is the route; nothing was requested.
+- **Safety rating from accident history:** no verified location-level data (above). An RTI request to the police or the state's RADMS layer is the route; nothing was requested. The full search of 11 October 2026, source by source, is in `docs/ACCIDENT_DATA.md`: the only open Chennai file is yearly totals (1.4 KiB), and the one geocoded dataset found is partly synthetic.
 - **A trained model:** no labels. The field log (ADR-028) and accident reports will produce outcomes; a model then needs its own pre-registered test.
 
 **Limits, stated plainly.**
