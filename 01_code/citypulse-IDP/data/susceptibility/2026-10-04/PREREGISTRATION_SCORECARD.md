@@ -52,3 +52,11 @@ If T's AP skill is below 0.30, or its score drops by more than a third under 5- 
 - The negatives are "not detected as flooded", not "dry".
 - The lock blocks are a spatial hold-out of the same 91 maps, not new floods.
 - The nationwide event model N and the Chennai models C are scored from results already on file; their held-out data were used once and are not re-used here.
+
+## Addendum (11 October 2026), written before the stress script was run
+
+- **Calibration (test 4).** "Training folds' scores" means the *out-of-fold* scores of the training folds' cells (cross-fitting), because in-sample scores of a boosted model are overconfident. The isotonic map is fitted on those and applied to the held-out fold's scores.
+- **Candidates (c) and (d)** both train on the same fixed random 400,000-row subsample of the training cells (seed 20261004), and use median-imputed features (the boosted models take missing values as they are).
+- **Events in a subset** (slices, lock blocks) are re-normalised to equal total weight per event inside the subset, as in the earlier secondary test; an event with no positive or no negative cell in a subset still takes part in the pooled AP/AUC, as in the earlier studies. The bootstrap interval covers the added noise.
+- **Dev/lock split:** a 5-degree block is a lock block if `(blockindex * 104729 + 7919) % 10 < 4`, where `blockindex` is the index returned by `numpy.unique` over `floor((lat-5)/5)*100 + floor((lon-60)/5)`.
+- **Fold assignment** for every block size: `(blockindex * 7919 + 104729) % 5`, with the block key `floor((lat-5)/s)*100 + floor((lon-60)/s)`, as in the registered run for s = 2.
