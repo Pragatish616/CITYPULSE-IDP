@@ -32,7 +32,7 @@ and adds a small on-device advisor that says how much to trust what it found.
 > **CityPulse is a research prototype.** It estimates flood risk from limited data. It never says a road is
 > safe or passable, and nothing here is a substitute for your own judgement or for official warnings.
 > Flood data exists for **Chennai only**, built from 2015 records. There is no live sensor feed yet.
-> The Android app has been installed and run on one phone (first on 5 October 2026; the 9 October build installed over it and is reported to work, like the web app); no timings, memory figures or offline tests are recorded yet.
+> The Android app has been installed and run on one phone (first on 5 October 2026; the 11 October build, with the accident switch, installed over it and is reported to work); no timings, memory figures or offline tests are recorded yet.
 
 ---
 
@@ -59,10 +59,11 @@ generated from it). `python 01_code/citypulse-IDP/scripts/smoke_deploy.py https:
 
 ### Android app
 
-A manual GitHub workflow, [Android APK](.github/workflows/android-apk.yml), builds an installable app for 64-bit ARM phones (the 9 October build downloads as a zip of about 29 MB; signed with a debug key: for
+A manual GitHub workflow, [Android APK](.github/workflows/android-apk.yml), builds an installable app for 64-bit ARM phones (the 11 October build downloads as a zip of about 29 MB; signed with a debug key: for
 your own phone, not the Play Store). Steps and a checklist of what to measure are in [`docs/MOBILE_TESTING.md`](01_code/citypulse-IDP/docs/MOBILE_TESTING.md).
 
-- **Status:** first installed on one Android phone on 5 October 2026. The build of 9 October 2026 (commit `681e417`) was installed over it and is reported to work, like the web demo. The only visible difference is wording in the rain sheet when a rain forecast is switched on (off by default, see below).
+- **Status:** first installed on one Android phone on 5 October 2026. The build of 11 October 2026 (commit `47b579e`) was installed over it and the owner reports that it works. That build adds the per-trip "Avoid reported accidents" switch, the "Accident here" report and limits per travel mode (ADR-032). Which of these features were tried on the phone was not recorded, and the Tamil text for them is a draft.
+- **Ahead of the web demo:** the phone app routes on the phone, so it has the 11 October features now. The web demo above runs the code it was last deployed with; Render is deployed by hand, and on 11 October it was still the build from before 6 October (no accident switch, no subway list in the field log), so the demo shows the new features only after a manual redeploy.
 - **Not recorded yet:** start-up and route timings, memory, battery, and behaviour in airplane mode. In this build the router runs on the phone,
   so the offline claim is still untested. The base map needs a network for its tiles.
 - Reports sent from the app go to the public demo server and are lost on its restart.
@@ -238,7 +239,7 @@ The full plan is [`PLAN.md`](PLAN.md); the gated next steps are in
 - [x] City-agnostic pack pipeline; Tamil Nadu main-road region
 - [x] On-device route advisor; Chennai + Tamil Nadu in one app
 - [x] Web demo on a free Render instance (4 October 2026); the container image is built by the host, not yet tested locally
-- [x] Install and run the Android app on a real phone (5 October 2026; the 9 October build installed over it and is reported to work)
+- [x] Install and run the Android app on a real phone (5 October 2026; the 11 October build installed over it and is reported to work)
 - [x] Volunteer field log built and tested (6 October 2026; not deployed, no data yet)
 - [x] Rain forecast input built and tested; failed its pre-registered test, so off by default (8 October 2026)
 - [x] Event miner built with a local model (8 October 2026; accuracy not measured)

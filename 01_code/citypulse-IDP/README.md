@@ -3,7 +3,7 @@
 The code behind CityPulse AI. For the project overview, results and status start at the
 [repository README](../../README.md); this page is the map of the code.
 
-> Research prototype. It never says a road is safe or passable. The Android app has been installed and run on one phone, latest build 9 October 2026, and is reported to work (not measured; offline use untested).
+> Research prototype. It never says a road is safe or passable. The Android app has been installed and run on one phone, latest build 11 October 2026, and is reported to work (not measured; offline use untested).
 > The rules for working in this code are in [`../../CLAUDE.md`](../../CLAUDE.md) (the wording table in section 6
 > overrides any older claim, including in `CLAUDE.md` in this folder).
 
