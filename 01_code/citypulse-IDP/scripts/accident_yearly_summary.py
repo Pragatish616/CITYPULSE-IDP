@@ -34,6 +34,11 @@ COLS = {
 }
 
 
+def lf(path: Path) -> bytes:
+    """The file with Unix line endings: the same on every machine (Git stores it that way; the download had CRLF)."""
+    return path.read_bytes().replace(b"\r\n", b"\n")
+
+
 def read_chennai(path: Path = CHENNAI) -> list[dict[str, int]]:
     with path.open(encoding="utf-8-sig", newline="") as f:
         rows = [{k: int(r[v]) for k, v in COLS.items()} for r in csv.DictReader(f)]
@@ -67,7 +72,7 @@ def main() -> int:
         "task": "check and summarise the Greater Chennai Police yearly crash totals",
         "run_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "source": "https://data.opencity.in/dataset/chennai-road-crashes-data (publisher: Greater Chennai Police; source given as tnsta.gov.in; licence: Other (Public Domain))",
-        "files": {p.name: {"bytes": p.stat().st_size, "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in (CHENNAI, TN)},
+        "files": {p.name: {"bytes_lf": len(lf(p)), "sha256_lf": hashlib.sha256(lf(p)).hexdigest()} for p in (CHENNAI, TN)},
         "scope": "yearly totals for the city; no location, no date within a year; says nothing about which road",
         "checks": c,
         "recent_years_as_in_the_file": recent,

@@ -11,17 +11,22 @@
     {
       "name": "chennai-road-crashes-1998-2025.csv",
       "url": "https://data.opencity.in/dataset/2c742a2c-c559-4d9c-9987-8566aadb933c/resource/29162b87-f1a7-4011-b309-b14d904f9a7d/download/chennai-road-crashes-1998-2025.csv",
-      "bytes": 1534,
-      "sha256": "e37e1e7bd8e25281aa7f1fc69c8d554bf6fd02aad8b14a9aed0e6cf77e2799a7",
-      "content": "one row per year 1998 to 2025: accidents by severity and persons killed or injured, for Chennai"
+      "content": "one row per year 1998 to 2025: accidents by severity and persons killed or injured, for Chennai",
+      "bytes_as_downloaded": 1534,
+      "sha256_as_downloaded": "e37e1e7bd8e25281aa7f1fc69c8d554bf6fd02aad8b14a9aed0e6cf77e2799a7",
+      "bytes_lf": 1505,
+      "sha256_lf": "03d359cdb825c0d12bff2cf3c64c4d1975703ea5edbbaef3ff37d0e1d24fee9f"
     },
     {
       "name": "tn-road-crashes-1993-2025.csv",
       "url": "https://data.opencity.in/dataset/2c742a2c-c559-4d9c-9987-8566aadb933c/resource/c1fe08c4-9871-4c0b-b79b-c446f24f2c03/download/tn-road-crashes-1993-2025.csv",
-      "bytes": 1831,
-      "sha256": "acd406cfb1515c6316c4ea12afb05dba55dcc9439cb4326759f7c8d80a93cd7d",
-      "content": "one row per year 1993 to 2025 for Tamil Nadu; read for context only, not analysed here"
+      "content": "one row per year 1993 to 2025 for Tamil Nadu; read for context only, not analysed here",
+      "bytes_as_downloaded": 1831,
+      "sha256_as_downloaded": "acd406cfb1515c6316c4ea12afb05dba55dcc9439cb4326759f7c8d80a93cd7d",
+      "bytes_lf": 1797,
+      "sha256_lf": "2f34021e3a2c55b507b724edc463351918c68c33fe96de10680c64d327f767d5"
     }
   ],
-  "limits": "yearly totals only: no location, no date within a year; the severity split looks reclassified between some years (see summary.json)"
+  "limits": "yearly totals only: no location, no date within a year; the severity split looks reclassified between some years (see summary.json)",
+  "note_on_line_endings": "The server sent Windows line endings (CRLF); Git stores the files with Unix ones (LF), so a fresh clone on Linux differs in size. Checks compare the LF form (sha256_lf). The as-downloaded fingerprint is kept for the record."
 }

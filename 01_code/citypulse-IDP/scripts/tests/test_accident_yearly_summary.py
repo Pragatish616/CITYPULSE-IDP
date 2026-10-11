@@ -15,15 +15,15 @@ SUMMARY = json.loads((ays.DIR / "summary.json").read_text(encoding="utf-8"))
 
 def test_the_files_are_exactly_the_ones_in_the_fetch_log() -> None:
     for f in LOG["files"]:
-        data = (ays.DIR / "raw" / f["name"]).read_bytes()
-        assert len(data) == f["bytes"] and hashlib.sha256(data).hexdigest() == f["sha256"], f["name"]
+        data = ays.lf(ays.DIR / "raw" / f["name"])  # line endings differ between the download (CRLF) and a Linux checkout (LF)
+        assert len(data) == f["bytes_lf"] and hashlib.sha256(data).hexdigest() == f["sha256_lf"], f["name"]
     assert LOG["licence"].startswith("Other (Public Domain)")
 
 
 def test_the_summary_is_what_the_script_makes_from_the_files() -> None:
     rows = ays.read_chennai()
     assert ays.checks(rows) == SUMMARY["checks"]
-    assert SUMMARY["files"]["chennai-road-crashes-1998-2025.csv"]["sha256"] == LOG["files"][0]["sha256"]
+    assert SUMMARY["files"]["chennai-road-crashes-1998-2025.csv"]["sha256_lf"] == LOG["files"][0]["sha256_lf"]
 
 
 def test_27_of_28_years_add_up_and_2013_is_reported_as_off_by_five() -> None:
