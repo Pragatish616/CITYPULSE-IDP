@@ -1,0 +1,27 @@
+{
+ "source": {
+  "file": "southern-zone-260911.osm.pbf",
+  "bytes": 557263963,
+  "fingerprint_first_16MB_plus_size": "cbc5aa3f21ace6c64044cbc0a1d85d0304294c2691919e672406a82156a696a1"
+ },
+ "licence": "OpenStreetMap contributors, ODbL 1.0",
+ "box_min_lat_max_lat_min_lon_max_lon": [
+  12.48,
+  13.42,
+  79.28,
+  80.37
+ ],
+ "counts": {
+  "buildings": 414487,
+  "built": 4666,
+  "green": 2245,
+  "water": 2479,
+  "waterway": 1431
+ },
+ "reading": {
+  "ways_read_with_tags_of_interest": 425688,
+  "buildings": 414487,
+  "buildings_dropped_open_or_degenerate": 12
+ },
+ "not_read": "multipolygon relations (large lakes, some parks), open ways used as areas"
+}

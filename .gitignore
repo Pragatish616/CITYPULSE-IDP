@@ -54,3 +54,6 @@ fieldlog-export-*.csv
 
 # Event miner (ADR-030): source texts (copyrighted news, posts that can name people), extractions and review decisions. Local only.
 01_code/citypulse-IDP/data/miner/
+01_code/citypulse-IDP/data/susceptibility/*/osm_chennai_raw.npz
+01_code/citypulse-IDP/data/susceptibility/*/grid_a3.npz
+01_code/citypulse-IDP/data/results/*-susceptibility-chennai-a3/*.joblib

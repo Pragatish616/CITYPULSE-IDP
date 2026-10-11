@@ -1290,3 +1290,28 @@ The weak point is the information, not the learner. Evidence for that: a spline 
 5. **For N, change the information, not the learner.** Validation AP was flat across eight boosting settings. The test years' flood-report rate was 4.45% against 1.35% in training. Candidates: gridded daily rain at 0.25 degrees, river discharge or soil wetness as inputs, and labels normalised for the reporting rate. The test years were used once; a new test needs new years of labels. *Not tested.*
 
 **Limits.** The 91 maps are one source (MODIS; negatives mean "not detected as flooded"); the lock blocks are a spatial hold-out of the same maps, not new floods. N and C were scored from results already on file, not re-run. The negative-control diagnostic was added after the pre-registered check. The stress run was interrupted once when the laptop's disk filled; it resumed from its own saved scores with no setting changed. `scripts/sus_stress.py` was edited between the pieces of the run only in how stages are resumed and saved and to add the lock-block difference intervals; no model setting, split or rule was touched. The pooled score over 91 maps gives each map equal weight; a different weighting would change the numbers.
+
+---
+
+## ADR-034: Street-scale OpenStreetMap features do not help the Chennai flood model; across floods, the low core scores at chance with every feature set (11 October 2026)
+
+**Status:** accepted. Pre-registered in `data/susceptibility/2026-10-04/PREREGISTRATION_A3.md` (commit `fc77643`) before the features were built or joined to any label. Verdict by the rule written there: **no evidence that the OpenStreetMap features add value.** Results: `data/results/2026-10-11-susceptibility-chennai-a3/result.json`.
+
+**Context.** ADR-033 found the terrain models marginal inside Chennai's core and no better than one feature at 10 m elevation or below, and named better inputs for a flat city as the first thing to try. A3 tested that with data already on disk (nothing downloaded): six label-free features from the pinned OpenStreetMap extract (413,667 building footprints, 4,666 built-up and 2,245 green land-use polygons, 1,431 waterway lines, 2,479 water polygons; closed ways only) added to the 15 A2 features, compared with the A2 set on the same rows and folds in the same run.
+
+**Result (paired, 95% block-bootstrap intervals).**
+
+| Test | With OSM features | A2 features | Best single feature | OSM minus A2 |
+|---|---|---|---|---|
+| Core, train 2005 test 2015: AUC (AP) | 0.592 (0.232) | 0.609 (0.236) | 0.564 (0.173) | AUC -0.016 (-0.035, +0.001) |
+| Core, train 2015 test 2005: AUC (AP) | 0.638 (0.254) | 0.641 (0.260) | 0.483 (0.149) | AUC -0.003 (-0.012, +0.005) |
+| Held-out blocks, whole area: AP (AUC) | 0.248 (0.927) | 0.243 (0.926) | 0.102 (0.735) | AP +0.005 (-0.026, +0.027) |
+
+- **Both parts of the rule fail:** the core AUC does not rise in either direction (the first is slightly lower), and the block AP difference includes zero.
+- **At 10 m elevation or below** the core's 39,745 cells have an AUC of **0.52 for both models (0.517 to 0.524) in both directions, and 0.50 and 0.43 for the best single feature**. In the held-out-block evaluation the 84,820 low cells give 0.743 with OSM features against 0.752 without (difference -0.009, -0.025 to +0.010). **Across floods, inside the low part of the city core, none of the terrain, hydrology, street or OSM features separates flooded from dry cells better than chance** (when the held-out blocks are scattered over the whole area, the low cells score about 0.74 to 0.75).
+- Permutation importance on a held-out fold: distance to mapped waterway 0.018, to mapped water body 0.008, green land use 0.005; building cover and built-up land use about 0 or negative. The A2 rule applied to the new set: spatial blocks pass as before, core AP and the hotspot points (one of four better than the baseline) do not.
+- This is the **third** study on the same flood extents (A, A2, A3). None passed the full rule; the repeated looks make a false positive more likely, not less.
+
+**What this means.** The missing piece in the core is not more static inputs. Either the labels (satellite extents, hotspot lists) carry little of what decided which streets flooded, or that depended on the event itself: how much rain fell, where, and how fast the drains coped. This points to step 3 (each flood's rainfall) and step 4 (street-scale labels and a fresh test set) as the next experiments, not to further terrain or map features.
+
+**Limits.** OSM completeness in Chennai is uneven (buildings are in only 4.3% of 90 m cells, 49% of 1 km windows); multipolygon relations were not read; building area is attributed to centroid cells; mapped drains are not the storm-drain network. The labels are satellite extents, not passability.

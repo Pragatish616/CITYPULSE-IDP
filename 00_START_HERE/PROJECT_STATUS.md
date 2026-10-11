@@ -63,6 +63,7 @@ Status words used below:
 - **Council, 1 October 2026:**
   - *Startup:* FIX FIRST, for the second time. It becomes KILL without a live, timestamped passability feed by 15 October 2026.
   - *Research paper:* BUILD.
+- **ADR-034** (11 Oct 2026): OpenStreetMap street-scale features tested for the Chennai core; no evidence they help; across floods the low core scores chance with every feature set.
 - **ADR-033** (11 Oct 2026): scorecard and stress test of the trained flood models; one modest, the rest no evidence; what a better training set would be.
 - **ADR-026** (4 Oct 2026): terrain and past floods as training data; results and limits.
 - **ADR-024, ADR-025** (4 Oct 2026): what to train on; the nationwide district model and its negative result.

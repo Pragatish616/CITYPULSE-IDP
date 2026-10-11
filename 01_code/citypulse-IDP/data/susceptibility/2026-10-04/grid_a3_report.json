@@ -1,0 +1,28 @@
+{
+ "modelled_cells": 1159556,
+ "objects_used": {
+  "buildings_in_grid": 413667,
+  "built_landuse_polygons": 4666,
+  "green_polygons": 2245,
+  "waterway_lines": 1431,
+  "water_polygons": 2479
+ },
+ "share_of_modelled_cells_nonzero": {
+  "bld_share_90m": 0.0429250506228246,
+  "bld_share_1km": 0.48585579307942006,
+  "built_landuse_1km": 0.45418677493799353,
+  "green_landuse_1km": 0.20523545219032113
+ },
+ "distance_range_km_1_99_pct": {
+  "dist_waterway_km": [
+   0.0,
+   9.498209916378723
+  ],
+  "dist_waterbody_km": [
+   0.0,
+   12.381611344784151
+  ]
+ },
+ "corr_bld_share_1km_with_road_density": 0.6654636847883091,
+ "seconds": 1
+}
