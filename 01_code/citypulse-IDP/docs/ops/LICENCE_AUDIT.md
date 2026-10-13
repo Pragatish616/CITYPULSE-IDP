@@ -5,7 +5,7 @@ engineering audit, **not legal advice**. Where a term was read from the publishe
 *read*; the pages were summarised by a fetch tool, so confirm anything load-bearing against the
 primary source before launch. Anything not read is `[UNVERIFIED]`.
 
-Machine-readable scan of installed packages: `docs/licence_scan_2026-10-03.json` (script logic: read each
+Machine-readable scan of installed packages: `docs/ops/licence_scan_2026-10-03.json` (script logic: read each
 package's licence file from the pub cache / Python metadata and classify by its text).
 
 ## Verdict

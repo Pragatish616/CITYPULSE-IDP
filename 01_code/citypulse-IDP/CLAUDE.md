@@ -44,18 +44,18 @@ natural-language rationale, all produced on-device when the network is gone.*
 
 | File | What it gives you |
 |---|---|
-| `docs/PROJECT_BRIEF.md` | The original pitch as presented. Historical record — **contains claims we have since disproved.** |
+| `docs/archive/PROJECT_BRIEF.md` | The original pitch as presented. Historical record — **contains claims we have since disproved.** |
 | `research/SYNTHESIS.md` | **Start here.** The merged findings, resolved design decisions, and the honest novelty position. |
 | `docs/DECISIONS.md` | Architecture decision records. If you disagree with a choice, read the ADR first. |
 | `docs/ARCHITECTURE.md` | The system as it is actually to be built. |
 | `docs/APIS_AND_COSTS.md` | Every external service, its free-tier quota, and the traps. Budget is ₹0. |
-| `docs/ROADMAP.md` | Week-by-week plan with the critical path marked. |
+| `docs/archive/ROADMAP.md` | Week-by-week plan with the critical path marked. |
 | `docs/EVALUATION.md` | The five studies that go in the paper. Build for these, not for the demo alone. |
 | `docs/CHENNAI_PROTOTYPE_SPEC.md` | **What we build first.** v0 scope, the Chennai watchlist, the demo, and the success criteria. Overrides the deck. |
-| `docs/COUNCIL_VERDICT.md` | The Roast Council's verdict and the standing risks. |
+| `docs/archive/COUNCIL_VERDICT.md` | The Roast Council's verdict and the standing risks. |
 | `docs/IMPLEMENTATION_PLAN.md` | **Task-by-task build plan**, with the reasoning behind the sequencing. Pick work from here. |
 | `docs/CONTRACTS.md` | The shared schemas — hazard observation, edge belief, **decision trace**, verification result. Four components depend on these; change only by ADR. |
-| `docs/IMPROVEMENTS.md` | Ranked improvement ideas beyond the pitch, with what each buys the paper. |
+| `docs/archive/IMPROVEMENTS.md` | Ranked improvement ideas beyond the pitch, with what each buys the paper. |
 | `docs/REVIEW_CHECKLIST.md` | What a reviewer checks, research integrity first. |
 | `docs/GLOSSARY.md` | Notation and shared vocabulary. |
 | `paper/OUTLINE.md` | Section-by-section paper skeleton with what evidence each section needs. |

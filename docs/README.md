@@ -24,7 +24,7 @@ Everything written about CityPulse AI, in the order a newcomer needs it.
 | [Deploying](../01_code/citypulse-IDP/docs/DEPLOY.md) | Running the service and web app |
 | [Adding a city](../01_code/citypulse-IDP/docs/ADDING_A_CITY.md) | New city or whole-region packs |
 | [APIs and costs](../01_code/citypulse-IDP/docs/APIS_AND_COSTS.md) | External services, free-tier limits |
-| [Licence audit](../01_code/citypulse-IDP/docs/LICENCE_AUDIT.md) | Every dependency and data licence |
+| [Licence audit](../01_code/citypulse-IDP/docs/ops/LICENCE_AUDIT.md) | Every dependency and data licence |
 | [Glossary](../01_code/citypulse-IDP/docs/GLOSSARY.md) | Notation and vocabulary |
 
 ## Research
@@ -45,5 +45,5 @@ Everything written about CityPulse AI, in the order a newcomer needs it.
 |---|---|
 | [`CLAUDE.md`](../CLAUDE.md) | The rules and the claims wording table (section 6) |
 | [`AGENTS.md`](../AGENTS.md) | The same rules for any AI agent |
-| [`CONTRIBUTING.md`](../CONTRIBUTING.md) | How to contribute |
-| [`SECURITY.md`](../SECURITY.md) | Reporting a vulnerability |
+| [`CONTRIBUTING.md`](../.github/CONTRIBUTING.md) | How to contribute |
+| [`SECURITY.md`](../.github/SECURITY.md) | Reporting a vulnerability |

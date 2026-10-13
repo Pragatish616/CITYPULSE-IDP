@@ -2,7 +2,7 @@
 
 Nothing here has been published. This is the set-up for a single-origin deployment: one web server
 serves the Flutter web build and forwards `/api/*` to the router service and `/ingest/*` to the ingest
-server, so the browser makes no cross-origin calls and CORS stays off. Read `docs/LICENCE_AUDIT.md`
+server, so the browser makes no cross-origin calls and CORS stays off. Read `docs/ops/LICENCE_AUDIT.md`
 first; its "re-check before launch" list applies.
 
 ## What was tested and what was not
@@ -57,7 +57,7 @@ curl -X PUT https://YOUR-SITE/api/event-state -H "x-admin-token: $ADMIN_TOKEN" -
 curl -X PUT https://YOUR-SITE/api/event-state -H "x-admin-token: $ADMIN_TOKEN" -H "content-type: application/json" -d '{"mode":"auto"}'
 ```
 
-**Optional: a rain forecast (ADR-029, off by default).** With `EVENT_FORECAST=1` the router also reads `GET /context/forecast` from the report server (Open-Meteo, ECMWF IFS 0.25 degree, nine points over Chennai, every 30 minutes). If 8 mm or more (area mean, three hours) is forecast within the next 12 hours, a `dry` state is raised to `watch` and the answer says `source: forecast` with the numbers. It never gives `active` and never lowers anything; a forecast older than 6 hours is ignored; an override still wins. **Not recommended:** in the pre-registered replay (ADR-029) it caught 7 of 46 wet satellite times a day ahead and warned ahead for 5 of 24 rain episodes, so it is off by default. Open-Meteo's free API is for non-commercial use (`docs/LICENCE_AUDIT.md`, row 2).
+**Optional: a rain forecast (ADR-029, off by default).** With `EVENT_FORECAST=1` the router also reads `GET /context/forecast` from the report server (Open-Meteo, ECMWF IFS 0.25 degree, nine points over Chennai, every 30 minutes). If 8 mm or more (area mean, three hours) is forecast within the next 12 hours, a `dry` state is raised to `watch` and the answer says `source: forecast` with the numbers. It never gives `active` and never lowers anything; a forecast older than 6 hours is ignored; an override still wins. **Not recommended:** in the pre-registered replay (ADR-029) it caught 7 of 46 wet satellite times a day ahead and warned ahead for 5 of 24 rain episodes, so it is off by default. Open-Meteo's free API is for non-commercial use (`docs/ops/LICENCE_AUDIT.md`, row 2).
 
 If the rain data is missing, older than 12 hours, or flagged stale, the configured `EVENT_STATE` (default `active`) applies and the answer says `source: fallback`. Holds are kept in memory, so a restart (a free host sleeping) forgets them. On a dry day the demo now shows `dry`: the 2015 hazard map is off and the advice card says no flood event is under way.
 
@@ -82,9 +82,9 @@ If the rain data is missing, older than 12 hours, or flagged stale, the configur
 
 ## The volunteer field log (ADR-028, off until you set tokens)
 
-The image already contains the field-log page and API. At `<site>/ingest/fieldlog/` there is a page for volunteers to record what they see at a road point (passable, not passable, can't tell). It is research data and is kept apart from the router: it does not change any route. The protocol, safety rules, notice and the pre-registered analysis are in `docs/FIELD_PROTOCOL.md`.
+The image already contains the field-log page and API. At `<site>/ingest/fieldlog/` there is a page for volunteers to record what they see at a road point (passable, not passable, can't tell). It is research data and is kept apart from the router: it does not change any route. The protocol, safety rules, notice and the pre-registered analysis are in `docs/field/FIELD_PROTOCOL.md`.
 
-To switch it on: make tokens (`python scripts/fieldlog_ops.py token v01 v02`), set `FIELDLOG_TOKENS` and `FIELDLOG_ADMIN_TOKEN` in the host's environment, and redeploy. Check with `python scripts/fieldlog_ops.py status https://<site>/ingest`; it should report 433 sites (31 subways). The pilot steps are in `docs/PILOT_PLAN.md`.
+To switch it on: make tokens (`python scripts/fieldlog_ops.py token v01 v02`), set `FIELDLOG_TOKENS` and `FIELDLOG_ADMIN_TOKEN` in the host's environment, and redeploy. Check with `python scripts/fieldlog_ops.py status https://<site>/ingest`; it should report 433 sites (31 subways). The pilot steps are in `docs/field/PILOT_PLAN.md`.
 
 **Storage is the weak point.** The log is files on the container's disk. On Render's free tier that disk is wiped by a restart or a redeploy and probably when the service sleeps, so every entry made since the last export can vanish. Until a persistent disk or a database is attached, export after every logging day: `FIELDLOG_ADMIN_TOKEN=... python scripts/fieldlog_ops.py export https://<site>/ingest`. The export refuses to write a file whose row count does not match the server's and prints a SHA-256. `/ingest/fieldlog/health` reports `durable: false` until `FIELDLOG_DURABLE=1`.
 
@@ -141,7 +141,7 @@ A split alternative (static web app on a static host, router and reports on a co
 ## Before this is public
 
 - Choose and add a project licence; decide the Open-Meteo question; read the unchecked terms
-  (`docs/LICENCE_AUDIT.md`).
+  (`docs/ops/LICENCE_AUDIT.md`).
 - Connect the ingest server to a database so reports persist.
 - Decide how the DPDP duties are met (notice, erasure on request).
 - Serve over HTTPS; keep `ADMIN_TOKEN` and any API key out of the repository.

@@ -56,7 +56,7 @@ Each spike is a throwaway script and a written number. **The output is a decisio
 
 ### T0.3 — Ethics application submitted
 - Draft the Study 5 protocol against `docs/EVALUATION.md` §Study 5 and submit to the IEC.
-- **Acceptance:** submission acknowledgement filed in `docs/ethics/`.
+- **Acceptance:** submission acknowledgement filed in `docs/field/ethics/`.
 
 ### T0.4 — Accounts and data claimed
 - Free-tier accounts per `docs/APIS_AND_COSTS.md`. Tier 2 data applications filed the same

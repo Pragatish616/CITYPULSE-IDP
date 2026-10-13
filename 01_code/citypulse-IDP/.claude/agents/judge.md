@@ -19,6 +19,6 @@ Weigh the arguments rather than averaging them. The Believer's case survives onl
 rests on something real; the Skeptic's kill shot counts only if it is load-bearing. An idea can
 survive a devastating critique of one component if that component is removable.
 
-Then **save the idea, the verdict, and the risk to the shared note** (`docs/COUNCIL_VERDICT.md`
+Then **save the idea, the verdict, and the risk to the shared note** (`docs/archive/COUNCIL_VERDICT.md`
 in a project repo, or a dated note file otherwise), appending rather than overwriting, so the
 council continues tomorrow instead of starting over.

@@ -18,7 +18,7 @@ The code behind CityPulse AI. For the project overview, results and status start
 | [`app/`](app) | Flutter | Android and web client |
 | [`server/`](server) | Python (FastAPI) | Citizen-report ingest, the source adapters, and the volunteer field log (ADR-028; off until tokens are set) |
 | [`scripts/`](scripts) | Python | Pack builders, replay engine, Study 1 and Study 2, tests |
-| [`ml/event_miner/`](ml/event_miner) | Python + local model (Ollama) | Turns pasted official posts and news into quoted, place-matched street events for human review (ADR-030, [`docs/EVENT_MINER.md`](docs/EVENT_MINER.md)); not evaluated yet, never feeds routes |
+| [`ml/event_miner/`](ml/event_miner) | Python + local model (Ollama) | Turns pasted official posts and news into quoted, place-matched street events for human review (ADR-030, [`docs/field/EVENT_MINER.md`](docs/field/EVENT_MINER.md)); not evaluated yet, never feeds routes |
 | [`config/`](config) | YAML | `cities.yaml` (regions) and `hazard_classes.yaml` (reliabilities, traveller classes, travel profiles) |
 | [`data/`](data) | | Pinned snapshots, map packs, results; provenance in [`data/MANIFEST.md`](data/MANIFEST.md) |
 | [`docs/`](docs) | Markdown | Decision records, contracts, architecture, deployment |
@@ -71,4 +71,4 @@ Details: [`docs/ADDING_A_CITY.md`](docs/ADDING_A_CITY.md).
 - Schemas that components share: [`docs/CONTRACTS.md`](docs/CONTRACTS.md)
 - Known flaws: [`../../00_START_HERE/KNOWN_FLAWS.md`](../../00_START_HERE/KNOWN_FLAWS.md)
 - The build plan: [`../../PLAN.md`](../../PLAN.md)
-- The subway pilot: [`docs/PILOT_PLAN.md`](docs/PILOT_PLAN.md), the field protocol [`docs/FIELD_PROTOCOL.md`](docs/FIELD_PROTOCOL.md) and the event miner [`docs/EVENT_MINER.md`](docs/EVENT_MINER.md)
+- The subway pilot: [`docs/field/PILOT_PLAN.md`](docs/field/PILOT_PLAN.md), the field protocol [`docs/field/FIELD_PROTOCOL.md`](docs/field/FIELD_PROTOCOL.md) and the event miner [`docs/field/EVENT_MINER.md`](docs/field/EVENT_MINER.md)

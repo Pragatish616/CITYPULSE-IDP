@@ -1,4 +1,4 @@
-"""Check and summarise the Greater Chennai Police yearly crash totals (docs/ACCIDENT_DATA.md).
+"""Check and summarise the Greater Chennai Police yearly crash totals (docs/field/ACCIDENT_DATA.md).
 
 Reads the two files downloaded on 11 October 2026 from OpenCity (public domain) into data/accidents/chennai-2026-10-11/raw/ and
 writes data/accidents/chennai-2026-10-11/summary.json: the checks that passed or failed and the recent years as they appear in

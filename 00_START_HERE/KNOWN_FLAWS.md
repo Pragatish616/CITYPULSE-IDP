@@ -196,7 +196,7 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 - **Where:**
   - `README.md` (badges, "verified rationale", "entirely on-device", "ALT")
   - `01_code/citypulse-IDP/CLAUDE.md` §1 and §6 (the "ALT admissibility … not in the literature" claim is wrong: Delling and Wagner 2007)
-  - `docs/PROJECT_BRIEF.md`
+  - `docs/archive/PROJECT_BRIEF.md`
   - `08_archive_v1/*`
 - **Fix:** Use the wording table in the top-level `CLAUDE.md` §6.
 
@@ -329,7 +329,7 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 - **Not tested on a phone**, not on the live site; the Tamil strings are a draft.
 - **Fix:** an outcome dataset (field log, accident reports with "cleared" follow-ups) and a pre-registered test before any number is tuned.
 
-### F-41 · There is no real location-level accident data for Chennai, so nothing about accident risk per road can be trained or checked · OPEN (ADR-032, `docs/ACCIDENT_DATA.md`)
+### F-41 · There is no real location-level accident data for Chennai, so nothing about accident risk per road can be trained or checked · OPEN (ADR-032, `docs/field/ACCIDENT_DATA.md`)
 - **What:** searched 11 October 2026. The open Chennai data is yearly totals (Greater Chennai Police, via OpenCity). Crash locations sit in iRAD/eDAR and the state's RADMS, which are not public. The geocoded Kaggle dataset is partly synthetic; two GitHub datasets are synthetic or wrong. TomTom's incident feed is live only and its storage terms are unconfirmed.
 - **Consequence:** the accident part of the advice model (ADR-032) has hand-set weights; there is no accident model to retrain and none could be validated.
 - **Own record, started:** the event miner now extracts accidents from reviewed news (unmeasured, small and biased toward what is reported; its coordinates are place points, not crash sites; accident quotes are withheld from the dataset). App reports of accidents also accumulate.

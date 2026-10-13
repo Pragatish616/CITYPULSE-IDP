@@ -82,7 +82,7 @@ One idea, one verdict. Four voices argue about an idea in sequence, then one rul
 After every run, save four things: the idea, the verdict, the biggest risk, and the next step. Also save any standing risk to re-check.
 
 - **Preferred:** the user's memory, in the file for that project or area (for example `/areas/<project>.md`). Append under a "Council verdicts" heading with the date, and never overwrite earlier verdicts.
-- **Otherwise:** a dated note in the session's own working folder, delivered to the user. A `docs/COUNCIL_VERDICT.md` in the project repo is fine only when the user has said the repo may be written to.
+- **Otherwise:** a dated note in the session's own working folder, delivered to the user. A `docs/archive/COUNCIL_VERDICT.md` in the project repo is fine only when the user has said the repo may be written to.
 - **Never** write into the user's local project folders or repositories unless they explicitly ask for that location. Some users keep their code folders read-only.
 
 Show the user the verdict in chat as well:

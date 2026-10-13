@@ -1,4 +1,4 @@
-"""Merge field-log exports with phone CSVs, so entries the server lost can be restored (ADR-028, F-37; docs/PILOT_PLAN.md).
+"""Merge field-log exports with phone CSVs, so entries the server lost can be restored (ADR-028, F-37; docs/field/PILOT_PLAN.md).
 
 On a free host the server's log is lost by a restart, a redeploy and probably by sleeping. Every phone keeps its recent entries and
 can save them ("Save my entries (CSV)" on the page). This tool combines:

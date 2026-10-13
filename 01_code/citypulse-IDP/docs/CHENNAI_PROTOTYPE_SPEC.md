@@ -32,7 +32,7 @@ This changes the problem from unbounded and impossible to bounded and tractable:
 | Demonstrable in 7 weeks | no | yes |
 
 **Two hundred points is small enough that a handful of committed reporters covers it.** That
-is the answer to the cold-start objection in `docs/COUNCIL_VERDICT.md`.
+is the answer to the cold-start objection in `docs/archive/COUNCIL_VERDICT.md`.
 
 ---
 

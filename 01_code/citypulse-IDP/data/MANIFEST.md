@@ -4,7 +4,7 @@ Every file under `data/` is listed here with provenance, licence and pinned date
 **Attribution obligations are real and are checked at submission.** A file with no entry here
 must not be used in any result.
 
-Last updated 2026-10-03 (KNOWN_FLAWS F-21; see docs/LICENCE_AUDIT.md for the full audit). Licence cells marked `[UNVERIFIED]` have not been
+Last updated 2026-10-03 (KNOWN_FLAWS F-21; see docs/ops/LICENCE_AUDIT.md for the full audit). Licence cells marked `[UNVERIFIED]` have not been
 checked against the publisher's terms; confirm them before any redistribution or publication.
 
 | Path | Source | Licence | Snapshot date | Attribution required |

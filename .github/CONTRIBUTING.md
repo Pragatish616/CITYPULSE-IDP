@@ -5,9 +5,9 @@ demo.** A change that improves a number while weakening the measurement is a reg
 
 ## Before you start
 
-1. Read [`CLAUDE.md`](CLAUDE.md) (rules and the wording table in section 6) and [`PLAN.md`](PLAN.md).
-2. Check [`00_START_HERE/KNOWN_FLAWS.md`](00_START_HERE/KNOWN_FLAWS.md) and the decision records in
-   [`01_code/citypulse-IDP/docs/DECISIONS.md`](01_code/citypulse-IDP/docs/DECISIONS.md). Most obvious
+1. Read [`CLAUDE.md`](../CLAUDE.md) (rules and the wording table in section 6) and [`PLAN.md`](../PLAN.md).
+2. Check [`00_START_HERE/KNOWN_FLAWS.md`](../00_START_HERE/KNOWN_FLAWS.md) and the decision records in
+   [`01_code/citypulse-IDP/docs/DECISIONS.md`](../01_code/citypulse-IDP/docs/DECISIONS.md). Most obvious
    questions are already answered there.
 3. Pick a task from `PLAN.md` (or add one first). Open an issue for anything larger than a small fix.
 

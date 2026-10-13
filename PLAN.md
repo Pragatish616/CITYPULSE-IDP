@@ -411,9 +411,9 @@ Each task below has: **Status**, **Owner** (Agent or Human), **Depends on**, **R
 - Done when: a fresh clone plus `dvc pull` gives byte-identical data files (compare SHA-256 against the current folder); no file over 50 MB is in git.
 
 **M0.2 Record the test baseline**
-- Status: DONE (2026-10-02; baseline in `01_code/citypulse-IDP/docs/BASELINE_2026-10.md`; no commit hash, the repo is not yet under git, see M0.1) · Owner: Agent · Depends on: M0.1
+- Status: DONE (2026-10-02; baseline in `01_code/citypulse-IDP/docs/archive/BASELINE_2026-10.md`; no commit hash, the repo is not yet under git, see M0.1) · Owner: Agent · Depends on: M0.1
 - Read first: `CLAUDE.md` §4.2.
-- Steps: run every command in `CLAUDE.md` §4.2; save the counts of passed, failed and skipped tests per package to `docs/BASELINE_2026-10.md`.
+- Steps: run every command in `CLAUDE.md` §4.2; save the counts of passed, failed and skipped tests per package to `docs/archive/BASELINE_2026-10.md`.
 - Done when: the file lists results for the three Dart packages, the Flutter app, `scripts/tests` and `server`.
 
 **M0.3 One-command developer environment**
@@ -449,7 +449,7 @@ Each task below has: **Status**, **Owner** (Agent or Human), **Depends on**, **R
   1. Human: build a KoboToolbox (or ODK) form with site (choice list of 10 GCC subways to start), automatic timestamp and GPS, photo, passable / not passable / unknown, optional depth band (dry, ankle, knee, above knee) and notes.
   2. Human: agree a roster so three people can cover 10 sites within 24 hours of rain (`NEXT_STEPS.md`).
   3. Agent: write `scripts/import_kobo_labels.py`, which reads the Kobo CSV or API export and writes `data/labels/<date>/labels.csv` with a fixed schema; later it posts to `/v1/labels` (M3.2).
-  4. Agent: add a consent and photo note (no faces, no number plates in frame) to the form instructions in `docs/ethics/`.
+  4. Agent: add a consent and photo note (no faces, no number plates in frame) to the form instructions in `docs/field/ethics/`.
 - Done when: a test submission round-trips from the form to `labels.csv`, and the roster exists.
 
 **M0.7 Demand test**
@@ -901,7 +901,7 @@ Free-tier terms change. Check each before relying on it and note the date checke
 - **API:** rate limits per device and per key; strict CORS; size limits on uploads; input validation through Pydantic models.
 - **LLM:** server-side only for hosted models; prompts never include personal data; outputs pass the verifier before display.
 - **Abuse:** one report cannot flip a status on its own (the belief weighs sources and counts); repeated contradicting reports from one device lower its weight; the ops review queue catches new patterns.
-- **Ethics:** follow `01_code/citypulse-IDP/docs/ethics/`; record data-access requests in `docs/data-access-log.md`.
+- **Ethics:** follow `01_code/citypulse-IDP/docs/field/ethics/`; record data-access requests in `docs/data-access-log.md`.
 
 ---
 

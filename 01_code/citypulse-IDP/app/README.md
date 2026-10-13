@@ -93,7 +93,7 @@ APK until PLAN.md M2.6 moves it to a downloadable pack.
   vendored library version must match `maplibre_gl_web` (see its README).
 - Serve `build/web` with gzip or brotli on a real host (`python -m http.server` does not compress);
   `canvaskit.wasm` is 5.3 MB and `main.dart.js` 3.4 MB uncompressed.
-- Licences and terms: `docs/LICENCE_AUDIT.md`. The app's Settings has "Data sources and licences" and
+- Licences and terms: `docs/ops/LICENCE_AUDIT.md`. The app's Settings has "Data sources and licences" and
   "Software licences".
 
 ## Tests

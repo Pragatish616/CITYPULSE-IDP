@@ -36,7 +36,7 @@ labels continue as research. The council meant a feed *from the city* (barrier s
    ```
 
    It should say logging is on, 3 or more tokens loaded, 433 sites (31 subways). It will warn that storage is not durable until you attach a disk and set `FIELDLOG_DURABLE=1`.
-6. **Brief the volunteers** with `docs/FIELD_PROTOCOL.md` sections 2, 3 and 6 (safety, what to tap, the notice). Get a yes in a message you keep. Ask the institution whether outside volunteers need ethics approval before recruiting beyond the team.
+6. **Brief the volunteers** with `docs/field/FIELD_PROTOCOL.md` sections 2, 3 and 6 (safety, what to tap, the notice). Get a yes in a message you keep. Ask the institution whether outside volunteers need ethics approval before recruiting beyond the team.
 7. **Install on each phone.** Open `https://citypulse-idp.onrender.com/ingest/fieldlog/`, paste the token once, switch the phone to automatic date and time.
 
 ## Dry run (any dry day this week)
@@ -89,7 +89,7 @@ Only what was observed, as counts, with what is missing stated next to it:
 | Whether the NEXT_STEPS pilot criterion was met: 3 people, 10 sites, within 24 h of rain (protocol section 7) | the export, with the rain days from ADR-027's rule |
 | Check-sheet result: positions checked, how many were within 100 m | the filled check sheet |
 
-Do **not** report a share of subways found blocked, or compare rain days with dry days, unless the reporting threshold in `docs/FIELD_PROTOCOL.md` section 8 and the addendum 8a is met. With a few volunteers in one week it will not be.
+Do **not** report a share of subways found blocked, or compare rain days with dry days, unless the reporting threshold in `docs/field/FIELD_PROTOCOL.md` section 8 and the addendum 8a is met. With a few volunteers in one week it will not be.
 
 ## Risks
 

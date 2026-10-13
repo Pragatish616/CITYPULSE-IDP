@@ -11,7 +11,7 @@ What this is NOT.
 - **Not validated** until the ADR-029 replay is run; its result is recorded in that ADR.
 
 Licence. Open-Meteo's free API is for non-commercial use; its data is CC BY 4.0, and ECMWF open data is CC BY 4.0
-(`docs/LICENCE_AUDIT.md`, row 2). Fine for this research project; a commercial deployment needs another arrangement.
+(`docs/ops/LICENCE_AUDIT.md`, row 2). Fine for this research project; a commercial deployment needs another arrangement.
 
 Failure behaviour, as for the rain context: results are cached (30 minutes); a failed refresh serves the last good result marked
 `stale`; with no earlier result the failure is reported as 503. Nothing is invented: an hour with a missing value at any point is

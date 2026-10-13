@@ -1,4 +1,4 @@
-"""Operator tools for the field log (ADR-028, docs/FIELD_PROTOCOL.md). Standard library only.
+"""Operator tools for the field log (ADR-028, docs/field/FIELD_PROTOCOL.md). Standard library only.
 
     python scripts/fieldlog_ops.py token alice bob carol          # make volunteer tokens
     python scripts/fieldlog_ops.py status https://SITE            # is it on, how many entries, is the disk durable

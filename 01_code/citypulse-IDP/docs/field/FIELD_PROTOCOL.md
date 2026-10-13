@@ -91,7 +91,7 @@ Read or send this before a volunteer starts.
 - **Volunteer code.** A code plus a time and a place is personal data about that volunteer, because the operator can link the code to a person. The linking list lives only with the operator.
 - **Deletion on request.** The service has no delete function by design (the log is append-only). Delete a volunteer's rows from the operator's exports and, if the host's disk is persistent, from the daily files on the host. Record the request and the date.
 - **Retention.** Until the field analysis in section 8 is written; then delete raw exports or keep counts only. Raw exports are never published and never committed.
-- **Legal status: not established.** Whether this notice and handling meet the DPDP Act 2023 has not been checked by anyone qualified. **[UNVERIFIED]** The team is not lawyers. Before recruiting anyone outside the team, the owner should ask the institution whether the study needs ethics approval (`docs/ethics/`).
+- **Legal status: not established.** Whether this notice and handling meet the DPDP Act 2023 has not been checked by anyone qualified. **[UNVERIFIED]** The team is not lawyers. Before recruiting anyone outside the team, the owner should ask the institution whether the study needs ethics approval (`docs/field/ethics/`).
 
 ## 7. What counts as a good pilot
 

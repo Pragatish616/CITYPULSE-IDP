@@ -24,7 +24,7 @@ and adds a small on-device advisor that says how much to trust what it found.
 [Quick start](#quick-start) ·
 [Repository map](#repository-map) ·
 [Roadmap](#roadmap) ·
-[Contributing](CONTRIBUTING.md)
+[Contributing](.github/CONTRIBUTING.md)
 
 </div>
 
@@ -60,7 +60,7 @@ generated from it). `python 01_code/citypulse-IDP/scripts/smoke_deploy.py https:
 ### Android app
 
 A manual GitHub workflow, [Android APK](.github/workflows/android-apk.yml), builds an installable app for 64-bit ARM phones (the 11 October build downloads as a zip of about 29 MB; signed with a debug key: for
-your own phone, not the Play Store). Steps and a checklist of what to measure are in [`docs/MOBILE_TESTING.md`](01_code/citypulse-IDP/docs/MOBILE_TESTING.md).
+your own phone, not the Play Store). Steps and a checklist of what to measure are in [`docs/ops/MOBILE_TESTING.md`](01_code/citypulse-IDP/docs/ops/MOBILE_TESTING.md).
 
 - **Status:** first installed on one Android phone on 5 October 2026. The build of 11 October 2026 (commit `47b579e`) was installed over it and the owner reports that it works. That build adds the per-trip "Avoid reported accidents" switch, the "Accident here" report and limits per travel mode (ADR-032). Which of these features were tried on the phone was not recorded, and the Tamil text for them is a draft.
 - **Web demo:** redeployed by hand on 11 October 2026, after which it was checked: its routing server refuses an unknown `avoid` type, its web app contains the "Avoid reported accidents" switch and the "Accident here" report, its field log lists the 31 subways first (logging stays off until tokens are set), and the project's 12 read-only smoke checks passed. The accident switch itself was not tried on the live site (that would post a report to it). Render is deployed by hand, so the demo can fall behind this repository again.
@@ -91,8 +91,8 @@ evaluation, including the results that did **not** go our way (see [below](#what
 | **Checked explanations** | A template turns the structured decision record into text, and a symbolic verifier gates it. A language model never produces route geometry. |
 | **Chennai + Tamil Nadu in one app** | A route with both ends in Chennai uses the detailed Chennai map, its flood layer and the advisor. Anything else uses a Tamil Nadu main-road map and shows only the best route. See [ADR-022](01_code/citypulse-IDP/docs/DECISIONS.md). |
 | **Rain context, with a human override** | The flood-event state follows NASA satellite rain (about 6 hours behind) unless an operator overrides it ([ADR-027](01_code/citypulse-IDP/docs/DECISIONS.md)). A rain forecast input exists but is **off by default** because it failed its pre-registered test (see results). |
-| **Volunteer field log** | A phone page where volunteers record *passable / not passable / can't tell* at a road point, with the time, offline-first, to build the missing street-level ground truth ([ADR-028](01_code/citypulse-IDP/docs/DECISIONS.md), [protocol](01_code/citypulse-IDP/docs/FIELD_PROTOCOL.md)). It starts with **31 candidate subways** from the Greater Chennai Corporation's own table ([ADR-031](01_code/citypulse-IDP/docs/DECISIONS.md); positions unconfirmed, 10 have none). Research data only: it changes no route and is shown to no traveller. Built and tested; no volunteer has used it, and it is off until tokens are set. |
-| **Event miner** | A small local model (`qwen3.5:0.8b` through Ollama) reads pasted official posts and news in English or Tamil and suggests quoted street events for a person to review ([ADR-030](01_code/citypulse-IDP/docs/DECISIONS.md), [guide](01_code/citypulse-IDP/docs/EVENT_MINER.md)). **Not evaluated yet.** It runs on a laptop, not in the app, and its output never reaches routes. |
+| **Volunteer field log** | A phone page where volunteers record *passable / not passable / can't tell* at a road point, with the time, offline-first, to build the missing street-level ground truth ([ADR-028](01_code/citypulse-IDP/docs/DECISIONS.md), [protocol](01_code/citypulse-IDP/docs/field/FIELD_PROTOCOL.md)). It starts with **31 candidate subways** from the Greater Chennai Corporation's own table ([ADR-031](01_code/citypulse-IDP/docs/DECISIONS.md); positions unconfirmed, 10 have none). Research data only: it changes no route and is shown to no traveller. Built and tested; no volunteer has used it, and it is off until tokens are set. |
+| **Event miner** | A small local model (`qwen3.5:0.8b` through Ollama) reads pasted official posts and news in English or Tamil and suggests quoted street events for a person to review ([ADR-030](01_code/citypulse-IDP/docs/DECISIONS.md), [guide](01_code/citypulse-IDP/docs/field/EVENT_MINER.md)). **Not evaluated yet.** It runs on a laptop, not in the app, and its output never reaches routes. |
 | **Accident reports and limits** | Travellers can report an accident and switch on "Avoid reported accidents" for a trip: the route keeps off reported segments whatever the extra time, and says so if no route can. Walking and emergency routes always avoid accidents, closures and reported flooding when a reliable source or two reports agree ([ADR-032](01_code/citypulse-IDP/docs/DECISIONS.md)). Placeholder numbers; no accident history is used, because no verified accident locations were found. |
 | **Search** | Streets, highway numbers (`NH 44`, `NH-44`, `NH44`) and 25,144 places, in English and Tamil. |
 | **Bilingual UI** | English and Tamil. The Tamil text is a first draft and needs a native speaker's review. |
@@ -268,9 +268,9 @@ files, including the map packs, stay under the ODbL and carry its share-alike te
 
 ## Contributing and conduct
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) first. In short: tests before changes, no invented numbers,
+Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) first. In short: tests before changes, no invented numbers,
 and use the wording rules in [`CLAUDE.md`](CLAUDE.md) section 6. Security issues go through
-[SECURITY.md](SECURITY.md). We follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+[SECURITY.md](.github/SECURITY.md). We follow the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
 ## Team
 

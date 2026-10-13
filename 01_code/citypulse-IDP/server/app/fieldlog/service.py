@@ -134,7 +134,7 @@ class FieldLogService:
             raise ValueError(
                 "site ids must be unique across the subway and hazard-zone lists"
             )
-        # Subways first: they are the places the pilot asks volunteers to look at (docs/FIELD_PROTOCOL.md).
+        # Subways first: they are the places the pilot asks volunteers to look at (docs/field/FIELD_PROTOCOL.md).
         self.sites_doc = {
             **doc,
             "lists": {"subway": len(subway_sites), "hazard_zone": len(hazard_sites)},

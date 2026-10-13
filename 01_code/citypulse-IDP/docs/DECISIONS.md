@@ -198,7 +198,7 @@ road network. Full spec: `docs/CHENNAI_PROTOTYPE_SPEC.md`.
 
 **Why.** No source provides live street-level inundation for Chennai (`research/raw/C`), and
 the crowd that would provide it is empty precisely on flood day — the council identified this
-as the project's fatal risk (`docs/COUNCIL_VERDICT.md`). Chennai floods in the same places each
+as the project's fatal risk (`docs/archive/COUNCIL_VERDICT.md`). Chennai floods in the same places each
 year, so a bounded watchlist converts an unbounded sensing problem into a monitoring problem
 that tens of reporters can cover instead of tens of thousands. It also makes the static prior
 load-bearing rather than decorative.
@@ -295,7 +295,7 @@ prototype. It estimates risk from limited data — it does not guarantee any roa
 Always use your own judgement."* A shorter form of the same sentence repeats on any card whose
 `confidence_band` is `low` or `stale`.
 
-**Why.** `docs/COUNCIL_VERDICT.md`'s Skeptic named this risk in the first council session
+**Why.** `docs/archive/COUNCIL_VERDICT.md`'s Skeptic named this risk in the first council session
 ("if they drown, the first question is who told them to drive there... no legal entity, no
 insurance, no disclaimer regime") and it went unaddressed through every document written since
 — confirmed by the 2026-09-12 review, which found zero occurrences of
@@ -1012,11 +1012,11 @@ Three of three flood windows and one of two controls met the criterion written i
 - **Candidate sites are not verified passage points.** A hazard-zone centroid snapped to a road may be a field, a flyover or the wrong street. Counting `not_passable` at such a point measures the zone, not a street.
 - **Volunteers choose when and where to look.** People log when it is wet and where they can reach, so the data will over-represent rain days and accessible places. The protocol asks for a paired dry-day control, but that reduces the problem, it does not remove it.
 - **One observer, one moment, a phone clock.** There is no photo to check against. The protocol asks for occasional paired observations to measure how often two people disagree.
-- **Privacy.** A volunteer code plus a time and a place is personal data about the volunteer. See `docs/FIELD_PROTOCOL.md` for the notice, retention and deletion; whether this meets the DPDP Act 2023 is **not established** and nobody on the team is a lawyer. Whether recruiting people beyond the team needs institutional ethics approval is for the owner to check with the institution (`docs/ethics/`).
+- **Privacy.** A volunteer code plus a time and a place is personal data about the volunteer. See `docs/field/FIELD_PROTOCOL.md` for the notice, retention and deletion; whether this meets the DPDP Act 2023 is **not established** and nobody on the team is a lawyer. Whether recruiting people beyond the team needs institutional ethics approval is for the owner to check with the institution (`docs/field/ethics/`).
 - **Tamil text is a first draft**, never read by a native speaker.
 - **No photo evidence**, although the field-label pilot in `NEXT_STEPS.md` mentions one. Photos carry faces, number plates and exact locations; adding them needs a storage and consent decision first.
 
-**Analysis is pre-registered in `docs/FIELD_PROTOCOL.md` §8, before any data exists, and no analysis code has been written.** The ground truth must not be fitted to the models it will judge. Any use of field data to change ADR-027's thresholds, the prior, or the router is a new ADR citing the results file.
+**Analysis is pre-registered in `docs/field/FIELD_PROTOCOL.md` §8, before any data exists, and no analysis code has been written.** The ground truth must not be fitted to the models it will judge. Any use of field data to change ADR-027's thresholds, the prior, or the router is a new ADR citing the results file.
 
 **Not decided here (owner).**
 1. Who issues tokens and to whom (the team only, or outside volunteers).
@@ -1062,7 +1062,7 @@ Three of three flood windows and one of two controls met the criterion written i
 - **The truth is satellite rain, not flooding.** The replay asks whether the forecast tells earlier what the satellite will say later. It says nothing about streets.
 - **Six-hourly truth.** Short showers between the four daily times are invisible to both sides. IMERG images ending at T cover roughly T - 2.5 h to T + 0.5 h; the forecast stamps cover T - 3 h to T. The half-hour offset is kept, not corrected.
 - **The archive is not the live feed.** The live service sees the newest run, published some hours after it starts; `day1` (24 h notice) understates and `day0` overstates what it would have had.
-- **Licence.** Open-Meteo's free API is for non-commercial use (`docs/LICENCE_AUDIT.md`, row 2); its data is CC BY 4.0, and ECMWF open data is CC BY 4.0. Fine for this research project; a commercial deployment would need Open-Meteo's paid plan, a self-hosted Open-Meteo, or ECMWF open data read directly.
+- **Licence.** Open-Meteo's free API is for non-commercial use (`docs/ops/LICENCE_AUDIT.md`, row 2); its data is CC BY 4.0, and ECMWF open data is CC BY 4.0. Fine for this research project; a commercial deployment would need Open-Meteo's paid plan, a self-hosted Open-Meteo, or ECMWF open data read directly.
 - **Small sample.** Two monsoon seasons will hold tens of wet times, not hundreds. The intervals will be wide and are reported as they are.
 
 
@@ -1138,7 +1138,7 @@ How to read it:
 
 ### Development record (8 October 2026, before any labelling)
 
-Built in `ml/event_miner/` (27 tests with a fake model server; operator guide `docs/EVENT_MINER.md`). Changes made during development, all **before** any test item exists, so they are allowed by the rule above; they are listed so the evaluation can be read against them:
+Built in `ml/event_miner/` (27 tests with a fake model server; operator guide `docs/field/EVENT_MINER.md`). Changes made during development, all **before** any test item exists, so they are allowed by the rule above; they are listed so the evaluation can be read against them:
 
 - **Four development sentences** were written and run live; they are excluded from any test set:
   1. "Traffic was diverted at the Ganesapuram subway after heavy rain on Tuesday evening."
@@ -1214,7 +1214,7 @@ How it works:
 
 **Not done, and why.**
 - **Elevation limits:** not chosen now. The Copernicus 90 m tiles are on the authoring laptop, but ADR-026 found terrain does not predict which Chennai streets flood, so a "low-lying road" limit would be a preference, not a prediction.
-- **Safety rating from accident history:** no verified location-level data (above). An RTI request to the police or the state's RADMS layer is the route; nothing was requested. The full search of 11 October 2026, source by source, is in `docs/ACCIDENT_DATA.md`: the only open Chennai file is yearly totals (1.4 KiB), and the one geocoded dataset found is partly synthetic.
+- **Safety rating from accident history:** no verified location-level data (above). An RTI request to the police or the state's RADMS layer is the route; nothing was requested. The full search of 11 October 2026, source by source, is in `docs/field/ACCIDENT_DATA.md`: the only open Chennai file is yearly totals (1.4 KiB), and the one geocoded dataset found is partly synthetic.
 - **A trained model:** no labels. The field log (ADR-028) and accident reports will produce outcomes; a model then needs its own pre-registered test.
 
 **Limits, stated plainly.**
@@ -1227,7 +1227,7 @@ How it works:
 
 ### Addendum 2 to ADR-030 (11 October 2026, before any item was labelled): the miner also finds road accidents
 
-Why: the owner asked for dated, place-matched accident records, and no such public dataset exists (`docs/ACCIDENT_DATA.md`). The miner can build a small one from reviewed public news and police posts. No label exists yet, so changing the prompt and the rule now does not touch any result.
+Why: the owner asked for dated, place-matched accident records, and no such public dataset exists (`docs/field/ACCIDENT_DATA.md`). The miner can build a small one from reviewed public news and police posts. No label exists yet, so changing the prompt and the rule now does not touch any result.
 
 Changes (prompt `miner-prompt-v3`):
 - **A fifth condition, `accident`** (a crash, a collision, a vehicle overturning, a person hit on the road at the place), and a **`severity`** field that only an accident carries (`fatal`, `injury`, `no_injury`, `unknown`; every other event is forced to `unknown`). Statistics ("4,104 accidents in 2025"), forecasts and accidents with no place are not events.
@@ -1246,7 +1246,7 @@ Limits: the model is small and missed the Tamil accident; recall for accidents i
 
 **Status:** accepted. The scoring rule, the stress tests, the candidate techniques and the way a candidate would be chosen were committed in `data/susceptibility/2026-10-04/PREREGISTRATION_SCORECARD.md` (commits `ade94ea` and `53e52e7`) before `scripts/sus_stress.py` was run. Results: `data/results/2026-10-11-model-scorecard/` (`stress.json`, `scorecard.json`, built by `scripts/model_scorecard.py`; a test checks that every scorecard number equals the number in its source file).
 
-**Context.** The owner asked for a rigorous test of "the ml model", a score, and, if it is not efficient, a better training set or a better regression technique. The project has three trained models: **N**, the nationwide district flood-event model (ADR-025); **T**, the nationwide terrain model on 91 satellite flood maps (ADR-026 B2); **C**, the Chennai-local terrain models and the routing tests (ADR-026 A, A2, C3). The advice model, the event miner and the accident logic are hand-set or unmeasured; no model was ever trained for accidents (`docs/ACCIDENT_DATA.md`), so they are **not scored**.
+**Context.** The owner asked for a rigorous test of "the ml model", a score, and, if it is not efficient, a better training set or a better regression technique. The project has three trained models: **N**, the nationwide district flood-event model (ADR-025); **T**, the nationwide terrain model on 91 satellite flood maps (ADR-026 B2); **C**, the Chennai-local terrain models and the routing tests (ADR-026 A, A2, C3). The advice model, the event miner and the accident logic are hand-set or unmeasured; no model was ever trained for accidents (`docs/field/ACCIDENT_DATA.md`), so they are **not scored**.
 
 **The score (fixed in advance).** skill = (M − B) / (1 − B), where M is the model's average precision (AP) and B the best trivial baseline's, on the model's own held-out test. Bands: 0.30 or more *useful*; 0.10 to 0.30 *modest*; 0 to 0.10 *marginal*; below 0, or a 95% interval for the difference that includes 0, *no evidence of skill*. AUC skill is given beside it.
 

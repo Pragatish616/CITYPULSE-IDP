@@ -3,7 +3,7 @@
 ## Supported versions
 
 CityPulse is a research prototype. Only the `main` branch is maintained. There are no released, supported
-versions and nothing here should be deployed to the public without reading [`docs/DEPLOY.md`](01_code/citypulse-IDP/docs/DEPLOY.md).
+versions and nothing here should be deployed to the public without reading [`docs/DEPLOY.md`](../01_code/citypulse-IDP/docs/DEPLOY.md).
 
 ## Reporting a vulnerability
 

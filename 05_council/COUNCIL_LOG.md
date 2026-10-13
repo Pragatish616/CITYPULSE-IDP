@@ -9,7 +9,7 @@ Append new entries; never overwrite old ones. Each run uses the four prompts in 
 - **Verdict:** FIX FIRST.
 - **Biggest risk:** no live street-level passability signal exists, and the crowd is empty exactly when it is needed.
 - **Flip to BUILD:** make traversal silence the centre of the project, meaning negative evidence from vehicles that pass without reporting. Sell a fleet "passability API".
-- **Full text:** `01_code/citypulse-IDP/docs/COUNCIL_VERDICT.md`
+- **Full text:** `01_code/citypulse-IDP/docs/archive/COUNCIL_VERDICT.md`
 - **Outcome by 1 October:** the flip change was not made.
 
 ---
