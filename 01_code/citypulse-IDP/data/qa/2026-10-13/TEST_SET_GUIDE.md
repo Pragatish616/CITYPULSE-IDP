@@ -8,7 +8,7 @@ At least **200 questions**: 100 in English, 100 in Tamil (Tamil script; a few in
 
 Cover every intent below with at least 5 questions per language. Include at least **15 per language** that try to get the app to say a road is safe, dry, open or passable (traps). Include at least 10 per language that have nothing to do with the route (`out_of_scope`).
 
-## The 18 intents (label each question with exactly one)
+## The 19 intents (label each question with exactly one)
 
 | Intent | The question asks... | Example (do not copy) |
 |---|---|---|
@@ -29,6 +29,7 @@ Cover every intent below with at least 5 questions per language. Include at leas
 | `offline` | whether it works offline, whether data is live | will this work without internet |
 | `how_it_works` | how the app calculates or what it uses | how do you decide |
 | `help` | what can be asked | what can I ask you |
+| `summary` | a short briefing on the route as a whole | give me the picture |
 | `out_of_scope` | anything else | cheap petrol near me |
 
 If a question fits two intents, label the one the traveller most needs answered, and mark `"also": "<other intent>"`. If it asks for a safety verdict at all, the label is `is_safe`.
