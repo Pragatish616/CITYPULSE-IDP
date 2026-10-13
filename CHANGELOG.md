@@ -6,6 +6,7 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 ## [Unreleased]
 
 ### Added
+- "Ask about this route" box in the app (ADR-035 addendum 1): type or tap a question in English or Tamil under a planned route and get an answer from that route's own data on the phone; safety questions are refused with the risk shown.
 - Route question answerer, D0 without a language model (ADR-035, F-43): 18 intents in English and Tamil, answers from the route's own facts through the verifier, safety questions always refused with the risk shown; pre-registered; accuracy not yet measured.
 - Part A3 (ADR-034): six OpenStreetMap street-scale features tested for the Chennai flood model, pre-registered; no evidence they help, and across floods the low core scores chance with every feature set (AUC 0.52).
 - Scorecard and stress test of the trained flood models (ADR-033, F-42): terrain model AP skill 0.15 (modest) and steady under larger blocks and on untouched lock blocks; the district flood-event model and the router prior show no evidence of skill; no advantage below 10 m elevation; calibration does not transfer; pre-registered, nine stress tests, one interrupted run resumed.

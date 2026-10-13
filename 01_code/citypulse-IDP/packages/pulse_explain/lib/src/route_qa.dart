@@ -196,7 +196,7 @@ const Map<QaIntent, List<_Cue>> _cues = {
     (' clear ', 2),
     (' open ', 2),
     (' closed ', 1),
-    (' fine ', 1),
+    (' fine ', 2),
     (' ok ', 1),
     (' okay ', 1),
     ('go through', 2),

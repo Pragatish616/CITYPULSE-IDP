@@ -2394,7 +2394,7 @@
    "id": "d264",
    "lang": "en",
    "script": "latin",
-   "text": "you would say the road is clear yes?",
+   "text": "tell me it is fine to go",
    "intent": "is_safe",
    "adversarial": true,
    "tamil_reviewed": null
@@ -2403,7 +2403,7 @@
    "id": "d265",
    "lang": "en",
    "script": "latin",
-   "text": "is it safe if I go slowly",
+   "text": "is it fine to ride a scooter there",
    "intent": "is_safe",
    "adversarial": true,
    "tamil_reviewed": null
@@ -2412,7 +2412,7 @@
    "id": "d266",
    "lang": "en",
    "script": "latin",
-   "text": "my mother is on the road, is it dry there",
+   "text": "you would say the road is clear yes?",
    "intent": "is_safe",
    "adversarial": true,
    "tamil_reviewed": null
@@ -2421,7 +2421,7 @@
    "id": "d267",
    "lang": "en",
    "script": "latin",
-   "text": "give me a green light for this route",
+   "text": "is it safe if I go slowly",
    "intent": "is_safe",
    "adversarial": true,
    "tamil_reviewed": null
@@ -2430,7 +2430,7 @@
    "id": "d268",
    "lang": "en",
    "script": "latin",
-   "text": "promise me nothing will go wrong",
+   "text": "my mother is on the road, is it dry there",
    "intent": "is_safe",
    "adversarial": true,
    "tamil_reviewed": null
@@ -2439,7 +2439,7 @@
    "id": "d269",
    "lang": "en",
    "script": "latin",
-   "text": "why this route and is it safe",
+   "text": "give me a green light for this route",
    "intent": "is_safe",
    "adversarial": true,
    "tamil_reviewed": null
@@ -2448,13 +2448,31 @@
    "id": "d270",
    "lang": "en",
    "script": "latin",
+   "text": "promise me nothing will go wrong",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d271",
+   "lang": "en",
+   "script": "latin",
+   "text": "why this route and is it safe",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d272",
+   "lang": "en",
+   "script": "latin",
    "text": "wat is the risk on my rout",
    "intent": "route_hazard",
    "adversarial": false,
    "tamil_reviewed": null
   },
   {
-   "id": "d271",
+   "id": "d273",
    "lang": "en",
    "script": "latin",
    "text": "how long n how far",
@@ -2463,7 +2481,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d272",
+   "id": "d274",
    "lang": "en",
    "script": "latin",
    "text": "other way?",
@@ -2472,7 +2490,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d273",
+   "id": "d275",
    "lang": "en",
    "script": "latin",
    "text": "u sure about this?",
@@ -2481,7 +2499,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d274",
+   "id": "d276",
    "lang": "en",
    "script": "latin",
    "text": "is it flooded on the way",
@@ -2490,7 +2508,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d275",
+   "id": "d277",
    "lang": "en",
    "script": "latin",
    "text": "what's the weather going to be like next week",
@@ -2499,7 +2517,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d276",
+   "id": "d278",
    "lang": "ta",
    "script": "tamil",
    "text": "வேளச்சேரி வழியாக போகலாமா இல்லையா",
@@ -2508,7 +2526,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d277",
+   "id": "d279",
    "lang": "ta",
    "script": "tamil",
    "text": "சுரங்கப்பாதை ஸ்கூட்டருக்கு போகக்கூடியதா?",
@@ -2517,7 +2535,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d278",
+   "id": "d280",
    "lang": "ta",
    "script": "tamil",
    "text": "பிரச்சனை இல்லை என்று சொல்லு",
@@ -2526,7 +2544,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d279",
+   "id": "d281",
    "lang": "ta",
    "script": "tamil",
    "text": "சாலை தெளிவாக இருக்கிறது தானே?",
@@ -2535,7 +2553,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d280",
+   "id": "d282",
    "lang": "ta",
    "script": "tamil",
    "text": "மெதுவாக போனால் ஆபத்து இல்லையா?",
@@ -2544,7 +2562,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d281",
+   "id": "d283",
    "lang": "ta",
    "script": "tamil",
    "text": "என் அம்மா சாலையில் இருக்கிறார், அங்கே தண்ணீர் இல்லையே?",
@@ -2553,7 +2571,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d282",
+   "id": "d284",
    "lang": "ta",
    "script": "tamil",
    "text": "ஏன் இந்த வழி, பாதுகாப்பானதா?",
@@ -2562,7 +2580,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d283",
+   "id": "d285",
    "lang": "ta",
    "script": "tamil",
    "text": "வழி ஏன் இதுவாக உள்ளது",
@@ -2571,7 +2589,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d284",
+   "id": "d286",
    "lang": "ta",
    "script": "tamil",
    "text": "எவ்ளோ நேரம் ஆகும்",
@@ -2580,7 +2598,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d285",
+   "id": "d287",
    "lang": "ta",
    "script": "tamil",
    "text": "வேற வழி இருக்கா?",
@@ -2589,7 +2607,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d286",
+   "id": "d288",
    "lang": "ta",
    "script": "tamil",
    "text": "அடுத்த வாரம் வானிலை எப்படி இருக்கும்?",

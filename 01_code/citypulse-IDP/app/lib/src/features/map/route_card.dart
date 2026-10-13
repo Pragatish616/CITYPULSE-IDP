@@ -11,6 +11,7 @@ import 'package:citypulse_app/src/ui/widgets/data_gaps_panel.dart';
 import 'package:citypulse_app/src/core/city.dart';
 import 'package:citypulse_app/src/ui/widgets/advice_card.dart';
 import 'package:citypulse_app/src/ui/widgets/explanation_card.dart';
+import 'package:citypulse_app/src/ui/widgets/route_question_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pulse_explain/pulse_explain.dart';
@@ -163,6 +164,16 @@ class RouteCard extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           DataGapsPanel(dataGaps: trace.dataGaps),
+          const SizedBox(height: 8),
+          // Questions about this route, answered on the phone from its own trace (ADR-035). Keyed by the query so
+          // a new route starts with an empty box.
+          RouteQuestionBox(
+            key: ValueKey(trace.queryId),
+            trace: trace,
+            eventState: view.eventState,
+            hazardNouns: nouns,
+            strings: s,
+          ),
           const SizedBox(height: 8),
         ],
         Text(
