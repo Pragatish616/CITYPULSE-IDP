@@ -341,3 +341,8 @@ Every entry below survived an eight-specialist review, a defence round arguing f
 - **Tried (ADR-034, 11 Oct):** six OpenStreetMap street-scale features (buildings, land use, mapped waterways and water) did not help; across floods (train on one, test on the other), cells at most 10 m inside the core score AUC 0.52 with every feature set, chance. More static inputs are not the fix.
 - **Fix:** street-scale labels (radar flood extents for Chennai 2015 and 2023 if openly available, the project's own timestamped field log), event rainfall as an input, then a new pre-registered test. More satellite maps of the same kind will not help (learning curve flat).
 
+
+### F-43 · The route question answerer has no measured accuracy, its Tamil is unreviewed, and the verifier barely reaches Tamil · OPEN (ADR-035)
+- **What:** D0 (`pulse_explain/lib/src/route_qa.dart`) answers questions about a route with cue lists and fixed templates. Its 100% on the 286-question development set is not a result (the cue lists were adjusted on it). The Tamil wording and cue lists were written without a native speaker's review. The verifier's numeral, entity and comparative rules read English; Tamil answers are held only to the hedge rule and the Tamil safety stems.
+- **Consequence:** nothing may be said about how well it understands travellers' questions, or that its Tamil is correct, until the sealed test set is scored and a Tamil reader has reviewed it. Not yet in the app, not on a phone.
+- **Fix:** the team writes and labels the sealed test set (`data/qa/2026-10-13/TEST_SET_GUIDE.md`); a native Tamil reader reviews the answers; a Tamil paraphrase set extends the verifier tests (F-05).

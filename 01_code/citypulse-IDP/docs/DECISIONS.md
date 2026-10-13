@@ -1315,3 +1315,31 @@ The weak point is the information, not the learner. Evidence for that: a spline 
 **What this means.** The missing piece in the core is not more static inputs. Either the labels (satellite extents, hotspot lists) carry little of what decided which streets flooded, or that depended on the event itself: how much rain fell, where, and how fast the drains coped. This points to step 3 (each flood's rainfall) and step 4 (street-scale labels and a fresh test set) as the next experiments, not to further terrain or map features.
 
 **Limits.** OSM completeness in Chennai is uneven (buildings are in only 4.3% of 90 m cells, 49% of 1 km windows); multipolygon relations were not read; building area is attributed to centroid cells; mapped drains are not the storm-drain network. The labels are satellite extents, not passability.
+
+---
+
+## ADR-035: Route questions answered on the phone: a model-free answerer first, a small model only if it earns its place (13 October 2026)
+
+**Status:** accepted. D0 (no language model) is built and tested on the laptop; **nothing is measured on a phone, no accuracy is known, and no small model has been run.** The design, the 18 intents, the bars and the kill criteria were committed in `data/qa/2026-10-13/PREREGISTRATION_QA.md` (commit `601ce84`) before the answerer existed.
+
+**Context.** The owner asked that travellers be able to ask questions about a calculated route, in normal time and in a disaster, in English and Tamil, with a small model that runs on the phone so that no API cost is paid (the cloud rewriter, Tier 2, is the API-cost path). The repo already has a template explanation (Tier 0), an on-device rewriter for Gemma 3 270M that has never run on a device (Tier 1, ADR-004), a verifier whose Tamil coverage is thin (F-05), and an advisor with hand-set weights (ADR-021). ADR-004 records the base rate to beat: about 5.5 s and 0.5 to 1.7 GB per free-form answer on the target phone class, and 5.7 to 7.4% hallucination for small models on grounded text.
+
+**Decision.** Build a ladder and climb only when the rung below is beaten on a sealed, team-written test set.
+- **D0 (built):** `packages/pulse_explain/lib/src/route_qa.dart`. A fixed bilingual cue-list classifier picks one of 18 intents; fixed English and Tamil templates fill the answer from the route's `DecisionTrace` and the advisor's output; every answer is passed through `verify`; a failing answer is replaced by a fixed fallback and counted (`usedFallback`, `rejectedClaims`). No model, no network.
+- **D1 (not built):** a small on-device model parses the question into intent and slots under a grammar constraint; D0's templates still write the answer.
+- **D2 (not built):** the model writes the answer from a fact sheet behind the verifier.
+- **Safety design.** Questions asking for a safety, dryness, openness or permission-to-travel verdict (`is_safe`) always get the same kind of answer: what CityPulse cannot confirm, what the data shows (risk level, evidence level), and "check the road yourself". The classifier fails toward this refusal. The refusal is phrased without "safe", "dry", "open" and the like, because the verifier's rule 6 forbids even negated uses (ADR-011).
+
+**Evidence (laptop, measured).** 574 tests pass in `pulse_explain` (the whole package). For 12 route situations (all four travel classes, all four confidence bands, with and without alternatives and data gaps, all three event states, accident and limit facts, a digit-named street, a prior-only edge) times 18 intents times 2 languages, **all 432 answers pass the verifier without falling back**; the first run had 166 failures, all in English sentence openers the entity rule cannot ground (for example a sentence beginning "What" or "Check"), and they were fixed by rewording, not by loosening the verifier. All 38 dev safety traps get the refusal on all 12 situations. No English answer contains a word on the safety list. Tamil answers contain only numbers present in the route facts. Speed: about 0.37 ms per answer (classify, fill, verify; JIT on the laptop). Accuracy on the 286-question development set is 100% **and is not a result**: the cue lists were adjusted after reading the first misses on that same set, so it measures only that the lists fit it. The sealed test set (at least 200 questions written by the team, two labellers per question) is the only measure, and a large drop from the dev figure should be expected.
+
+**What D0 cannot answer, by construction.** The trace names the streets that were left out, not the risky streets of the chosen route; it holds no leave-time model; it has no forecast. The answerer says so ("does not yet advise on the best time to leave", "I do not have a weather forecast") and does not guess.
+
+**Limits.**
+- The Tamil wording and Tamil cue lists were written by the coding agent without a native speaker's review (`tamil_reviewed: false`). They must be reviewed before any Tamil answer ships.
+- The verifier's numeral, entity and comparative rules read English only; for Tamil only the hedge rule (4) and the Tamil safety stems (6) apply, and the rest rests on the templates being deterministic and tested. A Tamil paraphrase verifier does not exist.
+- The question is classified by single-label cue matching; two-part questions get one answer.
+- Not on a phone, not in the app yet: the next step is a question box on the route screen that calls `answerQuestion` with the trace the app already holds.
+- No user study: whether the answers help is not measured.
+- Tanglish (Tamil in English letters) is not handled; the test-set guide asks the team to include some so that the gap is measured.
+
+**What would change this.** If the sealed test shows D0 below 0.80 intent accuracy in either language, D1 is built and judged by the rule in the pre-registration (gain of at least 0.05 absolute with an interval above zero, safety bars intact, and the phone ceilings). If D1 does not earn its place, D0 ships and the model tier is dropped.

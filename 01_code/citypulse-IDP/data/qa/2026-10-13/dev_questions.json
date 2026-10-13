@@ -1,0 +1,2601 @@
+{
+ "kind": "route_qa_dev_questions",
+ "written_by": "the coding agent (not the team); the Tamil has not been reviewed by a native speaker",
+ "use": "development only; no accuracy claim may be made from this file (PREREGISTRATION_QA.md); the sealed test set is written by the team",
+ "intents": [
+  "why_route",
+  "time_distance",
+  "alternatives",
+  "avoided_streets",
+  "route_hazard",
+  "is_safe",
+  "should_go",
+  "confidence",
+  "data_gaps",
+  "travel_mode",
+  "event_state",
+  "accidents",
+  "limits",
+  "departure_time",
+  "offline",
+  "how_it_works",
+  "help",
+  "out_of_scope"
+ ],
+ "questions": [
+  {
+   "id": "d001",
+   "lang": "en",
+   "script": "latin",
+   "text": "Why was this route chosen?",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d002",
+   "lang": "en",
+   "script": "latin",
+   "text": "why this way",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d003",
+   "lang": "en",
+   "script": "latin",
+   "text": "why are you sending me this way",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d004",
+   "lang": "en",
+   "script": "latin",
+   "text": "explain the route",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d005",
+   "lang": "en",
+   "script": "latin",
+   "text": "what made you pick this road",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d006",
+   "lang": "en",
+   "script": "latin",
+   "text": "reason for this route",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d007",
+   "lang": "en",
+   "script": "latin",
+   "text": "why did you choose route A",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d008",
+   "lang": "en",
+   "script": "latin",
+   "text": "How long will it take?",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d009",
+   "lang": "en",
+   "script": "latin",
+   "text": "how far is it",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d010",
+   "lang": "en",
+   "script": "latin",
+   "text": "what's the travel time",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d011",
+   "lang": "en",
+   "script": "latin",
+   "text": "when will I get there",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d012",
+   "lang": "en",
+   "script": "latin",
+   "text": "how many km is this route",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d013",
+   "lang": "en",
+   "script": "latin",
+   "text": "ETA please",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d014",
+   "lang": "en",
+   "script": "latin",
+   "text": "how much time does it need",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d015",
+   "lang": "en",
+   "script": "latin",
+   "text": "how long is the trip in minutes",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d016",
+   "lang": "en",
+   "script": "latin",
+   "text": "Is there another route?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d017",
+   "lang": "en",
+   "script": "latin",
+   "text": "any faster way",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d018",
+   "lang": "en",
+   "script": "latin",
+   "text": "what are the other options",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d019",
+   "lang": "en",
+   "script": "latin",
+   "text": "why not route B",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d020",
+   "lang": "en",
+   "script": "latin",
+   "text": "show me alternatives",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d021",
+   "lang": "en",
+   "script": "latin",
+   "text": "is there a quicker road",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d022",
+   "lang": "en",
+   "script": "latin",
+   "text": "how much slower is the other route",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d023",
+   "lang": "en",
+   "script": "latin",
+   "text": "Why not the usual road?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d024",
+   "lang": "en",
+   "script": "latin",
+   "text": "what else could I take",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d025",
+   "lang": "en",
+   "script": "latin",
+   "text": "Which streets did you leave out?",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d026",
+   "lang": "en",
+   "script": "latin",
+   "text": "what roads were skipped",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d027",
+   "lang": "en",
+   "script": "latin",
+   "text": "which places did you avoid",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d028",
+   "lang": "en",
+   "script": "latin",
+   "text": "where is the flooding you avoided",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d029",
+   "lang": "en",
+   "script": "latin",
+   "text": "which streets are you avoiding and why",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d030",
+   "lang": "en",
+   "script": "latin",
+   "text": "what did you bypass",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d031",
+   "lang": "en",
+   "script": "latin",
+   "text": "list the avoided roads",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d032",
+   "lang": "en",
+   "script": "latin",
+   "text": "which stretch was left out",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d033",
+   "lang": "en",
+   "script": "latin",
+   "text": "How much flood risk is on this route?",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d034",
+   "lang": "en",
+   "script": "latin",
+   "text": "is there flooding on my route",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d035",
+   "lang": "en",
+   "script": "latin",
+   "text": "what are the risks on the way",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d036",
+   "lang": "en",
+   "script": "latin",
+   "text": "any waterlogging along this road",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d037",
+   "lang": "en",
+   "script": "latin",
+   "text": "how bad is the flood risk here",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d038",
+   "lang": "en",
+   "script": "latin",
+   "text": "which parts of the route are risky",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d039",
+   "lang": "en",
+   "script": "latin",
+   "text": "tell me the hazards on this route",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d040",
+   "lang": "en",
+   "script": "latin",
+   "text": "what is the danger level for this trip",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d041",
+   "lang": "en",
+   "script": "latin",
+   "text": "Is this route safe?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d042",
+   "lang": "en",
+   "script": "latin",
+   "text": "can I cross the subway now",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d043",
+   "lang": "en",
+   "script": "latin",
+   "text": "is the road open",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d044",
+   "lang": "en",
+   "script": "latin",
+   "text": "is it dry on the way",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d045",
+   "lang": "en",
+   "script": "latin",
+   "text": "is the bridge passable",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d046",
+   "lang": "en",
+   "script": "latin",
+   "text": "can I drive through",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d047",
+   "lang": "en",
+   "script": "latin",
+   "text": "is Velachery flooded right now",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d048",
+   "lang": "en",
+   "script": "latin",
+   "text": "will my bike get through",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d049",
+   "lang": "en",
+   "script": "latin",
+   "text": "is it ok to go this way",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d050",
+   "lang": "en",
+   "script": "latin",
+   "text": "can I safely walk this",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d051",
+   "lang": "en",
+   "script": "latin",
+   "text": "is the underpass clear",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d052",
+   "lang": "en",
+   "script": "latin",
+   "text": "no flooding there, right?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d053",
+   "lang": "en",
+   "script": "latin",
+   "text": "Should I go now or wait?",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d054",
+   "lang": "en",
+   "script": "latin",
+   "text": "should I leave now",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d055",
+   "lang": "en",
+   "script": "latin",
+   "text": "is it better to wait",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d056",
+   "lang": "en",
+   "script": "latin",
+   "text": "do you advise going",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d057",
+   "lang": "en",
+   "script": "latin",
+   "text": "should I postpone the trip",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d058",
+   "lang": "en",
+   "script": "latin",
+   "text": "go now or later",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d059",
+   "lang": "en",
+   "script": "latin",
+   "text": "what do you recommend",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d060",
+   "lang": "en",
+   "script": "latin",
+   "text": "should I wait for the rain to stop",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d061",
+   "lang": "en",
+   "script": "latin",
+   "text": "How sure are you?",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d062",
+   "lang": "en",
+   "script": "latin",
+   "text": "how reliable is this",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d063",
+   "lang": "en",
+   "script": "latin",
+   "text": "how old is the data",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d064",
+   "lang": "en",
+   "script": "latin",
+   "text": "can I trust this advice",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d065",
+   "lang": "en",
+   "script": "latin",
+   "text": "how confident is the app",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d066",
+   "lang": "en",
+   "script": "latin",
+   "text": "is the information recent",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d067",
+   "lang": "en",
+   "script": "latin",
+   "text": "how fresh are the reports",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d068",
+   "lang": "en",
+   "script": "latin",
+   "text": "what is the evidence behind this",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d069",
+   "lang": "en",
+   "script": "latin",
+   "text": "Which parts have no data?",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d070",
+   "lang": "en",
+   "script": "latin",
+   "text": "where is information missing",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d071",
+   "lang": "en",
+   "script": "latin",
+   "text": "what data are you missing",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d072",
+   "lang": "en",
+   "script": "latin",
+   "text": "any gaps in the information",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d073",
+   "lang": "en",
+   "script": "latin",
+   "text": "which roads have no reports",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d074",
+   "lang": "en",
+   "script": "latin",
+   "text": "where don't you know anything",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d075",
+   "lang": "en",
+   "script": "latin",
+   "text": "what is not covered",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d076",
+   "lang": "en",
+   "script": "latin",
+   "text": "list the corridors without data",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d077",
+   "lang": "en",
+   "script": "latin",
+   "text": "What if I walk?",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d078",
+   "lang": "en",
+   "script": "latin",
+   "text": "how does this change for a bike",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d079",
+   "lang": "en",
+   "script": "latin",
+   "text": "what about an ambulance",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d080",
+   "lang": "en",
+   "script": "latin",
+   "text": "I am on a cycle, what changes",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d081",
+   "lang": "en",
+   "script": "latin",
+   "text": "is the route different for pedestrians",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d082",
+   "lang": "en",
+   "script": "latin",
+   "text": "what mode is this for",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d083",
+   "lang": "en",
+   "script": "latin",
+   "text": "if I take a car instead",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d084",
+   "lang": "en",
+   "script": "latin",
+   "text": "how do you treat two wheelers",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d085",
+   "lang": "en",
+   "script": "latin",
+   "text": "Is it raining now?",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d086",
+   "lang": "en",
+   "script": "latin",
+   "text": "is there a flood alert",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d087",
+   "lang": "en",
+   "script": "latin",
+   "text": "is a flood event on",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d088",
+   "lang": "en",
+   "script": "latin",
+   "text": "what is the rain situation",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d089",
+   "lang": "en",
+   "script": "latin",
+   "text": "any storm warning currently",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d090",
+   "lang": "en",
+   "script": "latin",
+   "text": "is the flood map being used",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d091",
+   "lang": "en",
+   "script": "latin",
+   "text": "what's the weather event status",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d092",
+   "lang": "en",
+   "script": "latin",
+   "text": "is there heavy rain right now",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d093",
+   "lang": "en",
+   "script": "latin",
+   "text": "Any accidents on the route?",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d094",
+   "lang": "en",
+   "script": "latin",
+   "text": "are there accident reports",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d095",
+   "lang": "en",
+   "script": "latin",
+   "text": "is there a crash ahead",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d096",
+   "lang": "en",
+   "script": "latin",
+   "text": "did you avoid accidents",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d097",
+   "lang": "en",
+   "script": "latin",
+   "text": "accident near my route",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d098",
+   "lang": "en",
+   "script": "latin",
+   "text": "how many accidents are reported",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d099",
+   "lang": "en",
+   "script": "latin",
+   "text": "is the avoid accidents switch on",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d100",
+   "lang": "en",
+   "script": "latin",
+   "text": "any collision reported on this road",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d101",
+   "lang": "en",
+   "script": "latin",
+   "text": "What limits did you apply?",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d102",
+   "lang": "en",
+   "script": "latin",
+   "text": "why can't I use that road",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d103",
+   "lang": "en",
+   "script": "latin",
+   "text": "what are the rules for my vehicle",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d104",
+   "lang": "en",
+   "script": "latin",
+   "text": "why is the flyover closed to me",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d105",
+   "lang": "en",
+   "script": "latin",
+   "text": "what restrictions apply to this travel mode",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d106",
+   "lang": "en",
+   "script": "latin",
+   "text": "which roads are blocked for me",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d107",
+   "lang": "en",
+   "script": "latin",
+   "text": "why was my usual road ruled out",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d108",
+   "lang": "en",
+   "script": "latin",
+   "text": "are there limits for bikes",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d109",
+   "lang": "en",
+   "script": "latin",
+   "text": "When is the best time to leave?",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d110",
+   "lang": "en",
+   "script": "latin",
+   "text": "what time should I start",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d111",
+   "lang": "en",
+   "script": "latin",
+   "text": "when will traffic be lighter",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d112",
+   "lang": "en",
+   "script": "latin",
+   "text": "best departure time",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d113",
+   "lang": "en",
+   "script": "latin",
+   "text": "should I leave earlier or later",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d114",
+   "lang": "en",
+   "script": "latin",
+   "text": "which hour has less congestion",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d115",
+   "lang": "en",
+   "script": "latin",
+   "text": "tell me when to start",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d116",
+   "lang": "en",
+   "script": "latin",
+   "text": "when should I set off tomorrow",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d117",
+   "lang": "en",
+   "script": "latin",
+   "text": "Does this work offline?",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d118",
+   "lang": "en",
+   "script": "latin",
+   "text": "is this live data",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d119",
+   "lang": "en",
+   "script": "latin",
+   "text": "will it work without internet",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d120",
+   "lang": "en",
+   "script": "latin",
+   "text": "do I need network",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d121",
+   "lang": "en",
+   "script": "latin",
+   "text": "is the information real time",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d122",
+   "lang": "en",
+   "script": "latin",
+   "text": "what if I have no signal",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d123",
+   "lang": "en",
+   "script": "latin",
+   "text": "was this calculated on my phone",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d124",
+   "lang": "en",
+   "script": "latin",
+   "text": "is this updated from a server",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d125",
+   "lang": "en",
+   "script": "latin",
+   "text": "How does this work?",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d126",
+   "lang": "en",
+   "script": "latin",
+   "text": "how do you calculate the route",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d127",
+   "lang": "en",
+   "script": "latin",
+   "text": "what data do you use",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d128",
+   "lang": "en",
+   "script": "latin",
+   "text": "how do you decide",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d129",
+   "lang": "en",
+   "script": "latin",
+   "text": "explain how the app works",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d130",
+   "lang": "en",
+   "script": "latin",
+   "text": "what is the method",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d131",
+   "lang": "en",
+   "script": "latin",
+   "text": "where does your information come from",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d132",
+   "lang": "en",
+   "script": "latin",
+   "text": "how is the risk computed",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d133",
+   "lang": "en",
+   "script": "latin",
+   "text": "What can I ask?",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d134",
+   "lang": "en",
+   "script": "latin",
+   "text": "help",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d135",
+   "lang": "en",
+   "script": "latin",
+   "text": "what can you do",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d136",
+   "lang": "en",
+   "script": "latin",
+   "text": "what questions do you answer",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d137",
+   "lang": "en",
+   "script": "latin",
+   "text": "how do I use this chat",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d138",
+   "lang": "en",
+   "script": "latin",
+   "text": "give me examples of questions",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d139",
+   "lang": "en",
+   "script": "latin",
+   "text": "hello what can you help with",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d140",
+   "lang": "en",
+   "script": "latin",
+   "text": "options",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d141",
+   "lang": "en",
+   "script": "latin",
+   "text": "Will it rain tomorrow?",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d142",
+   "lang": "en",
+   "script": "latin",
+   "text": "where is the nearest petrol pump",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d143",
+   "lang": "en",
+   "script": "latin",
+   "text": "tell me a joke",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d144",
+   "lang": "en",
+   "script": "latin",
+   "text": "what is the cricket score",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d145",
+   "lang": "en",
+   "script": "latin",
+   "text": "best biryani near me",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d146",
+   "lang": "en",
+   "script": "latin",
+   "text": "book me a cab",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d147",
+   "lang": "en",
+   "script": "latin",
+   "text": "what is the capital of India",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d148",
+   "lang": "en",
+   "script": "latin",
+   "text": "play some music",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d149",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "ஏன் இந்த வழி தேர்ந்தெடுக்கப்பட்டது?",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d150",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த வழியை ஏன் காட்டினீர்கள்?",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d151",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த பாதை எதற்காக?",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d152",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த வழி ஏன்?",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d153",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வழியின் காரணம் என்ன?",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d154",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எவ்வளவு நேரம் ஆகும்?",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d155",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எவ்வளவு தூரம்?",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d156",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எப்போது சென்றடைவேன்?",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d157",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "பயண நேரம் என்ன?",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d158",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த வழி எத்தனை கிலோமீட்டர்?",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d159",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "மொத்தம் எத்தனை நிமிடம்?",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d160",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வேறு வழி இருக்கிறதா?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d161",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இதை விட வேகமான வழி உண்டா?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d162",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "மாற்று வழிகள் என்ன?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d163",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வழி B ஏன் இல்லை?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d164",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வேறு பாதை காட்டு",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d165",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இன்னொரு சாலை உண்டா?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d166",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "ஏன் வழக்கமான சாலை இல்லை?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d167",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த தெருக்களை தவிர்த்தீர்கள்?",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d168",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த சாலைகள் விடப்பட்டன?",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d169",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த இடங்களை ஒதுக்கினாய்?",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d170",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "தவிர்த்த இடங்கள் எவை?",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d171",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த பகுதி விடப்பட்டது?",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d172",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வெள்ளம் இருப்பதால் எதை தவிர்த்தாய்?",
+   "intent": "avoided_streets",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d173",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த வழியில் வெள்ள ஆபத்து எவ்வளவு?",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d174",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வழியில் வெள்ளம் உள்ளதா?",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d175",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த இடத்தில் தண்ணீர் தேங்கும்?",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d176",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த பாதையில் ஆபத்தான இடங்கள் உண்டா?",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d177",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வெள்ள அபாயம் என்ன?",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d178",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "பயணத்தில் என்ன அபாயங்கள் உள்ளன?",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d179",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த வழி பாதுகாப்பானதா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d180",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த சாலையை கடக்கலாமா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d181",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "சுரங்கப்பாதை திறந்திருக்கிறதா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d182",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "தண்ணீர் இல்லையா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d183",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வண்டியில் போகலாமா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d184",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "சாலை காய்ந்து விட்டதா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d185",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த வழியில் எந்த பிரச்சனையும் இல்லையே?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d186",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "நான் பாதுகாப்பாக போக முடியுமா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d187",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "பாலம் வழியாக செல்லலாமா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d188",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "அங்கே வெள்ளம் இல்லை தானே?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d189",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இப்போது கிளம்பலாமா அல்லது காத்திருக்கலாமா?",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d190",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "காத்திருப்பது நல்லதா?",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d191",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இப்போது புறப்படலாமா?",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d192",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "என்ன பரிந்துரைக்கிறாய்?",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d193",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "பயணத்தை தள்ளிப்போடலாமா?",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d194",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "மழை நிற்கும் வரை காத்திருக்கவா?",
+   "intent": "should_go",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d195",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த தகவல் எவ்வளவு நம்பகமானது?",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d196",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "தரவு எவ்வளவு பழையது?",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d197",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "நீ எவ்வளவு உறுதியாக இருக்கிறாய்?",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d198",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இதை நம்பலாமா?",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d199",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "தகவல் புதியதா?",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d200",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இதற்கான ஆதாரம் என்ன?",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d201",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த பகுதிகளுக்கு தகவல் இல்லை?",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d202",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எங்கே தரவு குறைவு?",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d203",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "என்ன தகவல் காணவில்லை?",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d204",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த சாலைகளுக்கு அறிக்கை இல்லை?",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d205",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "தகவல் இடைவெளிகள் உள்ளனவா?",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d206",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எதைப் பற்றி உனக்குத் தெரியாது?",
+   "intent": "data_gaps",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d207",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "நான் நடந்து சென்றால் என்ன மாறும்?",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d208",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "சைக்கிளுக்கு வழி வேறா?",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d209",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "ஆம்புலன்ஸுக்கு என்ன வழி?",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d210",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "பைக்கில் போனால் வேறுபாடு உண்டா?",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d211",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இது எந்த பயண முறைக்கு?",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d212",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "காரில் சென்றால் என்ன மாறும்?",
+   "intent": "travel_mode",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d213",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இப்போது மழை பெய்கிறதா?",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d214",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வெள்ள எச்சரிக்கை இருக்கிறதா?",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d215",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "புயல் நிலை என்ன?",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d216",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "தற்போது மழை நிலைமை என்ன?",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d217",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வெள்ள நிகழ்வு நடக்கிறதா?",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d218",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "கனமழை எச்சரிக்கை உள்ளதா?",
+   "intent": "event_state",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d219",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வழியில் விபத்து உள்ளதா?",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d220",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "விபத்து அறிக்கைகள் இருக்கிறதா?",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d221",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "முன்னால் விபத்து நடந்ததா?",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d222",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "விபத்து நடந்த இடம் தவிர்க்கப்பட்டதா?",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d223",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த சாலையில் மோதல் பதிவாகியுள்ளதா?",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d224",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "விபத்தை தவிர்க்கும் வசதி இயக்கத்தில் உள்ளதா?",
+   "intent": "accidents",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d225",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "என் வாகனத்திற்கு என்ன வரம்புகள்?",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d226",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த சாலை ஏன் எனக்கு மூடப்பட்டது?",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d227",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "ஏன் மேம்பாலம் வழியாக இல்லை?",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d228",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "பயண முறை வரம்புகள் என்ன?",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d229",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த சாலைகள் எனக்கு தடை?",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d230",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "என் வழக்கமான சாலை ஏன் விலக்கப்பட்டது?",
+   "intent": "limits",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d231",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எப்போது புறப்படுவது நல்லது?",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d232",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த நேரத்தில் கிளம்பினால் நெரிசல் குறைவு?",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d233",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "சிறந்த புறப்படும் நேரம் எது?",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d234",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எப்போது தொடங்க வேண்டும்?",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d235",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "முன்னதாக கிளம்பவா பின்னதாகவா?",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d236",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "நாளை எப்போது கிளம்புவது?",
+   "intent": "departure_time",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d237",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இணையம் இல்லாமல் வேலை செய்யுமா?",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d238",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இது நேரலைத் தகவலா?",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d239",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "ஆஃப்லைனில் இயங்குமா?",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d240",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "நெட் இல்லாவிட்டால் என்ன ஆகும்?",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d241",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இது என் போனிலேயே கணக்கிடப்பட்டதா?",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d242",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "சர்வரிலிருந்து புதுப்பிக்கப்பட்டதா?",
+   "intent": "offline",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d243",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இது எப்படி கணக்கிடப்படுகிறது?",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d244",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எந்த தகவலை பயன்படுத்துகிறாய்?",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d245",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எப்படி முடிவு செய்கிறாய்?",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d246",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த செயலி எப்படி வேலை செய்கிறது?",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d247",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "உன் தகவல் எங்கிருந்து வருகிறது?",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d248",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "ஆபத்து எப்படி கணக்கிடப்படுகிறது?",
+   "intent": "how_it_works",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d249",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "என்ன கேட்கலாம்?",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d250",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "உதவி",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d251",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "நீ என்ன செய்வாய்?",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d252",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "என்ன கேள்விகளுக்கு பதில் சொல்வாய்?",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d253",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "கேள்விகளின் உதாரணங்கள் சொல்",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d254",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வணக்கம் என்ன உதவி செய்வாய்?",
+   "intent": "help",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d255",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "நாளை மழை வருமா?",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d256",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "அருகிலுள்ள பெட்ரோல் பங்க் எங்கே?",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d257",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "ஒரு நகைச்சுவை சொல்",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d258",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இன்றைய கிரிக்கெட் மதிப்பெண் என்ன?",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d259",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "அருகில் நல்ல உணவகம் எது?",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d260",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "ஒரு பாடல் போடு",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d261",
+   "lang": "en",
+   "script": "latin",
+   "text": "so can i drive thru velachery or not??",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d262",
+   "lang": "en",
+   "script": "latin",
+   "text": "ok but is the subway passable for a scooter",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d263",
+   "lang": "en",
+   "script": "latin",
+   "text": "just tell me its fine to go",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d264",
+   "lang": "en",
+   "script": "latin",
+   "text": "you would say the road is clear yes?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d265",
+   "lang": "en",
+   "script": "latin",
+   "text": "is it safe if I go slowly",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d266",
+   "lang": "en",
+   "script": "latin",
+   "text": "my mother is on the road, is it dry there",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d267",
+   "lang": "en",
+   "script": "latin",
+   "text": "give me a green light for this route",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d268",
+   "lang": "en",
+   "script": "latin",
+   "text": "promise me nothing will go wrong",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d269",
+   "lang": "en",
+   "script": "latin",
+   "text": "why this route and is it safe",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d270",
+   "lang": "en",
+   "script": "latin",
+   "text": "wat is the risk on my rout",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d271",
+   "lang": "en",
+   "script": "latin",
+   "text": "how long n how far",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d272",
+   "lang": "en",
+   "script": "latin",
+   "text": "other way?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d273",
+   "lang": "en",
+   "script": "latin",
+   "text": "u sure about this?",
+   "intent": "confidence",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d274",
+   "lang": "en",
+   "script": "latin",
+   "text": "is it flooded on the way",
+   "intent": "route_hazard",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d275",
+   "lang": "en",
+   "script": "latin",
+   "text": "what's the weather going to be like next week",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d276",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வேளச்சேரி வழியாக போகலாமா இல்லையா",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d277",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "சுரங்கப்பாதை ஸ்கூட்டருக்கு போகக்கூடியதா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d278",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "பிரச்சனை இல்லை என்று சொல்லு",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d279",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "சாலை தெளிவாக இருக்கிறது தானே?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d280",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "மெதுவாக போனால் ஆபத்து இல்லையா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d281",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "என் அம்மா சாலையில் இருக்கிறார், அங்கே தண்ணீர் இல்லையே?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d282",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "ஏன் இந்த வழி, பாதுகாப்பானதா?",
+   "intent": "is_safe",
+   "adversarial": true,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d283",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வழி ஏன் இதுவாக உள்ளது",
+   "intent": "why_route",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d284",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "எவ்ளோ நேரம் ஆகும்",
+   "intent": "time_distance",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d285",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "வேற வழி இருக்கா?",
+   "intent": "alternatives",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d286",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "அடுத்த வாரம் வானிலை எப்படி இருக்கும்?",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": false
+  }
+ ]
+}
