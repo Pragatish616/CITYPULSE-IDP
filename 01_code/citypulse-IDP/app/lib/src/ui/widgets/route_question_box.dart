@@ -107,6 +107,13 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
     final shown = _failed
         ? (_fallbackLocale == 'ta' ? kQaFallbackTa : kQaFallbackEn)
         : _answer?.text;
+    final headline = _failed ? '' : (_answer?.headline ?? '');
+    final head = shown != null && headline.isNotEmpty && shown.startsWith(headline)
+        ? headline
+        : '';
+    final rest = shown == null ? '' : shown.substring(head.length);
+    final follow = _failed ? const <QaIntent>[] : (_answer?.followUps ?? const <QaIntent>[]);
+    final answerTamil = _failed ? _fallbackLocale == 'ta' : (_answer?.locale == 'ta');
 
     return Column(
       key: const Key('ask-box'),
@@ -174,8 +181,18 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
                 children: [
                   Semantics(
                     liveRegion: true,
-                    child: Text(
-                      shown,
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          // The first sentence is the direct answer; the rest is the detail.
+                          if (head.isNotEmpty)
+                            TextSpan(
+                              text: head,
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          TextSpan(text: rest),
+                        ],
+                      ),
                       key: const Key('ask-answer'),
                       style: text.bodyMedium,
                     ),
@@ -204,6 +221,25 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
               ),
             ),
           ),
+          if (follow.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: [
+                for (var i = 0; i < follow.length; i++)
+                  ActionChip(
+                    key: Key('ask-followup-$i'),
+                    label: Text(canonicalQuestion(follow[i], ta: answerTamil)),
+                    onPressed: () {
+                      final q = canonicalQuestion(follow[i], ta: answerTamil);
+                      _controller.text = q;
+                      _ask(q);
+                    },
+                  ),
+              ],
+            ),
+          ],
         ],
       ],
     );

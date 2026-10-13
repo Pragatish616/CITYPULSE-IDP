@@ -6,6 +6,7 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 ## [Unreleased]
 
 ### Added
+- Route answerer version 2 (ADR-035 addendum 2): a briefing intent, two-part questions answered in one reply, a bold headline and follow-up question chips, richer and more varied answers; and a seeded training-data generator with an independent checker (20,046 verified English answers, 12,000 labelled questions in English and Tamil). No model trained yet.
 - "Ask about this route" box in the app (ADR-035 addendum 1): type or tap a question in English or Tamil under a planned route and get an answer from that route's own data on the phone; safety questions are refused with the risk shown.
 - Route question answerer, D0 without a language model (ADR-035, F-43): 18 intents in English and Tamil, answers from the route's own facts through the verifier, safety questions always refused with the risk shown; pre-registered; accuracy not yet measured.
 - Part A3 (ADR-034): six OpenStreetMap street-scale features tested for the Chennai flood model, pre-registered; no evidence they help, and across floods the low core scores chance with every feature set (AUC 0.52).

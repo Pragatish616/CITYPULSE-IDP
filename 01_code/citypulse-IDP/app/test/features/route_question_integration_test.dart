@@ -42,7 +42,7 @@ void main() {
       );
       await tester.tap(find.byKey(const Key('ask-send')));
       await tester.pumpAndSettle();
-      final a = tester.widget<Text>(find.byKey(const Key('ask-answer'))).data!;
+      final a = tester.widget<Text>(find.byKey(const Key('ask-answer'))).textSpan!.toPlainText();
       expect(a, contains('Kotturpuram Bridge approach'));
       expect(a, contains('3 minutes ago'));
     },
@@ -61,7 +61,7 @@ void main() {
       );
       await tester.tap(find.byKey(const Key('ask-send')));
       await tester.pumpAndSettle();
-      final a = tester.widget<Text>(find.byKey(const Key('ask-answer'))).data!;
+      final a = tester.widget<Text>(find.byKey(const Key('ask-answer'))).textSpan!.toPlainText();
       expect(a, contains('I cannot confirm the condition of any road'));
       expect(a, contains('flood risk'));
     },

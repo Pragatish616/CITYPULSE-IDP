@@ -39,8 +39,10 @@ Future<void> _ask(WidgetTester tester, String q) async {
   await tester.pumpAndSettle();
 }
 
-String _answer(WidgetTester tester) =>
-    tester.widget<Text>(find.byKey(const Key('ask-answer'))).data!;
+String _answer(WidgetTester tester) {
+  final w = tester.widget<Text>(find.byKey(const Key('ask-answer')));
+  return w.textSpan?.toPlainText() ?? w.data!;
+}
 
 void main() {
   testWidgets(
@@ -220,6 +222,38 @@ void main() {
     await _show(tester, queryId: 'two');
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('ask-answer-card')), findsNothing);
+  });
+
+  testWidgets('the first sentence is bold and follow-up questions are offered; tapping one asks it', (tester) async {
+    await _show(tester);
+    await _ask(tester, 'How long will it take?');
+    final w = tester.widget<Text>(find.byKey(const Key('ask-answer')));
+    final spans = (w.textSpan! as TextSpan).children!.cast<TextSpan>();
+    expect(spans.first.style?.fontWeight, FontWeight.bold);
+    expect(spans.first.text, startsWith('Route A'));
+    expect(find.byKey(const Key('ask-followup-0')), findsOneWidget);
+    final before = _answer(tester);
+    await tester.tap(find.byKey(const Key('ask-followup-0')));
+    await tester.pumpAndSettle();
+    expect(_answer(tester), isNot(before));
+    expect(_answer(tester), isNot(contains('I cannot answer that')));
+  });
+
+  testWidgets('follow-ups follow the language of the answer', (tester) async {
+    await _show(tester);
+    await _ask(tester, 'எவ்வளவு நேரம் ஆகும்?');
+    final chip = tester.widget<ActionChip>(find.byKey(const Key('ask-followup-0')));
+    expect(RegExp(r'[஀-௿]').hasMatch((chip.label as Text).data!), isTrue);
+  });
+
+  testWidgets('no follow-up ever offers a safety verdict', (tester) async {
+    await _show(tester);
+    await _ask(tester, 'Is this route safe?');
+    for (var i = 0; i < 3; i++) {
+      final f = find.byKey(Key('ask-followup-$i'));
+      if (f.evaluate().isEmpty) continue;
+      expect((tester.widget<ActionChip>(f).label as Text).data!.toLowerCase(), isNot(contains('safe')));
+    }
   });
 
   test('the new strings obey ADR-011 in both languages (also enforced for every string by strings_test)', () {

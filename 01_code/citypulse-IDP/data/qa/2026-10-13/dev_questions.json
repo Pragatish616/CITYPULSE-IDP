@@ -20,6 +20,7 @@
   "offline",
   "how_it_works",
   "help",
+  "summary",
   "out_of_scope"
  ],
  "questions": [
@@ -1287,8 +1288,8 @@
    "id": "d141",
    "lang": "en",
    "script": "latin",
-   "text": "Will it rain tomorrow?",
-   "intent": "out_of_scope",
+   "text": "Give me the picture",
+   "intent": "summary",
    "adversarial": false,
    "tamil_reviewed": null
   },
@@ -1296,8 +1297,8 @@
    "id": "d142",
    "lang": "en",
    "script": "latin",
-   "text": "where is the nearest petrol pump",
-   "intent": "out_of_scope",
+   "text": "summarise this route",
+   "intent": "summary",
    "adversarial": false,
    "tamil_reviewed": null
   },
@@ -1305,8 +1306,8 @@
    "id": "d143",
    "lang": "en",
    "script": "latin",
-   "text": "tell me a joke",
-   "intent": "out_of_scope",
+   "text": "tell me about this route",
+   "intent": "summary",
    "adversarial": false,
    "tamil_reviewed": null
   },
@@ -1314,8 +1315,8 @@
    "id": "d144",
    "lang": "en",
    "script": "latin",
-   "text": "what is the cricket score",
-   "intent": "out_of_scope",
+   "text": "brief me",
+   "intent": "summary",
    "adversarial": false,
    "tamil_reviewed": null
   },
@@ -1323,8 +1324,8 @@
    "id": "d145",
    "lang": "en",
    "script": "latin",
-   "text": "best biryani near me",
-   "intent": "out_of_scope",
+   "text": "overview please",
+   "intent": "summary",
    "adversarial": false,
    "tamil_reviewed": null
   },
@@ -1332,8 +1333,8 @@
    "id": "d146",
    "lang": "en",
    "script": "latin",
-   "text": "book me a cab",
-   "intent": "out_of_scope",
+   "text": "what should I know about this trip",
+   "intent": "summary",
    "adversarial": false,
    "tamil_reviewed": null
   },
@@ -1341,7 +1342,7 @@
    "id": "d147",
    "lang": "en",
    "script": "latin",
-   "text": "what is the capital of India",
+   "text": "Will it rain tomorrow?",
    "intent": "out_of_scope",
    "adversarial": false,
    "tamil_reviewed": null
@@ -1350,13 +1351,67 @@
    "id": "d148",
    "lang": "en",
    "script": "latin",
-   "text": "play some music",
+   "text": "where is the nearest petrol pump",
    "intent": "out_of_scope",
    "adversarial": false,
    "tamil_reviewed": null
   },
   {
    "id": "d149",
+   "lang": "en",
+   "script": "latin",
+   "text": "tell me a joke",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d150",
+   "lang": "en",
+   "script": "latin",
+   "text": "what is the cricket score",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d151",
+   "lang": "en",
+   "script": "latin",
+   "text": "best biryani near me",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d152",
+   "lang": "en",
+   "script": "latin",
+   "text": "book me a cab",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d153",
+   "lang": "en",
+   "script": "latin",
+   "text": "what is the capital of India",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d154",
+   "lang": "en",
+   "script": "latin",
+   "text": "play some music",
+   "intent": "out_of_scope",
+   "adversarial": false,
+   "tamil_reviewed": null
+  },
+  {
+   "id": "d155",
    "lang": "ta",
    "script": "tamil",
    "text": "ஏன் இந்த வழி தேர்ந்தெடுக்கப்பட்டது?",
@@ -1365,7 +1420,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d150",
+   "id": "d156",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த வழியை ஏன் காட்டினீர்கள்?",
@@ -1374,7 +1429,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d151",
+   "id": "d157",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த பாதை எதற்காக?",
@@ -1383,7 +1438,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d152",
+   "id": "d158",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த வழி ஏன்?",
@@ -1392,7 +1447,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d153",
+   "id": "d159",
    "lang": "ta",
    "script": "tamil",
    "text": "வழியின் காரணம் என்ன?",
@@ -1401,7 +1456,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d154",
+   "id": "d160",
    "lang": "ta",
    "script": "tamil",
    "text": "எவ்வளவு நேரம் ஆகும்?",
@@ -1410,7 +1465,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d155",
+   "id": "d161",
    "lang": "ta",
    "script": "tamil",
    "text": "எவ்வளவு தூரம்?",
@@ -1419,7 +1474,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d156",
+   "id": "d162",
    "lang": "ta",
    "script": "tamil",
    "text": "எப்போது சென்றடைவேன்?",
@@ -1428,7 +1483,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d157",
+   "id": "d163",
    "lang": "ta",
    "script": "tamil",
    "text": "பயண நேரம் என்ன?",
@@ -1437,7 +1492,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d158",
+   "id": "d164",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த வழி எத்தனை கிலோமீட்டர்?",
@@ -1446,7 +1501,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d159",
+   "id": "d165",
    "lang": "ta",
    "script": "tamil",
    "text": "மொத்தம் எத்தனை நிமிடம்?",
@@ -1455,7 +1510,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d160",
+   "id": "d166",
    "lang": "ta",
    "script": "tamil",
    "text": "வேறு வழி இருக்கிறதா?",
@@ -1464,7 +1519,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d161",
+   "id": "d167",
    "lang": "ta",
    "script": "tamil",
    "text": "இதை விட வேகமான வழி உண்டா?",
@@ -1473,7 +1528,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d162",
+   "id": "d168",
    "lang": "ta",
    "script": "tamil",
    "text": "மாற்று வழிகள் என்ன?",
@@ -1482,7 +1537,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d163",
+   "id": "d169",
    "lang": "ta",
    "script": "tamil",
    "text": "வழி B ஏன் இல்லை?",
@@ -1491,7 +1546,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d164",
+   "id": "d170",
    "lang": "ta",
    "script": "tamil",
    "text": "வேறு பாதை காட்டு",
@@ -1500,7 +1555,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d165",
+   "id": "d171",
    "lang": "ta",
    "script": "tamil",
    "text": "இன்னொரு சாலை உண்டா?",
@@ -1509,7 +1564,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d166",
+   "id": "d172",
    "lang": "ta",
    "script": "tamil",
    "text": "ஏன் வழக்கமான சாலை இல்லை?",
@@ -1518,7 +1573,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d167",
+   "id": "d173",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த தெருக்களை தவிர்த்தீர்கள்?",
@@ -1527,7 +1582,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d168",
+   "id": "d174",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த சாலைகள் விடப்பட்டன?",
@@ -1536,7 +1591,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d169",
+   "id": "d175",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த இடங்களை ஒதுக்கினாய்?",
@@ -1545,7 +1600,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d170",
+   "id": "d176",
    "lang": "ta",
    "script": "tamil",
    "text": "தவிர்த்த இடங்கள் எவை?",
@@ -1554,7 +1609,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d171",
+   "id": "d177",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த பகுதி விடப்பட்டது?",
@@ -1563,7 +1618,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d172",
+   "id": "d178",
    "lang": "ta",
    "script": "tamil",
    "text": "வெள்ளம் இருப்பதால் எதை தவிர்த்தாய்?",
@@ -1572,7 +1627,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d173",
+   "id": "d179",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த வழியில் வெள்ள ஆபத்து எவ்வளவு?",
@@ -1581,7 +1636,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d174",
+   "id": "d180",
    "lang": "ta",
    "script": "tamil",
    "text": "வழியில் வெள்ளம் உள்ளதா?",
@@ -1590,7 +1645,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d175",
+   "id": "d181",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த இடத்தில் தண்ணீர் தேங்கும்?",
@@ -1599,7 +1654,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d176",
+   "id": "d182",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த பாதையில் ஆபத்தான இடங்கள் உண்டா?",
@@ -1608,7 +1663,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d177",
+   "id": "d183",
    "lang": "ta",
    "script": "tamil",
    "text": "வெள்ள அபாயம் என்ன?",
@@ -1617,7 +1672,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d178",
+   "id": "d184",
    "lang": "ta",
    "script": "tamil",
    "text": "பயணத்தில் என்ன அபாயங்கள் உள்ளன?",
@@ -1626,7 +1681,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d179",
+   "id": "d185",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த வழி பாதுகாப்பானதா?",
@@ -1635,7 +1690,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d180",
+   "id": "d186",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த சாலையை கடக்கலாமா?",
@@ -1644,7 +1699,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d181",
+   "id": "d187",
    "lang": "ta",
    "script": "tamil",
    "text": "சுரங்கப்பாதை திறந்திருக்கிறதா?",
@@ -1653,7 +1708,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d182",
+   "id": "d188",
    "lang": "ta",
    "script": "tamil",
    "text": "தண்ணீர் இல்லையா?",
@@ -1662,7 +1717,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d183",
+   "id": "d189",
    "lang": "ta",
    "script": "tamil",
    "text": "வண்டியில் போகலாமா?",
@@ -1671,7 +1726,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d184",
+   "id": "d190",
    "lang": "ta",
    "script": "tamil",
    "text": "சாலை காய்ந்து விட்டதா?",
@@ -1680,7 +1735,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d185",
+   "id": "d191",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த வழியில் எந்த பிரச்சனையும் இல்லையே?",
@@ -1689,7 +1744,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d186",
+   "id": "d192",
    "lang": "ta",
    "script": "tamil",
    "text": "நான் பாதுகாப்பாக போக முடியுமா?",
@@ -1698,7 +1753,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d187",
+   "id": "d193",
    "lang": "ta",
    "script": "tamil",
    "text": "பாலம் வழியாக செல்லலாமா?",
@@ -1707,7 +1762,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d188",
+   "id": "d194",
    "lang": "ta",
    "script": "tamil",
    "text": "அங்கே வெள்ளம் இல்லை தானே?",
@@ -1716,7 +1771,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d189",
+   "id": "d195",
    "lang": "ta",
    "script": "tamil",
    "text": "இப்போது கிளம்பலாமா அல்லது காத்திருக்கலாமா?",
@@ -1725,7 +1780,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d190",
+   "id": "d196",
    "lang": "ta",
    "script": "tamil",
    "text": "காத்திருப்பது நல்லதா?",
@@ -1734,7 +1789,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d191",
+   "id": "d197",
    "lang": "ta",
    "script": "tamil",
    "text": "இப்போது புறப்படலாமா?",
@@ -1743,7 +1798,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d192",
+   "id": "d198",
    "lang": "ta",
    "script": "tamil",
    "text": "என்ன பரிந்துரைக்கிறாய்?",
@@ -1752,7 +1807,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d193",
+   "id": "d199",
    "lang": "ta",
    "script": "tamil",
    "text": "பயணத்தை தள்ளிப்போடலாமா?",
@@ -1761,7 +1816,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d194",
+   "id": "d200",
    "lang": "ta",
    "script": "tamil",
    "text": "மழை நிற்கும் வரை காத்திருக்கவா?",
@@ -1770,7 +1825,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d195",
+   "id": "d201",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த தகவல் எவ்வளவு நம்பகமானது?",
@@ -1779,7 +1834,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d196",
+   "id": "d202",
    "lang": "ta",
    "script": "tamil",
    "text": "தரவு எவ்வளவு பழையது?",
@@ -1788,7 +1843,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d197",
+   "id": "d203",
    "lang": "ta",
    "script": "tamil",
    "text": "நீ எவ்வளவு உறுதியாக இருக்கிறாய்?",
@@ -1797,7 +1852,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d198",
+   "id": "d204",
    "lang": "ta",
    "script": "tamil",
    "text": "இதை நம்பலாமா?",
@@ -1806,7 +1861,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d199",
+   "id": "d205",
    "lang": "ta",
    "script": "tamil",
    "text": "தகவல் புதியதா?",
@@ -1815,7 +1870,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d200",
+   "id": "d206",
    "lang": "ta",
    "script": "tamil",
    "text": "இதற்கான ஆதாரம் என்ன?",
@@ -1824,7 +1879,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d201",
+   "id": "d207",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த பகுதிகளுக்கு தகவல் இல்லை?",
@@ -1833,7 +1888,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d202",
+   "id": "d208",
    "lang": "ta",
    "script": "tamil",
    "text": "எங்கே தரவு குறைவு?",
@@ -1842,7 +1897,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d203",
+   "id": "d209",
    "lang": "ta",
    "script": "tamil",
    "text": "என்ன தகவல் காணவில்லை?",
@@ -1851,7 +1906,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d204",
+   "id": "d210",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த சாலைகளுக்கு அறிக்கை இல்லை?",
@@ -1860,7 +1915,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d205",
+   "id": "d211",
    "lang": "ta",
    "script": "tamil",
    "text": "தகவல் இடைவெளிகள் உள்ளனவா?",
@@ -1869,7 +1924,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d206",
+   "id": "d212",
    "lang": "ta",
    "script": "tamil",
    "text": "எதைப் பற்றி உனக்குத் தெரியாது?",
@@ -1878,7 +1933,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d207",
+   "id": "d213",
    "lang": "ta",
    "script": "tamil",
    "text": "நான் நடந்து சென்றால் என்ன மாறும்?",
@@ -1887,7 +1942,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d208",
+   "id": "d214",
    "lang": "ta",
    "script": "tamil",
    "text": "சைக்கிளுக்கு வழி வேறா?",
@@ -1896,7 +1951,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d209",
+   "id": "d215",
    "lang": "ta",
    "script": "tamil",
    "text": "ஆம்புலன்ஸுக்கு என்ன வழி?",
@@ -1905,7 +1960,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d210",
+   "id": "d216",
    "lang": "ta",
    "script": "tamil",
    "text": "பைக்கில் போனால் வேறுபாடு உண்டா?",
@@ -1914,7 +1969,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d211",
+   "id": "d217",
    "lang": "ta",
    "script": "tamil",
    "text": "இது எந்த பயண முறைக்கு?",
@@ -1923,7 +1978,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d212",
+   "id": "d218",
    "lang": "ta",
    "script": "tamil",
    "text": "காரில் சென்றால் என்ன மாறும்?",
@@ -1932,7 +1987,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d213",
+   "id": "d219",
    "lang": "ta",
    "script": "tamil",
    "text": "இப்போது மழை பெய்கிறதா?",
@@ -1941,7 +1996,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d214",
+   "id": "d220",
    "lang": "ta",
    "script": "tamil",
    "text": "வெள்ள எச்சரிக்கை இருக்கிறதா?",
@@ -1950,7 +2005,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d215",
+   "id": "d221",
    "lang": "ta",
    "script": "tamil",
    "text": "புயல் நிலை என்ன?",
@@ -1959,7 +2014,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d216",
+   "id": "d222",
    "lang": "ta",
    "script": "tamil",
    "text": "தற்போது மழை நிலைமை என்ன?",
@@ -1968,7 +2023,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d217",
+   "id": "d223",
    "lang": "ta",
    "script": "tamil",
    "text": "வெள்ள நிகழ்வு நடக்கிறதா?",
@@ -1977,7 +2032,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d218",
+   "id": "d224",
    "lang": "ta",
    "script": "tamil",
    "text": "கனமழை எச்சரிக்கை உள்ளதா?",
@@ -1986,7 +2041,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d219",
+   "id": "d225",
    "lang": "ta",
    "script": "tamil",
    "text": "வழியில் விபத்து உள்ளதா?",
@@ -1995,7 +2050,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d220",
+   "id": "d226",
    "lang": "ta",
    "script": "tamil",
    "text": "விபத்து அறிக்கைகள் இருக்கிறதா?",
@@ -2004,7 +2059,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d221",
+   "id": "d227",
    "lang": "ta",
    "script": "tamil",
    "text": "முன்னால் விபத்து நடந்ததா?",
@@ -2013,7 +2068,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d222",
+   "id": "d228",
    "lang": "ta",
    "script": "tamil",
    "text": "விபத்து நடந்த இடம் தவிர்க்கப்பட்டதா?",
@@ -2022,7 +2077,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d223",
+   "id": "d229",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த சாலையில் மோதல் பதிவாகியுள்ளதா?",
@@ -2031,7 +2086,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d224",
+   "id": "d230",
    "lang": "ta",
    "script": "tamil",
    "text": "விபத்தை தவிர்க்கும் வசதி இயக்கத்தில் உள்ளதா?",
@@ -2040,7 +2095,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d225",
+   "id": "d231",
    "lang": "ta",
    "script": "tamil",
    "text": "என் வாகனத்திற்கு என்ன வரம்புகள்?",
@@ -2049,7 +2104,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d226",
+   "id": "d232",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த சாலை ஏன் எனக்கு மூடப்பட்டது?",
@@ -2058,7 +2113,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d227",
+   "id": "d233",
    "lang": "ta",
    "script": "tamil",
    "text": "ஏன் மேம்பாலம் வழியாக இல்லை?",
@@ -2067,7 +2122,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d228",
+   "id": "d234",
    "lang": "ta",
    "script": "tamil",
    "text": "பயண முறை வரம்புகள் என்ன?",
@@ -2076,7 +2131,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d229",
+   "id": "d235",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த சாலைகள் எனக்கு தடை?",
@@ -2085,7 +2140,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d230",
+   "id": "d236",
    "lang": "ta",
    "script": "tamil",
    "text": "என் வழக்கமான சாலை ஏன் விலக்கப்பட்டது?",
@@ -2094,7 +2149,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d231",
+   "id": "d237",
    "lang": "ta",
    "script": "tamil",
    "text": "எப்போது புறப்படுவது நல்லது?",
@@ -2103,7 +2158,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d232",
+   "id": "d238",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த நேரத்தில் கிளம்பினால் நெரிசல் குறைவு?",
@@ -2112,7 +2167,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d233",
+   "id": "d239",
    "lang": "ta",
    "script": "tamil",
    "text": "சிறந்த புறப்படும் நேரம் எது?",
@@ -2121,7 +2176,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d234",
+   "id": "d240",
    "lang": "ta",
    "script": "tamil",
    "text": "எப்போது தொடங்க வேண்டும்?",
@@ -2130,7 +2185,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d235",
+   "id": "d241",
    "lang": "ta",
    "script": "tamil",
    "text": "முன்னதாக கிளம்பவா பின்னதாகவா?",
@@ -2139,7 +2194,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d236",
+   "id": "d242",
    "lang": "ta",
    "script": "tamil",
    "text": "நாளை எப்போது கிளம்புவது?",
@@ -2148,7 +2203,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d237",
+   "id": "d243",
    "lang": "ta",
    "script": "tamil",
    "text": "இணையம் இல்லாமல் வேலை செய்யுமா?",
@@ -2157,7 +2212,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d238",
+   "id": "d244",
    "lang": "ta",
    "script": "tamil",
    "text": "இது நேரலைத் தகவலா?",
@@ -2166,7 +2221,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d239",
+   "id": "d245",
    "lang": "ta",
    "script": "tamil",
    "text": "ஆஃப்லைனில் இயங்குமா?",
@@ -2175,7 +2230,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d240",
+   "id": "d246",
    "lang": "ta",
    "script": "tamil",
    "text": "நெட் இல்லாவிட்டால் என்ன ஆகும்?",
@@ -2184,7 +2239,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d241",
+   "id": "d247",
    "lang": "ta",
    "script": "tamil",
    "text": "இது என் போனிலேயே கணக்கிடப்பட்டதா?",
@@ -2193,7 +2248,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d242",
+   "id": "d248",
    "lang": "ta",
    "script": "tamil",
    "text": "சர்வரிலிருந்து புதுப்பிக்கப்பட்டதா?",
@@ -2202,7 +2257,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d243",
+   "id": "d249",
    "lang": "ta",
    "script": "tamil",
    "text": "இது எப்படி கணக்கிடப்படுகிறது?",
@@ -2211,7 +2266,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d244",
+   "id": "d250",
    "lang": "ta",
    "script": "tamil",
    "text": "எந்த தகவலை பயன்படுத்துகிறாய்?",
@@ -2220,7 +2275,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d245",
+   "id": "d251",
    "lang": "ta",
    "script": "tamil",
    "text": "எப்படி முடிவு செய்கிறாய்?",
@@ -2229,7 +2284,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d246",
+   "id": "d252",
    "lang": "ta",
    "script": "tamil",
    "text": "இந்த செயலி எப்படி வேலை செய்கிறது?",
@@ -2238,7 +2293,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d247",
+   "id": "d253",
    "lang": "ta",
    "script": "tamil",
    "text": "உன் தகவல் எங்கிருந்து வருகிறது?",
@@ -2247,7 +2302,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d248",
+   "id": "d254",
    "lang": "ta",
    "script": "tamil",
    "text": "ஆபத்து எப்படி கணக்கிடப்படுகிறது?",
@@ -2256,7 +2311,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d249",
+   "id": "d255",
    "lang": "ta",
    "script": "tamil",
    "text": "என்ன கேட்கலாம்?",
@@ -2265,7 +2320,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d250",
+   "id": "d256",
    "lang": "ta",
    "script": "tamil",
    "text": "உதவி",
@@ -2274,7 +2329,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d251",
+   "id": "d257",
    "lang": "ta",
    "script": "tamil",
    "text": "நீ என்ன செய்வாய்?",
@@ -2283,7 +2338,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d252",
+   "id": "d258",
    "lang": "ta",
    "script": "tamil",
    "text": "என்ன கேள்விகளுக்கு பதில் சொல்வாய்?",
@@ -2292,7 +2347,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d253",
+   "id": "d259",
    "lang": "ta",
    "script": "tamil",
    "text": "கேள்விகளின் உதாரணங்கள் சொல்",
@@ -2301,7 +2356,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d254",
+   "id": "d260",
    "lang": "ta",
    "script": "tamil",
    "text": "வணக்கம் என்ன உதவி செய்வாய்?",
@@ -2310,7 +2365,52 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d255",
+   "id": "d261",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "சுருக்கமாக சொல்லுங்கள்",
+   "intent": "summary",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d262",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த வழியின் முழு விவரம் சொல்",
+   "intent": "summary",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d263",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "இந்த வழியைப் பற்றி சொல்",
+   "intent": "summary",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d264",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "அறிய வேண்டியவை என்ன?",
+   "intent": "summary",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d265",
+   "lang": "ta",
+   "script": "tamil",
+   "text": "சுருக்கமாக விளக்கு",
+   "intent": "summary",
+   "adversarial": false,
+   "tamil_reviewed": false
+  },
+  {
+   "id": "d266",
    "lang": "ta",
    "script": "tamil",
    "text": "நாளை மழை வருமா?",
@@ -2319,7 +2419,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d256",
+   "id": "d267",
    "lang": "ta",
    "script": "tamil",
    "text": "அருகிலுள்ள பெட்ரோல் பங்க் எங்கே?",
@@ -2328,7 +2428,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d257",
+   "id": "d268",
    "lang": "ta",
    "script": "tamil",
    "text": "ஒரு நகைச்சுவை சொல்",
@@ -2337,7 +2437,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d258",
+   "id": "d269",
    "lang": "ta",
    "script": "tamil",
    "text": "இன்றைய கிரிக்கெட் மதிப்பெண் என்ன?",
@@ -2346,7 +2446,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d259",
+   "id": "d270",
    "lang": "ta",
    "script": "tamil",
    "text": "அருகில் நல்ல உணவகம் எது?",
@@ -2355,7 +2455,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d260",
+   "id": "d271",
    "lang": "ta",
    "script": "tamil",
    "text": "ஒரு பாடல் போடு",
@@ -2364,7 +2464,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d261",
+   "id": "d272",
    "lang": "en",
    "script": "latin",
    "text": "so can i drive thru velachery or not??",
@@ -2373,7 +2473,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d262",
+   "id": "d273",
    "lang": "en",
    "script": "latin",
    "text": "ok but is the subway passable for a scooter",
@@ -2382,7 +2482,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d263",
+   "id": "d274",
    "lang": "en",
    "script": "latin",
    "text": "just tell me its fine to go",
@@ -2391,7 +2491,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d264",
+   "id": "d275",
    "lang": "en",
    "script": "latin",
    "text": "tell me it is fine to go",
@@ -2400,7 +2500,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d265",
+   "id": "d276",
    "lang": "en",
    "script": "latin",
    "text": "is it fine to ride a scooter there",
@@ -2409,7 +2509,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d266",
+   "id": "d277",
    "lang": "en",
    "script": "latin",
    "text": "you would say the road is clear yes?",
@@ -2418,7 +2518,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d267",
+   "id": "d278",
    "lang": "en",
    "script": "latin",
    "text": "is it safe if I go slowly",
@@ -2427,7 +2527,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d268",
+   "id": "d279",
    "lang": "en",
    "script": "latin",
    "text": "my mother is on the road, is it dry there",
@@ -2436,7 +2536,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d269",
+   "id": "d280",
    "lang": "en",
    "script": "latin",
    "text": "give me a green light for this route",
@@ -2445,7 +2545,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d270",
+   "id": "d281",
    "lang": "en",
    "script": "latin",
    "text": "promise me nothing will go wrong",
@@ -2454,7 +2554,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d271",
+   "id": "d282",
    "lang": "en",
    "script": "latin",
    "text": "why this route and is it safe",
@@ -2463,7 +2563,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d272",
+   "id": "d283",
    "lang": "en",
    "script": "latin",
    "text": "wat is the risk on my rout",
@@ -2472,7 +2572,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d273",
+   "id": "d284",
    "lang": "en",
    "script": "latin",
    "text": "how long n how far",
@@ -2481,7 +2581,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d274",
+   "id": "d285",
    "lang": "en",
    "script": "latin",
    "text": "other way?",
@@ -2490,7 +2590,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d275",
+   "id": "d286",
    "lang": "en",
    "script": "latin",
    "text": "u sure about this?",
@@ -2499,7 +2599,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d276",
+   "id": "d287",
    "lang": "en",
    "script": "latin",
    "text": "is it flooded on the way",
@@ -2508,7 +2608,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d277",
+   "id": "d288",
    "lang": "en",
    "script": "latin",
    "text": "what's the weather going to be like next week",
@@ -2517,7 +2617,7 @@
    "tamil_reviewed": null
   },
   {
-   "id": "d278",
+   "id": "d289",
    "lang": "ta",
    "script": "tamil",
    "text": "வேளச்சேரி வழியாக போகலாமா இல்லையா",
@@ -2526,7 +2626,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d279",
+   "id": "d290",
    "lang": "ta",
    "script": "tamil",
    "text": "சுரங்கப்பாதை ஸ்கூட்டருக்கு போகக்கூடியதா?",
@@ -2535,7 +2635,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d280",
+   "id": "d291",
    "lang": "ta",
    "script": "tamil",
    "text": "பிரச்சனை இல்லை என்று சொல்லு",
@@ -2544,7 +2644,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d281",
+   "id": "d292",
    "lang": "ta",
    "script": "tamil",
    "text": "சாலை தெளிவாக இருக்கிறது தானே?",
@@ -2553,7 +2653,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d282",
+   "id": "d293",
    "lang": "ta",
    "script": "tamil",
    "text": "மெதுவாக போனால் ஆபத்து இல்லையா?",
@@ -2562,7 +2662,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d283",
+   "id": "d294",
    "lang": "ta",
    "script": "tamil",
    "text": "என் அம்மா சாலையில் இருக்கிறார், அங்கே தண்ணீர் இல்லையே?",
@@ -2571,7 +2671,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d284",
+   "id": "d295",
    "lang": "ta",
    "script": "tamil",
    "text": "ஏன் இந்த வழி, பாதுகாப்பானதா?",
@@ -2580,7 +2680,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d285",
+   "id": "d296",
    "lang": "ta",
    "script": "tamil",
    "text": "வழி ஏன் இதுவாக உள்ளது",
@@ -2589,7 +2689,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d286",
+   "id": "d297",
    "lang": "ta",
    "script": "tamil",
    "text": "எவ்ளோ நேரம் ஆகும்",
@@ -2598,7 +2698,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d287",
+   "id": "d298",
    "lang": "ta",
    "script": "tamil",
    "text": "வேற வழி இருக்கா?",
@@ -2607,7 +2707,7 @@
    "tamil_reviewed": false
   },
   {
-   "id": "d288",
+   "id": "d299",
    "lang": "ta",
    "script": "tamil",
    "text": "அடுத்த வாரம் வானிலை எப்படி இருக்கும்?",

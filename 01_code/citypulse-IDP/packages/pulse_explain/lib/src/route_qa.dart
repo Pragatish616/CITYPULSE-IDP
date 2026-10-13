@@ -75,6 +75,9 @@ enum QaIntent {
   /// What can be asked.
   help,
 
+  /// A short briefing on the route as a whole.
+  summary,
+
   /// Anything the route facts cannot answer.
   outOfScope;
 
@@ -97,6 +100,7 @@ enum QaIntent {
     QaIntent.offline => 'offline',
     QaIntent.howItWorks => 'how_it_works',
     QaIntent.help => 'help',
+    QaIntent.summary => 'summary',
     QaIntent.outOfScope => 'out_of_scope',
   };
 
@@ -113,6 +117,7 @@ class QaClassification {
     required this.score,
     required this.margin,
     required this.locale,
+    this.secondary,
   });
 
   /// The chosen intent.
@@ -126,6 +131,10 @@ class QaClassification {
 
   /// `"ta"` if the question contains Tamil script, else `"en"`.
   final String locale;
+
+  /// A second, clearly present intent when the question has two parts ("how long is it and why this route");
+  /// null otherwise. Never [QaIntent.isSafe], [QaIntent.help], [QaIntent.summary] or [QaIntent.outOfScope].
+  final QaIntent? secondary;
 }
 
 /// A question's answer.
@@ -139,6 +148,9 @@ class QaAnswer {
     required this.verification,
     required this.usedFallback,
     this.rejectedClaims = const [],
+    this.headline = '',
+    this.followUps = const [],
+    this.style = 0,
   });
 
   /// How the question was understood.
@@ -162,6 +174,15 @@ class QaAnswer {
   /// The verifier's claims against the rejected template text when [usedFallback]; empty otherwise. For
   /// logging and tests only: the rejected text itself is never kept or shown.
   final List<String> rejectedClaims;
+
+  /// The first sentence of [text]: the direct answer, which a screen may set in bold.
+  final String headline;
+
+  /// Up to three intents worth offering as the next question (see [canonicalQuestion]).
+  final List<QaIntent> followUps;
+
+  /// Which phrasing of the common sentences was used (a stable number made from the question).
+  final int style;
 }
 
 // ---------------------------------------------------------------------------
@@ -262,6 +283,7 @@ const Map<QaIntent, List<_Cue>> _cues = {
     ('what made you', 3),
     ('why this', 1),
     ('ஏன்', 2),
+    ('ஏன் இந்த', 1),
     ('எதற்காக', 3),
     ('காரணம்', 3),
   ],
@@ -548,6 +570,22 @@ const Map<QaIntent, List<_Cue>> _cues = {
     ('உதாரண', 3),
     ('வணக்கம்', 2),
   ],
+  QaIntent.summary: [
+    ('summar', 4),
+    ('overview', 4),
+    ('brief me', 4),
+    ('tell me about', 3),
+    ('the picture', 4),
+    ('big picture', 4),
+    ('rundown', 4),
+    ('what should i know', 4),
+    ('in short', 3),
+    ('everything', 2),
+    ('சுருக்க', 4),
+    ('முழு விவரம்', 4),
+    ('பற்றி சொல்', 3),
+    ('அறிய வேண்டிய', 4),
+  ],
   QaIntent.outOfScope: [
     ('tomorrow', 3),
     ('next week', 3),
@@ -595,6 +633,7 @@ QaClassification classifyQuestion(String question) {
       score: scores[QaIntent.isSafe]!,
       margin: scores[QaIntent.isSafe]! - _secondBest(scores, QaIntent.isSafe),
       locale: locale,
+      secondary: _secondary(scores, QaIntent.isSafe),
     );
   }
   QaIntent best = QaIntent.outOfScope;
@@ -619,7 +658,153 @@ QaClassification classifyQuestion(String question) {
     score: bestScore,
     margin: bestScore - _secondBest(scores, best),
     locale: locale,
+    secondary: _secondary(scores, best),
   );
+}
+
+/// A second intent when the question clearly has two parts: it must score at least 3 and, unless the first
+/// is a safety question (which is always answered), at least 60% of the first.
+QaIntent? _secondary(Map<QaIntent, double> scores, QaIntent primary) {
+  QaIntent? best;
+  var bestScore = 0.0;
+  for (final e in scores.entries) {
+    if (e.key == primary ||
+        e.key == QaIntent.outOfScope ||
+        e.key == QaIntent.isSafe ||
+        e.key == QaIntent.help ||
+        e.key == QaIntent.summary) {
+      continue;
+    }
+    if (e.value > bestScore) {
+      best = e.key;
+      bestScore = e.value;
+    }
+  }
+  final first = scores[primary] ?? 0;
+  if (best == null || bestScore < 3) return null;
+  if (primary != QaIntent.isSafe && bestScore < 0.6 * first) return null;
+  return best;
+}
+
+/// The route's facts as plain compact text: exactly what a language model is given when it writes or reads
+/// an answer, and nothing else (ADR-004: no fact outside the trace). English only; deterministic.
+String qaFactSheet({
+  required DecisionTrace trace,
+  required EventState eventState,
+  required Map<String, String> hazardDisplayNouns,
+}) {
+  final c = _Ctx(trace, eventState, hazardDisplayNouns, 0);
+  final a = c.advice;
+  final action = switch (a.bestAction) {
+    AdviceAction.proceedWithCare => 'travel only with extra care',
+    AdviceAction.wait => 'wait if you can',
+    AdviceAction.avoid => 'choose another way if you have one',
+  };
+  final b = StringBuffer()
+    ..writeln('route: ${c.id}')
+    ..writeln(
+      'travel_mode: ${_classWord(trace.userClass, false)}; event_state: ${eventState.name}; '
+      'computed: ${trace.mode == RoutingMode.offline ? 'stored data only' : 'with live server reports'}',
+    )
+    ..writeln(
+      'time_min: ${c.minutes}; distance_km: ${c.km}; hazard_delay_min: ${c.penaltyMinutes}',
+    )
+    ..writeln(
+      'advice: $action; risk: ${_riskWord(a.riskLevel, false)}; evidence: ${_evidenceWord(a.evidence, false)}; '
+      'reasons: ${a.reasons.map((r) => r.name).join(', ')}',
+    )
+    ..writeln('confidence: ${trace.confidenceBand.name}');
+  for (final alt in trace.alternatives) {
+    final streets = alt.blockingEdges
+        .map(
+          (e) =>
+              '${e.streetName} (${e.hasObservation ? '${c.noun(e)} reported ${(e.newestObservationAgeSeconds / 60).round()} min ago' : 'hazard map only, no report'})',
+        )
+        .join(', ');
+    b.writeln(
+      'other_route ${alt.routeId}: ${(alt.durationSeconds / 60).round()} min; left_out_because: ${alt.rejectedBecause.wireValue}'
+      '${streets.isEmpty ? '' : '; streets: $streets'}',
+    );
+  }
+  if (trace.dataGaps.isNotEmpty) {
+    b.writeln('no_recent_data_for: ${trace.dataGaps.map((g) => g.corridor).join(', ')}');
+  }
+  for (final f in trace.contextFacts) {
+    b.writeln('fact ${f.key}: ${f.value}');
+  }
+  return b.toString().trimRight();
+}
+
+/// Where in the padded question the earliest cue of [intent] appears (a large number if none does).
+int _firstCuePos(String padded, QaIntent intent) {
+  var best = 1 << 30;
+  for (final (cue, _) in _cues[intent] ?? const <_Cue>[]) {
+    final i = padded.indexOf(cue);
+    if (i >= 0 && i < best) best = i;
+  }
+  return best;
+}
+
+/// The question to offer as a tappable suggestion for [intent], in English or Tamil. Each one is understood
+/// as that intent by [classifyQuestion] (a test checks it).
+String canonicalQuestion(QaIntent intent, {required bool ta}) {
+  final both = _canonical[intent] ?? _canonical[QaIntent.help]!;
+  return ta ? both.$2 : both.$1;
+}
+
+const Map<QaIntent, (String, String)> _canonical = {
+  QaIntent.whyRoute: ('Why this route?', 'ஏன் இந்த வழி?'),
+  QaIntent.timeDistance: ('How long will it take?', 'எவ்வளவு நேரம் ஆகும்?'),
+  QaIntent.alternatives: ('Is there another route?', 'வேறு வழி இருக்கிறதா?'),
+  QaIntent.avoidedStreets: ('Which streets were left out?', 'எந்த தெருக்கள் விடப்பட்டன?'),
+  QaIntent.routeHazard: ('What is the flood risk?', 'வெள்ள ஆபத்து என்ன?'),
+  QaIntent.shouldGo: ('Should I go now or wait?', 'இப்போது கிளம்பலாமா அல்லது காத்திருக்கலாமா?'),
+  QaIntent.confidence: ('How sure is the data?', 'தரவு எவ்வளவு நம்பகமானது?'),
+  QaIntent.dataGaps: ('What data is missing?', 'என்ன தகவல் காணவில்லை?'),
+  QaIntent.travelMode: ('What if I walk?', 'நான் நடந்து சென்றால் என்ன மாறும்?'),
+  QaIntent.eventState: ('Is it raining now?', 'இப்போது மழை பெய்கிறதா?'),
+  QaIntent.accidents: ('Any accidents on the route?', 'வழியில் விபத்து உள்ளதா?'),
+  QaIntent.limits: ('What limits did you apply?', 'என் வாகனத்திற்கு என்ன வரம்புகள்?'),
+  QaIntent.departureTime: ('When is the best time to leave?', 'எப்போது புறப்படுவது நல்லது?'),
+  QaIntent.offline: ('Does this work offline?', 'இணையம் இல்லாமல் வேலை செய்யுமா?'),
+  QaIntent.howItWorks: ('How does this work?', 'இது எப்படி கணக்கிடப்படுகிறது?'),
+  QaIntent.help: ('What can I ask?', 'என்ன கேட்கலாம்?'),
+  QaIntent.summary: ('Give me the picture', 'சுருக்கமாக சொல்லுங்கள்'),
+  QaIntent.isSafe: ('Is this route safe?', 'இந்த வழி பாதுகாப்பானதா?'),
+  QaIntent.outOfScope: ('What can I ask?', 'என்ன கேட்கலாம்?'),
+};
+
+/// What to offer after an answer. Never [QaIntent.isSafe].
+const Map<QaIntent, List<QaIntent>> _followUps = {
+  QaIntent.whyRoute: [QaIntent.alternatives, QaIntent.routeHazard, QaIntent.confidence],
+  QaIntent.timeDistance: [QaIntent.alternatives, QaIntent.shouldGo, QaIntent.routeHazard],
+  QaIntent.alternatives: [QaIntent.avoidedStreets, QaIntent.routeHazard, QaIntent.shouldGo],
+  QaIntent.avoidedStreets: [QaIntent.routeHazard, QaIntent.confidence, QaIntent.alternatives],
+  QaIntent.routeHazard: [QaIntent.shouldGo, QaIntent.avoidedStreets, QaIntent.confidence],
+  QaIntent.isSafe: [QaIntent.routeHazard, QaIntent.shouldGo, QaIntent.confidence],
+  QaIntent.shouldGo: [QaIntent.routeHazard, QaIntent.confidence, QaIntent.alternatives],
+  QaIntent.confidence: [QaIntent.dataGaps, QaIntent.routeHazard, QaIntent.howItWorks],
+  QaIntent.dataGaps: [QaIntent.confidence, QaIntent.routeHazard, QaIntent.howItWorks],
+  QaIntent.travelMode: [QaIntent.limits, QaIntent.routeHazard, QaIntent.timeDistance],
+  QaIntent.eventState: [QaIntent.routeHazard, QaIntent.shouldGo, QaIntent.confidence],
+  QaIntent.accidents: [QaIntent.limits, QaIntent.routeHazard, QaIntent.alternatives],
+  QaIntent.limits: [QaIntent.alternatives, QaIntent.travelMode, QaIntent.accidents],
+  QaIntent.departureTime: [QaIntent.shouldGo, QaIntent.eventState, QaIntent.routeHazard],
+  QaIntent.offline: [QaIntent.confidence, QaIntent.howItWorks, QaIntent.summary],
+  QaIntent.howItWorks: [QaIntent.confidence, QaIntent.dataGaps, QaIntent.summary],
+  QaIntent.help: [QaIntent.summary, QaIntent.whyRoute, QaIntent.routeHazard],
+  QaIntent.summary: [QaIntent.routeHazard, QaIntent.alternatives, QaIntent.shouldGo],
+  QaIntent.outOfScope: [QaIntent.summary, QaIntent.whyRoute, QaIntent.timeDistance],
+};
+
+/// A small stable number made from the question, used to choose among phrasings. Kept small so that the
+/// arithmetic is exact on every platform, the web included.
+int _styleOf(String question) {
+  var h = 7;
+  for (final u in question.codeUnits) {
+    h = (h * 31 + u) & 0xFFFFF;
+  }
+  return h;
 }
 
 double _secondBest(Map<QaIntent, double> scores, QaIntent except) {
@@ -643,23 +828,59 @@ const String kQaFallbackTa =
     'இந்த வழியின் தரவிலிருந்து இதற்குப் பதில் சொல்ல முடியவில்லை. தரவு குறைவு; உங்கள் சொந்த முடிவை பயன்படுத்தவும்.';
 
 /// Answers [question] about the route in [trace]. [eventState] is the state the query ran under (it is
-/// not in the trace). [locale] overrides the detected language. Never throws on a bad question: an
-/// answer that fails [verify] is replaced by the fixed fallback.
+/// not in the trace). [locale] overrides the detected language; [style] overrides the phrasing chosen from
+/// the question (the training-data generator uses it to get several phrasings of one answer). A two-part
+/// question gets one reply covering both parts. Never throws on a bad question: an answer that fails
+/// [verify] is replaced by the fixed fallback.
 QaAnswer answerQuestion({
   required String question,
   required DecisionTrace trace,
   required EventState eventState,
   required Map<String, String> hazardDisplayNouns,
   String? locale,
+  int? style,
+  QaIntent? forceIntent,
+  QaIntent? forceSecondary,
 }) {
-  final cls = classifyQuestion(question);
+  var cls = classifyQuestion(question);
+  if (forceIntent != null) {
+    // For building training data only: answer for the labelled intent, not for what the classifier made of it.
+    cls = QaClassification(
+      intent: forceIntent,
+      score: 0,
+      margin: 0,
+      locale: cls.locale,
+      secondary: forceSecondary,
+    );
+  }
   final lang = locale ?? cls.locale;
   final ta = lang == 'ta';
-  final ctx = _Ctx(trace, eventState, hazardDisplayNouns);
+  final st = style ?? _styleOf(question);
+  final ctx = _Ctx(trace, eventState, hazardDisplayNouns, st);
   final facts = <String>[];
-  var sentences = _compose(cls.intent, ctx, ta, facts);
-  sentences = [
-    ...sentences,
+  var first = cls.intent;
+  var second = cls.secondary;
+  // A two-part question is answered in the order it was asked, except that a safety question is always
+  // answered first.
+  if (second != null && first != QaIntent.isSafe) {
+    final padded = _normalise(question);
+    if (_firstCuePos(padded, second) < _firstCuePos(padded, first)) {
+      (first, second) = (second, first);
+    }
+  }
+  final body = _compose(first, ctx, ta, facts);
+  if (second != null && second != first) {
+    for (final s in _compose(second, ctx, ta, facts)) {
+      if (!body.contains(s)) body.add(s);
+    }
+  }
+  final answered = {cls.intent, ?cls.secondary};
+  final follow = [
+    for (final f in _followUps[cls.intent] ?? const <QaIntent>[])
+      if (!answered.contains(f)) f,
+  ].take(3).toList();
+  final sentences = [
+    ...body,
     if (trace.confidenceBand == ConfidenceBand.low ||
         trace.confidenceBand == ConfidenceBand.stale)
       ta ? _taHedge : _enHedge,
@@ -678,6 +899,9 @@ QaAnswer answerQuestion({
       factsUsed: List.unmodifiable(facts),
       verification: verification,
       usedFallback: false,
+      headline: sentences.first,
+      followUps: List.unmodifiable(follow),
+      style: st,
     );
   }
   final fallback = ta ? kQaFallbackTa : kQaFallbackEn;
@@ -701,6 +925,9 @@ QaAnswer answerQuestion({
     ),
     usedFallback: true,
     rejectedClaims: List.unmodifiable(verification.unsupportedClaims),
+    headline: fallback,
+    followUps: const [QaIntent.summary, QaIntent.whyRoute, QaIntent.timeDistance],
+    style: st,
   );
 }
 
@@ -713,8 +940,14 @@ const String _taGuide =
     'இது கிடைக்கும் தரவின் அடிப்படையிலான வழிகாட்டி; உத்தரவாதம் அல்ல.';
 
 class _Ctx {
-  _Ctx(this.trace, this.eventState, this.nouns)
+  _Ctx(this.trace, this.eventState, this.nouns, this.style)
     : advice = advise(RouteFacts.fromTrace(trace, eventState: eventState));
+
+  /// Chooses the phrasing of sentences that have several.
+  final int style;
+
+  /// One of [options], by [style].
+  String v(List<String> options) => options[style % options.length];
 
   final DecisionTrace trace;
   final EventState eventState;
@@ -725,7 +958,16 @@ class _Ctx {
   int get minutes => (trace.chosen.freeFlowDurationSeconds / 60).round();
   int get penaltyMinutes =>
       (trace.chosen.hazardTimePenaltySeconds / 60).round();
-  String get km => (trace.chosen.distanceMeters / 1000).toStringAsFixed(1);
+  /// Kilometres to one decimal, or two when the distance sits on a rounding boundary (16.45 km), because the
+  /// verifier accepts a figure within 0.05 km and a boundary value rounded either way lands exactly on it.
+  String get km {
+    final m = trace.chosen.distanceMeters;
+    final tenths = m / 100;
+    final frac = tenths - tenths.floor();
+    return (frac - 0.5).abs() < 0.02
+        ? (m / 1000).toStringAsFixed(2)
+        : (m / 1000).toStringAsFixed(1);
+  }
 
   ContextFact? fact(String key) {
     for (final f in trace.contextFacts) {
@@ -758,6 +1000,7 @@ List<String> _compose(QaIntent intent, _Ctx c, bool ta, List<String> facts) {
     QaIntent.offline => _offline(c, ta, facts),
     QaIntent.howItWorks => _how(c, ta, facts),
     QaIntent.help => _help(c, ta, facts),
+    QaIntent.summary => _summary(c, ta, facts),
     QaIntent.outOfScope => _outOfScope(c, ta, facts),
   };
 }
@@ -860,7 +1103,7 @@ String _reason(AdviceReason r, bool ta) => switch (r) {
   AdviceReason.littleData =>
     ta
         ? 'இந்த வழிக்கு சமீபத்திய தரவு குறைவு.'
-        : 'Little recent data covers this route.',
+        : 'There is little recent data for this route.',
   AdviceReason.staleData =>
     ta
         ? 'இந்த வழிக்கான தரவு பழையது; தரவு குறைவு.'
@@ -938,14 +1181,16 @@ List<String> _timeDistance(_Ctx c, bool ta, List<String> facts) {
     );
     if (c.penaltyMinutes >= 1) {
       facts.add('chosen.hazard_time_penalty_s');
-      out.add(
-        'ஆபத்து தாமதங்கள் சுமார் ${c.penaltyMinutes} நிமிடங்கள் சேர்க்கும்.',
-      );
+      out.add('ஆபத்து தாமதங்கள் சுமார் ${c.penaltyMinutes} நிமிடங்கள் சேர்க்கும்.');
     }
   } else {
+    final mins = m <= 0 ? 'under a minute' : 'about ${_plural(m, 'minute')}';
     out.add(
-      'Route ${c.id} is about ${c.km} km long and takes '
-      '${m <= 0 ? 'under a minute' : 'about ${_plural(m, 'minute')}'} in free-flowing conditions for this travel mode.',
+      c.v([
+        'Route ${c.id} is about ${c.km} km long and takes $mins in free-flowing conditions for this travel mode.',
+        'The trip on Route ${c.id} is about ${c.km} km and takes $mins in free-flowing conditions for this travel mode.',
+        'For this travel mode, Route ${c.id} covers about ${c.km} km in $mins when traffic flows freely.',
+      ]),
     );
     if (c.penaltyMinutes >= 1) {
       facts.add('chosen.hazard_time_penalty_s');
@@ -960,25 +1205,38 @@ List<String> _timeDistance(_Ctx c, bool ta, List<String> facts) {
 List<String> _alternatives(_Ctx c, bool ta, List<String> facts) {
   final out = <String>[_deltaSentence(c, ta, facts)];
   for (final a in c.trace.alternatives.take(2)) {
-    final why = switch (a.rejectedBecause) {
-      RejectedBecause.chanceConstraint =>
-        ta
-            ? 'அதன் ஒரு பகுதி அங்கு பதிவான வெள்ள ஆபத்தால் நீக்கப்பட்டது'
-            : 'part of it was removed because of the flood risk reported there',
-      RejectedBecause.higherCost =>
-        ta
-            ? 'ஆபத்து அபராதத்தைச் சேர்த்த பிறகு அது மொத்தத்தில் மோசமாக இருந்தது'
-            : 'with the hazard penalty counted, it came out worse overall',
-      RejectedBecause.restricted =>
-        ta
-            ? 'அது வரம்புகளால் அல்லது உங்கள் தேர்வால் மூடப்பட்ட சாலையைப் பயன்படுத்துகிறது'
-            : 'it uses a road closed by the limits of your travel mode or by your own choice',
-    };
-    out.add(
-      ta
-          ? 'வழி ${a.routeId} விடப்பட்டது: $why.'
-          : 'Route ${a.routeId} was left out: $why.',
-    );
+    final edge = a.blockingEdges.isEmpty ? null : a.blockingEdges.first;
+    if (edge != null) {
+      facts.add('alternatives[].blocking_edges[0].street_name');
+    }
+    final String line;
+    switch (a.rejectedBecause) {
+      case RejectedBecause.chanceConstraint:
+        if (ta) {
+          line = edge == null
+              ? 'வழி ${a.routeId} விடப்பட்டது: அதன் ஒரு பகுதி அங்கு பதிவான வெள்ள ஆபத்தால் நீக்கப்பட்டது.'
+              : 'வழி ${a.routeId} விடப்பட்டது: ${_avoidedOne(c, edge, true)}; அங்குள்ள வெள்ள ஆபத்து மிக அதிகம்.';
+        } else {
+          line = edge == null
+              ? 'Route ${a.routeId} was left out: part of it was removed because of the flood risk reported there.'
+              : 'Route ${a.routeId} was left out because it crosses ${_avoidedOne(c, edge, false)}, and the flood risk there was too high.';
+        }
+      case RejectedBecause.higherCost:
+        if (ta) {
+          line = edge == null
+              ? 'வழி ${a.routeId} விடப்பட்டது: ஆபத்து அபராதத்தைச் சேர்த்த பிறகு அது மொத்தத்தில் மோசமாக இருந்தது.'
+              : 'வழி ${a.routeId} விடப்பட்டது: ஆபத்து அபராதத்தைச் சேர்த்த பிறகு அது மொத்தத்தில் மோசமாக இருந்தது; ${_avoidedOne(c, edge, true)}.';
+        } else {
+          line = edge == null
+              ? 'Route ${a.routeId} was left out: with the hazard penalty counted, it came out worse overall.'
+              : 'Route ${a.routeId} was left out: with the hazard penalty counted it came out worse overall, partly because it crosses ${_avoidedOne(c, edge, false)}.';
+        }
+      case RejectedBecause.restricted:
+        line = ta
+            ? 'வழி ${a.routeId} விடப்பட்டது: அது வரம்புகளால் அல்லது உங்கள் தேர்வால் மூடப்பட்ட சாலையைப் பயன்படுத்துகிறது.'
+            : 'Route ${a.routeId} was left out: it uses a road closed by the limits of your travel mode or by your own choice.';
+    }
+    out.add(line);
   }
   return out;
 }
@@ -1018,20 +1276,63 @@ List<String> _avoided(_Ctx c, bool ta, List<String> facts) {
   return out;
 }
 
+String? _newestReport(_Ctx c, bool ta, List<String> facts) {
+  final withObs = _avoidedEdges(c).where((e) => e.hasObservation).toList();
+  if (withObs.isEmpty) return null;
+  final newest = withObs
+      .map((e) => e.newestObservationAgeSeconds)
+      .reduce((a, b) => a < b ? a : b);
+  final m = (newest / 60).round();
+  facts.add('alternatives[].blocking_edges[].newest_observation_age_s');
+  if (ta) {
+    return m <= 0
+        ? 'விடப்பட்ட தெருக்களில் புதிய அறிக்கை சற்று முன் வந்தது.'
+        : 'விடப்பட்ட தெருக்களில் புதிய அறிக்கை $m நிமிடங்கள் பழையது.';
+  }
+  return m <= 0
+      ? 'The newest report on a street that was left out arrived moments ago.'
+      : 'The newest report on a street that was left out is ${_plural(m, 'minute')} old.';
+}
+
+String? _classNote(_Ctx c, bool ta) => switch (c.trace.userClass) {
+  UserClass.commuter => null,
+  UserClass.pedestrian =>
+    ta
+        ? 'நீங்கள் நடந்து செல்வதால் இந்த மதிப்பீடு கூடுதல் எச்சரிக்கையுடன் உள்ளது.'
+        : 'This rating is more cautious because you are travelling on foot.',
+  UserClass.cyclist =>
+    ta
+        ? 'நீங்கள் சைக்கிளில் செல்வதால் இந்த மதிப்பீடு கூடுதல் எச்சரிக்கையுடன் உள்ளது.'
+        : 'This rating is more cautious because you are on a bicycle.',
+  UserClass.emergency =>
+    ta
+        ? 'நீங்கள் அவசர வாகனத்தில் இருப்பதால் இந்த மதிப்பீடு கூடுதல் எச்சரிக்கையுடன் உள்ளது.'
+        : 'This rating is more cautious because you are in an emergency vehicle.',
+};
+
 List<String> _hazard(_Ctx c, bool ta, List<String> facts) {
   facts.add('chosen.worst_edge_p');
   final a = c.advice;
-  final out = <String>[
-    ta
-        ? 'எங்களிடம் உள்ள தரவில் வழி ${c.id} இன் வெள்ள ஆபத்து ${_riskWord(a.riskLevel, true)}.'
-        : 'On the data held, flood risk on Route ${c.id} is rated ${_riskWord(a.riskLevel, false)}.',
+  final risk = _riskWord(a.riskLevel, ta);
+  final recency = _newestReport(c, ta, facts);
+  final note = _classNote(c, ta);
+  return [
+    if (ta)
+      'எங்களிடம் உள்ள தரவில் வழி ${c.id} இன் வெள்ள ஆபத்து $risk.'
+    else
+      c.v([
+        'On the data held, flood risk on Route ${c.id} is rated $risk.',
+        'The data held rates the flood risk on Route ${c.id} as $risk.',
+        'For Route ${c.id}, the flood risk comes out as $risk on the data held.',
+      ]),
     for (final r in a.reasons) _reason(r, ta),
+    ?note,
+    ?recency,
     ta
         ? 'இதன் பின்னாலுள்ள தரவு ${_evidenceWord(a.evidence, true)}.'
         : 'The evidence behind this is ${_evidenceWord(a.evidence, false)}.',
     ta ? _taGuide : _enGuide,
   ];
-  return out;
 }
 
 List<String> _isSafe(_Ctx c, bool ta, List<String> facts) {
@@ -1039,13 +1340,18 @@ List<String> _isSafe(_Ctx c, bool ta, List<String> facts) {
     ..add('chosen.worst_edge_p')
     ..add('confidence_band');
   final a = c.advice;
+  final risk = _riskWord(a.riskLevel, ta);
+  final ev = _evidenceWord(a.evidence, ta);
   return [
     ta
         ? 'சாலையின் நிலையை என்னால் உறுதிப்படுத்த முடியாது; எனவே செல்வதற்கு அனுமதி தர முடியாது.'
         : 'I cannot confirm the condition of any road, so I cannot tell you whether to go.',
     ta
-        ? 'என்னால் காட்ட முடிவது உங்கள் வழியின் ஆபத்து நிலை மட்டுமே: எங்களிடம் உள்ள தரவில் வழி ${c.id} இன் வெள்ள ஆபத்து ${_riskWord(a.riskLevel, true)}, அதன் பின்னாலுள்ள தரவு ${_evidenceWord(a.evidence, true)}.'
-        : 'The most I can show is the risk on your route: the data held rates flood risk on Route ${c.id} as ${_riskWord(a.riskLevel, false)}, with ${_evidenceWord(a.evidence, false)} evidence behind it.',
+        ? 'என்னால் காட்ட முடிவது உங்கள் வழியின் ஆபத்து நிலை மட்டுமே: எங்களிடம் உள்ள தரவில் வழி ${c.id} இன் வெள்ள ஆபத்து $risk, அதன் பின்னாலுள்ள தரவு $ev.'
+        : c.v([
+            'The most I can show is the risk on your route: the data held rates flood risk on Route ${c.id} as $risk, with $ev evidence behind it.',
+            'The only thing I can show is the risk on your route: the data held rates flood risk on Route ${c.id} as $risk, and the evidence behind that is $ev.',
+          ]),
     ta
         ? 'சாலையை நீங்களே சரிபார்த்து, உள்ளூர் அறிவுறுத்தல்களைப் பின்பற்றுங்கள்.'
         : 'You should check the road yourself and follow local advice.',
@@ -1058,25 +1364,96 @@ List<String> _shouldGo(_Ctx c, bool ta, List<String> facts) {
   final a = c.advice;
   final action = switch (a.bestAction) {
     AdviceAction.proceedWithCare =>
-      ta
-          ? 'மிகுந்த கவனத்துடன் மட்டுமே பயணிக்கவும்'
-          : 'travel only with extra care',
-    AdviceAction.wait => ta ? 'முடிந்தால் காத்திருக்கவும்' : 'wait if you can',
+      ta ? 'மிகுந்த கவனத்துடன் மட்டுமே பயணிக்கவும்' : 'travel only with extra care',
+    AdviceAction.wait =>
+      ta ? 'முடிந்தால் காத்திருக்கவும்' : 'wait if you can',
     AdviceAction.avoid =>
       ta
           ? 'வேறு வழி இருந்தால் இந்த வழியைத் தவிர்க்கவும்'
           : 'choose another way if you have one',
   };
   return [
-    ta
-        ? 'இந்த பயணத்துக்கான ஆலோசனை: $action.'
-        : 'For this trip the advice is to $action.',
+    if (ta)
+      'இந்த பயணத்துக்கான ஆலோசனை: $action.'
+    else
+      c.v([
+        'For this trip the advice is to $action.',
+        'The advice for this trip is to $action.',
+        'On this trip, the advice is to $action.',
+      ]),
     for (final r in a.reasons) _reason(r, ta),
     ta
         ? 'இதன் பின்னாலுள்ள தரவு ${_evidenceWord(a.evidence, true)}.'
         : 'The evidence behind this is ${_evidenceWord(a.evidence, false)}.',
     ta ? _taGuide : _enGuide,
   ];
+}
+
+List<String> _summary(_Ctx c, bool ta, List<String> facts) {
+  facts
+    ..add('chosen.distance_m')
+    ..add('chosen.free_flow_duration_s')
+    ..add('confidence_band');
+  final a = c.advice;
+  final m = c.minutes;
+  final action = switch (a.bestAction) {
+    AdviceAction.proceedWithCare =>
+      ta ? 'மிகுந்த கவனத்துடன் மட்டுமே பயணிக்கவும்' : 'travel only with extra care',
+    AdviceAction.wait =>
+      ta ? 'முடிந்தால் காத்திருக்கவும்' : 'wait if you can',
+    AdviceAction.avoid =>
+      ta
+          ? 'வேறு வழி இருந்தால் இந்த வழியைத் தவிர்க்கவும்'
+          : 'choose another way if you have one',
+  };
+  final edges = _avoidedEdges(c);
+  final accident = c.fact('accident_reports_on_route');
+  final accidents = accident != null && accident.value is num
+      ? (accident.value! as num).toInt()
+      : 0;
+  final out = <String>[];
+  if (ta) {
+    out.add(
+      'வழி ${c.id}: சுமார் ${c.km} கி.மீ, ${m <= 0 ? 'ஒரு நிமிடத்துக்கும் குறைவு' : 'சுமார் $m நிமிடங்கள்'} (${_classWord(c.trace.userClass, true)} பயண முறை).',
+    );
+    if (c.trace.alternatives.isNotEmpty) out.add(_deltaSentence(c, true, facts));
+    out.add('இந்த பயணத்துக்கான ஆலோசனை: $action.');
+    for (final r in a.reasons.take(1)) {
+      out.add(_reason(r, true));
+    }
+    if (edges.isNotEmpty) {
+      out.add('அது ${_avoidedOne(c, edges.first, true)}.');
+    }
+    if (accidents > 0 && !a.reasons.take(1).contains(AdviceReason.accidentOnRoute)) {
+      out.add('இந்த வழியில் நேரடி விபத்து அறிக்கை உள்ளது.');
+    }
+    out.add('இதன் பின்னாலுள்ள தரவு ${_evidenceWord(a.evidence, true)}.');
+    out.add(_taGuide);
+  } else {
+    final mins = m <= 0 ? 'under a minute' : 'about ${_plural(m, 'minute')}';
+    out.add(
+      c.v([
+        'This is the picture for Route ${c.id}: about ${c.km} km and $mins for the ${_classWord(c.trace.userClass, false)} travel mode.',
+        'For Route ${c.id}, the trip is about ${c.km} km and $mins for the ${_classWord(c.trace.userClass, false)} travel mode.',
+      ]),
+    );
+    if (c.trace.alternatives.isNotEmpty) {
+      out.add(_deltaSentence(c, false, facts));
+    }
+    out.add('For this trip the advice is to $action.');
+    for (final r in a.reasons.take(1)) {
+      out.add(_reason(r, false));
+    }
+    if (edges.isNotEmpty) {
+      out.add('It leaves out ${_avoidedOne(c, edges.first, false)}.');
+    }
+    if (accidents > 0 && !a.reasons.take(1).contains(AdviceReason.accidentOnRoute)) {
+      out.add('A live accident report lies on this route.');
+    }
+    out.add('The evidence behind this is ${_evidenceWord(a.evidence, false)}.');
+    out.add(_enGuide);
+  }
+  return out;
 }
 
 List<String> _confidence(_Ctx c, bool ta, List<String> facts) {
@@ -1130,7 +1507,7 @@ List<String> _dataGaps(_Ctx c, bool ta, List<String> facts) {
 
 String _classWord(UserClass u, bool ta) => switch (u) {
   UserClass.commuter => ta ? 'கார்' : 'car',
-  UserClass.pedestrian => ta ? 'நடந்து செல்வோர்' : 'on foot',
+  UserClass.pedestrian => ta ? 'நடந்து செல்வோர்' : 'walking',
   UserClass.cyclist => ta ? 'சைக்கிள்' : 'bicycle',
   UserClass.emergency => ta ? 'அவசர வாகனம்' : 'emergency vehicle',
 };

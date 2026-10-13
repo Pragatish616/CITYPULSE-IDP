@@ -202,6 +202,21 @@ final List<_Situation> situations = [
     EventState.active,
   ),
   _Situation(
+    'low confidence, quiet route, nothing left out',
+    buildTrace(confidenceBand: ConfidenceBand.low, worstEdgeP: 0.1, alternatives: const []),
+    EventState.active,
+  ),
+  _Situation(
+    'stale, nothing found',
+    buildTrace(confidenceBand: ConfidenceBand.stale, worstEdgeP: 0, alternatives: const []),
+    EventState.active,
+  ),
+  _Situation(
+    'quiet day, low confidence',
+    buildTrace(confidenceBand: ConfidenceBand.low, worstEdgeP: 0.02, alternatives: const []),
+    EventState.dry,
+  ),
+  _Situation(
     'very short trip',
     buildTrace(
       chosenDistanceMeters: 450,
@@ -272,6 +287,7 @@ const Map<QaIntent, (String, String)> _probe = {
   ),
   QaIntent.howItWorks: ('How does this work?', 'இது எப்படி கணக்கிடப்படுகிறது?'),
   QaIntent.help: ('What can I ask?', 'என்ன கேட்கலாம்?'),
+  QaIntent.summary: ('Give me the picture', 'சுருக்கமாக சொல்லுங்கள்'),
   QaIntent.outOfScope: ('Tell me a joke', 'ஒரு நகைச்சுவை சொல்'),
 };
 
@@ -575,9 +591,224 @@ void main() {
     });
   });
 
+  group('version 2: richer, two-part, followed up', () {
+    final base = situations.first;
+
+    test('the briefing pulls the route together and offers where to go next', () {
+      final a = _ask('Give me the picture', base);
+      expect(a.classification.intent, QaIntent.summary);
+      expect(a.usedFallback, isFalse);
+      expect(a.text, contains('Route A'));
+      expect(a.text, contains('8.4 km'));
+      expect(a.text, contains('For this trip the advice is to'));
+      expect(a.text, contains('It leaves out a stretch of Kotturpuram Bridge approach'));
+      expect(a.text, contains('The evidence behind this is'));
+      expect(a.followUps, isNotEmpty);
+    });
+
+    test('the briefing mentions a live accident report only when the trace has one', () {
+      final acc = situations.firstWhere((s) => s.name.startsWith('emergency'));
+      expect(_ask('Give me the picture', acc).text, contains('A live accident report lies on this route'));
+      expect(_ask('Give me the picture', base).text, isNot(contains('accident')));
+    });
+
+    test('a two-part question gets one reply covering both parts', () {
+      final a = _ask('How long will it take and why this route?', base);
+      expect(a.classification.secondary, isNotNull);
+      expect(a.text, contains('17 minutes'));
+      expect(a.text, contains('It leaves out a stretch of Kotturpuram Bridge approach'));
+      expect(a.usedFallback, isFalse);
+
+      final b = _ask('Which streets were left out and how sure are you?', base);
+      expect(b.text, contains('Kotturpuram Bridge approach'));
+      expect(b.text, contains('Hazard confidence for this route is moderate'));
+
+      final t = _ask('எவ்வளவு நேரம் ஆகும், ஏன் இந்த வழி?', base);
+      expect(t.locale, 'ta');
+      expect(t.usedFallback, isFalse);
+      expect(t.text, contains('17'));
+    });
+
+    test('a safety question with a second part is refused and the second part is still answered', () {
+      final a = _ask('why this route and is it safe', base);
+      expect(a.classification.intent, QaIntent.isSafe);
+      expect(a.text, contains('I cannot confirm the condition of any road'));
+      expect(a.text, contains('It leaves out a stretch of Kotturpuram Bridge approach'));
+      expect(a.usedFallback, isFalse);
+    });
+
+    test('a two-part question is answered in the order it was asked', () {
+      final a = _ask('How long will it take and why this route?', base).text;
+      expect(a.indexOf('17 minutes'), lessThan(a.indexOf('It leaves out')));
+      final b = _ask('Why this route and how long will it take?', base).text;
+      expect(b.indexOf('It leaves out'), lessThan(b.indexOf('17 minutes')));
+      final t = _ask('எவ்வளவு நேரம் ஆகும், ஏன் இந்த வழி?', base);
+      expect(t.classification.secondary, isNotNull);
+    });
+
+    test('the briefing never repeats a sentence', () {
+      for (final s in situations) {
+        for (final ta in [false, true]) {
+          final text = _ask(canonicalQuestion(QaIntent.summary, ta: ta), s).text;
+          final parts = text.split(RegExp(r'(?<=[.;]) '));
+          expect(parts.toSet().length, parts.length, reason: '${s.name}: $text');
+        }
+      }
+    });
+
+    test('a walker is not told about the "on foot travel mode"', () {
+      final walker = situations.firstWhere((s) => s.name.startsWith('pedestrian'));
+      expect(_ask('Give me the picture', walker).text, contains('walking travel mode'));
+      expect(_ask('What if I walk?', walker).text, contains('walking travel mode'));
+    });
+
+    test('the fact sheet carries the route facts and nothing outside the trace', () {
+      final sheet = qaFactSheet(trace: situations.first.trace, eventState: EventState.active, hazardDisplayNouns: testHazardDisplayNouns);
+      expect(sheet, contains('route: A'));
+      expect(sheet, contains('time_min: 17; distance_km: 8.4; hazard_delay_min: 2'));
+      expect(sheet, contains('other_route B: 15 min; left_out_because: chance_constraint; streets: Kotturpuram Bridge approach (flooding reported 3 min ago)'));
+      expect(sheet, contains('confidence: moderate'));
+      // every number in the sheet is one of the trace's own
+      final traceNums = _traceNumbers(situations.first.trace);
+      for (final m in RegExp(r'\d+(?:\.\d+)?').allMatches(sheet)) {
+        expect(traceNums.contains(m.group(0)), isTrue, reason: m.group(0));
+      }
+    });
+
+    test('answering for a given intent ignores what the classifier made of the words', () {
+      final a = answerQuestion(
+        question: 'purple monkey dishwasher',
+        trace: situations.first.trace,
+        eventState: EventState.active,
+        hazardDisplayNouns: testHazardDisplayNouns,
+        forceIntent: QaIntent.timeDistance,
+      );
+      expect(a.classification.intent, QaIntent.timeDistance);
+      expect(a.text, contains('17 minutes'));
+    });
+
+    test('a corridor that is both a data gap and a left-out street falls back safely instead of contradicting itself', () {
+      final t = buildTrace(
+        dataGaps: const [DataGap(corridor: 'Kotturpuram Bridge approach', reason: 'no_observations_in_window')],
+      );
+      final a = answerQuestion(
+        question: 'Which streets were left out?',
+        trace: t,
+        eventState: EventState.active,
+        hazardDisplayNouns: testHazardDisplayNouns,
+      );
+      expect(a.usedFallback, isTrue);
+      expect(a.rejectedClaims.join(), contains('data_gap_contradiction'));
+      expect(a.text, kQaFallbackEn);
+    });
+
+    test('distances on a rounding boundary still verify (16.45 km and its neighbours)', () {
+      for (final d in [16450.0, 8450.0, 12349.0, 12351.0, 450.0, 20350.0, 999.0, 30050.0]) {
+        final t = buildTrace(chosenDistanceMeters: d);
+        for (final q in ['How long will it take?', 'Give me the picture']) {
+          final a = answerQuestion(question: q, trace: t, eventState: EventState.active, hazardDisplayNouns: testHazardDisplayNouns);
+          expect(a.usedFallback, isFalse, reason: '$d $q: ${a.rejectedClaims}');
+        }
+      }
+    });
+
+    test('a single-part question has no second intent', () {
+      for (final q in ['How long will it take?', 'Which parts have no data?', 'Is it raining now?', 'Does this work offline?']) {
+        expect(classifyQuestion(q).secondary, isNull, reason: q);
+      }
+    });
+
+    test('the headline is the first sentence of the answer', () {
+      for (final s in situations) {
+        for (final e in _probe.entries) {
+          final a = _ask(e.value.$1, s);
+          expect(a.text.startsWith(a.headline), isTrue, reason: '${s.name}/${e.key.wireName}');
+          expect(a.headline, isNotEmpty);
+        }
+      }
+    });
+
+    test('every offered follow-up is a new question that is understood as itself and answered for real', () {
+      for (final s in situations) {
+        for (final e in _probe.entries) {
+          for (final ta in [false, true]) {
+            final a = _ask(ta ? e.value.$2 : e.value.$1, s);
+            expect(a.followUps.length, lessThanOrEqualTo(3));
+            expect(a.followUps, isNot(contains(QaIntent.isSafe)));
+            expect(a.followUps, isNot(contains(a.classification.intent)));
+            for (final f in a.followUps) {
+              final q = canonicalQuestion(f, ta: ta);
+              final r = _ask(q, s);
+              expect(r.classification.intent, f, reason: '$q after ${e.key.wireName}');
+              expect(r.usedFallback, isFalse, reason: q);
+            }
+          }
+        }
+      }
+    });
+
+    test('every canonical question is understood as its own intent, in both languages', () {
+      for (final i in QaIntent.values) {
+        if (i == QaIntent.outOfScope) continue;
+        for (final ta in [false, true]) {
+          expect(classifyQuestion(canonicalQuestion(i, ta: ta)).intent, i, reason: '${i.wireName} ${ta ? 'ta' : 'en'}');
+        }
+      }
+    });
+
+    test('every phrasing (style) of every English answer passes the verifier on every situation', () {
+      for (final s in situations) {
+        for (final e in _probe.entries) {
+          for (var style = 0; style < 6; style++) {
+            final a = answerQuestion(
+              question: e.value.$1,
+              trace: s.trace,
+              eventState: s.event,
+              hazardDisplayNouns: testHazardDisplayNouns,
+              style: style,
+            );
+            expect(a.usedFallback, isFalse, reason: '${s.name}/${e.key.wireName}/style $style: ${a.rejectedClaims}');
+          }
+        }
+      }
+    });
+
+    test('the common answers really have several phrasings', () {
+      for (final intent in [QaIntent.timeDistance, QaIntent.routeHazard, QaIntent.shouldGo, QaIntent.summary, QaIntent.isSafe]) {
+        final texts = {
+          for (var style = 0; style < 6; style++)
+            answerQuestion(
+              question: _probe[intent]!.$1,
+              trace: base.trace,
+              eventState: base.event,
+              hazardDisplayNouns: testHazardDisplayNouns,
+              style: style,
+            ).text,
+        };
+        expect(texts.length, greaterThan(1), reason: intent.wireName);
+      }
+    });
+
+    test('the same question always gets the same answer', () {
+      expect(_ask('How long will it take?', base).text, _ask('How long will it take?', base).text);
+    });
+
+    test('the reason the other route was left out comes with the street that caused it', () {
+      final a = _ask('Is there another route?', base).text;
+      expect(a, contains('Route B was left out because it crosses a stretch of Kotturpuram Bridge approach'));
+      expect(a, contains('3 minutes ago'));
+    });
+
+    test('a walker is told the rating is more cautious, a driver is not', () {
+      final walker = situations.firstWhere((s) => s.name.startsWith('pedestrian'));
+      expect(_ask('What is the flood risk on this route?', walker).text, contains('more cautious because you are travelling on foot'));
+      expect(_ask('What is the flood risk on this route?', base).text, isNot(contains('more cautious')));
+    });
+  });
+
   group('the development set (regression floor, not a claim)', () {
     test(
-      'the file is well formed and covers all 18 intents in both languages',
+      'the file is well formed and covers all 19 intents in both languages',
       () {
         final dev = _devSet();
         final qs = (dev['questions'] as List<dynamic>)
