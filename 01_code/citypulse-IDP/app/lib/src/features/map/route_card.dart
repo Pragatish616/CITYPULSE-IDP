@@ -69,19 +69,33 @@ class RouteCard extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+        // A Wrap, not a Row: with large text or a narrow screen the distance drops to a second line instead of running off the edge.
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.end,
+          spacing: 12,
+          runSpacing: 2,
           children: [
-            Icon(
-              _travelIcon(ref.watch(settingsProvider.select((x) => x.travel))),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Icon(
+                  _travelIcon(
+                    ref.watch(settingsProvider.select((x) => x.travel)),
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    s.minutes(view.travelMinutes.round()),
+                    key: const Key('route-minutes'),
+                    style: text.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(width: 6),
-            Text(
-              s.minutes(view.travelMinutes.round()),
-              key: const Key('route-minutes'),
-              style: text.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(width: 12),
             Text(
               s.kilometres(trace.chosen.distanceMeters),
               key: const Key('route-distance'),

@@ -131,24 +131,34 @@ class AdviceCard extends StatelessWidget {
             const SizedBox(height: 14),
             _RiskBar(risk: advice.risk, key: const Key('advice-risk-bar')),
             const SizedBox(height: 8),
-            Row(
+            // A Wrap: risk on the left and evidence on the right as before, but with large text or a narrow screen the evidence drops
+            // to a second line instead of running off the edge.
+            Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runSpacing: 4,
               children: [
-                Expanded(
-                  child: Text(
-                    riskText,
-                    key: const Key('advice-risk'),
-                    style: theme.textTheme.labelLarge?.copyWith(
-                      color: colour,
-                      fontWeight: FontWeight.w700,
-                    ),
+                Text(
+                  riskText,
+                  key: const Key('advice-risk'),
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: colour,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-                _EvidenceDots(level: advice.evidence),
-                const SizedBox(width: 6),
-                Text(
-                  evidenceText,
-                  key: const Key('advice-evidence'),
-                  style: theme.textTheme.labelMedium,
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _EvidenceDots(level: advice.evidence),
+                    const SizedBox(width: 6),
+                    Flexible(
+                      child: Text(
+                        evidenceText,
+                        key: const Key('advice-evidence'),
+                        style: theme.textTheme.labelMedium,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

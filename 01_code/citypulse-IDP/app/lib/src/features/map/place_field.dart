@@ -52,6 +52,7 @@ class _PlaceFieldState extends ConsumerState<PlaceField> {
   Timer? _debounce;
   List<Place> _suggestions = const [];
   var _generation = 0;
+  final _suggestionsKey = GlobalKey();
 
   @override
   void initState() {
@@ -89,6 +90,19 @@ class _PlaceFieldState extends ConsumerState<PlaceField> {
         final found = await backend.searchPlaces(text, near: widget.near());
         if (!mounted || mine != _generation) return;
         setState(() => _suggestions = found);
+        // Inside a scrolling card (a short screen, large text) the list can appear below the visible part: bring it into view.
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          final c = _suggestionsKey.currentContext;
+          if (mounted && c != null) {
+            unawaited(
+              Scrollable.ensureVisible(
+                c,
+                duration: const Duration(milliseconds: 150),
+                alignmentPolicy: ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
+              ),
+            );
+          }
+        });
         // A search that cannot run (offline server, data still loading)
         // should leave the field usable, not throw into the UI.
         // ignore: avoid_catches_without_on_clauses
@@ -131,6 +145,7 @@ class _PlaceFieldState extends ConsumerState<PlaceField> {
         ),
         if (_suggestions.isNotEmpty)
           Card(
+            key: _suggestionsKey,
             elevation: 2,
             child: Column(
               mainAxisSize: MainAxisSize.min,

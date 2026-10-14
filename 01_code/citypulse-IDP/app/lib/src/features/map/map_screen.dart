@@ -605,14 +605,21 @@ class _CompactPlanner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // The card is no taller than 55% of the screen and scrolls inside that: on a landscape phone, a small phone or with large text the
+    // fields used to run off the screen and could not be reached. On a normal phone it is exactly as tall as before.
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 560),
+      constraints: BoxConstraints(
+        maxWidth: 560,
+        maxHeight: MediaQuery.sizeOf(context).height * 0.55,
+      ),
       child: Card(
         elevation: 4,
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          child: ListView(
+            key: const Key('compact-planner'),
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
             children: [
               const _EventBanner(),
               _PlannerFields(centre: centre),

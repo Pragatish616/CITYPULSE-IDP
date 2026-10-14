@@ -70,4 +70,32 @@ void main() {
       expect(find.byKey(const Key('gated-screen')), findsNothing);
     },
   );
+
+  group('a short screen or large text', () {
+    for (final (name, size, scale) in [
+      ('a landscape phone', const Size(640, 300), 1.0),
+      ('a tiny window', const Size(300, 200), 1.0),
+      ('large accessibility text on a phone', const Size(360, 640), 2.0),
+    ]) {
+      testWidgets('$name: the button can be reached and the app opens', (tester) async {
+        tester.view.physicalSize = size;
+        tester.view.devicePixelRatio = 1.0;
+        addTearDown(tester.view.reset);
+        final store = InMemoryDisclaimerStore();
+        await tester.pumpWidget(
+          MediaQuery(
+            data: MediaQueryData(size: size, textScaler: TextScaler.linear(scale)),
+            child: _wrap(store),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull, reason: 'no overflow');
+        await tester.ensureVisible(find.byKey(const Key('first-use-disclaimer-accept')));
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(const Key('first-use-disclaimer-accept')));
+        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('gated-screen')), findsOneWidget);
+      });
+    }
+  });
 }

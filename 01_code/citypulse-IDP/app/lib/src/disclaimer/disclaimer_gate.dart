@@ -76,30 +76,39 @@ class _FirstUseDisclaimerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Scrolls when the screen is short or the text is large (a landscape phone, a small window, big accessibility text), so the
+    // button can always be reached; centres the content when there is room.
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Icon(Icons.info_outline, size: 48),
-                const SizedBox(height: 16),
-                Text(
-                  kFirstUseDisclaimer,
-                  key: const Key('first-use-disclaimer-text'),
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyLarge,
+        child: LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Icon(Icons.info_outline, size: 48),
+                      const SizedBox(height: 16),
+                      Text(
+                        kFirstUseDisclaimer,
+                        key: const Key('first-use-disclaimer-text'),
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      const SizedBox(height: 24),
+                      ElevatedButton(
+                        key: const Key('first-use-disclaimer-accept'),
+                        onPressed: onAcknowledge,
+                        child: const Text('I understand'),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 24),
-                ElevatedButton(
-                  key: const Key('first-use-disclaimer-accept'),
-                  onPressed: onAcknowledge,
-                  child: const Text('I understand'),
-                ),
-              ],
+              ),
             ),
           ),
         ),
