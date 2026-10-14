@@ -58,3 +58,5 @@ fieldlog-export-*.csv
 01_code/citypulse-IDP/data/susceptibility/*/grid_a3.npz
 01_code/citypulse-IDP/data/results/*-susceptibility-chennai-a3/*.joblib
 01_code/citypulse-IDP/data/qa/*/generated/
+01_code/citypulse-IDP/data/models/
+01_code/citypulse-IDP/data/qa/*/runs/
