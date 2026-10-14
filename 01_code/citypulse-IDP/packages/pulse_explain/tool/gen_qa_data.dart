@@ -311,6 +311,8 @@ void main(List<String> args) {
         'source': q.source,
         'classifier_agrees': probe.intent == q.intent,
         'fact_sheet': sheet,
+        'event_state': event.name,
+        'trace': trace.toJson(),
         'answers': answerList,
         'follow_ups': [for (final f in follow) f.wireName],
         'answer_reviewed': lang == 'en',

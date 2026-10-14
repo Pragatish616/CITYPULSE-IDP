@@ -60,3 +60,4 @@ fieldlog-export-*.csv
 01_code/citypulse-IDP/data/qa/*/generated/
 01_code/citypulse-IDP/data/models/
 01_code/citypulse-IDP/data/qa/*/runs/
+01_code/citypulse-IDP/data/qa/*/gpu_bundle.zip

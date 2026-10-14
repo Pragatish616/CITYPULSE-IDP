@@ -6,6 +6,7 @@ by decision record. Format loosely follows [Keep a Changelog](https://keepachang
 ## [Unreleased]
 
 ### Added
+- Fine-tuning pipeline for the route-question model (ADR-035 addendum 3): base model Qwen2.5-0.5B-Instruct downloaded (Apache-2.0), LoRA training and evaluation scripts, a Dart tool that verifies model-written answers, a GPU bundle and run guide; reference evaluation of the untouched base model (0 of 10 answers pass the verifier). CPU training is too slow here (about 14 hours); no adapter trained yet.
 - Route answerer version 2 (ADR-035 addendum 2): a briefing intent, two-part questions answered in one reply, a bold headline and follow-up question chips, richer and more varied answers; and a seeded training-data generator with an independent checker (20,046 verified English answers, 12,000 labelled questions in English and Tamil). No model trained yet.
 - "Ask about this route" box in the app (ADR-035 addendum 1): type or tap a question in English or Tamil under a planned route and get an answer from that route's own data on the phone; safety questions are refused with the risk shown.
 - Route question answerer, D0 without a language model (ADR-035, F-43): 18 intents in English and Tamil, answers from the route's own facts through the verifier, safety questions always refused with the risk shown; pre-registered; accuracy not yet measured.
