@@ -806,6 +806,57 @@ void main() {
     });
   });
 
+  group('odd input never breaks the answerer', () {
+    final odd = <String>[
+      '',
+      ' ',
+      '\n\t\r',
+      '?',
+      '!!!???...',
+      '😀',
+      '🌧️🚗🌊?',
+      'a' * 10000,
+      'why ' * 3000,
+      'ஏன் ' * 3000,
+      '<script>alert(1)</script> why this route',
+      "'; DROP TABLE routes; -- how long",
+      '\u0000\u0001\u0002 how long',
+      'مرحبا كيف حالك',
+      'こんにちは 道路は',
+      'Why​ this​ route',
+      'WHY THIS ROUTE',
+      'wHy ThIs RoUtE',
+      'is it safe' * 200,
+      '${'x' * 199}?',
+    ];
+
+    test('every odd question gets a verified answer or the fixed fallback, never an exception', () {
+      for (final s in situations) {
+        for (final q in odd) {
+          final a = _ask(q, s);
+          expect(a.text.trim(), isNotEmpty, reason: 'text of ${q.length} chars on ${s.name}');
+          expect(a.verification.passed || a.usedFallback, isTrue);
+          expect(a.followUps.length, lessThanOrEqualTo(3));
+        }
+      }
+    });
+
+    test('a request for a verdict hidden in noise is still refused', () {
+      final base = situations.first;
+      for (final q in ['😀 is it safe 😀', '<b>is the road passable</b>', 'is   it   safe???', 'IS IT SAFE', 'is it safe\n\n\nplease']) {
+        final a = _ask(q, base);
+        expect(a.classification.intent, QaIntent.isSafe, reason: q);
+        expect(a.text, contains('I cannot confirm the condition of any road'), reason: q);
+      }
+    });
+
+    test('nothing in an answer echoes the question back', () {
+      final a = _ask('<script>alert(1)</script> why this route', situations.first);
+      expect(a.text, isNot(contains('<script>')));
+      expect(a.text, isNot(contains('alert')));
+    });
+  });
+
   group('the development set (regression floor, not a claim)', () {
     test(
       'the file is well formed and covers all 19 intents in both languages',
