@@ -73,3 +73,13 @@ The owner approved the download and the start of fine-tuning ("download the base
 - **Automatic checks** (`ml/route_qa/eval_model.py`): label accuracy on validation questions from unseen situations next to the rule-based classifier's agreement on the same rows; for writing, the Dart verifier's pass rate, the refusal rate on safety questions, the hedge rate under low or stale confidence, and diversity. **Caveat fixed here:** the validation questions come from the same question bank as the training questions (with noise and joins), so these figures overstate how the model handles questions it has never seen. Only the sealed test set measures that.
 - **Not decided by these checks:** adoption. It needs the blind ratings, the faithfulness audit and the sealed test set, as in addendum 1.
 
+## Addendum 3 (14 October 2026), written before any measurement on a phone
+
+The owner's phone has **8 GB of RAM** (the phone model and processor are not yet recorded). The ceilings left open in addendum 1 are fixed here, for the 4-bit (Q4_K_M, about 491 MB) build of the fine-tuned Qwen2.5-0.5B-Instruct, measured on that phone by a person with a stopwatch and the system memory screen, three runs each, worst of the three reported:
+
+- **Memory:** the app's resident memory with the model loaded stays under **1.2 GB**, and the app is not killed in the background during a 10-minute session of 10 questions.
+- **Speed:** time to the first word of a model answer under **4 s**, and the whole answer (about 100 words) under **12 s**. Phone speed depends on the processor, and these numbers are a first guess that the first measurement may show to be wrong; if they are changed, the change and the reason are written here before the next run.
+- **What the user sees regardless:** the rule-based answer (D0 version 2) is shown immediately; the model's answer replaces it only if it passes the verifier and arrives within **8 s**. A slow phone therefore costs wording, never speed or safety.
+- **Battery and heat:** reported (percent used over the 10 questions, whether the phone warms up), no bar.
+- **If the ceilings are missed,** the model tier is not shipped in the app (D0 version 2 stays), whatever the ratings say.
+
