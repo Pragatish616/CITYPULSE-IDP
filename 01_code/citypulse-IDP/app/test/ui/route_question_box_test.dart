@@ -2,6 +2,7 @@
 import 'package:citypulse_app/src/core/strings.dart';
 import 'package:citypulse_app/src/ui/widgets/route_question_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pulse_router/pulse_router.dart';
 
@@ -256,11 +257,45 @@ void main() {
     }
   });
 
+  testWidgets('a clear button appears only once there is text, and empties the field', (tester) async {
+    await _show(tester);
+    expect(find.byKey(const Key('ask-clear')), findsNothing);
+    await tester.enterText(find.byKey(const Key('ask-field')), 'why this route');
+    await tester.pump();
+    expect(find.byKey(const Key('ask-clear')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('ask-clear')));
+    await tester.pump();
+    expect(tester.widget<TextField>(find.byKey(const Key('ask-field'))).controller!.text, isEmpty);
+    expect(find.byKey(const Key('ask-clear')), findsNothing);
+  });
+
+  testWidgets('the copy button puts exactly the shown answer on the clipboard', (tester) async {
+    String? copied;
+    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(SystemChannels.platform, (call) async {
+      if (call.method == 'Clipboard.setData') copied = (call.arguments as Map)['text'] as String?;
+      return null;
+    });
+    addTearDown(() => tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(SystemChannels.platform, null));
+    await _show(tester);
+    expect(find.byKey(const Key('ask-copy')), findsNothing);
+    await _ask(tester, 'How long will it take?');
+    await tester.tap(find.byKey(const Key('ask-copy')));
+    await tester.pumpAndSettle();
+    expect(copied, _answer(tester));
+    expect(find.text('Copied'), findsOneWidget);
+    // a new question resets the label
+    await _ask(tester, 'Why this route?');
+    expect(find.text('Copy answer'), findsOneWidget);
+  });
+
   test('the new strings obey ADR-011 in both languages (also enforced for every string by strings_test)', () {
     for (final m in [
       Msg.askHeading,
       Msg.askHint,
       Msg.askSend,
+      Msg.askClear,
+      Msg.askCopy,
+      Msg.askCopied,
       Msg.askSource,
       Msg.askExample1,
       Msg.askExample2,

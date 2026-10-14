@@ -55,6 +55,16 @@ class RouteQuestionBox extends StatefulWidget {
 class _RouteQuestionBoxState extends State<RouteQuestionBox> {
   final _controller = TextEditingController();
   QaAnswer? _answer;
+  var _copied = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Rebuild as the text changes so the clear button appears only when there is something to clear.
+    _controller.addListener(() {
+      if (mounted) setState(() {});
+    });
+  }
 
   @override
   void dispose() {
@@ -81,7 +91,13 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
       _answer = answer;
       _fallbackLocale = detectLocale(q);
       _failed = answer == null;
+      _copied = false;
     });
+  }
+
+  Future<void> _copy(String text) async {
+    await Clipboard.setData(ClipboardData(text: text));
+    if (mounted) setState(() => _copied = true);
   }
 
   var _failed = false;
@@ -141,6 +157,14 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
                   hintText: s(Msg.askHint),
                   isDense: true,
                   counterText: '',
+                  suffixIcon: _controller.text.isEmpty
+                      ? null
+                      : IconButton(
+                          key: const Key('ask-clear'),
+                          icon: const Icon(Icons.close),
+                          tooltip: s(Msg.askClear),
+                          onPressed: _controller.clear,
+                        ),
                   border: const OutlineInputBorder(),
                 ),
               ),
@@ -203,6 +227,15 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
                     key: const Key('ask-source'),
                     style: text.bodySmall?.copyWith(
                       fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: TextButton.icon(
+                      key: const Key('ask-copy'),
+                      onPressed: () => _copy(shown),
+                      icon: Icon(_copied ? Icons.check : Icons.copy, size: 18),
+                      label: Text(s(_copied ? Msg.askCopied : Msg.askCopy)),
                     ),
                   ),
                   if (needsRepeat) ...[
