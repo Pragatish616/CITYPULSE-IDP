@@ -680,6 +680,14 @@ void main() {
       );
     });
 
+    testWidgets('help explains the question box and promises no yes-or-no on a road', (tester) async {
+      await AppHarness().pump(tester, size: _desktop);
+      await tester.tap(find.text('Help'));
+      await tester.pumpAndSettle();
+      expect(find.text('Asking about a route'), findsOneWidget);
+      expect(find.byKey(const Key('help-ask')), findsOneWidget);
+    });
+
     testWidgets('the local control-room line belongs to Chennai and appears only '
         'for a city that has one; 112 is always there', (tester) async {
       await AppHarness().pump(tester, size: _desktop);

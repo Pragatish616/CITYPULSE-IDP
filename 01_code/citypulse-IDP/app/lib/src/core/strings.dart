@@ -144,6 +144,8 @@ enum Msg {
   reportQueued,
   reportFailed,
   helpTitle,
+  helpAsk,
+  helpAskBody,
   helpEmergency,
   helpAboutData,
   helpAboutDataBody,
@@ -403,6 +405,11 @@ const Map<Msg, String> _en = {
       'Saved on this device. It will be sent when you are back online.',
   Msg.reportFailed: 'The report was not accepted. Please check and try again.',
   Msg.helpTitle: 'Help and about',
+  Msg.helpAsk: 'Asking about a route',
+  Msg.helpAskBody:
+      'Under a planned route that has flood data you can type a question, in English or Tamil: how long it takes, why this route was chosen, '
+      'what was avoided. The answer comes from the data for that route, on your phone, with no network. Asking whether a '
+      'road can be used gets no yes or no: CityPulse shows the risk and how old the evidence is instead.',
   Msg.helpEmergency: 'In an emergency call 112.',
   Msg.helpAboutData: 'About the data',
   Msg.helpAboutDataBody: '{about_data}',
@@ -597,6 +604,11 @@ const Map<Msg, String> _ta = {
   Msg.reportFailed:
       'புகார் ஏற்கப்படவில்லை. சரிபார்த்து மீண்டும் முயற்சிக்கவும்.',
   Msg.helpTitle: 'உதவியும் விவரங்களும்',
+  Msg.helpAsk: 'வழி பற்றி கேட்பது',
+  Msg.helpAskBody:
+      'வெள்ளத் தரவு உள்ள திட்டமிட்ட வழிக்குக் கீழே தமிழிலோ ஆங்கிலத்திலோ கேள்வி தட்டச்சு செய்யலாம்: எவ்வளவு நேரம் ஆகும், ஏன் இந்த வழி, எதைத் தவிர்த்தது. '
+      'பதில் அந்த வழியின் தரவிலிருந்து, உங்கள் போனிலேயே, இணையம் இல்லாமல் வரும். சாலையைப் பயன்படுத்தலாமா என்று கேட்டால் ஆம் இல்லை என்ற பதில் வராது; '
+      'அதற்குப் பதிலாக ஆபத்தையும் சான்று எவ்வளவு பழையது என்பதையும் காட்டும்.',
   Msg.helpEmergency: 'அவசரநிலையில் 112 ஐ அழைக்கவும்.',
   Msg.helpAboutData: 'தரவு பற்றி',
   Msg.helpAboutDataBody: '{about_data}',
