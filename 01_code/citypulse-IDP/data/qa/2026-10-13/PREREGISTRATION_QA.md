@@ -83,3 +83,12 @@ The owner's phone has **8 GB of RAM** (the phone model and processor are not yet
 - **Battery and heat:** reported (percent used over the 10 questions, whether the phone warms up), no bar.
 - **If the ceilings are missed,** the model tier is not shipped in the app (D0 version 2 stays), whatever the ratings say.
 
+## Addendum 4 (15 October 2026), written before the full training run
+
+The owner freed disk space, and the GPU build of PyTorch (2.14.1, CUDA 12.6) was installed in its own environment. The GTX 1650 (4 GB) trains at about 108 tokens a second in a smoke test, against 13 on the CPU. This fixes the run, from that speed alone:
+
+- **Precision on the GPU:** base weights in fp16 (so that a 4 GB card is enough), LoRA weights in fp32, a gradient scaler. Everything else in addendum 2 is unchanged (rank 16, alpha 32, learning rate 2e-4, effective batch 16, seed 20261014).
+- **Size:** **6,000 labelling examples and 2,400 answer-writing examples, one epoch**, drawn by the seed from the training file; about 1.0 million tokens, about 2.6 hours. (The 4,000 and 1,600 in the GPU guide were a first plan for slower hardware; they are replaced by these before any run.)
+- **Run name `run1`.** One run. No tuning on the validation set. A second run only to fix a bug, and then both are reported.
+- **After the run:** the automatic checks of addendum 2 on 300 validation questions and 60 validation answers, and the untouched base model as the reference on the same rows. Results are written up whatever they show.
+

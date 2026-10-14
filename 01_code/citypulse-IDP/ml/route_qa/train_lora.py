@@ -103,7 +103,8 @@ def main() -> int:
     random.Random(args.seed).shuffle(examples)
     steps_total = math.ceil(len(examples) * args.epochs / args.accum)
 
-    model = AutoModelForCausalLM.from_pretrained(BASE, torch_dtype=torch.float32, revision=rev)
+    # CPU: fp32 throughout. GPU: base weights in fp16 (1 GB, so a 4 GB card is enough), LoRA weights stay fp32 and a GradScaler guards the fp16 range.
+    model = AutoModelForCausalLM.from_pretrained(BASE, torch_dtype=torch.float16 if dev == "cuda" else torch.float32, revision=rev)
     state_file = out / "state.json"
     done = 0
     if state_file.exists() and (out / "adapter").exists():

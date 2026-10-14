@@ -74,7 +74,7 @@ def main() -> int:
     out.mkdir(parents=True, exist_ok=True)
     rev = None if BASE != BASE_ID else REVISION
     tok = AutoTokenizer.from_pretrained(BASE, revision=rev)
-    model = AutoModelForCausalLM.from_pretrained(BASE, torch_dtype=torch.float32, revision=rev)
+    model = AutoModelForCausalLM.from_pretrained(BASE, torch_dtype=torch.float16 if DEVICE == "cuda" else torch.float32, revision=rev)
     if not args.base_only:
         model = PeftModel.from_pretrained(model, out / "adapter")
     model.to(DEVICE).eval()

@@ -13,7 +13,7 @@ about 14 hours. A GPU does it in minutes. Two ways; both use the same scripts an
    !unzip -q gpu_bundle.zip -d /content/bundle
    %cd /content/bundle
    !pip install -q peft accelerate transformers
-   !python ml/route_qa/train_lora.py --name run1 --n-u 4000 --n-w 1600 --epochs 1
+   !python ml/route_qa/train_lora.py --name run1 --n-u 6000 --n-w 2400 --epochs 1
    !python ml/route_qa/eval_model.py --run run1 --n-u 300 --n-w 60
    ```
 
@@ -27,7 +27,7 @@ about 14 hours. A GPU does it in minutes. Two ways; both use the same scripts an
 
 4. Tell me; I read the results and write them up, whatever they are.
 
-The sizes (4000 and 1600) are the plan for a GPU run. The settings in the pre-registration's addendum 2 are not changed after seeing results.
+The sizes (6000 and 2400) are fixed in addendum 4. The settings in the pre-registration's addendum 2 are not changed after seeing results.
 
 ## B. The laptop's own GTX 1650 (4 GB)
 
