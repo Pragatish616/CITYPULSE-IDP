@@ -24,7 +24,7 @@ on:
         default: ""
 
 permissions:
-  contents: read
+  contents: write # only to attach a model-carrying APK to the release "android-test-app"
 
 env:
   CODE: 01_code/citypulse-IDP
@@ -87,3 +87,19 @@ jobs:
           path: ${{ env.CODE }}/app/build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           retention-days: 14
+      # A build with the model inside is also attached to a release, so it can be downloaded without a GitHub login and after the artifact expires.
+      - name: Attach to the release (model builds only)
+        if: ${{ inputs.model_url != '' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd build/app/outputs/flutter-apk
+          cp app-release.apk citypulse-android-arm64-with-model.apk
+          sha256sum citypulse-android-arm64-with-model.apk > citypulse-android-arm64-with-model.apk.sha256
+          notes="Android test build with the route-question test model inside (not adopted; labels questions only, the app's rules write the answers). Signed with a debug key: for your own phone. Built by the 'Android APK' workflow from commit ${{ github.sha }}; SHA-256 in the .sha256 file. Not yet run on a phone with the model: after installing, see docs/ops/MOBILE_TESTING.md for what to record."
+          if gh release view android-test-app --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            gh release edit android-test-app --repo "${{ github.repository }}" --notes "$notes"
+          else
+            gh release create android-test-app --repo "${{ github.repository }}" --prerelease --title "Android test app (with model)" --notes "$notes" --target "${{ github.sha }}"
+          fi
+          gh release upload android-test-app citypulse-android-arm64-with-model.apk citypulse-android-arm64-with-model.apk.sha256 --clobber --repo "${{ github.repository }}"
