@@ -33,6 +33,24 @@
 
   <title>CityPulse</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- Faster first map: open the tile server connection and fetch the map library while Flutter starts, instead of after. -->
+  <link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+  <link rel="dns-prefetch" href="https://tiles.openfreemap.org">
+  <link rel="modulepreload" href="vendor/maplibre-gl/maplibre-gl.mjs">
+  <link rel="modulepreload" href="vendor/maplibre-gl/maplibre-gl-shared.mjs">
+  <link rel="preload" href="vendor/maplibre-gl/maplibre-gl.css" as="style">
+
+  <style>
+    /* Shown at once while the app starts (a cold free server can take several seconds); removed on Flutter's first frame. */
+    #cp-splash { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; background: #F4F6F9; color: #1F2937; font: 16px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    #cp-splash b { color: #1F5FA8; font-size: 22px; }
+    #cp-splash .bar { width: 160px; height: 4px; border-radius: 2px; background: #DCE3EE; overflow: hidden; }
+    #cp-splash .bar i { display: block; width: 40%; height: 100%; background: #1F5FA8; animation: cp-slide 1.1s ease-in-out infinite; }
+    @keyframes cp-slide { 0% { transform: translateX(-100%); } 100% { transform: translateX(250%); } }
+    @media (prefers-reduced-motion: reduce) { #cp-splash .bar i { animation: none; width: 100%; } }
+  </style>
 </head>
 <body>
   <!--
@@ -43,6 +61,17 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <div id="cp-splash" role="status" aria-live="polite">
+    <b>CityPulse</b>
+    <span>Loading the map and routes&hellip;</span>
+    <div class="bar"><i></i></div>
+  </div>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var s = document.getElementById('cp-splash');
+      if (s) s.remove();
+    });
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

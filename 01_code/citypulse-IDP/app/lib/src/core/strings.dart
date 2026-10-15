@@ -154,6 +154,8 @@ enum Msg {
   reportQueued,
   reportFailed,
   helpTitle,
+  helpMap,
+  helpMapBody,
   helpAsk,
   helpAskBody,
   helpEmergency,
@@ -427,6 +429,10 @@ const Map<Msg, String> _en = {
       'Saved on this device. It will be sent when you are back online.',
   Msg.reportFailed: 'The report was not accepted. Please check and try again.',
   Msg.helpTitle: 'Help and about',
+  Msg.helpMap: 'Using the map',
+  Msg.helpMapBody:
+      'Press and hold a point on the map to set it as the start or the destination, or to report water there. A single tap does nothing, '
+      'so the map can be moved without dropping a pin by mistake.',
   Msg.helpAsk: 'Asking about a route',
   Msg.helpAskBody:
       'Under a planned route that has flood data you can type a question, in English or Tamil: how long it takes, why this route was chosen, '
@@ -638,6 +644,10 @@ const Map<Msg, String> _ta = {
   Msg.reportFailed:
       'புகார் ஏற்கப்படவில்லை. சரிபார்த்து மீண்டும் முயற்சிக்கவும்.',
   Msg.helpTitle: 'உதவியும் விவரங்களும்',
+  Msg.helpMap: 'வரைபடத்தைப் பயன்படுத்துவது',
+  Msg.helpMapBody:
+      'வரைபடத்தில் ஒரு இடத்தை அழுத்திப் பிடித்தால், அதைத் தொடக்கமாகவோ சேருமிடமாகவோ அமைக்கலாம், அல்லது அங்கு தண்ணீர் பற்றி அறிவிக்கலாம். '
+      'ஒருமுறை தொட்டால் எதுவும் நடக்காது; எனவே தவறுதலாகக் குறி விழாமல் வரைபடத்தை நகர்த்தலாம்.',
   Msg.helpAsk: 'வழி பற்றி கேட்பது',
   Msg.helpAskBody:
       'வெள்ளத் தரவு உள்ள திட்டமிட்ட வழிக்குக் கீழே தமிழிலோ ஆங்கிலத்திலோ கேள்வி தட்டச்சு செய்யலாம்: எவ்வளவு நேரம் ஆகும், ஏன் இந்த வழி, எதைத் தவிர்த்தது. '

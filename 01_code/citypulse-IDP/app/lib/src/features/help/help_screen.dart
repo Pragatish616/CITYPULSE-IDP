@@ -68,6 +68,7 @@ class HelpScreen extends ConsumerWidget {
             kFirstUseDisclaimer,
             key: const Key('help-disclaimer'),
           ),
+          section(s(Msg.helpMap), s(Msg.helpMapBody), key: const Key('help-map')),
           section(s(Msg.helpAsk), s(Msg.helpAskBody), key: const Key('help-ask')),
           section(s(Msg.helpLimits), s(Msg.helpLimitsBody)),
           section(s(Msg.helpAboutData), s(Msg.helpAboutDataBody)),

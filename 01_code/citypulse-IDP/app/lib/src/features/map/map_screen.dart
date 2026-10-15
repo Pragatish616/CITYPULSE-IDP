@@ -353,7 +353,9 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         _scheduleRisk(immediate: true);
       },
       onCameraIdle: _scheduleRisk,
-      onTap: _showTapSheet,
+      // A single tap only closes the keyboard: stray taps (ending a pan, dismissing a field) used to pop up the pin sheet.
+      // Setting a point or reporting takes a deliberate press and hold.
+      onTap: (_) => FocusManager.instance.primaryFocus?.unfocus(),
       onLongPress: _showTapSheet,
     );
     final mapWidget = Stack(

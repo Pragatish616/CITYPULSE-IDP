@@ -539,10 +539,20 @@ void main() {
   });
 
   group('taps on the map', () {
-    testWidgets('a tap offers start, destination and report', (tester) async {
+    testWidgets('a single tap opens nothing, so a stray tap never drops a pin', (tester) async {
       final h = AppHarness();
       await h.pump(tester, size: _desktop);
       h.mapCallbacks.onTap((lat: 13.03, lon: 80.21));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('tap-set-start')), findsNothing);
+      expect(h.container.read(plannerProvider).origin, isNull);
+      expect(h.container.read(plannerProvider).destination, isNull);
+    });
+
+    testWidgets('a press and hold offers start, destination and report', (tester) async {
+      final h = AppHarness();
+      await h.pump(tester, size: _desktop);
+      h.mapCallbacks.onLongPress((lat: 13.03, lon: 80.21));
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('tap-set-start')), findsOneWidget);
       await tester.tap(find.byKey(const Key('tap-set-destination')));
