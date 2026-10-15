@@ -2,177 +2,198 @@
 
 # CityPulse AI
 
-**Flood-aware, offline-first navigation for Chennai and Tamil Nadu.**
-Routes on a per-street flood belief, explains every route from a checked template,
-and adds a small on-device advisor that says how much to trust what it found.
+### Flood-aware navigation that tells you how much to trust it.
+
+Offline-first routing for **Chennai and Tamil Nadu**, built on a per-street flood belief, a router that separates *slowdown* from *harm*,
+explanations that a verifier checks before you see them, and a bilingual question box that never gives a safety verdict.
 
 [![CI](https://github.com/Pragatish616/CITYPULSE-IDP/actions/workflows/ci.yml/badge.svg)](https://github.com/Pragatish616/CITYPULSE-IDP/actions/workflows/ci.yml)
-![Status](https://img.shields.io/badge/status-research%20prototype-orange)
-![TRL](https://img.shields.io/badge/readiness-TRL%203-informational)
-![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)
-![Flutter](https://img.shields.io/badge/Flutter-Android%20%2B%20Web-02569B?logo=flutter&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
-![Data](https://img.shields.io/badge/map%20data-OpenStreetMap%20(ODbL)-7EBC6F)
-![Budget](https://img.shields.io/badge/infrastructure-%E2%82%B90-lightgrey)
+[![Stars](https://img.shields.io/github/stars/Pragatish616/CITYPULSE-IDP?style=flat&logo=github)](https://github.com/Pragatish616/CITYPULSE-IDP/stargazers)
 [![License: MIT](https://img.shields.io/badge/code%20licence-MIT-green.svg)](LICENSE)
+![Status](https://img.shields.io/badge/status-research%20prototype-orange)
+![Readiness](https://img.shields.io/badge/readiness-TRL%203-informational)
+![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)
+![Flutter](https://img.shields.io/badge/Flutter-Android%20%C2%B7%20Web%20%C2%B7%20Windows-02569B?logo=flutter&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![Languages](https://img.shields.io/badge/languages-English%20%C2%B7%20Tamil-purple)
+![Budget](https://img.shields.io/badge/infrastructure-%E2%82%B90-lightgrey)
 
-[Live demo](#live-demo) ·
-[Overview](#overview) ·
-[What it does](#what-it-does) ·
+**[Try the web demo](https://citypulse-idp.onrender.com)** ·
+**[Download the Windows test app](https://github.com/Pragatish616/CITYPULSE-IDP/releases/tag/desktop-test-app)** ·
 [Architecture](#architecture) ·
-[Results](#what-the-evaluation-shows) ·
+[What is different](#what-is-different) ·
+[Results, including the failures](#what-the-evaluation-shows) ·
 [Quick start](#quick-start) ·
-[Repository map](#repository-map) ·
-[Roadmap](#roadmap) ·
-[Contributing](.github/CONTRIBUTING.md)
+[Roadmap](#roadmap)
 
 </div>
 
 > [!IMPORTANT]
-> **CityPulse is a research prototype.** It estimates flood risk from limited data. It never says a road is
-> safe or passable, and nothing here is a substitute for your own judgement or for official warnings.
-> Flood data exists for **Chennai only**, built from 2015 records. There is no live sensor feed yet.
-> The Android app has been installed and run on one phone (first on 5 October 2026; the 11 October build, with the accident switch, installed over it and is reported to work); no timings, memory figures or offline tests are recorded yet.
+> **CityPulse is a research prototype.** It estimates flood risk from limited data. It **never says a road is safe or passable**, and nothing here
+> replaces your own judgement or official warnings. Flood data exists for **Chennai only**, built from 2015 records; there is no live sensor feed yet.
+> The Android app has been installed and run on one phone; no timings, memory figures or offline tests are recorded yet.
 
 ---
 
-## Live demo
+## Why this exists
 
-**Web demo, running for now: <https://citypulse-idp.onrender.com>**
+Every northeast monsoon Chennai floods in much the same places: Velachery, Pallikaranai, the railway subways, the Mudichur corridor. Two things go
+wrong for people on the road. Navigation apps optimise travel time with little street-level flood information, and connectivity fails exactly when
+it is needed.
 
-Search two places in Chennai (try *Adyar* and *T. Nagar*), pick a travel mode and get a route with the advisor's verdict, or use
-*Report water here* to send a test report. The banner at the top shows what NASA's satellite sees over Chennai right now (rain, and how old the
-image is); tap it for the numbers and what they mean. It is the same web app and router that this repository builds.
+CityPulse keeps a **flood probability for every road segment**, routes on a deliberately cautious version of it, explains the choice in plain language
+from a checked record, and works without a network. It is also an honest research artifact: **the evaluation, including the results that went against
+us, is in the repository.**
 
-What to know before you try it:
+## Get it
 
-- **Temporary.** It runs on a free host and may be slow, restarted or taken down without notice.
-- **It sleeps.** After about 15 minutes without visitors the first page load can take 30 to 60 seconds.
-- **Reports are not kept.** The report server holds them in memory, so a restart erases them. Please do not report real flooding here.
-- **Not live flood data.** The flood layer is the 2015 Greater Chennai Corporation hazard map. Whether it is applied follows NASA satellite rain
-  (about 6 hours behind, 10 km grid): on a dry day it is switched off and the app says no flood event is under way; heavy rain switches it on.
-  An operator can override this. There is no sensor feed. See the box above: it estimates risk from limited data and never says a road is safe or passable.
-- **Phones.** The page is laid out for phone-sized screens. The Android app (below) has been installed on a phone and is reported to work like this web demo.
+| | | |
+|---|---|---|
+| 🌐 **Web demo** | Plan a route in your browser. Temporary, on a free host; may sleep for 30 to 60 seconds on first load. | [citypulse-idp.onrender.com](https://citypulse-idp.onrender.com) |
+| 🖥️ **Windows test app** | The full app with the map **and the on-device test model inside** (473 MB zip). Unzip, run `citypulse_app.exe`. | [Release `desktop-test-app`](https://github.com/Pragatish616/CITYPULSE-IDP/releases/tag/desktop-test-app) |
+| 📱 **Android app** | Built on demand by a GitHub workflow (64-bit ARM, debug-signed, for your own phone). | [Android APK workflow](.github/workflows/android-apk.yml) |
+| 🧠 **Test model** | The fine-tuned question labeller (4-bit GGUF, 398 MB) with its licence and model card. Not adopted; see [below](#the-question-box-and-the-on-device-model). | [Release `qa-model-run1`](https://github.com/Pragatish616/CITYPULSE-IDP/releases/tag/qa-model-run1) |
 
-How it is built and checked: [`docs/DEPLOY.md`](01_code/citypulse-IDP/docs/DEPLOY.md) (one container; the `Dockerfile` at the top of this repository is
-generated from it). `python 01_code/citypulse-IDP/scripts/smoke_deploy.py https://citypulse-idp.onrender.com` runs 12 read-only checks against the demo.
+## What is different
 
-### Android app
+Most of the parts have prior art, and we say so ([literature review](03_literature_review/CityPulse_literature_review_v2.pdf), 323 verified references).
+What this project adds is the combination, and the discipline around it.
 
-A manual GitHub workflow, [Android APK](.github/workflows/android-apk.yml), builds an installable app for 64-bit ARM phones (the 11 October build downloads as a zip of about 29 MB; signed with a debug key: for
-your own phone, not the Play Store). Steps and a checklist of what to measure are in [`docs/ops/MOBILE_TESTING.md`](01_code/citypulse-IDP/docs/ops/MOBILE_TESTING.md).
-
-- **Status:** first installed on one Android phone on 5 October 2026. The build of 11 October 2026 (commit `47b579e`) was installed over it and the owner reports that it works. That build adds the per-trip "Avoid reported accidents" switch, the "Accident here" report and limits per travel mode (ADR-032). Which of these features were tried on the phone was not recorded, and the Tamil text for them is a draft.
-- **Web demo:** redeployed by hand on 11 October 2026, after which it was checked: its routing server refuses an unknown `avoid` type, its web app contains the "Avoid reported accidents" switch and the "Accident here" report, its field log lists the 31 subways first (logging stays off until tokens are set), and the project's 12 read-only smoke checks passed. The accident switch itself was not tried on the live site (that would post a report to it). Render is deployed by hand, so the demo can fall behind this repository again.
-- **Not recorded yet:** start-up and route timings, memory, battery, and behaviour in airplane mode. In this build the router runs on the phone,
-  so the offline claim is still untested. The base map needs a network for its tiles.
-- Reports sent from the app go to the public demo server and are lost on its restart.
-
----
-
-## Overview
-
-Every northeast monsoon (October to December) Chennai floods in much the same places: Velachery,
-Pallikaranai, the railway subways, the Mudichur corridor. Two things go wrong for people on the road.
-Navigation apps optimise travel time with little street-level flood information, and connectivity fails
-exactly when it is needed.
-
-CityPulse keeps a **flood probability for every road segment**, routes on a deliberately cautious version of
-it, and works without a network. It is also an honest research artifact: the repository contains the
-evaluation, including the results that did **not** go our way (see [below](#what-the-evaluation-shows)).
-
-## What it does
-
-| Capability | How |
+| | |
 |---|---|
-| **Per-street flood belief** | Greater Chennai Corporation hazard zones plus citizen reports that fade with age, weighted by source reliability, fused in log-odds. A Beta-posterior upper quantile gives the cautious index the router uses. |
-| **Hazard-aware routing** | Bidirectional Dijkstra on a compact CSR graph. Edge cost separates *slowdown* from *harm*. Four travel modes (car, bicycle, on foot, emergency vehicle) each have their own speeds and road access. |
-| **On-device route advisor** | A transparent scoring model reads the route's own facts and returns a risk level, a *proceed with care / wait / avoid* verdict, an evidence level and a route-choice check, in about 1.5 microseconds per call. See [ADR-021](01_code/citypulse-IDP/docs/DECISIONS.md). |
-| **Checked explanations** | A template turns the structured decision record into text, and a symbolic verifier gates it. A language model never produces route geometry. |
-| **Chennai + Tamil Nadu in one app** | A route with both ends in Chennai uses the detailed Chennai map, its flood layer and the advisor. Anything else uses a Tamil Nadu main-road map and shows only the best route. See [ADR-022](01_code/citypulse-IDP/docs/DECISIONS.md). |
-| **Rain context, with a human override** | The flood-event state follows NASA satellite rain (about 6 hours behind) unless an operator overrides it ([ADR-027](01_code/citypulse-IDP/docs/DECISIONS.md)). A rain forecast input exists but is **off by default** because it failed its pre-registered test (see results). |
-| **Volunteer field log** | A phone page where volunteers record *passable / not passable / can't tell* at a road point, with the time, offline-first, to build the missing street-level ground truth ([ADR-028](01_code/citypulse-IDP/docs/DECISIONS.md), [protocol](01_code/citypulse-IDP/docs/field/FIELD_PROTOCOL.md)). It starts with **31 candidate subways** from the Greater Chennai Corporation's own table ([ADR-031](01_code/citypulse-IDP/docs/DECISIONS.md); positions unconfirmed, 10 have none). Research data only: it changes no route and is shown to no traveller. Built and tested; no volunteer has used it, and it is off until tokens are set. |
-| **Event miner** | A small local model (`qwen3.5:0.8b` through Ollama) reads pasted official posts and news in English or Tamil and suggests quoted street events for a person to review ([ADR-030](01_code/citypulse-IDP/docs/DECISIONS.md), [guide](01_code/citypulse-IDP/docs/field/EVENT_MINER.md)). **Not evaluated yet.** It runs on a laptop, not in the app, and its output never reaches routes. |
-| **Accident reports and limits** | Travellers can report an accident and switch on "Avoid reported accidents" for a trip: the route keeps off reported segments whatever the extra time, and says so if no route can. Walking and emergency routes always avoid accidents, closures and reported flooding when a reliable source or two reports agree ([ADR-032](01_code/citypulse-IDP/docs/DECISIONS.md)). Placeholder numbers; no accident history is used, because no verified accident locations were found. |
-| **Search** | Streets, highway numbers (`NH 44`, `NH-44`, `NH44`) and 25,144 places, in English and Tamil. |
-| **Bilingual UI** | English and Tamil. The Tamil text is a first draft and needs a native speaker's review. |
-| **Any city** | A pipeline builds a routing-only pack for a new city from OpenStreetMap. A hazard layer needs its own verified data source. See [Adding a city](01_code/citypulse-IDP/docs/ADDING_A_CITY.md). |
-
-### Design rules the code enforces
-
-- **Never say a road is safe.** No green, no "all clear", no percentages for model scores. Tests scan every UI string in both languages.
-- **Absence of data is not safety.** Thin evidence pulls the advice toward *moderate*, never toward *lower risk*.
-- **No invented facts.** Every number and place name in an explanation comes from the routing decision record.
-- **One router.** The Dart router is the only implementation; Python re-implementations exist for analysis and are validated against it.
+| **Caution that rises when evidence thins** | The pessimistic index is a Beta-posterior upper quantile, so one positive report can never lower it. (The first version, a Wald band, did exactly that; it was found, documented and replaced, ADR-015.) |
+| **Slowdown and harm are priced separately** | Edge cost is `time x (1 + p(slowdown - 1)) + lambda x p x severity x time`. A proposition in the docs shows that a time-proportional penalty caps cost at `(1 + lambda s)` times free-flow, which is why the default commuter setting is nearly hazard-blind. We measured it: 7 of 100 routes changed. |
+| **No verdict, by construction** | No green, no "all clear", no percentages for model scores. Tests scan every UI string in both languages. A symbolic verifier gates generated text. A question about whether a road is safe, dry or open is **always refused**, with the risk and the age of the evidence shown instead. |
+| **A question box that cannot talk its way past the rules** | Ask "why this route?", "how long?", "what did you avoid?", in English or Tamil. Rules answer first; a tiny model may only *label* the question; templates write the answer; the verifier checks it ([details](#the-question-box-and-the-on-device-model)). |
+| **One router, every platform** | The Dart router runs on the server and in the app. Python re-implementations exist only for analysis and are validated against it (100 of 100 paths reproduced). |
+| **Offline-first** | Compact CSR graph, bidirectional Dijkstra, binary map packs (Chennai: 471,240 edges; Tamil Nadu main roads: 257,249). The map tiles still need a network. |
+| **Pre-registered evidence** | The recent studies and every model run state their pass criteria *before* they run. Missed bars are reported as missed. See [Results](#what-the-evaluation-shows). |
+| **Bilingual from the start** | English and Tamil UI, search (streets, highway numbers, 25,144 places) and question answering. The Tamil is a first draft awaiting a native speaker's review. |
+| **A way to get the missing data** | A volunteer field log (offline-first, *passable / not passable / can't tell*, with the time) and a subway watchlist from the city's own table, aimed at the one thing the models lack: independent, time-stamped street-level passability. |
 
 ## Architecture
+
+### The system
 
 ```mermaid
 flowchart LR
     subgraph Data["Pinned data"]
         OSM[(OpenStreetMap<br/>ODbL)]
-        GCC[(GCC flood-hazard zones<br/>2015, OpenCity)]
+        GCC[(GCC flood-hazard zones<br/>and 2015 reports<br/>OpenCity)]
     end
 
-    subgraph Build["Build (Python)"]
-        PIPE[city / region<br/>pack builders]
+    subgraph Build["Build - Python"]
+        PIPE[Pack builders<br/>city and region]
     end
 
-    subgraph Core["Dart packages"]
-        BEL[pulse_belief<br/>flood belief]
-        RTR[pulse_router<br/>graph, cost, search,<br/>advisor]
-        EXP[pulse_explain<br/>template + verifier]
+    subgraph Core["Core packages - Dart"]
+        BEL[pulse_belief<br/>log-odds fusion<br/>Beta upper quantile]
+        RTR[pulse_router<br/>CSR graph, cost model,<br/>search, advisor]
+        EXP[pulse_explain<br/>template, verifier,<br/>question answerer]
     end
 
     subgraph Serve["Serve"]
-        API[router_api<br/>Chennai + Tamil Nadu]
-        ING[FastAPI ingest<br/>citizen reports]
+        API[router_api<br/>Chennai and Tamil Nadu]
+        ING[FastAPI<br/>reports and field log]
     end
 
-    APP[Flutter app<br/>Android + Web]
+    subgraph Clients["Clients - Flutter"]
+        AND[Android]
+        WEB[Web]
+        WIN[Windows test app]
+    end
+
+    MODEL[(Test model<br/>GGUF, labels questions)]
 
     OSM --> PIPE
     GCC --> PIPE
     PIPE -->|binary map packs| RTR
     BEL --> RTR
     RTR --> API
-    RTR --> APP
-    EXP --> APP
-    API <-->|route, search, overlay| APP
-    APP -->|reports| ING
+    RTR --> Clients
+    EXP --> Clients
+    API <-->|route, search, overlay| Clients
+    Clients -->|reports| ING
     ING -->|observations| API
+    MODEL -.->|optional, label only| Clients
 ```
 
-### How a route is answered
+### From evidence to a route to words
 
 ```mermaid
 flowchart TD
-    Q[Start and end chosen] --> C{Both ends inside<br/>Chennai?}
-    C -- yes --> CH[Chennai pack:<br/>flood belief + hazard-aware route]
-    CH --> ADV[On-device advisor:<br/>risk, verdict, evidence, reasons]
-    ADV --> EXPL[Checked explanation]
-    C -- no --> TN[Tamil Nadu main-road pack:<br/>best route by road speed]
-    TN --> NOTE[Note: flood data covers<br/>Chennai only]
+    P[Static prior<br/>from hazard zones] --> F
+    R["Reports: source, age, place"] --> F
+    F[Fuse in log-odds<br/>reports fade with age,<br/>weighted by source reliability] --> B[Belief per street]
+    B --> I[Pessimistic index<br/>Beta upper quantile<br/>per user class]
+    I --> C[Edge cost<br/>slowdown plus harm]
+    C --> S[Bidirectional Dijkstra]
+    S --> T[Decision trace<br/>the only source of facts]
+    T --> A[Advisor<br/>risk, verdict, evidence level]
+    T --> E[Template explanation]
+    T --> Q[Question answerer]
+    E --> V{Verifier}
+    Q --> V
+    V -- passes --> U[Shown to the traveller]
+    V -- fails --> X[Fixed fallback text]
 ```
+
+### The question box and the on-device model
+
+```mermaid
+flowchart TD
+    Q["Traveller types a question<br/>(English or Tamil)"] --> D0["D0 - rules<br/>cue classifier, 19 intents"]
+    D0 --> M{"Test model<br/>attached?"}
+    M -- no --> ANS
+    M -- yes --> L["D1 - model returns a JSON label<br/>(8 s limit)"]
+    L --> R{"Readable label?"}
+    R -- no --> ANS
+    R -- yes --> G{"Rules saw a safety question<br/>and the model did not?"}
+    G -- yes --> ANS
+    G -- no --> ANS2["Use the model's label"]
+    ANS2 --> ANS
+    ANS["Templates write the answer<br/>from the route's own trace"] --> V{Verifier}
+    V -- passes --> OUT[Answer plus first-sentence headline<br/>and follow-up chips]
+    V -- fails --> FB[Fixed fallback text]
+    S[["Is it safe / dry / open / passable?"]] -.-> REF["Always refused:<br/>'I cannot confirm the condition of any road'<br/>risk and evidence age shown instead"]
+```
+
+The model **only labels**. It never sees the route's facts and never writes text a traveller reads; the guard means it can add caution but never remove it.
+D0 always runs first and is the fallback, so a missing, slow or confused model costs wording, never correctness.
+
+**What we measured, and what we did not** (pre-registered, ADR-035):
+
+| Result | Value | Verdict |
+|---|---|---|
+| Fine-tune: Qwen2.5-0.5B-Instruct, LoRA, one GTX 1650, 3.7 hours | 525 steps | done |
+| Labelling accuracy, 300 validation questions, 4-bit build, through the app's own runtime | **0.99** (bar 0.977) | met |
+| Same, Tamil questions | 0.985 | met |
+| Model writing the answer text, passing the verifier | 88.3% (bar 90%) | **missed, so the model is used for labelling only** |
+| Untouched base model, same labelling task | 0.0 | reference |
+| Speed on a laptop CPU | about 0.57 s per question | phone not measured |
+
+The validation questions share a bank with the training questions, so these numbers overstate how it handles new phrasing. **Not adopted:** adoption needs a
+sealed test set written by the team, blind ratings, a faithfulness audit and phone measurements. The model card is in
+[`ml/route_qa/MODEL_CARD.md`](01_code/citypulse-IDP/ml/route_qa/MODEL_CARD.md).
 
 ## What the evaluation shows
 
 The point of this repository is defensible measurement, so the negative results are part of the product.
 
-- **Crowd reports added nothing measurable** over the static hazard map on the 2015 Chennai replay. The default commuter setting changed 7 of 100 routes.
-- **The first pessimistic index was broken**: it lowered caution after one weak report. It was replaced by a Beta-posterior upper quantile (ADR-015).
-- **The belief is not calibrated.** The earlier model scored a *negative* Brier skill against climatology. The advisor's weights are hand-set placeholders; its outputs are scores, not measured frequencies, and there are no outcome labels to calibrate them against.
-- **A rain forecast did not help** (ADR-029, run 8 October 2026). Over two north-east monsoons the forecast made a day ahead caught 7 of 46 rainy satellite readings and warned ahead for 5 of 24 rain episodes, against pre-registered bars of half. It stays off.
-- **Terrain models do not locate flooded streets inside Chennai** (ADR-026): they work at state or river-basin scale, but no learned prior kept routes out of the 2015 flood. Given the true flood, the router avoids 61 to 84% of it, so the limit is the information, not the search.
-- **The scarce resource is data, not modelling.** What is missing is independent, time-stamped, street-level passability evidence.
+- **Crowd reports added nothing measurable** over the static hazard map on the 2015 Chennai replay (193,191 nodes; 6,132 reports, all at one timestamp, none with depth).
+- **The first pessimistic index was broken**: it lowered caution after one weak report. Replaced by a Beta-posterior upper quantile (ADR-015).
+- **The belief is not calibrated.** The earlier model scored a *negative* Brier skill against climatology. The advisor's weights are hand-set placeholders; its outputs are scores, not measured frequencies.
+- **A rain forecast did not help** (ADR-029): it missed its pre-registered bars, so it is off by default.
+- **Terrain models do not locate flooded streets inside Chennai** (ADR-026, ADR-033, ADR-034): they work at state or basin scale; no learned prior kept routes out of the 2015 flood.
+- **The fine-tuned model missed one of its bars** (above), and we kept it out of the answer text.
+- **The scarce resource is data, not modelling:** independent, time-stamped, street-level passability evidence.
 
-Read the details in [`00_START_HERE/KNOWN_FLAWS.md`](00_START_HERE/KNOWN_FLAWS.md),
-[`00_START_HERE/KEY_NUMBERS.md`](00_START_HERE/KEY_NUMBERS.md) and the
-[decision records](01_code/citypulse-IDP/docs/DECISIONS.md) (ADR-001 to ADR-030).
+Details: [`KNOWN_FLAWS.md`](00_START_HERE/KNOWN_FLAWS.md), [`KEY_NUMBERS.md`](00_START_HERE/KEY_NUMBERS.md), the
+[decision records](01_code/citypulse-IDP/docs/DECISIONS.md) (ADR-001 to ADR-035) and the [pre-registrations](01_code/citypulse-IDP/data/qa/2026-10-13/PREREGISTRATION_QA.md).
 
 ## Quick start
 
-**Requirements:** Dart 3.x, Flutter (stable) for the app, Python 3.11+ for the scripts.
+**Requirements:** Dart 3.x, Flutter (stable) for the apps, Python 3.11+ for the scripts.
 
 ```bash
 git clone https://github.com/Pragatish616/CITYPULSE-IDP.git
@@ -187,18 +208,20 @@ cd CITYPULSE-IDP/01_code/citypulse-IDP
 cd services/router_api && dart pub get
 CITY=tamil_nadu PORT=8080 dart run bin/server.dart
 
-# Flutter app (web)
+# Flutter app in the browser
 cd ../../app && bash scripts/sync_data_assets.sh && flutter pub get
 flutter run -d chrome --dart-define=CITY=tamil_nadu --dart-define=ROUTER_API_URL=http://localhost:8080
+
+# Windows desktop test app (needs Windows Developer Mode); put the model at build/.../Release/models/route_qa.gguf
+flutter run -d windows -t lib/main_desktop.dart --dart-define=CITY=chennai
 ```
 
-More: [Deploying](01_code/citypulse-IDP/docs/DEPLOY.md) ·
-[Adding a city](01_code/citypulse-IDP/docs/ADDING_A_CITY.md) ·
+As of 15 October 2026 the suites pass: **754** tests in `pulse_explain`, **221** Flutter app tests, **360** Python tests (1 skipped), and the GitHub CI
+runs all of them. More: [Deploying](01_code/citypulse-IDP/docs/DEPLOY.md) · [Adding a city](01_code/citypulse-IDP/docs/ADDING_A_CITY.md) ·
 [Python scripts and server](01_code/citypulse-IDP/README.md).
 
-> The raw OpenStreetMap extract and the largest intermediate files are not in git. The map packs the app
-> and server need **are** included under `01_code/citypulse-IDP/data/packs/`. See
-> [`data/MANIFEST.md`](01_code/citypulse-IDP/data/MANIFEST.md) for provenance and how to rebuild.
+> The raw OpenStreetMap extract and the largest intermediate files are not in git. The map packs the app and server need **are** included under
+> `01_code/citypulse-IDP/data/packs/`. See [`data/MANIFEST.md`](01_code/citypulse-IDP/data/MANIFEST.md) for provenance and how to rebuild.
 
 ## Repository map
 
@@ -208,13 +231,15 @@ More: [Deploying](01_code/citypulse-IDP/docs/DEPLOY.md) ·
 ├── 01_code/
 │   └── citypulse-IDP/    The codebase
 │       ├── packages/       pulse_router · pulse_belief · pulse_explain   (Dart)
-│       ├── app/            Flutter app: Android + web
+│       ├── app/            Flutter app: Android, web, Windows test app
 │       ├── services/       router_api: Chennai + Tamil Nadu HTTP service  (Dart)
-│       ├── server/         Report-ingest service and volunteer field log   (FastAPI)
-│       ├── ml/             Event miner: local model + review queue         (Python)
-│       ├── scripts/        Pack builders, replay engine, Study 1 and 2    (Python)
+│       ├── server/         Report ingest and volunteer field log           (FastAPI)
+│       ├── ml/             route_qa (question model: training, export, checks)
+│       │                   event_miner (local model + review queue)        (Python)
+│       ├── tools/          model_check: the model through the app's runtime (Dart)
+│       ├── scripts/        Pack builders, replay engine, studies           (Python)
 │       ├── config/         cities.yaml · hazard_classes.yaml
-│       ├── data/           Pinned snapshots, map packs, results
+│       ├── data/           Pinned snapshots, map packs, results, pre-registrations
 │       └── docs/           ADRs, contracts, architecture, deployment
 ├── 02_paper/             IEEE conference paper (PDF + LaTeX)
 ├── 03_literature_review/ Review (PDF + LaTeX) and 323 verified references
@@ -223,55 +248,45 @@ More: [Deploying](01_code/citypulse-IDP/docs/DEPLOY.md) ·
 ├── 06_research_notes/    Verified literature tables, market brief
 ├── 07_reanalysis/        Study 1 re-scored under one reference belief
 ├── 08_archive_v1/        Superseded drafts, kept for history
-├── 09_skills/            Writing and review skills
-├── docs/                 Project-wide documentation index
-├── PLAN.md               Build plan and task list (M0 to M8)
-└── CLAUDE.md · AGENTS.md Rules for anyone, human or agent, working here
+└── CLAUDE.md · PLAN.md   Rules and the build plan for anyone, human or agent
 ```
 
 ## Roadmap
 
-The full plan is [`PLAN.md`](PLAN.md); the gated next steps are in
-[`00_START_HERE/NEXT_STEPS.md`](00_START_HERE/NEXT_STEPS.md).
+Full plan: [`PLAN.md`](PLAN.md). Gated next steps: [`NEXT_STEPS.md`](00_START_HERE/NEXT_STEPS.md).
 
 - [x] Router, belief engine and explanation gate on the full Chennai graph
-- [x] Beta-posterior pessimistic index, four travel modes, honest explanations
-- [x] City-agnostic pack pipeline; Tamil Nadu main-road region
-- [x] On-device route advisor; Chennai + Tamil Nadu in one app
-- [x] Web demo on a free Render instance (4 October 2026); the container image is built by the host, not yet tested locally
-- [x] Install and run the Android app on a real phone (5 October 2026; the 11 October build installed over it and is reported to work)
-- [x] Volunteer field log built and tested (6 October 2026; not deployed, no data yet)
-- [x] Rain forecast input built and tested; failed its pre-registered test, so off by default (8 October 2026)
-- [x] Event miner built with a local model (8 October 2026; accuracy not measured)
-- [ ] Measure latency, memory, battery and offline routing on the phone
-- [ ] Independent, time-stamped passability data (the 15 October 2026 gate): run the field log with volunteers, with durable storage
-- [x] Subway watchlist from GCC's own table, with an internal board and a pilot plan (9 October 2026; positions unconfirmed)
-- [ ] Confirm the subway positions on a map (a check sheet exists) and run the pilot with volunteers
-- [ ] Label 100 real posts and run the event-miner evaluation
-- [ ] Pack format v2 (32-bit name index), then detailed district packs
+- [x] Beta-posterior pessimistic index, four travel modes, checked explanations
+- [x] Chennai + Tamil Nadu in one app; on-device route advisor
+- [x] Web demo; Android app installed and run on one phone
+- [x] Volunteer field log, subway watchlist, rain-forecast input (failed its bar, off by default), event miner
+- [x] **Question box in English and Tamil, with a verifier-gated, rules-first answerer**
+- [x] **Fine-tuned on-device labelling model, exported to GGUF and run through the app's own runtime** (not adopted)
+- [x] **Windows desktop test app with the map and the model, downloadable from a GitHub release**
+- [ ] Measure latency, memory, battery and offline routing on a phone, including the model
+- [ ] The team's sealed test set, blind ratings and faithfulness audit for the model
+- [ ] Independent, time-stamped passability data: run the field log and the subway pilot with volunteers
 - [ ] Native-speaker review of the Tamil text
-- [ ] Other states, one phase at a time
+- [ ] Other cities and states, one phase at a time
 
 ## Data, licences and credits
 
 | Source | Use | Licence |
 |---|---|---|
 | OpenStreetMap | Roads, street and place names | ODbL 1.0 |
-| Greater Chennai Corporation via OpenCity | Flood-hazard zones, 2015 reports | Public domain (one layer's origin terms still unverified) |
-| OpenFreeMap / OpenMapTiles | Base map tiles | See their attribution on the map |
+| Greater Chennai Corporation via OpenCity | Flood-hazard zones, 2015 reports | Public domain (one layer's origin terms unverified) |
+| OpenFreeMap / OpenMapTiles | Base map tiles | See attribution on the map |
+| Qwen2.5-0.5B-Instruct (Alibaba Cloud / Qwen team) | Base of the test model, changed by fine-tuning | Apache-2.0 |
 
-Provenance for every pinned file is in [`data/MANIFEST.md`](01_code/citypulse-IDP/data/MANIFEST.md).
-No Google Maps Platform data is used, and the project does not bulk-use the public OpenStreetMap tile servers.
-
-**Licence for the code:** [MIT](LICENSE). The data keeps its own licences (table above): OpenStreetMap-derived
-files, including the map packs, stay under the ODbL and carry its share-alike terms.
+Every pinned file's provenance is in [`data/MANIFEST.md`](01_code/citypulse-IDP/data/MANIFEST.md). No Google Maps Platform data is used, and the project
+does not bulk-use the public OpenStreetMap tile servers. **Code:** [MIT](LICENSE). Data keeps its own licences: OpenStreetMap-derived files, including the
+map packs, stay under the ODbL and carry its share-alike terms.
 
 ## Contributing and conduct
 
-Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) first. In short: tests before changes, no invented numbers,
-and use the wording rules in [`CLAUDE.md`](CLAUDE.md) section 6. Security issues go through
-[SECURITY.md](.github/SECURITY.md). We follow the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
+Read [CONTRIBUTING.md](.github/CONTRIBUTING.md) first. In short: tests before changes, no invented numbers, and the wording rules in
+[`CLAUDE.md`](CLAUDE.md) section 6. Security issues go through [SECURITY.md](.github/SECURITY.md). We follow the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
 ## Team
 
-Pragatish N · Ravi · Jyotish, B.Tech, VIT Chennai. A credited university IDP project.
+**Pragatish N · Ravi R Kamath · Jyotish N**, B.Tech, VIT Chennai. A credited university IDP project.
