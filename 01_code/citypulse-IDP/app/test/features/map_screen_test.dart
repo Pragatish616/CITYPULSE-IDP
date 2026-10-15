@@ -279,6 +279,9 @@ void main() {
         expect(h.container.read(plannerProvider).avoidAccidents, isTrue);
         expect(h.backend.routeAvoid.last, {'accident'});
         expect(h.backend.routeAvoid.first, isEmpty);
+        // the route says what the switch did; with no accident reports in the data, that nothing changed
+        expect(find.byKey(const Key('route-accident-status')), findsOneWidget);
+        expect(find.textContaining('no accident reports in the data right now'), findsOneWidget);
       }
     });
 

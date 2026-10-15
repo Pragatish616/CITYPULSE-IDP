@@ -106,6 +106,9 @@ enum Msg {
   reasonRestrictedAvoided,
   avoidAccidents,
   avoidAccidentsHint,
+  accidentsNone,
+  accidentsKept,
+  accidentsNotMet,
   reportAccident,
   choiceClose,
   adviceHedge,
@@ -363,6 +366,11 @@ const Map<Msg, String> _en = {
   Msg.reasonRestrictedAvoided:
       'A faster route was left out: it crosses a reported accident or a road your travel mode avoids.',
   Msg.avoidAccidents: 'Avoid reported accidents',
+  Msg.accidentsNone:
+      'Avoiding reported accidents: there are no accident reports in the data right now, so this route is unchanged.',
+  Msg.accidentsKept: 'Avoiding reported accidents: keeping off {n} reported or closed road segments.',
+  Msg.accidentsNotMet:
+      'Avoiding reported accidents: no route keeps off every report, so the usual route is shown.',
   Msg.avoidAccidentsHint:
       'Even if the trip takes longer. Uses recent reports from other travellers.',
   Msg.reportAccident: 'Accident here',
@@ -568,6 +576,11 @@ const Map<Msg, String> _ta = {
   Msg.reasonRestrictedAvoided:
       'விரைவான வழி விடப்பட்டது: அது புகாரளிக்கப்பட்ட விபத்தையோ உங்கள் பயண முறை தவிர்க்கும் சாலையையோ கடக்கிறது.',
   Msg.avoidAccidents: 'புகாரளிக்கப்பட்ட விபத்துகளைத் தவிர்',
+  Msg.accidentsNone:
+      'விபத்துகளைத் தவிர்க்கிறது: இப்போது தரவில் விபத்து அறிக்கை எதுவும் இல்லை; எனவே இந்த வழி மாறவில்லை.',
+  Msg.accidentsKept: 'விபத்துகளைத் தவிர்க்கிறது: அறிக்கையிடப்பட்ட அல்லது மூடப்பட்ட {n} சாலைப் பகுதிகளைத் தவிர்க்கிறது.',
+  Msg.accidentsNotMet:
+      'விபத்துகளைத் தவிர்க்கிறது: எல்லா அறிக்கைகளையும் தவிர்க்கும் வழி இல்லை; எனவே வழக்கமான வழி காட்டப்படுகிறது.',
   Msg.avoidAccidentsHint:
       'பயணம் நீண்டாலும். மற்ற பயணிகளின் சமீபத்திய புகார்களைப் பயன்படுத்துகிறது.',
   Msg.reportAccident: 'இங்கே விபத்து',

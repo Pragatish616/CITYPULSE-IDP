@@ -7,6 +7,7 @@ import 'package:citypulse_app/src/core/settings.dart';
 import 'package:citypulse_app/src/core/strings.dart';
 import 'package:citypulse_app/src/domain/models.dart';
 import 'package:citypulse_app/src/explain/question_labeler_provider.dart';
+import 'package:citypulse_app/src/features/map/route_controller.dart';
 import 'package:citypulse_app/src/platform/providers.dart';
 import 'package:citypulse_app/src/ui/widgets/data_gaps_panel.dart';
 import 'package:citypulse_app/src/core/city.dart';
@@ -112,6 +113,25 @@ class RouteCard extends ConsumerWidget {
           key: const Key('route-extra'),
           style: text.bodyMedium,
         ),
+        // ADR-032: say what "Avoid reported accidents" did on this trip, so the switch never looks broken when there is nothing to avoid.
+        if (ref.watch(plannerProvider.select((PlannerState p) => p.avoidAccidents)))
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.car_crash_outlined, size: 18),
+                const SizedBox(width: 6),
+                Flexible(
+                  child: Text(
+                    accidentStatusText(trace, s),
+                    key: const Key('route-accident-status'),
+                    style: text.bodySmall,
+                  ),
+                ),
+              ],
+            ),
+          ),
         if (view.detours)
           Align(
             alignment: Alignment.centerLeft,
@@ -214,3 +234,19 @@ IconData _travelIcon(TravelType t) => switch (t) {
   TravelType.pedestrian => Icons.directions_walk,
   TravelType.emergency => Icons.emergency_outlined,
 };
+
+/// What "Avoid reported accidents" did on this trip, from the trace's own facts (ADR-032): the usual route because no route could keep off
+/// every report, the number of reported or closed segments it keeps off, or that there is nothing to avoid right now.
+String accidentStatusText(DecisionTrace trace, Strings s) {
+  final notMet = trace.contextFacts.any(
+    (f) => f.key == 'limits_not_met' && f.value == true,
+  );
+  if (notMet) return s(Msg.accidentsNotMet);
+  var kept = 0;
+  for (final f in trace.contextFacts) {
+    if (f.key == 'restricted_segments' && f.value is num) {
+      kept = (f.value! as num).toInt();
+    }
+  }
+  return kept > 0 ? s.withNumber(Msg.accidentsKept, kept) : s(Msg.accidentsNone);
+}
