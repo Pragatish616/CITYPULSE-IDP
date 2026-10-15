@@ -376,14 +376,14 @@ const Map<Msg, String> _en = {
   Msg.askClear: 'Erase the question',
   Msg.askCopy: 'Copy answer',
   Msg.askCopied: 'Copied',
-  Msg.askThinking: 'Working on your phone…',
+  Msg.askThinking: 'Working on this device…',
   Msg.askTraceTitle: 'How this question was read',
   Msg.askTraceRules: 'Rule-based reading',
   Msg.askTraceModel: 'On-device test model',
   Msg.askTraceUsed: 'its reading was used for the answer',
   Msg.askTraceKept: 'the rule-based reading was kept',
   Msg.askTraceNone: 'no usable reading',
-  Msg.askSource: 'Answered on your phone from the data for this route. A guide from the data held, not a guarantee.',
+  Msg.askSource: 'Answered on this device from the data for this route. A guide from the data held, not a guarantee.',
   Msg.askExample1: 'Why this route?',
   Msg.askExample2: 'How long will it take?',
   Msg.askExample3: 'Which streets were left out?',
@@ -422,7 +422,7 @@ const Map<Msg, String> _en = {
   Msg.helpAsk: 'Asking about a route',
   Msg.helpAskBody:
       'Under a planned route that has flood data you can type a question, in English or Tamil: how long it takes, why this route was chosen, '
-      'what was avoided. The answer comes from the data for that route, on your phone, with no network. Asking whether a '
+      'what was avoided. The answer comes from the data for that route, on this device, with no network. Asking whether a '
       'road can be used gets no yes or no: CityPulse shows the risk and how old the evidence is instead.',
   Msg.helpEmergency: 'In an emergency call 112.',
   Msg.helpAboutData: 'About the data',
@@ -582,14 +582,14 @@ const Map<Msg, String> _ta = {
   Msg.askClear: 'கேள்வியை அழி',
   Msg.askCopy: 'பதிலை நகலெடு',
   Msg.askCopied: 'நகலெடுக்கப்பட்டது',
-  Msg.askThinking: 'உங்கள் போனில் பார்க்கிறது…',
+  Msg.askThinking: 'இந்தச் சாதனத்தில் பார்க்கிறது…',
   Msg.askTraceTitle: 'இந்தக் கேள்வி எப்படிப் புரிந்துகொள்ளப்பட்டது',
   Msg.askTraceRules: 'விதி அடிப்படையிலான புரிதல்',
-  Msg.askTraceModel: 'போனில் உள்ள சோதனை மாதிரி',
+  Msg.askTraceModel: 'சாதனத்தில் உள்ள சோதனை மாதிரி',
   Msg.askTraceUsed: 'அதன் புரிதல் பதிலுக்குப் பயன்படுத்தப்பட்டது',
   Msg.askTraceKept: 'விதி அடிப்படையிலான புரிதலே வைக்கப்பட்டது',
   Msg.askTraceNone: 'பயன்படுத்தக்கூடிய புரிதல் இல்லை',
-  Msg.askSource: 'இந்த வழியின் தரவிலிருந்து, உங்கள் போனிலேயே பதில். கிடைக்கும் தரவின் அடிப்படையிலான வழிகாட்டி; உத்தரவாதம் அல்ல.',
+  Msg.askSource: 'இந்த வழியின் தரவிலிருந்து, இந்தச் சாதனத்திலேயே பதில். கிடைக்கும் தரவின் அடிப்படையிலான வழிகாட்டி; உத்தரவாதம் அல்ல.',
   Msg.askExample1: 'ஏன் இந்த வழி?',
   Msg.askExample2: 'எவ்வளவு நேரம் ஆகும்?',
   Msg.askExample3: 'எந்த தெருக்கள் விடப்பட்டன?',
@@ -628,7 +628,7 @@ const Map<Msg, String> _ta = {
   Msg.helpAsk: 'வழி பற்றி கேட்பது',
   Msg.helpAskBody:
       'வெள்ளத் தரவு உள்ள திட்டமிட்ட வழிக்குக் கீழே தமிழிலோ ஆங்கிலத்திலோ கேள்வி தட்டச்சு செய்யலாம்: எவ்வளவு நேரம் ஆகும், ஏன் இந்த வழி, எதைத் தவிர்த்தது. '
-      'பதில் அந்த வழியின் தரவிலிருந்து, உங்கள் போனிலேயே, இணையம் இல்லாமல் வரும். சாலையைப் பயன்படுத்தலாமா என்று கேட்டால் ஆம் இல்லை என்ற பதில் வராது; '
+      'பதில் அந்த வழியின் தரவிலிருந்து, இந்தச் சாதனத்திலேயே, இணையம் இல்லாமல் வரும். சாலையைப் பயன்படுத்தலாமா என்று கேட்டால் ஆம் இல்லை என்ற பதில் வராது; '
       'அதற்குப் பதிலாக ஆபத்தையும் சான்று எவ்வளவு பழையது என்பதையும் காட்டும்.',
   Msg.helpEmergency: 'அவசரநிலையில் 112 ஐ அழைக்கவும்.',
   Msg.helpAboutData: 'தரவு பற்றி',
