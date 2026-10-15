@@ -159,7 +159,9 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     if (settings.showPlaces) {
       final view = await map.view();
       if (view != null && view.zoom >= kPlacesMinZoom) {
-        final layer = await ref.read(placesLayerProvider.future);
+        // Already loaded after the first time: use it directly instead of waiting on the future again.
+        final PlacesLayer layer =
+            ref.read(placesLayerProvider).value ?? await ref.read(placesLayerProvider.future);
         if (seq != _placesSeq || !mounted) return;
         final shown = layer.visible(view.bounds, view.zoom);
         if (shown.isNotEmpty) {

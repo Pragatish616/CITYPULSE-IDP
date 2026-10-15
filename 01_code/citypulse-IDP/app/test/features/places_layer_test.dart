@@ -92,15 +92,16 @@ void main() {
       final h = AppHarness();
       await h.pump(tester, size: const Size(1280, 800));
       await tester.pumpAndSettle();
-      final real = h.map.places;
-      expect(real, isNull, reason: 'the harness view starts at zoom 12');
+      expect(h.map.places, isNull, reason: 'the harness view starts at zoom 12');
+
+      // The file is read for real, so load it outside the test's fake clock (inside it the read never completes).
+      final layer = await tester.runAsync(() => h.container.read(placesLayerProvider.future));
+      if (layer == null || layer.places.isEmpty) return; // no places file synced in this checkout
 
       h.map.currentView = (bounds: (minLat: 13.03, minLon: 80.23, maxLat: 13.07, maxLon: 80.27), zoom: 16);
       h.mapCallbacks.onCameraIdle?.call();
       await tester.pump(const Duration(milliseconds: 400));
       await tester.pumpAndSettle();
-      final layer = await h.container.read(placesLayerProvider.future);
-      if (layer.places.isEmpty) return; // no places file synced in this checkout
       expect(h.map.places, isNotNull);
       expect(h.map.places, contains('"FeatureCollection"'));
 
