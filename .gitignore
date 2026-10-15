@@ -65,3 +65,7 @@ fieldlog-export-*.csv
 # The route-question model is never committed; a measurement build adds it (ADR-035).
 01_code/citypulse-IDP/app/android/app/src/main/assets/models/
 *.gguf
+
+# Drop folder for the second agent's deliveries; integrated files are committed in their real places, not here.
+handoff/inbox/*
+!handoff/inbox/README.md

@@ -41,7 +41,8 @@ The git root is this folder (`final_citypulse_ai_idp`). The remote is `https://g
 | Windows | Test app with the map (flutter_map + OpenFreeMap) and the model (451 MiB zip) | GitHub release `desktop-test-app` |
 | Model | Qwen2.5-0.5B-Instruct LoRA fine-tune, 4-bit GGUF, 398 MB. Labels questions only. **Not adopted** | GitHub release `qa-model-run1` |
 
-Commits on `main` that are not yet pushed: `0bee8d4` was pushed; `79a2f14` (wording "this device") is local only. The owner pushes and rebuilds.
+Everything up to `8dcbba8` is pushed. The Android and Windows downloads were built from `0bee8d4`, so they lack the "this device" wording. The
+owner decides when to push and rebuild. Your work arrives as files and is integrated by another agent (see `INSTRUCTIONS.md`).
 
 ### Recently built (useful to know before you touch them)
 
