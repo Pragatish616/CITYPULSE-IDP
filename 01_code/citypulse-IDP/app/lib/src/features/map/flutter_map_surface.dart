@@ -154,6 +154,12 @@ class _FlutterMapSurfaceState extends State<FlutterMapSurface>
   Timer? _idle;
 
   List<_RiskLine> _risk = const [];
+  // The hazard polylines are built once per data set and whole zoom level, not on every frame of a pan or zoom: thousands of
+  // segments rebuilt per frame made the map lag.
+  Object? _riskCacheFor;
+  int _riskCacheZoom = -1;
+  List<Polyline> _riskCasing = const [];
+  List<Polyline> _riskLines = const [];
   List<LatLng> _watchlist = const [];
   List<LatLng> _path = const [];
   List<LatLng> _fastest = const [];
@@ -259,42 +265,46 @@ class _FlutterMapSurfaceState extends State<FlutterMapSurface>
     });
   }
 
+  void _refreshRiskLayers(int zoomLevel) {
+    if (identical(_riskCacheFor, _risk) && _riskCacheZoom == zoomLevel) return;
+    _riskCacheFor = _risk;
+    _riskCacheZoom = zoomLevel;
+    final z = zoomLevel + 0.5;
+    final dashed = StrokePattern.dashed(segments: const [4, 4]);
+    const solid = StrokePattern.solid();
+    _riskCasing = [
+      for (final l in _risk)
+        Polyline(
+          points: l.points,
+          strokeWidth: _byZoom(z, l.reported ? _reportedCasingW : _priorCasingW),
+          color: Colors.white.withValues(alpha: l.reported ? 0.7 : 0.55),
+          pattern: l.reported ? solid : dashed,
+          strokeCap: StrokeCap.round,
+          strokeJoin: StrokeJoin.round,
+        ),
+    ];
+    _riskLines = [
+      for (final l in _risk)
+        Polyline(
+          points: l.points,
+          strokeWidth: _byZoom(z, l.reported ? _reportedW : _priorW),
+          color: _riskColour(l.p).withValues(alpha: 0.95),
+          pattern: l.reported ? solid : dashed,
+          strokeCap: StrokeCap.round,
+          strokeJoin: StrokeJoin.round,
+        ),
+    ];
+  }
+
   Widget _overlays(BuildContext context) {
     final zoom = MapCamera.of(context).zoom;
     final riskVisible = zoom >= kRiskMinZoom && _risk.isNotEmpty;
+    if (riskVisible) _refreshRiskLayers(zoom.floor());
     return Stack(
       children: [
         if (riskVisible) ...[
-          PolylineLayer(
-            polylines: [
-              for (final l in _risk)
-                Polyline(
-                  points: l.points,
-                  strokeWidth: _byZoom(zoom, l.reported ? _reportedCasingW : _priorCasingW),
-                  color: Colors.white.withValues(alpha: l.reported ? 0.7 : 0.55),
-                  pattern: l.reported
-                      ? const StrokePattern.solid()
-                      : StrokePattern.dashed(segments: const [4, 4]),
-                  strokeCap: StrokeCap.round,
-                  strokeJoin: StrokeJoin.round,
-                ),
-            ],
-          ),
-          PolylineLayer(
-            polylines: [
-              for (final l in _risk)
-                Polyline(
-                  points: l.points,
-                  strokeWidth: _byZoom(zoom, l.reported ? _reportedW : _priorW),
-                  color: _riskColour(l.p).withValues(alpha: 0.95),
-                  pattern: l.reported
-                      ? const StrokePattern.solid()
-                      : StrokePattern.dashed(segments: const [4, 4]),
-                  strokeCap: StrokeCap.round,
-                  strokeJoin: StrokeJoin.round,
-                ),
-            ],
-          ),
+          PolylineLayer(polylines: _riskCasing),
+          PolylineLayer(polylines: _riskLines),
         ],
         if (_fastest.length >= 2)
           PolylineLayer(
