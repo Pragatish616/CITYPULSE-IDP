@@ -1,0 +1,27 @@
+{
+ "built": "2026-10-15T09:55:26+00:00",
+ "script": "scripts/extract_osm_places.py",
+ "source_pbf": "southern-zone-260911.osm.pbf",
+ "source_sha256": "75f605c3f8a85ba7cc40d76d6478fc116ed477e7f3027cabbd7edd5b4b87b674",
+ "licence": "ODbL 1.0, (c) OpenStreetMap contributors",
+ "places": 13261,
+ "by_category": {
+  "education": 805,
+  "health": 2079,
+  "police": 123,
+  "fire": 15,
+  "bus": 1243,
+  "rail": 153,
+  "worship": 880,
+  "landmark": 199,
+  "park": 356,
+  "shop": 3538,
+  "food": 1415,
+  "money": 952,
+  "fuel": 294,
+  "utility": 724,
+  "signal": 485
+ },
+ "poi_json_sha256": "0b922ff07e9ab4d4cd0a77ae91f6148d43160336a3fcaa7b0ec53ab282352ef4",
+ "poi_json_bytes": 787340
+}

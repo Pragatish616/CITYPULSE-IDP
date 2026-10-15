@@ -27,6 +27,9 @@ cities:
     places: data/places/chennai-2026-10-04/places.json
     # Optional: a hotspot-candidates file for the map's watchlist layer. Cities without one get an empty layer.
     watchlist: data/watchlist/2026-09-14/watchlist_candidates.json
+    # Optional: the CityPulse places layer (shops, schools, police, bus stands, temples, utilities, traffic signals...), built from
+    # OpenStreetMap by scripts/extract_osm_places.py. Cities without one get an empty layer.
+    poi: data/places/chennai-poi-2026-10-15/poi.json
     hazard_layer: true
     local_contact:
       en: 'Greater Chennai Corporation control room: 1913'

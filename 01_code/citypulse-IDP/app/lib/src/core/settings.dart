@@ -33,6 +33,7 @@ class AppSettings {
     this.compute = ComputeMode.auto,
     this.showHazard = true,
     this.showWatchlist = false,
+    this.showPlaces = true,
   });
 
   /// UI language.
@@ -50,6 +51,9 @@ class AppSettings {
   /// Whether watchlist candidate pins are drawn.
   final bool showWatchlist;
 
+  /// Whether the CityPulse places layer (shops, schools, police, bus stands...) is drawn when zoomed in.
+  final bool showPlaces;
+
   /// A copy with some fields replaced.
   AppSettings copyWith({
     AppLanguage? language,
@@ -57,12 +61,14 @@ class AppSettings {
     ComputeMode? compute,
     bool? showHazard,
     bool? showWatchlist,
+    bool? showPlaces,
   }) => AppSettings(
     language: language ?? this.language,
     travel: travel ?? this.travel,
     compute: compute ?? this.compute,
     showHazard: showHazard ?? this.showHazard,
     showWatchlist: showWatchlist ?? this.showWatchlist,
+    showPlaces: showPlaces ?? this.showPlaces,
   );
 }
 
@@ -78,6 +84,7 @@ class SettingsNotifier extends Notifier<AppSettings> {
   static const _compute = 'settings.compute';
   static const _hazard = 'settings.show_hazard';
   static const _watchlist = 'settings.show_watchlist';
+  static const _places = 'settings.show_places';
 
   SharedPreferences get _prefs => ref.read(sharedPreferencesProvider);
 
@@ -93,6 +100,7 @@ class SettingsNotifier extends Notifier<AppSettings> {
       ),
       showHazard: p.getBool(_hazard) ?? true,
       showWatchlist: p.getBool(_watchlist) ?? false,
+      showPlaces: p.getBool(_places) ?? true,
     );
   }
 
@@ -124,6 +132,12 @@ class SettingsNotifier extends Notifier<AppSettings> {
   Future<void> setShowWatchlist({required bool value}) async {
     state = state.copyWith(showWatchlist: value);
     await _prefs.setBool(_watchlist, value);
+  }
+
+  /// Shows or hides the places layer.
+  Future<void> setShowPlaces({required bool value}) async {
+    state = state.copyWith(showPlaces: value);
+    await _prefs.setBool(_places, value);
   }
 }
 

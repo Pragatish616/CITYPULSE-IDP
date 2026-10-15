@@ -35,6 +35,7 @@ c = doc["cities"][city]
 print(f"CITY={shlex.quote(city)}")
 print(f"PACK_REL={shlex.quote(c['pack'])}")
 print(f"WATCHLIST_REL={shlex.quote(c.get('watchlist') or '')}")
+print(f"POI_REL={shlex.quote(c.get('poi') or '')}")
 PYCFG
 )"
 eval "$CITY_CFG"
@@ -76,5 +77,13 @@ out = [
 json.dump(out, open(dst, "w", encoding="utf-8"), separators=(",", ":"))
 print(f"watchlist candidates: {len(out)}")
 PY
+
+# The places layer (OpenStreetMap, ODbL): copied as built, or an empty layer for a city without one, so the asset always exists.
+if [ -n "${POI_REL:-}" ] && [ -f "$REPO_ROOT/$POI_REL" ]; then
+  cp "$REPO_ROOT/$POI_REL" "$APP_DIR/assets/data/places_poi.json"
+else
+  echo '{"version":1,"categories":[],"places":[]}' > "$APP_DIR/assets/data/places_poi.json"
+fi
+echo "places layer: $(wc -c < "$APP_DIR/assets/data/places_poi.json") bytes"
 
 echo "synced city $CITY, pack $PACK_REL: $(du -ch "$APP_DIR"/assets/packs/*.bin | tail -1 | cut -f1)"

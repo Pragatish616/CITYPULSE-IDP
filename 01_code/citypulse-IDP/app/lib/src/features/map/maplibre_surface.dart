@@ -121,6 +121,7 @@ class _MapLibreSurfaceState extends State<MapLibreSurface>
   // Latest requested state, re-applied when the style (re)loads.
   String? _risk;
   String? _watchlist;
+  String? _places;
   List<GeoPoint>? _path;
   List<GeoPoint>? _fastest;
   List<MapMarker> _markers = const [];
@@ -173,6 +174,7 @@ class _MapLibreSurfaceState extends State<MapLibreSurface>
     if (c == null) return;
     // Sources first, then layers, bottom to top.
     await c.addGeoJsonSource('risk', _parse(_risk));
+    await c.addGeoJsonSource('places', _parse(_places));
     await c.addGeoJsonSource('fastest', _lineFeature(_fastest));
     await c.addGeoJsonSource('route', _lineFeature(_path));
     await c.addGeoJsonSource('watchlist', _parse(_watchlist));
@@ -268,6 +270,44 @@ class _MapLibreSurfaceState extends State<MapLibreSurface>
       minzoom: kRiskMinZoom,
       enableInteraction: false,
     );
+    // The places layer sits above the hazard map and under the routes, so a route is never hidden by a shop pin.
+    await c.addCircleLayer(
+      'places',
+      'places-dot',
+      const CircleLayerProperties(
+        circleColor: ['get', 'colour'],
+        circleRadius: [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          14,
+          3.5,
+          17,
+          6,
+        ],
+        circleStrokeColor: '#FFFFFF',
+        circleStrokeWidth: 1.2,
+        circleOpacity: 0.9,
+      ),
+      enableInteraction: false,
+    );
+    await c.addSymbolLayer(
+      'places',
+      'places-label',
+      const SymbolLayerProperties(
+        textField: ['get', 'name'],
+        textFont: ['Noto Sans Regular'],
+        textSize: 11,
+        textOffset: [0, 0.9],
+        textAnchor: 'top',
+        textColor: '#333333',
+        textHaloColor: '#FFFFFF',
+        textHaloWidth: 1.2,
+        textOptional: true,
+      ),
+      minzoom: 16,
+      enableInteraction: false,
+    );
     await c.addLineLayer(
       'fastest',
       'fastest-line',
@@ -344,6 +384,13 @@ class _MapLibreSurfaceState extends State<MapLibreSurface>
     _risk = geoJson;
     if (_styleReady)
       await _controller?.setGeoJsonSource('risk', _parse(geoJson));
+  }
+
+  @override
+  Future<void> setPlaces(String? geoJson) async {
+    _places = geoJson;
+    if (_styleReady)
+      await _controller?.setGeoJsonSource('places', _parse(geoJson));
   }
 
   @override

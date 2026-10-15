@@ -51,6 +51,9 @@ abstract class MapHandle {
   /// Shows the watchlist pins from a GeoJSON string, or hides them.
   Future<void> setWatchlist(String? geoJson);
 
+  /// Shows the places layer (points with `name`, `kind`, `cat` and `colour` properties) from a GeoJSON string, or hides it.
+  Future<void> setPlaces(String? geoJson);
+
   /// Draws the chosen route, the fastest route (when different) and markers;
   /// everything `null`/empty clears them.
   Future<void> setRoute({

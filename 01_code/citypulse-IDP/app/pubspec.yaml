@@ -95,6 +95,7 @@ flutter:
     - assets/config/cities.yaml
     - assets/packs/
     - assets/data/watchlist_candidates.json
+    - assets/data/places_poi.json
     - assets/licenses/
 
   # Bundled so the web app asks no third party for fonts (see assets/fonts/README.md).

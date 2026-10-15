@@ -50,6 +50,9 @@ enum Msg {
   hazardMapNote,
   watchlist,
   watchlistNote,
+  placesLayer,
+  placesLayerNote,
+  nearPlace,
   legend,
   legendMapOnly,
   legendReported,
@@ -301,6 +304,11 @@ const Map<Msg, String> _en = {
   Msg.watchlistNote:
       'Clusters of high-hazard zones that may become the watchlist. A person '
       'who knows the city has not yet checked them.',
+  Msg.placesLayer: 'Places',
+  Msg.placesLayerNote:
+      'Shops, schools, hospitals, police, bus stands, stations, temples, landmarks, banks, fuel, public services and '
+      'traffic signals, from OpenStreetMap. Shown when zoomed in to street level.',
+  Msg.nearPlace: 'Near',
   Msg.legend: 'Legend',
   Msg.legendMapOnly: 'Hazard map only, no report (dashed)',
   Msg.legendReported: 'A report exists (solid)',
@@ -514,6 +522,11 @@ const Map<Msg, String> _ta = {
   Msg.watchlistNote:
       'அதிக அபாய மண்டலங்களின் தொகுப்புகள். நகரத்தை அறிந்த ஒருவர் இன்னும் '
       'இவற்றைச் சரிபார்க்கவில்லை.',
+  Msg.placesLayer: 'இடங்கள்',
+  Msg.placesLayerNote:
+      'கடைகள், பள்ளிகள், மருத்துவமனைகள், காவல் நிலையங்கள், பேருந்து நிலையங்கள், ரயில் நிலையங்கள், கோயில்கள், முக்கிய இடங்கள், '
+      'வங்கிகள், எரிபொருள் நிலையங்கள், பொது சேவைகள், போக்குவரத்து சிக்னல்கள் (OpenStreetMap). தெரு அளவுக்கு நெருக்கமாகப் பார்க்கும்போது காட்டப்படும்.',
+  Msg.nearPlace: 'அருகில்',
   Msg.legend: 'குறிவிளக்கம்',
   Msg.legendMapOnly: 'அபாய வரைபடம் மட்டும், புகார் இல்லை (புள்ளிக்கோடு)',
   Msg.legendReported: 'புகார் உள்ளது (தொடர்கோடு)',

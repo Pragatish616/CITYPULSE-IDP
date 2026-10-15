@@ -17,6 +17,7 @@ import 'package:citypulse_app/src/domain/models.dart';
 import 'package:citypulse_app/src/domain/rain_status.dart';
 import 'package:citypulse_app/src/features/map/map_surface.dart';
 import 'package:citypulse_app/src/features/map/place_field.dart';
+import 'package:citypulse_app/src/features/map/places_layer.dart';
 import 'package:citypulse_app/src/features/map/route_card.dart';
 import 'package:citypulse_app/src/features/map/route_controller.dart';
 import 'package:citypulse_app/src/features/report/report_sheet.dart';
@@ -109,6 +110,10 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   String? _riskFor;
   int _riskSeq = 0;
   Timer? _riskDebounce;
+  Timer? _placesDebounce;
+  String? _placesText;
+  String? _appliedPlaces;
+  int _placesSeq = 0;
   final _riskCache = <String, String>{};
 
   static const _riskPadding =
@@ -134,6 +139,37 @@ class _MapScreenState extends ConsumerState<MapScreen> {
       maxLat: up(b.maxLat + dLat),
       maxLon: up(b.maxLon + dLon),
     );
+  }
+
+  void _schedulePlaces({bool immediate = false}) {
+    _placesDebounce?.cancel();
+    _placesDebounce = Timer(
+      immediate ? Duration.zero : const Duration(milliseconds: 200),
+      () => unawaited(_refreshPlaces()),
+    );
+  }
+
+  /// Sends the places in view to the map (only when zoomed in to street level, and only what is on screen).
+  Future<void> _refreshPlaces() async {
+    final map = _map;
+    if (map == null || !mounted) return;
+    final settings = ref.read(settingsProvider);
+    final seq = ++_placesSeq;
+    String? text;
+    if (settings.showPlaces) {
+      final view = await map.view();
+      if (view != null && view.zoom >= kPlacesMinZoom) {
+        final layer = await ref.read(placesLayerProvider.future);
+        if (seq != _placesSeq || !mounted) return;
+        final shown = layer.visible(view.bounds, view.zoom);
+        if (shown.isNotEmpty) {
+          text = layer.geoJson(shown, tamil: settings.language == AppLanguage.ta);
+        }
+      }
+    }
+    if (seq != _placesSeq || !mounted || text == _placesText) return;
+    _placesText = text;
+    unawaited(_syncMapState());
   }
 
   void _scheduleRisk({bool immediate = false}) {
@@ -250,6 +286,11 @@ class _MapScreenState extends ConsumerState<MapScreen> {
       _appliedRisk = risk;
       await map.setRisk(risk);
     }
+    final places = settings.showPlaces ? _placesText : null;
+    if (places != _appliedPlaces) {
+      _appliedPlaces = places;
+      await map.setPlaces(places);
+    }
     final watch = settings.showWatchlist
         ? ref.read(watchlistGeoJsonProvider).value
         : null;
@@ -279,6 +320,9 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     final s = ref.read(stringsProvider);
     final planner = ref.read(plannerProvider.notifier);
     final place = Place.dropped(point);
+    final layer = ref.read(placesLayerProvider).value;
+    final near = layer?.nearest(point);
+    final tamil = ref.read(settingsProvider).language == AppLanguage.ta;
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
@@ -293,6 +337,14 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                   '${point.lat.toStringAsFixed(5)}, ${point.lon.toStringAsFixed(5)}',
                 ),
               ),
+              if (near != null && layer != null)
+                ListTile(
+                  key: const Key('tap-near-place'),
+                  dense: true,
+                  leading: Icon(Icons.place_outlined, color: _colour(layer.categoryOf(near).colour)),
+                  title: Text('${s(Msg.nearPlace)}: ${layer.label(near, tamil: tamil)}'),
+                  subtitle: Text(near.kind),
+                ),
               ListTile(
                 key: const Key('tap-set-start'),
                 leading: const Icon(Icons.trip_origin),
@@ -344,6 +396,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
       ..listen(settingsProvider, (_, _) {
         _syncMapState();
         _scheduleRisk(immediate: true);
+        _schedulePlaces(immediate: true);
       });
 
     final callbacks = MapSurfaceCallbacks(
@@ -351,8 +404,12 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         _map = handle;
         _syncMapState();
         _scheduleRisk(immediate: true);
+        _schedulePlaces(immediate: true);
       },
-      onCameraIdle: _scheduleRisk,
+      onCameraIdle: () {
+        _scheduleRisk();
+        _schedulePlaces();
+      },
       // A single tap only closes the keyboard: stray taps (ending a pan, dismissing a field) used to pop up the pin sheet.
       // Setting a point or reporting takes a deliberate press and hold.
       onTap: (_) => FocusManager.instance.primaryFocus?.unfocus(),
@@ -1099,6 +1156,14 @@ class _LayersSheet extends ConsumerWidget {
               onChanged: (v) => notifier.setShowHazard(value: v),
             ),
             SwitchListTile(
+              key: const Key('switch-places'),
+              contentPadding: EdgeInsets.zero,
+              title: Text(s(Msg.placesLayer)),
+              subtitle: Text(s(Msg.placesLayerNote)),
+              value: settings.showPlaces,
+              onChanged: (v) => notifier.setShowPlaces(value: v),
+            ),
+            SwitchListTile(
               key: const Key('switch-watchlist'),
               contentPadding: EdgeInsets.zero,
               title: Text(s(Msg.watchlist)),
@@ -1141,6 +1206,30 @@ class _LayersSheet extends ConsumerWidget {
               swatch: _Dot(RiskPalette.watchlistColor),
               messageKey: Msg.watchlist,
             ),
+            if (settings.showPlaces) ...[
+              const SizedBox(height: 8),
+              Text(s(Msg.placesLayer), style: text.titleSmall),
+              const SizedBox(height: 4),
+              Wrap(
+                key: const Key('places-legend'),
+                spacing: 12,
+                runSpacing: 6,
+                children: [
+                  for (final c in ref.watch(placesLayerProvider).value?.categories ?? const <PlaceCategory>[])
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _Dot(_colour(c.colour)),
+                        const SizedBox(width: 6),
+                        Text(
+                          s.language == AppLanguage.ta ? c.ta : c.en,
+                          style: text.bodySmall,
+                        ),
+                      ],
+                    ),
+                ],
+              ),
+            ],
           ],
         ),
       ),
@@ -1223,3 +1312,5 @@ class _Swatch extends StatelessWidget {
     ),
   );
 }
+
+Color _colour(String hex) => Color(int.parse('FF${hex.substring(1)}', radix: 16));

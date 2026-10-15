@@ -193,6 +193,8 @@ class FakeBackend implements RoutingBackend {
 class FakeMapHandle implements MapHandle {
   String? risk;
   String? watchlist;
+  String? places;
+  final placesCalls = <String?>[];
   List<GeoPoint>? path;
   List<GeoPoint>? fastest;
   List<MapMarker> markers = const [];
@@ -237,6 +239,12 @@ class FakeMapHandle implements MapHandle {
 
   @override
   Future<void> setWatchlist(String? geoJson) async => watchlist = geoJson;
+
+  @override
+  Future<void> setPlaces(String? geoJson) async {
+    places = geoJson;
+    placesCalls.add(geoJson);
+  }
 }
 
 /// Everything a test needs to drive the app.

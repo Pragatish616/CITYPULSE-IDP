@@ -161,6 +161,7 @@ class _FlutterMapSurfaceState extends State<FlutterMapSurface>
   List<Polyline> _riskCasing = const [];
   List<Polyline> _riskLines = const [];
   List<LatLng> _watchlist = const [];
+  List<({LatLng at, Color colour, String name})> _places = const [];
   List<LatLng> _path = const [];
   List<LatLng> _fastest = const [];
   List<MapMarker> _markers = const [];
@@ -196,6 +197,25 @@ class _FlutterMapSurfaceState extends State<FlutterMapSurface>
   Future<void> setRisk(String? geoJson) async {
     final parsed = _parseRisk(geoJson);
     if (mounted) setState(() => _risk = parsed);
+  }
+
+  @override
+  Future<void> setPlaces(String? geoJson) async {
+    final out = <({LatLng at, Color colour, String name})>[];
+    if (geoJson != null) {
+      final doc = jsonDecode(geoJson) as Map<String, dynamic>;
+      for (final f in (doc['features'] as List? ?? const [])) {
+        final feature = f as Map<String, dynamic>;
+        final c = (feature['geometry'] as Map<String, dynamic>)['coordinates'] as List<dynamic>;
+        final props = (feature['properties'] as Map?)?.cast<String, dynamic>() ?? const {};
+        out.add((
+          at: LatLng((c[1] as num).toDouble(), (c[0] as num).toDouble()),
+          colour: _hex(props['colour'] as String? ?? '#78909C'),
+          name: props['name'] as String? ?? '',
+        ));
+      }
+    }
+    if (mounted) setState(() => _places = out);
   }
 
   @override
@@ -306,6 +326,49 @@ class _FlutterMapSurfaceState extends State<FlutterMapSurface>
           PolylineLayer(polylines: _riskCasing),
           PolylineLayer(polylines: _riskLines),
         ],
+        if (_places.isNotEmpty)
+          CircleLayer(
+            circles: [
+              for (final p in _places)
+                CircleMarker(
+                  point: p.at,
+                  radius: zoom >= 17 ? 6 : 4,
+                  color: p.colour.withValues(alpha: 0.9),
+                  borderStrokeWidth: 1.2,
+                  borderColor: Colors.white,
+                ),
+            ],
+          ),
+        // Names only up close, and only a few hundred, so the map stays readable and smooth.
+        if (_places.isNotEmpty && zoom >= 16)
+          MarkerLayer(
+            markers: [
+              for (final p in _places.take(250))
+                if (p.name.isNotEmpty)
+                  Marker(
+                    point: p.at,
+                    width: 140,
+                    height: 30,
+                    alignment: Alignment.topCenter,
+                    child: IgnorePointer(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          p.name,
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 11,
+                            color: Color(0xFF333333),
+                            shadows: [Shadow(color: Colors.white, blurRadius: 3)],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+            ],
+          ),
         if (_fastest.length >= 2)
           PolylineLayer(
             polylines: [
