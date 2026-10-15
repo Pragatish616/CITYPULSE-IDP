@@ -59,6 +59,7 @@ class RouteQuestionBox extends StatefulWidget {
 class _RouteQuestionBoxState extends State<RouteQuestionBox> {
   final _controller = TextEditingController();
   QaAnswer? _answer;
+  LadderResult? _ladder;
   var _copied = false;
 
   @override
@@ -83,6 +84,7 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
     final q = question.trim();
     if (q.isEmpty || _busy) return;
     QaAnswer? answer;
+    LadderResult? ladder;
     if (widget.labeler == null) {
       // No model: the rule-based answer, immediately and in the same frame, exactly as before.
       try {
@@ -100,13 +102,14 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
       final ticket = ++_ticket;
       setState(() => _busy = true);
       try {
-        answer = (await answerWithLabeler(
+        ladder = await answerWithLabeler(
           question: q,
           trace: widget.trace,
           eventState: widget.eventState,
           hazardDisplayNouns: widget.hazardNouns,
           labeler: widget.labeler,
-        )).answer;
+        );
+        answer = ladder.answer;
       } on Object {
         answer = null;
       }
@@ -115,6 +118,7 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
     setState(() {
       _busy = false;
       _answer = answer;
+      _ladder = ladder;
       _fallbackLocale = detectLocale(q);
       _failed = answer == null;
       _copied = false;
@@ -280,6 +284,7 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
                       label: Text(s(_copied ? Msg.askCopied : Msg.askCopy)),
                     ),
                   ),
+                  if (_ladder != null) _TracePanel(ladder: _ladder!, strings: s),
                   if (needsRepeat) ...[
                     const SizedBox(height: 8),
                     const Divider(height: 1),
@@ -316,6 +321,52 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
             ),
           ],
         ],
+      ],
+    );
+  }
+}
+
+/// For testing the on-device model: what the rules and the model each made of the question, and which one the answer followed. Shown
+/// only when a model is attached (a measurement build). The question text itself is not repeated here.
+class _TracePanel extends StatelessWidget {
+  const _TracePanel({required this.ladder, required this.strings});
+
+  final LadderResult ladder;
+  final Strings strings;
+
+  static String _show(ModelLabel l) =>
+      l.secondary == null ? l.intent.wireName : '${l.intent.wireName} + ${l.secondary!.wireName}';
+
+  @override
+  Widget build(BuildContext context) {
+    final s = strings;
+    final text = Theme.of(context).textTheme;
+    final model = ladder.modelLabel;
+    final verdict = model == null
+        ? s(Msg.askTraceNone)
+        : (ladder.usedModel ? s(Msg.askTraceUsed) : s(Msg.askTraceKept));
+    final ms = ladder.labelTime?.inMilliseconds;
+    return ExpansionTile(
+      key: const Key('ask-trace'),
+      tilePadding: EdgeInsets.zero,
+      dense: true,
+      title: Text(s(Msg.askTraceTitle), style: text.labelMedium),
+      expandedAlignment: Alignment.centerLeft,
+      children: [
+        Text(
+          '${s(Msg.askTraceRules)}: ${_show(ladder.rulesLabel)}',
+          key: const Key('ask-trace-rules'),
+          style: text.bodySmall,
+        ),
+        Text(
+          '${s(Msg.askTraceModel)}: ${model == null ? s(Msg.askTraceNone) : _show(model)}'
+          '${ms == null ? '' : ' ($ms ms)'}',
+          key: const Key('ask-trace-model'),
+          style: text.bodySmall,
+        ),
+        Text(verdict, key: const Key('ask-trace-verdict'), style: text.bodySmall),
+        if (ladder.note.isNotEmpty)
+          Text(ladder.note, key: const Key('ask-trace-note'), style: text.bodySmall),
       ],
     );
   }

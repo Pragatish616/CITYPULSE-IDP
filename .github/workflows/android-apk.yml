@@ -16,6 +16,12 @@ on:
       router_api_url:
         description: "Router API the app uses only if 'compute on the server' is chosen in Settings"
         default: "https://citypulse-idp.onrender.com/api"
+      model_url:
+        description: "Optional. Web address of the route-question model (a GGUF file) to put inside the APK. Leave empty for the normal build, which has no model."
+        default: ""
+      model_sha256:
+        description: "Required when model_url is set: the SHA-256 of that file. The build stops if it does not match."
+        default: ""
 
 permissions:
   contents: read
@@ -51,12 +57,26 @@ jobs:
       # The map pack is copied in, not kept twice in git.
       - run: bash scripts/sync_data_assets.sh
       - run: flutter pub get
+      # A measurement build (ADR-035, PREREGISTRATION_QA.md addendum 5): the model goes into the APK as an uncompressed Android asset and the
+      # app is built to use it. The file must match the given SHA-256 or the build stops. A normal build skips all of this.
+      - name: Fetch the route-question model
+        if: ${{ inputs.model_url != '' }}
+        env:
+          MODEL_URL: ${{ inputs.model_url }}
+          MODEL_SHA256: ${{ inputs.model_sha256 }}
+        run: |
+          test -n "$MODEL_SHA256" || { echo "model_sha256 is required with model_url"; exit 1; }
+          mkdir -p android/app/src/main/assets/models
+          curl -sfL --retry 3 -o android/app/src/main/assets/models/route_qa.gguf "$MODEL_URL"
+          echo "$MODEL_SHA256  android/app/src/main/assets/models/route_qa.gguf" | sha256sum -c -
+          ls -l android/app/src/main/assets/models/
       - name: Build
         run: >
           flutter build apk --release --target-platform android-arm64
           --dart-define=CITY=chennai
           --dart-define=INGEST_URL=${{ inputs.ingest_url }}
           --dart-define=ROUTER_API_URL=${{ inputs.router_api_url }}
+          ${{ inputs.model_url != '' && '--dart-define=CITYPULSE_QA_MODEL=true' || '' }}
       - name: Size and checksum
         run: |
           ls -l build/app/outputs/flutter-apk/

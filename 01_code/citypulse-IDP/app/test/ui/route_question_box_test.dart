@@ -354,6 +354,31 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
+    testWidgets('the test panel shows both readings, the time, and which one the answer followed', (tester) async {
+      await _show(tester, labeler: _FakeLabeler((_) async => confidenceLabel));
+      await _ask(tester, 'How long will it take?');
+      expect(find.byKey(const Key('ask-trace')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('ask-trace')));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Rule-based reading: time_distance'), findsOneWidget);
+      expect(find.textContaining('On-device test model: confidence'), findsOneWidget);
+      expect(find.textContaining(' ms)'), findsOneWidget);
+      expect(find.text('its reading was used for the answer'), findsOneWidget);
+    });
+
+    testWidgets('the panel says when the model gave nothing usable, and is absent without a model', (tester) async {
+      await _show(tester, labeler: _FakeLabeler((_) async => 'no idea'));
+      await _ask(tester, 'How long will it take?');
+      await tester.tap(find.byKey(const Key('ask-trace')));
+      await tester.pumpAndSettle();
+      expect(find.text('no usable reading'), findsOneWidget);
+      expect(find.textContaining('On-device test model: no usable reading'), findsOneWidget);
+      await tester.pumpWidget(const SizedBox());
+      await _show(tester);
+      await _ask(tester, 'How long will it take?');
+      expect(find.byKey(const Key('ask-trace')), findsNothing);
+    });
+
     testWidgets('without a labeler nothing waits: the answer is there in the same frame', (tester) async {
       await _show(tester);
       await tester.enterText(find.byKey(const Key('ask-field')), 'How long will it take?');
@@ -373,6 +398,12 @@ void main() {
       Msg.askCopy,
       Msg.askCopied,
       Msg.askThinking,
+      Msg.askTraceTitle,
+      Msg.askTraceRules,
+      Msg.askTraceModel,
+      Msg.askTraceUsed,
+      Msg.askTraceKept,
+      Msg.askTraceNone,
       Msg.askSource,
       Msg.askExample1,
       Msg.askExample2,

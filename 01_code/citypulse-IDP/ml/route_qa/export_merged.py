@@ -30,8 +30,13 @@ ROOT = Path(__file__).resolve().parents[2]
 THRESHOLD = 0.99  # fixed in addendum 5 before this was run
 
 
-def labels(model, tok, rows) -> list[tuple[str | None, str | None]]:
-    return [prompts.parse_label(eval_model.generate(model, tok, prompts.messages_u(r["question"]), 40)) for r in rows]
+def labels(model, tok, rows, tag: str) -> list[tuple[str | None, str | None]]:
+    out = []
+    for i, r in enumerate(rows):
+        out.append(prompts.parse_label(eval_model.generate(model, tok, prompts.messages_u(r["question"]), 40)))
+        if (i + 1) % 50 == 0:
+            print(f"{tag}: {i + 1}/{len(rows)}", flush=True)
+    return out
 
 
 def main() -> int:
@@ -40,6 +45,7 @@ def main() -> int:
     ap.add_argument("--n-u", type=int, default=300)
     ap.add_argument("--seed", type=int, default=20261014)
     ap.add_argument("--device", default="auto")
+    ap.add_argument("--stage", choices=["save", "check", "both"], default="both")
     args = ap.parse_args()
     eval_model.DEVICE = "cuda" if (args.device == "auto" and torch.cuda.is_available()) or args.device == "cuda" else "cpu"
     dtype = torch.float16 if eval_model.DEVICE == "cuda" else torch.float32
@@ -52,21 +58,27 @@ def main() -> int:
 
     tok = AutoTokenizer.from_pretrained(eval_model.BASE, revision=rev)
     t0 = time.time()
+    # Stage 1: merge and save (fast, so that conversion can start while the slow label check runs).
+    if args.stage in ("save", "both") or not (out_dir / "model.safetensors").exists():
+        base = AutoModelForCausalLM.from_pretrained(eval_model.BASE, torch_dtype=dtype, revision=rev)
+        merged = PeftModel.from_pretrained(base, run_dir / "adapter").merge_and_unload().eval()
+        out_dir.mkdir(parents=True, exist_ok=True)
+        merged.save_pretrained(out_dir, safe_serialization=True)
+        tok.save_pretrained(out_dir)
+        del merged, base
+        print(f"merged model saved to {out_dir} ({dtype})", flush=True)
+    if args.stage == "save":
+        return 0
+
+    # Stage 2: the check, on the unmerged adapter and on the files just written (so it covers what was saved).
     base = AutoModelForCausalLM.from_pretrained(eval_model.BASE, torch_dtype=dtype, revision=rev)
     peft_model = PeftModel.from_pretrained(base, run_dir / "adapter").to(eval_model.DEVICE).eval()
-    before = labels(peft_model, tok, rows)
-
-    merged = peft_model.merge_and_unload().eval()
-    out_dir.mkdir(parents=True, exist_ok=True)
-    merged.save_pretrained(out_dir, safe_serialization=True)
-    tok.save_pretrained(out_dir)
-    del merged, peft_model, base
+    before = labels(peft_model, tok, rows, "adapter")
+    del peft_model, base
     if eval_model.DEVICE == "cuda":
         torch.cuda.empty_cache()
-
-    # Reload from the files just written, so the check covers what was saved, not what was in memory.
     reloaded = AutoModelForCausalLM.from_pretrained(out_dir, torch_dtype=dtype).to(eval_model.DEVICE).eval()
-    after = labels(reloaded, tok, rows)
+    after = labels(reloaded, tok, rows, "merged")
 
     same = sum(a == b for a, b in zip(before, after))
     gold = sum(b == (r["intent"], r.get("secondary")) for b, r in zip(after, rows))

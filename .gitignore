@@ -61,3 +61,7 @@ fieldlog-export-*.csv
 01_code/citypulse-IDP/data/models/
 01_code/citypulse-IDP/data/qa/*/runs/
 01_code/citypulse-IDP/data/qa/*/gpu_bundle.zip
+
+# The route-question model is never committed; a measurement build adds it (ADR-035).
+01_code/citypulse-IDP/app/android/app/src/main/assets/models/
+*.gguf

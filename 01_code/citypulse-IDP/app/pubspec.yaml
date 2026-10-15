@@ -45,6 +45,7 @@ dependencies:
 
   # App version for the "re-shown on app-version change" disclaimer rule
   # (ADR-011) -- reads pubspec's own version at runtime.
+  llamadart: ^0.12.2
   maplibre_gl: ^0.27.1
   package_info_plus: ^10.2.1
 

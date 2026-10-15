@@ -9,6 +9,12 @@ android {
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
+    // The route-question model, when a measurement build carries it, is stored as it is: a GGUF file does not compress, and the first
+    // launch copies it out by streaming (see MainActivity.kt), which needs the asset to be uncompressed.
+    androidResources {
+        noCompress += "gguf"
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

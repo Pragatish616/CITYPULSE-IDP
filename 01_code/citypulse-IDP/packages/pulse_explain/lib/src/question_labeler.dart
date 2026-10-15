@@ -96,7 +96,9 @@ class LadderResult {
   const LadderResult({
     required this.answer,
     required this.usedModel,
+    required this.rulesLabel,
     this.modelLabel,
+    this.labelTime,
     this.note = '',
   });
 
@@ -106,8 +108,14 @@ class LadderResult {
   /// Whether the model's label (and not the rule-based one) decided how the question was answered.
   final bool usedModel;
 
+  /// How the rule-based classifier understood the question (always present: D0 runs first).
+  final ModelLabel rulesLabel;
+
   /// The label read from the model, if any, whether or not it was used.
   final ModelLabel? modelLabel;
+
+  /// How long the model took to reply, when a model was asked (a reply that timed out reports the time waited).
+  final Duration? labelTime;
 
   /// Why the rule-based answer was kept, for logging and tests: `no model`, `no label`, `safety guard`, `same label`, or empty.
   final String note;
@@ -129,25 +137,41 @@ Future<LadderResult> answerWithLabeler({
     eventState: eventState,
     hazardDisplayNouns: hazardDisplayNouns,
   );
+  final c = rules.classification;
+  final rulesLabel = ModelLabel(c.intent, c.secondary);
   if (labeler == null) {
-    return LadderResult(answer: rules, usedModel: false, note: 'no model');
+    return LadderResult(
+      answer: rules,
+      usedModel: false,
+      rulesLabel: rulesLabel,
+      note: 'no model',
+    );
   }
+  final clock = Stopwatch()..start();
   String? reply;
   try {
     reply = await labeler.reply(question).timeout(timeout);
   } on Object {
     reply = null;
   }
+  clock.stop();
   final label = reply == null ? null : parseModelLabel(reply);
   if (label == null) {
-    return LadderResult(answer: rules, usedModel: false, note: 'no label');
+    return LadderResult(
+      answer: rules,
+      usedModel: false,
+      rulesLabel: rulesLabel,
+      labelTime: clock.elapsed,
+      note: 'no label',
+    );
   }
-  final c = rules.classification;
   if (label.intent == c.intent && label.secondary == c.secondary) {
     return LadderResult(
       answer: rules,
       usedModel: false,
+      rulesLabel: rulesLabel,
       modelLabel: label,
+      labelTime: clock.elapsed,
       note: 'same label',
     );
   }
@@ -159,7 +183,9 @@ Future<LadderResult> answerWithLabeler({
     return LadderResult(
       answer: rules,
       usedModel: false,
+      rulesLabel: rulesLabel,
       modelLabel: label,
+      labelTime: clock.elapsed,
       note: 'safety guard',
     );
   }
@@ -173,6 +199,8 @@ Future<LadderResult> answerWithLabeler({
       forceSecondary: label.secondary,
     ),
     usedModel: true,
+    rulesLabel: rulesLabel,
     modelLabel: label,
+    labelTime: clock.elapsed,
   );
 }

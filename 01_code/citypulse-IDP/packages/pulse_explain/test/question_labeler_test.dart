@@ -135,6 +135,8 @@ void main() {
       final r = await _run('How long will it take?', null);
       expect(r.usedModel, isFalse);
       expect(r.note, 'no model');
+      expect(r.labelTime, isNull);
+      expect(r.rulesLabel.intent, QaIntent.timeDistance);
       expect(r.answer.classification.intent, QaIntent.timeDistance);
     });
 
@@ -144,6 +146,9 @@ void main() {
       expect(l.calls, 1);
       expect(r.usedModel, isTrue);
       expect(r.answer.classification.intent, QaIntent.confidence);
+      expect(r.rulesLabel, const ModelLabel(QaIntent.timeDistance));
+      expect(r.modelLabel, const ModelLabel(QaIntent.confidence));
+      expect(r.labelTime, isNotNull);
       expect(r.answer.verification.passed || r.answer.usedFallback, isTrue);
     });
 
