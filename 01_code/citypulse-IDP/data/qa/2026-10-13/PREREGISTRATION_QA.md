@@ -92,3 +92,20 @@ The owner freed disk space, and the GPU build of PyTorch (2.14.1, CUDA 12.6) was
 - **Run name `run1`.** One run. No tuning on the validation set. A second run only to fix a bug, and then both are reported.
 - **After the run:** the automatic checks of addendum 2 on 300 validation questions and 60 validation answers, and the untouched base model as the reference on the same rows. Results are written up whatever they show.
 
+
+## Addendum 5 (15 October 2026), written before any export, conversion or phone wiring was run
+
+The owner asked for the export and the app wiring of the trained adapter (`run1`). Run1 met the labelling criteria and narrowly missed the answer-writing criterion (ADR-035 addendum 5), so this work is **D1 only**: the model labels the question, D0's templates write the answer, the verifier is unchanged. Nothing here is adoption; the rule for adopting D1 (addendum 1: a gain of at least 0.05 absolute on the sealed test set with the interval above zero, safety bars, phone ceilings) is unchanged and still unmet.
+
+**How the model sits in the app (fixed now):**
+- D0 always runs first and is the fallback. The model's reply is read by the same strict rule as `ml/route_qa/prompts.py: parse_label` (first `{...}`, valid JSON, intent from the 19 known, secondary known and different from the intent, otherwise no label). No valid label, an error, or no reply within **8 s** means the D0 answer, silently.
+- **Safety guard:** if the rule-based classifier marks the question as a safety question (as the main or the second part) and the model's label does not, the D0 answer is used. The model can add caution, never remove it. The refusal text and the verifier are unchanged, so no model reply can put a verdict on screen.
+- **Off by default.** A normal build never loads a model. A measurement build turns it on with a compile-time flag, and only a model file the owner has put on the phone is used. Nothing is downloaded by the app.
+- Nothing typed is stored or sent. The reply is read and dropped.
+
+**Export checks (fixed now, run once, reported whatever they show):**
+1. **Merge check.** The adapter merged into the fp16 base model must give the same label (intent and secondary) as the unmerged adapter on at least **99%** of the same 300 validation questions that run1 was evaluated on (seed 20261014).
+2. **Quantisation check.** A 4-bit or 8-bit build, run through its own runtime, must keep intent accuracy on those 300 questions within **2 points** of the unmerged adapter's 0.9967 (that is, at least 0.977). The order tried is fixed: Q8_0 first, then Q4_K_M. If Q4_K_M misses and Q8_0 passes, Q8_0 is the build measured on the phone and its larger size (about 530 MB) is checked against the 1.2 GB ceiling. If both miss, the result is reported and nothing is shipped.
+3. These checks say the export is faithful to the adapter. They say nothing new about how well the model understands questions it has not seen.
+
+**Format and runtime.** The target format is GGUF (addendum 3 already names Q4_K_M). The phone runtime is chosen separately and recorded when chosen; the app side is written against a small `QuestionLabeler` interface so that the choice changes one class.
