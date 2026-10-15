@@ -12,6 +12,10 @@ import 'package:pulse_explain/pulse_explain.dart';
 /// Whether this build uses the on-device model (a measurement build). Fixed at build time.
 const bool kQaModelBuild = bool.fromEnvironment('CITYPULSE_QA_MODEL');
 
+/// Whether the "How this question was read" test panel starts open. The desktop test app sets it, so the readings are in view while
+/// testing the model; everywhere else it starts closed.
+final qaTraceOpenProvider = Provider<bool>((ref) => false);
+
 /// The labeler the question box asks, or `null` for none.
 final questionLabelerProvider = Provider<QuestionLabeler?>((ref) {
   if (!kQaModelBuild) return null;

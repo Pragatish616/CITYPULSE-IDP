@@ -189,6 +189,7 @@ class RouteCard extends ConsumerWidget {
             hazardNouns: nouns,
             strings: s,
             labeler: ref.watch(questionLabelerProvider),
+            traceInitiallyOpen: ref.watch(qaTraceOpenProvider),
           ),
           const SizedBox(height: 8),
         ],

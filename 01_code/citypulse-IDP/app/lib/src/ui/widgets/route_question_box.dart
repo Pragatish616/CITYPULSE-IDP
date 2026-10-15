@@ -34,6 +34,7 @@ class RouteQuestionBox extends StatefulWidget {
     required this.hazardNouns,
     required this.strings,
     this.labeler,
+    this.traceInitiallyOpen = false,
     super.key,
   });
 
@@ -51,6 +52,9 @@ class RouteQuestionBox extends StatefulWidget {
 
   /// The on-device model that labels the question (D1), or `null` to answer with the rule-based answerer alone.
   final QuestionLabeler? labeler;
+
+  /// Whether the test panel ("How this question was read") starts open; the desktop test app opens it.
+  final bool traceInitiallyOpen;
 
   @override
   State<RouteQuestionBox> createState() => _RouteQuestionBoxState();
@@ -284,7 +288,12 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
                       label: Text(s(_copied ? Msg.askCopied : Msg.askCopy)),
                     ),
                   ),
-                  if (_ladder != null) _TracePanel(ladder: _ladder!, strings: s),
+                  if (_ladder != null)
+                    _TracePanel(
+                      ladder: _ladder!,
+                      strings: s,
+                      initiallyOpen: widget.traceInitiallyOpen,
+                    ),
                   if (needsRepeat) ...[
                     const SizedBox(height: 8),
                     const Divider(height: 1),
@@ -329,10 +338,15 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
 /// For testing the on-device model: what the rules and the model each made of the question, and which one the answer followed. Shown
 /// only when a model is attached (a measurement build). The question text itself is not repeated here.
 class _TracePanel extends StatelessWidget {
-  const _TracePanel({required this.ladder, required this.strings});
+  const _TracePanel({
+    required this.ladder,
+    required this.strings,
+    this.initiallyOpen = false,
+  });
 
   final LadderResult ladder;
   final Strings strings;
+  final bool initiallyOpen;
 
   static String _show(ModelLabel l) =>
       l.secondary == null ? l.intent.wireName : '${l.intent.wireName} + ${l.secondary!.wireName}';
@@ -348,6 +362,7 @@ class _TracePanel extends StatelessWidget {
     final ms = ladder.labelTime?.inMilliseconds;
     return ExpansionTile(
       key: const Key('ask-trace'),
+      initiallyExpanded: initiallyOpen,
       tilePadding: EdgeInsets.zero,
       dense: true,
       title: Text(s(Msg.askTraceTitle), style: text.labelMedium),

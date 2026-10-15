@@ -19,6 +19,7 @@ Future<void> _show(
   ConfidenceBand band = ConfidenceBand.moderate,
   String queryId = 'test',
   QuestionLabeler? labeler,
+  bool traceOpen = false,
 }) async {
   final trace = sampleTrace(band: band);
   await tester.pumpWidget(
@@ -32,6 +33,7 @@ Future<void> _show(
             hazardNouns: _nouns,
             strings: Strings(lang),
             labeler: labeler,
+            traceInitiallyOpen: traceOpen,
           ),
         ),
       ),
@@ -364,6 +366,19 @@ void main() {
       expect(find.textContaining('On-device test model: confidence'), findsOneWidget);
       expect(find.textContaining(' ms)'), findsOneWidget);
       expect(find.text('its reading was used for the answer'), findsOneWidget);
+    });
+
+    testWidgets('the desktop app can start the panel open: the readings show without a tap', (tester) async {
+      await _show(tester, labeler: _FakeLabeler((_) async => confidenceLabel), traceOpen: true);
+      await _ask(tester, 'How long will it take?');
+      expect(find.textContaining('Rule-based reading: time_distance'), findsOneWidget);
+      expect(find.text('its reading was used for the answer'), findsOneWidget);
+    });
+
+    testWidgets('elsewhere the panel starts closed', (tester) async {
+      await _show(tester, labeler: _FakeLabeler((_) async => confidenceLabel));
+      await _ask(tester, 'How long will it take?');
+      expect(find.textContaining('Rule-based reading'), findsNothing);
     });
 
     testWidgets('the panel says when the model gave nothing usable, and is absent without a model', (tester) async {

@@ -57,6 +57,8 @@ Future<void> main() async {
             zoom: city.initialZoom,
           ),
         ),
+        // The test panel starts open here, so each question's readings are in view.
+        qaTraceOpenProvider.overrideWithValue(true),
         // Always attached here, whatever the build flag says: this app exists to test the model.
         questionLabelerProvider.overrideWith((ref) {
           final labeler = createDeviceQuestionLabeler();
