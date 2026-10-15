@@ -6,6 +6,7 @@ library;
 import 'package:citypulse_app/src/core/settings.dart';
 import 'package:citypulse_app/src/core/strings.dart';
 import 'package:citypulse_app/src/domain/models.dart';
+import 'package:citypulse_app/src/explain/question_labeler_provider.dart';
 import 'package:citypulse_app/src/platform/providers.dart';
 import 'package:citypulse_app/src/ui/widgets/data_gaps_panel.dart';
 import 'package:citypulse_app/src/core/city.dart';
@@ -187,6 +188,7 @@ class RouteCard extends ConsumerWidget {
             eventState: view.eventState,
             hazardNouns: nouns,
             strings: s,
+            labeler: ref.watch(questionLabelerProvider),
           ),
           const SizedBox(height: 8),
         ],

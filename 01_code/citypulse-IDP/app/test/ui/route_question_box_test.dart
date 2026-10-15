@@ -1,9 +1,12 @@
 // The question box (ADR-035): answers come from the route's own trace, on the phone, and never give a safety verdict.
+import 'dart:async';
+
 import 'package:citypulse_app/src/core/strings.dart';
 import 'package:citypulse_app/src/ui/widgets/route_question_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pulse_explain/pulse_explain.dart';
 import 'package:pulse_router/pulse_router.dart';
 
 import '../helpers/harness.dart';
@@ -15,6 +18,7 @@ Future<void> _show(
   AppLanguage lang = AppLanguage.en,
   ConfidenceBand band = ConfidenceBand.moderate,
   String queryId = 'test',
+  QuestionLabeler? labeler,
 }) async {
   final trace = sampleTrace(band: band);
   await tester.pumpWidget(
@@ -27,6 +31,7 @@ Future<void> _show(
             eventState: EventState.active,
             hazardNouns: _nouns,
             strings: Strings(lang),
+            labeler: labeler,
           ),
         ),
       ),
@@ -43,6 +48,18 @@ Future<void> _ask(WidgetTester tester, String q) async {
 String _answer(WidgetTester tester) {
   final w = tester.widget<Text>(find.byKey(const Key('ask-answer')));
   return w.textSpan?.toPlainText() ?? w.data!;
+}
+
+class _FakeLabeler implements QuestionLabeler {
+  _FakeLabeler(this._reply);
+  final Future<String?> Function(String q) _reply;
+  int calls = 0;
+
+  @override
+  Future<String?> reply(String question) {
+    calls++;
+    return _reply(question);
+  }
 }
 
 void main() {
@@ -288,6 +305,65 @@ void main() {
     expect(find.text('Copy answer'), findsOneWidget);
   });
 
+  group('with an on-device labeler (D1; the box waits for it, then the rules answer from its label)', () {
+    const confidenceLabel = '{"intent": "confidence", "secondary": null}';
+
+    testWidgets('shows that it is working, blocks a second send, then shows the answer', (tester) async {
+      final gate = Completer<String?>();
+      final l = _FakeLabeler((_) => gate.future);
+      await _show(tester, labeler: l);
+      await tester.enterText(find.byKey(const Key('ask-field')), 'How long will it take?');
+      await tester.tap(find.byKey(const Key('ask-send')));
+      await tester.pump();
+      expect(find.byKey(const Key('ask-thinking')), findsOneWidget);
+      expect(tester.widget<FilledButton>(find.byKey(const Key('ask-send'))).onPressed, isNull);
+      expect(find.byKey(const Key('ask-answer')), findsNothing);
+      gate.complete(confidenceLabel);
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('ask-thinking')), findsNothing);
+      expect(l.calls, 1);
+      // the model's label (confidence) decided the answer, not the rules' (time and distance)
+      expect(_answer(tester), isNot(contains('17 minutes')));
+      expect(tester.widget<FilledButton>(find.byKey(const Key('ask-send'))).onPressed, isNotNull);
+    });
+
+    testWidgets('a model that fails leaves the rule-based answer, with no error on screen', (tester) async {
+      await _show(tester, labeler: _FakeLabeler((_) async => throw StateError('crashed')));
+      await _ask(tester, 'How long will it take?');
+      expect(_answer(tester), contains('17 minutes'));
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('a safety question the model labels as something else is still refused', (tester) async {
+      await _show(tester, labeler: _FakeLabeler((_) async => '{"intent": "why_route", "secondary": null}'));
+      await _ask(tester, 'Is this route safe?');
+      expect(_answer(tester), contains('I cannot confirm the condition of any road'));
+    });
+
+    testWidgets('a new route while the model is working drops the late reply without an error', (tester) async {
+      final gate = Completer<String?>();
+      await _show(tester, labeler: _FakeLabeler((_) => gate.future));
+      await tester.enterText(find.byKey(const Key('ask-field')), 'How long will it take?');
+      await tester.tap(find.byKey(const Key('ask-send')));
+      await tester.pump();
+      await _show(tester, queryId: 'another route', labeler: _FakeLabeler((_) => gate.future));
+      gate.complete(confidenceLabel);
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('ask-answer-card')), findsNothing);
+      expect(find.byKey(const Key('ask-thinking')), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('without a labeler nothing waits: the answer is there in the same frame', (tester) async {
+      await _show(tester);
+      await tester.enterText(find.byKey(const Key('ask-field')), 'How long will it take?');
+      await tester.tap(find.byKey(const Key('ask-send')));
+      await tester.pump();
+      expect(find.byKey(const Key('ask-answer')), findsOneWidget);
+      expect(find.byKey(const Key('ask-thinking')), findsNothing);
+    });
+  });
+
   test('the new strings obey ADR-011 in both languages (also enforced for every string by strings_test)', () {
     for (final m in [
       Msg.askHeading,
@@ -296,6 +372,7 @@ void main() {
       Msg.askClear,
       Msg.askCopy,
       Msg.askCopied,
+      Msg.askThinking,
       Msg.askSource,
       Msg.askExample1,
       Msg.askExample2,

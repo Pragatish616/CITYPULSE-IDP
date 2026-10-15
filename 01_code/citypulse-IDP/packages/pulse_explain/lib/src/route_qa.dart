@@ -844,7 +844,8 @@ QaAnswer answerQuestion({
 }) {
   var cls = classifyQuestion(question);
   if (forceIntent != null) {
-    // For building training data only: answer for the labelled intent, not for what the classifier made of it.
+    // Answer for the given intent, not for what the classifier made of it: used to build training data, and by the model ladder
+    // (question_labeler.dart), where the intent comes from the on-device model and the safety guard has already been applied.
     cls = QaClassification(
       intent: forceIntent,
       score: 0,

@@ -27,6 +27,11 @@ def test_json_inside_chatter_is_still_read() -> None:
     assert p.parse_label('Here you go: {"intent": "help", "secondary": null} done') == ("help", None)
 
 
+def test_the_first_object_is_read_even_inside_brackets() -> None:
+    # The Dart reader (packages/pulse_explain/lib/src/question_labeler.dart) must do the same; its test has this case too.
+    assert p.parse_label('[{"intent": "help"}]') == ("help", None)
+
+
 def test_the_message_builders_end_with_the_reply_only_when_one_is_given() -> None:
     q = p.messages_u("how long")
     assert [m["role"] for m in q] == ["system", "user"]

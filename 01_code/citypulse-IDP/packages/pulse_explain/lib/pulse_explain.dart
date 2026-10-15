@@ -12,6 +12,7 @@
 library;
 
 export 'src/explanation.dart';
+export 'src/question_labeler.dart';
 export 'src/route_qa.dart';
 export 'src/template_renderer.dart';
 export 'src/verifier.dart';

@@ -33,6 +33,7 @@ class RouteQuestionBox extends StatefulWidget {
     required this.eventState,
     required this.hazardNouns,
     required this.strings,
+    this.labeler,
     super.key,
   });
 
@@ -47,6 +48,9 @@ class RouteQuestionBox extends StatefulWidget {
 
   /// The text source.
   final Strings strings;
+
+  /// The on-device model that labels the question (D1), or `null` to answer with the rule-based answerer alone.
+  final QuestionLabeler? labeler;
 
   @override
   State<RouteQuestionBox> createState() => _RouteQuestionBoxState();
@@ -72,22 +76,44 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
     super.dispose();
   }
 
-  void _ask(String question) {
+  var _busy = false;
+  var _ticket = 0;
+
+  Future<void> _ask(String question) async {
     final q = question.trim();
-    if (q.isEmpty) return;
+    if (q.isEmpty || _busy) return;
     QaAnswer? answer;
-    try {
-      answer = answerQuestion(
-        question: q,
-        trace: widget.trace,
-        eventState: widget.eventState,
-        hazardDisplayNouns: widget.hazardNouns,
-      );
-    } on Object {
-      // Never leave the traveller with an error screen: show the fixed fallback.
-      answer = null;
+    if (widget.labeler == null) {
+      // No model: the rule-based answer, immediately and in the same frame, exactly as before.
+      try {
+        answer = answerQuestion(
+          question: q,
+          trace: widget.trace,
+          eventState: widget.eventState,
+          hazardDisplayNouns: widget.hazardNouns,
+        );
+      } on Object {
+        // Never leave the traveller with an error screen: show the fixed fallback.
+        answer = null;
+      }
+    } else {
+      final ticket = ++_ticket;
+      setState(() => _busy = true);
+      try {
+        answer = (await answerWithLabeler(
+          question: q,
+          trace: widget.trace,
+          eventState: widget.eventState,
+          hazardDisplayNouns: widget.hazardNouns,
+          labeler: widget.labeler,
+        )).answer;
+      } on Object {
+        answer = null;
+      }
+      if (!mounted || ticket != _ticket) return;
     }
     setState(() {
+      _busy = false;
       _answer = answer;
       _fallbackLocale = detectLocale(q);
       _failed = answer == null;
@@ -172,11 +198,27 @@ class _RouteQuestionBoxState extends State<RouteQuestionBox> {
             const SizedBox(width: 8),
             FilledButton(
               key: const Key('ask-send'),
-              onPressed: () => _ask(_controller.text),
+              onPressed: _busy ? null : () => _ask(_controller.text),
               child: Text(s(Msg.askSend)),
             ),
           ],
         ),
+        if (_busy) ...[
+          const SizedBox(height: 8),
+          Semantics(
+            liveRegion: true,
+            label: s(Msg.askThinking),
+            child: Column(
+              key: const Key('ask-thinking'),
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const LinearProgressIndicator(),
+                const SizedBox(height: 4),
+                Text(s(Msg.askThinking), style: text.bodySmall),
+              ],
+            ),
+          ),
+        ],
         const SizedBox(height: 8),
         Wrap(
           spacing: 8,
