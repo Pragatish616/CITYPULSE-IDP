@@ -932,8 +932,7 @@ QaAnswer answerQuestion({
   );
 }
 
-const String _enHedge =
-    'Hazard data for this route is limited, so use your own judgement.';
+const String _enHedge = 'Hazard data here is limited, so use your own judgement.';
 const String _taHedge =
     'இந்த வழிக்கு தரவு குறைவு; உங்கள் சொந்த முடிவை பயன்படுத்தவும்.';
 const String _enGuide = 'This is a guide from the data held, not a guarantee.';
@@ -978,7 +977,37 @@ class _Ctx {
   }
 
   String noun(BlockingEdge e) => nouns[e.hazardClass] ?? e.hazardClass;
+
+  /// The route's main streets in driving order, from the router's `route_street_*` facts (empty for an older trace).
+  List<String> get streets => [
+    for (final f in trace.contextFacts)
+      if (f.key.startsWith('route_street_') && f.label.trim().isNotEmpty)
+        f.label.trim(),
+  ];
+
+  /// "A", "A and B" or "A, B and C".
+  String get viaEn {
+    final s = streets;
+    if (s.length <= 1) return s.isEmpty ? '' : s.first;
+    return '${s.sublist(0, s.length - 1).join(', ')} and ${s.last}';
+  }
+
+  /// "A, B, C" (followed by வழியாக in the sentence).
+  String get viaTa => streets.join(', ');
+
+  /// Whether the answer is short: it ends with the hedge under low or stale confidence, so no separate confidence or guide line.
+  bool get hedged =>
+      trace.confidenceBand == ConfidenceBand.low ||
+      trace.confidenceBand == ConfidenceBand.stale;
+
+  void noteStreets(List<String> facts) {
+    for (var i = 1; i <= streets.length; i++) {
+      facts.add('context_facts.route_street_$i');
+    }
+  }
 }
+
+
 
 String _plural(int n, String noun) => '$n $noun${n == 1 ? '' : 's'}';
 
@@ -1134,10 +1163,26 @@ String _reason(AdviceReason r, bool ta) => switch (r) {
 // --- intents ----------------------------------------------------------------
 
 List<String> _why(_Ctx c, bool ta, List<String> facts) {
-  final out = <String>[_deltaSentence(c, ta, facts)];
+  final out = <String>[];
+  final hasStreets = c.streets.isNotEmpty;
+  if (hasStreets) {
+    c.noteStreets(facts);
+    out.add(
+      ta
+          ? 'வழி ${c.id} ${c.viaTa} வழியாகச் செல்கிறது.'
+          : c.v([
+              'Route ${c.id} runs via ${c.viaEn}.',
+              'Route ${c.id} takes ${c.viaEn}.',
+              'Route ${c.id} follows ${c.viaEn}.',
+            ]),
+    );
+  }
   final edges = c.trace.alternatives.isEmpty
       ? const <BlockingEdge>[]
       : c.trace.alternatives.first.blockingEdges;
+  if (c.trace.alternatives.isNotEmpty || !hasStreets) {
+    out.add(_deltaSentence(c, ta, facts));
+  }
   if (edges.isNotEmpty) {
     final e = edges.first;
     facts
@@ -1148,9 +1193,25 @@ List<String> _why(_Ctx c, bool ta, List<String> facts) {
           ? 'அது ${_avoidedOne(c, e, true)}.'
           : 'It leaves out ${_avoidedOne(c, e, false)}.',
     );
+  } else if (c.trace.alternatives.isEmpty && c.penaltyMinutes == 0) {
+    facts.add('chosen.hazard_time_penalty_s');
+    out.add(
+      ta
+          ? 'இது பயண நேரத்தையே பின்பற்றுகிறது; வழியிலுள்ள வெள்ள மதிப்பீடுகள் இதை மாற்றவில்லை.'
+          : 'It follows plain travel time: the flood ratings on the way did not change it.',
+    );
+  } else if (c.trace.alternatives.isEmpty && c.penaltyMinutes >= 1) {
+    facts.add('chosen.hazard_time_penalty_s');
+    out.add(
+      ta
+          ? 'இது பயண நேரத்தையும் வழியிலுள்ள வெள்ள மதிப்பீடுகளையும் சமன் செய்கிறது; அவை சுமார் ${c.penaltyMinutes} நிமிடங்கள் செலவைச் சேர்க்கின்றன.'
+          : 'It balances travel time against the flood ratings on the way, which add about ${_plural(c.penaltyMinutes, 'minute')} to its cost.',
+    );
   }
-  facts.add('confidence_band');
-  out.add(_confidenceSentence(c, ta));
+  if (!c.hedged) {
+    facts.add('confidence_band');
+    out.add(_confidenceSentence(c, ta));
+  }
   return out;
 }
 
@@ -1174,11 +1235,15 @@ List<String> _timeDistance(_Ctx c, bool ta, List<String> facts) {
     ..add('chosen.distance_m')
     ..add('chosen.free_flow_duration_s');
   final m = c.minutes;
+  final hasStreets = c.streets.isNotEmpty;
+  if (hasStreets) c.noteStreets(facts);
   final out = <String>[];
   if (ta) {
+    final mins = m <= 0 ? 'ஒரு நிமிடத்துக்கும் குறைவு' : 'சுமார் $m நிமிடங்கள்';
     out.add(
-      'வழி ${c.id} சுமார் ${c.km} கி.மீ நீளம்; இந்த பயண முறையில் தடையின்றி ஓடும் போக்குவரத்தில் '
-      '${m <= 0 ? 'ஒரு நிமிடத்துக்கும் குறைவான நேரம்' : 'சுமார் $m நிமிடங்கள்'} ஆகும்.',
+      hasStreets
+          ? '${c.km} கி.மீ, $mins — ${c.viaTa} வழியாக (தடையின்றி ஓடும் போக்குவரத்தில்).'
+          : 'வழி ${c.id}: ${c.km} கி.மீ, $mins (தடையின்றி ஓடும் போக்குவரத்தில்).',
     );
     if (c.penaltyMinutes >= 1) {
       facts.add('chosen.hazard_time_penalty_s');
@@ -1187,11 +1252,17 @@ List<String> _timeDistance(_Ctx c, bool ta, List<String> facts) {
   } else {
     final mins = m <= 0 ? 'under a minute' : 'about ${_plural(m, 'minute')}';
     out.add(
-      c.v([
-        'Route ${c.id} is about ${c.km} km long and takes $mins in free-flowing conditions for this travel mode.',
-        'The trip on Route ${c.id} is about ${c.km} km and takes $mins in free-flowing conditions for this travel mode.',
-        'For this travel mode, Route ${c.id} covers about ${c.km} km in $mins when traffic flows freely.',
-      ]),
+      hasStreets
+          ? c.v([
+              'It takes $mins for ${c.km} km via ${c.viaEn}, at free-flow speed.',
+              'The trip is ${c.km} km via ${c.viaEn}: $mins at free-flow speed.',
+              'Route ${c.id} runs ${c.km} km via ${c.viaEn} in $mins at free-flow speed.',
+            ])
+          : c.v([
+              'Route ${c.id} is ${c.km} km, $mins at free-flow speed.',
+              'It takes $mins for ${c.km} km on Route ${c.id}, at free-flow speed.',
+              'The trip on Route ${c.id} is ${c.km} km: $mins at free-flow speed.',
+            ]),
     );
     if (c.penaltyMinutes >= 1) {
       facts.add('chosen.hazard_time_penalty_s');
@@ -1315,24 +1386,22 @@ List<String> _hazard(_Ctx c, bool ta, List<String> facts) {
   facts.add('chosen.worst_edge_p');
   final a = c.advice;
   final risk = _riskWord(a.riskLevel, ta);
+  final evidence = _evidenceWord(a.evidence, ta);
   final recency = _newestReport(c, ta, facts);
   final note = _classNote(c, ta);
   return [
     if (ta)
-      'எங்களிடம் உள்ள தரவில் வழி ${c.id} இன் வெள்ள ஆபத்து $risk.'
+      'வழி ${c.id} இன் வெள்ள ஆபத்து: $risk (தரவு: $evidence).'
     else
       c.v([
-        'On the data held, flood risk on Route ${c.id} is rated $risk.',
-        'The data held rates the flood risk on Route ${c.id} as $risk.',
-        'For Route ${c.id}, the flood risk comes out as $risk on the data held.',
+        'On the data held, Route ${c.id} carries $risk flood risk, on $evidence evidence.',
+        'Route ${c.id} rates $risk for flood risk, on $evidence evidence.',
+        'The data held puts Route ${c.id} at $risk flood risk ($evidence evidence).',
       ]),
-    for (final r in a.reasons) _reason(r, ta),
+    for (final r in a.reasons.take(1)) _reason(r, ta),
     ?note,
     ?recency,
-    ta
-        ? 'இதன் பின்னாலுள்ள தரவு ${_evidenceWord(a.evidence, true)}.'
-        : 'The evidence behind this is ${_evidenceWord(a.evidence, false)}.',
-    ta ? _taGuide : _enGuide,
+    if (!c.hedged) ta ? _taGuide : _enGuide,
   ];
 }
 
@@ -1397,6 +1466,8 @@ List<String> _summary(_Ctx c, bool ta, List<String> facts) {
     ..add('confidence_band');
   final a = c.advice;
   final m = c.minutes;
+  final hasStreets = c.streets.isNotEmpty;
+  if (hasStreets) c.noteStreets(facts);
   final action = switch (a.bestAction) {
     AdviceAction.proceedWithCare =>
       ta ? 'மிகுந்த கவனத்துடன் மட்டுமே பயணிக்கவும்' : 'travel only with extra care',
@@ -1414,11 +1485,14 @@ List<String> _summary(_Ctx c, bool ta, List<String> facts) {
       : 0;
   final out = <String>[];
   if (ta) {
+    final mins = m <= 0 ? 'ஒரு நிமிடத்துக்கும் குறைவு' : 'சுமார் $m நிமிடங்கள்';
     out.add(
-      'வழி ${c.id}: சுமார் ${c.km} கி.மீ, ${m <= 0 ? 'ஒரு நிமிடத்துக்கும் குறைவு' : 'சுமார் $m நிமிடங்கள்'} (${_classWord(c.trace.userClass, true)} பயண முறை).',
+      hasStreets
+          ? '${c.km} கி.மீ, $mins — ${c.viaTa} வழியாக.'
+          : 'வழி ${c.id}: ${c.km} கி.மீ, $mins.',
     );
     if (c.trace.alternatives.isNotEmpty) out.add(_deltaSentence(c, true, facts));
-    out.add('இந்த பயணத்துக்கான ஆலோசனை: $action.');
+    out.add('ஆலோசனை: $action (தரவு: ${_evidenceWord(a.evidence, true)}).');
     for (final r in a.reasons.take(1)) {
       out.add(_reason(r, true));
     }
@@ -1428,20 +1502,25 @@ List<String> _summary(_Ctx c, bool ta, List<String> facts) {
     if (accidents > 0 && !a.reasons.take(1).contains(AdviceReason.accidentOnRoute)) {
       out.add('இந்த வழியில் நேரடி விபத்து அறிக்கை உள்ளது.');
     }
-    out.add('இதன் பின்னாலுள்ள தரவு ${_evidenceWord(a.evidence, true)}.');
-    out.add(_taGuide);
+    if (!c.hedged) out.add(_taGuide);
   } else {
     final mins = m <= 0 ? 'under a minute' : 'about ${_plural(m, 'minute')}';
+    final mode = '${_classWord(c.trace.userClass, false)} travel mode';
     out.add(
-      c.v([
-        'This is the picture for Route ${c.id}: about ${c.km} km and $mins for the ${_classWord(c.trace.userClass, false)} travel mode.',
-        'For Route ${c.id}, the trip is about ${c.km} km and $mins for the ${_classWord(c.trace.userClass, false)} travel mode.',
-      ]),
+      hasStreets
+          ? c.v([
+              'Route ${c.id} runs via ${c.viaEn}: ${c.km} km, $mins for the $mode.',
+              'The trip runs via ${c.viaEn}: ${c.km} km, $mins for the $mode.',
+            ])
+          : c.v([
+              'Route ${c.id} is ${c.km} km, $mins for the $mode.',
+              'For the $mode, Route ${c.id} is ${c.km} km, $mins.',
+            ]),
     );
     if (c.trace.alternatives.isNotEmpty) {
       out.add(_deltaSentence(c, false, facts));
     }
-    out.add('For this trip the advice is to $action.');
+    out.add('The advice is to $action, on ${_evidenceWord(a.evidence, false)} evidence.');
     for (final r in a.reasons.take(1)) {
       out.add(_reason(r, false));
     }
@@ -1451,8 +1530,7 @@ List<String> _summary(_Ctx c, bool ta, List<String> facts) {
     if (accidents > 0 && !a.reasons.take(1).contains(AdviceReason.accidentOnRoute)) {
       out.add('A live accident report lies on this route.');
     }
-    out.add('The evidence behind this is ${_evidenceWord(a.evidence, false)}.');
-    out.add(_enGuide);
+    if (!c.hedged) out.add(_enGuide);
   }
   return out;
 }

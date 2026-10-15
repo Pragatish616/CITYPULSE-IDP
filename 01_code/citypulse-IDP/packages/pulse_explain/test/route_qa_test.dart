@@ -591,6 +591,68 @@ void main() {
     });
   });
 
+  group('version 3: short answers that name the route\'s own streets', () {
+    DecisionTrace withStreets(List<(String, int)> streets, {ConfidenceBand band = ConfidenceBand.low}) => buildTrace(
+      alternatives: const [],
+      worstEdgeP: 0,
+      confidenceBand: band,
+      contextFacts: [
+        for (var i = 0; i < streets.length; i++) _fact('route_street_${i + 1}', streets[i].$2, streets[i].$1),
+      ],
+    );
+    final mountRoad = withStreets([('Anna Salai (Mount Road)', 1282), ('Velachery Main Road', 2501), ('Dry Dock Road', 640)]);
+    final omr = withStreets([('Rajiv Gandhi Salai', 5200), ('Thoraipakkam Road', 900)]);
+
+    QaAnswer ask(String q, DecisionTrace t, {String? locale}) => answerQuestion(
+      question: q,
+      trace: t,
+      eventState: EventState.dry,
+      hazardDisplayNouns: testHazardDisplayNouns,
+      locale: locale,
+    );
+
+    test('time, why and the briefing name the streets, in driving order, and pass the verifier', () {
+      for (final q in ['How long will it take?', 'Why this route?', 'Give me the picture']) {
+        final a = ask(q, mountRoad);
+        expect(a.usedFallback, isFalse, reason: '$q: ${a.rejectedClaims}');
+        expect(a.text, contains('Anna Salai (Mount Road), Velachery Main Road and Dry Dock Road'), reason: q);
+      }
+    });
+
+    test('two different routes are not described alike', () {
+      for (final q in ['How long will it take?', 'Why this route?', 'Give me the picture']) {
+        expect(ask(q, mountRoad).text, isNot(ask(q, omr).text), reason: q);
+        expect(ask(q, omr).text, contains('Rajiv Gandhi Salai and Thoraipakkam Road'), reason: q);
+      }
+    });
+
+    test('answers stay short: the time answer is one sentence plus the delay and the hedge, the briefing at most four sentences plus the hedge', () {
+      int sentences(String t) => RegExp(r'[.!?](\s|$)').allMatches(t).length;
+      // one sentence, the flood-delay line when the route has one, and the hedge
+      expect(sentences(ask('How long will it take?', mountRoad).text), lessThanOrEqualTo(3));
+      expect(sentences(ask('Give me the picture', mountRoad).text), lessThanOrEqualTo(5));
+      expect(ask('How long will it take?', mountRoad).text.split(' ').length, lessThan(45));
+    });
+
+    test('in Tamil the streets are named too, and the answer passes the verifier', () {
+      final a = ask('எவ்வளவு நேரம் ஆகும்?', mountRoad);
+      expect(a.usedFallback, isFalse, reason: '${a.rejectedClaims}');
+      expect(a.text, contains('Anna Salai (Mount Road), Velachery Main Road, Dry Dock Road'));
+    });
+
+    test('a street name with a word the safety rule bans is a name, not a claim', () {
+      final a = ask('How long will it take?', mountRoad);
+      expect(a.verification.passed, isTrue, reason: '${a.rejectedClaims}');
+      expect(a.text, contains('Dry Dock Road'));
+    });
+
+    test('an older trace without street facts still gets a full answer', () {
+      final a = ask('How long will it take?', buildTrace());
+      expect(a.usedFallback, isFalse);
+      expect(a.text, contains('8.4 km'));
+    });
+  });
+
   group('version 2: richer, two-part, followed up', () {
     final base = situations.first;
 
@@ -600,9 +662,9 @@ void main() {
       expect(a.usedFallback, isFalse);
       expect(a.text, contains('Route A'));
       expect(a.text, contains('8.4 km'));
-      expect(a.text, contains('For this trip the advice is to'));
+      expect(a.text, contains('The advice is to'));
       expect(a.text, contains('It leaves out a stretch of Kotturpuram Bridge approach'));
-      expect(a.text, contains('The evidence behind this is'));
+      expect(a.text, matches(RegExp(r'on (strong|partial|thin) evidence')));
       expect(a.followUps, isNotEmpty);
     });
 

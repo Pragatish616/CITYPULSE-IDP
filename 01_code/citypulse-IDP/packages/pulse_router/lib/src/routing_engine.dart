@@ -896,6 +896,7 @@ class RoutingEngine {
       sourceClassByObservationId: world.sourceClassById,
       queryId: queryId,
       edgeLabel: (id) => pack.streetName(id) ?? 'an unnamed stretch',
+      streetNameOf: pack.streetName,
       beliefParams: beliefParams,
       restrictedEdges: closed,
       contextFactsFor: (ids) => facts(ids, limitsNotMet: limitsNotMet),

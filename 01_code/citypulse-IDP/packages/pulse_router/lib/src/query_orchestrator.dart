@@ -87,6 +87,40 @@ RouteEdge _findEdge(CsrGraph graph, int from, int edgeId) {
 double _lengthMetres(RouteEdge edge) =>
     edge.freeFlowSeconds * edge.freeFlowKmh * 1000 / 3600;
 
+/// The main named streets of a route, as context facts `route_street_1` to `route_street_3`: each fact's label is the street name and its
+/// value the metres of the route on that street. Up to three streets with at least [minMetres] each, the longest kept, listed in the order
+/// the route meets them. Unnamed stretches are skipped. These make every explanation specific to its own route ("via Sardar Patel Road and
+/// Gandhi Mandapam Road") instead of only totals, and the verifier accepts the names because the trace now carries them.
+List<ContextFact> routeStreetFacts(
+  List<RouteEdge> edges,
+  String? Function(int edgeId) nameOf,
+  DateTime asOf, {
+  double minMetres = 200,
+  int maxStreets = 3,
+}) {
+  final metres = <String, double>{};
+  final firstSeen = <String, int>{};
+  for (var i = 0; i < edges.length; i++) {
+    final name = nameOf(edges[i].edgeId)?.trim();
+    if (name == null || name.isEmpty) continue;
+    metres[name] = (metres[name] ?? 0) + _lengthMetres(edges[i]);
+    firstSeen.putIfAbsent(name, () => i);
+  }
+  final longest = metres.entries.where((e) => e.value >= minMetres).toList()
+    ..sort((a, b) => b.value.compareTo(a.value));
+  final kept = longest.take(maxStreets).toList()
+    ..sort((a, b) => firstSeen[a.key]!.compareTo(firstSeen[b.key]!));
+  return [
+    for (var i = 0; i < kept.length; i++)
+      ContextFact(
+        key: 'route_street_${i + 1}',
+        value: kept[i].value.round(),
+        label: kept[i].key,
+        asOf: asOf,
+      ),
+  ];
+}
+
 List<RouteEdge> _pathEdges(CsrGraph graph, RouteResult route) => [
   for (var i = 0; i < route.edgePath.length; i++)
     _findEdge(graph, route.nodePath[i], route.edgePath[i]),
@@ -136,6 +170,7 @@ PlannedRoute? planRouteDetailed({
   BeliefParams? beliefParams,
   Map<int, RestrictedEdge> restrictedEdges = const {},
   List<ContextFact> Function(List<int> chosenEdgeIds)? contextFactsFor,
+  String? Function(int edgeId)? streetNameOf,
 }) {
   if (source < 0 ||
       source >= graph.nodeCount ||
@@ -402,9 +437,11 @@ PlannedRoute? planRouteDetailed({
     lambda: lambda,
     chosen: chosen,
     alternatives: alternatives,
-    contextFacts:
-        contextFactsFor?.call([for (final e in chosenEdges) e.edgeId]) ??
-        const [],
+    contextFacts: [
+      ...?contextFactsFor?.call([for (final e in chosenEdges) e.edgeId]),
+      if (streetNameOf != null)
+        ...routeStreetFacts(chosenEdges, streetNameOf, computedAt),
+    ],
     dataGaps: dataGaps,
     confidenceBand: confidenceBand,
   );

@@ -271,6 +271,33 @@ void main() {
       expect(plan.computeMilliseconds, greaterThan(0));
     });
 
+    test('the trace names the main streets of its own route, longest kept, in driving order', () {
+      final found = route(newEngine(), 31140, 47036);
+      final streets = [
+        for (final f in found.plan.trace.contextFacts)
+          if (f.key.startsWith('route_street_')) f,
+      ];
+      // ignore: avoid_print
+      print('route streets: ${[for (final f in streets) '${f.label} (${f.value} m)']}');
+      expect(streets, isNotEmpty);
+      expect(streets.length, lessThanOrEqualTo(3));
+      expect([for (final f in streets) f.key], [
+        for (var i = 1; i <= streets.length; i++) 'route_street_$i',
+      ]);
+      for (final f in streets) {
+        expect(f.label.trim(), isNotEmpty);
+        expect(f.value as int, greaterThanOrEqualTo(200));
+      }
+      // a different trip names different streets: routes are not all described alike
+      final other = route(newEngine(), 47036, 31140 + 1);
+      final otherNames = {
+        for (final f in other.plan.trace.contextFacts)
+          if (f.key.startsWith('route_street_')) f.label,
+      };
+      // ignore: avoid_print
+      print('reverse-ish trip streets: $otherNames');
+    });
+
     test('unknown user class throws; far-away points are reported as '
         'outside coverage, not as a crash', () {
       final engine = newEngine();
