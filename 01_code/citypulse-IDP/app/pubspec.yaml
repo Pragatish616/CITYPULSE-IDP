@@ -39,12 +39,14 @@ dependencies:
   # than dio -- nothing else in this app needs interceptors/retries built in
   # (SyncClient implements its own retry-via-outbox instead), and http is the
   # smaller, more commonly-audited dependency for a single POST/GET pair.
+  flutter_map: ^8.3.2
   flutter_riverpod: ^3.4.3
   go_router: ^18.0.2
   http: ^1.2.2
 
   # App version for the "re-shown on app-version change" disclaimer rule
   # (ADR-011) -- reads pubspec's own version at runtime.
+  latlong2: ^0.10.1
   llamadart: ^0.12.2
   maplibre_gl: ^0.27.1
   package_info_plus: ^10.2.1
@@ -70,6 +72,7 @@ dependencies:
   # so the Tier 0 renderer's display nouns have one source of truth
   # (docs/CONTRACTS.md §5), not a second hard-coded copy in Dart.
   uuid: ^4.6.0
+  vector_map_tiles: ^9.0.0-beta.13
   yaml: ^3.1.4
 
 dev_dependencies:

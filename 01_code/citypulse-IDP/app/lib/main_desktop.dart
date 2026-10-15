@@ -1,7 +1,7 @@
 // The desktop test app for the route-question model (ADR-035, PREREGISTRATION_QA.md addendum 5).
 //
-// The same app as `main.dart` (same planner, same router, same question box), with two differences: the map is not drawn (MapLibre has no
-// Windows build), and the on-device model is always attached, so the question box shows how each question was read by the rules and by
+// The same app as `main.dart` (same planner, same router, same question box), with two differences: the map is drawn with flutter_map
+// instead of MapLibre (which has no Windows build; same OpenFreeMap style), and the on-device model is always attached, so the question box shows how each question was read by the rules and by
 // the model. It looks for the model file in a `models` folder next to the program (see `qa_model_files.dart`).
 //
 //   flutter run -d windows -t lib/main_desktop.dart --dart-define=CITY=chennai
@@ -12,6 +12,7 @@ import 'package:citypulse_app/src/core/settings.dart';
 import 'package:citypulse_app/src/disclaimer/disclaimer_store.dart';
 import 'package:citypulse_app/src/explain/question_labeler_factory.dart';
 import 'package:citypulse_app/src/explain/question_labeler_provider.dart';
+import 'package:citypulse_app/src/features/map/flutter_map_surface.dart';
 import 'package:citypulse_app/src/features/map/map_surface.dart';
 import 'package:citypulse_app/src/features/settings/settings_screen.dart';
 import 'package:flutter/foundation.dart'
@@ -50,15 +51,10 @@ Future<void> main() async {
         detailCitiesProvider.overrideWithValue(detailCities),
         appVersionProvider.overrideWithValue(packageInfo.version),
         mapSurfaceBuilderProvider.overrideWithValue(
-          (context, callbacks) => const ColoredBox(
-            color: Color(0xFFEFEFEF),
-            child: Center(
-              child: Text(
-                'Desktop test app: the map is not drawn here.\n'
-                'Plan a route with the two boxes, then ask about it.',
-                textAlign: TextAlign.center,
-              ),
-            ),
+          flutterMapSurfaceBuilder(
+            config.mapStyleUrl,
+            centre: cityCentre(city),
+            zoom: city.initialZoom,
           ),
         ),
         // Always attached here, whatever the build flag says: this app exists to test the model.
