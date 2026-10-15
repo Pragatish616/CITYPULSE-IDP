@@ -1,0 +1,102 @@
+name: Windows desktop test app
+
+# Builds the Windows desktop test app (app/lib/main_desktop.dart) on GitHub's servers and attaches it, with the route-question model inside,
+# to a GitHub release as a zip. Run it by hand: Actions tab -> "Windows desktop test app" -> Run workflow.
+#
+# What the zip is: the CityPulse app with the map (flutter_map, OpenFreeMap style) and the on-device question model attached, for testing the
+# model on a PC. The model is NOT adopted (ADR-035, PREREGISTRATION_QA.md); the zip says so in its README. Unzip, run citypulse_app.exe.
+# Reports are not sent anywhere: INGEST_URL is left at its default (nothing listens), so the report button only queues locally.
+on:
+  workflow_dispatch:
+    inputs:
+      model_release:
+        description: "Release tag that holds the model file, its licence and card"
+        default: "qa-model-run1"
+      model_file:
+        description: "Model file name in that release"
+        default: "route_qa_run1_q4_k_m.gguf"
+      model_sha256:
+        description: "SHA-256 of the model file. The build stops if it does not match."
+        default: "13442ee1f9349b5e1f428972287a8f68724ce472f091f7393417662e51dd8cc8"
+
+permissions:
+  contents: write # only to attach the zip to the release "desktop-test-app"
+
+env:
+  CODE: 01_code/citypulse-IDP
+
+jobs:
+  windows:
+    name: Build and package (Windows x64)
+    runs-on: windows-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.CODE }}/app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.2"
+          channel: stable
+          cache: true
+      - run: bash scripts/sync_data_assets.sh
+      - run: flutter pub get
+      - name: Build
+        run: flutter build windows -t lib/main_desktop.dart --release --dart-define=CITY=chennai
+      - name: Add the model, its licence and its card
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.model_release }}
+          FILE: ${{ inputs.model_file }}
+          SHA: ${{ inputs.model_sha256 }}
+        run: |
+          out=build/windows/x64/runner/Release
+          mkdir -p "$out/models"
+          gh release download "$TAG" --repo "${{ github.repository }}" --dir "$out/models" \
+            --pattern "$FILE" --pattern "LICENSE-Qwen2.5-Apache-2.0.txt" --pattern "MODEL_CARD.md" --pattern "SHA256SUMS.txt"
+          echo "$SHA  $out/models/$FILE" | sha256sum -c -
+          mv "$out/models/$FILE" "$out/models/route_qa.gguf"
+          cat > "$out/README.txt" <<'EOF'
+          CityPulse AI - desktop test app (model test build)
+
+          Run citypulse_app.exe. Plan a route with the two boxes, then use "Ask about this route". Open "How this question was read" under an
+          answer to see what the rules and the on-device model each made of the question, how long the model took, and which one was used.
+
+          The model (models\route_qa.gguf) is a test model, NOT adopted: it only labels the question; the answer text comes from the app's own
+          rule-based answerer and is checked by a verifier. A question about whether a road is safe is always refused. See models\MODEL_CARD.md
+          for what was and was not measured, and models\LICENSE-Qwen2.5-Apache-2.0.txt for the base model's licence.
+
+          The map needs an internet connection (OpenFreeMap tiles). Without it the routes still draw on a plain background.
+          Nothing you type is stored or sent anywhere. CityPulse never states that a road is safe or passable.
+          EOF
+          sed -i 's/^          //' "$out/README.txt"
+      - name: Zip
+        run: |
+          cd build/windows/x64/runner/Release
+          powershell -NoProfile -Command "Compress-Archive -Path * -DestinationPath ../../../../../citypulse-desktop-test-windows-x64.zip -CompressionLevel Fastest"
+          cd ../../../../..
+          ls -l citypulse-desktop-test-windows-x64.zip
+          sha256sum citypulse-desktop-test-windows-x64.zip | tee citypulse-desktop-test-windows-x64.zip.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: citypulse-desktop-test-windows-x64
+          path: ${{ env.CODE }}/app/citypulse-desktop-test-windows-x64.zip
+          if-no-files-found: error
+          retention-days: 14
+      - name: Attach to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          notes="Windows desktop test app with the route-question test model inside (not adopted; see README.txt in the zip). Built by the 'Windows desktop test app' workflow from commit ${{ github.sha }}. SHA-256 of the zip is in citypulse-desktop-test-windows-x64.zip.sha256."
+          if gh release view desktop-test-app --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            gh release edit desktop-test-app --repo "${{ github.repository }}" --notes "$notes"
+          else
+            gh release create desktop-test-app --repo "${{ github.repository }}" --prerelease --title "Desktop test app (Windows)" --notes "$notes" --target "${{ github.sha }}"
+          fi
+          gh release upload desktop-test-app citypulse-desktop-test-windows-x64.zip citypulse-desktop-test-windows-x64.zip.sha256 --clobber --repo "${{ github.repository }}"
