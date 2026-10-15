@@ -329,6 +329,33 @@ void main() {
         expect((s.state, s.source), (EventState.watch, 'fallback'));
       }
     });
+
+    test('after failures it retries quickly and backs off, then settles into the long interval on success', () async {
+      final c = EventStateController(
+        configured: EventState.active,
+        hasRainSource: true,
+        apply: (_) {},
+      );
+      var calls = 0;
+      final sync = RainSync(
+        baseUrl: Uri.parse('http://r/'),
+        controller: c,
+        client: MockClient((_) async {
+          calls++;
+          if (calls <= 2) throw http.ClientException('report server not up yet');
+          return http.Response(jsonEncode(body(9)), 200);
+        }),
+      );
+      sync.start(
+        every: const Duration(hours: 1),
+        retry: const Duration(milliseconds: 200),
+        firstRetry: const Duration(milliseconds: 20),
+      );
+      await Future<void>.delayed(const Duration(milliseconds: 400));
+      sync.stop();
+      expect(calls, 3, reason: 'two failures, then one success, then nothing for an hour');
+      expect(c.status().state, EventState.watch);
+    });
   });
 
   group('the HTTP surface', () {

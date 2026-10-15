@@ -556,7 +556,9 @@ class _PlannerFields extends ConsumerWidget {
         const SizedBox(height: 8),
         Row(
           children: [
-            Expanded(child: _TravelSelectorScaled()),
+            // No FittedBox here: it gave the selector unlimited width, so it always drew text labels and then shrank them to unreadable.
+            // With the real width, the selector shows labels when there is room and clear icons (names as tooltips) when there is not.
+            const Expanded(child: _TravelSelector()),
             IconButton(
               key: const Key('swap'),
               tooltip: s(Msg.swap),
@@ -587,15 +589,6 @@ class _PlannerFields extends ConsumerWidget {
       ],
     );
   }
-}
-
-class _TravelSelectorScaled extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => const FittedBox(
-    fit: BoxFit.scaleDown,
-    alignment: Alignment.centerLeft,
-    child: _TravelSelector(),
-  );
 }
 
 class _CompactPlanner extends ConsumerWidget {

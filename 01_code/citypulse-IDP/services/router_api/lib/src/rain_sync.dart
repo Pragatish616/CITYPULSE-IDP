@@ -26,6 +26,7 @@ class RainSync {
 
   final http.Client _client;
   Timer? _timer;
+  var _stopped = false;
 
   /// One poll. Never throws: a failure is passed to the controller, which keeps the last reading until it is too old to trust.
   /// Returns whether it succeeded.
@@ -52,30 +53,36 @@ class RainSync {
     }
   }
 
-  /// Starts polling: one poll now, then one every [every] after a success. After a failure it tries again every [retry] (a minute by
-  /// default), so a router that starts before the report server is up does not wait a quarter of an hour for its first reading.
+  /// Starts polling: one poll now, then one every [every] after a success. After a failure it tries again after [firstRetry], doubling
+  /// each time up to [retry] (a minute by default). A router that starts before the report server is up (a cold start on a free host)
+  /// therefore gets its first rain reading within seconds, not after a full minute with the flood default showing.
   void start({
     Duration every = const Duration(minutes: 15),
     Duration retry = const Duration(minutes: 1),
+    Duration firstRetry = const Duration(seconds: 5),
   }) {
-    var lastTry = DateTime.fromMillisecondsSinceEpoch(0, isUtc: true);
-    var lastOk = false;
+    var failures = 0;
     Future<void> tick() async {
-      lastTry = DateTime.now().toUtc();
-      lastOk = await syncOnce();
+      final ok = await syncOnce();
+      if (_stopped) return;
+      Duration next;
+      if (ok) {
+        failures = 0;
+        next = every;
+      } else {
+        failures++;
+        final doubled = firstRetry * (1 << (failures - 1).clamp(0, 20));
+        next = doubled > retry ? retry : doubled;
+      }
+      _timer = Timer(next, () => unawaited(tick()));
     }
 
     unawaited(tick());
-    _timer = Timer.periodic(retry, (_) {
-      final wait = lastOk ? every : retry;
-      if (DateTime.now().toUtc().difference(lastTry) >=
-          wait - const Duration(seconds: 1))
-        unawaited(tick());
-    });
   }
 
   /// Stops polling and closes the HTTP client.
   void stop() {
+    _stopped = true;
     _timer?.cancel();
     _client.close();
   }
