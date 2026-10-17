@@ -992,6 +992,12 @@ class _Ctx {
     return '${s.sublist(0, s.length - 1).join(', ')} and ${s.last}';
   }
 
+  /// Traffic signals the route passes, from the router's `route_signals` fact (0 when unknown).
+  int get signals {
+    final f = fact('route_signals');
+    return f != null && f.value is num ? (f.value! as num).toInt() : 0;
+  }
+
   /// "A, B, C" (followed by வழியாக in the sentence).
   String get viaTa => streets.join(', ');
 
@@ -1249,6 +1255,11 @@ List<String> _timeDistance(_Ctx c, bool ta, List<String> facts) {
       facts.add('chosen.hazard_time_penalty_s');
       out.add('ஆபத்து தாமதங்கள் சுமார் ${c.penaltyMinutes} நிமிடங்கள் சேர்க்கும்.');
     }
+    final signals = c.signals;
+    if (signals > 0) {
+      facts.add('context_facts.route_signals');
+      out.add('வழியில் $signals போக்குவரத்து சிக்னல்கள் உள்ளன; அவற்றின் காத்திருப்பு இந்த நேரத்தில் சேர்க்கப்படவில்லை.');
+    }
   } else {
     final mins = m <= 0 ? 'under a minute' : 'about ${_plural(m, 'minute')}';
     out.add(
@@ -1268,6 +1279,13 @@ List<String> _timeDistance(_Ctx c, bool ta, List<String> facts) {
       facts.add('chosen.hazard_time_penalty_s');
       out.add(
         'Hazard delays add about ${_plural(c.penaltyMinutes, 'minute')}.',
+      );
+    }
+    final signals = c.signals;
+    if (signals > 0) {
+      facts.add('context_facts.route_signals');
+      out.add(
+        'It passes ${_plural(signals, 'traffic signal')}; waiting at them is not in that time.',
       );
     }
   }

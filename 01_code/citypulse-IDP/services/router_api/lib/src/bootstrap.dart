@@ -108,6 +108,15 @@ RouterServices bootstrapRouter(
     eventState: EventState.parse(env['EVENT_STATE'] ?? 'active'),
   );
 
+  // Traffic signals counted on each route (C8), from the city's places layer if it has one.
+  final poi = ((citiesDoc['cities'] as Map?)?[city.id] as Map?)?['poi'];
+  if (poi is String) {
+    final poiFile = File('$repoRoot/$poi');
+    if (poiFile.existsSync()) {
+      engine.signalNodes = snapSignals(parseSignalPoints(poiFile.readAsStringSync()), engine.snapper);
+    }
+  }
+
   // Detailed packs served inside this region (ADR-022), for example Chennai inside Tamil Nadu.
   final eventState = EventState.parse(env['EVENT_STATE'] ?? 'active');
   final details = <DetailRegion>[];

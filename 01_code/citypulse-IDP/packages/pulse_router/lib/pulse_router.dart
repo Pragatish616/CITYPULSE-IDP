@@ -23,5 +23,6 @@ export 'src/query_orchestrator.dart';
 export 'src/restrictions.dart';
 export 'src/route_advisor.dart';
 export 'src/routing_engine.dart';
+export 'src/signals.dart';
 export 'src/travel_profile.dart';
 export 'src/path_simplify.dart';

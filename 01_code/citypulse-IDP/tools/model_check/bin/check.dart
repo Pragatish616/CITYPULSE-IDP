@@ -10,13 +10,15 @@ import '../../../app/lib/src/explain/llama_question_labeler.dart';
 import 'package:pulse_explain/pulse_explain.dart';
 
 Future<void> main(List<String> args) async {
-  if (args.length != 3) {
-    stderr.writeln('usage: dart run bin/check.dart <model.gguf> <eval_rows_u.json> <result.json>');
+  if (args.length != 3 && args.length != 4) {
+    stderr.writeln('usage: dart run bin/check.dart <model.gguf> <eval_rows_u.json> <result.json> [free]');
     exit(64);
   }
   final gguf = args[0];
   final rows = (jsonDecode(File(args[1]).readAsStringSync()) as List).cast<Map<String, dynamic>>();
-  final labeler = LlamaQuestionLabeler(locate: () async => gguf);
+  // 'free' as a fourth argument turns the label grammar off (C7 comparison).
+  final constrained = !(args.length == 4 && args[3] == 'free');
+  final labeler = LlamaQuestionLabeler(locate: () async => gguf, constrained: constrained);
   var ok = 0, secOk = 0, bad = 0;
   final byLocale = <String, List<int>>{'en': [0, 0], 'ta': [0, 0]};
   final ms = <int>[];
@@ -46,6 +48,7 @@ Future<void> main(List<String> args) async {
   final result = {
     'gguf': File(gguf).uri.pathSegments.last,
     'runtime': 'llamadart 0.12.2 via the app labeler class, CPU, Windows (dart run)',
+    'grammar_constrained': constrained,
     'labeler_status': status,
     'n': n,
     'intent_accuracy': ok / n,

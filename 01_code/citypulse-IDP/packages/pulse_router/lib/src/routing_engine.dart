@@ -402,6 +402,10 @@ class RoutingEngine {
   /// The default event state for queries that do not pass one.
   EventState eventState;
 
+  /// Graph nodes that carry a traffic signal (OpenStreetMap `highway=traffic_signals`, snapped), counted on each route as the
+  /// `route_signals` fact (C8). Empty means no signal data is loaded and nothing is said about signals.
+  Set<int> signalNodes = const {};
+
   /// Hard limits per travel mode (ADR-032). Default: none, which is the behaviour before ADR-032.
   final RestrictionConfig restrictionConfig;
 
@@ -897,6 +901,7 @@ class RoutingEngine {
       queryId: queryId,
       edgeLabel: (id) => pack.streetName(id) ?? 'an unnamed stretch',
       streetNameOf: pack.streetName,
+      signalNodes: signalNodes,
       beliefParams: beliefParams,
       restrictedEdges: closed,
       contextFactsFor: (ids) => facts(ids, limitsNotMet: limitsNotMet),

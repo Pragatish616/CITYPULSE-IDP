@@ -87,6 +87,21 @@ RouteEdge _findEdge(CsrGraph graph, int from, int edgeId) {
 double _lengthMetres(RouteEdge edge) =>
     edge.freeFlowSeconds * edge.freeFlowKmh * 1000 / 3600;
 
+/// The traffic signals a route passes, as the context fact `route_signals` (C8): the number of distinct signal nodes the route goes
+/// through, from OpenStreetMap `highway=traffic_signals` points snapped to the graph. `null` when the route passes none (or no signal data
+/// is loaded): OpenStreetMap is incomplete, so a count of zero is not stated as "no signals".
+ContextFact? routeSignalFact(List<RouteEdge> edges, Set<int> signalNodes, DateTime asOf) {
+  if (signalNodes.isEmpty) return null;
+  final passed = <int>{for (final e in edges) if (signalNodes.contains(e.to)) e.to};
+  if (passed.isEmpty) return null;
+  return ContextFact(
+    key: 'route_signals',
+    value: passed.length,
+    label: 'traffic signals on this route',
+    asOf: asOf,
+  );
+}
+
 /// The main named streets of a route, as context facts `route_street_1` to `route_street_3`: each fact's label is the street name and its
 /// value the metres of the route on that street. Up to three streets with at least [minMetres] each, the longest kept, listed in the order
 /// the route meets them. Unnamed stretches are skipped. These make every explanation specific to its own route ("via Sardar Patel Road and
@@ -171,6 +186,7 @@ PlannedRoute? planRouteDetailed({
   Map<int, RestrictedEdge> restrictedEdges = const {},
   List<ContextFact> Function(List<int> chosenEdgeIds)? contextFactsFor,
   String? Function(int edgeId)? streetNameOf,
+  Set<int> signalNodes = const {},
 }) {
   if (source < 0 ||
       source >= graph.nodeCount ||
@@ -441,6 +457,7 @@ PlannedRoute? planRouteDetailed({
       ...?contextFactsFor?.call([for (final e in chosenEdges) e.edgeId]),
       if (streetNameOf != null)
         ...routeStreetFacts(chosenEdges, streetNameOf, computedAt),
+      ?routeSignalFact(chosenEdges, signalNodes, computedAt),
     ],
     dataGaps: dataGaps,
     confidenceBand: confidenceBand,

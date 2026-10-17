@@ -15,16 +15,29 @@ import 'dart:async';
 import 'package:llamadart/llamadart.dart';
 import 'package:pulse_explain/pulse_explain.dart';
 
+/// Built once: the grammar depends only on the intent list.
+final String _grammar = labelGrammar();
+
 /// Labels questions with a GGUF model found by [locate].
 class LlamaQuestionLabeler implements QuestionLabeler {
   /// Creates a labeler. Nothing is loaded until the first question.
-  LlamaQuestionLabeler({required this.locate, this.contextSize = 512});
+  LlamaQuestionLabeler({
+    required this.locate,
+    this.contextSize = 512,
+    this.constrained = false,
+  });
 
   /// Finds the GGUF file, or returns `null` when there is none (the labeler then has no reply and the ladder uses the rules).
   final Future<String?> Function() locate;
 
   /// The context window in tokens; the prompt is about 60 and the reply at most 40.
   final int contextSize;
+
+  /// Whether decoding is constrained by [labelGrammar] (C7), so the reply can only be one well-formed label. Off by default: on 300
+  /// held-out questions run back to back (data/results/2026-10-17-c7-grammar) run1 scored the same with and without it
+  /// (intent 0.99, nothing unparseable either way) and the grammar doubled the median time (1504 ms against 692 ms). Switch it on for
+  /// a model that does produce malformed replies.
+  final bool constrained;
 
   Future<LlamaEngine?>? _loading;
   Future<void> _tail = Future<void>.value();
@@ -82,11 +95,12 @@ class LlamaQuestionLabeler implements QuestionLabeler {
     return engine
         .create(
           messages,
-          params: const GenerationParams(
+          params: GenerationParams(
             maxTokens: 40,
             temp: 0,
             penalty: 1,
             seed: 1,
+            grammar: constrained ? _grammar : null,
           ),
         )
         .text();

@@ -1,0 +1,48 @@
+{
+ "task": "C7 grammar-constrained decoding of the run1 question labeller",
+ "date": "2026-10-17",
+ "tool": "tools/model_check/bin/check.dart (the app's LlamaQuestionLabeler)",
+ "rows": "300 held-out rows of data/qa/2026-10-13/runs/run1/eval_rows_u.json (not committed)",
+ "runs": {
+  "grammar_on": {
+   "gguf": "route_qa_run1_q4_k_m.gguf",
+   "runtime": "llamadart 0.12.2 via the app labeler class, CPU, Windows (dart run)",
+   "grammar_constrained": true,
+   "labeler_status": "ready",
+   "n": 300,
+   "intent_accuracy": 0.99,
+   "secondary_exact": 0.99,
+   "unparseable": 0.0,
+   "by_locale": {
+    "en": 0.9940476190476191,
+    "ta": 0.9848484848484849
+   },
+   "bar": 0.9766666666666667,
+   "meets_bar": true,
+   "ms_p50": 1504,
+   "ms_p95": 2194,
+   "source_file": "dart_runtime_check_q4_k_m_grammar.json"
+  },
+  "grammar_off": {
+   "gguf": "route_qa_run1_q4_k_m.gguf",
+   "runtime": "llamadart 0.12.2 via the app labeler class, CPU, Windows (dart run)",
+   "grammar_constrained": false,
+   "labeler_status": "ready",
+   "n": 300,
+   "intent_accuracy": 0.99,
+   "secondary_exact": 0.99,
+   "unparseable": 0.0,
+   "by_locale": {
+    "en": 0.9940476190476191,
+    "ta": 0.9848484848484849
+   },
+   "bar": 0.9766666666666667,
+   "meets_bar": true,
+   "ms_p50": 692,
+   "ms_p95": 1154,
+   "source_file": "dart_runtime_check_q4_k_m_free_rerun.json"
+  }
+ },
+ "decision": "grammar off by default (same accuracy, about 2.2x median latency); available as LlamaQuestionLabeler(constrained: true)",
+ "limits": "one laptop CPU, one run each, back to back; not measured on a phone"
+}

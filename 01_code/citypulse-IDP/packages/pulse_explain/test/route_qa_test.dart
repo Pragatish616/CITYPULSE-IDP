@@ -591,6 +591,42 @@ void main() {
     });
   });
 
+  group('C8: the time answer says how many traffic signals the free-flow time leaves out', () {
+    DecisionTrace withSignals(int? n) => buildTrace(
+      alternatives: const [],
+      worstEdgeP: 0,
+      contextFacts: [
+        _fact('route_street_1', 2501, 'Velachery Main Road'),
+        if (n != null) _fact('route_signals', n, 'traffic signals on this route'),
+      ],
+    );
+    QaAnswer ask(DecisionTrace t, {String? locale}) => answerQuestion(
+      question: locale == 'ta' ? 'எவ்வளவு நேரம் ஆகும்?' : 'How long will it take?',
+      trace: t,
+      eventState: EventState.dry,
+      hazardDisplayNouns: testHazardDisplayNouns,
+      locale: locale,
+    );
+
+    test('English: the count, and that waiting is not in the time; it passes the verifier', () {
+      final a = ask(withSignals(7));
+      expect(a.usedFallback, isFalse, reason: '${a.rejectedClaims}');
+      expect(a.text, contains('It passes 7 traffic signals; waiting at them is not in that time.'));
+      expect(a.factsUsed, contains('context_facts.route_signals'));
+      expect(ask(withSignals(1)).text, contains('It passes 1 traffic signal;'));
+    });
+
+    test('Tamil says the same', () {
+      final a = ask(withSignals(4), locale: 'ta');
+      expect(a.usedFallback, isFalse, reason: '${a.rejectedClaims}');
+      expect(a.text, contains('வழியில் 4 போக்குவரத்து சிக்னல்கள் உள்ளன'));
+    });
+
+    test('no signal fact (no data, or none counted): nothing is said about signals', () {
+      expect(ask(withSignals(null)).text.toLowerCase(), isNot(contains('signal')));
+    });
+  });
+
   group('version 3: short answers that name the route\'s own streets', () {
     DecisionTrace withStreets(List<(String, int)> streets, {ConfidenceBand band = ConfidenceBand.low}) => buildTrace(
       alternatives: const [],
