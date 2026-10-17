@@ -87,3 +87,14 @@ Status words used below:
 **Android app (5 October 2026).** A GitHub workflow built a 60.9 MB release APK; the team installed it on one Android phone and reports that it behaves exactly like the web app. No timing, memory, battery or airplane-mode result is recorded, so the readiness levels above do not change (the offline claim in particular is still untested). The next step is the measurement table in `01_code/citypulse-IDP/docs/ops/MOBILE_TESTING.md`.
 
 **Event state (5 October 2026, ADR-027).** The router now sets the flood-event state from NASA satellite rain by default, and an operator can override it. It reacts about six hours late and uses placeholder thresholds, so it is context for whether the 2015 hazard map is applied, not a flood measure (F-36). Readiness levels do not change.
+
+## 17 October 2026: research candidates C3, C5 to C8 (local commits, not pushed)
+
+| Item | What exists | Evidence | State |
+|---|---|---|---|
+| C6 MCP server | `services/router_api/bin/mcp_stdio.dart`, `lib/src/mcp.dart`, `docs/MCP.md`: tools `search_places`, `plan_route`, `ask_about_route`, `flood_event_state`; every returned sentence passed the verifier; safety questions refused | 11 tests on the real pack; manual stdio run | Works (local); not yet tried from a real MCP client |
+| C7 label grammar | `labelGrammar()` in `pulse_explain`; option in the app labeller | 300 held-out rows: accuracy 0.99 with and without; median 1504 ms with, 692 ms without (`data/results/2026-10-17-c7-grammar/`) | Works; **off by default** (no gain, twice the latency) |
+| C8a signals on the route | 485 OpenStreetMap signals snapped (465 nodes); `route_signals` fact; time answer says signal waits are not in the free-flow time; router service and app | Tests; T. Nagar to Velachery passes 9 | Works; a count, not a wait |
+| C8b signal-timing learner | `ml/signal_timing/` (cycle, red, delay per time-of-week bin) | Simulated passes only; cycle exact on 4 simulated signals | Untested on real traces; 10-junction protocol pre-registered |
+| C5 conformal flags | `ml/conformal/`, `scripts/c5_conformal_eval.py`, pre-registration committed first | Coverage 0.894 on a spatial split (kill line 0.85), but 54 % of non-report edges flagged; crowd evidence barely beats the prior (`data/results/2026-10-17-c5-conformal/`) | Not killed; low information with today's scores; router unchanged |
+| C3 microwave-link rain | `ml/cml_rain/` retrieval chain, no invented coefficients | Synthetic links only | Ready for data; no operator data |

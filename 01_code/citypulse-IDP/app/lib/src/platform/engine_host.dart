@@ -56,6 +56,7 @@ class EngineInputs {
     required this.nodes,
     required this.meta,
     required this.configYaml,
+    this.poiJson,
   });
 
   /// `graph.bin`.
@@ -69,6 +70,9 @@ class EngineInputs {
 
   /// `config/hazard_classes.yaml` text.
   final String configYaml;
+
+  /// The places layer (`places_poi.json`), for the traffic signals counted on each route (C8). `null`: no signal count.
+  final String? poiJson;
 }
 
 RoutingEngine _buildEngine(EngineInputs inputs) {
@@ -80,7 +84,7 @@ RoutingEngine _buildEngine(EngineInputs inputs) {
     meta: view(inputs.meta),
   );
   final config = EngineConfig.fromMap(loadYaml(inputs.configYaml) as YamlMap);
-  return RoutingEngine(
+  final engine = RoutingEngine(
     pack: pack,
     hazardClasses: config.hazardClasses,
     userClasses: config.userClasses,
@@ -88,6 +92,11 @@ RoutingEngine _buildEngine(EngineInputs inputs) {
     travelProfiles: config.travelProfiles,
     restrictionConfig: config.restrictions,
   );
+  final poi = inputs.poiJson;
+  if (poi != null) {
+    engine.signalNodes = snapSignals(parseSignalPoints(poi), engine.snapper);
+  }
+  return engine;
 }
 
 /// The operations the app needs from an engine, all asynchronous so a
@@ -258,11 +267,12 @@ class _Failure {
 }
 
 class _Boot {
-  const _Boot(this.graph, this.nodes, this.meta, this.configYaml, this.ready);
+  const _Boot(this.graph, this.nodes, this.meta, this.configYaml, this.poiJson, this.ready);
   final TransferableTypedData graph;
   final TransferableTypedData nodes;
   final TransferableTypedData meta;
   final String configYaml;
+  final String? poiJson;
   final SendPort ready;
 }
 
@@ -276,6 +286,7 @@ void _workerMain(_Boot boot) {
         nodes: boot.nodes.materialize().asUint8List(),
         meta: boot.meta.materialize().asUint8List(),
         configYaml: boot.configYaml,
+        poiJson: boot.poiJson,
       ),
     );
     // Anything that stops the engine loading is reported, not swallowed.
@@ -347,6 +358,7 @@ class IsolateEngineHost implements EngineHost {
         TransferableTypedData.fromList([inputs.nodes]),
         TransferableTypedData.fromList([inputs.meta]),
         inputs.configYaml,
+        inputs.poiJson,
         ready.sendPort,
       ),
       errorsAreFatal: false,

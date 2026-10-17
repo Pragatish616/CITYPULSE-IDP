@@ -36,6 +36,7 @@ class InProcessBackend implements RoutingBackend {
     this.pullEventState,
     this.packPath = 'assets/packs',
     this.configPath = 'assets/config/hazard_classes.yaml',
+    this.poiPath = 'assets/data/places_poi.json',
     DateTime Function()? clock,
     EngineHostFactory hostFactory = defaultEngineHost,
   }) : _bundle = bundle,
@@ -51,6 +52,9 @@ class InProcessBackend implements RoutingBackend {
 
   /// Path of `hazard_classes.yaml` inside the bundle.
   final String configPath;
+
+  /// Path of the places layer inside the bundle (traffic signals for the route facts, C8); optional.
+  final String poiPath;
 
   /// Optional report source.
   final Future<List<EngineObservation>> Function()? pullObservations;
@@ -78,8 +82,17 @@ class InProcessBackend implements RoutingBackend {
         bytes('meta.bin'),
         _bundle.loadString(configPath),
       ).wait;
+      // The places layer is optional: without it routes simply carry no signal count (C8).
+      String? poi;
+      try {
+        poi = await _bundle.loadString(poiPath);
+        // A missing or unreadable asset only means no signal count.
+        // ignore: avoid_catches_without_on_clauses
+      } catch (_) {
+        poi = null;
+      }
       return await _hostFactory(
-        EngineInputs(graph: graph, nodes: nodes, meta: meta, configYaml: yaml),
+        EngineInputs(graph: graph, nodes: nodes, meta: meta, configYaml: yaml, poiJson: poi),
       );
       // Missing assets, a corrupt pack or a bad config all mean "not ready".
       // ignore: avoid_catches_without_on_clauses
