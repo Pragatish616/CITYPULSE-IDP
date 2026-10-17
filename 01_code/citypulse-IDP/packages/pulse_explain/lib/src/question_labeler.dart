@@ -21,6 +21,19 @@ import 'package:pulse_router/pulse_router.dart';
 const String kLabelSystemPrompt =
     "Label the traveller's question about a route. Reply with JSON.";
 
+/// A GBNF grammar (llama.cpp's grammar format) that allows the model to write exactly one label in the trained format,
+/// `{"intent": "<intent>", "secondary": null}` or `{"intent": "<intent>", "secondary": "<intent>"}`, with intents from the 19 known
+/// wire names. Decoding under it makes an unreadable reply impossible by construction; [parseModelLabel] still checks the result
+/// (for example, a secondary equal to the intent is dropped there).
+String labelGrammar() {
+  final intents = [for (final i in QaIntent.values) '"\\"${i.wireName}\\""'].join(' | ');
+  return [
+    r'root ::= "{\"intent\": " intent ", \"secondary\": " secondary "}"',
+    'secondary ::= "null" | intent',
+    'intent ::= $intents',
+  ].join('\n');
+}
+
 /// The longest time a label is waited for before the rule-based answer is used (pre-registration addendum 3 and 5).
 const Duration kLabelTimeout = Duration(seconds: 8);
 

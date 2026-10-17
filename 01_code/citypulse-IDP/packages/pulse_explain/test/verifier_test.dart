@@ -32,6 +32,25 @@ void _expectRejected(
 }
 
 void main() {
+  group('a street name is a name, not a claim (C6 smoke test found this)', () {
+    DecisionTrace via(String street) => buildTrace(
+      alternatives: const [],
+      contextFacts: [
+        ContextFact(key: 'route_street_1', value: 2501, label: street, asOf: DateTime.utc(2026, 10, 17)),
+      ],
+    );
+
+    test('"Velachery Bypass Road" does not read as an avoidance claim', () {
+      final r = verify('Route A runs via Velachery Bypass Road.', via('Velachery Bypass Road'));
+      expect(r.unsupportedClaims.where((c) => c.startsWith('rule3:comparative')), isEmpty, reason: '${r.unsupportedClaims}');
+    });
+
+    test('a real avoidance claim with nothing avoided is still rejected', () {
+      final r = verify('Route A bypasses the flooding on the way.', via('Velachery Bypass Road'));
+      expect(r.unsupportedClaims, contains('rule3:comparative:avoids_without_blocking_edge'));
+    });
+  });
+
   final trace = buildTrace();
   final traceNoAlternatives = buildTrace(alternatives: const []);
   final traceAltWithoutBlockingEdge = buildTrace(

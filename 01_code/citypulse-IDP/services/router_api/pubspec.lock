@@ -224,6 +224,13 @@ packages:
       relative: true
     source: path
     version: "0.1.0"
+  pulse_explain:
+    dependency: "direct main"
+    description:
+      path: "../../packages/pulse_explain"
+      relative: true
+    source: path
+    version: "0.1.0"
   pulse_router:
     dependency: "direct main"
     description:

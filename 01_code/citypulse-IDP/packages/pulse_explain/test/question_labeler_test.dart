@@ -107,6 +107,52 @@ void main() {
     });
   });
 
+  group('the label grammar (C7: constrained decoding)', () {
+    // Read the grammar back into a regular expression, so the test checks what the grammar text allows, not what we meant it to allow.
+    RegExp grammarAsRegex() {
+      final g = labelGrammar();
+      final intentLine = g.split('\n').firstWhere((l) => l.startsWith('intent ::='));
+      final alternatives = RegExp(r'"\\"([a-z_]+)\\""').allMatches(intentLine).map((m) => m.group(1)!).toList();
+      expect(g, contains(r'root ::= "{\"intent\": " intent ", \"secondary\": " secondary "}"'));
+      expect(g, contains('secondary ::= "null" | intent'));
+      final i = '(?:${alternatives.map((a) => '"$a"').join('|')})';
+      return RegExp('^\\{"intent": $i, "secondary": (?:null|$i)\\}\$');
+    }
+
+    test('every one of the 19 intents is allowed, and only those', () {
+      final g = labelGrammar();
+      for (final i in QaIntent.values) {
+        expect(g, contains('"\\"${i.wireName}\\""'), reason: i.wireName);
+      }
+      expect(RegExp(r'"\\"[a-z_]+\\""').allMatches(g.split('\n').last).length, QaIntent.values.length);
+    });
+
+    test('every label in the trained format is accepted, and the reader reads it back', () {
+      final re = grammarAsRegex();
+      for (final i in QaIntent.values) {
+        for (final s in <QaIntent?>[null, ...QaIntent.values]) {
+          final label = '{"intent": "${i.wireName}", "secondary": ${s == null ? 'null' : '"${s.wireName}"'}}';
+          expect(re.hasMatch(label), isTrue, reason: label);
+          expect(parseModelLabel(label)?.intent, i);
+        }
+      }
+    });
+
+    test('malformed replies are outside the grammar', () {
+      final re = grammarAsRegex();
+      for (final bad in [
+        '{"intent": "nonsense", "secondary": null}',
+        '{"intent":"help","secondary":null}',
+        '{"intent": "help"}',
+        'Sure! {"intent": "help", "secondary": null}',
+        '{"intent": "help", "secondary": "null"}',
+        'the road is safe',
+      ]) {
+        expect(re.hasMatch(bad), isFalse, reason: bad);
+      }
+    });
+  });
+
   group('the model prompt and intent list match the training code', () {
     final f = File('../../ml/route_qa/prompts.py');
     final py = f.existsSync() ? f.readAsStringSync() : null;

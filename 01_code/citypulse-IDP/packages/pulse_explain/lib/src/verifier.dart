@@ -105,7 +105,8 @@ VerificationResult verify(
     ..._checkTypedQuantities(text, trace),
     ..._checkEntities(text, trace),
     ..._checkHazardNouns(text, trace, hazardDisplayNouns),
-    ..._checkComparatives(text, trace),
+    // On the text with trace-supplied names removed: a street called "Velachery Bypass Road" is a name, not an avoidance claim.
+    ..._checkComparatives(_stripEntityNames(text, trace), trace),
     ..._checkComparativeDirection(text, trace),
     ..._checkAvoidanceAttribution(text, trace, hazardDisplayNouns),
     ..._checkDataGapContradiction(text, trace, hazardDisplayNouns),

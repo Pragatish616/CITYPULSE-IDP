@@ -114,6 +114,7 @@ Handler buildHandler(
   int Function()? observationCount,
   RewriteProxy? rewrite,
   EventStateController? events,
+  void Function(String line)? accessLog,
 }) {
   final router = Router();
   final riskCache = <String, ({DateTime at, String body})>{};
@@ -554,8 +555,7 @@ Handler buildHandler(
             // Never leak a stack trace or the failing input to a client.
             response = _error(500, 'internal', 'Internal error.');
           }
-          // ignore: avoid_print
-          print(
+          (accessLog ?? _printLine)(
             '${request.method} /${request.url.path} -> ${response.statusCode} '
             '(${sw.elapsedMilliseconds} ms)',
           );
@@ -566,3 +566,7 @@ Handler buildHandler(
 }
 
 DateTime _utcNow() => DateTime.now().toUtc();
+
+// The HTTP server logs each request to stdout; the MCP server passes a stderr logger, because its stdout carries only protocol messages.
+// ignore: avoid_print
+void _printLine(String line) => print(line);

@@ -13,6 +13,8 @@ dependencies:
   http: ^1.2.2
   pulse_belief:
     path: ../../packages/pulse_belief
+  pulse_explain:
+    path: ../../packages/pulse_explain
   pulse_router:
     path: ../../packages/pulse_router
   shelf: ^1.4.2
