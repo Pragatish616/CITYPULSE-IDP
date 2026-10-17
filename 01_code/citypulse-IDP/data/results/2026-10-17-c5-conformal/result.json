@@ -1,0 +1,152 @@
+{
+ "task": "C5 conformal flags for flood-reported edges",
+ "preregistration": "ml/conformal/PREREGISTRATION.md (commit 0dd6a7a)",
+ "code_commit_at_run": "0dd6a7a",
+ "alpha": 0.1,
+ "splits_per_kind": 200,
+ "split_seed": 20261017,
+ "pool_seed": 20260918,
+ "cell_degrees": 0.01,
+ "kill_below_spatial_coverage": 0.85,
+ "rows": 14336,
+ "positives": 226,
+ "counts_by_group": {
+  "flood": {
+   "positives": 226,
+   "negatives": 14110
+  }
+ },
+ "random_split": {
+  "S1_c3_p_mean": {
+   "flood": {
+    "coverage": {
+     "mean": 0.904372023397762,
+     "p05": 0.8331666666666667,
+     "p95": 0.9604147948487571,
+     "splits": 200
+    },
+    "false_flag_rate": {
+     "mean": 0.5461648197714565,
+     "p05": 0.48339635352517596,
+     "p95": 0.6406777202380761,
+     "splits": 200
+    },
+    "c1_block_p_ge_0_5_coverage": {
+     "mean": 0.0,
+     "p05": 0.0,
+     "p95": 0.0,
+     "splits": 200
+    },
+    "c1_block_p_ge_0_5_false_flag_rate": {
+     "mean": 0.00036140989031818206,
+     "p05": 0.0001416029453412631,
+     "p95": 0.0005675368898978433,
+     "splits": 200
+    },
+    "share_of_splits_threshold_minus_inf": 0.0,
+    "threshold_median_finite": 0.12227808482590274
+   }
+  },
+  "S2_prior_only": {
+   "flood": {
+    "coverage": {
+     "mean": 0.9073489587259508,
+     "p05": 0.8300585556278465,
+     "p95": 0.9583333333333334,
+     "splits": 200
+    },
+    "false_flag_rate": {
+     "mean": 0.5771467916407519,
+     "p05": 0.5577862928445252,
+     "p95": 0.5920900584110009,
+     "splits": 200
+    },
+    "c1_block_p_ge_0_5_coverage": {
+     "mean": 0.0,
+     "p05": 0.0,
+     "p95": 0.0,
+     "splits": 200
+    },
+    "c1_block_p_ge_0_5_false_flag_rate": {
+     "mean": 0.0,
+     "p05": 0.0,
+     "p95": 0.0,
+     "splits": 200
+    },
+    "share_of_splits_threshold_minus_inf": 0.0,
+    "threshold_median_finite": 0.029252538425685787
+   }
+  }
+ },
+ "spatial_split": {
+  "S1_c3_p_mean": {
+   "flood": {
+    "coverage": {
+     "mean": 0.893592233418648,
+     "p05": 0.7784828026639905,
+     "p95": 0.9755364030858245,
+     "splits": 200
+    },
+    "false_flag_rate": {
+     "mean": 0.5439375847440171,
+     "p05": 0.44765083911919934,
+     "p95": 0.6621166203985751,
+     "splits": 200
+    },
+    "c1_block_p_ge_0_5_coverage": {
+     "mean": 0.0,
+     "p05": 0.0,
+     "p95": 0.0,
+     "splits": 200
+    },
+    "c1_block_p_ge_0_5_false_flag_rate": {
+     "mean": 0.0003513937114031336,
+     "p05": 0.0,
+     "p95": 0.000731015955643879,
+     "splits": 200
+    },
+    "share_of_splits_threshold_minus_inf": 0.0,
+    "threshold_median_finite": 0.12321612851679853
+   }
+  },
+  "S2_prior_only": {
+   "flood": {
+    "coverage": {
+     "mean": 0.8934618884438066,
+     "p05": 0.7734254188144329,
+     "p95": 0.9780792124542124,
+     "splits": 200
+    },
+    "false_flag_rate": {
+     "mean": 0.5717906648876103,
+     "p05": 0.5156620912375319,
+     "p95": 0.6165549805935202,
+     "splits": 200
+    },
+    "c1_block_p_ge_0_5_coverage": {
+     "mean": 0.0,
+     "p05": 0.0,
+     "p95": 0.0,
+     "splits": 200
+    },
+    "c1_block_p_ge_0_5_false_flag_rate": {
+     "mean": 0.0,
+     "p05": 0.0,
+     "p95": 0.0,
+     "splits": 200
+    },
+    "share_of_splits_threshold_minus_inf": 0.0,
+    "threshold_median_finite": 0.030324662103807992
+   }
+  }
+ },
+ "decision": {
+  "flood": {
+   "spatial_coverage_S1": 0.893592233418648,
+   "killed": false,
+   "no_information": false
+  }
+ },
+ "label_note": "label = edge also has an official report (Study 2); co-location, not observed flooding",
+ "limits": "one event (2015), one proxy timestamp; guarantee is within this corpus only"
+}
