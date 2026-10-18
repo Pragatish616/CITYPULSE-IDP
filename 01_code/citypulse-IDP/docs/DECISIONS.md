@@ -1369,3 +1369,23 @@ The weak point is the information, not the learner. Evidence for that: a spline 
 The run and its readings are in `research/log/2026-10-13_route_qa.md`. Summary: labelling 0.9967 on 300 validation questions (Tamil 0.9924, none unparseable), all pre-declared labelling criteria met; answer writing passed the verifier on 53 of 60 (88.3%) against a required 90%, so the pre-declared reading is **not met**, narrowly. All seven failures are numerals not supported by the route's facts. All 8 safety questions were refused and all 32 low- or stale-confidence answers were hedged. The untouched base model scored 0 labelling accuracy and 6 of 60 on the verifier. The model's answers are mostly the training styles (60% word-for-word; lexical variety below the base model), so it is no richer than D0.
 
 Status: nothing is adopted. D1 (model labels, D0 writes) is a candidate to continue; D2 (model writes) is not supported by this run. Validation questions share a bank with the training questions, so the labelling figure overstates generalisation. Still required before any adoption: the sealed test set, blind pairwise ratings, the faithfulness audit, the phone ceilings, and native review of the Tamil. No settings were changed and no second run was made.
+
+## ADR-036: Conformal flags and route certificates are not adopted; the scores, not the calibration, are the limit (18 October 2026)
+
+**Context.** The router's caution comes from a hand-set pessimistic index with no coverage meaning (F-01). Split conformal calibration
+gives thresholds with a stated, checkable meaning. Two pre-registered analyses on the 2015 corpus (`ml/conformal/PREREGISTRATION.md`,
+committed before each analysis): C5 at edge level and C5b at route level.
+
+**Results.**
+- C5 (`data/results/2026-10-17-c5-conformal/`): a threshold covering 9 in 10 official-report edges kept its coverage on a spatial split
+  (0.894; kill line 0.85), but flagged 54 % of edges without a report. Crowd evidence barely beat the prior (54.4 % against 57.2 %).
+  The fixed rule "p̄ ≥ 0.5" covered none of the reported edges.
+- C5b (`data/results/2026-10-18-c5b-route-certificates/`): a route certificate ("every reported edge on the route is flagged, 9 times in
+  10") met its coverage only by setting the threshold at the prior's floor (0.02), which flags every edge of every route. Some reported
+  edges have nothing but the floor prior.
+
+**Decision.** Neither threshold is used by the router or shown in the app. The code (`ml/conformal/`) stays, so that any future score,
+in particular one built on independent time-stamped evidence, can be checked against the same pre-registered rules in minutes.
+
+**Consequence.** The fixed p̄ ≥ 0.5 rule (C1) is now known to cover none of the reported edges on this corpus; this is added to what the
+paper must say about baselines. The project's standing conclusion is unchanged: the scarce resource is evidence, not modelling.
