@@ -1,6 +1,5 @@
 // C6: CityPulse as an MCP server. The protocol (JSON-RPC 2.0, MCP lifecycle and tools) and the rules: every route sentence passes the
 // verifier, safety questions are refused, and a tool cannot do anything the HTTP API would refuse.
-import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 

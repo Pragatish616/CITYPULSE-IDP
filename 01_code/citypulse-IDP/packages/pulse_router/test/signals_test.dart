@@ -29,9 +29,9 @@ void main() {
     });
 
     test('a layer without a signal category has no signals; a broken file is an error', () {
-      expect(parseSignalPoints(jsonEncode({'categories': [{'id': 'shop'}], 'places': []})), isEmpty);
+      expect(parseSignalPoints(jsonEncode({'categories': [{'id': 'shop'}], 'places': <Object?>[]})), isEmpty);
       expect(() => parseSignalPoints('[]'), throwsFormatException);
-      expect(() => parseSignalPoints(jsonEncode({'places': []})), throwsFormatException);
+      expect(() => parseSignalPoints(jsonEncode({'places': <Object?>[]})), throwsFormatException);
     });
   });
 
