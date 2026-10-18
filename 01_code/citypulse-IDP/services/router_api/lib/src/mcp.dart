@@ -285,6 +285,11 @@ class McpServer {
             for (final f in r.trace.contextFacts)
               if (f.key.startsWith('route_street_')) f.label,
           ],
+          // C8: OpenStreetMap signals the route passes; null when none were counted (the map is incomplete, so not "zero").
+          'traffic_signals': [
+            for (final f in r.trace.contextFacts)
+              if (f.key == 'route_signals') f.value,
+          ].firstOrNull,
           'confidence_band': r.trace.confidenceBand.name,
           'event_state': r.eventState.name,
           'answer_verified': answer.verification.passed,

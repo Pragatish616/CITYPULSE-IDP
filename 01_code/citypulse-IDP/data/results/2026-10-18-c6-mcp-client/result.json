@@ -1,0 +1,44 @@
+{
+ "client": "mcp python sdk",
+ "checks": {
+  "four tools listed": true,
+  "plan_route verified": true,
+  "safety question refused": true,
+  "bad place is a tool error": true,
+  "search works": true,
+  "event state works": true
+ },
+ "server": {
+  "name": "citypulse",
+  "version": "0.1.0",
+  "protocol": "2025-06-18"
+ },
+ "startup_s": 0.28,
+ "call_ms": {
+  "plan_route": 4,
+  "ask_about_route": 26,
+  "search_places": 6,
+  "flood_event_state": 2
+ },
+ "plan_route_text": "Route from Thiyagaraya Nagar to Velachery (car):\nThe trip runs via Anna Salai (Mount Road), Velachery Main Road and Velachery Bypass Road: 9.75 km, about 13 minutes for the car travel mode. The advice is to wait if you can, on thin evidence. There is little recent data for this route. Hazard data here is limited, so use your own judgement.\n\nCityPulse is a research prototype. It estimates flood risk from limited data and never states that a road is safe or passable; this is a guide from the data held, not a guarantee. In an emergency call 112.",
+ "plan_route_structured": {
+  "from": "Thiyagaraya Nagar",
+  "to": "Velachery",
+  "travel_mode": "car",
+  "distance_m": 9748,
+  "free_flow_minutes": 13,
+  "streets": [
+   "Anna Salai (Mount Road)",
+   "Velachery Main Road",
+   "Velachery Bypass Road"
+  ],
+  "traffic_signals": 11,
+  "confidence_band": "low",
+  "event_state": "dry",
+  "answer_verified": true,
+  "used_fallback": false
+ },
+ "safety_text": "Route from Thiyagaraya Nagar to Velachery (car):\nI cannot confirm the condition of any road, so I cannot tell you whether to go. The only thing I can show is the risk on your route: the data held rates flood risk on Route A as moderate, and the evidence behind that is thin. You should check the road yourself and follow local advice. This is a guide from the data held, not a guarantee. Hazard data here is limited, so use your own judgement.\n\nCityPulse is a research prototype. It estimates flood risk from limited data and never states that a road is safe or passable; this is a guide from the data held, not a guarantee. In an emergency call 112.",
+ "event_state_text": "No flood event is declared, so the hazard map is not applied to routes. No rain source is configured, so the configured state applies.",
+ "all_passed": true
+}

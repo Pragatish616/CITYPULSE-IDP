@@ -60,6 +60,28 @@ Add to `claude_desktop_config.json` (Settings → Developer → Edit config), wi
 claude mcp add citypulse -e CITY=chennai -e CITIES_CONFIG=/abs/path/config/cities.yaml -e HAZARD_CONFIG=/abs/path/config/hazard_classes.yaml -- /abs/path/services/router_api/citypulse_mcp.exe
 ```
 
+### Claude Code, for one session only (nothing saved)
+
+Put the `mcpServers` block above in a file, for example `citypulse_mcp.json`, and start a session with it; your saved settings are not
+touched:
+
+```bash
+claude --mcp-config citypulse_mcp.json --strict-mcp-config
+```
+
+### Check it with an independent client
+
+`tools/mcp_client_check/check.py` drives the compiled server with the official MCP Python SDK (`pip install mcp`), which performs the
+handshake and validates every message. Run from `01_code/citypulse-IDP`:
+
+```bash
+python tools/mcp_client_check/check.py services/router_api/citypulse_mcp.exe
+```
+
+Result on 18 Oct 2026 (`data/results/2026-10-18-c6-mcp-client/result.json`): all six checks passed (tools listed, `plan_route` verified,
+safety question refused, unknown place returned as a tool error, search, event state); start-up 0.3 s, each tool call under 30 ms on the
+laptop. Not yet tried from Claude Desktop or Claude Code: the Claude Code CLI on this laptop was signed out.
+
 ### Try it by hand
 
 ```bash
@@ -76,4 +98,5 @@ printf '%s\n' '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocol
   a road is safe or passable.
 - The assistant is told (in the server's `instructions`) to quote the tool text as given. An assistant can still paraphrase; the guarantee
   covers what the tool returns, not what a model later writes.
-- Times are free-flow estimates; there is no live traffic data.
+- Times are free-flow estimates; there is no live traffic data. `structuredContent.traffic_signals` is the number of OpenStreetMap
+  traffic signals on the route (C8), or `null` when none were counted; waiting at them is not in the time.
