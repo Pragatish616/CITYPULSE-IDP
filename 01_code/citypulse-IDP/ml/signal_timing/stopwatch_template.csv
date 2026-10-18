@@ -1,0 +1,2 @@
+site_id,approach_id,bin,date,cycle_s,red_s,timed_by,notes
+S01,,weekday_am_peak,2026-10-20,,,,"one row per timed cycle (green start to green start); red_s optional"

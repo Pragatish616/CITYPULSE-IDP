@@ -26,10 +26,29 @@ passes no delay is given. **These numbers show the method recovers what the simu
 
 Run the tests from `01_code/citypulse-IDP`: `python -m pytest ml/signal_timing -q`.
 
+## Field workflow (built 18 Oct 2026; nothing recorded yet)
+
+From raw GPS to the protocol's kill rule, run from `01_code/citypulse-IDP`:
+
+1. `python -m ml.signal_timing candidates --out ml/signal_timing/sites/candidates.json`: 20 suggested junctions (signals on main
+   roads within 10 km of the centre with at least two measurable approaches, spread across the city; 88 were eligible). **The owner
+   chooses the 10 sites** and writes them in the data log before the first drive.
+2. `python -m ml.signal_timing approaches --site S01 --lat .. --lon .. --out ml/signal_timing/sites/S01.json`: the approaches of a site
+   from the road graph (250 m before the signal, 80 m beyond, following the straightest road).
+3. Drive with any GPS logger at 1 Hz; put the GPX or CSV files of a site in one folder (phyphox CSV needs `--start-epoch`).
+4. `python -m ml.signal_timing learn --site ml/signal_timing/sites/S01.json --traces <folder> --out <folder>/learned.json`: matches the
+   traces to the approaches (corridor 20 m, forward motion) and runs the learner per approach and time-of-week bin.
+5. Stopwatch sheet: `stopwatch_template.csv`, one row per timed cycle.
+6. `python -m ml.signal_timing evaluate --learned <field folder> --stopwatch stopwatch.csv --out evaluation.json`: the primary outcome
+   and the kill rule. How the protocol is read (fixed now, before data): a site has a fixed cycle if its stopwatch cycles vary by at most
+   5 s (SD); its error uses the approach and bin with the most passes; a fixed-cycle site where the learner finds no cycle counts as a
+   failure.
+
+Tests: `python -m pytest ml/signal_timing -q` (19 pass), including matching simulated traces on a made-up junction and the kill rule.
+
 ## What is not built
 
-- Map matching of raw GPS traces to (time, distance to stop line) series per signal approach.
-- Any source of real traces. The app records no trips (DPDP Act: no passive location collection, ADR-006).
+- Any source of real traces beyond the team's own drives. The app records no trips (DPDP Act: no passive location collection, ADR-006).
 - Feeding learned waits into route times. That would change the cost model, which needs the owner's approval and an ADR.
 
 ## Study protocol (pre-registered, 17 Oct 2026; not run)

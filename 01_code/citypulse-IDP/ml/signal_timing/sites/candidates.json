@@ -1,0 +1,251 @@
+{
+ "note": "Candidates only. The owner chooses 10 sites and records them in the data log before the first drive.",
+ "eligible_junctions": 88,
+ "candidates": [
+  {
+   "lat": 12.96163,
+   "lon": 80.25629,
+   "node": 10755,
+   "approaches": 3,
+   "streets": [
+    "Anna Salai",
+    "East Coast Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C01"
+  },
+  {
+   "lat": 13.12323,
+   "lon": 80.20151,
+   "node": 1572,
+   "approaches": 3,
+   "streets": [
+    "Jawaharlal Nehru Road (100 Feet Road)",
+    "Vivekananda nagar main road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C02"
+  },
+  {
+   "lat": 13.03463,
+   "lon": 80.15596,
+   "node": 3748,
+   "approaches": 2,
+   "streets": [
+    "Kodambakkam – Sriperumbudur Road",
+    "Mount Poonamallee Highway"
+   ],
+   "osm_name": "Porur Junction",
+   "candidate_id": "C03"
+  },
+  {
+   "lat": 13.07414,
+   "lon": 80.2858,
+   "node": 3625,
+   "approaches": 2,
+   "streets": [
+    "Muthuswamy Road",
+    "Rajaji Salai"
+   ],
+   "osm_name": "",
+   "candidate_id": "C04"
+  },
+  {
+   "lat": 13.05346,
+   "lon": 80.22412,
+   "node": 3786,
+   "approaches": 2,
+   "streets": [
+    "Anna Main Road",
+    "Nagerkoyil Sudalaimuthu Krishnan Salai",
+    "Puliyur Main Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C05"
+  },
+  {
+   "lat": 13.02403,
+   "lon": 80.27397,
+   "node": 4917,
+   "approaches": 2,
+   "streets": [
+    "Loop Road",
+    "Santhome High Road",
+    "South Canal Bank Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C06"
+  },
+  {
+   "lat": 13.00361,
+   "lon": 80.21201,
+   "node": 24388,
+   "approaches": 2,
+   "streets": [
+    "Five Furlong Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C07"
+  },
+  {
+   "lat": 13.09743,
+   "lon": 80.24208,
+   "node": 6762,
+   "approaches": 2,
+   "streets": [
+    "Anderson Road",
+    "Konnur High Road",
+    "Medavakkam Tank Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C08"
+  },
+  {
+   "lat": 13.08537,
+   "lon": 80.19848,
+   "node": 270,
+   "approaches": 2,
+   "streets": [
+    "2nd Avenue Anna Nagar",
+    "Jawaharlal Nehru Road (100 Feet Road)"
+   ],
+   "osm_name": "",
+   "candidate_id": "C09"
+  },
+  {
+   "lat": 13.10797,
+   "lon": 80.2915,
+   "node": 6244,
+   "approaches": 3,
+   "streets": [
+    "BC Press Road",
+    "Cemetry Road",
+    "Suryanarayana Street"
+   ],
+   "osm_name": "",
+   "candidate_id": "C10"
+  },
+  {
+   "lat": 13.05436,
+   "lon": 80.25794,
+   "node": 12440,
+   "approaches": 2,
+   "streets": [
+    "Conron Smith Road",
+    "Peters Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C11"
+  },
+  {
+   "lat": 12.99693,
+   "lon": 80.25581,
+   "node": 30860,
+   "approaches": 2,
+   "streets": [
+    "Dr Muthulakshmi Salai",
+    "Dr. Muthulakshmi Road",
+    "Indira Nagar 2nd Avenue",
+    "Mahatma Gandhi Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C12"
+  },
+  {
+   "lat": 13.01794,
+   "lon": 80.18707,
+   "node": 3548,
+   "approaches": 2,
+   "streets": [
+    "Mount - Poonamallee - Avadi Road",
+    "road to Manapakkam"
+   ],
+   "osm_name": "",
+   "candidate_id": "C13"
+  },
+  {
+   "lat": 13.01816,
+   "lon": 80.24109,
+   "node": 12594,
+   "approaches": 3,
+   "streets": [
+    "Gandhi Mandapam Road",
+    "Ponniamman Koil Road",
+    "Ranjith Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C14"
+  },
+  {
+   "lat": 13.07911,
+   "lon": 80.2568,
+   "node": 8949,
+   "approaches": 2,
+   "streets": [
+    "EVR Periyar Salai",
+    "Taravath Madhavan Nair Bridge Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C15"
+  },
+  {
+   "lat": 13.10813,
+   "lon": 80.18344,
+   "node": 33565,
+   "approaches": 3,
+   "streets": [
+    "East Avenue Road",
+    "Street Number 31"
+   ],
+   "osm_name": "",
+   "candidate_id": "C16"
+  },
+  {
+   "lat": 13.09232,
+   "lon": 80.2753,
+   "node": 9908,
+   "approaches": 2,
+   "streets": [
+    "Elephant Gate Road",
+    "Wall Tax Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C17"
+  },
+  {
+   "lat": 12.9814,
+   "lon": 80.24316,
+   "node": 10366,
+   "approaches": 2,
+   "streets": [],
+   "osm_name": "",
+   "candidate_id": "C18"
+  },
+  {
+   "lat": 13.04337,
+   "lon": 80.27428,
+   "node": 11095,
+   "approaches": 2,
+   "streets": [
+    "Dr Natesan Road",
+    "Dr Radhakrishnan Salai",
+    "PVK Koil Street"
+   ],
+   "osm_name": "",
+   "candidate_id": "C19"
+  },
+  {
+   "lat": 13.03332,
+   "lon": 80.25688,
+   "node": 24724,
+   "approaches": 3,
+   "streets": [
+    "Bheemana Garden Street",
+    "CP Ramaswamy Road",
+    "Doctor Ranga Road"
+   ],
+   "osm_name": "",
+   "candidate_id": "C20"
+  }
+ ]
+}
