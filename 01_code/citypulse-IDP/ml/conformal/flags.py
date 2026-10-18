@@ -56,3 +56,22 @@ def rates(flags: np.ndarray, labels: Sequence[int]) -> Rates:
         positives=int(pos.sum()),
         negatives=int(neg.sum()),
     )
+
+
+def route_scores(routes: Sequence[Sequence[int]], score: dict[int, float], positive: set[int]) -> list[float]:
+    """C5b route nonconformity: for each route with at least one positive edge, the lowest score among its positive edges (routes
+    without a positive edge have nothing to cover and are left out)."""
+    return [min(score.get(e, 0.0) for e in r if e in positive) for r in routes if any(e in positive for e in r)]
+
+
+def route_threshold(routes: Sequence[Sequence[int]], score: dict[int, float], positive: set[int], alpha: float) -> float:
+    """tau such that, for exchangeable routes, P(every positive edge on a route scores >= tau | it has one) >= 1 - alpha."""
+    return positive_threshold(route_scores(routes, score, positive), alpha)
+
+
+def route_covered(route: Sequence[int], score: dict[int, float], positive: set[int], tau: float) -> bool | None:
+    """Whether every positive edge on the route is flagged; ``None`` when the route has no positive edge."""
+    pos = [e for e in route if e in positive]
+    if not pos:
+        return None
+    return all(score.get(e, 0.0) >= tau for e in pos)

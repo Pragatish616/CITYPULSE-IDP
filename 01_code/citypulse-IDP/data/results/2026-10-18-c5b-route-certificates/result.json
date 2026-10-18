@@ -1,0 +1,200 @@
+{
+ "task": "C5b route certificates",
+ "preregistration": "ml/conformal/PREREGISTRATION.md, section C5b (commit 4d31f85)",
+ "alpha": 0.1,
+ "splits": 200,
+ "split_seed": 20261018,
+ "positive_edges": 1877,
+ "configs": {
+  "C0": {
+   "routes": 1000,
+   "routes_with_a_positive_edge": 449,
+   "scores": {
+    "S1_c3_p_mean": {
+     "route_certificate": {
+      "route_coverage": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "share_of_route_edges_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "share_of_route_seconds_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "median_route_share_of_seconds_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "tau_median": 0.02,
+      "share_of_splits_tau_minus_inf": 0.0
+     },
+     "c5_edge_level_rule_on_routes": {
+      "route_coverage": {
+       "mean": 0.8852,
+       "p05": 0.6726,
+       "p95": 1.0
+      },
+      "share_of_route_edges_flagged": {
+       "mean": 0.757,
+       "p05": 0.3494,
+       "p95": 1.0
+      },
+      "share_of_route_seconds_flagged": {
+       "mean": 0.7597,
+       "p05": 0.3561,
+       "p95": 1.0
+      }
+     }
+    },
+    "S2_prior_only": {
+     "route_certificate": {
+      "route_coverage": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "share_of_route_edges_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "share_of_route_seconds_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "median_route_share_of_seconds_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "tau_median": 0.02,
+      "share_of_splits_tau_minus_inf": 0.0
+     },
+     "c5_edge_level_rule_on_routes": {
+      "route_coverage": {
+       "mean": 0.9566,
+       "p05": 0.6697,
+       "p95": 1.0
+      },
+      "share_of_route_edges_flagged": {
+       "mean": 0.9124,
+       "p05": 0.3473,
+       "p95": 1.0
+      },
+      "share_of_route_seconds_flagged": {
+       "mean": 0.9117,
+       "p05": 0.3432,
+       "p95": 1.0
+      }
+     }
+    }
+   }
+  },
+  "C3": {
+   "routes": 1000,
+   "routes_with_a_positive_edge": 448,
+   "scores": {
+    "S1_c3_p_mean": {
+     "route_certificate": {
+      "route_coverage": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "share_of_route_edges_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "share_of_route_seconds_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "median_route_share_of_seconds_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "tau_median": 0.02,
+      "share_of_splits_tau_minus_inf": 0.0
+     },
+     "c5_edge_level_rule_on_routes": {
+      "route_coverage": {
+       "mean": 0.9274,
+       "p05": 0.6741,
+       "p95": 1.0
+      },
+      "share_of_route_edges_flagged": {
+       "mean": 0.8494,
+       "p05": 0.3517,
+       "p95": 1.0
+      },
+      "share_of_route_seconds_flagged": {
+       "mean": 0.8508,
+       "p05": 0.3578,
+       "p95": 1.0
+      }
+     }
+    },
+    "S2_prior_only": {
+     "route_certificate": {
+      "route_coverage": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "share_of_route_edges_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "share_of_route_seconds_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "median_route_share_of_seconds_flagged": {
+       "mean": 1.0,
+       "p05": 1.0,
+       "p95": 1.0
+      },
+      "tau_median": 0.02,
+      "share_of_splits_tau_minus_inf": 0.0
+     },
+     "c5_edge_level_rule_on_routes": {
+      "route_coverage": {
+       "mean": 0.9625,
+       "p05": 0.6712,
+       "p95": 1.0
+      },
+      "share_of_route_edges_flagged": {
+       "mean": 0.9257,
+       "p05": 0.3518,
+       "p95": 1.0
+      },
+      "share_of_route_seconds_flagged": {
+       "mean": 0.925,
+       "p05": 0.3447,
+       "p95": 1.0
+      }
+     }
+    }
+   }
+  }
+ },
+ "decision": {
+  "route_coverage_C0_S1": 1.0,
+  "killed": false,
+  "uninformative": true
+ },
+ "code_commit_at_run": "4d31f85"
+}

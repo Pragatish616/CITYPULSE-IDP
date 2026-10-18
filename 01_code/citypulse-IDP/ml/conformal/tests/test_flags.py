@@ -49,3 +49,28 @@ def test_unseen_group_is_flagged_and_rates_count() -> None:
     assert f.tolist() == [True, True]
     r = rates(np.array([True, False, True]), [1, 1, 0])
     assert (r.coverage, r.false_flag, r.positives, r.negatives) == (0.5, 1.0, 2, 1)
+
+
+def test_route_certificate_meets_nominal_on_exchangeable_synthetic_routes() -> None:
+    from ml.conformal.flags import route_covered, route_threshold
+
+    rng = np.random.default_rng(1)
+    n_edges = 3000
+    positive = set(np.nonzero(rng.random(n_edges) < 0.05)[0].tolist())
+    score = {e: float(rng.beta(3, 2) if e in positive else rng.beta(2, 3)) for e in range(n_edges)}
+    covs = []
+    for _ in range(200):
+        routes = [rng.choice(n_edges, int(rng.integers(20, 80)), replace=False).tolist() for _ in range(400)]
+        cal, test = routes[:200], routes[200:]
+        tau = route_threshold(cal, score, positive, 0.1)
+        c = [route_covered(r, score, positive, tau) for r in test]
+        c = [x for x in c if x is not None]
+        covs.append(np.mean(c))
+    assert np.mean(covs) >= 0.89
+
+
+def test_a_route_without_positives_has_nothing_to_cover() -> None:
+    from ml.conformal.flags import route_covered, route_scores
+
+    assert route_covered([1, 2], {1: 0.9}, {7}, 0.5) is None
+    assert route_scores([[1, 2], [3, 7]], {7: 0.4}, {7}) == [0.4]
