@@ -66,3 +66,52 @@ Under exchangeability of calibration and test positives this guarantees P(flagge
 - The label is weak (see above).
 - No routing change is made from this study. Using conformal thresholds in the router would change the cost model, which needs the
   owner's approval and an ADR.
+
+---
+
+# C5b pre-registration: route certificates (added 18 Oct 2026, before any route-level code was written or run)
+
+This is a **second, separately registered analysis**, not a change to C5 above (whose result is final and stays as reported).
+
+## Question
+
+Can a route carry a statement with a checkable meaning: "on past routes like this one, in at least 9 of 10 cases **every** segment with
+an official flood report was among the flagged ones"? It is a coverage statement about estimates, never a claim that a road is safe.
+
+## Data (existing)
+
+- Routes: the 1,000 origin–destination routes of Study 1 (`data/results/2026-10-02-study1-route-quality/traces/`), configuration **C0**
+  (free-flow; the scores played no part in choosing these routes) as primary, and **C3** (default commuter) as secondary. Each route's
+  node list is turned into directed edges with `data/graph/2026-09-14/chennai_graph_cli.json`.
+- Edge label: 1 if the edge has an official report (both directions of two-way streets, as in C5), else 0.
+- Edge score S1: C3 p̄ at report age 0 for edges with a crowd report (as in C5); for every other edge the prior probability
+  (`prior_p` from `chennai_prior_ell0.json`), and 0 for edges with no prior entry (the router treats them as hazard-free).
+- Edge score S2: the prior alone, defined the same way without the crowd step.
+
+## Method
+
+Route nonconformity: for a route with at least one positive edge, s_r = the minimum score over its positive edges. Calibration routes
+with a positive edge give s_(1) ≤ … ≤ s_(n); τ = s_(k), k = ⌊α (n + 1)⌋, α = 0.10 (−∞ if k = 0). On a test route every edge with
+score ≥ τ is flagged. Under exchangeability of routes this gives P(all positive edges on the route flagged | the route has one) ≥ 0.90.
+
+Comparison: the C5 edge-level rule (label-conditional threshold fitted on the same calibration routes' edges) applied to whole routes.
+
+## Splits
+
+200 random 50/50 splits of routes, `numpy.random.default_rng(20261018)`. Routes share edges, so they are not independent; this is
+stated in the report, not corrected.
+
+## Outcomes
+
+- Route coverage: share of test routes with a positive edge whose positives are all flagged (mean, 5th and 95th percentiles).
+- Cost: share of a test route's edges flagged and share of its length (free-flow seconds) flagged, over all test routes.
+- The same two for the C5 edge-level rule.
+- Counts: routes, routes with a positive edge.
+
+## Decision rule (fixed now)
+
+- **Kill** the route certificate if mean route coverage under C0 for S1 is below 0.85.
+- If coverage holds but the median test route has more than half its length flagged, report that the certificate is uninformative with
+  today's scores.
+- No re-run with other α, configurations or scores before the report; anything further is exploratory.
+- No router or app change follows from this analysis without the owner's approval and an ADR.
