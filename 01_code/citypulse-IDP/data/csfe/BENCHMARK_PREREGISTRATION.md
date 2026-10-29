@@ -50,3 +50,10 @@ from the rain series, not from the labels.
 - The build now uses convention B (`WINDOW = "B"` in `scripts/build_csfe_proto.py`); the task, models, metrics and reading rules
   above are unchanged.
 - The re-run (`data/results/2026-10-30-csfe-b1-addendum1/`) is **exploratory**, because the rows had been seen before it.
+
+## Addendum 2 (30 Oct 2026): a build bug fixed; a second exploratory run
+
+The build attached rain only to rows with a position, although the city-median rain needs none. Twelve subway reports linked to
+watchlist subways without a position (8 Michaung closures, 4 Fengal "waterlogged but open") therefore had no rain and were left out of
+B1. The build now attaches the city median to every timed row (nearest-gauge rain still needs a position). The task and rules are
+unchanged; the run on the fixed build (`data/results/2026-10-30-csfe-b1-addendum2/`) is exploratory, like addendum 1.
