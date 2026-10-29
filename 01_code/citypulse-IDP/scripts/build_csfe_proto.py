@@ -273,14 +273,17 @@ def build() -> dict:
 
     for row in obs:
         d = obs_day(row)
-        if d is None or row["lat"] == "":
+        if d is None:
             continue
-        lat, lon = float(row["lat"]), float(row["lon"])
+        # The city median needs no position; the nearest gauge does (fixed 30 Oct 2026: rows without a position used to get no
+        # rain at all).
         best = None
-        for g, v in by_day.get(d, []):
-            km = math.hypot((pos[g][0] - lat) * 111.32, (pos[g][1] - lon) * 108.4)
-            if km <= 10 and (best is None or km < best[2]):
-                best = (g, v, km)
+        if row["lat"] != "":
+            lat, lon = float(row["lat"]), float(row["lon"])
+            for g, v in by_day.get(d, []):
+                km = math.hypot((pos[g][0] - lat) * 111.32, (pos[g][1] - lon) * 108.4)
+                if km <= 10 and (best is None or km < best[2]):
+                    best = (g, v, km)
         row["rain_reading_date"] = d.isoformat()
         if best:
             row["rain_day_mm_nearest"], row["rain_gauge"], row["rain_gauge_km"] = best[1], best[0], round(best[2], 2)
@@ -328,6 +331,7 @@ def build() -> dict:
         "with_time_to_the_day_or_better": sum(1 for r in obs if r["t_precision"] in ("minute", "reported_by")),
         "snapped_to_an_edge": sum(1 for r in obs if r["edge_ids"]),
         "with_rain_attached": sum(1 for r in obs if r["rain_day_mm_nearest"] != ""),
+        "with_city_median_rain": sum(1 for r in obs if r["rain_day_mm_city_median"] != ""),
         "gauges_with_position": len(pos),
         "gauges_in_box": sum(1 for p in pos.values() if in_box(*p)),
         "rain_days_rule": "city median >= 30 mm over >= 5 in-box gauges",

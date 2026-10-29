@@ -1,0 +1,67 @@
+{
+ "task": "CSFE B1 subway closure from rain",
+ "input": "data\\csfe\\2026-10-30\\observations.csv",
+ "preregistration": "data/csfe/BENCHMARK_PREREGISTRATION.md (commit cd54e9a)",
+ "rows": 42,
+ "positives": 32,
+ "events": {
+  "2023-12-michaung": {
+   "rows": 21,
+   "closed": 21
+  },
+  "2024-10-15": {
+   "rows": 8,
+   "closed": 8
+  },
+  "2024-11-fengal": {
+   "rows": 13,
+   "closed": 3
+  }
+ },
+ "subways": 16,
+ "models": {
+  "base": {
+   "brier": 0.368,
+   "bss_vs_base": 0.0,
+   "auroc": 0.0469
+  },
+  "history": {
+   "brier": 0.4588,
+   "bss_vs_base": -0.247,
+   "auroc": 0.1719
+  },
+  "rain": {
+   "brier": 0.4,
+   "bss_vs_base": -0.087,
+   "auroc": 0.0469
+  },
+  "rain_history": {
+   "brier": 0.3901,
+   "bss_vs_base": -0.0603,
+   "auroc": 0.0469
+  }
+ },
+ "ci95": {
+  "rain_bss_vs_base": [
+   -0.2479,
+   0.0
+  ],
+  "rain_history_bss_vs_base": [
+   -0.198,
+   0.0162
+  ],
+  "history_bss_vs_base": [
+   -0.8637,
+   0.428
+  ],
+  "brier_diff_rain_history_minus_rain": [
+   -0.022,
+   0.0
+  ]
+ },
+ "brier_diff_rain_history_minus_rain": -0.0098,
+ "reading": {
+  "rain_helps": false,
+  "history_helps_beyond_rain": false
+ }
+}

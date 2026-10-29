@@ -54,7 +54,7 @@ says "test" are dropped. Gauge readings: one a day; 7 duplicate station-days kee
 - **Intended.** Testing whether rain and history predict closures; giving routing studies negative labels and times; checking
   flood models against named places; planning what evidence to collect next.
 - **Shown so far.** Benchmark B1 (subway closure from rain): no evidence either way, because only 3 events have both labels and
-  rain (`data/results/2026-10-30-csfe-b1-addendum1/`).
+  rain (`data/results/2026-10-30-csfe-b1-addendum2/`, exploratory; see addenda 1 and 2 of the pre-registration).
 - **Not suitable for.** Saying that any road or subway is safe or passable now (ADR-011); any operational use; estimating flood
   frequency (the sample follows what was reported).
 

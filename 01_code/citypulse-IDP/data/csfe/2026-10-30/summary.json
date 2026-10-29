@@ -20,6 +20,7 @@
  "with_time_to_the_day_or_better": 247,
  "snapped_to_an_edge": 6371,
  "with_rain_attached": 199,
+ "with_city_median_rain": 220,
  "gauges_with_position": 87,
  "gauges_in_box": 29,
  "rain_days_rule": "city median >= 30 mm over >= 5 in-box gauges",
