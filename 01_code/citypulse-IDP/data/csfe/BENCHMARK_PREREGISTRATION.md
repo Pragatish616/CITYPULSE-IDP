@@ -36,3 +36,17 @@ events used. 95 % intervals by bootstrap over events (2,000 resamples, seed 2026
 - **History helps beyond rain** only if model 4 beats model 3 with an interval above 0 on the paired difference in Brier score.
 - With so few events, an interval that includes 0 is the expected outcome and is reported as "no evidence", not as "no effect".
 - This is a prototype task to show the data supports the question; it is not a result about Chennai subways.
+
+## Addendum 1 (30 Oct 2026, after the first run): rain window corrected; the re-run is exploratory
+
+The first run (`data/results/2026-10-30-csfe-b1/`, input build now kept as `data/csfe/2026-10-30-windowA/`) attached rain under
+convention A: a gauge reading dated D was assumed to cover the 24 h ending 08:30 IST on D. Looking at the build's rows afterwards
+showed this is wrong for these gauges. Every storm checked has its heavy totals on the readings dated the days of heavy rain and near
+zero on the reading dated the day after the rain stopped (Michaung: 195 and 212 mm dated 3 and 4 Dec 2023, then 0.0 dated 5 Dec;
+Fengal: 115 mm dated 30 Nov 2024). The readings therefore cover about 08:30 on D to 08:30 on D+1 (convention B). This evidence comes
+from the rain series, not from the labels.
+
+- The first run stands as recorded and is **invalid as a test**, because its rain feature was misaligned by a day for most rows.
+- The build now uses convention B (`WINDOW = "B"` in `scripts/build_csfe_proto.py`); the task, models, metrics and reading rules
+  above are unchanged.
+- The re-run (`data/results/2026-10-30-csfe-b1-addendum1/`) is **exploratory**, because the rows had been seen before it.
