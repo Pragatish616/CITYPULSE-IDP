@@ -1,17 +1,13 @@
-\begin{tabular}{lrrrrrrr}
+\begin{tabular}{lrrrrrr}
 \toprule
-Config. & $z$ & $\lambda$ & Mean extra & P90 extra & $\sum\bar p$ & Share $\bar p\!\geq\!0.5$ & TW-mean $\bar p$\\
- & & & time (\%) & time (\%) & per route & (\%) & \\
+Configuration & Changed & $\sum\bar p$ & Observed & Prior-only & Touch $\ge0.5$ & Detour\\
+ & routes & per route & edges & edges & (\%) & (\%)\\
 \midrule
-C0 (free-flow) & -- & -- & 0.00 & 0.00 & 1.61 & 30 & 0.0113\\
-C1 (block $\bar p\geq0.5$) & 0 & 0 & 1.53 & 6.20 & 1.22 & 0 & 0.0078\\
-C3 & 0 & 0.3 & 0.00 & 0.00 & 1.52 & 29 & 0.0100\\
-C3 & 0 & 5 & 0.85 & 2.73 & 0.98 & 21 & 0.0062\\
-C3 & 0 & 20 & 4.53 & 13.93 & 0.44 & 6 & 0.0023\\
-C3 & 1 & 5 & 3.06 & 10.51 & 0.66 & 14 & 0.0037\\
-C3 & 1 & 20 & 9.53 & 25.57 & 0.26 & 5 & 0.0009\\
-C3 & 2 & 0.3 & 0.05 & 0.07 & 1.41 & 28 & 0.0094\\
-C3 & 2 & 5 & 4.25 & 12.20 & 0.55 & 11 & 0.0028\\
-C3 & 2 & 20 & 12.72 & 30.97 & 0.18 & 4 & 0.0005\\
+C0 free-flow & 0 & 2.01 & 1.40 & 0.61 & 14.8 & 0.00\\
+C1 block $\bar p\ge0.5$ & 148 & 1.98 & 1.29 & 0.69 & 0.0 & 0.49\\
+Hybrid: C1 + soft, $\lambda=5$ & 445 & 1.43 & 1.03 & 0.41 & 0.0 & 1.35\\
+C3 default ($z=0$, $\lambda=0.3$) & 118 & 1.97 & 1.36 & 0.61 & 11.5 & 0.01\\
+C3, $z=0$, $\lambda=5$ & 418 & 1.48 & 1.08 & 0.40 & 7.5 & 0.85\\
+C3, $z=0$, $\lambda=20$ & 697 & 0.80 & 0.62 & 0.18 & 2.5 & 6.27\\
 \bottomrule
 \end{tabular}
