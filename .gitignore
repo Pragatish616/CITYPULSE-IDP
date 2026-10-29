@@ -69,3 +69,6 @@ fieldlog-export-*.csv
 # Drop folder for the second agent's deliveries; integrated files are committed in their real places, not here.
 handoff/inbox/*
 !handoff/inbox/README.md
+
+# CSFE prototype tables include CFM-DSS data (no publisher licence); only summary.json is committed
+01_code/citypulse-IDP/data/csfe/*/*.csv

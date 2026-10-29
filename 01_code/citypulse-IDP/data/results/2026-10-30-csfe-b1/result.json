@@ -1,0 +1,66 @@
+{
+ "task": "CSFE B1 subway closure from rain",
+ "preregistration": "data/csfe/BENCHMARK_PREREGISTRATION.md (commit cd54e9a)",
+ "rows": 30,
+ "positives": 24,
+ "events": {
+  "2023-12-michaung": {
+   "rows": 13,
+   "closed": 13
+  },
+  "2024-10-15": {
+   "rows": 8,
+   "closed": 8
+  },
+  "2024-11-fengal": {
+   "rows": 9,
+   "closed": 3
+  }
+ },
+ "subways": 10,
+ "models": {
+  "base": {
+   "brier": 0.2738,
+   "bss_vs_base": 0.0,
+   "auroc": 0.0625
+  },
+  "history": {
+   "brier": 0.2905,
+   "bss_vs_base": -0.0609,
+   "auroc": 0.2292
+  },
+  "rain": {
+   "brier": 0.3446,
+   "bss_vs_base": -0.2584,
+   "auroc": 0.0625
+  },
+  "rain_history": {
+   "brier": 0.3337,
+   "bss_vs_base": -0.2188,
+   "auroc": 0.0625
+  }
+ },
+ "ci95": {
+  "rain_bss_vs_base": [
+   -1.0732,
+   0.0
+  ],
+  "rain_history_bss_vs_base": [
+   -0.9574,
+   0.0
+  ],
+  "history_bss_vs_base": [
+   -0.432,
+   0.3348
+  ],
+  "brier_diff_rain_history_minus_rain": [
+   -0.0172,
+   0.0
+  ]
+ },
+ "brier_diff_rain_history_minus_rain": -0.0108,
+ "reading": {
+  "rain_helps": false,
+  "history_helps_beyond_rain": false
+ }
+}

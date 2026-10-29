@@ -1,0 +1,48 @@
+{
+ "built": "2026-10-29",
+ "observations": 7010,
+ "by_kind": {
+  "closed": 47,
+  "depth": 1,
+  "depth_range": 578,
+  "not_waterlogged": 148,
+  "open": 3,
+  "partly_open": 1,
+  "report_unclear": 35,
+  "waterlogged": 6185,
+  "waterlogged_open": 12
+ },
+ "by_source_type": {
+  "crowd": 5221,
+  "news": 78,
+  "official": 1711
+ },
+ "with_time_to_the_day_or_better": 247,
+ "snapped_to_an_edge": 6371,
+ "with_rain_attached": 199,
+ "gauges_with_position": 87,
+ "gauges_in_box": 29,
+ "rain_days_rule": "city median >= 30 mm over >= 5 in-box gauges",
+ "rain_window_convention": "B",
+ "rain_events": 247,
+ "news_places_unmatched_to_watchlist": [
+  "C.P. Road subway",
+  "CB Road subway",
+  "Kathivakkam High Road",
+  "Manjambakkam to Vadaperumbakkam Road",
+  "Mount subway",
+  "Palavanthangal subway",
+  "Pazhavanthangal subway",
+  "Sundaram Point subway",
+  "Sundharam Point subway"
+ ],
+ "news_rows_linked_to_a_subway_without_position": 16,
+ "rain_daily_rows": 451408,
+ "news_facts": 78,
+ "news_events": 7,
+ "water_level_stations": 47,
+ "water_level_station_days": 10064,
+ "water_level_stations_with_position": 40,
+ "subway_timeline_rows": 68,
+ "subways_in_timeline": 19
+}
