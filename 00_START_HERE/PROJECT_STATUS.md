@@ -98,3 +98,11 @@ Status words used below:
 | C8b signal-timing learner | `ml/signal_timing/` (cycle, red, delay per time-of-week bin) | Simulated passes only; cycle exact on 4 simulated signals | Field pipeline built 18 Oct (GPX/CSV traces → approaches → learner → stopwatch evaluation with the 15 s kill rule; 20 candidate junctions); untested on real traces |
 | C5 conformal flags | `ml/conformal/`, `scripts/c5_conformal_eval.py`, pre-registration committed first | Coverage 0.894 on a spatial split (kill line 0.85), but 54 % of non-report edges flagged; crowd evidence barely beats the prior (`data/results/2026-10-17-c5-conformal/`) | Not killed; low information with today's scores. C5b route certificates (18 Oct): coverage met only by flagging every edge (threshold at the prior floor). Not adopted: ADR-036 |
 | C3 microwave-link rain | `ml/cml_rain/` retrieval chain, no invented coefficients | Synthetic links only | Ready for data; no operator data |
+
+## 30 October 2026: prototype evidence dataset and paper v3 (local commits, not pushed)
+
+| Item | State | Evidence |
+|---|---|---|
+| Chennai Street Flood Evidence (CSFE) v0.2 | Built locally; tables not redistributable (CFM-DSS has no licence); datasheet written | 7,010 observations, 163 negatives, 247 timed to the day or better, 78 hand-extracted news facts over 7 events, a 19-subway status timeline, gauge rain and water levels (`data/csfe/`, `scripts/build_csfe_proto.py`) |
+| Benchmark B1 (subway closure from rain) | Pre-registered; first run invalid (rain window); two exploratory runs: no evidence either way | Only 3 events have both labels and gauge rain (`data/results/2026-10-30-csfe-b1*/`) |
+| IEEE paper v3 | Source complete; **PDF not built** (no TeX on this laptop); author departments, e-mails and the AI-disclosure wording need the authors | `02_paper/README.md`, `02_paper/REVIEW_2026-10-29.md` |
