@@ -17,7 +17,7 @@ dependencies:
     path: ../../packages/pulse_explain
   pulse_router:
     path: ../../packages/pulse_router
-  shelf: ^1.4.2
+  shelf: ^1.4.3
   shelf_router: ^1.1.4
   yaml: ^3.1.3
 
