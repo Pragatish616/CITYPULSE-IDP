@@ -83,7 +83,7 @@ jobs:
           cd ../../../../..
           ls -l citypulse-desktop-test-windows-x64.zip
           sha256sum citypulse-desktop-test-windows-x64.zip | tee citypulse-desktop-test-windows-x64.zip.sha256
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: citypulse-desktop-test-windows-x64
           path: ${{ env.CODE }}/app/citypulse-desktop-test-windows-x64.zip

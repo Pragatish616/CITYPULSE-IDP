@@ -81,7 +81,7 @@ jobs:
         run: |
           ls -l build/app/outputs/flutter-apk/
           sha256sum build/app/outputs/flutter-apk/app-release.apk
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: citypulse-android-arm64
           path: ${{ env.CODE }}/app/build/app/outputs/flutter-apk/app-release.apk
